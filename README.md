@@ -1,5 +1,11 @@
 # Assurance del Software Assistito da LLM
 
+> 🌐 **VERSIONE WEB NAVIGABILE**
+> 
+> Puoi leggere il manuale direttamente online, formattato e interattivo, tramite GitHub Pages:
+> - **[👉 Clicca qui per aprire il Manuale Web](https://kamaludu.github.io/LLM_assurance/)**
+> 
+
 > 📥 **DOWNLOAD DEL MANUALE (Ultima versione disponibile)**
 > 
 > Puoi scaricare il manuale nei vari formati già compilati e pronti all'uso:
@@ -72,7 +78,7 @@ Questo testo è il percorso di studio e approfondimento che ho costruito per me 
 
 Ho deciso di completarlo e di metterlo a disposizione di tutti perché il lavoro necessario per metterlo in piedi è stato tanto, e credo che una struttura del genere possa essere utile a chiunque si trovi nella mia stessa situazione e voglia affrontare il problema seriamente.
 
-Prendetelo quindi per quello che è: una mappa di studio molto approfondita, una bozza aperta e uno strumento di lavoro. Non prendete per oro colato né le conclusioni né il codice degli esempi: verificate sempre le fonti primarie, provate le cose sul campo e, se trovate errori o ingenuità, **[segnalateli aprendo una Issue](../../issues)**.
+Prendetelo quindi per quello che è: una mappa di studio molto approfondita, una bozza aperta e uno strumento di lavoro. Non prendete per oro colato né le conclusioni né il codice degli esempi: verificate sempre le fonti primarie, provate le cose sul campo e, se trovate errori o ingenuità, **[segnalateli aprendo una Issue](https://github.com/kamaludu/LLM_assurance/releases/latest)**.
 
 ---
 
