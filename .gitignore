@@ -1,0 +1,15 @@
+# File generati dalla pipeline (da distribuire via Releases)
+*.pdf
+*.docx
+*.html
+*.epub
+
+# File temporanei ricreati automaticamente
+html_style.css
+epub.css
+typst-style.typ
+manual_filters.lua
+
+# File di sistema
+.DS_Store
+Thumbs.db
