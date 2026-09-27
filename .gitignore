@@ -1,15 +1,40 @@
-# File generati dalla pipeline (da distribuire via Releases)
+# ========================================
+# Artefatti generati dalla pipeline (da distribuire via Releases, non in Git)
+# ========================================
 *.pdf
 *.docx
 *.html
 *.epub
+*.txt
 
-# File temporanei ricreati automaticamente
+# ========================================
+# File ausiliari generati/sovrascritti al volo da pipeline.sh
+# ========================================
 html_style.css
 epub.css
 typst-style.typ
 manual_filters.lua
 
-# File di sistema
+# ========================================
+# File temporanei di videoscrittura (Office / WPS / LibreOffice)
+# ========================================
+~$*
+.~lock.*
+
+# ========================================
+# File di backup e configurazioni editor (Vim, VS Code, Nano)
+# ========================================
+*~
+*.swp
+*.bak
+*.tmp
+.vscode/
+.idea/
+
+# ========================================
+# File spazzatura di sistema (macOS, Windows)
+# ========================================
 .DS_Store
+._*
 Thumbs.db
+desktop.ini
