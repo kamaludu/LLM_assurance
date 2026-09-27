@@ -85,3 +85,29 @@ Prendetelo quindi per quello che è: una mappa di studio molto approfondita, una
 - **Autore:** Cristian Evangelisti  
 - **Email:** `opensource@cevangel.anonaddy.me`  
 - **Repository:** [GitHub kamaludu/LLM_assurance](https://github.com/kamaludu/LLM_assurance)
+
+---
+
+### 📖 Come citare questo manuale
+
+Se citi quest'opera in un articolo, una tesi o una ricerca:
+- **Da computer desktop:** puoi usare il pulsante **"Cite this repository"** nella barra laterale destra.
+- **Da smartphone:** puoi copiare direttamente il riferimento qui sotto:
+
+**APA:**
+> Evangelisti, C. (2026). *Assurance del Software Assistito da LLM*. GitHub. https://github.com/kamaludu/LLM_assurance
+
+<details>
+<summary>📋 <b>Mostra formato BibTeX (per LaTeX / Overleaf)</b></summary>
+
+```bibtex
+@misc{evangelisti2026assurance,
+  author = {Evangelisti, Cristian},
+  title = {{Assurance del Software Assistito da LLM}},
+  year = {2026},
+  publisher = {GitHub},
+  howpublished = {\url{https://github.com/kamaludu/LLM_assurance}}
+}
+```
+
+</details>
