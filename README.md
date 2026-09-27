@@ -4,7 +4,8 @@ Assurance del Software Assistito da LLM
 ## Politica di Contribuzione e Segnalazioni
 
 Le segnalazioni di errori, refusi o suggerimenti sono benvenute! 
-Puoi inviarle aprendo una **[Issue](../../issues)** su questo repository.
+Puoi inviarle aprendo una **[Issue](https://github.com/kamaludu/LLM_assurance/issues)
+** su questo repository.
 
 > **Nota:** Questo repository non accetta contributi esterni tramite Pull Request 
 > per garantire l'integrità del testo originale e della catena di licenze. 
