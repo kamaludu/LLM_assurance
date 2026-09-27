@@ -17,8 +17,6 @@
 
 ---
 
----
-
 ## 🌍 Traduzione / Translation & International Readers
 
 **🇮🇹 Italiano:**
