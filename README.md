@@ -1,5 +1,14 @@
-LLM_assurance
 # Assurance del Software Assistito da LLM
+
+> 📥 **DOWNLOAD DEL MANUALE (Ultima versione disponibile)**
+> 
+> Puoi scaricare il manuale nei vari formati già compilati e pronti all'uso:
+> - 📄 **[PDF, EPUB, DOCX, HTML — Clicca qui per scaricare](https://github.com/kamaludu/LLM_assurance/releases/latest)**
+>
+> *(I file sono disponibili nella sezione **Assets** dell'ultima release pubblicata)*
+> 
+
+---
 
 ## Politica di Contribuzione e Segnalazioni
 
