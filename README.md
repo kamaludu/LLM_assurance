@@ -1,11 +1,13 @@
 # Assurance del Software Assistito da LLM
 
+> [!TIP]
 > 🌐 **VERSIONE WEB NAVIGABILE**
 > 
 > Puoi leggere il manuale direttamente online, formattato e interattivo, tramite GitHub Pages:
-> - **[👉 Clicca qui per aprire il Manuale Web](https://kamaludu.github.io/LLM_assurance/)**
-> 
+> - **[➜ Clicca qui per aprire il Manuale Web](https://kamaludu.github.io/LLM_assurance/)**  
+>
 
+> [!IMPORTANT]
 > 📥 **DOWNLOAD DEL MANUALE (Ultima versione disponibile)**
 > 
 > Puoi scaricare il manuale nei vari formati già compilati e pronti all'uso:
@@ -14,6 +16,7 @@
 > *(I file sono disponibili nella sezione **Assets** dell'ultima release pubblicata)*
 > 
 
+> [!NOTE]
 > ℹ️ **Nota di lettura**: Il file sorgente del manuale (`LLM_assurance.md`) è un'opera 
 > integrale di grandi dimensioni e supera i limiti di anteprima web di GitHub. 
 > Per leggere il manuale:
