@@ -17,6 +17,20 @@
 
 ---
 
+---
+
+## 🌍 Traduzione / Translation & International Readers
+
+**🇮🇹 Italiano:**
+- **Lettura immediata con traduttore automatico:** Si consiglia di scaricare il file **`.html`** dalla sezione [Releases](../../releases/latest) e aprirlo nel browser (Chrome, Edge, Safari) utilizzando la funzione nativa di traduzione automatica della pagina.
+- **Traduzioni formali:** Chi desidera realizzare una versione tradotta del manuale deve operare sul file sorgente `.md`. Le traduzioni sono considerate opere derivate e devono rispettare i termini della **GNU FDL v1.3** (Sez. 8).
+
+**🇬🇧 English:**
+- **Reading with Machine Translation:** We strongly recommend downloading the standalone **`.html`** file from the [Releases](../../releases/latest) section and opening it in a web browser (Chrome, Edge, Safari) using the built-in "Translate page" feature. Translating the PDF version directly is discouraged as it breaks formatting and code blocks.
+- **Translating the Manual:** If you wish to translate this manual into another language, please work directly on the source Markdown file (`.md`). In accordance with **GNU FDL v1.3** (Section 8), translations are regarded as modified versions and must be distributed under the same license terms, preserving original authorship and notices.
+
+---
+
 ## Politica di Contribuzione e Segnalazioni
 
 Le segnalazioni di errori, refusi o suggerimenti sono benvenute! 
