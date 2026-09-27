@@ -59,10 +59,29 @@ Puoi inviarle aprendo una **[Issue](https://github.com/kamaludu/LLM_assurance/is
 
 ---
 
-## Licenze e Copyright
+## Genesi del testo e nota di trasparenza
+
+Questo manuale è nato per un motivo molto semplice: avevo bisogno di capire e studiare la software assurance, soprattutto ora che uso spesso gli LLM per scrivere codice.
+
+Non trovando una guida organica che mettesse insieme tutti i pezzi in modo rigoroso, ho iniziato a usare vari modelli linguistici per aiutarmi a strutturare gli argomenti, chiarire i concetti ed esplorare le metodologie.
+Facendolo con un'impostazione metodologica molto stretta, mi sono accorto che quello che doveva essere un insieme di appunti personali stava prendendo la forma di un vero e proprio manuale, molto esteso e dettagliato.
+
+Voglio essere del tutto trasparente: non sono un esperto di certificazione software che si mette in cattedra per spiegare la materia agli altri.
+
+Questo testo è il percorso di studio e approfondimento che ho costruito per me stesso, in modo del tutto indipendente: un'architettura che considero un cantiere aperto, da verificare sul campo, confrontare con la pratica e assimilare continuamente.
+
+Ho deciso di completarlo e di metterlo a disposizione di tutti perché il lavoro necessario per metterlo in piedi è stato tanto, e credo che una struttura del genere possa essere utile a chiunque si trovi nella mia stessa situazione e voglia affrontare il problema seriamente.
+
+Prendetelo quindi per quello che è: una mappa di studio molto approfondita, una bozza aperta e uno strumento di lavoro. Non prendete per oro colato né le conclusioni né il codice degli esempi: verificate sempre le fonti primarie, provate le cose sul campo e, se trovate errori o ingenuità, **[segnalateli aprendo una Issue](../../issues)**.
+
+---
+
+## Licenza e Contatti
 
 - **Manuale e Contenuti** (`LLM_assurance.md` e formati derivati): 
   Rilasciati sotto licenza **[GNU Free Documentation License (GFDL) v1.3](COPYING-DOC)**.
 - **Pipeline e Strumenti di Compilazione** (`pipeline.sh`): 
   Rilasciati come software libero sotto licenza **[GNU General Public License (GPL) v3](COPYING)**.
-  
+- **Autore:** Cristian Evangelisti  
+- **Email:** `opensource@cevangel.anonaddy.me`  
+- **Repository:** [GitHub kamaludu/LLM_assurance](https://github.com/kamaludu/LLM_assurance)
