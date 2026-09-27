@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Se citi questo manuale, ti preghiamo di farlo utilizzando i seguenti metadati."
+title: "Assurance del Software Assistito da LLM"
+abstract: "Manuale e mappa metodologica sull'assurance del software sviluppato con modelli linguistici, redatto con assistenza di LLM e approccio trasparente."
+authors:
+  - family-names: "Evangelisti"
+    given-names: "Cristian"
+url: "https://github.com/kamaludu/LLM_assurance"
+license: "GFDL-1.3-or-later"
