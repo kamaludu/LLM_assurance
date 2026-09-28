@@ -1022,7 +1022,7 @@ pandoc -f gfm+raw_html "$SOURCE_FILE" -o "${BASENAME}.html" \
   --embed-resources \
   --css=html_style.css \
   --lua-filter=manual_filters.lua \
-  -M title="$DOC_TITLE"
+  -V pagetitle="$DOC_TITLE"
 
 # 2.4 Compilazione EPUB3 (Split livello 2 con foglio di stile ripulito)
 echo "==> [4/4] Compilazione EPUB3..."
@@ -1030,6 +1030,7 @@ pandoc -f gfm+raw_html "$SOURCE_FILE" -o "${BASENAME}.epub" \
   --lua-filter=manual_filters.lua \
   --split-level=2 \
   --toc-depth=2 \
+  --epub-title-page=false \
   --css=epub.css \
   -M title="$DOC_TITLE" \
   -M author="Cristian Evangelisti" \
