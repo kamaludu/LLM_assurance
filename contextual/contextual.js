@@ -1,6 +1,7 @@
 /**
- * contextual.js - Motore per dizionario contestuale in-page
- * Architettura: Trie (Prefix Tree) + TreeWalker + Singleton Tooltip
+ * contextual.js - Motore per glossario contestuale in-page
+ * Architettura: Trie (Prefix Tree) case-adaptive + TreeWalker + Singleton Popup
+ * Interazione unificata: Click/Tap su Desktop, Android, iOS. Nessun evento Hover.
  * Compatibile con file:// e GitHub Pages senza dipendenze né CORS.
  */
 (function () {
@@ -11,7 +12,7 @@
                      document.querySelector('script[src*="contextual.js"]')?.src || './';
   const BASE_PATH = SCRIPT_URL.substring(0, SCRIPT_URL.lastIndexOf('/') + 1);
 
-  // 2. INIEZIONE ASSET ESTERNI (Bypass CORS per file://)
+  // 2. INIEZIONE ASSET ESTERNI (Bypass restrizioni CORS per file://)
   function loadStylesheet(url) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -30,13 +31,36 @@
 
   loadStylesheet(BASE_PATH + 'contextual.css');
 
-  // 3. STRUTTURA DATI: TRIE (Prefix Tree)
+  // 3. UTILITÀ UNICODE E NORMALIZZAZIONE
+  const UNICODE_WORD_CHAR = /[\p{L}\p{N}]/u;
+
+  // Unifica apostrofi tipografici (Pandoc/Word: ’, ‘) e accenti gravi con l'apostrofo ASCII
+  function normalizeApostrophes(str) {
+    return str.replace(/[\u2018\u2019`]/g, "'");
+  }
+
+  function normalizeChar(c) {
+    if (c === '\u2019' || c === '\u2018' || c === '`') {
+      return "'";
+    }
+    return c.toLowerCase();
+  }
+
+  // Regola euristica: i termini molto corti o acronimi puri devono essere cercati case-sensitive
+  function isCaseSensitiveTerm(term) {
+    if (term.length <= 4) return true;
+    const hasUpper = /[A-Z]/.test(term);
+    const hasLower = /[a-z]/.test(term);
+    if (hasUpper && !hasLower) return true;
+    if (/^[A-Z][a-z]+[A-Z]/.test(term) && term.length <= 6) return true;
+    return false;
+  }
+
+  // 4. STRUTTURA DATI: TRIE (Prefix Tree)
   class TrieNode {
     constructor() {
       this.children = new Map();
-      this.isEndOfWord = false;
-      this.termKey = null;
-      this.originalTerm = '';
+      this.matches = []; // Array di { termKey, originalTerm, caseSensitive }
     }
   }
 
@@ -46,23 +70,33 @@
     }
 
     insert(termKey, originalTerm) {
+      if (!originalTerm || !originalTerm.trim()) return;
+      const cleanTerm = originalTerm.trim();
+      const caseSensitive = isCaseSensitiveTerm(cleanTerm);
+
       let node = this.root;
-      const normalized = originalTerm.toLowerCase();
-      for (const char of normalized) {
-        if (!node.children.has(char)) {
-          node.children.set(char, new TrieNode());
+      for (const char of cleanTerm) {
+        const c = normalizeChar(char);
+        if (!node.children.has(c)) {
+          node.children.set(c, new TrieNode());
         }
-        node = node.children.get(char);
+        node = node.children.get(c);
       }
-      node.isEndOfWord = true;
-      node.termKey = termKey;
-      node.originalTerm = originalTerm;
+
+      const alreadyRegistered = node.matches.some(
+        m => m.termKey === termKey && m.originalTerm === cleanTerm
+      );
+      if (!alreadyRegistered) {
+        node.matches.push({
+          termKey: termKey,
+          originalTerm: cleanTerm,
+          caseSensitive: caseSensitive
+        });
+      }
     }
   }
 
-  // 4. LOGICA DI DELIMITAZIONE (Word Boundaries per simboli tecnici e lettere accentate)
-  const UNICODE_WORD_CHAR = /[\p{L}\p{N}]/u;
-
+  // 5. DELIMITAZIONE CONFINI DI PAROLA (Word Boundaries)
   function isBoundaryBefore(text, index, term) {
     if (index === 0) return true;
     const prevChar = text[index - 1];
@@ -72,7 +106,6 @@
     if (isFirstAlpha) {
       return !UNICODE_WORD_CHAR.test(prevChar);
     }
-    // Se il termine inizia con un simbolo (.NET), il precedente non deve essere identico né alfanumerico
     return prevChar !== firstChar && !UNICODE_WORD_CHAR.test(prevChar);
   }
 
@@ -85,19 +118,18 @@
     if (isLastAlpha) {
       return !UNICODE_WORD_CHAR.test(nextChar);
     }
-    // Se il termine finisce con un simbolo (C++), il successivo non deve essere '+' né alfanumerico
     return nextChar !== lastChar && !UNICODE_WORD_CHAR.test(nextChar);
   }
 
-  // Algoritmo di scansione lineare O(L) con logica Longest-Match
+  // Algoritmo lineare O(L) con selezione del match più lungo (Longest-Match)
   function findMatches(text, trie) {
     const matches = [];
     const len = text.length;
     let i = 0;
 
     while (i < len) {
-      const charLower = text[i].toLowerCase();
-      if (!trie.root.children.has(charLower)) {
+      const c0 = normalizeChar(text[i]);
+      if (!trie.root.children.has(c0)) {
         i++;
         continue;
       }
@@ -107,29 +139,38 @@
       let j = i;
 
       while (j < len) {
-        const c = text[j].toLowerCase();
+        const c = normalizeChar(text[j]);
         if (!node.children.has(c)) {
           break;
         }
         node = node.children.get(c);
         j++;
 
-        if (node.isEndOfWord) {
-          // Verifica sia il confine iniziale che finale
-          if (isBoundaryBefore(text, i, node.originalTerm) && isBoundaryAfter(text, j, node.originalTerm)) {
-            longestValidMatch = {
-              start: i,
-              end: j,
-              termKey: node.termKey,
-              originalTerm: node.originalTerm
-            };
+        if (node.matches.length > 0) {
+          const textSlice = text.slice(i, j);
+          for (const candidate of node.matches) {
+            if (candidate.caseSensitive) {
+              if (normalizeApostrophes(textSlice) !== normalizeApostrophes(candidate.originalTerm)) {
+                continue;
+              }
+            }
+            if (isBoundaryBefore(text, i, candidate.originalTerm) &&
+                isBoundaryAfter(text, j, candidate.originalTerm)) {
+              longestValidMatch = {
+                start: i,
+                end: j,
+                termKey: candidate.termKey,
+                originalTerm: candidate.originalTerm
+              };
+              break;
+            }
           }
         }
       }
 
       if (longestValidMatch) {
         matches.push(longestValidMatch);
-        i = longestValidMatch.end; // Salta alla fine del termine più lungo
+        i = longestValidMatch.end; // Salta alla fine del match più lungo
       } else {
         i++;
       }
@@ -137,26 +178,21 @@
     return matches;
   }
 
-  // 5. PARSER DEL DOM (TreeWalker ad alte prestazioni)
-  const IGNORED_TAGS = new Set([
-    'SCRIPT', 'STYLE', 'NOSCRIPT', 'PRE', 'CODE', 'KBD', 'SAMP',
-    'TEXTAREA', 'INPUT', 'SELECT', 'BUTTON', 'A', 'SVG', 'CANVAS'
-  ]);
+  // 6. SCANSIONE DEL DOM (TreeWalker non distruttivo)
+  const IGNORED_SELECTOR = 'script, style, noscript, pre, code, kbd, samp, textarea, input, select, button, a, svg, canvas, .ctx-term, .ctx-tooltip, [contenteditable="true"]';
 
   function scanAndMarkDOM(dictionary) {
-    // Costruzione del Trie
     const trie = new Trie();
     for (const key of Object.keys(dictionary)) {
       trie.insert(key, key);
-      // Se il dato espone alias secondari, possono essere registrati qui
-      if (dictionary[key].aliases && Array.isArray(dictionary[key].aliases)) {
-        for (const alias of dictionary[key].aliases) {
+      const item = dictionary[key];
+      if (item && Array.isArray(item.aliases)) {
+        for (const alias of item.aliases) {
           trie.insert(key, alias);
         }
       }
     }
 
-    // Filtro per TreeWalker
     const walker = document.createTreeWalker(
       document.body,
       NodeFilter.SHOW_TEXT,
@@ -165,20 +201,15 @@
           if (!node.nodeValue || !node.nodeValue.trim()) {
             return NodeFilter.FILTER_REJECT;
           }
-          let parent = node.parentElement;
-          while (parent && parent !== document.body) {
-            if (IGNORED_TAGS.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
-            if (parent.classList && (parent.classList.contains('ctx-term') || parent.classList.contains('ctx-tooltip'))) {
-              return NodeFilter.FILTER_REJECT;
-            }
-            parent = parent.parentElement;
+          const parent = node.parentElement;
+          if (!parent || parent.closest(IGNORED_SELECTOR)) {
+            return NodeFilter.FILTER_REJECT;
           }
           return NodeFilter.FILTER_ACCEPT;
         }
       }
     );
 
-    // Raccoglie i nodi di testo per evitare mutazioni concorrenti al TreeWalker
     const textNodes = [];
     let currentNode = walker.nextNode();
     while (currentNode) {
@@ -186,12 +217,11 @@
       currentNode = walker.nextNode();
     }
 
-    // Sostituzione non distruttiva con DocumentFragment
     for (const textNode of textNodes) {
       const rawText = textNode.nodeValue;
       const matches = findMatches(rawText, trie);
 
-      if (matches.length === 0) continue; // Nessun reflow, zero modifiche
+      if (matches.length === 0) continue;
 
       const fragment = document.createDocumentFragment();
       let lastIndex = 0;
@@ -223,21 +253,26 @@
     }
   }
 
-  // 6. UI TOOLTIP SINGLETON E GESTIONE EVENTI
+  // 7. GESTIONE DELLA POPUP SINGLETON E POSIZIONAMENTO 2D
   let tooltipEl = null;
   let currentActiveTerm = null;
-  let hideTimeout = null;
 
   function createTooltipSingleton() {
+    if (document.getElementById('ctx-tooltip')) {
+      tooltipEl = document.getElementById('ctx-tooltip');
+      return;
+    }
+
     tooltipEl = document.createElement('div');
     tooltipEl.id = 'ctx-tooltip';
     tooltipEl.className = 'ctx-tooltip';
-    tooltipEl.setAttribute('role', 'tooltip');
+    tooltipEl.setAttribute('role', 'dialog');
     tooltipEl.setAttribute('aria-hidden', 'true');
 
     tooltipEl.innerHTML = `
       <div class="ctx-tooltip-header">
         <span class="ctx-tooltip-badge" id="ctx-tooltip-category"></span>
+        <button type="button" class="ctx-tooltip-close" id="ctx-tooltip-close" aria-label="Chiudi finestra">&times;</button>
       </div>
       <div class="ctx-tooltip-title" id="ctx-tooltip-title"></div>
       <div class="ctx-tooltip-body" id="ctx-tooltip-body"></div>
@@ -245,16 +280,73 @@
     `;
 
     document.body.appendChild(tooltipEl);
+  }
 
-    // Mantiene visibile il tooltip se il mouse si sposta all'interno del box
-    tooltipEl.addEventListener('pointerenter', () => clearTimeout(hideTimeout));
-    tooltipEl.addEventListener('pointerleave', () => hideTooltip());
+  function positionTooltip(termEl) {
+    if (!termEl || !tooltipEl) return;
+
+    const termRect = termEl.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    const vh = document.documentElement.clientHeight;
+
+    const margin = 14;
+    const spacing = 8;
+
+    const spaceAbove = termRect.top - margin;
+    const spaceBelow = vh - termRect.bottom - margin;
+
+    // Misurazione naturale senza forzature
+    tooltipEl.style.maxHeight = '';
+    const naturalTipHeight = tooltipEl.offsetHeight;
+
+    let placeAbove = true;
+    if (spaceAbove >= naturalTipHeight + spacing) {
+      placeAbove = true;
+    } else if (spaceBelow >= naturalTipHeight + spacing) {
+      placeAbove = false;
+    } else {
+      placeAbove = spaceAbove >= spaceBelow;
+    }
+
+    // Se lo spazio verticale è limitato, imposta max-height con scrolling interno
+    const availableSpace = placeAbove ? spaceAbove - spacing : spaceBelow - spacing;
+    const clampedMaxHeight = Math.max(120, Math.min(340, availableSpace));
+    tooltipEl.style.maxHeight = `${Math.round(clampedMaxHeight)}px`;
+
+    const tipHeight = tooltipEl.offsetHeight;
+    const tipWidth = tooltipEl.offsetWidth;
+
+    let top = placeAbove
+      ? termRect.top - tipHeight - spacing
+      : termRect.bottom + spacing;
+
+    // Clamping verticale rigoroso entro i bordi dello schermo
+    top = Math.max(margin, Math.min(top, vh - tipHeight - margin));
+
+    tooltipEl.setAttribute('data-placement', placeAbove ? 'top' : 'bottom');
+
+    // Centratura orizzontale rispetto al termine
+    const termCenterX = termRect.left + termRect.width / 2;
+    let left = termCenterX - tipWidth / 2;
+
+    // Clamping orizzontale rigoroso
+    const maxLeft = vw - tipWidth - margin;
+    left = Math.max(margin, Math.min(left, maxLeft));
+
+    tooltipEl.style.top = `${Math.round(top)}px`;
+    tooltipEl.style.left = `${Math.round(left)}px`;
+
+    // Posizionamento della freccia verso il centro del termine
+    const arrowEl = tooltipEl.querySelector('.ctx-tooltip-arrow');
+    if (arrowEl) {
+      const arrowX = termCenterX - left;
+      const clampedArrowX = Math.max(16, Math.min(arrowX, tipWidth - 16));
+      arrowEl.style.left = `${Math.round(clampedArrowX)}px`;
+    }
   }
 
   function showTooltip(termEl, dictData) {
-    clearTimeout(hideTimeout);
     currentActiveTerm = termEl;
-
     const termKey = termEl.dataset.termKey;
     const item = dictData[termKey];
     if (!item) return;
@@ -266,146 +358,113 @@
     catEl.textContent = item.category || 'Termine Tecnico';
     titleEl.textContent = item.title || termKey;
     bodyEl.textContent = item.definition || '';
-
-    // Rende visibile in modalità "misurazione" trasparente
-    tooltipEl.classList.add('ctx-measuring');
-    tooltipEl.classList.remove('ctx-active');
-    tooltipEl.setAttribute('aria-hidden', 'false');
+    bodyEl.scrollTop = 0; // Ripristina lo scorrimento all'inizio
 
     positionTooltip(termEl);
 
-    tooltipEl.classList.remove('ctx-measuring');
     tooltipEl.classList.add('ctx-active');
+    tooltipEl.setAttribute('aria-hidden', 'false');
     termEl.classList.add('ctx-term-active');
   }
 
   function hideTooltip() {
-    hideTimeout = setTimeout(() => {
-      if (!tooltipEl) return;
-      tooltipEl.classList.remove('ctx-active');
-      tooltipEl.setAttribute('aria-hidden', 'true');
-      if (currentActiveTerm) {
-        currentActiveTerm.classList.remove('ctx-term-active');
-        currentActiveTerm = null;
-      }
-    }, 120);
-  }
-
-  function positionTooltip(termEl) {
-    const termRect = termEl.getBoundingClientRect();
-    const tipRect = tooltipEl.getBoundingClientRect();
-    const margin = 12;
-    const spacing = 8;
-
-    // Controllo collisione verticale: preferenza TOP
-    let placeAbove = true;
-    if (termRect.top - tipRect.height - spacing < margin) {
-      placeAbove = false;
-    }
-
-    let top = placeAbove
-      ? termRect.top - tipRect.height - spacing
-      : termRect.bottom + spacing;
-
-    tooltipEl.setAttribute('data-placement', placeAbove ? 'top' : 'bottom');
-
-    // Calcolo posizione orizzontale centrata rispetto al termine
-    const termCenterX = termRect.left + termRect.width / 2;
-    let left = termCenterX - tipRect.width / 2;
-
-    // Prevenzione fuoriuscita viewport
-    const maxLeft = window.innerWidth - tipRect.width - margin;
-    left = Math.max(margin, Math.min(left, maxLeft));
-
-    tooltipEl.style.top = `${Math.round(top)}px`;
-    tooltipEl.style.left = `${Math.round(left)}px`;
-
-    // Posizionamento orizzontale della freccia (ancorata al centro del termine)
-    const arrowEl = document.getElementById('ctx-tooltip-arrow');
-    if (arrowEl) {
-      const arrowX = termCenterX - left;
-      const clampedArrowX = Math.max(16, Math.min(arrowX, tipRect.width - 16));
-      arrowEl.style.left = `${Math.round(clampedArrowX)}px`;
+    if (!tooltipEl) return;
+    tooltipEl.classList.remove('ctx-active');
+    tooltipEl.setAttribute('aria-hidden', 'true');
+    if (currentActiveTerm) {
+      currentActiveTerm.classList.remove('ctx-term-active');
+      currentActiveTerm = null;
     }
   }
 
-  // 7. INIZIALIZZAZIONE DELEGATA DEGLI EVENTI
-  function setupEventDelegation(dictionary) {
+  // 8. GESTIONE UNIFICATA DEGLI EVENTI (Click / Tap / Escape)
+  function setupInteractions(dictionary) {
     createTooltipSingleton();
 
-    // Mouse / Puntatore (Hover)
-    document.body.addEventListener('pointerenter', (e) => {
-      const term = e.target.closest('.ctx-term');
-      if (term) showTooltip(term, dictionary);
-    }, true);
+    // Gestore Click / Tap globale unificato
+    document.addEventListener('click', (e) => {
+      const termEl = e.target.closest('.ctx-term');
+      const closeBtn = e.target.closest('#ctx-tooltip-close');
+      const popupEl = e.target.closest('#ctx-tooltip');
 
-    document.body.addEventListener('pointerleave', (e) => {
-      const term = e.target.closest('.ctx-term');
-      if (term) hideTooltip();
-    }, true);
-
-    // Accessibilità Tastiera (Focus in / Focus out)
-    document.body.addEventListener('focusin', (e) => {
-      const term = e.target.closest('.ctx-term');
-      if (term) showTooltip(term, dictionary);
-    });
-
-    document.body.addEventListener('focusout', (e) => {
-      const term = e.target.closest('.ctx-term');
-      if (term) hideTooltip();
-    });
-
-    // Touch / Mobile / Click toggle
-    document.body.addEventListener('click', (e) => {
-      const term = e.target.closest('.ctx-term');
-      if (term) {
+      // 1. Clic sul pulsante "X"
+      if (closeBtn) {
         e.preventDefault();
-        if (currentActiveTerm === term && tooltipEl.classList.contains('ctx-active')) {
+        hideTooltip();
+        return;
+      }
+
+      // 2. Clic su un termine
+      if (termEl) {
+        e.preventDefault();
+        if (currentActiveTerm === termEl && tooltipEl.classList.contains('ctx-active')) {
           hideTooltip();
         } else {
-          showTooltip(term, dictionary);
+          showTooltip(termEl, dictionary);
         }
-      } else if (!e.target.closest('#ctx-tooltip')) {
+        return;
+      }
+
+      // 3. Clic dentro la popup (selezione testo o scorrimento interno)
+      if (popupEl) {
+        return;
+      }
+
+      // 4. Clic fuori da popup e termini
+      if (tooltipEl && tooltipEl.classList.contains('ctx-active')) {
         hideTooltip();
       }
     });
 
-    // Chiusura con tasto Escape
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') hideTooltip();
+    // Accessibilità da tastiera (Escape per chiudere, Space/Enter per attivare)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hideTooltip();
+      }
+      if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('ctx-term')) {
+        e.preventDefault();
+        document.activeElement.click();
+      }
     });
 
-    // Chiusura allo scroll o ridimensionamento della finestra
+    // Mantiene la popup allineata se la pagina scorre o viene ridimensionata
     window.addEventListener('scroll', () => {
-      if (tooltipEl && tooltipEl.classList.contains('ctx-active')) {
-        hideTooltip();
+      if (currentActiveTerm && tooltipEl && tooltipEl.classList.contains('ctx-active')) {
+        positionTooltip(currentActiveTerm);
       }
     }, { passive: true });
 
     window.addEventListener('resize', () => {
-      if (tooltipEl && tooltipEl.classList.contains('ctx-active')) {
-        hideTooltip();
+      if (currentActiveTerm && tooltipEl && tooltipEl.classList.contains('ctx-active')) {
+        positionTooltip(currentActiveTerm);
       }
     }, { passive: true });
   }
 
-  // 8. BOOTSTRAP DEL SISTEMA
-  loadScript(BASE_PATH + 'contextual_content.js', () => {
+  // 9. BOOTSTRAP DEL SISTEMA
+  function run() {
     const dictionary = window.__CONTEXTUAL_DICT__;
     if (!dictionary || typeof dictionary !== 'object') {
-      console.warn('[Contextual] Nessun dizionario valido in window.__CONTEXTUAL_DICT__');
+      console.warn('[Contextual] Dizionario window.__CONTEXTUAL_DICT__ non trovato.');
       return;
     }
+    scanAndMarkDOM(dictionary);
+    setupInteractions(dictionary);
+  }
 
-    const init = () => {
-      scanAndMarkDOM(dictionary);
-      setupEventDelegation(dictionary);
-    };
-
+  if (window.__CONTEXTUAL_DICT__) {
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
+      document.addEventListener('DOMContentLoaded', run);
     } else {
-      init();
+      run();
     }
-  });
+  } else {
+    loadScript(BASE_PATH + 'contextual_content.js', () => {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+      } else {
+        run();
+      }
+    });
+  }
 })();
