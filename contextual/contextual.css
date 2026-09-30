@@ -1,11 +1,14 @@
 /**
- * contextual.css - Stile del glossario contestuale
- * Ottimizzato per: Desktop, iOS Safari, Android Chrome, tema chiaro/scuro.
+ * contextual.css - Glossario contestuale camaleontico e non invasivo
+ * Regole integrate:
+ * - Neutralità tipografica (non tocca l'interlinea né i caratteri di sistema di Pandoc)
+ * - Protezione anti-schiacciamento delle tabelle (conserva lo scorrimento orizzontale)
+ * - Supporto Desktop, Android Chrome, iOS Safari e Dark Mode nativa
  */
 
 :root {
   --ctx-bg: #ffffff;
-  --ctx-text: #1e293b;
+  --ctx-text: #1a1a1a;
   --ctx-text-muted: #64748b;
   --ctx-border: #cbd5e1;
   --ctx-accent: #0284c7;
@@ -32,24 +35,29 @@
   }
 }
 
-/* 1. EVIDENZIAZIONE INTERATTIVA DEL TERMINE NEL TESTO */
+/* 1. TERMINE NEL TESTO (Camaleontico: eredita al 100% dal testo originale) */
 .ctx-term {
-  position: relative;
   display: inline;
+  position: static;
   cursor: pointer;
+  color: inherit;
+  font: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
   text-decoration: underline dotted var(--ctx-accent);
-  text-underline-offset: 3.5px;
+  text-underline-offset: 0.22em;
   text-decoration-thickness: 1.5px;
-  border-radius: 3px;
-  padding: 0 1px;
-  transition: background-color 0.15s ease, color 0.15s ease;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.15s ease;
 }
 
 .ctx-term:hover,
 .ctx-term.ctx-term-active {
   background-color: var(--ctx-accent-bg);
+  border-radius: 2px;
 }
 
 .ctx-term:focus-visible {
@@ -57,7 +65,27 @@
   outline-offset: 2px;
 }
 
-/* 2. POPUP SINGLETON FISSA CON VINCOLO DI VIEWPORT */
+/* 2. PROTEZIONE TABELLE PANDOC: TERMINI CLICCABILI SENZA SCHIACCIARE LE COLONNE */
+table {
+  display: block !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100% !important;
+}
+
+/* Impedisce al browser di sillabare/spezzare i termini dentro le celle per colpa di hyphens: auto */
+table .ctx-term {
+  white-space: nowrap !important;
+  hyphens: manual !important;
+}
+
+/* Impedisce il collasso microscopico delle colonne sotto i 36em del body */
+table th,
+table td {
+  min-width: 120px;
+}
+
+/* 3. POPUP SINGLETON FISSA CON VINCOLO DI VIEWPORT */
 .ctx-tooltip {
   position: fixed;
   z-index: 999999;
@@ -74,7 +102,7 @@
   border-radius: 10px;
   box-shadow: var(--ctx-shadow);
   padding: 14px 16px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: inherit;
   line-height: 1.5;
   pointer-events: none;
   opacity: 0;
@@ -84,7 +112,7 @@
   will-change: transform, opacity, top, left;
 }
 
-/* Stato attivo: visualizzato e interattivo */
+/* Stato attivo */
 .ctx-tooltip.ctx-active {
   visibility: visible;
   pointer-events: auto;
@@ -92,7 +120,7 @@
   transform: translateY(0) scale(1);
 }
 
-/* Header: categoria + pulsante di chiusura */
+/* Header popup: badge categoria + pulsante di chiusura */
 .ctx-tooltip-header {
   display: flex;
   align-items: center;
@@ -138,7 +166,7 @@
   outline: none;
 }
 
-/* Titolo termine (leggermente più grande del testo base) */
+/* Titolo del termine (leggermente più grande per leggibilità) */
 .ctx-tooltip-title {
   font-size: 16px;
   font-weight: 700;
@@ -148,7 +176,7 @@
   flex-shrink: 0;
 }
 
-/* Corpo / Definizione con scorrimento interno isolato */
+/* Corpo definizione con scrolling interno protetto */
 .ctx-tooltip-body {
   color: var(--ctx-text);
   font-size: 14.5px;
@@ -161,7 +189,7 @@
   padding-right: 4px;
 }
 
-/* Barra di scorrimento discreta per la definizione */
+/* Scrollbar discreta */
 .ctx-tooltip-body::-webkit-scrollbar {
   width: 5px;
 }
@@ -173,7 +201,7 @@
   border-radius: 4px;
 }
 
-/* 3. FRECCIA DI ANCORAGGIO DINAMICA */
+/* 4. FRECCIA DI ANCORAGGIO DINAMICA */
 .ctx-tooltip-arrow {
   position: absolute;
   width: 10px;
