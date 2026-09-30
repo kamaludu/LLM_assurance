@@ -118,7 +118,7 @@ Copyright (C) 2026 Cristian Evangelisti
 Una copia della licenza in lingua originale è acclusa nell'appendice intitolata "[GNU Free Documentation License](#gnu-fdl-license)".
 
 I sorgenti in formato trasparente (Markdown) sono disponibili su:  
-https://github.com/kamaludu/assurance-llm
+https://github.com/kamaludu/LLM_assurance
 
 ESONERO DI RESPONSABILITÀ:
 Questo documento è fornito "così com'è", senza garanzie di alcun tipo.  
