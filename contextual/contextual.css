@@ -1,11 +1,17 @@
-/**
- * contextual.css - Glossario contestuale camaleontico e non invasivo
- * Regole integrate:
- * - Neutralità tipografica (non tocca l'interlinea né i caratteri di sistema di Pandoc)
- * - Protezione anti-schiacciamento delle tabelle (conserva lo scorrimento orizzontale)
- * - Supporto Desktop, Android Chrome, iOS Safari e Dark Mode nativa
- */
-
+/* =========================================================================
+ * PIPELINE DI PUBBLICAZIONE MULTI-FORMATO - GLOSSARIO CONTESTUALE
+ * Autore:       Cristian Evangelisti
+ * File:         contextual.css
+ * Descrizione:  Foglio di stile per glossario contestuale non invasivo.
+ * Regole di rendering e compatibilità:
+ *   - Neutralità tipografica: preserva interlinea e font nativi di Pandoc
+ *   - Protezione layout: preserva lo scorrimento orizzontale nativo delle tabelle
+ *   - Supporto cross-platform: Desktop, Android Chrome, iOS Safari
+ *   - Supporto nativo alla modalità scura (prefers-color-scheme: dark)
+ * Licenza:      GNU General Public License v3.0 o successiva (GPLv3-or-later)
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * Copyright (C) 2026 Cristian Evangelisti
+ * ========================================================================= */
 :root {
   --ctx-bg: #ffffff;
   --ctx-text: #1a1a1a;
