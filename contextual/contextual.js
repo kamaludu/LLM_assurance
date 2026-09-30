@@ -1,8 +1,11 @@
 /**
  * contextual.js - Motore per glossario contestuale in-page
- * Architettura: Trie (Prefix Tree) case-adaptive + TreeWalker + Singleton Popup
- * Interazione unificata: Click/Tap su Desktop, Android, iOS. Nessun evento Hover.
- * Compatibile con file:// e GitHub Pages senza dipendenze né CORS.
+ * Architettura: Trie case-adaptive + TreeWalker selettivo + Singleton Popup 2D
+ * Regole:
+ * - Tabelle abilitate (termini cliccabili in th/td)
+ * - Codice (<pre>, <code>, <kbd>, <samp>) rigorosamente blindato ed escluso
+ * - Titoli (h1-h6), indice (#TOC) e formule (.math) intatti
+ * - Interazione unificata click/tap senza eventi hover
  */
 (function () {
   'use strict';
@@ -12,7 +15,7 @@
                      document.querySelector('script[src*="contextual.js"]')?.src || './';
   const BASE_PATH = SCRIPT_URL.substring(0, SCRIPT_URL.lastIndexOf('/') + 1);
 
-  // 2. INIEZIONE ASSET ESTERNI (Bypass restrizioni CORS per file://)
+  // 2. INIEZIONE ASSET ESTERNI (Bypass CORS per file://)
   function loadStylesheet(url) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -34,7 +37,6 @@
   // 3. UTILITÀ UNICODE E NORMALIZZAZIONE
   const UNICODE_WORD_CHAR = /[\p{L}\p{N}]/u;
 
-  // Unifica apostrofi tipografici (Pandoc/Word: ’, ‘) e accenti gravi con l'apostrofo ASCII
   function normalizeApostrophes(str) {
     return str.replace(/[\u2018\u2019`]/g, "'");
   }
@@ -46,7 +48,7 @@
     return c.toLowerCase();
   }
 
-  // Regola euristica: i termini molto corti o acronimi puri devono essere cercati case-sensitive
+  // Acronimi e termini brevi sono cercati tassativamente in modalità case-sensitive
   function isCaseSensitiveTerm(term) {
     if (term.length <= 4) return true;
     const hasUpper = /[A-Z]/.test(term);
@@ -96,7 +98,7 @@
     }
   }
 
-  // 5. DELIMITAZIONE CONFINI DI PAROLA (Word Boundaries)
+  // 5. DELIMITAZIONE CONFINI DI PAROLA
   function isBoundaryBefore(text, index, term) {
     if (index === 0) return true;
     const prevChar = text[index - 1];
@@ -121,7 +123,7 @@
     return nextChar !== lastChar && !UNICODE_WORD_CHAR.test(nextChar);
   }
 
-  // Algoritmo lineare O(L) con selezione del match più lungo (Longest-Match)
+  // Ricerca lineare con selezione del match più lungo (Longest-Match)
   function findMatches(text, trie) {
     const matches = [];
     const len = text.length;
@@ -170,7 +172,7 @@
 
       if (longestValidMatch) {
         matches.push(longestValidMatch);
-        i = longestValidMatch.end; // Salta alla fine del match più lungo
+        i = longestValidMatch.end; // Avanza oltre il termine più lungo
       } else {
         i++;
       }
@@ -178,8 +180,21 @@
     return matches;
   }
 
-  // 6. SCANSIONE DEL DOM (TreeWalker non distruttivo)
-  const IGNORED_SELECTOR = 'script, style, noscript, pre, code, kbd, samp, textarea, input, select, button, a, svg, canvas, .ctx-term, .ctx-tooltip, [contenteditable="true"]';
+  // 6. SCANSIONE DEL DOM CON TREEWALKER SELETTIVO
+  // Nota: Codice, titoli, navigazione e formule matematiche sono ESCLUSI.
+  // Le tabelle (table, th, td) vengono regolarmente analizzate.
+  const IGNORED_SELECTOR = [
+    'script', 'style', 'noscript',
+    'pre', 'code', 'kbd', 'samp',           // Codice protetto per sicurezza
+    'textarea', 'input', 'select', 'button', // Form
+    'a', 'svg', 'canvas',                    // Link e grafica
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',     // Titoli protetti
+    'nav', '#TOC', '.toc',                   // Indice protetto
+    '.math', 'math',                         // Formule matematiche
+    'figcaption', 'caption',                 // Didascalie
+    '.ctx-term', '.ctx-tooltip',             // Elementi interni
+    '[contenteditable="true"]'
+  ].join(', ');
 
   function scanAndMarkDOM(dictionary) {
     const trie = new Trie();
@@ -295,7 +310,6 @@
     const spaceAbove = termRect.top - margin;
     const spaceBelow = vh - termRect.bottom - margin;
 
-    // Misurazione naturale senza forzature
     tooltipEl.style.maxHeight = '';
     const naturalTipHeight = tooltipEl.offsetHeight;
 
@@ -308,7 +322,6 @@
       placeAbove = spaceAbove >= spaceBelow;
     }
 
-    // Se lo spazio verticale è limitato, imposta max-height con scrolling interno
     const availableSpace = placeAbove ? spaceAbove - spacing : spaceBelow - spacing;
     const clampedMaxHeight = Math.max(120, Math.min(340, availableSpace));
     tooltipEl.style.maxHeight = `${Math.round(clampedMaxHeight)}px`;
@@ -320,7 +333,7 @@
       ? termRect.top - tipHeight - spacing
       : termRect.bottom + spacing;
 
-    // Clamping verticale rigoroso entro i bordi dello schermo
+    // Clamping verticale rigoroso entro i margini dello schermo
     top = Math.max(margin, Math.min(top, vh - tipHeight - margin));
 
     tooltipEl.setAttribute('data-placement', placeAbove ? 'top' : 'bottom');
@@ -336,7 +349,7 @@
     tooltipEl.style.top = `${Math.round(top)}px`;
     tooltipEl.style.left = `${Math.round(left)}px`;
 
-    // Posizionamento della freccia verso il centro del termine
+    // Posizionamento della freccia
     const arrowEl = tooltipEl.querySelector('.ctx-tooltip-arrow');
     if (arrowEl) {
       const arrowX = termCenterX - left;
@@ -358,7 +371,7 @@
     catEl.textContent = item.category || 'Termine Tecnico';
     titleEl.textContent = item.title || termKey;
     bodyEl.textContent = item.definition || '';
-    bodyEl.scrollTop = 0; // Ripristina lo scorrimento all'inizio
+    bodyEl.scrollTop = 0;
 
     positionTooltip(termEl);
 
@@ -377,11 +390,10 @@
     }
   }
 
-  // 8. GESTIONE UNIFICATA DEGLI EVENTI (Click / Tap / Escape)
+  // 8. INTERAZIONI CLICK/TAP UNIFICATE
   function setupInteractions(dictionary) {
     createTooltipSingleton();
 
-    // Gestore Click / Tap globale unificato
     document.addEventListener('click', (e) => {
       const termEl = e.target.closest('.ctx-term');
       const closeBtn = e.target.closest('#ctx-tooltip-close');
@@ -394,7 +406,7 @@
         return;
       }
 
-      // 2. Clic su un termine
+      // 2. Clic sul termine
       if (termEl) {
         e.preventDefault();
         if (currentActiveTerm === termEl && tooltipEl.classList.contains('ctx-active')) {
@@ -405,7 +417,7 @@
         return;
       }
 
-      // 3. Clic dentro la popup (selezione testo o scorrimento interno)
+      // 3. Clic dentro la popup (selezione testo o scroll interno)
       if (popupEl) {
         return;
       }
@@ -416,7 +428,6 @@
       }
     });
 
-    // Accessibilità da tastiera (Escape per chiudere, Space/Enter per attivare)
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         hideTooltip();
@@ -427,7 +438,7 @@
       }
     });
 
-    // Mantiene la popup allineata se la pagina scorre o viene ridimensionata
+    // La popup rimane aperta e si riallinea allo scroll o al resize della finestra
     window.addEventListener('scroll', () => {
       if (currentActiveTerm && tooltipEl && tooltipEl.classList.contains('ctx-active')) {
         positionTooltip(currentActiveTerm);
@@ -441,7 +452,7 @@
     }, { passive: true });
   }
 
-  // 9. BOOTSTRAP DEL SISTEMA
+  // 9. AVVIO
   function run() {
     const dictionary = window.__CONTEXTUAL_DICT__;
     if (!dictionary || typeof dictionary !== 'object') {
