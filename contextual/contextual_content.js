@@ -1,10 +1,21 @@
-/**
- * contextual_content.js - PARTE 1 DI 3 (Lettere A - D)
- * Glossario di Assurance del Software Assistito da LLM
- * Namespace globale: window.__CONTEXTUAL_DICT__
- */
+/* =========================================================================
+ * ASSURANCE DEL SOFTWARE ASSISTITO DA LLM - DIZIONARIO CONTESTUALE
+ * Autore:       Cristian Evangelisti
+ * File:         contextual_content.js
+ * Descrizione:  Dataset contestuale per menù interattivi e tooltip di supporto.
+ *               Fornisce definizioni, categorie e alias dei concetti di assurance.
+ * Licenza:      Doppia licenza (Dual-License):
+ *               - Struttura e logica software: GNU GPL v3.0 o successiva
+ *               - Contenuti testuali e definizioni: GNU FDL v1.3 o successiva
+ * SPDX-License-Identifier: GPL-3.0-or-later OR GFDL-1.3-or-later
+ * Copyright (C) 2026 Cristian Evangelisti
+ * Note:         Contenuti sincronizzati con il manuale "Assurance del Software
+ *               Assistito da LLM" rilasciato sotto licenza GNU FDL 1.3+.
+ * ========================================================================= */
 
-window.__CONTEXTUAL_DICT__ = {
+ // Namespace globale: window.__CONTEXTUAL_DICT__
+
+window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
   // =========================================================================
   // LETTERA A
   // =========================================================================
@@ -25,6 +36,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Modello Decisionale",
     definition: "La misura qualitativa della solidità, completezza e indipendenza delle evidenze empiriche e logiche concretamente raccolte ed esaminate a valle di una campagna di verifica. Se l'assurance raggiunta è inferiore a quella richiesta dal rischio (A_ach < A_req), il gate impone il NO-GO.",
     aliases: ["Assurance Conseguita", "Assurance Raggiunta", "A_ach"]
+  },
+  "ACID": {
+    title: "ACID (Proprietà delle Transazioni)",
+    category: "Basi di Dati & Consistenza",
+    definition: "Le quattro proprietà di sicurezza delle transazioni di database: Atomicità (tutto o niente), Consistenza (preservazione degli invarianti), Isolamento (le transazioni concorrenti non interferiscono) e Durabilità (la persistenza sopravvive ai crash).",
+    aliases: ["Transazionalità ACID", "Atomicità", "Transazioni ACID"]
   },
   "Actionability": {
     title: "Actionability (Azionabilità)",
@@ -97,6 +114,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Metodi Formali",
     definition: "Linguaggio di specifica formale dichiarativo basato sulla logica del primo ordine e sul calcolo relazionale, supportato da un analizzatore automatico che sfrutta risolutori SAT per ricercare controesempi entro un ambito finito (Bounded Model Checking).",
     aliases: ["Alloy Analyzer"]
+  },
+  "Allucinazione": {
+    title: "Allucinazione (LLM Hallucination)",
+    category: "Modelli Linguistici",
+    definition: "Generazione, da parte di un modello linguistico, di informazioni, codice, parametri, librerie o fatti presentati con assoluta assertività e plausibilità sintattica, ma privi di riscontro logico, semantico o fattuale nella specifica o nella realtà.",
+    aliases: ["Allucinazioni", "Hallucination", "Allucinazione Logica"]
   },
   "Allucinazione Causale": {
     title: "Allucinazione Causale (Causal Hallucination)",
@@ -221,7 +244,7 @@ window.__CONTEXTUAL_DICT__ = {
   "Assumption Verification": {
     title: "Assumption Verification (Verifica delle Assunzioni)",
     category: "Metodologia di Verifica",
-    definition: "Processo analitico ed empirico mediante il quale le condizioni postulate vengono sottoposte a prova oggettiva, convertite in invarianti architetturali garantite (Eliminate) o confinate tramite guardrail operativi (Contain/Accept).",
+    definition: "Processo analitico ed empirico mediante il quale le condizioni postulate vengono sottoposte a prova oggettiva, convertite in invarianti architetturali garantiti (Eliminate) o confinate tramite guardrail operativi (Contain/Accept).",
     aliases: ["Verifica delle Assunzioni"]
   },
   "Assurance": {
@@ -372,6 +395,12 @@ window.__CONTEXTUAL_DICT__ = {
   // =========================================================================
   // LETTERA B
   // =========================================================================
+  "Backoff Esponenziale": {
+    title: "Backoff Esponenziale (Exponential Backoff)",
+    category: "Resilienza & Reti",
+    definition: "Algoritmo di gestione dei retry in cui il tempo di attesa tra un tentativo fallito e il successivo raddoppia progressivamente (es. 1s, 2s, 4s, 8s...), evitando di sovraccaricare un servizio già in difficoltà durante una partizione o rallentamento di rete.",
+    aliases: ["Exponential Backoff"]
+  },
   "Backward Traceability": {
     title: "Backward Traceability (Tracciabilità all'Indietro)",
     category: "Tracciabilità & Qualità",
@@ -501,6 +530,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Analisi di Programma",
     definition: "Grafo del Flusso di Controllo: grafo orientato in cui i nodi rappresentano blocchi base di istruzioni e gli archi rappresentano i possibili trasferimenti di controllo (salti, cicli, chiamate, eccezioni).",
     aliases: ["Control Flow Graph", "Grafo del Flusso di Controllo"]
+  },
+  "cgroups": {
+    title: "cgroups (Control Groups Linux)",
+    category: "Confinamento & Risorse",
+    definition: "Funzionalità del kernel Linux che permette di delimitare, contabilizzare e isolare l'uso delle risorse fisiche (quota di CPU, limite di memoria RAM, I/O su disco) di un gruppo di processi, prevenendo attacchi DoS o memory leak.",
+    aliases: ["Control Groups", "cgroup"]
   },
   "Change Impact Analysis": {
     title: "Change Impact Analysis (CIA)",
@@ -676,6 +711,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Progettazione a compartimenti stagni (zero-trust, isolamento cgroups, circuit breaker) volta a limitare deterministicamente il raggio di danno a fronte dell'esplosione di incognite non identificabili a priori.",
     aliases: ["Damage Containment Architecture"]
   },
+  "Context Window": {
+    title: "Context Window (Finestra di Contesto)",
+    category: "Modelli Linguistici",
+    definition: "La capienza massima di token (parole/sotto-parole) che un LLM può elaborare simultaneamente in ingresso e in uscita. Limita la memoria di lavoro dell'AI: superata la finestra, le informazioni e le assunzioni a monte decadono nell'amnesia statistica.",
+    aliases: ["Finestra di Contesto", "Finestra Contestuale"]
+  },
   "Contesto Operativo": {
     title: "Contesto Operativo (Operational Context)",
     category: "Ingegneria dei Requisiti",
@@ -782,6 +823,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Meccanismo di sicurezza a rilascio continuo in cui il sistema monitorato emette periodicamente un segnale vitale; l'interruzione del segnale innesca allarmi critici anche in caso di blocco totale dei logger.",
     aliases: ["Dead Man's Snitch", "Heartbeat Monitoring"]
   },
+  "Deadlock": {
+    title: "Deadlock (Blocco Critico / Stallo)",
+    category: "Concorrenza & Sistemi Distribuiti",
+    definition: "Condizione permanente di stallo in cui due o più processi o thread rimangono bloccati all'infinito poiché ciascuno attende il rilascio di una risorsa (es. un lock di memoria o una tabella di database) trattenuta dall'altro.",
+    aliases: ["Blocco Critico", "Stallo"]
+  },
   "Deadlock Transazionale": {
     title: "Deadlock Transazionale (Inversione di Lock)",
     category: "Concorrenza & Basi di Dati",
@@ -860,10 +907,22 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "La rilevazione identifica l'insorgenza di un pericolo dopo che si è manifestato nel sistema; la prevenzione rende impossibile l'insorgenza del pericolo mediante vincoli logici o barriere architetturali a monte.",
     aliases: ["Rilevamento vs Prevenzione"]
   },
+  "DFD": {
+    title: "DFD (Data Flow Diagram)",
+    category: "Threat Modeling",
+    definition: "Diagramma dei Flussi di Dati: rappresentazione grafica e concettuale dei processi, archivi di dati, flussi e attori esterni, utilizzata nel Threat Modeling per individuare esattamente dove transitano i dati attraverso i Confini di Fiducia (Trust Boundaries).",
+    aliases: ["Data Flow Diagram", "Diagramma dei Flussi di Dati"]
+  },
+  "DFG": {
+    title: "DFG (Data Flow Graph)",
+    category: "Analisi di Programma",
+    definition: "Grafo del Flusso dei Dati: rappresentazione che modella la catena di definizioni e utilizzi delle variabili (def-use chains), fondamentale per tracciare la propagazione di dati contaminati verso i sink critici nella Taint Analysis.",
+    aliases: ["Data Flow Graph", "Grafo del Flusso dei Dati"]
+  },
   "Diff Drowning": {
     title: "Diff Drowning (Annegamento nel Diff)",
     category: "Anti-Pattern di Revisione",
-    definition: "Condizione in cui una modifica massiva di codice generata in blocco dall'LLM satura la capacità cognitiva del revisore umano, inducendo l'abbandono dell'analisi analitica e favorendo l'approvazione cieca.",
+    definition: "Condizione in cui una modifica massiva di codice generata in blocco dall'LLM satura la capacità cognitiva del revisore umano, inducendo l'abbandono dell'ispezione analitica e favorendo l'approvazione cieca.",
     aliases: ["Annegamento nel Diff"]
   },
   "Diff Tunnel Vision": {
@@ -913,6 +972,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Modello Decisionale",
     definition: "Numero massimo di anomalie residue non bloccanti tollerate da una policy di gate decisionale prima di autorizzare la transizione del componente alla fase successiva.",
     aliases: ["Budget di Discrepanza"]
+  },
+  "Discrepancy Matrix": {
+    title: "Discrepancy Matrix (Matrice delle Discrepanze)",
+    category: "Metodologia di Audit",
+    definition: "Struttura tabellare dello Step 20 che traccia i verdetti e le argomentazioni emesse da ciascun modello LLM rispetto a specifiche proprietà verificate, evidenziando i punti di contrasto per guidare l'indagine empirica.",
+    aliases: ["Matrice delle Discrepanze"]
   },
   "Discrepancy Record Strutturato": {
     title: "Discrepancy Record Strutturato",
@@ -971,6 +1036,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Gate decisionale ingannevole che autorizza il passaggio alla produzione basandosi unicamente sul consenso circolare e unanime di modelli linguistici privi di oracoli deterministici indipendenti.",
     aliases: ["The Echo Chamber Gate", "Gate della Camera dell'Eco"]
   },
+  "Effetto Collaterale": {
+    title: "Effetto Collaterale (Side Effect)",
+    category: "Architettura del Software",
+    definition: "Qualsiasi operazione di una funzione che legge o modifica lo stato del mondo al di fuori della funzione stessa (scritture su file, query a database, chiamate di rete, lettura dell'orologio di sistema, mutazione di variabili globali). L'assurance impone di isolare gli effetti collaterali dal calcolo logico puro.",
+    aliases: ["Side Effect", "Side Effects", "Effetti Collaterali"]
+  },
   "Effetto Valanga": {
     title: "Effetto Valanga (del Difetto)",
     category: "Ingegneria del Software",
@@ -994,6 +1065,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Pattern Architetturali & Confinamento",
     definition: "Pattern di isolamento temporale e di stato in cui l'ambiente di computazione viene istanziato all'interno di una sandbox per eseguire un singolo task, scrive l'output verificato e viene distrutto irreversibilmente con tutte le sue risorse.",
     aliases: ["The Ephemeral Worker", "Lavoratore Effimero", "Worker Effimero"]
+  },
+  "Epistemico": {
+    title: "Epistemico / Epistemologia (dell'Assurance)",
+    category: "Fondamenti Epistemici",
+    definition: "Tutto ciò che attiene alla natura, alla validità, ai fondamenti e ai limiti della conoscenza giustificata. Nell'assurance, una 'questione epistemica' non riguarda semplicemente se il codice compili o funzioni, ma su quali basi razionali e prove oggettive possiamo legittimamente affermare di conoscere il suo comportamento reale.",
+    aliases: ["Epistemica", "Epistemologia", "Valore Epistemico", "Statuto Epistemico"]
   },
   "Epistemic Capture": {
     title: "Epistemic Capture (Cattura Epistemica)",
@@ -1155,6 +1232,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Ramo esecutivo alternativo attivato in caso di fallimento o timeout del percorso primario, preposto a generare una risposta deterministica o parziale con fedeltà semantica dichiarata.",
     aliases: ["Percorso Alternativo"]
   },
+  "Falsificabilità": {
+    title: "Falsificabilità (Principio di Falsificabilità di Popper)",
+    category: "Fondamenti Epistemici",
+    definition: "Principio per cui una proposizione o specifica è scientificamente valida solo se formula condizioni osservabili ed esperimenti capaci di smentirla (falsificarla). Un'asserzione generica non falsificabile (es. 'il software è sicuro') non possiede alcun valore ingegneristico.",
+    aliases: ["Falsificabile", "Falsificazione", "Falsificazione Popperiana"]
+  },
   "False Assurance": {
     title: "False Assurance (Falsa Garanzia di Fiducia)",
     category: "Fondamenti Epistemici",
@@ -1178,6 +1261,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Rilascio Controllato",
     definition: "Costrutto decisionale a runtime che consente di attivare o deviare il flusso del codice senza ridistribuire il binario, separando il deployment dall'effettivo rilascio agli utenti.",
     aliases: ["Feature Flags", "Feature Toggle"]
+  },
+  "File Descriptor": {
+    title: "File Descriptor (Descrittore di File / Socket)",
+    category: "Sistemi Operativi",
+    definition: "Identificatore numerico astratto opaco assegnato dal kernel a un processo per rappresentare un canale aperto di input/output (file su disco, socket di rete TCP, pipe inter-processo). Senza un descrittore valido rilasciato dal kernel, il codice non può manipolare la risorsa.",
+    aliases: ["Descrittore di File", "File Descriptors"]
   },
   "Finding": {
     title: "Finding (Riscontro / Risultato di Verifica)",
@@ -1203,6 +1292,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Pratica scorretta consistente nel riprovare automaticamente un test intermittente fino a ottenere un esito positivo casuale (es. flag --reruns), cancellando l'evidenza empirica di un difetto reale.",
     aliases: ["Silenziamento dei Test Intermittenti"]
   },
+  "Flapping": {
+    title: "Flapping (Oscillazione dell'Allarme)",
+    category: "Ingegneria Operativa",
+    definition: "Condizione instabile in cui un allarme scatta e si spegne ripetutamente a causa di piccole fluttuazioni della metrica attorno alla soglia di trigger, saturando gli operatori di notifiche. Si neutralizza introducendo isteresi temporale e di valore.",
+    aliases: ["Alert Flapping", "Oscillazione degli Allarmi"]
+  },
   "Flat Assurance": {
     title: "Flat Assurance (Trappola dell'Assurance Piatta)",
     category: "Anti-Pattern Metodologico",
@@ -1226,6 +1321,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Architettura del Software",
     definition: "Pattern architetturale che separa nettamente un nucleo funzionale puro deterministico (Functional Core) da un guscio perimetrale che gestisce gli effetti collaterali e l'I/O (Imperative Shell).",
     aliases: ["Nucleo Funzionale e Guscio Imperativo"]
+  },
+  "Funzione Pura": {
+    title: "Funzione Pura (Pure Function)",
+    category: "Architettura del Software",
+    definition: "Funzione matematica priva di effetti collaterali che, a parità di argomenti in ingresso, restituisce tassativamente lo stesso identico risultato senza alterare la memoria o l'ambiente esterno. Costituisce il componente cardine del Functional Core per abilitare oracoli deterministici e property-based testing.",
+    aliases: ["Pure Function", "Funzioni Pure"]
   },
   "Fuzzing": {
     title: "Fuzzing (Fuzz Testing)",
@@ -1437,6 +1538,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Proprietà per cui l'applicazione ripetuta di una medesima operazione produce il medesimo effetto di una singola esecuzione: f(f(x)) == f(x). Fondamentale per la sicurezza di reti e pagamenti.",
     aliases: ["Idempotence"]
   },
+  "IEEE 754": {
+    title: "IEEE 754 (Aritmetica in Virgola Mobile / Float)",
+    category: "Rappresentazione Numerica",
+    definition: "Standard tecnico binario per la rappresentazione dei numeri decimali su computer. Introduce approssimazioni microscopiche (es. 0.1 + 0.2 != 0.3) che nei calcoli finanziari, contabili o mission-critical accumulano errori sistematici inaccettabili. Il manuale ne vieta l'uso per calcoli monetari, imponendo tipi decimali a virgola fissa.",
+    aliases: ["Floating Point", "Virgola Mobile", "Float"]
+  },
   "Impatient Canary": {
     title: "The Impatient Canary (Il Canary Impaziente)",
     category: "Anti-Pattern di Rilascio",
@@ -1595,8 +1702,30 @@ window.__CONTEXTUAL_DICT__ = {
   },
 
   // =========================================================================
+  // LETTERA J
+  // =========================================================================
+  "Jailbreak": {
+    title: "Jailbreak (Jailbreaking di LLM)",
+    category: "Cybersecurity & LLM",
+    definition: "Tecnica avversariale mediante la quale un utente struttura un prompt per aggirare i filtri di allineamento e le policy di sicurezza incorporate nel modello linguistico, costringendolo a eseguire istruzioni proibite.",
+    aliases: ["Jailbreaking"]
+  },
+  "Jitter": {
+    title: "Jitter (Dispersione Temporale Casuale)",
+    category: "Resilienza & Concorrenza",
+    definition: "L'introduzione deliberata di una variazione casuale controllata nei tempi di ritardo (es. nell'exponential backoff o nei controlli periodici di circuit breaker e canary), finalizzata a evitare che migliaia di client o istanze concorrenti inviino richieste esattamente nello stesso istante (Thundering Herd).",
+    aliases: ["Jittering", "Random Jitter"]
+  },
+
+  // =========================================================================
   // LETTERA K
   // =========================================================================
+  "Kernel": {
+    title: "Kernel / Kernel Space vs User Space",
+    category: "Sistemi Operativi",
+    definition: "Il nucleo centrale del sistema operativo che detiene il controllo hardware totale e privilegiato del computer. Il codice applicativo (compreso quello generato da LLM) esegue nello spazio utente (User Space) a privilegi limitati e non può accedere all'hardware senza la mediazione obbligatoria del Kernel.",
+    aliases: ["Kernel Space", "Spazio Kernel", "User Space"]
+  },
   "Knowledge Base as Wiki": {
     title: "Knowledge Base as Wiki",
     category: "Anti-Pattern Organizzativo",
@@ -1803,6 +1932,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Oracolo di test che confronta l'evoluzione dello stato del software con un automa a stati finiti (FSM) o una specifica formale astratta (es. modello TLA+).",
     aliases: ["Oracolo Basato su Modello"]
   },
+  "Modello Mondo-Macchina": {
+    title: "Modello Mondo-Macchina (W, M, S, R)",
+    category: "Ingegneria dei Requisiti",
+    definition: "Quadro formale di Jackson & Zave: R sono i requisiti nel Mondo (W); S è la specifica della Macchina (M) alla sola interfaccia condivisa. La relazione logica fondamentale è: se le assunzioni sul mondo sono valide e la macchina rispetta la specifica, il requisito è soddisfatto (W AND S |= R).",
+    aliases: ["Mondo-Macchina", "Jackson & Zave", "W AND S |= R"]
+  },
   "Modular Assurance": {
     title: "Modular Assurance (Decomposizione per l'Assurance)",
     category: "Architettura del Software",
@@ -1827,6 +1962,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Proprietà relazionale per cui l'ordinamento relativo degli input si preserva sull'ordinamento degli output corrispondenti: x <= y -> f(x) <= f(y).",
     aliases: ["Monotonicity", "Monotonia"]
   },
+  "MTTD & MTTR": {
+    title: "MTTD & MTTR (Indicatori Operativi di Resilienza)",
+    category: "Ingegneria Operativa",
+    definition: "MTTD (Mean Time to Detect) è il tempo medio intercorso tra il guasto fisico e la notifica dell'allarme; MTTR (Mean Time to Mitigate / Recover) è il tempo impiegato dagli operatori per applicare il runbook e ripristinare il servizio. Il danno complessivo del disservizio scala linearmente con la loro somma.",
+    aliases: ["MTTD", "MTTR", "Mean Time to Detect", "Mean Time to Mitigate"]
+  },
   "Multi-Agent Echo Chamber": {
     title: "Multi-Agent Echo Chamber",
     category: "Anti-Pattern Metodologico",
@@ -1844,6 +1985,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Ingegneria Operativa",
     definition: "Modello di allarme avanzato (SRE) che valuta la congiunzione logica tra una finestra temporale breve (es. 5 min) e una lunga (es. 1 ora) a parità di consumo del budget di errore, eliminando il flapping.",
     aliases: ["Multi-Burn-Rate", "Multi-Window Alerting"]
+  },
+  "Mutante Equivalente": {
+    title: "Mutante Equivalente (Equivalent Mutant)",
+    category: "Mutation Testing",
+    definition: "Un'alterazione sintattica introdotta nel codice durante il test di mutazione che, pur modificando il testo delle istruzioni, lascia matematicamente invariato il comportamento semantico del software. Poiché nessun test può 'uccidere' un mutante equivalente, esso viene escluso dal calcolo del Mutation Score.",
+    aliases: ["Mutanti Equivalenti", "Equivalent Mutant"]
   },
   "Mutation Score": {
     title: "Mutation Score (Punteggio di Mutazione)",
@@ -2030,6 +2177,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Pratica controproducente consistente nell'incollare gli stacktrace di errore nell'LLM per applicare toppe sintattiche veloci finché i test non smettono di fallire, senza isolare la causa sistemica.",
     aliases: ["Toppa alla Cieca"]
   },
+  "Percentile": {
+    title: "Percentile (Latenza p95, p99, p99.9)",
+    category: "Osservabilità & Statistica",
+    definition: "Metrica di distribuzione statistica che indica il valore al di sotto del quale ricade una determinata percentuale di campioni. Nel software assistito da LLM, il 99° percentile (p99) misura la latenza della coda lenta: fondamentale perché le allucinazioni algoritmiche o i lock concorrenti colpiscono le code estreme rimanendo invisibili nella media aritmetica.",
+    aliases: ["p99", "p95", "Percentili", "Latenza p99"]
+  },
   "Periodic Review": {
     title: "Periodic Review (Revisione Periodica)",
     category: "Governance & Ciclo di Vita",
@@ -2126,6 +2279,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Predicato logico sullo stato e sugli ingressi che l'ambiente chiamante deve garantire come vero prima di invocare il componente; se violata, la macchina non offre garanzie.",
     aliases: ["Precondition", "Pre"]
   },
+  "Predicato": {
+    title: "Predicato (Logico / Booleano)",
+    category: "Logica Formale",
+    definition: "Espressione logica o funzione che, applicata a una o più variabili dello stato del software, restituisce un valore di verità binario: VERO (TRUE) oppure FALSO (FALSE). Costituisce la base matematica di specifiche, precondizioni, postcondizioni e invarianti (es. P(s): balance >= 0).",
+    aliases: ["Predicati", "Predicato Booleano", "Predicato Logico"]
+  },
   "Premature Pattern Inflation": {
     title: "Premature Pattern Inflation",
     category: "Anti-Pattern Architetturale",
@@ -2216,6 +2375,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Dimensione dell'indipendenza in cui le procedure operative, i piani di prova e i flussi di lavoro di verifica sono formalmente disgiunti da quelli di sviluppo.",
     aliases: ["Indipendenza Procedurale"]
   },
+  "Prompt": {
+    title: "Prompt / System Prompt",
+    category: "Modelli Linguistici",
+    definition: "Il contesto testuale di ingresso fornito a un LLM che ne condiziona la distribuzione probabilistica di emissione dei token. Il manuale stabilisce che il prompt è un meccanismo euristico e non costituisce mai una specifica formale né un confine di sicurezza architetturale.",
+    aliases: ["System Prompt", "Prompting", "Ingegneria del Prompt"]
+  },
   "Prompt CIA Amnesia": {
     title: "Prompt CIA Amnesia",
     category: "Anti-Pattern di Modifica",
@@ -2233,6 +2398,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Anti-Pattern di Verifica",
     definition: "Condurre la verifica adottando i medesimi prompt, contesti e formulazioni impiegati dal team di sviluppo, duplicando specularmente i medesimi punti ciechi.",
     aliases: ["Specchiatura del Prompt"]
+  },
+  "Prompt Priming": {
+    title: "Prompt Priming (Condizionamento da Priming)",
+    category: "Distorsioni Cognitive & LLM",
+    definition: "L'inquinamento probabilistico della risposta di un LLM causato dall'inserimento nel prompt di giudizi, opinioni o spiegazioni pregresse (es. dire al Modello B che il Modello A ha già approvato il codice), annullando l'indipendenza della revisione.",
+    aliases: ["Priming", "Condizionamento del Prompt"]
   },
   "Prompt-Generated Register": {
     title: "Prompt-Generated Register",
@@ -2290,6 +2461,18 @@ window.__CONTEXTUAL_DICT__ = {
   // =========================================================================
   // LETTERA R
   // =========================================================================
+  "Race Condition": {
+    title: "Race Condition (Condizione di Competizione)",
+    category: "Concorrenza & Parallelismo",
+    definition: "Anomalia temporale in cui il risultato o l'integrità del sistema dipende dalla sequenza o dalla sincronizzazione incontrollata con cui due o più thread o processi concorrenti accedono alla medesima risorsa condivisa.",
+    aliases: ["Condizione di Competizione", "Condizione di Gara"]
+  },
+  "RAG": {
+    title: "RAG (Retrieval-Augmented Generation)",
+    category: "Architetture AI",
+    definition: "Architettura in cui l'LLM non genera risposte attingendo solo ai suoi pesi statistici, ma interroga preliminarmente un archivio o database vettoriale esterno per iniettare nel prompt frammenti di documenti estratti come contesto temporaneo.",
+    aliases: ["Retrieval-Augmented Generation", "Architettura RAG"]
+  },
   "RCA": {
     title: "RCA (Root Cause Analysis - Analisi della Causa Radice)",
     category: "Diagnosi & Incidenti",
@@ -2343,18 +2526,6 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Testing Dinamico",
     definition: "Riesecuzione sistematica di verifiche a seguito di modifiche al software o all'ambiente per accertare che i comportamenti preesistenti non siano stati degradati o corrotti.",
     aliases: ["Test di Regressione"]
-  },
-  "Regressive Fix": {
-    title: "Regressive Fix (Riparazione Regressiva)",
-    category: "Qualità del Software",
-    definition: "Modifica introdotta per sanare un difetto locale che provoca, direttamente o indirettamente, la violazione di proprietà precedentemente verificate e funzionanti.",
-    aliases: ["Riparazione Regressiva", "Toppa Regressiva"]
-  },
-  "Report Compiacente": {
-    title: "Report Compiacente",
-    category: "Anti-Pattern di Governance",
-    definition: "Documento tecnico generato tramite LLM che adotta una struttura formale rassicurante confermando le tesi dell'autore per sycophancy, privo di prove empiriche.",
-    aliases: ["Sycophantic Report"]
   },
   "Required Assurance": {
     title: "Required Assurance (Assurance Richiesta)",
@@ -2457,6 +2628,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Anti-Pattern di Rischio",
     definition: "Trasferimento implicito di una quota di rischio fuori dal perimetro di analisi o verso componenti terzi senza averlo realmente eliminato o controllato.",
     aliases: ["Contrabbando del Rischio"]
+  },
+  "RLHF": {
+    title: "RLHF (Reinforcement Learning from Human Feedback)",
+    category: "Allineamento AI",
+    definition: "Metodologia di addestramento mediante la quale le risposte di un LLM vengono modellate sulla base di preferenze umane di utilità e innocuità; tra i suoi effetti collaterali strutturali induce la tendenza del modello a compiacere l'utente (Sycophancy).",
+    aliases: ["Reinforcement Learning from Human Feedback"]
   },
   "Rollback": {
     title: "Rollback",
@@ -2563,6 +2740,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Distinzioni Epistemiche",
     definition: "Parere consultivo fornito da un secondo valutatore appartenente al medesimo paradigma; non costituisce evidenza indipendente né elimina la correlazione degli errori.",
     aliases: ["Seconda Opinione"]
+  },
+  "Seccomp": {
+    title: "Seccomp (Secure Computing Mode)",
+    category: "Sicurezza del Kernel Linux",
+    definition: "Strumento di sicurezza del kernel Linux che intercetta e filtra le chiamate di sistema (syscall) invocate da un processo, consentendo di bloccare a livello hardware qualsiasi operazione non preventivamente inclusa nella whitelist di sicurezza.",
+    aliases: ["Secure Computing Mode", "Filtro Seccomp"]
   },
   "Secret Scanning": {
     title: "Secret Scanning",
@@ -2671,6 +2854,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Ingegneria dei Sistemi",
     definition: "Insieme organizzato di elementi interagenti (hardware, software, persone, processi) orientati al perseguimento di uno scopo comune entro confini delimitati.",
     aliases: ["System"]
+  },
+  "SLI / SLO": {
+    title: "SLI & SLO (Service Level Indicator & Objective)",
+    category: "Site Reliability Engineering",
+    definition: "SLI (Service Level Indicator) è la metrica quantitativa che misura il funzionamento reale del servizio (es. % richieste con latenza < 200ms); SLO (Service Level Objective) è il target di conformità vincolante pattuito (es. SLI >= 99.9% su base mensile). Definiscono matematicamente l'Error Budget.",
+    aliases: ["SLI", "SLO", "Service Level Indicator", "Service Level Objective"]
   },
   "Slopsquatting": {
     title: "Slopsquatting",
@@ -2834,6 +3023,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "La manifestazione esteriore osservabile di un problema (es. crash HTTP 500), distinta dalla causa prossima e dalla causa sistemica primaria.",
     aliases: ["Sintomo", "Sintomi"]
   },
+  "Syscall": {
+    title: "Syscall (Chiamata di Sistema)",
+    category: "Sistemi Operativi & Confinamento",
+    definition: "L'interfaccia formale attraverso cui un programma in User Space richiede un servizio al Kernel del sistema operativo (es. aprire un file, allocare memoria, stabilire una connessione di rete). È il perimetro insormontabile su cui agiscono le sandbox di sicurezza.",
+    aliases: ["Chiamata di Sistema", "System Call", "Syscalls"]
+  },
 
   // =========================================================================
   // LETTERA T
@@ -2880,6 +3075,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Discrepanza tra lo stato interno reale del software e lo stato rappresentato dalla telemetria a causa di ritardi di flushing, log dropped o campionamento.",
     aliases: ["Distorsione Telemetrica"]
   },
+  "Temperatura": {
+    title: "Temperatura (Sampling Temperature)",
+    category: "Modelli Linguistici",
+    definition: "Parametro matematico che regola la casualità e la dispersione probabilistica nella decodifica dei token di un LLM. Valori alti aumentano la variabilità; il valore 0.0 rende la selezione massimamente avida (greedy), pur senza garantire il determinismo assoluto in ambienti GPU paralleli.",
+    aliases: ["Sampling Temperature", "Temperature"]
+  },
   "Teorema del Vuoto di Assurance": {
     title: "Teorema del Vuoto di Assurance",
     category: "Governance & Competenze",
@@ -2903,6 +3104,12 @@ window.__CONTEXTUAL_DICT__ = {
     category: "Logica dei Programmi",
     definition: "Formalismo assiomatico { Pre } C { Post } che stabilisce che se il comando C viene eseguito partendo da uno stato conforme a Pre e termina, il nuovo stato soddisferà Post.",
     aliases: ["Hoare Triple"]
+  },
+  "Test Double": {
+    title: "Test Double (Doppio di Test: Mock, Stub, Fake)",
+    category: "Metodologia di Testing",
+    definition: "Termine ombrello che designa qualsiasi simulacro software impiegato nei test per sostituire un componente reale: lo Stub risponde passivamente con dati fissi; il Mock registra e spia le interazioni ricevute; il Fake è un'implementazione funzionante ma semplificata (es. database in memoria RAM).",
+    aliases: ["Test Doubles", "Mock", "Stub", "Fake"]
   },
   "Threat": {
     title: "Threat (Minaccia)",
@@ -3114,6 +3321,12 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Impegno contrattuale o commerciale che stabilisce rimedi o risarcimenti a fronte di difetti del prodotto; distinta dall'Assurance (fiducia giustificata a priori) e dall'Insurance.",
     aliases: ["Garanzia Contrattuale", "Garanzia Commerciale"]
   },
+  "WCET": {
+    title: "WCET (Worst-Case Execution Time)",
+    category: "Sistemi Real-Time & Embedded",
+    definition: "Il tempo massimo assoluto garantito impiegato da un blocco di codice per completare la propria computazione sotto le condizioni di carico peggiori possibili. Vitale nei sistemi safety-critical per garantire che una risposta corretta non arrivi troppo tardi rispetto alla dinamica del mondo reale.",
+    aliases: ["Worst-Case Execution Time", "Tempo di Esecuzione nel Caso Peggiore"]
+  },
   "Weak Invariants": {
     title: "Weak Invariants (Invarianti Deboli)",
     category: "Anti-Pattern Logico",
@@ -3154,4 +3367,4 @@ window.__CONTEXTUAL_DICT__ = {
     definition: "Dedurre che la probabilità di guasto sia zero solo perché nessun test su un campione limitato ha fallito, violando il principio di non-diluizione del rischio.",
     aliases: ["Inganno della Probabilità Zero"]
   }
-};
+});
