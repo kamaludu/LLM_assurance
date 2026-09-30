@@ -1,12 +1,18 @@
-/**
- * contextual.js - Motore per glossario contestuale in-page
- * Architettura: Trie case-adaptive + TreeWalker selettivo + Singleton Popup 2D
- * Regole:
- * - Tabelle abilitate (termini cliccabili in th/td)
- * - Codice (<pre>, <code>, <kbd>, <samp>) rigorosamente blindato ed escluso
- * - Titoli (h1-h6), indice (#TOC) e formule (.math) intatti
- * - Interazione unificata click/tap senza eventi hover
- */
+/* =========================================================================
+ * ASSURANCE DEL SOFTWARE ASSISTITO DA LLM - GLOSSARIO CONTESTUALE
+ * Autore:       Cristian Evangelisti
+ * File:         contextual.js
+ * Descrizione:  Motore client-side per glossario contestuale in-page.
+ * Architettura: Trie case-adaptive, TreeWalker selettivo, Singleton Popup 2D.
+ * Specifiche e vincoli di parsing:
+ *   - Riconoscimento attivo nei testi e nelle tabelle (celle th, td)
+ *   - Esclusione protetta dei blocchi di codice (pre, code, kbd, samp)
+ *   - Preservazione integrale di titoli (h1-h6), indice (#TOC) e formule (.math)
+ *   - Interazione unificata click/tap ottimizzata per touch (senza eventi hover)
+ * Licenza:      GNU General Public License v3.0 o successiva (GPLv3-or-later)
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * Copyright (C) 2026 Cristian Evangelisti
+ * ========================================================================= */
 (function () {
   'use strict';
 
