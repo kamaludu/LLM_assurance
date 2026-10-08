@@ -5,13 +5,13 @@
 ```html
 <!-- SEO & Social -->
 <meta name="description" content="Manuale didattico per costruire catene di Software Assurance, verificare codice generato da LLM e governare il rischio con evidenze e oracoli indipendenti.">
-<link rel="canonical" href="https://kamaludu.github.io/assurance-llm/">
+<link rel="canonical" href="https://kamaludu.github.io/LLM_assurance/">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Assurance del Software Assistito da LLM — Principi e Governance">
 <meta property="og:description" content="Una guida epistemica e pratica per valutare criticamente, verificare e governare l'affidabilità del software sviluppato con Large Language Models.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://kamaludu.github.io/assurance-llm/">
-<meta property="og:image" content="https://kamaludu.github.io/assurance-llm/assets/preview.png">
+<meta property="og:url" content="https://kamaludu.github.io/LLM_assurance/">
+<meta property="og:image" content="https://kamaludu.github.io/LLM_assurance/assets/preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <!-- End -->
 ```
