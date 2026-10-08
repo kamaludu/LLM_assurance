@@ -27,7 +27,7 @@
 ---
 
 <details>
-<summary> 🌍 <b>Translations & International Readers:<br> (Click to expand / Clicca per espandere)</b></summary>
+<summary> 🌍 <b>Translations & International Readers: 🇮🇹 🇬🇧 🇫🇷 🇩🇪 🇪🇸 🇵🇹<br> (Click to expand / Clicca per espandere)</b></summary>
 
 **🇮🇹 Italiano:**
 - **Lettura immediata con traduttore automatico:** Si consiglia di scaricare il file **`.html`** dalla sezione [Releases](../../releases/latest) e aprirlo nel browser (Chrome, Edge, Safari) utilizzando la funzione nativa di traduzione automatica della pagina.
