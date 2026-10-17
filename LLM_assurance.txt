@@ -94,6 +94,10 @@ Principi, Verifica, Evidenze e Governance**
 
 ### APPENDICI
 
+- [Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
+- [Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
+- [Elementi di Teoria dei Grafi](#appendice-grafi)
+- [Logica del Primo Ordine](#appendice-logica)
 - [Prompt Master per lo studio dei singoli step](#prompt-master)
 - [GLOSSARIO](#glossario-manuale)
 - [Bibliografia essenziale](#bibliografia-essenziale)
@@ -803,7 +807,7 @@ Questi concetti non sono cinque argomenti separati. Costituiscono la base concet
 
 ### MAPPA DEL CAPITOLO
 
-1. **Introduzione e Obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Prerequisiti Concettuali**
 3. **Concetti Fondamentali**
 4. **Terminologia Tecnica Unificata**
@@ -826,12 +830,16 @@ Questi concetti non sono cinque argomenti separati. Costituiscono la base concet
 
 ---
 
-### 1. INTRODUZIONE E OBIETTIVO DELLO STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 #### 1.1 Il Ruolo Fondativo della Definizione del Problema nell'Assurance
 Nel ciclo di vita dell'ingegneria del software assistita da modelli linguistici di grandi dimensioni (LLM), il primo passo operativo non è la generazione di codice, né la stesura di specifiche d'interfaccia, né la configurazione di pipeline di test. Il primo passo è la **Definizione Rigorosa del Problema e dell'Obiettivo** (*Problem Definition*).
 
 Questo STEP affronta una vulnerabilità sistemica primaria: l'incapacità di stabilire con precisione logica e ontologica quale stato del mondo reale debba essere modificato, monitorato o garantito per mezzo del software, separando in modo netto ciò che appartiene all'ambiente esterno da ciò che appartiene alla macchina.
+
+> [!TIP]  
+> **Ontologia:** Modello formale che definisce le categorie, le entità e le relazioni logiche esistenti in un determinato dominio di conoscenza.  
+>  
 
 La maggioranza dei fallimenti catastrofici nei sistemi software complessi non ha origine da bug sintattici o violazioni di memoria (gestibili tramite linguaggi moderni o strumenti di analisi statica), ma da *misallineamenti semantici primari*: il software esegue in maniera formalmente ineccepibile un compito che non corrisponde alle reali necessità del dominio operativo, oppure assume condizioni ambientali che si rivelano false sul campo. Quando si integrano gli LLM nel flusso di sviluppo, questo rischio aumenta di ordini di grandezza.
 
@@ -849,7 +857,7 @@ Ambiguità nel Problema (Delta_P)
 Se il problema iniziale non è rigorosamente perimetrato e formalizzato, ogni attività a valle (property testing, model checking, revisione automatizzata) verificherà unicamente la coerenza interna di un sistema costruito su premesse errate, generando una pericolosa illusione di sicurezza.
 
 #### 1.3 La Domanda Fondamentale di Assurance
-L'obiettivo didattico e metodologico dello STEP 1 è fornire al discente il rigore analitico per rispondere in modo documentato, auditabile e privo di ambiguità alla seguente domanda:
+L'obiettivo didattico e metodologico dello STEP 1 è fornire al lettore il rigore analitico per rispondere in modo documentato, auditabile e privo di ambiguità alla seguente domanda:
 
 > *"Quale specifico stato dell'ambiente intendiamo monitorare o trasformare, entro quali confini operativi delimitati, sotto quali assunzioni esplicite sul mondo fisico/digitale circostante, con quali vincoli non negoziabili e mediante quali oracoli oggettivi e falsificabili verificheremo il successo o il fallimento dell'iniziativa?"*
 
@@ -1087,6 +1095,10 @@ La tabella seguente evidenzia le confusioni concettuali più gravi nello STEP 1 
 - **Detection (Rilevazione)**: Identificare una condizione nociva dopo che si è verificata.
 - **Prevention (Prevenzione)**: Progettare i vincoli del sistema in modo tale che la condizione nociva sia resa topologicamente o logicamente impossibile.
 - *Errore di Assurance*: Formulare il problema affidandosi al rilevamento in contesti a impatto catastrofico e irreversibile. Se un algoritmo di dosaggio farmacologico rileva di aver iniettato una dose dieci volte superiore al consentito, la rilevazione è inutile: il paziente ha già subito il danno. Il problema deve imporre la prevenzione architetturale (limite fisico alla capacità del serbatoio della siringa automatica).
+
+> [!TIP]  
+> **Topologia:** Studio della struttura di connessione, dei confini e delle relazioni reticolari o spaziali tra i componenti di un sistema.  
+>  
 
 #### 6.6 Risk Reduction vs Risk Elimination
 - **Risk Reduction (Riduzione del Rischio)**: Mitigazione volta a diminuire la probabilità o l'impatto di un fallimento. Il rischio residuo rimane strettamente maggiore di zero (`R_res > 0`).
@@ -1515,7 +1527,7 @@ Per consolidare la padronanza del metodo, analizziamo l'applicazione dello STEP 
 
 ### 17. ESERCIZI E SCENARI DI COMPRENSIONE
 
-I seguenti esercizi sono concepiti per diagnosticare la capacità del discente di applicare i principi dello STEP 1. Si consiglia di leggere ciascun testo, formulare per iscritto la propria analisi critica e determinare lo stato decisionale prima di consultare la sezione delle soluzioni.
+I seguenti esercizi sono concepiti per diagnosticare la capacità del lettore di applicare i principi dello STEP 1. Si consiglia di leggere ciascun testo, formulare per iscritto la propria analisi critica e determinare lo stato decisionale prima di consultare la sezione delle soluzioni.
 
 #### Esercizio 1: Diagnosi Critica di una Scheda di Requisiti
 Un ingegnere junior, con l'ausilio di un LLM commerciale, ha prodotto la seguente definizione di problema per un sistema di frenata assistita per convogli metropolitani autonomi:
@@ -1614,7 +1626,7 @@ L'evidenza valida per lo STEP 1 non può essere il consenso tra modelli linguist
 
 ### 19. CRITERI DI PADRONANZA OPERATIVA
 
-Il discente ha acquisito la piena padronanza concettuale e metodologica dello STEP 1 quando dimostra in modo empirico e osservabile di:
+Il lettore ha acquisito la piena padronanza concettuale e metodologica dello STEP 1 quando dimostra in modo empirico e osservabile di:
 
 1. **Riconoscere ed Eliminare il Premature Solutioning**:
    - Data una specifica vaga o ricca di dettagli architetturali, sa estrarre con precisione la pura discrepanza di dominio del Mondo reale, eliminando ogni riferimento a tecnologie, linguaggi, database e pattern implementativi.
@@ -1659,7 +1671,7 @@ I cinque principi inderogabili dello STEP 1:
 
 ### MAPPA DEL CAPITOLO
 
-1. **Introduzione e Obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Prerequisiti Concettuali**
 3. **Concetti Fondamentali**
 4. **Terminologia Tecnica Unificata**
@@ -1682,7 +1694,7 @@ I cinque principi inderogabili dello STEP 1:
 
 ---
 
-### 1. INTRODUZIONE E OBIETTIVO DELLO STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 #### 1.1 Il Ruolo della Classificazione del Rischio nell'Assurance
 Nello STEP 1 abbiamo definito la discrepanza del Mondo reale (W) che il sistema deve colmare, fissando i confini operativi e catalogando le assunzioni ambientali. Tuttavia, i sistemi software non presentano tutti la medesima capacità di arrecare danno: un errore in uno script che genera report interni aggregati non ha lo stesso peso di un errore in un controllore di dosaggio farmacologico o in un motore di riconciliazione contabile interbancaria.
@@ -1743,6 +1755,10 @@ Questo paradigma presuppone che i componenti falliscano per usura, attrito, fati
 1. **Assenza di Usura Fisica**: Il software non subisce invecchiamento meccanico. Un difetto logico nel codice o nel prompt esiste sin dall'istante zero in modo deterministico; attende semplicemente la specifica combinazione di ingressi e stati per manifestarsi.
 2. **Spazi di Input Iper-Dimensionali**: Gli LLM operano su spazi combinatori sterminati (sequenze di token). Non è possibile costruire una funzione di densità di probabilità affidabile su input non strutturati in linguaggio naturale. Se un prompt avversario non si è manifestato durante 10.000 test, ciò non dimostra che la sua probabilità sia `10^(-4)`; potrebbe semplicemente significare che lo spazio delle combinazioni avversarie non è stato campionato nei punti di rottura.
 3. **Sistematicità del Guasto**: Se un LLM cade in un'allucinazione su una specifica classe di problemi semantici, continuerà a fallire ogni volta che quel contesto semantico si ripresenterà, rendendo priva di senso l'assunzione di guasto "stocastico e indipendente".
+
+> [!TIP]  
+> **Stocastico:** Processo o comportamento regolato dal caso o basato su variabili probabilistiche, in opposizione a un sistema puramente deterministico.  
+>  
 
 Nel software assistito da LLM, **la probabilità del difetto logico non è un'evidenza affidabile**. L'analisi del rischio deve fondarsi primariamente sulla *severità del pericolo*, sulla *controllabilità dell'evento* e sul *raggio d'impatto massimo teorico*.
 
@@ -2093,10 +2109,10 @@ Classificazione assegnata: AL-1 (Nessuna verifica formale necessaria)
 
 ```text
            CAMPIONE DI TEST (50.000 casi)
-    [x][x][x][x][x][x][x][x][x][x][x][x][x][x]  --> 0 Collisioni
+    [x][x][x][x][x][x][x][x][x][x][x][x][x][x]  → 0 Collisioni
     
            SPAZIO OPERATIVO REALE (Miliardi di combinazioni)
-    [ ][ ][ ][ ][ ][ ][ ][ ][!][ ][ ][ ][ ][ ]  --> Guasto latente
+    [ ][ ][ ][ ][ ][ ][ ][ ][!][ ][ ][ ][ ][ ]  → Guasto latente
                             ^
               Variazione imprevista di luce 
               + ostacolo riflettente mai testato
@@ -2190,14 +2206,22 @@ L'analisi del rischio nei sistemi che integrano LLM presenta vettori di autoinga
 
 #### 10.1 Autoclassificazione del Rischio da parte dell'LLM
 Chiedere a un modello linguistico di analizzare o classificare il rischio associato alle sue stesse risposte o a una pipeline software costituisce una **violazione epistemica primaria**.
-Gli LLM sono privi di ontologia causale e di percezione delle conseguenze nel Mondo reale. Quando un LLM dichiara: *"Questa azione è priva di rischi"*, non sta eseguendo un'analisi di sicurezza sistemica: sta semplicemente calcolando che la sequenza di parole "questa azione è priva di rischi" possiede una probabilità statistica elevata in quel contesto verbale.
+Gli LLM sono privi di ontologia causale e di percezione delle conseguenze nel Mondo reale. 
+
+> [!CAUTION]  
+> Quando un LLM dichiara: *"Questa azione è priva di rischi"*, non sta eseguendo un'analisi di sicurezza sistemica: sta semplicemente calcolando che la sequenza di parole "questa azione è priva di rischi" possiede una probabilità statistica elevata in quel contesto verbale.  
+>
 
 #### 10.2 Allucinazione di Mitigazioni Sintattiche
 Un anti-pattern pervasivo consiste nell'inserire clausole protettive all'interno del *system prompt* dell'LLM, ritenendo che esse costituiscano barriere di mitigazione valide per declassare l'AL:
 - Prompt: *"Sei un assistente medico. Non devi MAI suggerire dosaggi superiori a 50 mg."*
 - Conclusione ingegneristica errata: *"Abbiamo implementato un controllo di prevenzione del rischio; possiamo declassare il componente da AL-3 a AL-2."*
 
-Questo è un errore logico: un vincolo sintattico in linguaggio naturale non garantisce alcuna proprietà di sicurezza deterministica. Il modello può eludere il vincolo in qualunque momento per effetto di un jailbreak indiretto, di un contesto lungo o di un'interpretazione semantica divergente.
+Questo è un errore logico: un vincolo sintattico in linguaggio naturale non garantisce alcuna proprietà di sicurezza deterministica. 
+
+> [!CAUTION]  
+> Il modello può eludere il vincolo in qualunque momento per effetto di un jailbreak indiretto, di un contesto lungo o di un'interpretazione semantica divergente.  
+> 
 
 #### 10.3 Fallimento Correlato tra Agente Operativo e Agente Valutatore
 L'adozione dello schema:
@@ -2305,7 +2329,7 @@ STEP 1: PROBLEM DEFINITION
   - Obiettivo di dominio, perimetro del Mondo (W)
        |
        v
-STEP 2: RISK CLASSIFICATION  <-- [CI TROVIAMO QUI]
+STEP 2: RISK CLASSIFICATION  ← [CI TROVIAMO QUI]
   - Identificazione degli Hazards (H_set)
   - Assegnazione dell'AL (da AL-0 ad AL-3)
   - Formulazione dei Requisiti di Sicurezza di Alto Livello (High-Level Safety Goals)
@@ -2368,7 +2392,7 @@ Se lo STEP 2 stabilisce erroneamente una classificazione AL-1 per un componente 
 
 ### 17. ESERCIZI E SCENARI DI COMPRENSIONE
 
-Si raccomanda al discente di leggere attentamente ciascuno scenario, formulare per iscritto la propria analisi (identificando Hazards, Severità, Reversibilità, Controllabilità e AIL) e decidere lo stato decisionale (PASS, PARTIAL, UNKNOWN, FAIL, NO-GO) prima di esaminare le soluzioni.
+Si raccomanda al lettore di leggere attentamente ciascuno scenario, formulare per iscritto la propria analisi (identificando Hazards, Severità, Reversibilità, Controllabilità e AIL) e decidere lo stato decisionale (PASS, PARTIAL, UNKNOWN, FAIL, NO-GO) prima di esaminare le soluzioni.
 
 #### Esercizio 1: Il Generatore di Script di Manutenzione Database
 Un team di ingegneri integra un LLM all'interno del portale DevOps aziendale. L'LLM riceve istruzioni verbali dagli operatori (es. *"Pulisci i log vecchi e ottimizza gli indici delle tabelle utenti non attive da 2 anni"*) e genera direttamente script SQL complessi che vengono eseguiti automaticamente dal sistema sul database relazionale centrale di produzione alle ore 02:00 di ogni notte.
@@ -2465,7 +2489,7 @@ Affermare che il rischio finanziario è "inferiore al 2%" è un'asserzione epist
 
 ### 19. CRITERI DI PADRONANZA OPERATIVA
 
-Il discente ha acquisito la piena padronanza dello STEP 2 quando dimostra, in sede di verifica o di audit pratico, di:
+Il lettore ha acquisito la piena padronanza dello STEP 2 quando dimostra, in sede di verifica o di audit pratico, di:
 
 1. **Distinguere Costantemente Hazard e Harm**:
    - Sa isolare con precisione lo stato di pericolo interno al sistema rispetto all'evento terminale dannoso nell'ambiente esterno.
@@ -2508,7 +2532,7 @@ I principi cardine dello STEP 2:
 
 ### MAPPA DEL CAPITOLO COMPLETO
 
-1. **Introduzione e Obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Prerequisiti Concettuali**
 3. **Concetti Fondamentali**
 4. **Terminologia Tecnica Unificata**
@@ -2531,7 +2555,7 @@ I principi cardine dello STEP 2:
 
 ---
 
-### 1. INTRODUZIONE E OBIETTIVO DELLO STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 #### 1.1 Il Problema della Dispersione della Responsabilità
 Negli STEP 1 e 2 abbiamo definito la discrepanza nel Mondo reale (W) e stabilito l'Assurance Integrity Level (AL) necessario per mitigare i pericoli identificati. Tuttavia, un impianto di requisiti tecnici, invarianti formali e suite di test matematicamente ineccepibile rimane privo di valore pratico se non è vincolato a una chiara struttura di **autorità decisionale**, **responsabilità operativa** e **rendicontabilità** (*accountability*).
@@ -2581,7 +2605,7 @@ Il focus non risiede nella teoria generale del diritto, ma nella **governance de
 
 #### 2.2 Collegamento con lo STEP 1 e lo STEP 2
 - **Dallo STEP 1 (Problem Definition)**: Lo STEP 1 esplicita la discrepanza del Mondo (W) e cataloga le assunzioni ambientali (W_assumptions). Lo STEP 3 assegna a figure specifiche la responsabilità di verificare che tali assunzioni corrispondano al contesto operativo reale (ad esempio, validare che un profilo di traffico stimato coincida con la realtà d'esercizio).
-- **Dallo STEP 2 (Risk Classification)**: Lo STEP 2 mappa i pericoli e ricava l'Assurance Integrity Level (ALSO). Lo STEP 3 stabilisce quali requisiti di autorità, competenza e indipendenza debbano essere imposti per approvare le evidenze a quel livello. All'aumentare dell'AL, l'autorità richiesta diventa più elevata e la separazione dei ruoli più rigida.
+- **Dallo STEP 2 (Risk Classification)**: Lo STEP 2 mappa i pericoli e ricava l'Assurance Integrity Level (AL). Lo STEP 3 stabilisce quali requisiti di autorità, competenza e indipendenza debbano essere imposti per approvare le evidenze a quel livello. All'aumentare dell'AL, l'autorità richiesta diventa più elevata e la separazione dei ruoli più rigida.
 
 #### 2.3 Paradigmi di Controllo Operativo: Limiti Descrittivi
 L'interazione operativa tra l'essere umano e i moduli software (inclusi gli LLM) viene comunemente descritta mediante tre paradigmi:
@@ -2724,6 +2748,10 @@ Se anche una sola clausola risulta falsa, il sign-off è privo di valore metodol
 
 #### 5.2 Matrice ARCI-V Estesa per l'Assurance
 Nel contesto di questo manuale viene introdotto il modello operativo **ARCI-V**, un'estensione della classica matrice di responsabilità specificamente concepita per integrare l'indipendenza delle evidenze:
+
+> Il modello **RACI (Responsible, Accountable, Consulted, Informed)** è lo standard di project management per allocare i ruoli. Spesso viene scritto come **ARCI** semplicemente invertendo l'ordine.  
+> Il modello RACI tradizionale non contempla formalmente la verifica indipendente delle prove.  
+> 
 
 | RUOLO ARCI-V | SIGNIFICATO OPERATIVO NELL'ASSURANCE DEL SOFTWARE |
 | :--- | :--- |
@@ -3201,7 +3229,7 @@ STEP 2: Risk Classification
   - Firmatario: Responsabile della Sicurezza Funzionale / Safety Officer [A_safe].
        |
        v
-STEP 3: Authority & Responsibility  <-- [CI TROVIAMO QUI]
+STEP 3: Authority & Responsibility  ← [CI TROVIAMO QUI]
   - Evidenza: Matrice ARCI-V nominativa, competenze verificate, regole di gate.
   - Decisione: Assegnazione formale delle autorità di veto e approvazione.
   - Firmatario: Direzione Tecnica / Comitato di Governance dell'Assurance.
@@ -3256,7 +3284,7 @@ Se l'allocazione di autorità e responsabilità nello STEP 3 risulta ambigua, in
 
 ### 17. ESERCIZI E SCENARI DI COMPRENSIONE
 
-Si raccomanda al discente di analizzare gli scenari proposti, annotare le violazioni di governance riscontrate, compilare la matrice dei ruoli e formulare lo stato decisionale prima di passare alla lettura delle soluzioni fornite nella sezione successiva.
+Si raccomanda al lettore di analizzare gli scenari proposti, annotare le violazioni di governance riscontrate, compilare la matrice dei ruoli e formulare lo stato decisionale prima di passare alla lettura delle soluzioni fornite nella sezione successiva.
 
 ---
 
@@ -3368,7 +3396,7 @@ La delibera del CIO è **metodologicamente e legalmente infondata**:
 
 ### 19. CRITERI DI PADRONANZA OPERATIVA
 
-Il discente ha acquisito la piena padronanza concettuale e metodologica dello **STEP 3** quando è in grado di dimostrare, in modo osservabile e documentato, le seguenti competenze:
+Il lettore ha acquisito la piena padronanza concettuale e metodologica dello **STEP 3** quando è in grado di dimostrare, in modo osservabile e documentato, le seguenti competenze:
 
 1. **Riconoscere e Neutralizzare la Dispersione della Responsabilità**:
    - Identifica prontamente in contesti aziendali, schede di progetto o flussi DevOps la presenza di approvazioni a vuoto (*rubber-stamping*), deleghe fittizie e tentativi di imputare decisioni a modelli di AI;
@@ -3399,6 +3427,9 @@ I cinque principi inderogabili di governance per l'assurance del software assist
 4. **Sostanzialità del Controllo Umano**: L'inclusione di un operatore nel loop operativo rappresenta un presidio di sicurezza valido solo se supportata da tempo congruo di analisi, sostenibilità del carico cognitivo, trasparenza delle evidenze e potere reale di veto;
 5. **Rigore Proporzionato al Rischio**: L'autorità richiesta, la segregazione dei ruoli e l'indipendenza delle evidenze devono crescere monotonicamente al crescere dell'AL, garantendo che i sistemi a più elevato potenziale distruttivo siano presidiati dai massimi livelli di rigore organizzativo ed epistemico.
 
+> [!TIP]  
+> **Monotonico:** Proprietà di una funzione o operazione che preserva l'ordinamento, crescendo o decrescendo in modo costante senza inversioni di tendenza.  
+>  
 
 ---
 
@@ -3414,7 +3445,7 @@ I cinque principi inderogabili di governance per l'assurance del software assist
 
 ### MAPPA DEL CAPITOLO COMPLETO
 
-1. **Introduzione e Obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Prerequisiti Concettuali**
 3. **Concetti Fondamentali**
 4. **Terminologia Tecnica Unificata**
@@ -3435,7 +3466,7 @@ I cinque principi inderogabili di governance per l'assurance del software assist
 
 ---
 
-### 1. INTRODUZIONE E OBIETTIVO DELLO STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 #### 1.1 Il Ruolo Fondativo della Specifica nell'Assurance
 Nei primi tre capitoli abbiamo definito la discrepanza nel Mondo reale che motiva l'esistenza del sistema (STEP 1: Problem Definition), classificato i pericoli e derivato l'Assurance Integrity Level (STEP 2: Risk Classification), e strutturato la governance, l'autorità e la responsabilità decisionale (STEP 3: Authority & Responsibility).
@@ -3447,7 +3478,11 @@ Lo **STEP 4 — Specification** affronta il problema della formalizzazione del c
 #### 1.2 La Rottura Epistemica dell'Interfaccia: Mondo vs Macchina
 Nello sviluppo convenzionale, la specifica viene frequentemente confusa con una descrizione testuale informale dei desideri dell'utente. Nell'ingegneria del software assistita da LLM, questa confusione genera fallimenti sistemici primari.
 
-I modelli linguistici sono generatori probabilistici addestrati a massimizzare la plausibilità superficiale del testo. Se alimentati con specifiche espresse in linguaggio naturale ambiguo, gli LLM non segnalano l'indeterminatezza: la compensano iniettando assunzioni arbitrarie non dichiarate. Il codice risultante appare pulito e supera i test più ingenui, ma implementa un comportamento disallineato rispetto ai vincoli critici del dominio.
+> [!CAUTION]  
+> I modelli linguistici sono generatori probabilistici addestrati a massimizzare la plausibilità superficiale del testo. Se alimentati con specifiche espresse in linguaggio naturale ambiguo, gli LLM non segnalano l'indeterminatezza: la compensano iniettando assunzioni arbitrarie non dichiarate.  
+>  
+
+Il codice risultante appare pulito e supera i test più ingenui, ma implementa un comportamento disallineato rispetto ai vincoli critici del dominio.
 
 La specifica opera come una **rottura epistemica**:
 - Distingue nettamente le condizioni desiderate nel Mondo (`R`) dai comportamenti imposti alla frontiera della Macchina (`S`);
@@ -3455,7 +3490,7 @@ La specifica opera come una **rottura epistemica**:
 - Costituisce l'unica fonte di verità da cui è lecito derivare gli **oracoli di verifica** (STEP 11).
 
 #### 1.3 La Domanda Fondamentale di Assurance per la Specifica
-L'obiettivo didattico dello STEP 4 è consentire al discente di formulare, analizzare e verificare una specifica rispondendo senza ambiguità alla seguente domanda:
+L'obiettivo didattico dello STEP 4 è consentire al lettore di formulare, analizzare e verificare una specifica rispondendo senza ambiguità alla seguente domanda:
 
 > *"Quali relazioni logiche, matematiche e temporali tra gli ingressi osservabili e le uscite ammesse alla frontiera della Macchina devono valere per ogni stato raggiungibile, sotto quali precondizioni ambientali esplicite, affinché sia dimostrabile che nessun pericolo catalogato possa verificarsi e che ogni obiettivo di sistema sia garantito?"*
 
@@ -3615,6 +3650,10 @@ Nel documento di specifica, ogni proposizione deve essere esplicitamente etichet
 - **Overspecification — Sovra-specificazione**: Errore consistente nell'incorporare dettagli implementativi, architetturali o algoritmici all'interno della specifica di interfaccia.
 - **Declarative specification — Specifica dichiarativa**: Formulazione che specifica *cosa* deve essere calcolato o mantenuto vero, senza indicare la sequenza di passi operativi per ottenerlo.
 - **Operational specification — Specifica operativa**: Formulazione che descrive *come* calcolare il risultato attraverso una macchina a stati o un algoritmo sequenziale astratto.
+
+> [!TIP]  
+> **Asintotico:** Analisi del comportamento di un algoritmo o di una funzione al tendere della dimensione dell'input o del carico all'infinito.
+>  
 
 ---
 
@@ -4011,7 +4050,11 @@ Il modello valuta se stesso: genera oracoli che verificano fedelmente i propri b
 
 ### 11. RUOLO E LIMITI DEGLI LLM NELLO STEP 4
 
-L'impiego di modelli linguistici nella costruzione e nell'analisi della specifica software richiede una comprensione rigorosa delle loro potenzialità euristiche e dei loro limiti strutturali. Un LLM non è un dimostratore automatico di teoremi né un oracolo ontologico del Mondo reale; è uno strumento probabilistico di trasformazione testuale e simbolica.
+L'impiego di modelli linguistici nella costruzione e nell'analisi della specifica software richiede una comprensione rigorosa delle loro potenzialità euristiche e dei loro limiti strutturali. 
+
+> [!CAUTION]  
+> Un LLM non è un dimostratore automatico di teoremi né un oracolo ontologico del Mondo reale; è uno strumento probabilistico di trasformazione testuale e simbolica.  
+>  
 
 #### 11.1 Capacità Euristiche dell'LLM (Cosa l'LLM Può Fare)
 Se guidato da vincoli precisi e supervisionato da un ingegnere dotato di competenza epistemica, un LLM può assistere efficacemente la stesura della specifica:
@@ -4171,7 +4214,7 @@ STEP 3: Authority & Responsibility (ARCI-V)
   - Fornisce: La matrice dei firmatari qualificati e le regole di gate.
        |
        v
-STEP 4: SPECIFICATION (S)  <-- [CI TROVIAMO QUI]
+STEP 4: SPECIFICATION (S)  ← [CI TROVIAMO QUI]
   - Costruisce: Contratti di interfaccia (Pre/Post), Invarianti di Safety (Inv),
                 macchine a stati finite e gestione deterministica dei guasti.
        |
@@ -4241,11 +4284,15 @@ Contratto di Interfaccia del Guardrail:
      ```
 3. **Verifica della Specifica**: Prima di scrivere una sola riga di codice, la specifica concorrente viene compilata in un modello formale (es. TLA+) ed esplorata esaustivamente su tutti i possibili interleaving di rete per dimostrare l'assenza di partizionamenti non gestiti.
 
+> [!TIP]  
+> **Race condition:** Anomalia di concorrenza in cui il risultato di un'operazione informatica dipende dall'ordine o dalla tempistica imprevedibile di esecuzione di thread o processi paralleli.  
+>  
+
 ---
 
 ### 15. ESERCIZI E SCENARI DI COMPRENSIONE
 
-Si raccomanda al discente di leggere attentamente ciascuno scenario, identificare le fallacie analitiche e determinare lo stato decisionale corretto prima di consultare le soluzioni dettagliate riportate nella sezione successiva.
+Si raccomanda al lettore di leggere attentamente ciascuno scenario, identificare le fallacie analitiche e determinare lo stato decisionale corretto prima di consultare le soluzioni dettagliate riportate nella sezione successiva.
 
 ---
 
@@ -4427,7 +4474,7 @@ Step_Motor(Target_Pressure_mbar)
 
 ### 17. CRITERI DI PADRONANZA OPERATIVA
 
-Il discente ha acquisito la piena padronanza concettuale, tecnica e metodologica dello **STEP 4** quando dimostra, in modo osservabile e documentato, le seguenti capacità:
+Il lettore ha acquisito la piena padronanza concettuale, tecnica e metodologica dello **STEP 4** quando dimostra, in modo osservabile e documentato, le seguenti capacità:
 
 1. **Distinguere Rigorosamente Requisito (`R`), Assunzione (`W`) e Specifica (`S`)**:
    - Sa isolare cosa appartiene al Mondo, cosa appartiene all'ambiente esterno e cosa deve essere prescritto alla sola interfaccia condivisa della Macchina;
@@ -4472,7 +4519,7 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
 
 ### Mappa del Capitolo
 
- 1. Introduzione e Obiettivo dello STEP                              
+ 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO                              
  2. Prerequisiti                                                    
  3. Concetti Fondamentali                                           
  4. Terminologia Rigorosa                                           
@@ -4491,11 +4538,11 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
 17. Soluzioni e Spiegazioni Dettagliate                             
 18. Approfondimento: La Matrice di Rischio Epistemico               
 19. Criteri di Padronanza                                           
-20. Sintesi Finale dello STEP
+20. Sintesi finale del Capitolo
 
 ---
 
-### 1. Introduzione e Obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nei sistemi software tradizionali, un fallimento critico e raramente dovuto alla sola errata digitazione di un'istruzione imperativa. Nella stragrande maggioranza dei casi, il software fallisce perche il modello mentale del programmatore non corrispondeva alla realta del dominio operativo: il codice assumeva condizioni che non si sono verificate, oppure ignorava variabili determinanti rimaste invisibili durante la progettazione.
 
@@ -5325,7 +5372,7 @@ Il lettore avra assimilato integralmente i contenuti dello **STEP 5** quando dim
 
 ---
 
-### 20. Sintesi Finale dello STEP
+### 20. Sintesi finale del Capitolo
 
 Lo **STEP 5: Assumptions & Unknowns** rappresenta l'atto di onesta e igiene intellettuale indispensabile per fondare qualsiasi successiva attivita di verifica e validazione. Nel software assistito o generato da LLM, l'illusione della correttezza e favorita dalla straordinaria fluidita lessicale dei modelli, che genera codice formalmente elegante, corredato da test compilabili e spiegazioni persuasive, ma internamente radicato in presupposti del tutto arbitrari, parziali o irrealistici.
 
@@ -5352,7 +5399,7 @@ Senza l'esecuzione sistematica e intransigente dello STEP 5, i successivi passi 
 
 ### Mappa del Capitolo
 
-- **1. Introduzione e Obiettivo dello STEP**
+- **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
 - **2. Prerequisiti**
 - **3. Concetti Fondamentali**
 - **4. Terminologia Rigorosa**
@@ -5370,11 +5417,11 @@ Senza l'esecuzione sistematica e intransigente dello STEP 5, i successivi passi 
 - **16. Soluzioni e Spiegazioni Dettagliate**
 - **17. Approfondimento: Formalizzazione Operativa tramite Property-Based Testing**
 - **18. Criteri di Padronanza**
-- **19. Sintesi Finale dello STEP**
+- **19. Sintesi finale del Capitolo**
 
 ---
 
-### 1. Introduzione e Obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 La maggior parte degli errori catastrofici nel software non deriva da funzioni che falliscono nei casi d'uso ordinari. Deriva da stati imprevisti in cui il sistema scivola progressivamente a causa di concorrenza, fallimenti parziali della rete o input anomali.
 
@@ -5438,6 +5485,11 @@ Un **Invariante** è una proposizione logica che deve rimanere costantemente ver
 - **Invariante di Sistema o Globale (System Invariant):** Una legge di conservazione che coinvolge la totalità dei componenti distribuiti o delle entità di un dominio.  
   *Esempio:* "La somma totale dei token circolanti in un'architettura decentralizzata deve essere costante, salvo eventi autorizzati di minting o burning."
 
+> [!TIP]  
+> **Minting:** Processo di creazione, conio o emissione di nuove unità digitali o token all'interno di un sistema.  
+> **Burning:** Processo di distruzione o rimozione permanente di unità digitali o token dalla circolazione per ridurne la disponibilità complessiva.  
+>  
+
 #### 3.4 Proprietà di Safety vs Proprietà di Liveness
 
 Tutte le proprietà del software possono essere rigorosamente classificate all'interno della dicotomia classica di Lamport:
@@ -5449,7 +5501,7 @@ Tutte le proprietà del software possono essere rigorosamente classificate all'i
 - **Proprietà di Liveness ("Qualcosa di buono prima o poi accadrà"):**
   * Stabilisce che il sistema garantisce il raggiungimento di uno stato desiderato entro un tempo futuro, non arrestandosi indefinitamente.
   * Caratteristica epistemica: Una violazione di liveness non può essere confutata da una traccia finita (il sistema potrebbe raggiungere lo stato buono subito dopo il termine dell'osservazione). La verifica richiede prove di terminazione o oracoli temporizzati.
-  * *Esempi:* Ogni richiesta HTTP ricevuta riceve eventualmente una risposta; ogni lock acquisito viene prima o poi rilasciato; convergenza eventuale dello stato della replica.
+  * *Esempi:* Ogni richiesta HTTP ricevuta riceve eventualmente una risposta; ogni lock acquisito viene prima o poi rilasciato; convergenza eventuale dello stato della replica (es. dei server smettono di essere disallineati e tornano a convergere).
 
 ---
 
@@ -5592,6 +5644,10 @@ Le principali classi di proprietà relazionali sono:
   apply(apply(s, op_A), op_B) == apply(apply(s, op_B), op_A)
   ```
   *Fondamentale per: strutture dati CRDT (Conflict-free Replicated Data Types), repliche concorrenti.*
+
+> [!TIP]  
+> **Proprietà metamorfica:** Una regola che definisce come l'output di un sistema deve cambiare (o rimanere invariato) quando il suo input viene modificato con una trasformazione controllata. Anziché verificare se una singola risposta è "giusta" o "sbagliata", verifica la coerenza tra più risposte di fronte a piccole variazioni del prompt (es. se parafrasando la domanda, la sostanza della risposta non cambia).  
+>  
 
 ---
 
@@ -5815,34 +5871,34 @@ La suite di test registra un trionfale `PASS` (100% dei test superati), ma la pr
 La generazione combinata di software e proprietà da parte di LLM produce un pattern di falsa sicurezza estremamente insidioso:
 
 ```text
-                     SPECIFICA AMBIGUA
-                            |
-                            v
-            +-------------------------------+
-            |  LLM GENERATORE DI CODICE     |
-            +-------------------------------+
-                            |
-                            +---------------------------------+
-                            |                                 |
-                            v                                 v
-               +-------------------------+       +-------------------------+
-               |  Codice Implementativo  |       |  Invarianti e Proprietà |
-               |  (Include bug silente)  |       |  (Formulazione debole o |
-               +-------------------------+       |   adattata al bug)      |
-                            |                    +-------------------------+
-                            \                                 /
-                             \                               /
-                              v                             v
-                         +---------------------------------------+
-                         |      ESECUZIONE ORATIVE DEI TEST      |
-                         |               ESITO: PASS             |
-                         +---------------------------------------+
-                                            |
-                                            v
-                             FALSA ASSURANCE CATASTROFICA:
-                         Il modello ha adattato la proprietà
-                         al proprio modo errato di risolvere
-                         il problema.
+          SPECIFICA AMBIGUA
+                  |
+                  v
+  +-------------------------------+
+  |  LLM GENERATORE DI CODICE     |
+  +-------------------------------+
+                  |
+                  +---------------------------------+
+                  |                                 |
+                  v                                 v
+     +-------------------------+       +-------------------------+
+     |  Codice Implementativo  |       |  Invarianti e Proprietà |
+     |  (Include bug silente)  |       |  (Formulazione debole o |
+     +-------------------------+       |   adattata al bug)      |
+                  |                    +-------------------------+
+                   \                                 /
+                    \                               /
+                     v                             v
+                +---------------------------------------+
+                |      ESECUZIONE ORATIVE DEI TEST      |
+                |               ESITO: PASS             |
+                +---------------------------------------+
+                                  |
+                                  v
+                   FALSA ASSURANCE CATASTROFICA:
+               Il modello ha adattato la proprietà
+               al proprio modo errato di risolvere
+               il problema.
 ```
 
 Per sventare la False Assurance:
@@ -5870,14 +5926,12 @@ Nel governo delle proprietà critiche, gli LLM possono essere impiegati esclusiv
 
 Un'evidenza di conformità di una proprietà critica possiede valore di assurance solo se sussiste **Indipendenza Epistemica** tra l'oracolo che valida la proprietà e l'oggetto sotto esame:
 
-```text
-[Livello di Separazione]     [Grado di Correlazione]       [Validità Epistemica]
-Fisica (File separati)   --> Altissima (Stesso prompt)  --> Insufficiente
-Procedurale (Due LLM)    --> Alta (Stesso pre-training) --> Molto Debole
-Metodologica (PBT vs Unit)--> Media (Stesse assunzioni)  --> Accettabile
-Epistemica Completa      --> Minima (Sorgente di verità --> ROBUSTA
-                             indipendente e formale)
-```
+| Livello di Separazione | Grado di Correlazione | Validità Epistemica |
+|:---|:---|:---|
+| **Fisica** (File separati) | → Altissima (Stesso prompt) | → Insufficiente |
+| **Procedurale** (Due LLM) | → Alta (Stesso pre-training) | → Molto Debole |
+| **Metodologica** (PBT vs Unit) | → Media (Stesse assunzioni) | → Accettabile |
+| **Epistemica Completa** | → Minima (Sorgente di verità indipendente e formale) | → ROBUSTA |
 
 La vera indipendenza epistemica esige che:
 * La proprietà derivi direttamente dalle leggi fisiche, dai vincoli matematici o dagli standard regolatori del dominio (Ground Truth), e non dal modo in cui il programmatore o l'LLM ha deciso di scrivere il programma.
@@ -5927,6 +5981,13 @@ Nei sistemi distribuiti geograficamente distribuiti (CAP Theorem), pretendere la
 - **Regola di Assurance:** In tali architetture, l'invariante critico non può essere formulato come uno State Invariant sincrono. Deve essere formalizzato come:
   1. Un **Invariante di Convergenza (Liveness):** *"In assenza di nuovi aggiornamenti, tutte le repliche raggiungono prima o poi lo stesso stato"*.
   2. Un **Invariante di Bounded Staleness (Safety):** *"Nessuna replica può servire dati più vecchi di Delta_T secondi rispetto all'ultimo aggiornamento registrato"*.
+
+> [!TIP]  
+> **CAP Theorem:** il Teorema di CAP (o Teorema di Brewer) stabilisce che un sistema di memorizzazione dati distribuito può garantire contemporaneamente al massimo due delle seguenti tre proprietà:  
+> C - Consistenza (Consistency / Linearizzabilità): Ogni lettura restituisce l'ultima scrittura effettuata, o genera un errore. In pratica, tutti i nodi del sistema vedono esattamente gli stessi dati nello stesso identico momento, come se fosse un database singolo.  
+> A - Disponibilità (Availability): Ogni richiesta ricevuta da un nodo non in errore deve restituire una risposta non errata (senza la garanzia che contenga la scrittura più recente).  
+> ​P - Tolleranza alle partizioni (Partition Tolerance): Il sistema continua a funzionare nonostante la perdita o il ritardo (interruzione temporanea o permanente) di messaggi di rete tra i nodi.  
+>  
 
 ---
 
@@ -6058,7 +6119,7 @@ L'ingegnere di software assurance ha assimilato pienamente i contenuti dello **S
 
 ---
 
-### 19. Sintesi Finale dello STEP
+### 19. Sintesi finale del Capitolo
 
 Lo **STEP 6: Critical Properties & Invariants** stabilisce il fondamento matematico e logico su cui poggia l'intera validità dell'assurance:
 
@@ -6082,7 +6143,7 @@ Lo **STEP 6: Critical Properties & Invariants** stabilisce il fondamento matemat
 
 ### Mappa del Capitolo
 
-- **1. Introduzione e Obiettivo dello STEP**
+- **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
   * Il problema della disconnessione epistemica nel software assistito da LLM
   * Tracciabilità burocratica vs Tracciabilità epistemica (Grafo di Giustificazione)
   * Perché il codice generato rapidamente richiede una catena di giustificazione più rigida
@@ -6140,11 +6201,11 @@ Lo **STEP 6: Critical Properties & Invariants** stabilisce il fondamento matemat
   * Attraversamento topologico inverso per la Propagazione dell'invalidazione e rivalutazione degli stati di assurance
 - **18. Criteri di Padronanza**
   * Matrice delle competenze pratiche e osservabili
-- **19. Sintesi Finale dello STEP**
+- **19. Sintesi finale del Capitolo**
 
 ---
 
-### 1. Introduzione e Obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 La disponibilità di Large Language Models nello sviluppo software ha azzerato il costo marginale di scrittura del codice e dei test di unità. Questa accelerazione quantitativa maschera tuttavia un rischio metodologico distruttivo: la **disconnessione epistemica**. Con un prompt sintetico, uno sviluppatore può generare centinaia di righe di logica complessa, strutture dati intricate e suite di test apparentemente esaustive. Ciò che tipicamente manca in questo processo è la risposta strutturata a quattro domande fondamentali:
 
@@ -6214,8 +6275,16 @@ La tracciabilità dell'assurance poggia su una catena inferenziale canonica a di
 [10. APPROVAL]
 
 Nota metodologica sulla topologia della Catena di Tracciabilita':
-La sequenza lineare sopra illustrata rappresenta il percorso procedurale di audit adottato nel manuale secondo il principio Test-First / Specification-Driven (definire requisiti, oracoli e procedure di test prima di generare il codice con l'LLM).
-Sul piano logico del Grafo Aciclico Diretto (DAG formalizzato al par. 5.1), la SPECIFICA/PROPRIETA' costituisce la sorgente comune che giustifica sia l'IMPLEMENTAZIONE (che ne realizza il comportamento) sia l'ORACOLO/TEST HARNESS (che ne definisce il criterio di falsificazione). Il nodo RESULT & EVIDENCE scaturisce causalmente ed empiricamente dall'esecuzione della procedura di test sull'implementazione compilata.
+La sequenza lineare sopra illustrata rappresenta il percorso 
+procedurale di audit adottato nel manuale secondo il principio 
+Test-First / Specification-Driven (definire requisiti, oracoli e 
+procedure di test prima di generare il codice con l'LLM).
+Sul piano logico del Grafo Aciclico Diretto (DAG formalizzato 
+al par. 5.1), la SPECIFICA/PROPRIETA' costituisce la sorgente comune 
+che giustifica sia l'IMPLEMENTAZIONE (che ne realizza il comportamento) 
+sia l'ORACOLO/TEST HARNESS (che ne definisce il criterio di falsificazione). 
+Il nodo RESULT & EVIDENCE scaturisce causalmente ed empiricamente 
+dall'esecuzione della procedura di test sull'implementazione compilata.
 ```
 
 Ciascun nodo della catena risponde a una funzione epistemica specifica:
@@ -6238,11 +6307,11 @@ L'analisi di tracciabilità deve operare obbligatoriamente in due direzioni comp
 - **Tracciabilità in Avanti (Forward Traceability):**
   * *Direzione:* Da `OBJECTIVE` verso `APPROVAL` e `IMPLEMENTATION`.
   * *Domanda epistemica:* "Tutti gli obiettivi, requisiti e proprietà definite sono stati effettivamente implementati, testati e approvati?"
-  * *Cosa rileva:- **Requisiti Ciechi** o **Proprietà Dimenticate** (funzionalità richieste ma mai realizzate o mai testate).
+  * *Cosa rileva: **Requisiti Ciechi** o **Proprietà Dimenticate** (funzionalità richieste ma mai realizzate o mai testate).
 - **Tracciabilità all'Indietro (Backward Traceability):**
   * *Direzione:* Da `IMPLEMENTATION` e `RESULT` a ritroso verso `OBJECTIVE`.
   * *Domanda epistemica:* "Perché questo blocco di codice esiste? A quale proprietà risponde? Chi ha autorizzato questa logica?"
-  * *Cosa rileva:- **Codice Orfano (Orphan Code)**, allucinazioni implementative introdotte dall'LLM, backdoor non documentate o funzionalità parassite non richieste da alcuno stakeholder.
+  * *Cosa rileva: **Codice Orfano (Orphan Code)**, allucinazioni implementative introdotte dall'LLM, backdoor non documentate o funzionalità parassite non richieste da alcuno stakeholder.
 
 #### 3.3 Anomalie Topologiche della Catena
 
@@ -6864,7 +6933,7 @@ L'ingegnere di software assurance ha acquisito piena padronanza dello **STEP 7**
 
 ---
 
-### 19. Sintesi Finale dello STEP
+### 19. Sintesi finale del Capitolo
 
 Lo **STEP 7: Traceability** rappresenta la spina dorsale metodologica che impedisce all'assurance di degradare in un insieme disarticolato di buone intenzioni e test casuali:
 
@@ -6888,7 +6957,7 @@ Lo **STEP 7: Traceability** rappresenta la spina dorsale metodologica che impedi
 
 ### Mappa del Capitolo
 
-- **1. Introduzione e Obiettivo dello STEP**
+- **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
   * L'asimmetria critica tra velocità di generazione e capacità di verifica
   * Perché il software assistito da LLM mette in discussione l'adeguatezza della code review tradizionale in alcuni contesti
   * L'illusione di competenza e il pericolo del *rubber-stamping*
@@ -6948,11 +7017,11 @@ Lo **STEP 7: Traceability** rappresenta la spina dorsale metodologica che impedi
   * Strumento operativo per mappare i requisiti di competenza prima dell'approvazione
 - **18. Criteri di Padronanza**
   * Competenze pratiche e osservabili acquisite dal lettore
-- **19. Sintesi Finale dello STEP**
+- **19. Sintesi finale del Capitolo**
 
 ---
 
-### 1. Introduzione e Obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nei decenni di sviluppo software tradizionale, il ritmo di produzione del codice era intrinsecamente vincolato alla velocità con cui gli esseri umani potevano concepirlo, digitarlo e organizzarlo mentalmente. La comprensione precedeva la scrittura: uno sviluppatore scriveva ciò che, almeno in linea di principio, aveva compreso.
 
@@ -7541,7 +7610,7 @@ Il lettore padroneggia pienamente i contenuti dello **STEP 8** se è in grado di
 
 ---
 
-### 19. Sintesi Finale dello STEP
+### 19. Sintesi finale del Capitolo
 
 Lo **STEP 8: Competence Gaps** dimostra che l'assurance del software non è un problema puramente algoritmico, ma un problema socio-tecnico ed epistemologico in cui l'agente umano costituisce l'anello decisivo:
 
@@ -7565,7 +7634,7 @@ Lo **STEP 8: Competence Gaps** dimostra che l'assurance del software non è un p
 
 ### Mappa del Capitolo
 
-- **1. Introduzione e Obiettivo dello STEP**
+- **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
   * Il paradosso della verifica perfetta di una specifica errata
   * Perché gli LLM generano specifiche formalmente plausibili ma semanticamente fallate
   * Obiettivo didattico: validare la specifica prima di verificare l'implementazione
@@ -7626,11 +7695,11 @@ Lo **STEP 8: Competence Gaps** dimostra che l'assurance del software non è un p
   * Tecniche di Model Checking vincolato e simulazione di scenari su specifiche logiche
 - **18. Criteri di Padronanza**
   * Matrice delle competenze pratiche e osservabili
-- **19. Sintesi Finale dello STEP**
+- **19. Sintesi finale del Capitolo**
 
 ---
 
-### 1. Introduzione e Obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nell'ingegneria del software assistita da LLM, il fallimento più insidioso non è l'errore di sintassi nel codice, e non è nemmeno il test unitario che fallisce. Il fallimento più devastante è la **costruzione impeccabile del software sbagliato**.
 
@@ -8388,7 +8457,7 @@ Il lettore ha acquisito la piena padronanza dello **STEP 9** quando dimostra sul
 
 ---
 
-### 19. Sintesi Finale dello STEP
+### 19. Sintesi finale del Capitolo
 
 Lo **STEP 9: Specification Validity** rappresenta l'atto di verifica preventiva più critico dell'intera catena di assurance:
 
@@ -8412,7 +8481,7 @@ Lo **STEP 9: Specification Validity** rappresenta l'atto di verifica preventiva 
 
 ### Mappa del Capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Prerequisiti**
 3. **Concetti fondamentali**
 4. **Terminologia**
@@ -8434,7 +8503,7 @@ Lo **STEP 9: Specification Validity** rappresenta l'atto di verifica preventiva 
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nel contesto dell'ingegneria del software tradizionale, e ancor più in quella assistita da Large Language Models (LLM), non tutte le proprietà di un sistema richiedono il medesimo grado di dimostrazione per essere ritenute affidabili. Pretendere una prova formale matematica per un'interfaccia utente secondaria è economicamente insostenibile; accontentarsi di qualche test unitario scritto dallo stesso LLM che ha generato il codice per un modulo di trasferimento fondi o di controllo dosaggio medico è epistemicamente irresponsabile.
 
@@ -9130,7 +9199,7 @@ Il lettore ha padroneggiato i contenuti dello STEP 10 se è in grado di dimostra
 5. **Riprogettazione per abbassamento dell'AL:** Quando un'analisi produce un AL-3 irrealizzabile date le risorse e i vincoli tecnici disponibili, sa proporre modifiche architetturali (riduzione dei privilegi, sandboxing, de-autonomizzazione) volte a ridurre strutturalmente l'indice di rischio prima della scrittura del codice.
 6. **Distinzione epistemica sistematica:** Nei documenti di verifica e nei report di audit, sa identificare e separare rigorosamente ciò che è un `FACT`, un'`ASSUMPTION`, un'`HYPOTHESIS`, una `RECOMMENDATION` e un `UNKNOWN`.
 
----,
+---
 
 ### 19. Sintesi finale
 
@@ -9157,7 +9226,7 @@ Chi ignora questo STEP opera alla cieca: scambia la sintassi gradevole per corre
 
 ### Mappa del Capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Prerequisiti**
 3. **Concetti fondamentali**
 4. **Terminologia**
@@ -9180,7 +9249,7 @@ Chi ignora questo STEP opera alla cieca: scambia la sintassi gradevole per corre
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nello STEP 10 abbiamo stabilito come calcolare l'**Assurance Level (AL)** necessario per ciascuna proprietà critica del software, definendo il grado di rigore metodologico che deve essere garantito. Nello **STEP 11**, affrontiamo il nucleo epistemico dell'intero edificio di verifica:  
 *Come facciamo a sapere se il risultato prodotto da un programma è corretto, e cosa rende un'evidenza realmente valida e indipendente?*
@@ -9530,6 +9599,10 @@ Se il coefficiente di accoppiamento rho e' prossimo a 1, la suite di test ha un'
   Un generatore casuale (fuzzer) sintetizza milioni di payload ben formati e l'oracolo verifica che l'operazione di serializzazione seguita da deserializzazione ricostruisca l'oggetto identico bit a bit.
 * **Valutazione:** L'oracolo è autosufficiente, matematicamente rigoroso e privo di dipendenze dall'LLM. Se l'LLM commette errori di allineamento di byte o padding nello stream binario, la proprietà fallisce all'istante.
 
+> [!TIP]  
+> **Isomorfismo:** Corrispondenza strutturale biunivoca che preserva le relazioni e le proprietà logiche tra due strutture o insiemi differenti.  
+>  
+
 ---
 
 ### 10. Controesempi didattici
@@ -9846,7 +9919,7 @@ Solo quando un'evidenza ha superato il vaglio di un oracolo autenticamente indip
 
 ### Mappa del Capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Prerequisiti**
 3. **Concetti fondamentali**
 4. **Terminologia**
@@ -9870,7 +9943,7 @@ Solo quando un'evidenza ha superato il vaglio di un oracolo autenticamente indip
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nello STEP 5 (*Assumptions & Unknowns*) abbiamo catalogato ciò che assumiamo essere vero riguardo all'ambiente, ai dati e ai componenti terzi; negli STEP 10 e 11 abbiamo definito il livello di rigore necessario e gli oracoli per raccogliere evidenze indipendenti. 
 
@@ -10549,7 +10622,7 @@ Non si scrive codice per vedere se funziona; si progetta la struttura affinché 
 
 ### Mappa del Capitolo
 
-1. **Introduzione e obiettivo dello STEP — Dal "cosa" al "come strutturato per l'assurance"**
+1. **INTRODUZIONE E OBIETTIVO DEL CAPITOLO — Dal "cosa" al "come strutturato per l'assurance"**
 2. **Profilo delle competenze necessarie — Competenze architetturali, di decomposizione e di verifica**
 3. **Prerequisiti — Cosa deve essere consolidato prima di progettare l'implementazione**
 4. **Concetti fondamentali — Decomposizione modulare, contratti, isolamento, osservabilità e testabilità delle proprietà critiche**
@@ -10575,7 +10648,7 @@ Non si scrive codice per vedere se funziona; si progetta la struttura affinché 
 
 ---
 
-### 1. Introduzione e Obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nei capitoli della Parte I abbiamo chiarito l'obiettivo del sistema, classificato i rischi, identificato le autorità decisionali, formalizzato la specifica, validato le assunzioni, estratto gli invarianti e determinato il livello di assurance necessario (*Step 1–12*). 
 
@@ -11557,7 +11630,7 @@ L'Implementation Design costituisce la **diga di protezione ingegneristica** con
 
 ### Mappa del capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Profilo delle competenze necessarie e identificazione dei competence gap**
 3. **Prerequisiti teorici e concettuali**
 4. **Terminologia fondamentale**
@@ -11580,11 +11653,10 @@ L'Implementation Design costituisce la **diga di protezione ingegneristica** con
 21. **Didattica del trasferimento interdominio**
 22. **Criteri di padronanza osservabili**
 23. **Sintesi finale**
-24. **Stato finale dello STEP**
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nel ciclo di vita dell'assurance, il codice assistito o generato da modelli linguistici di grandi dimensioni (LLM) presenta una caratteristica epistemica ineludibile: **la sua correttezza, innocuità e aderenza alle specifiche non possono essere assunte aprioristicamente come certe**. Un LLM può generare codice che appare sintatticamente impeccabile, compila correttamente e supera suite di test superficiali, ma che nasconde:
 
@@ -12343,7 +12415,7 @@ Lo STEP 14 (Containment & Least Authority) costituisce la linea difensiva fondam
 
 ### Mappa del capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Profilo delle competenze necessarie e identificazione dei competence gap**
 3. **Prerequisiti teorici e tecnici**
 4. **Terminologia fondamentale**
@@ -12369,7 +12441,7 @@ Lo STEP 14 (Containment & Least Authority) costituisce la linea difensiva fondam
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nel modello classico dell'ingegneria del software, la fase di implementazione consiste nella traduzione di una specifica e di un design architetturale in codice sorgente eseguibile, operata da uno sviluppatore umano che possiede un modello mentale coerente delle strutture dati, degli algoritmi e delle assunzioni operative impiegate.
 
@@ -12545,11 +12617,11 @@ I_candidate = LLM(S, C, K, P)
 Il punto cardine dell'assurance è stabilire la seguente verità metodologica:
 
 ```text
-LLM(S, C, K, P)  -->  I_candidate
+LLM(S, C, K, P)  →  I_candidate
 
 e MAI:
 
-LLM(S, C, K, P)  -->  I_correct
+LLM(S, C, K, P)  →  I_correct
 ```
 
 `I_candidate` è un'ipotesi di soluzione, non una soluzione garantita.
@@ -13188,7 +13260,7 @@ Lo STEP 15 (LLM-Assisted Implementation) ridefinisce la sintesi del codice come 
 
 ### Mappa del capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
 2. **Profilo delle competenze necessarie e identificazione dei competence gap**
 3. **Prerequisiti teorici e tecnici**
 4. **Terminologia fondamentale**
@@ -13214,7 +13286,7 @@ Lo STEP 15 (LLM-Assisted Implementation) ridefinisce la sintesi del codice come 
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nello **STEP 15 (LLM-Assisted Implementation)** abbiamo stabilito che il codice generato con l'ausilio di un modello linguistico deve essere trattato metodologicamente come un'**implementazione candidata** ($I_{candidate}$), ossia un'ipotesi algoritmica priva di garanzie di correttezza a priori. Nello **STEP 14 (Containment & Least Authority)** abbiamo predisposto i confini di isolamento per limitare il raggio di danno in caso di fallimento catastrofico.
 
@@ -13444,7 +13516,7 @@ Oracle(result, Prop) -> PASS | FAIL | UNKNOWN
 
 La catena di derivazione dell'evidenza si formalizza dunque come:
 ```text
-Test + Oracle  -->  Result  -->  Evidence  -->  Assurance Decision
+Test + Oracle  →  Result  →  Evidence  →  Assurance Decision
 ```
 
 #### 7.2 Significato e Limiti del Verdetto PASS
@@ -13720,17 +13792,17 @@ Per valutare criticamente il ruolo del modello linguistico, distinguiamo tre con
 
 ### I TRE SCENARI DI GENERAZIONE DEI TEST CON LLM
 
-**SCENARIO A: LLM genera codice  -->  LLM genera test**
+**SCENARIO A: LLM genera codice  →  LLM genera test**
   - Massima correlazione di errore.
   - Zero indipendenza epistemica.
   - Rischio massimo di test tautologici. Evidenza considerata NULLA o UNKNOWN.
 
-**SCENARIO B: LLM genera codice  -->  Altro processo (o modello B) genera test**
+**SCENARIO B: LLM genera codice  →  Altro processo (o modello B) genera test**
   - Esiste separazione procedurale.
   - Ma l'indipendenza epistemica NON è garantita: se il prompt o la specifica
     hanno ambiguità comuni, entrambi i modelli erediteranno lo stesso bias.
 
-**SCENARIO C: Implementazione esistente  -->  Test progettati da fonte indipendente**
+**SCENARIO C: Implementazione esistente  →  Test progettati da fonte indipendente**
   - Configurazione ottimale per l'assurance.
   - La fonte del test attinge unicamente alla specifica formale approvata.
   - Attenzione: l'indipendenza non è automatica per il solo fatto di essere
@@ -13830,7 +13902,7 @@ Lo STEP 16 si inserisce nella catena unificante di tracciabilità dell'assurance
           v
 =============================================================================
   [STEP 16: AUTOMATED TESTING]  <--- SIAMO QUI
-          PROPERTY --> ORACLE --> TEST --> RESULT --> EVIDENCE --> ASSURANCE DECISION
+          PROPERTY → ORACLE → TEST → RESULT → EVIDENCE → ASSURANCE DECISION
           * Verifica empirica disaccoppiata dall'implementazione.
           * Misurazione del potere discriminante tramite Mutation Testing.
 =============================================================================
@@ -13943,7 +14015,7 @@ Lo STEP 16 (Automated Testing) trasforma la verifica del codice da atto di fede 
 
 ### Mappa del capitolo
 
-1. **Introduzione e obiettivo dello STEP**: definizione dell'ambito, motivazione epistemica e finalità nella catena di assurance.
+1. **Introduzione e Obiettivo del Capitolo**: definizione dell'ambito, motivazione epistemica e finalità nella catena di assurance.
 2. **Profilo delle competenze necessarie e Competence Gaps**: mappare le competenze specialistiche necessarie per valutare i risultati degli strumenti statici e riconoscere i limiti del valutatore.
 3. **Prerequisiti teorici e operativi**: nozioni su parsing, strutture a grafo, alberi di dipendenza e gestione crittografica dei segreti.
 4. **Concetti fondamentali e tassonomia**: distinzione funzionale tra Analisi Statica/Linting, SAST, SCA e Secret Scanning come discipline indipendenti.
@@ -13969,7 +14041,7 @@ Lo STEP 16 (Automated Testing) trasforma la verifica del codice da atto di fede 
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nel paradigma dello sviluppo assistito da Large Language Models, il codice sorgente viene sintetizzato a elevata velocità, presentando spesso un'eccellente correttezza sintattica e un'aderenza stilistica impeccabile alle convenzioni del linguaggio. Tuttavia, l'esperienza ingegneristica dimostra che un codice plausibile, leggibile e persino in grado di superare i test funzionali elementari (Step 16) può celare gravi difetti architetturali, vulnerabilità di sicurezza sfruttabili, dipendenze non sicure o esposizioni di credenziali riservate.
 
@@ -14918,7 +14990,7 @@ Lo Step 17 garantisce che il codice generato dall'LLM non venga ammesso alle fas
 
 ### Mappa del Capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
    - Il superamento del test per esempi nell'era dello sviluppo assistito da LLM
    - Dalla verifica di casi noti alla ricerca sistematica di controesempi
 2. **Profilo delle competenze necessarie**
@@ -14971,7 +15043,7 @@ Lo Step 17 garantisce che il codice generato dall'LLM non venga ammesso alle fas
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nel Capitolo 16 abbiamo trattato il testing automatizzato tradizionale basato su esempi (*example-based testing*). In tale modello, chi scrive il test immagina un input specifico x, deduce l'output atteso y e asserisce che `f(x) == y`.
 
@@ -15845,7 +15917,7 @@ Il Property-Based Testing, il Fuzzing guidato da copertura e il Testing Avversar
 
 ### Mappa del Capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
    - Dal testing automatizzato alla modellazione e simulazione di comportamenti avversariali
    - La duplice superficie d'attacco: vulnerabilità nel codice assistito e vulnerabilità dell'integrazione LLM
 2. **Profilo delle competenze necessarie**
@@ -15899,7 +15971,7 @@ Il Property-Based Testing, il Fuzzing guidato da copertura e il Testing Avversar
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nel Capitolo 18 abbiamo approfondito il testing basato su proprietà e il fuzzing guidato da copertura. Tali metodologie rappresentano strumenti essenziali per campionare ampi spazi di input mediante mutazioni pseudocasuali, ricercando crash, overflow o violazioni di invarianti algebriche.
 
@@ -16528,7 +16600,7 @@ Il Threat Modeling e il Red Teaming costituiscono il contrappeso razionale all'o
 
 ### Mappa del Capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
    - Dal singolo valutatore all'insieme di modelli: la ricerca di ridondanza analitica
    - I limiti della ridondanza: quando moltiplicare i modelli non aggiunge informazione
 2. **Profilo delle competenze necessarie**
@@ -16587,7 +16659,7 @@ Il Threat Modeling e il Red Teaming costituiscono il contrappeso razionale all'o
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Negli step precedenti abbiamo esaminato come un Large Language Model possa assistere lo sviluppo (Step 15), la formulazione di proprietà (Step 18) o la mappatura delle superfici d'attacco (Step 19). In ciascun ambito è emerso un limite intrinseco: l'affidamento a un singolo modello introduce punti ciechi sistematici legati ad allucinazioni plausibili, compiacenza verso l'utente (*sycophancy*) e distorsioni statistiche del corpus di addestramento.
 
@@ -17299,7 +17371,7 @@ L'audit multi-modello rappresenta uno strumento diagnostico di grande valore eur
 
 ### Mappa del Capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
    - Il problema dell'autoverifica: quando la verifica condotta dagli autori del sistema è insufficiente
    - La rottura dell'autoreferenza nello sviluppo assistito da LLM
    - Connessione con lo Step 20: aggiungere modelli non equivale a introdurre un verificatore indipendente
@@ -17356,7 +17428,7 @@ L'audit multi-modello rappresenta uno strumento diagnostico di grande valore eur
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nel percorso di assurance tracciato in questo manuale abbiamo introdotto controlli automatizzati (Step 16), analisi statica (Step 17), testing basato su proprietà e fuzzing (Step 18), modellazione delle minacce (Step 19) e audit multi-modello (Step 20). 
 
@@ -17983,7 +18055,7 @@ La Verifica Indipendente costituisce il presidio metodologico che impedisce all'
 
 ### Mappa del Capitolo
 
-1. **Introduzione e obiettivo dello STEP**
+1. **Introduzione e Obiettivo del Capitolo**
    - Dalla rilevazione dell'anomalia all'analisi causale supportata da evidenze
    - Perché l'accumulo disordinato di fallimenti può compromettere la qualità e la tracciabilità dell'assurance
    - La Discrepancy Analysis come snodo tra verifica empirica e Decision Gates
@@ -18039,7 +18111,7 @@ La Verifica Indipendente costituisce il presidio metodologico che impedisce all'
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nei capitoli precedenti, l'apparato di verifica ha sottoposto il sistema a molteplici sollecitazioni analitiche ed empiriche: test automatizzati (Step 16), analisi statica (Step 17), collaudo generativo e fuzzing (Step 18), test avversariali (Step 19), audit multi-modello (Step 20) e verifica indipendente (Step 21). 
 
@@ -18744,7 +18816,7 @@ L'analisi e la classificazione delle discrepanze costituisce il banco di prova d
 
 ### Mappa del Capitolo
 
-1. **Introduzione e Obiettivo dello Step**: Perché i controlli convenzionali di Continuous Integration (CI/CD) possono risultare insufficienti in presenza di codice generato o assistito da LLM. La necessità di una barriera epistemica formale.
+1. **Introduzione e Obiettivo del Capitolo**: Perché i controlli convenzionali di Continuous Integration (CI/CD) possono risultare insufficienti in presenza di codice generato o assistito da LLM. La necessità di una barriera epistemica formale.
 2. **Profilo delle Competenze Necessarie e Competence Gaps**: Separare la capacità di eseguire script di automazione dalla competenza epistemica e dall'autorità decisionale.
 3. **Prerequisiti**: Collegamenti con la definizione degli invarianti (Step 6), i livelli di assurance (Step 10), gli oracoli indipendenti (Step 11, 21) e il catalogo delle discrepanze (Step 22).
 4. **Concetti Fondamentali e Terminologia**: Il flusso concettuale corretto (`EVIDENCE -> EVIDENCE ASSESSMENT -> ASSURANCE STATE -> DECISION GATE -> ADMIT / BLOCK / HOLD / ESCALATE`), le disuguaglianze epistemiche e la terminologia operativa.
@@ -18769,7 +18841,7 @@ L'analisi e la classificazione delle discrepanze costituisce il banco di prova d
 
 ---
 
-### 1. Introduzione e Obiettivo dello Step
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nei processi convenzionali di ingegneria del software, il passaggio di un componente tra le diverse fasi del ciclo di vita (es. da sviluppo locale a repository centrale, o da integrazione a staging) è storicamente affidato a pipeline di Continuous Integration (CI). Se il compilatore non rileva errori di sintassi e la suite di unit test termina con un codice di uscita pari a zero (`exit code 0`), il processo assegna lo stato "verde" e autorizza l'avanzamento.
 
@@ -19720,7 +19792,7 @@ I punti fermi da ricordare sono:
 
 ### Mappa del Capitolo
 
-1. **Introduzione e Obiettivo dello Step**: Il passaggio dalla barriera deterministica (Step 23) all'attribuzione formale della responsabilità decisionale. Il rischio del *rubber-stamping* (approvazione meramente formale / senza effettiva revisione) nell'era del codice sintetico ad alta plausibilità.
+1. **Introduzione e Obiettivo del Capitolo**: Il passaggio dalla barriera deterministica (Step 23) all'attribuzione formale della responsabilità decisionale. Il rischio del *rubber-stamping* (approvazione meramente formale / senza effettiva revisione) nell'era del codice sintetico ad alta plausibilità.
 2. **Profilo delle Competenze Necessarie e Competence Gaps**: Separazione formale dei ruoli tra chi formula i prompt, chi valuta l'evidenza sulla proprietà specifica e chi detiene l'autorità di rilascio. Riconoscimento del gap di ispezione.
 3. **Prerequisiti**: Il verdetto favorevole del Decision Gate (Step 23), la disponibilità del Review Dossier e la gestione formale delle discrepanze rilevanti (Step 22) secondo le policy di assurance.
 4. **Concetti Fondamentali e Terminologia**: La catena epistemica centrale, le disuguaglianze vincolanti, l'Approvazione Formale, la Responsabilità Epistemica, il Fascicolo di Revisione (*Review Dossier*), il Principio dei Quattro Occhi (*Two-Person Integrity*) e la Capacità di Ispezione Cognitiva.
@@ -19762,7 +19834,7 @@ I punti fermi da ricordare sono:
 
 ---
 
-### 1. Introduzione e Obiettivo dello Step
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nello Step 23 abbiamo formalizzato i *Decision Gates*: barriere logiche e algoritmiche che aggregano evidenze deterministiche, verificano l'indipendenza degli oracoli ed escludono artefatti privi di giustificazione empirica sufficiente. Tuttavia, per quanto rigoroso e privo di concessioni sia un gate automatizzato, **un algoritmo non può assumersi responsabilità**.
 
@@ -20571,7 +20643,7 @@ L'approvazione dello Step 24 non autorizza la fiducia cieca: autorizza esclusiva
 
 ### Mappa del Capitolo
 
-1. **Introduzione e Obiettivo dello Step**: Il passaggio dalla verifica e approvazione pre-rilascio (Parte II) all'esercizio controllato (Parte III). Perché anche un processo di assurance completo non elimina l'incertezza operativa nel software assistito da LLM.
+1. **Introduzione e Obiettivo del Capitolo**: Il passaggio dalla verifica e approvazione pre-rilascio (Parte II) all'esercizio controllato (Parte III). Perché anche un processo di assurance completo non elimina l'incertezza operativa nel software assistito da LLM.
 2. **Profilo delle Competenze Necessarie e Competence Gaps**: Separare la padronanza degli script di automazione della Continuous Delivery dalla competenza di contenimento del raggio d'impatto (*blast radius*) e dall'analisi telemetrica differenziale.
 3. **Prerequisiti e Condizioni di Applicabilità**: Il verdetto favorevole del Decision Gate (Step 23), l'approvazione formale (Step 24) e il principio di proporzionalità nell'adozione di Staging, Canary e Feature Flag.
 4. **Concetti Fondamentali e Catena Epistemica**: La sequenza concettuale dell'esercizio controllato, i criteri di validità dell'osservazione operativa, le sette disuguaglianze dell'in-vivo testing, l'ambiente di Staging, la Canary Release, i Feature Flag e il Blast Radius.
@@ -20616,7 +20688,7 @@ L'approvazione dello Step 24 non autorizza la fiducia cieca: autorizza esclusiva
 
 ---
 
-### 1. Introduzione e Obiettivo dello Step
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Con la conclusione della Parte II, il software sviluppato o modificato con il concorso di Large Language Models ha superato l'intera catena di verifica pre-rilascio: analisi statica, test basati su proprietà, audit multi-modello, analisi delle discrepanze, barriere logiche dei Decision Gate (Step 23) e revisione umana formale (Step 24). A questo stadio, il sistema possiede la massima giustificazione teorica e laboratoriale ottenibile prima dell'esecuzione reale.
 
@@ -21444,7 +21516,7 @@ L'ingresso del software assistito da Large Language Models nell'ambiente operati
 
 ### Mappa del Capitolo
 
-1. **Introduzione e Obiettivo dello Step**: Perché il monitoraggio convenzionale dell'infrastruttura può non rilevare adeguatamente i fallimenti semantici del software assistito da LLM. Dalla raccolta di telemetria alla deduzione dello stato interno e della tenuta degli invarianti a runtime.
+1. **Introduzione e Obiettivo del Capitolo**: Perché il monitoraggio convenzionale dell'infrastruttura può non rilevare adeguatamente i fallimenti semantici del software assistito da LLM. Dalla raccolta di telemetria alla deduzione dello stato interno e della tenuta degli invarianti a runtime.
 2. **Profilo delle Competenze Necessarie e Competence Gaps**: Separare la consultazione passiva di cruscotti preconfigurati (*dashboard*) dalla progettazione di sonde semantiche e dall'analisi dell'incertezza operativa.
 3. **Prerequisiti**: Il collegamento con gli Invarianti Critici (Step 6), i Livelli di Assurance (Step 10), i Criteri del Decision Gate (Step 23) e la topologia di rilascio controllato (Step 25).
 4. **Concetti Fondamentali e Terminologia**:
@@ -21496,7 +21568,7 @@ L'ingresso del software assistito da Large Language Models nell'ambiente operati
 
 ---
 
-### 1. Introduzione e Obiettivo dello Step
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nello Step 25 abbiamo analizzato le tecniche di confinamento operativo: ambienti di staging, rilasci canary frazionati e feature flag. Tuttavia, regolare una valvola di traffico all'1% o al 5% è un'operazione priva di valore se l'organizzazione non possiede gli strumenti analitici per comprendere cosa accada realmente all'interno di quella frazione protetta.
 
@@ -22330,7 +22402,7 @@ L'osservabilità non è un'attività accessoria da delegare passivamente all'inf
 
 ### Mappa del capitolo
 
-- **1. Introduzione e obiettivo dello STEP**
+- **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
   * Il passaggio dalla telemetria passiva all'attivazione operativa
   * Il problema del software assistito da LLM in ambiente di produzione
 - **2. Profilo delle competenze necessarie**
@@ -22400,7 +22472,7 @@ L'osservabilità non è un'attività accessoria da delegare passivamente all'inf
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nel Capitolo 26 abbiamo formalizzato l'**Osservabilità** (*Observability*), definendo i criteri per registrare lo stato interno di un sistema software tramite metriche, log strutturati e tracce distribuite. L'osservabilità, tuttavia, è una condizione necessaria ma non sufficiente per l'esercizio controllato: essa immagazzina dati in modo passivo, ma non interviene né attiva l'attenzione umana quando il sistema devia dalle sue proprietà critiche.
 
@@ -22508,7 +22580,7 @@ Un'architettura robusta non collega mai direttamente la condizione di errore all
 
 ```text
 +---------------+     +--------------------+     +------------------------+
-| 1. RILEVAZIONE| --> | 2. CLASSIFICAZIONE | --> | 3. NOTIFICA/ESCALATION |
+| 1. RILEVAZIONE| → | 2. CLASSIFICAZIONE | → | 3. NOTIFICA/ESCALATION |
 +---------------+     +--------------------+     +------------------------+
                                                               |
                                                               v
@@ -23236,7 +23308,7 @@ L'acquisizione della piena padronanza concettuale, metodologica ed epistemica de
 
 ### Mappa del capitolo
 
-- **1. Introduzione e obiettivo dello STEP**
+- **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
   - Dal rilevamento del guasto al contenimento esecutivo
   - Perché il software assistito da LLM può richiedere meccanismi di contenimento e recupero proporzionati al rischio
 - **2. Profilo delle competenze necessarie**
@@ -23305,7 +23377,7 @@ L'acquisizione della piena padronanza concettuale, metodologica ed epistemica de
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nei Capitoli 25, 26 e 27 abbiamo costruito i presidi operativi necessari per controllare l'esposizione del software in produzione, osservarne lo stato interno tramite telemetria e allertare il personale mediante procedure standardizzate. Tuttavia, la capacità di rilevare un disservizio e consultare un runbook non risolve l'anomalia se il sistema non dispone di **meccanismi esecutivi di contenimento e recupero proporzionati al rischio**.
 
@@ -24268,7 +24340,7 @@ L'esercizio controllato ha dimostrato che il sistema sa sopravvivere al guasto c
 
 ### Mappa del capitolo
 
-1. Introduzione e obiettivo dello STEP
+1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 2. Profilo delle competenze necessarie e gap epistemici
 3. Prerequisiti
 4. Concetti fondamentali e glossario terminologico
@@ -24291,11 +24363,10 @@ L'esercizio controllato ha dimostrato che il sistema sa sopravvivere al guasto c
 21. Criteri di padronanza operativa ed epistemica
 22. Relazioni sistematiche con gli altri STEP del manuale
 23. Sintesi concettuale
-24. Stato finale dello STEP
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nessun processo di verifica pre-deployment, per quanto esaustivo, formale o assistito da strumenti avanzati, può dimostrare a priori l'assenza totale di discrepanze tra la specifica del sistema e il suo comportamento nel mondo fisico. Ogni ambiente di produzione introduce condizioni operative non replicabili sinteticamente: carichi con distribuzioni asimmetriche, stati di rete degradati, corruzioni asincrone dello stato, contese di concorrenza su scale non previste ed effetti emergenti derivanti dall'interazione tra componenti disaccoppiati.
 
@@ -25306,7 +25377,7 @@ Cosa accade se lo STEP 29 viene omesso o condotto superficialmente:
 
 ### Mappa del capitolo
 
-1. Introduzione e obiettivo dello STEP
+1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 2. Profilo delle competenze necessarie e gap epistemici
 3. Prerequisiti
 4. Concetti fondamentali e glossario terminologico
@@ -25332,7 +25403,7 @@ Cosa accade se lo STEP 29 viene omesso o condotto superficialmente:
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nello sviluppo software assistito da Large Language Models, il codice viene generato, corretto e trasformato attraverso sessioni di interazione effimere e contestualmente isolate. Ogni interazione con l'LLM opera a partire da una "finestra di contesto" limitata nel tempo e nello spazio logico: il modello non possiede memoria storica persistente dei fallimenti pregressi del sistema, delle assunzioni architetturali confutate dagli incidenti reali o dei vincoli di sicurezza emersi nelle fasi di verifica.
 
@@ -25810,8 +25881,8 @@ risk_item:
       "database_engines": ["postgresql >= 13", "mysql >= 8.0"],
       "isolation_levels": ["READ COMMITTED", "REPEATABLE READ"]
     },
-    "prohibited_pattern": "UPDATE inventory SET stock = stock 1 WHERE id = item_a;\nUPDATE discounts SET used = true WHERE id = coupon_b;\n-In parallelo a:\nUPDATE discounts SET used = true WHERE id = coupon_b;\nUPDATE inventory SET stock = stock 1 WHERE id = item_a;",
-    "enforced_pattern": "LOCK_ORDER = ['discounts', 'inventory'] # Ordine lessicografico globale obbligatorio\n-L'applicazione deve sempre acquisire le righe seguendo rigorosamente l'ordine gerarchico dei tipi di tabella.",
+    "prohibited_pattern": "UPDATE inventory SET stock = stock - 1 WHERE id = item_a;\nUPDATE discounts SET used = true WHERE id = coupon_b;\n\n-- In parallelo a:\nUPDATE discounts SET used = true WHERE id = coupon_b;\nUPDATE inventory SET stock = stock - 1 WHERE id = item_a;",
+    "enforced_pattern": "LOCK_ORDER = ['discounts', 'inventory'] # Ordine lessicografico globale obbligatorio\n# L'applicazione deve sempre acquisire le righe seguendo rigorosamente l'ordine gerarchico dei tipi di tabella.",
     "automated_guardrail": {
       "tool": "semgrep",
       "rule_file": "rules/security/db_lock_hierarchy.yaml",
@@ -26029,14 +26100,14 @@ knowledge_entry:
   prohibited_pattern: |
     # PATTERN VIETATO (Dual-write non transazionale generato da LLM)
     async with db.transaction():
-        await db.execute("UPDATE account SET balance = balance 100 WHERE id = 1")
+        await db.execute("UPDATE account SET balance = balance - 100 WHERE id = 1")
         # PERICOLO: Se l'evento parte ora, il database non ha ancora committato!
         await kafka_producer.send("account-debited", {"account_id": 1, "amount": 100})
 
   enforced_pattern: |
     # PATTERN CONFORME (Transactional Outbox Pattern obbligatorio)
     async with db.transaction():
-        await db.execute("UPDATE account SET balance = balance 100 WHERE id = 1")
+        await db.execute("UPDATE account SET balance = balance - 100 WHERE id = 1")
         # L'evento viene persistito nella stessa transazione atomica
         await db.execute("INSERT INTO outbox_events (topic, payload) VALUES ('account-debited', ...)")
     # Un worker disaccoppiato leggerà la outbox table ed emetterà su Kafka post-commit.
@@ -26242,7 +26313,7 @@ Individuare e argomentare i quattro fallimenti metodologici ed epistemici presen
 ---
 
 #### Esercizio 2: Strutturazione di una Knowledge Entry da incidente
-Durante un disservizio operativo (analizzato nello STEP 29), un pool di worker asincroni ha consumato l'intera memoria del server perché un generatore Python contenente una connessione a un database non veniva chiuso correttamente in presenza di eccezioni durante l'iterazione:
+Durante un disservizio operativo (analizzato nel Capitolo 29), un pool di worker asincroni ha consumato l'intera memoria del server perché un generatore Python contenente una connessione a un database non veniva chiuso correttamente in presenza di eccezioni durante l'iterazione:
 
 ```python
 # Frammento generato da LLM che ha provocato l'incidente
@@ -26496,7 +26567,7 @@ Il flusso operativo dell'assurance trasforma l'evidenza sul campo in protezione 
 
 ### Mappa del capitolo
 
-1. Introduzione e obiettivo dello STEP
+1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 2. Profilo delle competenze necessarie
 3. Prerequisiti concettuali e tecnici
 4. Concetti fondamentali e catena concettuale centrale
@@ -26522,7 +26593,7 @@ Il flusso operativo dell'assurance trasforma l'evidenza sul campo in protezione 
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nessun sistema software in esercizio rimane immobile. La correzione di un difetto, l'ottimizzazione di un algoritmo critico, l'estensione di un'API, l'aggiornamento di una libreria di terze parti o la modifica delle istruzioni di un prompt di sistema introducono continue alterazioni nello stato dell'applicazione. Nel contesto dello sviluppo assistito da Large Language Models (LLM), la frequenza e la facilità di generazione delle modifiche subiscono un'accelerazione senza precedenti: con una singola richiesta espressa in linguaggio naturale, uno sviluppatore può ottenere diff di centinaia di righe distribuite su molteplici file, oppure modifiche sintattiche minime (due o tre righe) capaci di riscrivere silenziosamente la semantica contrattuale di un modulo fondamentale.
 
@@ -26655,22 +26726,22 @@ La Change Impact Analysis si sviluppa formalmente su quattro dimensioni analitic
         |
         v
 +-------------------------------+
-|  1. Analisi Sintattica         | --> Quali file, funzioni e token sono cambiati?
+|  1. Analisi Sintattica         | → Quali file, funzioni e token sono cambiati?
 +-------------------------------+
         |
         v
 +-------------------------------+
-|  2. Analisi Semantica          | --> Quali contratti, stati e flussi sono variati?
+|  2. Analisi Semantica          | → Quali contratti, stati e flussi sono variati?
 +-------------------------------+
         |
         v
 +-------------------------------+
-|  3. Analisi Architetturale     | --> Quali altri componenti dipendono da questo?
+|  3. Analisi Architetturale     | → Quali altri componenti dipendono da questo?
 +-------------------------------+
         |
         v
 +-------------------------------+
-|  4. Analisi Epistemica         | --> Quali evidenze, test e assunzioni cadono?
+|  4. Analisi Epistemica         | → Quali evidenze, test e assunzioni cadono?
 +-------------------------------+
 ```
 
@@ -27345,7 +27416,7 @@ Un'analisi di impatto rigorosa non si accontenta di verificare se il codice modi
 
 ### Mappa del capitolo
 
-1. Introduzione e obiettivo dello STEP
+1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 2. Profilo delle competenze necessarie
 3. Prerequisiti concettuali e tecnici
 4. Concetti fondamentali e catena concettuale della Periodic Review
@@ -27371,7 +27442,7 @@ Un'analisi di impatto rigorosa non si accontenta di verificare se il codice modi
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 Nel ciclo di vita del software convenzionale, esiste una tendenza diffusa a considerare l'assurance come una proprietà statica: se un sistema è stato verificato, validato e autorizzato al rilascio, si assume per inerzia che rimanga affidabile fino al successivo intervento di modifica del codice sorgente. Nello sviluppo assistito da Large Language Models (LLM), questa assunzione si rivela fallace e pericolosa.
 
@@ -28099,7 +28170,7 @@ L'audit periodico non è un atto burocratico di conformità formale, ma l'eserci
 
 ### Mappa del capitolo
 
-1. Introduzione e obiettivo dello STEP
+1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 2. Profilo delle competenze necessarie
 3. Prerequisiti concettuali e tecnici
 4. Concetti fondamentali e catena concettuale della chiusura
@@ -28125,7 +28196,7 @@ L'audit periodico non è un atto burocratico di conformità formale, ma l'eserci
 
 ---
 
-### 1. Introduzione e obiettivo dello STEP
+### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
 #### 1.1 Il problema dell'amnesia epistemica
 
@@ -28817,6 +28888,1299 @@ La chiusura, l'archiviazione e la capitalizzazione delle lezioni non costituisco
 # APPENDICI
 
 ---
+
+[Torna all'Indice](#indice-completo)
+
+<a name="appendice-psico"></a>
+
+## ※ Concetti di Psicologia Cognitiva e Fattori Umani
+
+### Scopo
+
+Questa appendice approfondisce alcuni concetti della psicologia cognitiva, della psicologia del giudizio e dei fattori umani rilevanti per comprendere i comportamenti decisionali associati all'impiego di sistemi automatizzati e di modelli linguistici di grandi dimensioni (Large Language Models, LLM).
+
+I concetti presentati comprendono fenomeni distinti: bias di giudizio, processi attentivi, strategie di elaborazione cognitiva, euristiche percettive e meccanismi di calibrazione della fiducia. Non sono pertanto intercambiabili, né ogni fenomeno descritto implica necessariamente un errore o un deficit cognitivo.
+
+
+### Indice:
+
+1. *Automation Bias*
+2. *Automation Complacency*
+3. *Confirmation Bias*
+4. *Anchoring Effect*
+5. *Il Modello del Cognitive Miser*
+6. *Cognitive Offloading*
+7. *Trust in Automation*
+8. *Overconfidence Effect*
+9. *Illusion of Explanatory Depth*
+10. *Processing Fluency*
+11. *Relazioni tra i concetti*
+
+*Bibliografia essenziale*
+
+---
+
+### 1. Automation Bias
+
+L'Automation Bias è la tendenza a favorire le indicazioni fornite da un sistema automatizzato, utilizzandole come scorciatoia euristica nella decisione, anche quando sono disponibili informazioni discordanti o quando il suggerimento è errato.
+
+Il fenomeno può manifestarsi attraverso due modalità principali:
+
+- **Errori di commissione:** accettazione o esecuzione di una raccomandazione o azione automatizzata errata.
+- **Errori di omissione:** mancata individuazione di un problema o stato critico perché il sistema non lo ha esplicitamente segnalato o non ha fornito un'indicazione correttiva.
+
+L'Automation Bias è associato all'interazione tra fattori cognitivi, design dell'interfaccia, carico di lavoro e condizioni operative. Non implica che gli operatori accettino sempre e passivamente le raccomandazioni automatizzate, né che ogni affidamento su di esse sia irrazionale.
+
+Nel caso degli LLM, l'Automation Bias può manifestarsi nella propensione ad accogliere risposte, argomentazioni o codice generati dal modello senza condurre una verifica indipendente, omettendo di consultare fonti primarie o trascurando anomalie evidenti nel testo di output.
+
+---
+
+### 2. Automation Complacency
+
+L'Automation Complacency indica una riduzione della vigilanza o del monitoraggio umano associata a un elevato affidamento sull'affidabilità presunta di un sistema automatizzato.
+
+È concettualmente distinta dall'Automation Bias: quest'ultimo riguarda soprattutto l'influenza decisionale delle raccomandazioni fornite dal sistema sul giudizio dell'operatore, mentre la complacency riguarda l'allocazione delle risorse attentive e il campionamento informativo dedicato al monitoraggio del sistema.
+
+I due fenomeni possono coesistere. La complacency emerge tipicamente in contesti di **carico concorrente (multi-task load)**: quando un operatore è impegnato in compiti paralleli, tende a distogliere l'attenzione dal controllo dell'automazione, assumendo implicitamente che essa stia operando in modo corretto.
+
+La complacency non equivale semplicemente a pigrizia, negligenza o disinteresse individuale: è un fenomeno sistemico di redistribuzione dell'attenzione influenzato dal carico di lavoro, dalla stabilità percepita delle prestazioni e dalle caratteristiche dell'interazione con il sistema.
+
+---
+
+### 3. Confirmation Bias
+
+Il Confirmation Bias, o bias di conferma, è la tendenza a cercare, interpretare, favorire e ricordare le informazioni in modo coerente con convinzioni, aspettative o ipotesi già esistenti.
+
+Il fenomeno può influenzare sia la selezione delle fonti informative considerate, sia il peso e l'attendibilità attribuiti alle evidenze contrarie. Non richiede una decisione consapevole o deliberata di ignorare le contraddizioni.
+
+Nell'interazione con un LLM, il bias agisce su due livelli complementari:
+
+- **Livello dell'utente:** le risposte che confermano l'ipotesi iniziale dell'utente vengono accettate con minore vaglio critico, orientando la formulazione dei prompt successivi in modo selettivo per convalidare la prospettiva desiderata.
+- **Amplificazione sistemica del modello (Sycophancy):** molti LLM allineati presentano una tendenza alla compiacenza o adulatorietà contestuale (*sycophancy*), convergendo sulle premesse e sulle opinioni implicite espresse nel prompt dell'utente. Questa dinamica trasforma l'interazione in una camera di risonanza che rafforza il bias di partenza.
+
+Il Confirmation Bias e l'Automation Bias rimangono costrutti distinti: il primo riguarda il rapporto tra evidenza empirica e convinzioni preesistenti; il secondo riguarda l'influenza euristica dell'automazione in quanto tale sul processo decisionale.
+
+---
+
+### 4. Anchoring Effect
+
+L'Anchoring Effect, o effetto ancoraggio, è un fenomeno del giudizio in base al quale una valutazione o una stima viene condizionata sproporzionatamente da un riferimento iniziale (l'ancora), anche quando tale valore o informazione è arbitrario, incompleto o scarsamente pertinente.
+
+Gli aggiustamenti cognitivi successivi operati rispetto all'ancora risultano solitamente insufficienti, lasciando la valutazione finale indebitamente appiattita sul dato di partenza.
+
+Nel contesto degli LLM, l'ancoraggio non riguarda solo stime numeriche, ma si estende alla struttura logica, concettuale o sintattica: la prima soluzione di codice proposta, la prima bozza di testo o la prima schematizzazione di un problema tendono a definire i binari entro cui si muovono le revisioni successive. L'utente tenderà a correggere marginalmente la risposta iniziale dell'LLM anziché riesaminare da zero l'impostazione complessiva o valutarne premesse alternative.
+
+L'effetto ancoraggio dipende dalla complessità del compito, dal livello di expertise dell'operatore e dalla presenza di vincoli di tempo durante la formulazione del giudizio.
+
+---
+
+### 5. Il Modello del Cognitive Miser
+
+Il modello teorico del **Cognitive Miser** ("avaro cognitivo" o economizzatore di risorse) descrive l'essere umano come un decisore che tende a contenere lo sforzo cognitivo, adottando strategie di elaborazione economica ed euristiche decisionali anziché condurre analisi esaustive su ogni singola informazione disponibile.
+
+L'adozione di scorciatoie cognitive è di norma funzionale e adattiva: consente di formulare decisioni rapide in contesti di incertezza e di ottimizzare l'impiego di risorse attentive intrinsecamente limitate. Tuttavia, può produrre errori sistematici quando il compito richiede un'analisi formale approfondita (elaborazione di Tipo 2).
+
+L'impiego di un LLM riduce drasticamente lo sforzo richiesto per produrre sintesi, generare argomentazioni o esplorare opzioni. L'economizzazione dello sforzo non costituisce di per sé un problema; diventa critica quando la facilità di ottenere un output surrogato sostituisce l'elaborazione analitica e la verifica metacognitiva necessarie a validarlo.
+
+La nozione di *Cognitive Miser* non definisce un singolo errore né una disfunzione comportamentale, bensì la metafora teorica che inquadra i criteri di gestione e ripartizione dell'energia cognitiva.
+
+---
+
+### 6. Cognitive Offloading
+
+Il Cognitive Offloading, o scaricamento/delega cognitiva, consiste nell'uso di azioni fisiche, artefatti o supporti esterni per ridurre le richieste imposte ai processi cognitivi interni (memoria di lavoro, memoria prospettica, calcolo mentale).
+
+Esempi consolidati includono l'impiego di agende per ricordare scadenze, calcolatrici per eseguire operazioni complesse o supporti di scrittura per tracciare ragionamenti complessi.
+
+Gli LLM estendono il dominio dell'offloading dai compiti percettivo-motori e mnemonici a compiti di livello superiore: sintesi concettuale, generazione di ipotesi, traduzione formale e stesura di testi. Tale delega accresce l'efficienza operativa, ma riconfigura profondamente la distribuzione del lavoro cognitivo tra operatore e strumento.
+
+Il Cognitive Offloading è una strategia adattiva neutra. I suoi effetti a lungo termine dipendono dalla natura dell'attività delegata e dalla capacità dell'utente di mantenere attivo il monitoraggio metacognitivo e la competenza di dominio sul processo esternalizzato.
+
+---
+
+### 7. Trust in Automation
+
+La Trust in Automation (fiducia nell'automazione) riguarda l'atteggiamento e le aspettative che un utente sviluppa circa l'affidabilità, la prevedibilità e le capacità di un sistema automatizzato rispetto al compito assegnato.
+
+La fiducia influenza la propensione all'affidamento (*reliance*), ma non coincide deterministicamente con esso: un operatore può fidarsi di un sistema ma decidere di non utilizzarlo per ragioni di contesto, oppure utilizzarlo pur nutrendo riserve sul suo funzionamento.
+
+La letteratura canonica distingue tra:
+
+- **Fiducia calibrata (Calibration):** corrispondenza realistica tra le capacità oggettive del sistema e la fiducia riposta dall'utente nel contesto d'uso specifico.
+- **Miscalibration (Mancata calibrazione),** che include:
+  - *Sovrastima della fiducia (Overtrust):* fiducia superiore all'effettiva affidabilità del sistema, che porta all'uso improprio o all'accettazione indiscriminata delle sue risposte (**Misuse**).
+  - *Sfiducia ingiustificata (Undertrust):* fiducia inferiore alle reali prestazioni disponibili, che conduce al rifiuto, all'abbandono o al sottoutilizzo dello strumento (**Disuse**).
+
+La calibrazione della fiducia è dinamica e dipende dalla trasparenza del sistema, dalla coerenza delle prestazioni, dal feedback fornito e dalla competenza tecnica dell'utente.
+
+---
+
+### 8. Overconfidence Effect
+
+L'Overconfidence Effect, o effetto di eccessiva fiducia, indica una discrepanza sistematica tra la precisione reale del giudizio di una persona e il livello di sicurezza soggettiva con cui tale giudizio viene espresso.
+
+In psicologia del giudizio, l'eccessiva fiducia si articola principalmente in tre dimensioni:
+
+- **Overestimation:** sovrastima delle proprie capacità effettive, del livello di competenza o della qualità della propria prestazione.
+- **Overplacement:** convinzione errata di essere superiore alla media dei pari rispetto a una specifica abilità o accuratezza valutativa.
+- **Overprecision:** eccessiva certezza circa la correttezza delle proprie stime o conclusioni, manifestata tipicamente attraverso intervalli di confidenza soggettivi eccessivamente ristretti e mancata considerazione dell'incertezza.
+
+Nell'interazione con gli LLM è fondamentale distinguere la fiducia dell'utente nella propria capacità di supervisione dalla certezza manifestata dal modello: gli LLM sono progettati per generare testi assertivi, coerenti e stilisticamente sicuri anche quando incorrono in allucinazioni o errori formali. La sicurezza espositiva dell'output non riflette alcuna calibrazione epistemica interna e può indurre nell'utente una prematura cessazione del controllo critico.
+
+---
+
+### 9. Illusion of Explanatory Depth
+
+L'Illusion of Explanatory Depth (IOED), o illusione della profondità esplicativa, è la tendenza delle persone a sopravvalutare significativamente la propria comprensione dei **meccanismi causali e funzionali** sottostanti al funzionamento di sistemi complessi.
+
+L'illusione è specifica della conoscenza causale (come le parti interagiscono per produrre un effetto): le persone tendono a confondere la familiarità descrittiva con la comprensione meccanicistica. Quando viene loro richiesto di produrre una spiegazione sequenziale e dettagliata di causa-effetto, la sicurezza soggettiva circa la profondità della propria competenza decade bruscamente.
+
+Nel contesto degli LLM, l'esposizione a una spiegazione testualmente ordinata, sintatticamente fluida e priva di esitazioni crea una potente illusione di chiarezza. L'utente percepisce di aver compreso la dinamica causale di un fenomeno o di un'architettura software complessa, mentre ha semplicemente metabolizzato una narrazione plausibile, lasciando inalterati i gap concettuali di fondo.
+
+L'IOED riguarda la valutazione soggettiva della propria competenza e può essere mitigata imponendo compiti di spiegazione esplicita, disegno o validazione analitica dei nessi logici.
+
+---
+
+### 10. Processing Fluency
+
+La Processing Fluency (fluidità di elaborazione) è la facilità soggettiva percepita con cui una persona elabora, decodifica e integra una determinata informazione.
+
+In base all'euristica della fluidità, informazioni elaborate con minore sforzo cognitivo vengono implicitamente valutate come più familiari, veritiere, logicamente corrette e affidabili rispetto a informazioni che richiedono un'elaborazione disfluente, complessa o faticosa.
+
+Nel rapporto con gli LLM, la fluidità di elaborazione agisce come catalizzatore primario dei bias decisionali:
+- I modelli generano risposte caratterizzate da impeccabile coerenza sintattica, lessico forbito e assenza di disfluenze conversazionali (esitazioni, correzioni in itinere, pause).
+- Questa elevata fluidità formale attiva risposte intuitive favorevoli nell'utente, abbassando la soglia di attivazione del controllo analitico e predisponendo all'insorgenza dell'Automation Bias e dell'Illusion of Explanatory Depth anche di fronte ad allucinazioni o a fallacie logiche nascoste.
+
+La fluidità è un segnale euristico sulla forma del messaggio, non un indicatore della validità epistemica del suo contenuto.
+
+---
+
+### 11. Relazioni tra i concetti
+
+Sebbene i fenomeni descritti emergano frequentemente in modo simultaneo durante l'interazione con sistemi automatizzati e modelli linguistici, essi appartengono a livelli tassonomici distinti:
+
+- **L'Automation Bias** è un bias decisionale: riguarda l'accettazione euristica di un suggerimento o output automatizzato a scapito di verifiche contrarie.
+- **L'Automation Complacency** è un fenomeno attentivo: riguarda il degrado del monitoraggio continuo causato dalla presunzione di affidabilità, tipicamente in scenari di multi-tasking.
+- **Il Confirmation Bias** è un bias epistemico di mantenimento delle credenze: riguarda la selezione selettiva di evidenze coerenti con aspettative pregresse, frequentemente amplificato dalla *sycophancy* dell'LLM.
+- **L'Anchoring Effect** è un bias di stima e framing: descrive l'influenza vincolante esercitata dalla prima formulazione o bozza sul ventaglio delle revisioni successive.
+- **Il Modello del Cognitive Miser** è una metafora dell'architettura cognitiva umana: formalizza la tendenza ad adottare strategie di risparmio energetico e decisioni euristiche.
+- **Il Cognitive Offloading** è una strategia operativa di delega: descrive la redistribuzione di carichi computazionali o mnemonici su strumenti esterni.
+- **La Trust in Automation** è un costrutto attitudinale: definisce le aspettative circa le prestazioni del sistema, la cui calibrazione governa i comportamenti di affidamento virtuoso o di distorsione (*Misuse* e *Disuse*).
+- **L'Overconfidence Effect** è un bias metaconoscitivo di giudizio: quantifica lo scollamento tra il grado di certezza soggettiva dell'operatore e l'accuratezza oggettiva della prestazione (*overestimation*, *overplacement*, *overprecision*).
+- **L'Illusion of Explanatory Depth** è un bias specifico della comprensione causale: descrive la sovrastima della padronanza dei nessi meccanicistici interni a un sistema.
+- **La Processing Fluency** è un'euristica di elaborazione percettivo-cognitiva: modula il giudizio di verità e affidabilità in funzione della facilità con cui l'output viene decodificato.
+
+La compresenza empirica di questi fenomeni non costituisce una tautologia né presuppone un unico rapporto causale; comprendere le rispettive specificità è indispensabile per la progettazione di interfacce critiche, protocolli di verifica e modelli di interazione uomo-IA affidabili.
+
+---
+
+### Bibliografia essenziale
+
+- Fiske, S. T., & Taylor, S. E. (1991). *Social Cognition* (2nd ed.). McGraw-Hill.
+- Goddard, K., Roudsari, A., & Wyatt, J. C. (2012). Automation bias: A systematic review of frequency, effect mediators, and mitigators. *Journal of the American Medical Informatics Association*, 19(1), 121–127. https://doi.org/10.1136/amiajnl-2011-000089
+- Lee, J. D., & See, K. A. (2004). Trust in automation: Designing for appropriate reliance. *Human Factors*, 46(1), 50–80. https://doi.org/10.1518/hfes.46.1.50_30392
+- Moore, D. A., & Healy, P. J. (2008). The trouble with overconfidence. *Psychological Review*, 115(2), 502–517. https://doi.org/10.1037/0033-295X.115.2.502
+- Mosier, K. L., & Skitka, L. J. (1996). Human decision makers and automated decision aids: Made for each other? In R. Parasuraman & M. Mouloua (Eds.), *Automation and human performance: Theory and applications* (pp. 201–220). Lawrence Erlbaum Associates.
+- Nickerson, R. S. (1998). Confirmation bias: A ubiquitous phenomenon in many guises. *Review of General Psychology*, 2(2), 175–220. https://doi.org/10.1037/1089-2680.2.2.175
+- Parasuraman, R., & Manzey, D. H. (2010). Complacency and bias in human use of automation: An attentional integration. *Human Factors*, 52(3), 381–410. https://doi.org/10.1177/0018720810376055
+- Parasuraman, R., & Riley, V. (1997). Humans and automation: Use, misuse, disuse, abuse. *Human Factors*, 39(2), 230–253. https://doi.org/10.1518/001872097778543886
+- Reber, R., & Schwarz, N. (1999). Effects of perceptual fluency on judgments of truth. *Consciousness and Cognition*, 8(3), 338–342. https://doi.org/10.1006/ccog.1999.0386
+- Risko, E. F., & Gilbert, S. J. (2016). Cognitive offloading. *Trends in Cognitive Sciences*, 20(9), 676–688. https://doi.org/10.1016/j.tics.2016.07.002
+- Rozenblit, L., & Keil, F. (2002). The misunderstood limits of folk science: An illusion of explanatory depth. *Cognitive Science*, 26(5), 521–562. https://doi.org/10.1207/s15516709cog2605_1
+- Tversky, A., & Kahneman, D. (1974). Judgment under uncertainty: Heuristics and biases. *Science*, 185(4157), 1124–1131. https://doi.org/10.1126/science.185.4157.1124
+
+---
+
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="appendice-sw"></a>
+
+## ⛾ Strumenti per la verifica e l’assurance del software assistito da LLM
+
+Gli strumenti elencati di seguito supportano attività di analisi statica, test automatici, misurazione della copertura, analisi dinamica, verifica della sicurezza, verifica formale e valutazione di sistemi che integrano modelli linguistici a runtime. Sono organizzati per area funzionale; il loro ambito di applicazione dipende dal linguaggio, dall'architettura del sistema e dalla configurazione adottata.
+
+### Nota cronologica ed evoluzione degli strumenti
+
+Il seguente elenco riflette il panorama tecnologico e le licenze verificate nel 2026. Sebbene i principi di assurance descritti rimangano stabili nel tempo, i singoli progetti software possono subire variazioni di manutenzione, fork o aggiornamenti dei termini di licenza. Per le versioni correnti e l'elenco integrato dalla comunità, fare riferimento ai repository e alla documentazione ufficiale dei rispettivi progetti.
+
+### Legenda stabilità e rischio obsolescenza
+
+* `● Consolidato` (Rischio obsolescenza basso): standard industriale de facto, governance solida, stabilità delle API e manutenzione garantita nel lungo termine.
+* `▲ In evoluzione` (Rischio obsolescenza moderato): strumento maturo e attivamente supportato, ma soggetto a frequenti evoluzioni architetturali, fork comunitari o rapidi adeguamenti dell'ecosistema.
+* `◆ Rapido ricambio` (Rischio obsolescenza alto): soluzione afferente al recente ambito dell'IA generativa a runtime, caratterizzata da un ecosistema in continua trasformazione e soggetta a rapido turnover tecnologico.
+
+---
+
+### 1. Analisi statica
+
+L'analisi statica esamina il codice sorgente o il bytecode senza mandarlo in esecuzione. Nello sviluppo assistito da modelli linguistici costituisce la prima linea di difesa per intercettare preventivamente difetti tipici dell'inferenza generativa: allucinazioni sintattiche, invocazione di metodi o attributi inesistenti, firme errate, incoerenze di tipo e introduzione di pattern deprecati o insicuri, prima ancora della compilazione o dell'esecuzione dei test.
+
+| Software | Funzione principale | Linguaggi / ambito | Licenza |
+|---|---|---|---|
+| [ShellCheck](https://www.shellcheck.net/) &nbsp;● | Individua errori di sintassi, insidie e problemi di robustezza negli script shell. | Bash, sh, shell POSIX | GPL-3.0-or-later |
+| [Opengrep](https://opengrep.dev/) &nbsp;▲ | Rileva pattern di codice insicuri, vulnerabilità e violazioni di policy architetturali (fork comunitario aperto di Semgrep). | Multi-linguaggio (C, C++, Go, Java, JS/TS, Python, Rust, ecc.) | LGPL-2.1-only |
+| [Cppcheck](https://cppcheck.sourceforge.io/) &nbsp;● | Analisi statica focalizzata su comportamenti indefiniti, memory leak e difetti logici. | C, C++ | GPL-3.0-or-later |
+| [ESLint](https://eslint.org/) &nbsp;● | Rileva problemi qualitativi, incoerenze sintattiche e difetti logici nel codice web/backend. | JavaScript, TypeScript | MIT |
+| [Ruff](https://docs.astral.sh/ruff/) &nbsp;▲ | Linter e formatter ad altissime prestazioni; integra nativamente anche le regole di sicurezza di Bandit (set `S`). | Python | MIT |
+| [Mypy](https://mypy-lang.org/) &nbsp;● | Type checking statico rigoroso; intercetta firme errate, attributi allucinati e tipi incoerenti. | Python | MIT |
+| [Hadolint](https://github.com/hadolint/hadolint) &nbsp;▲ | Linter per Dockerfile; garantisce il rispetto delle best practice e valida i comandi shell interni. | Dockerfile, Container | GPL-3.0-or-later |
+| [Error Prone](https://errorprone.info/) &nbsp;● | Analisi statica integrata direttamente nel compilatore `javac`; intercetta bug semantici e pattern fallaci a compile-time. | Java | Apache-2.0 |
+
+---
+
+### 2. Test automatici e copertura
+
+Questa categoria raccoglie framework per l'automazione dei test e la valutazione quantitativa e qualitativa della suite di verifica. Poiché gli LLM tendono a generare test superficiali o tautologici (asserzioni deboli, test fittizi privi di valore di verifica effettivo o mock eccessivi), tecniche avanzate come il mutation testing (*Stryker*, *mutmut*), il testing basato su proprietà (*Hypothesis*) e il branch coverage consentono di misurare se la suite di test riesca davvero a respingere allucinazioni e difetti logici.
+
+| Software | Funzione principale | Linguaggi / ambito | Licenza |
+|---|---|---|---|
+| [Bats-core](https://github.com/bats-core/bats-core) &nbsp;▲ | Framework per automatizzare i test di conformità e regressione degli script shell. | Bash | MIT |
+| [pytest](https://pytest.org/) &nbsp;● | Framework versatile per test unitari, funzionali e parametrici. | Python | MIT |
+| [Coverage.py](https://coverage.readthedocs.io/) &nbsp;● | Misura l'esecuzione e la copertura di rami condizionali (branch coverage) nei test. | Python | Apache-2.0 |
+| [GoogleTest](https://github.com/google/googletest) &nbsp;● | Framework per la definizione e l'esecuzione di test unitari e mocking rigoroso. | C++ | BSD-3-Clause |
+| [Playwright](https://playwright.dev/) &nbsp;▲ | Automatizza test end-to-end simulando l'interazione utente tramite browser headless. | Applicazioni web | Apache-2.0 |
+| [kcov](https://github.com/SimonKagstrom/kcov) &nbsp;▲ | Misura la copertura del codice senza ricompilazione; standard per test shell eseguiti con Bats. | Bash, binari ELF compilati (C, C++, Rust) | GPL-2.0 |
+| [Stryker Mutator](https://stryker-mutator.io/) &nbsp;▲ | Mutation testing; valida l'efficacia dei test smascherando asserzioni deboli o simulate. | JavaScript, TypeScript, C#, Scala | Apache-2.0 |
+| [mutmut](https://github.com/boxed/mutmut) &nbsp;▲ | Mutation testing per Python; verifica il potere discriminante della suite di test mutando il codice sorgente (*Step 16*). | Python | BSD-3-Clause |
+| [Hypothesis](https://hypothesis.readthedocs.io/) &nbsp;● | Genera casi di test basati su proprietà (PBT) con shrinking automatico dei controesempi (*Step 18*). | Python | MPL-2.0 |
+
+---
+
+### 3. Fuzzing e analisi dinamica
+
+L'analisi dinamica e il fuzzing sollecitano l'applicazione durante l'esecuzione con flussi di input casuali, mutazionali o strutturati per massimizzare la copertura dei percorsi. Questi strumenti sono essenziali per far emergere vulnerabilità a basso livello, comportamenti indefiniti, corruzioni della memoria (buffer overflow, use-after-free) e race condition asincrone che sfuggono sia all'ispezione statica sia ai prompt dell'LLM.
+
+| Software | Funzione principale | Linguaggi / ambito | Licenza |
+|---|---|---|---|
+| [AFL++](https://aflplus.plus/) &nbsp;▲ | Standard industriale per coverage-guided fuzzing ad alte prestazioni; rileva crash e anomalie a basso livello. | C, C++ e binari nativi compatibili | AGPL-3.0-or-later; moduli ausiliari Apache-2.0 |
+| [Atheris](https://github.com/google/atheris) &nbsp;▲ | Fuzzing coverage-guided per individuare eccezioni non gestite e difetti logici nel codice Python e binding nativi (*Step 18*). | Python (inclusi binding C/C++) | Apache-2.0 |
+| [Compiler Sanitizers (ASan, TSan, UBSan)](https://github.com/google/sanitizers) &nbsp;● | Strumentazione del compilatore per intercettare violazioni di memoria (ASan), corse critiche concorrenti (TSan) e comportamenti indefiniti (UBSan). | C, C++ (GCC/Clang) | Termini toolchain (LLVM/GCC runtime) |
+
+---
+
+### 4. Sicurezza, licenze e dipendenze
+
+Gli strumenti di questa sezione catalogano i componenti software di terze parti, verificano l'assenza di falle note (CVE) e controllano la conformità legale. Nello sviluppo assistito da LLM svolgono un ruolo critico nel contrastare la **package hallucination** (o *slopsquatting*), ossia la tendenza dei modelli a importare dipendenze inesistenti che possono essere registrate maliziosamente da aggressori sui registri pubblici, oltre a prevenire il leakage di segreti o la violazione di licenze copiate dai dati di addestramento.
+
+| Software | Funzione principale | Linguaggi / ambito | Licenza |
+|---|---|---|---|
+| [Trivy](https://trivy.dev/) &nbsp;▲ | Scansiona vulnerabilità note (CVE), dipendenze, immagini container e configurazioni IaC. | Repository, container, filesystem | Apache-2.0 |
+| [OSV-Scanner](https://github.com/google/osv-scanner) &nbsp;▲ | Verifica le dipendenze interrogando il database aperto OSV per identificare falle note. | Ecosistemi supportati (npm, PyPI, Go, Cargo, NuGet) | Apache-2.0 |
+| [Syft](https://github.com/anchore/syft) &nbsp;▲ | Genera la distinta base del software (SBOM) per catalogare e verificare le librerie introdotte. | File system, immagini container | Apache-2.0 |
+| [ScanCode Toolkit](https://github.com/aboutcode-org/scancode-toolkit) &nbsp;▲ | Identifica licenze, copyright e porzioni di codice clonate per prevenire rischi di proprietà intellettuale. | Repository e codice sorgente | Apache-2.0 |
+| [Gitleaks](https://github.com/gitleaks/gitleaks) &nbsp;▲ | Rileva credenziali, token crittografici e chiavi API esposti nei file sorgente e nella cronologia Git (*Step 17*). | Repository Git e file locali | MIT |
+| [ZAP (Zed Attack Proxy)](https://www.zaproxy.org/) &nbsp;● | Esegue scansioni dinamiche di sicurezza (DAST) per rilevare vulnerabilità in web app e API. | Applicazioni web e API HTTP/REST | Apache-2.0 |
+
+---
+
+### 5. Verifica formale
+
+La verifica formale applica metodi matematici, dimostratori di teoremi e risolutori di vincoli per garantire che un programma soddisfi rigorosamente determinate specifiche logiche o invarianti di sicurezza. Fornisce certezze matematiche assolute laddove l'euristica probabilistica e generativa dei modelli linguistici non può offrire alcuna garanzia formale di correttezza.
+
+| Software | Funzione principale | Linguaggi / ambito | Licenza |
+|---|---|---|---|
+| [Alloy Analyzer](https://alloytools.org/) &nbsp;● | Modellazione relazionale del primo ordine e bounded model checking per validare la consistenza delle specifiche (*Step 9*). | Specifiche formali, logica relazionale | MIT |
+| [TLA+ Tools (TLC)](https://lamport.azurewebsites.net/tla/tla.html) &nbsp;● | Specifica formale temporale e model checker per verificare invarianti di safety e liveness concorrenti (*Step 6, 13*). | Algoritmi distribuiti, protocolli concorrenti | MIT |
+| [Z3](https://github.com/Z3Prover/z3) &nbsp;● | Risolutore SMT per soddisfacibilità di vincoli e ricerca di controesempi a proprietà formali (*Step 4, 9*). | Formule logico-matematiche, SMT-LIB | MIT |
+| [cvc5](https://cvc5.github.io/) &nbsp;▲ | Risolutore automatico di formule SMT e dimostratore di teoremi per verifiche logico-aritmetiche. | Logica, aritmetica, SMT-LIB | BSD-3-Clause |
+| [CBMC](https://www.cprover.org/cbmc/) &nbsp;● | Bounded Model Checker per la verifica formale di asserzioni, overflow e puntatori a runtime. | C, C++ | BSD-4-Clause |
+| [Frama-C](https://frama-c.com/) &nbsp;● | Piattaforma modulare per l'analisi statica e la deduzione formale di proprietà del codice. | C | Nucleo LGPL-2.1-or-later; plug-in variabili |
+
+---
+
+### 6. Assurance e sicurezza di sistemi con LLM integrati a runtime
+
+Questa categoria include strumenti specializzati nell'ispezione, nel red-teaming, nella generazione vincolata e nella protezione a runtime delle applicazioni che impiegano modelli linguistici operativi (agenti, pipeline RAG, assistenti interattivi). Consentono di vincolare la decodifica dei token, testare e mitigare attacchi avversari (jailbreak, prompt injection) e prevenire la fuga di informazioni riservate o dati personali (PII).
+
+| Software | Funzione principale | Linguaggi / ambito | Licenza |
+|---|---|---|---|
+| [Outlines](https://github.com/dottxt-ai/outlines) &nbsp;▲ | Vincola la generazione a runtime tramite grammatiche formali e schemi JSON deterministici (*Step 12, 18*). | Modelli LLM, Python | Apache-2.0 |
+| [garak](https://garak.ai/) &nbsp;◆ | Scanner dinamico di vulnerabilità per LLM: simula attacchi adversarial, prompt injection e data leakage (*Step 19*). | Modelli LLM, endpoint REST, pipeline AI | Apache-2.0 |
+| [promptfoo](https://www.promptfoo.dev/) &nbsp;◆ | Framework di test e red-teaming in pipeline CI/CD per valutare prompt, agenti e regressioni qualitative. | Applicazioni LLM, agenti, Node.js/Python | MIT |
+| [Ragas](https://ragas.io/) &nbsp;◆ | Valuta l'affidabilità di pipeline RAG, quantificando allucinazioni, fedeltà ai dati e accuratezza del recupero. | Sistemi RAG, Python | Apache-2.0 |
+| [NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) &nbsp;◆ | Definisce regole e guardrail a runtime per impedire derive tematiche, jailbreak e risposte insicure. | Applicazioni conversazionali, Python | Apache-2.0 |
+| [Presidio](https://data-privacy-stack.github.io/presidio/) &nbsp;◆ | Identifica e anonimizza dati personali (PII) nei flussi di testo prima dell'invio ai modelli o dello storage. | Dati testuali e immagini, Python / REST | MIT |
+
+---
+
+### Nota sulle licenze e sul diritto d'autore
+
+Le licenze riportate identificano i termini generali di distribuzione del software indicato; non costituiscono una verifica legale esaustiva di ogni specifica versione, dipendenza secondaria o componente ausiliario. Prima di adottare uno strumento in ambienti operativi o distribuirne copie, è opportuno consultare il relativo file di licenza e gli avvisi di copyright presenti nei rispettivi repository ufficiali.
+
+La menzione dei software, il collegamento agli URL ufficiali e le relative descrizioni funzionali sono frutto di autonoma redazione e costituiscono uso puramente informativo e descrittivo (*nominative fair use*). Nessun marchio, logo o testo protetto di terzi viene riprodotto al di fuori delle facoltà consentite dalla legge sul diritto d'autore.
+
+La licenza GNU Free Documentation License (GNU FDL) con cui è distribuito il presente manuale disciplina unicamente il testo dell'opera documentale e non altera, estende né pregiudica le licenze autonome con cui sono distribuiti i singoli strumenti software catalogati.
+
+---
+
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="appendice-grafi"></a>
+
+## ⊹ Elementi di Teoria dei Grafi
+
+### 1. Scopo e convenzioni
+
+Questa appendice introduce le nozioni essenziali di teoria dei grafi necessarie per leggere e interpretare grafi di dipendenza: grafo diretto, nodo, arco, predecessore, successore, grafo aciclico diretto (DAG), nodo radice (sorgente), nodo foglia (pozzo), cammino di dipendenza e ordinamento topologico.
+
+La notazione testuale adottata nel manuale usa caratteri ASCII quando possibile. Le forme matematiche convenzionali sono riportate come riferimento; possono variare tra testi, strumenti e linguaggi.
+
+In questa appendice si considerano grafi diretti finiti.
+
+#### Convenzione fondamentale
+
+Un arco, rappresentato in ASCII come `A -> B` e graficamente come `A → B`, significa che **B dipende da A** e che A deve precedere B nell'ordinamento topologico.
+
+La direzione dell'arco rappresenta quindi una relazione di dipendenza e precedenza causale o temporale: A abilita, produce o precede B.
+
+*Nota di contesto:* in altri ambiti ingegneristici (come i gestori di pacchetti software o i diagrammi UML), si incontra talvolta la convenzione opposta, in cui la freccia punta dall'elemento dipendente verso la risorsa richiesta (`B -> A`, inteso come "B necessita di A"). Nel presente manuale si adotta rigorosamente la convenzione di precedenza ed esecuzione: la freccia scorre sempre dal prerequisito verso l'elemento dipendente.
+
+Tutti gli archi di un medesimo grafo di dipendenza devono rispettare questa convenzione.
+
+### 2. Notazione e simboli
+
+| Significato | Notazione ASCII | Simbolo matematico o grafico |
+|---|---|---|
+| Insieme dei nodi (vertici) | `V` | V, con V ≠ ∅ |
+| Insieme degli archi diretti | `E` | E ⊆ V × V |
+| Numero di nodi | `|V|` | \|V\| |
+| Numero di archi | `|E|` | \|E\| |
+| Nodo generico | `N1`, `u`, `v` | N₁, u, v ∈ V |
+| Arco diretto da A a B | `A -> B` | (A, B) ∈ E oppure A → B |
+| Cammino diretto da A a B | `A -> ... -> B` | A → … → B |
+| Grado entrante di un nodo N | `in-deg(N)` | deg⁻(N) |
+| Grado uscente di un nodo N | `out-deg(N)` | deg⁺(N) |
+
+La notazione ASCII usa esclusivamente caratteri ASCII standard. Le forme nella terza colonna rappresentano la notazione matematica convenzionale o le alternative grafiche Unicode; non introducono significati diversi.
+
+Per rappresentare un grafo si usa formalmente `G = (V, E)`.
+
+Il termine `DAG` è un acronimo (***Directed Acyclic Graph***), mentre `A, B, C, ...` è un esempio di sequenza di elementi.
+
+#### 2.1 Definizione formale di grafo diretto
+
+Un grafo diretto (o digrafo) è una coppia:
+
+    G = (V, E)
+
+dove:
+
+- `V` è un insieme finito e non vuoto di nodi (o vertici);
+- `E` è un insieme di archi diretti, rappresentati da coppie ordinate di nodi appartenenti a `V` (ovvero un sottoinsieme del prodotto cartesiano `V × V`).
+
+La coppia ordinata `(A, B)` rappresenta l'arco `A -> B`: il primo nodo A è l'origine da cui parte l'arco, il secondo nodo B è la destinazione in cui termina.
+
+La coppia è ordinata: in generale, `(A, B)` e `(B, A)` rappresentano archi distinti con orientamento opposto.
+
+### 3. Nozioni fondamentali
+
+#### 3.1 Nodo
+
+Un nodo, detto anche vertice, rappresenta un elemento del grafo. In un grafo di dipendenza può rappresentare, per esempio, un requisito, un'assunzione, una proprietà, un oracolo o una procedura di test.
+
+#### 3.2 Arco diretto
+
+Un arco diretto collega due nodi e specifica una direzione.
+
+    A → B
+
+Con la convenzione adottata, B dipende da A: A deve precedere B.
+
+L'arco non indica necessariamente che B sia eseguito immediatamente dopo A; indica soltanto una relazione diretta di dipendenza o precedenza.
+
+#### 3.3 Predecessore
+
+A è un predecessore diretto di B se nel grafo esiste l'arco:
+
+    A → B
+
+Un nodo può avere zero, uno o più predecessori diretti. Il numero di archi entranti in un nodo N ne costituisce il grado entrante (`in-deg(N)`).
+
+#### 3.4 Successore
+
+B è un successore diretto di A se nel grafo esiste l'arco:
+
+    A → B
+
+Un nodo può avere zero, uno o più successori diretti. Il numero di archi uscenti da un nodo N ne costituisce il grado uscente (`out-deg(N)`).
+
+Il termine "diretto" distingue il collegamento immediato da una relazione mediata attraverso una catena di archi.
+
+#### 3.5 Cammino
+
+Un cammino diretto da un nodo di partenza a un nodo di arrivo è una sequenza di nodi distinti:
+
+    v_0, v_1, ..., v_k
+
+tale che per ogni indice i (con 0 ≤ i < k) esiste nel grafo l'arco diretto:
+
+    v_i → v_{i+1}
+
+Esempio:
+
+    A → B → C → D
+
+In questo esempio esiste un cammino diretto da A a D attraverso nodi intermedi distinti B e C. A può influenzare D attraverso la catena di dipendenze, anche se non esiste un arco diretto `A -> D`.
+
+Un cammino può essere composto da un solo arco oppure da più archi. Un nodo Y è raggiungibile da un nodo X se esiste un cammino diretto da X a Y.
+
+### 4. Grafo aciclico diretto (DAG)
+
+DAG è l'acronimo di *Directed Acyclic Graph*, ovvero grafo aciclico diretto.
+
+Un DAG è un grafo diretto privo di cicli diretti.
+
+#### 4.1 Ciclo diretto
+
+Un ciclo diretto è una sequenza chiusa di archi in cui il nodo iniziale coincide con il nodo finale, mentre tutti i nodi intermedi sono distinti tra loro.
+
+Esempio di ciclo:
+
+    A → B → C → A
+
+Questo grafo non è un DAG perché partendo da A è possibile ritornare ad A seguendo la direzione degli archi.
+
+Un grafo diretto è un DAG se e solo se non contiene alcun ciclo diretto.
+
+#### 4.2 Conseguenze della proprietà aciclica
+
+In un DAG:
+
+- non è possibile tornare a un nodo già visitato seguendo gli archi nella loro direzione;
+- non sussistono dipendenze circolari (nessun elemento dipende, direttamente o indirettamente, da se stesso);
+- le dipendenze possono sempre essere disposte in un ordine lineare compatibile con tutti gli archi;
+- esiste sempre almeno un ordinamento topologico;
+- esiste sempre almeno un nodo senza predecessori e almeno un nodo senza successori.
+
+Un grafo contenente uno o più cicli non ammette alcun ordinamento topologico.
+
+### 5. Nodo radice e nodo foglia (Sorgente e Pozzo)
+
+In teoria dei grafi, i nodi estremi di un DAG sono definiti formalmente in base al numero di archi entranti e uscenti.
+
+Nel linguaggio comune e nella modellazione dei processi si utilizzano spesso le metafore di "radice" e "foglia", corrispondenti rispettivamente ai termini formali **sorgente** (*source*) e **pozzo** (*sink*).
+
+#### 5.1 Nodo radice (Sorgente / Source)
+
+Un nodo radice (o sorgente) è un nodo senza predecessori diretti, ovvero con grado entrante nullo (`in-deg = 0`): nessun arco entra in esso.
+
+Esempio:
+
+    A → B → C
+
+A è una radice (sorgente) perché nessun arco entra in A.
+
+A differenza degli alberi classici, un DAG può avere più radici indipendenti.
+
+#### 5.2 Nodo foglia (Pozzo / Sink)
+
+Un nodo foglia (o pozzo) è un nodo senza successori diretti, ovvero con grado uscente nullo (`out-deg = 0`): nessun arco esce da esso.
+
+Nell'esempio precedente:
+
+    A → B → C
+
+C è una foglia (pozzo) perché nessun arco esce da C.
+
+Un DAG può avere più foglie indipendenti.
+
+#### 5.3 Nodo isolato
+
+Un nodo isolato non possiede archi entranti né archi uscenti (`in-deg = 0` e `out-deg = 0`).
+
+Secondo le definizioni adottate, un nodo isolato soddisfa contemporaneamente le condizioni di radice (sorgente) e di foglia (pozzo).
+
+### 6. Cammino di dipendenza
+
+Un cammino di dipendenza è un cammino diretto nel quale ogni arco rappresenta una dipendenza secondo la convenzione stabilita.
+
+    A → B → C
+
+Significa che B dipende direttamente da A e C dipende direttamente da B. Di conseguenza, C dipende transitivamente da A lungo questo cammino.
+
+- La **dipendenza diretta** è rappresentata da un singolo arco.
+- La **dipendenza transitiva** è rappresentata da un cammino composto da due o più archi.
+
+Un cammino di dipendenza non implica che il primo nodo sia l'unico elemento da cui dipende l'ultimo: possono convergere sul medesimo nodo altri cammini e altri predecessori.
+
+### 7. Ordinamento topologico
+
+Un ordinamento topologico è una disposizione lineare di tutti i nodi di un DAG tale che, per ogni arco diretto presente nel grafo:
+
+    A → B
+
+il nodo A compare prima del nodo B nella sequenza.
+
+Esempio di grafo:
+
+    A → C
+    B → C
+    C → D
+
+Un possibile ordinamento topologico è:
+
+    A, B, C, D
+
+Anche il seguente ordinamento è valido:
+
+    B, A, C, D
+
+Entrambi rispettano le relazioni stabilite: A e B precedono C, e C precede D.
+
+#### 7.1 Unicità dell'ordinamento
+
+Un DAG può ammettere:
+
+- un solo ordinamento topologico (quando l'ordine relativo tra tutti i nodi è completamente vincolato);
+- più ordinamenti topologici distinti.
+
+Se tra due nodi non esiste alcun cammino diretto in nessuno dei due versi, il loro ordine reciproco non è vincolato dal grafo: essi possono comparire in ordine invertito all'interno di ordinamenti topologici entrambi corretti.
+
+L'ordinamento topologico non inventa né altera le relazioni: linearizza i nodi rispettando fedelmente i vincoli parziali già modellati nel grafo.
+
+#### 7.2 Assenza di ordinamento in presenza di cicli
+
+Se un grafo diretto contiene anche un solo ciclo, non esiste alcun ordinamento topologico valido.
+
+Infatti, in una sequenza ciclica come:
+
+    A → B → C → A
+
+l'ordinamento richiederebbe contemporaneamente che A preceda B, B preceda C e C preceda A. Nessuna sequenza lineare può soddisfare tale contraddizione.
+
+### 8. Esempi esplicativi
+
+#### Esempio 1 — DAG lineare
+
+    A → B → C → D
+
+Interpretazione:
+
+- B dipende da A;
+- C dipende da B;
+- D dipende da C.
+
+Radice (sorgente): A.
+
+Foglia (pozzo): D.
+
+Unico ordinamento topologico possibile: `A, B, C, D`.
+
+#### Esempio 2 — Dipendenze convergenti
+
+```text
+    A ----+
+          |
+          v
+          C -> D
+          ^
+          |
+    B ----+
+```
+
+Archi:
+
+    A → C
+    B → C
+    C → D
+
+C dipende sia da A sia da B. Entrambi devono essere soddisfatti prima di C.
+
+Radici (sorgenti): A e B.
+
+Foglia (pozzo): D.
+
+Ordinamenti topologici validi:
+
+    A, B, C, D
+    B, A, C, D
+
+#### Esempio 3 — Dipendenze divergenti
+
+    A → B
+    A → C
+
+B e C dipendono entrambi da A, ma non vi è alcuna dipendenza reciproca tra B e C.
+
+Radice (sorgente): A.
+
+Foglie (pozzi): B e C.
+
+Ordinamenti topologici validi:
+
+    A, B, C
+    A, C, B
+
+#### Esempio 4 — Grafo ciclico non valido
+
+    A → B
+    B → C
+    C → A
+
+Questo grafo contiene un ciclo chiuso e non è un DAG.
+
+Non è possibile determinare alcun ordinamento topologico. Per poterlo impiegare come modello di dipendenze, occorre revisionare le relazioni logiche ed eliminare la circolarità.
+
+#### Esempio 5 — Applicazione a un grafo di dipendenza di assurance
+
+La catena seguente costituisce uno schema puramente illustrativo di modellazione delle dipendenze in un flusso di assurance, non una sequenza prescrittiva obbligatoria:
+
+```text
+    OBJECTIVE
+        ↓
+    REQUIREMENT
+        ↓
+    ASSUMPTION
+        ↓
+    PROPERTY
+        ↓
+    ORACLE
+        ↓
+    TEST_PROCEDURE
+        ↓
+    IMPLEMENTATION
+        ↓
+    RESULT_EVIDENCE
+        ↓
+    REVIEW
+        ↓
+    APPROVAL
+```
+
+Con la convenzione adottata, ciascun elemento dipende da quello che lo precede direttamente nella catena: l'approvazione finale richiede le evidenze di revisione, le quali richiedono i risultati di test, e così via a ritroso fino agli obiettivi iniziali.
+
+Il grafo è privo di cicli ed è pertanto un DAG valido.
+
+Se durante il ciclo di vita una proprietà induce a modificare o chiarire un requisito, tale retroazione concettuale appartiene alla gestione delle revisioni o alla tracciabilità bidirezionale: non deve essere inserita automaticamente come arco inverso all'interno del medesimo DAG di dipendenza, altrimenti genererebbe un ciclo distruggendo la sequenza logica di validazione.
+
+### 9. Glossario
+
+**Arco diretto** — Connessione orientata tra due nodi; formalmente una coppia ordinata `(origine, destinazione)`.
+
+**Cammino diretto** — Sequenza ordinata di nodi distinti in cui ogni nodo è collegato al successivo da un arco orientato coerente.
+
+**Cammino di dipendenza** — Cammino diretto in cui ciascun arco modella una dipendenza secondo la convenzione stabilita.
+
+**Ciclo diretto** — Sequenza chiusa di archi orientati in cui il nodo iniziale coincide con quello finale e i nodi intermedi sono distinti tra loro.
+
+**DAG (*Directed Acyclic Graph*)** — Grafo diretto privo di cicli diretti.
+
+**Dipendenza diretta** — Relazione rappresentata da un singolo arco diretto tra due nodi adiacenti.
+
+**Dipendenza transitiva** — Relazione di dipendenza indiretta mediata da un cammino di due o più archi.
+
+**Foglia (o Pozzo / Sink)** — Nodo con grado uscente nullo (`out-deg = 0`): non ha successori diretti.
+
+**Grado entrante (*in-degree*)** — Numero di archi diretti che entrano nel nodo considerato.
+
+**Grado uscente (*out-degree*)** — Numero di archi diretti che escono dal nodo considerato.
+
+**Grafo diretto** — Struttura formale definita da un insieme finito non vuoto di nodi e da un insieme di archi orientati.
+
+**Nodo (o Vertice)** — Elemento costitutivo fondamentale di un grafo.
+
+**Nodo isolato** — Nodo privo sia di archi entranti sia di archi uscenti; agisce simultaneamente da sorgente e da pozzo.
+
+**Ordinamento topologico** — Disposizione lineare dei nodi di un DAG tale che ogni nodo preceda tutti i suoi successori diretti e indiretti.
+
+**Pozzo** — Sinonimo formale di *Foglia* in un grafo diretto.
+
+**Predecessore diretto** — Nodo da cui ha origine un arco che entra nel nodo considerato.
+
+**Radice (o Sorgente / Source)** — Nodo con grado entrante nullo (`in-deg = 0`): non ha predecessori diretti.
+
+**Sorgente** — Sinonimo formale di *Radice* in un grafo diretto.
+
+**Successore diretto** — Nodo di destinazione raggiunto da un arco che esce dal nodo considerato.
+
+### 10. Riepilogo delle convenzioni
+
+- `G = (V, E)`: grafo definito dall'insieme dei nodi `V` e dall'insieme degli archi diretti `E`.
+- `A -> B` (o `A → B`): B dipende da A; A precede e abilita B nell'ordine logico.
+- Predecessore diretto: nodo sorgente di un arco entrante nel nodo considerato.
+- Successore diretto: nodo di destinazione di un arco uscente dal nodo considerato.
+- Radice / Sorgente (*source*): nodo senza archi entranti (`in-deg = 0`).
+- Foglia / Pozzo (*sink*): nodo senza archi uscenti (`out-deg = 0`).
+- DAG: grafo diretto aciclico, privo di cammini chiusi su se stessi.
+- Cammino di dipendenza: sequenza orientata di archi che modella dipendenze dirette e transitive.
+- Ordinamento topologico: linearizzazione completa di tutti i nodi che rispetta l'orientamento di ogni arco del DAG.
+
+---
+
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="appendice-logica"></a>
+
+## ⊙ Logica del Primo Ordine
+***Guida di consultazione***
+
+### Indice
+1. **Scopo e convenzioni**
+2. **Simboli e notazioni**
+3. **Elementi fondamentali della Logica del Primo Ordine**
+4. **Connettivi logici e valori di verità**
+5. **Quantificatori**
+6. **Parentesi, raggruppamento e precedenza**
+7. **Uguaglianza, definizione e assegnazione**
+8. **Proprietà delle formule**
+9. **Glossario essenziale**
+10. **Esempi di lettura**
+11. **Convenzioni da ricordare**
+
+### 1. Scopo e convenzioni
+
+La Logica del Primo Ordine è una branca della **Logica Formale** utilizzata per rappresentare oggetti, proprietà degli oggetti e relazioni tra oggetti. Consente di esprimere enunciati mediante simboli, variabili, predicati, connettivi logici e quantificatori.
+
+Questa appendice è una guida di consultazione per riconoscere e interpretare la notazione logica utilizzata nel manuale. Introduce i simboli fondamentali, ne descrive il significato e illustra le principali convenzioni sintattiche e semantiche.
+
+Nel manuale si adotta una notazione testuale basata su caratteri ASCII, utile quando i simboli matematici non sono disponibili o non sono pratici da utilizzare. Questa scelta non costituisce uno standard universale: in altri testi, linguaggi e strumenti si possono incontrare rappresentazioni differenti dello stesso concetto.
+
+Nelle sezioni seguenti:
+- **Forma testuale adottata nel manuale** indica una rappresentazione testuale leggibile, scritta con caratteri ASCII secondo le convenzioni qui dichiarate.
+- **Simbolo matematico** indica la forma tipografica comunemente utilizzata nella notazione logica.
+- **Varianti notazionali** indica altre rappresentazioni riscontrabili in alcuni testi o formalismi.
+- **Varianti nei linguaggi di programmazione** indica operatori che possono avere un significato simile in determinati linguaggi, senza implicare che siano equivalenti universali della notazione logica.
+
+Le forme testuali qui adottate servono a leggere e scrivere il manuale: non garantiscono che la stessa sintassi sia accettata direttamente da un parser, da un dimostratore automatico o da un linguaggio di programmazione.
+
+### 2. Simboli e notazioni
+
+#### 2.1 Connettivi logici e valori di verità
+
+- **Vero `TRUE`**
+  - Forma testuale adottata nel manuale: `TRUE`
+  - Simbolo matematico: `⊤`
+  - Significato: costante logica vera. In un contesto semantico, una formula è valida se è vera in ogni interpretazione ammissibile.
+
+- **Falso `FALSE`**
+  - Forma testuale adottata nel manuale: `FALSE`
+  - Simbolo matematico: `⊥`
+  - Significato: costante logica falsa. In alcuni contesti `⊥` rappresenta anche l'assurdo o la contraddizione. Una formula contraddittoria, come `P AND NOT P`, è distinta dalla costante falsa, anche se risulta falsa in ogni interpretazione.
+
+- **Negazione `NOT`**
+  - Forma testuale adottata nel manuale: `NOT P`
+  - Simbolo matematico: `¬P`
+  - Varianti notazionali: `~P` in alcuni testi.
+  - Varianti nei linguaggi di programmazione: `!P` in alcuni linguaggi.
+  - Significato: è vera quando `P` è falsa e falsa quando `P` è vera.
+  - Corrisponde al latino `NON`
+
+- **Congiunzione `AND`**
+  - Forma testuale adottata nel manuale: `P AND Q`
+  - Simbolo matematico: `P ∧ Q`
+  - Varianti nei linguaggi di programmazione: `P && Q`; in alcuni contesti anche `P & Q`.
+  - Significato: è vera quando entrambe le formule sono vere.
+  - Corrisponde al latino `ET`
+
+- **Disgiunzione inclusiva `OR`**
+  - Forma testuale adottata nel manuale: `P OR Q`
+  - Simbolo matematico: `P ∨ Q`
+  - Varianti nei linguaggi di programmazione: `P || Q`; in alcuni contesti anche `P | Q`.
+  - Significato: è vera quando almeno una delle due formule è vera, anche se sono vere entrambe.
+  - Corrisponde al latino `VEL`
+
+- **Implicazione `->`**
+  - Forma testuale adottata nel manuale: `P -> Q`
+  - Simbolo matematico: `P → Q`
+  - Varianti notazionali o linguistiche: `P => Q` in alcuni testi e linguaggi.
+  - Significato: è falsa soltanto quando `P` è vera e `Q` è falsa.
+
+- **Doppia implicazione `<->`**
+  - Forma testuale adottata nel manuale: `P <-> Q`
+  - Simbolo matematico: `P ↔ Q`
+  - Varianti notazionali: `P iff Q`; in alcuni contesti `P <=> Q`.
+  - Significato: è vera quando `P` e `Q` hanno lo stesso valore di verità.
+
+- **Disgiunzione esclusiva `XOR`**
+  - Forma testuale adottata nel manuale: `P XOR Q`
+  - Simbolo matematico: `P ⊕ Q`
+  - Varianti nei linguaggi di programmazione: `P ^ Q` in alcuni contesti.
+  - Significato: è vera quando esattamente una tra `P` e `Q` è vera. In diversi linguaggi, `^` indica lo XOR bit a bit, non necessariamente lo XOR logico su valori booleani.
+  - Corrisponde al latino `AUT`
+
+- **Entailment / Soddisfacimento semantico `|=`**
+  - Forma testuale adottata nel manuale: `|=`
+  - Simbolo matematico: `⊨`
+  - Significato: esprime una conseguenza logica o un soddisfacimento semantico stringente. Nella modellazione dei sistemi (es. `W AND S |= R`), stabilisce che non esiste alcuno scenario operativo in cui le premesse a sinistra siano vere e la conclusione a destra risulti falsa.
+
+Le varianti dipendenti dal linguaggio non devono essere considerate intercambiabili in modo automatico. Per esempio, `!`, `~`, `&`, `|` e `^` possono avere significati differenti a seconda del formalismo.
+
+La disgiunzione inclusiva `OR` non va confusa con la disgiunzione esclusiva `XOR`.
+
+#### 2.2 Quantificatori
+
+- **Quantificatore universale `forall`**
+  - Forma testuale adottata nel manuale: `forall x`
+  - Simbolo matematico: `∀x`
+  - Variante in lingua naturale: `for all x`.
+  - Significato: afferma che una proprietà vale per tutti gli elementi del dominio.
+
+- **Quantificatore esistenziale `exists`**
+  - Forma testuale adottata nel manuale: `exists x`
+  - Simbolo matematico: `∃x`
+  - Variante in lingua naturale: `there exists x`.
+  - Significato: afferma che esiste almeno un elemento del dominio per cui vale una proprietà.
+
+- **Esistenza unica `exists!`**
+  - Forma testuale adottata nel manuale: `exists! x`
+  - Simbolo matematico: `∃!x`
+  - Significato: afferma che esiste esattamente un elemento per cui vale una proprietà.
+
+`exists!` è una convenzione testuale adottata nel manuale, non una codifica ASCII universale. L'esistenza unica può anche essere espressa mediante una formula composta con i quantificatori esistenziale e universale, l'uguaglianza e i connettivi logici.
+
+#### 2.3 Uguaglianza e confronti
+
+- **Uguaglianza `=`**
+  - Notazione testuale e simbolo matematico: `x = y`
+  - Significato: afferma che `x` e `y` denotano lo stesso elemento.
+
+- **Diversità `!=`**
+  - Forma testuale: `x != y`
+  - Simbolo matematico: `x ≠ y`
+  - Variante nei linguaggi di programmazione: `x <> y` in alcuni linguaggi.
+  - Significato: afferma che `x` e `y` denotano elementi distinti.
+
+- **Minore di `<`**
+  - Notazione testuale e simbolo matematico: `x < y`
+  - Significato: in un dominio ordinato, afferma che `x` è minore di `y`.
+
+- **Maggiore di `>`**
+  - Notazione testuale e simbolo matematico: `x > y`
+  - Significato: in un dominio ordinato, afferma che `x` è maggiore di `y`.
+
+- **Minore o uguale `<=`**
+  - Forma testuale: `x <= y`
+  - Simbolo matematico: `x ≤ y`
+  - Significato: in un dominio ordinato, afferma che `x` è minore o uguale a `y`.
+
+- **Maggiore o uguale `>=`**
+  - Forma testuale: `x >= y`
+  - Simbolo matematico: `x ≥ y`
+  - Significato: in un dominio ordinato, afferma che `x` è maggiore o uguale a `y`.
+
+I simboli `<`, `>`, `≤` e `≥` presuppongono una relazione d'ordine appropriata nel dominio considerato. Non sono automaticamente applicabili a qualsiasi coppia di oggetti.
+
+#### 2.4 Variabili, costanti, funzioni e predicati
+
+- **Variabile** — Notazione tipica: `x`, `y`, `z`. Simbolo che può denotare un elemento del dominio.
+- **Costante** — Notazione tipica: `a`, `b`, `c`. Simbolo interpretato come un elemento specifico del dominio.
+- **Funzione** — Notazione tipica: `f(x)`, `g(x,y)`. Espressione che, applicata a una tupla di argomenti, denota un elemento del dominio.
+- **Predicato** — Notazione tipica: `P(x)`, `R(x,y)`. Simbolo che esprime una proprietà o una relazione e che, applicato a termini, produce una formula atomica.
+- **Formula atomica** — Esempi: `P(x)`, `R(x,y)`, `x = y`. Formula elementare, non costruita mediante connettivi o quantificatori a partire da formule più semplici.
+- **Formula composta** — Esempio: `P(x) AND Q(x)`. Formula ottenuta combinando formule mediante connettivi logici o quantificatori.
+- **Termine** — Esempi: `x`, `a`, `f(x)`. Espressione che denota un elemento del dominio.
+- **Argomento** — In `f(x)`, `x` è l'argomento della funzione; in `R(x,y)`, `x` e `y` sono gli argomenti del predicato.
+- **Arità** — Numero di argomenti di una funzione o di un predicato. Per esempio, `f(x,y)` e `R(x,y)` hanno arità 2.
+
+Una funzione di arità `n`, interpretata su un dominio `D`, associa a ogni tupla di `n` elementi di `D` un elemento di `D`; formalmente, è una mappa da `D^n` a `D`. Una costante può essere vista come una funzione di arità zero.
+
+Un predicato di arità `n` è interpretato come una relazione sul dominio, cioè un sottoinsieme di `D^n`. Una formula atomica come `R(x,y)` è vera quando la tupla denotata dai suoi argomenti appartiene alla relazione interpretata da `R`.
+
+Un termine, come `f(x)`, denota un oggetto e non è, di per sé, una proposizione vera o falsa. Una formula atomica, come `P(f(x))`, può invece ricevere un valore di verità in base all'interpretazione e all'assegnazione delle eventuali variabili libere.
+
+#### 2.5 Parentesi e punteggiatura
+
+- **Parentesi tonde** — `(` e `)`. Delimitano argomenti, formule e sottoformule e rendono esplicita la struttura di un'espressione.
+- **Virgola** — `,`. Separa gli argomenti di funzioni e predicati. Può separare anche variabili quantificate nelle notazioni che adottano questa convenzione.
+- **Due punti** — `:`. Possono introdurre una condizione o una formula dopo un quantificatore, per esempio `forall x: P(x)`. È una convenzione tipografica, non un simbolo logico universale.
+- **Punto** — `.`. In alcune notazioni separa il quantificatore dal corpo della formula; in altri contesti ha significati differenti.
+- **Parentesi graffe e quadre** — `{ }` e `[ ]`. Possono essere usate per raggruppare espressioni o migliorare la leggibilità, secondo le convenzioni adottate.
+
+Le parentesi tonde sono sufficienti per esplicitare la struttura delle formule. L'uso alternato di parentesi differenti è una convenzione tipografica, non un requisito della Logica del Primo Ordine.
+
+#### 2.6 Simboli di insiemi e relazioni tra insiemi
+
+Questi simboli appartengono alla notazione matematica generale e possono essere utili quando il dominio o le proprietà considerate sono descritti mediante insiemi.
+
+- **Appartenenza**
+  - Simbolo matematico: `x ∈ A`
+  - Etichetta mnemonica possibile: `IN`
+  - Significato: `x` appartiene all'insieme `A`.
+
+- **Non appartenenza**
+  - Simbolo matematico: `x ∉ A`
+  - Etichetta mnemonica possibile: `NOT_IN`
+  - Significato: `x` non appartiene all'insieme `A`.
+
+- **Inclusione non stretta**
+  - Simbolo matematico: `A ⊆ B`
+  - Etichetta mnemonica possibile: `SUBSET_EQ`
+  - Significato: ogni elemento di `A` appartiene anche a `B`; è ammessa l'uguaglianza tra i due insiemi.
+
+- **Inclusione stretta**
+  - Simbolo matematico: `A ⊊ B`
+  - Etichetta mnemonica possibile: `PROPER_SUBSET`
+  - Significato: `A` è incluso in `B` e i due insiemi sono distinti.
+
+- **Insieme vuoto**
+  - Simbolo matematico: `∅`
+  - Etichetta mnemonica possibile: `EMPTY_SET`
+  - Significato: insieme privo di elementi.
+
+- **Numeri naturali**
+  - Simbolo matematico: `ℕ`
+  - Variante testuale riscontrabile: `N`
+  - Significato: insieme dei numeri naturali; la presenza dello zero dipende dalla convenzione adottata.
+
+- **Numeri interi**
+  - Simbolo matematico: `ℤ`
+  - Variante testuale riscontrabile: `Z`
+  - Significato: insieme dei numeri interi.
+
+- **Numeri razionali**
+  - Simbolo matematico: `ℚ`
+  - Variante testuale riscontrabile: `Q`
+  - Significato: insieme dei numeri razionali.
+
+- **Numeri reali**
+  - Simbolo matematico: `ℝ`
+  - Variante testuale riscontrabile: `R`
+  - Significato: insieme dei numeri reali.
+
+Le etichette `IN`, `NOT_IN`, `SUBSET_EQ`, `PROPER_SUBSET` ed `EMPTY_SET` sono promemoria descrittivi, non una sintassi ASCII standard della Logica del Primo Ordine. Analogamente, `N`, `Z`, `Q` e `R` possono essere usate come abbreviazioni testuali in alcuni contesti, ma il loro significato va ricavato dalle convenzioni adottate.
+
+Il simbolo `⊂` è usato in modo non uniforme: alcuni autori lo impiegano per l'inclusione non stretta, altri per quella stretta. Per evitare ambiguità, in questa appendice si usa `⊆` per l'inclusione non stretta e `⊊` per quella stretta.
+
+#### 2.7 Simboli e sequenze da interpretare con cautela
+
+- **`!`** — Può indicare negazione in alcuni linguaggi oppure comparire in `!=` e nella notazione di esistenza unica. Il significato dipende dal contesto.
+- **`~`** — Può indicare negazione in alcuni linguaggi o formalismi; non è universalmente equivalente a `NOT`.
+- **`&`** — Può indicare congiunzione in alcuni contesti o un operatore bit a bit in altri.
+- **`|`** — Può indicare disgiunzione in alcuni contesti o un operatore bit a bit in altri.
+- **`->`** — È la forma testuale adottata nel manuale per l'implicazione; in altri linguaggi può avere significati differenti.
+- **`=>`** — Può indicare implicazione in alcuni linguaggi o testi, ma non è una rappresentazione universale di `≥`.
+- **`==`** — Indica il confronto di uguaglianza in molti linguaggi di programmazione; non coincide necessariamente con la notazione matematica `=`.
+- **`:=`** — Può introdurre una definizione o un'assegnazione, secondo il contesto. Non va automaticamente interpretato come uguaglianza logica.
+- **`:`** — Può introdurre una condizione, fungere da separatore o avere altri usi convenzionali.
+- **`::`** — È un separatore o operatore in alcuni linguaggi; non è un simbolo standard della Logica del Primo Ordine con un unico significato.
+
+La forma grafica, da sola, non è sempre sufficiente a identificare il significato di un simbolo. Occorre considerare il contesto matematico, logico o informatico in cui compare.
+
+### 3. Elementi fondamentali della Logica del Primo Ordine
+
+#### 3.1 Dominio di interpretazione
+
+Il **dominio** è l'insieme degli oggetti di cui si parla. Le variabili e le costanti denotano elementi del dominio; le funzioni restituiscono elementi del dominio; i predicati esprimono proprietà o relazioni tra elementi.
+
+Per esempio, se il dominio è costituito da numeri interi, `x` può rappresentare un intero e `P(x)` può esprimere una proprietà di tale intero.
+
+> Ad esempio, se il dominio è l'insieme di tutti gli esseri umani, x può indicare una persona e P(x) può significare «x è alto».
+>
+
+Nella semantica classica della Logica del Primo Ordine si assume normalmente che il dominio contenga almeno un elemento.
+
+#### 3.2 Termini
+
+I termini identificano o descrivono oggetti del dominio. I termini fondamentali sono:
+
+- le variabili, come `x` e `y`;
+- le costanti, come `a` e `b`;
+- le applicazioni di funzione, come `f(x)` e `g(x,y)`.
+
+Un termine non è, di per sé, un'affermazione vera o falsa. Per esempio, `f(x)` denota un oggetto, non una proposizione.
+
+#### 3.3 Predicati e formule atomiche
+
+Un predicato esprime una proprietà o una relazione. Quando viene applicato ai termini, produce una formula atomica.
+
+Esempi:
+
+- `P(x)`: proprietà di un oggetto;
+- `R(x,y)`: relazione tra due oggetti;
+- `x = y`: uguaglianza tra due termini.
+
+Una formula atomica può essere vera o falsa in funzione dell'interpretazione e dei valori assegnati alle eventuali variabili libere.
+
+#### 3.4 Formule composte
+
+Le formule composte si costruiscono a partire da formule atomiche o da altre formule mediante connettivi e quantificatori.
+
+Esempi:
+
+- `NOT P(x)`
+- `P(x) AND Q(x)`
+- `P(x) OR Q(x)`
+- `P(x) -> Q(x)`
+- `forall x: P(x)`
+
+Le parentesi possono essere usate per specificare in modo esplicito quali parti della formula sono combinate tra loro.
+
+#### 3.5 Variabili libere e vincolate
+
+Una variabile è **vincolata** quando la sua occorrenza ricade nell'ambito di un quantificatore che la quantifica. È **libera** quando non è vincolata da un quantificatore che ne comprende l'occorrenza.
+
+Esempi:
+
+- In `forall x: P(x)`, l'occorrenza di `x` in `P(x)` è vincolata.
+- In `P(x)`, l'occorrenza di `x` è libera.
+- In `(forall x: P(x)) AND Q(x)`, l'occorrenza di `x` in `P(x)` è vincolata, mentre quella in `Q(x)` è libera.
+
+La stessa lettera può comparire in una formula con occorrenze libere e vincolate: occorre quindi considerare l'ambito di ciascun quantificatore, non soltanto il nome della variabile.
+
+### 4. Connettivi logici e valori di verità
+
+Le formule della logica classica assumono uno dei due valori di verità: vero o falso. I connettivi combinano formule e determinano il valore di verità della formula composta in funzione dei valori delle formule componenti.
+
+#### 4.1 Tabella di verità
+
+Nella tabella seguente, `P` e `Q` sono formule; `V` indica vero e `F` indica falso.
+
+| P | Q | `NOT P` | `P AND Q` | `P OR Q` | `P -> Q` | `P <-> Q` | `P XOR Q` |
+|---|---|---|---|---|---|---|---|
+| V | V | F | V | V | V | V | F |
+| V | F | F | F | V | F | F | V |
+| F | V | V | F | V | V | F | V |
+| F | F | V | F | F | V | V | F |
+
+#### 4.2 Interpretazione dei connettivi
+
+- **Negazione (`NOT`, `¬`)**: inverte il valore di verità della formula.
+- **Congiunzione (`AND`, `∧`)**: è vera soltanto se entrambe le formule sono vere.
+- **Disgiunzione inclusiva (`OR`, `∨`)**: è vera se almeno una delle formule è vera.
+- **Implicazione (`->`, `→`)**: è falsa soltanto quando l'antecedente è vero e il conseguente è falso.
+- **Doppia implicazione (`<->`, `↔`)**: è vera quando le due formule hanno lo stesso valore di verità.
+- **Disgiunzione esclusiva (`XOR`, `⊕`)**: è vera quando le due formule hanno valori di verità diversi.
+
+L'implicazione non esprime necessariamente una relazione causale. Nella logica classica, il suo significato è determinato dalla tabella di verità.
+
+### 5. Quantificatori
+
+I quantificatori esprimono proprietà che valgono per tutti gli elementi del dominio oppure per almeno un elemento.
+
+#### 5.1 Quantificatore universale
+
+La formula
+
+`forall x: P(x)`
+
+si legge: «per ogni `x`, vale `P(x)`».
+
+È vera se `P(x)` è vera per tutti gli elementi del dominio.
+
+#### 5.2 Quantificatore esistenziale
+
+La formula
+
+`exists x: P(x)`
+
+si legge: «esiste un `x` tale che `P(x)`».
+
+È vera se almeno un elemento del dominio soddisfa `P(x)`.
+
+#### 5.3 Esistenza unica
+
+La formula
+
+`exists! x: P(x)`
+
+si legge: «esiste un unico `x` tale che `P(x)`».
+
+Richiede entrambe le condizioni seguenti:
+
+1. Esiste almeno un elemento che soddisfa `P`.
+2. Ogni elemento che soddisfa `P` è uguale a quell'unico elemento.
+
+#### 5.4 Ambito dei quantificatori
+
+L'ambito, o **scope**, di un quantificatore è la parte della formula alla quale si applica.
+
+Per esempio:
+
+`(forall x: P(x)) AND Q(x)`
+
+Il quantificatore `forall x` si applica soltanto a `P(x)`. L'occorrenza di `x` in `Q(x)` è libera.
+
+Le parentesi rendono esplicito l'ambito e aiutano a evitare interpretazioni errate.
+
+#### 5.5 Negazione dei quantificatori
+
+La negazione di una formula quantificata può essere riscritta scambiando il quantificatore universale con quello esistenziale e negando la formula interna:
+
+- `NOT (forall x: P(x))` equivale a `exists x: NOT P(x)`.
+- `NOT (exists x: P(x))` equivale a `forall x: NOT P(x)`.
+
+In termini intuitivi, negare che una proprietà valga per tutti significa affermare che esiste almeno un'eccezione. Negare che esista un elemento con una proprietà significa affermare che nessun elemento la possiede.
+
+### 6. Parentesi, raggruppamento e precedenza
+
+Le parentesi specificano come le componenti di una formula devono essere raggruppate.
+
+Per esempio:
+
+`(P OR Q) AND R`
+
+indica la congiunzione tra la formula `P OR Q` e la formula `R`.
+
+La formula
+
+`P OR (Q AND R)`
+
+ha invece una struttura differente: la congiunzione `Q AND R` costituisce una sottoformula della disgiunzione.
+
+Le due formule non sono generalmente equivalenti.
+
+#### 6.1 Uso di parentesi differenti
+
+Quando un'espressione contiene più livelli di raggruppamento, si possono utilizzare parentesi differenti per migliorarne la leggibilità, per esempio:
+
+`{[(P AND Q) OR R] -> S}`
+
+L'uso alternato di parentesi graffe, quadre e tonde è una convenzione tipografica, non un requisito della Logica del Primo Ordine. Le parentesi tonde sono sufficienti anche quando vengono ripetute a livelli diversi, purché siano bilanciate e la struttura risulti chiara.
+
+#### 6.2 Precedenza degli operatori
+
+Alcuni testi adottano regole di precedenza per ridurre il numero di parentesi. Le convenzioni non sono identiche in tutti i formalismi.
+
+Quando non è stata definita una regola di precedenza condivisa, è preferibile utilizzare le parentesi per rendere esplicita la struttura della formula.
+
+Non bisogna trasferire automaticamente le regole di precedenza di un linguaggio di programmazione alla notazione logica.
+
+### 7. Uguaglianza, definizione e assegnazione
+
+Queste tre nozioni possono essere rappresentate con simboli simili, ma hanno funzioni differenti.
+
+#### 7.1 Uguaglianza
+
+`x = y`
+
+Esprime una relazione di uguaglianza tra due termini: afferma che essi denotano lo stesso elemento.
+
+#### 7.2 Definizione
+
+`f(x) := x + 1`
+
+In alcuni contesti, `:=` introduce una definizione. La forma precisa della definizione dipende dal formalismo adottato.
+
+Il simbolo `:=` non è, in generale, un connettivo della Logica del Primo Ordine e non deve essere automaticamente interpretato come uguaglianza logica.
+
+#### 7.3 Assegnazione
+
+Nei linguaggi di programmazione, un'istruzione come
+
+`x = x + 1`
+
+può indicare l'assegnazione di un nuovo valore alla variabile `x`, se il linguaggio adotta `=` per tale scopo.
+
+Altri linguaggi usano `:=` o altre forme di assegnazione.
+
+In matematica, invece, l'equazione x = x + 1 è un'affermazione di uguaglianza che risulta impossibile, non ammettendo alcuna soluzione nel dominio dei numeri ordinari.
+
+Il significato di una notazione deve quindi essere interpretato nel linguaggio in cui compare.
+
+### 8. Proprietà delle formule
+
+Le seguenti nozioni appartengono alla semantica classica della logica del primo ordine. Per le formule con variabili libere, la valutazione dipende anche dall'assegnazione dei valori a tali variabili.
+
+#### 8.1 Soddisfacibilità
+
+Una formula è **soddisfacibile** se esiste almeno un'interpretazione ammissibile e almeno un'assegnazione delle sue variabili libere per cui risulta vera.
+
+#### 8.2 Insoddisfacibilità
+
+Una formula è **insoddisfacibile** se non esiste alcuna interpretazione ammissibile né alcuna assegnazione delle sue variabili libere per cui risulti vera.
+
+#### 8.3 Validità logica
+
+Una formula è **valida** se risulta vera in ogni interpretazione ammissibile e per ogni assegnazione delle sue variabili libere.
+
+#### 8.4 Equivalenza logica
+
+Due formule sono **logicamente equivalenti** se, in ogni interpretazione ammissibile e per ogni assegnazione delle variabili libere che compaiono nelle formule, hanno lo stesso valore di verità.
+
+Una notazione possibile per indicare l'equivalenza logica è `≡`, ma il simbolo non è usato uniformemente in tutti i testi: può indicare anche altre forme di identità o equivalenza definite dal formalismo.
+
+### 9. Glossario essenziale
+
+- **Ambito (scope)** — Parte della formula governata da un quantificatore o delimitata da un raggruppamento.
+- **Argomento** — Termine fornito a una funzione o a un predicato.
+- **Arità** — Numero di argomenti di una funzione o di un predicato.
+- **Connettivo** — Operatore logico che combina o modifica formule.
+- **Costante** — Simbolo interpretato come un elemento specifico del dominio.
+- **Dominio** — Insieme degli oggetti considerati nell'interpretazione.
+- **Equivalenza logica** — Relazione tra formule che hanno lo stesso valore di verità in ogni interpretazione e per ogni assegnazione pertinente.
+- **Formula atomica** — Formula elementare, come `P(x)` o `x = y`.
+- **Formula composta** — Formula costruita usando connettivi o quantificatori.
+- **Funzione** — Simbolo interpretato come una funzione dagli argomenti a un elemento del dominio.
+- **Insoddisfacibile** — Formula che non è vera in alcuna interpretazione ammissibile e per alcuna assegnazione delle variabili libere.
+- **Predicato** — Simbolo che esprime una proprietà o una relazione tra elementi del dominio.
+- **Quantificatore** — Operatore che esprime universalità o esistenza.
+- **Soddisfacibile** — Formula vera in almeno un'interpretazione ammissibile e per almeno un'assegnazione delle variabili libere.
+- **Termine** — Espressione che denota un elemento del dominio.
+- **Valida** — Formula vera in tutte le interpretazioni ammissibili e per tutte le assegnazioni delle variabili libere.
+- **Variabile** — Simbolo che può denotare un elemento del dominio.
+- **Variabile libera** — Variabile la cui occorrenza non è vincolata da un quantificatore.
+- **Variabile vincolata** — Variabile la cui occorrenza ricade nell'ambito di un quantificatore corrispondente.
+
+### 10. Esempi di lettura
+
+Gli esempi seguenti illustrano la lettura della notazione e non introducono nuove convenzioni.
+
+#### Esempio 1 — Proprietà universale
+
+`forall x: P(x)`
+
+L'enunciato afferma che ogni elemento del dominio soddisfa la proprietà `P`.
+
+#### Esempio 2 — Esistenza di un elemento
+
+`exists x: P(x)`
+
+L'enunciato afferma che almeno un elemento del dominio soddisfa la proprietà `P`.
+
+#### Esempio 3 — Relazione tra due oggetti
+
+`R(x,y)`
+
+Il predicato `R` esprime una relazione tra gli elementi denotati da `x` e `y`. Il significato concreto della relazione dipende dall'interpretazione del predicato.
+
+#### Esempio 4 — Implicazione
+
+`P(x) -> Q(x)`
+
+La formula afferma che, se `P(x)` è vera, allora `Q(x)` è vera. Nella logica classica, la formula è falsa soltanto quando `P(x)` è vera e `Q(x)` è falsa.
+
+Regola: *«Se piove (P), allora prendo l'ombrello (Q).»*  
+Analizziamo i quattro casi possibili:  
+1. Piove (P è vero) e prendo l'ombrello (Q è vero): La regola è stata rispettata (Vero).
+2. Piove (P è vero) ma NON prendo l'ombrello (Q è falso): La regola è stata violata (Falso). Questo è l'unico caso in cui l'implicazione è falsa.
+3. NON piove (P è falso) eppure prendo comunque l'ombrello (Q è vero): La regola iniziale diceva solo cosa fare se piove, ma non vietava di portare l'ombrello anche con il sole (magari lo uso come parasole). Di conseguenza, la regola non è stata smentita (Vero).
+4. NON piove (P è falso) e NON prendo l'ombrello (Q è falso): La premessa non si è verificata e la regola non è stata violata (Vero).
+
+#### Esempio 5 — Negazione di una proprietà universale
+
+`NOT (forall x: P(x))`
+
+La formula equivale a:
+
+`exists x: NOT P(x)`
+
+Esprime che almeno un elemento del dominio non soddisfa `P`.
+
+#### Esempio 6 — Formula con una variabile libera
+
+`(forall x: P(x)) AND Q(y)`
+
+La variabile `x` è vincolata nell'ambito di `P(x)`, mentre `y` è libera in `Q(y)`.
+
+### 11. Convenzioni da ricordare
+
+- `NOT`, `AND`, `OR`, `->` e `<->` sono le forme testuali adottate nel manuale per i principali connettivi logici.
+- `forall`, `exists` ed `exists!` sono le forme testuali adottate per i quantificatori universale, esistenziale ed esistenziale unico.
+- Le forme testuali sono convenzioni di scrittura del manuale, non una sintassi universale riconosciuta da tutti gli strumenti.
+- Le variabili denotano elementi del dominio; le funzioni producono termini; i predicati applicati a termini producono formule atomiche.
+- I quantificatori vincolano le variabili nel proprio ambito; le occorrenze esterne a tale ambito possono rimanere libere.
+- Le parentesi rendono esplicito il raggruppamento delle formule. Se la precedenza degli operatori non è definita, è preferibile non affidarsi a regole implicite.
+- Le varianti notazionali e gli operatori dei linguaggi di programmazione vanno interpretati nel rispettivo contesto.
+
+---
+
+<div class="pagebreak"></div>
 
 [Torna all'Indice](#indice-completo)
 
@@ -30268,7 +31632,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **In inglese:** *Alert Carpet Bombing*  
 **In italiano:** Bombardamento a tappeto di allarmi  
 **Definizione:** Pratica scorretta consistente nel generare automaticamente centinaia di regole di allerta per ogni metrica o risorsa esposta dall'infrastruttura, privando le notifiche di azionabilità e inondando gli operatori di rumore continuo.  
-**Nel contesto del manuale:** Analizzato nello Step 27 come una delle cause primarie dell'abbandono della sorveglianza e della disattivazione dei canali di reperibilità.  
+**Nel contesto del manuale:** analizzato nel Capitolo 27 come una delle cause primarie dell'abbandono della sorveglianza e della disattivazione dei canali di reperibilità.  
 **Distinzioni importanti:** Contrasta con l'alerting basato sui sintomi e sul consumo del budget di errore (*Burn Rate*).  
 **Termini correlati:** Alert Fatigue, Actionability, Alert.
 
@@ -30399,7 +31763,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **In inglese:** *Assumption Drift*  
 **In italiano:** Deriva operativa delle assunzioni  
 **Definizione:** Il fenomeno per cui un'assunzione di contesto dimostrata vera al momento del rilascio degrada e diventa falsa nel tempo a causa dell'evoluzione dell'ambiente, dei volumi di carico, delle dipendenze terze o delle modifiche ai protocolli.  
-**Nel contesto del manuale:** Analizzato nello Step 12 e nello Step 32 come una delle principali cause di guasti silenti nei sistemi stabili privi di modifiche al codice sorgente.  
+**Nel contesto del manuale:** analizzato nel Capitolo 12 e nello Step 32 come una delle principali cause di guasti silenti nei sistemi stabili privi di modifiche al codice sorgente.  
 **Termini correlati:** Assumption Verification, Periodic Review, Model Drift.
 
 #### Assumption Mocking
