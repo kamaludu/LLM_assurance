@@ -1,7 +1,7 @@
 /* =========================================================================
  * ASSURANCE DEL SOFTWARE ASSISTITO DA LLM - DIZIONARIO CONTESTUALE
  * Autore:       Cristian Evangelisti
- * File:         contextual_content.js
+ * File:         contextual_content.js (PARTE 1 DI 3: Lettere A - D)
  * Descrizione:  Dataset contestuale per menù interattivi e tooltip di supporto.
  *               Fornisce definizioni, categorie e alias dei concetti di assurance.
  * Licenza:      Doppia licenza (Dual-License):
@@ -13,7 +13,7 @@
  *               Assistito da LLM" rilasciato sotto licenza GNU FDL 1.3+.
  * ========================================================================= */
 
- // Namespace globale: window.__CONTEXTUAL_DICT__
+// Namespace globale: window.__CONTEXTUAL_DICT__
 
 window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
   // =========================================================================
@@ -204,6 +204,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Fondamenti Cognitivi",
     definition: "Fenomeno per cui il costo temporale e cognitivo per generare codice tramite LLM tende a zero, mentre il costo e la complessità per verificarne la correttezza semantica rimangono costanti o aumentano.",
     aliases: ["Generation-Verification Asymmetry"]
+  },
+  "Asintotico": {
+    title: "Asintotico (Comportamento Asintotico)",
+    category: "Complessità Computazionale & Liveness",
+    definition: "Analisi dell'andamento temporale o spaziale di un algoritmo al tendere della dimensione dell'input all'infinito (notazione Big-O), o condizione formale che si verificherà asintoticamente nel ciclo di vita del sistema (proprietà di vividezza / liveness).",
+    aliases: ["asintotico", "asintotica", "asintotici", "asintotiche", "asintoticamente", "comportamento asintotico"]
   },
   "Assertion": {
     title: "Assertion (Asserzione)",
@@ -461,6 +467,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Rapporto adimensionale che misura la velocità con cui un sistema consuma il proprio budget di errore (1 - SLO) rispetto alla velocità nominale di consumo costante. Base dell'alerting sintomatico.",
     aliases: ["Tasso di Consumo del Budget"]
   },
+  "Burning": {
+    title: "Burning (Distruzione di Unità Digitali)",
+    category: "Invarianti di Stato",
+    definition: "Processo di distruzione o rimozione permanente di unità digitali o token dalla circolazione per ridurne la disponibilità complessiva, preservando la tracciabilità delle transizioni di stato e l'integrità del modello contabile.",
+    aliases: ["burning", "distruzione di token", "bruciatura di token"]
+  },
 
   // =========================================================================
   // LETTERA C
@@ -482,6 +494,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Sicurezza Architetturale",
     definition: "Riferimento infalsificabile a una risorsa di sistema che incorpora in modo inscindibile il diritto di compiere specifiche azioni su di essa, opponendosi all'autorità ambientale (Capability-Based Security).",
     aliases: ["Capacità", "Capability-Based Security"]
+  },
+  "CAP Theorem": {
+    title: "CAP Theorem (Teorema di Brewer)",
+    category: "Sistemi Distribuiti & Consistenza",
+    definition: "Teorema fondamentale dell'informatica distribuita che stabilisce che un sistema di memorizzazione dati distribuito non può garantire contemporaneamente tutte e tre le proprietà di Consistenza forte (C), Disponibilità (A) e Tolleranza alle partizioni di rete (P).",
+    aliases: ["Teorema CAP", "teorema CAP", "CAP theorem", "Teorema di Brewer", "teorema di Brewer"]
   },
   "Cardinality Blindness": {
     title: "Cardinality Blindness (Cecità da Cardinalità)",
@@ -1344,18 +1362,6 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Sessione controllata in cui si inietta deliberatamente un guasto in ambiente clone per misurare empiricamente l'efficacia degli allarmi e l'eseguibilità dei runbook da parte degli operatori.",
     aliases: ["Operational Drill"]
   },
-  "Garanzia Condizionale": {
-    title: "Garanzia Condizionale",
-    category: "Fondamenti Epistemici",
-    definition: "Il principio logico per cui il software garantisce il raggiungimento del requisito reale se e solo se le assunzioni formulate sul mondo esterno circostante risultano valide.",
-    aliases: ["Garanzia Condizionale del Software"]
-  },
-  "Gate Policy": {
-    title: "Gate Policy (Politica di Gate)",
-    category: "Governance & Decisione",
-    definition: "Specifica dichiarativa formale che stabilisce quali evidenze siano obbligatorie per ciascun claim, quali soglie quantitative debbano essere rispettate e quali tolleranze ammesse.",
-    aliases: ["Politica di Gate", "Politiche di Gate"]
-  },
   "Gate Theater": {
     title: "Gate Theater (La Finzione del Gate)",
     category: "Anti-Pattern di Pipeline",
@@ -1694,6 +1700,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Applicare migrazioni di database distruttive contestuali al rilascio del codice, rendendo impossibile il rollback della versione precedente.",
     aliases: ["The Irreversible Migration Trap", "Trappola della Migrazione Irreversibile"]
   },
+  "Isomorfismo": {
+    title: "Isomorfismo (Corrispondenza Strutturale)",
+    category: "Proprietà Relazionali & Testing",
+    definition: "Corrispondenza biunivoca che preserva integralmente le relazioni e le proprietà logiche tra due strutture o insiemi differenti. Alla base delle proprietà di invertibilità round-trip: decode(encode(x)) == x.",
+    aliases: ["isomorfismo", "isomorfo", "isomorfi", "isomorfe", "isomorfica", "isomorfismo strutturale"]
+  },
   "Ispezione Inversa": {
     title: "Ispezione Inversa (Protocollo di Ispezione Inversa)",
     category: "Metodologia di Revisione",
@@ -1890,6 +1902,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Metodologia di prova che valuta le relazioni necessarie (Relazioni Metamorfiche) tra gli output di esecuzioni multiple a fronte di specifiche trasformazioni degli input, risolvendo l'assenza di un oracolo diretto.",
     aliases: ["Testing Metamorfico", "Oracolo Metamorfico"]
   },
+  "Minting": {
+    title: "Minting (Emissione di Unità Digitali)",
+    category: "Invarianti di Stato",
+    definition: "Processo di creazione, conio o emissione controllata di nuove unità digitali o token all'interno di un sistema; costituisce una delle uniche eccezioni autorizzate alla legge di conservazione della massa/stato.",
+    aliases: ["minting", "conio", "creazione di token"]
+  },
   "Missing Read-Only Boundary": {
     title: "Missing Read-Only Boundary",
     category: "Anti-Pattern Operativo",
@@ -1932,6 +1950,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Oracolo di test che confronta l'evoluzione dello stato del software con un automa a stati finiti (FSM) o una specifica formale astratta (es. modello TLA+).",
     aliases: ["Oracolo Basato su Modello"]
   },
+  "Modello di Usura Classico": {
+    title: "Modello di Usura Classico (Affidabilità Hardware Classica)",
+    category: "Modello di Rischio & Affidabilità",
+    definition: "Paradigma classico dell'ingegneria meccanica/fisica in cui il rischio è modellato come probabilità di guasto per usura, attrito o fatica nel tempo (P * G). Inapplicabile al software assistito da LLM, dove i difetti logici sono deterministici e presenti sin dall'istante zero.",
+    aliases: ["Modello di usura", "modello di usura classico", "usura dei materiali", "tasso di guasto per usura", "usura classica"]
+  },
   "Modello Mondo-Macchina": {
     title: "Modello Mondo-Macchina (W, M, S, R)",
     category: "Ingegneria dei Requisiti",
@@ -1960,7 +1984,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Monotonicità (Monotonicity)",
     category: "Proprietà Relazionali",
     definition: "Proprietà relazionale per cui l'ordinamento relativo degli input si preserva sull'ordinamento degli output corrispondenti: x <= y -> f(x) <= f(y).",
-    aliases: ["Monotonicity", "Monotonia"]
+    aliases: ["Monotonicity", "Monotonia", "monotonia", "monotonico", "monotonica", "monotonici", "monotoniche", "monotonicamente"]
   },
   "MTTD & MTTR": {
     title: "MTTD & MTTR (Indicatori Operativi di Resilienza)",
@@ -2076,6 +2100,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Ingegneria dei Sistemi & Telemetria",
     definition: "La proprietà che consente di dedurre lo stato interno del software e il rispetto degli invarianti basandosi unicamente sui dati telemetrici emessi verso l'esterno.",
     aliases: ["Osservabilità"]
+  },
+  "Ontologia": {
+    title: "Ontologia (Modello Ontologico)",
+    category: "Ingegneria dei Requisiti",
+    definition: "Modello formale che definisce le categorie, le entità, le proprietà e le relazioni logiche esistenti all'interno di uno specifico dominio di conoscenza, necessario per perimetrare il Problem Space prima della soluzione software.",
+    aliases: ["ontologia", "ontologico", "ontologica", "ontologici", "ontologiche", "ontologia causale"]
   },
   "Operational Specification": {
     title: "Operational Specification (Specifica Operativa)",
@@ -2355,7 +2385,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Priors Statistici del Modello",
     category: "Allineamento AI & Bias",
     definition: "Pattern, convenzioni e assunzioni statisticamente dominanti nel corpus di addestramento dell'LLM (es. float IEEE 754, connessione HTTP affidabile) iniettate tacitamente in assenza di vincoli nel prompt.",
-    aliases: ["Priors del Modello"]
+    aliases: ["Priors del Modello", "priors statistici", "Priors statistici", "Priors", "priors", "prior statistici", "prior", "prior del modello"]
   },
   "Probe Effect": {
     title: "Probe Effect (Effetto Sonda)",
@@ -2441,6 +2471,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Metodologia di prova in cui i test verificano la tenuta di invarianti universali su ampie distribuzioni di dati sintetizzati proceduralmente, supportata da algoritmi di shrinking.",
     aliases: ["PBT", "Test Basato su Proprietà"]
   },
+  "Proprietà Metamorfica": {
+    title: "Proprietà Metamorfica (Relazione Metamorfica)",
+    category: "Testing & Oracoli",
+    definition: "Regola logica o algebrica che definisce come l'output di un sistema deve cambiare (o rimanere invariato) a fronte di una specifica trasformazione controllata dell'input, consentendo la verifica in assenza di un oracolo esatto a priori.",
+    aliases: ["proprietà metamorfica", "proprietà metamorfiche", "relazione metamorfica", "relazioni metamorfiche", "Relazioni Metamorfiche", "Metamorphic Property"]
+  },
   "Provenance": {
     title: "Provenance (Provenienza)",
     category: "Supply Chain & Governance",
@@ -2465,7 +2501,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Race Condition (Condizione di Competizione)",
     category: "Concorrenza & Parallelismo",
     definition: "Anomalia temporale in cui il risultato o l'integrità del sistema dipende dalla sequenza o dalla sincronizzazione incontrollata con cui due o più thread o processi concorrenti accedono alla medesima risorsa condivisa.",
-    aliases: ["Condizione di Competizione", "Condizione di Gara"]
+    aliases: ["Condizione di Competizione", "Condizione di Gara", "race condition", "race conditions", "condizione di competizione", "condizioni di competizione", "condizione di gara", "condizioni di gara"]
   },
   "RAG": {
     title: "RAG (Retrieval-Augmented Generation)",
@@ -2550,18 +2586,6 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Fondamenti Epistemici",
     definition: "La quota non azzerabile di indeterminatezza che permane nel software derivante dalla non-stazionarietà del mondo reale e dalla natura probabilistica dei modelli linguistici.",
     aliases: ["Incertezza Residua"]
-  },
-  "Resource-driven Downgrading": {
-    title: "Resource-driven Downgrading (Declassamento per Economia)",
-    category: "Anti-Pattern Decisionale",
-    definition: "Ridurre il livello di assurance (AL) di un componente perché il team non dispone del tempo o delle competenze per produrre l'evidenza richiesta dal rischio reale.",
-    aliases: ["Declassamento per Economia"]
-  },
-  "Retaliatory Governance": {
-    title: "Retaliatory Governance (Pressione Anti-Segnalazione)",
-    category: "Anti-Pattern Organizzativo",
-    definition: "Struttura aziendale disfunzionale in cui l'ingegnere che impone un blocco formale di NO-GO subisce penalizzazioni per rallentamento della roadmap di rilascio.",
-    aliases: ["Pressione Anti-Segnalazione"]
   },
   "Reversibility": {
     title: "Reversibility (Reversibilità)",
@@ -2717,6 +2741,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Metodologia di analisi statica che modella il flusso di controllo e dei dati (Taint Analysis) per intercettare percorsi non sanitizzati tra sorgenti non fidate (Source) e operazioni critiche (Sink).",
     aliases: ["Static Application Security Testing"]
   },
+  "SAT/SMT Solving": {
+    title: "SAT/SMT Solving (Risolutori di Soddisfacibilità)",
+    category: "Metodi Formali",
+    definition: "Tecnica formale di verifica che converte specifiche e vincoli logici in formule proposizionali (SAT) o di logica del primo ordine con teorie di background (SMT). Se il solver dimostra l'insoddisfacibilità (UNSAT), certifica matematicamente la presenza di contraddizioni interne nei requisiti prima della scrittura del codice.",
+    aliases: ["SAT/SMT", "SMT Solving", "risolutore SMT", "risolutori SMT", "SAT solver", "SMT solver", "solver SMT", "risoluzione SMT"]
+  },
   "SBOM": {
     title: "SBOM (Software Bill of Materials)",
     category: "Supply Chain Security",
@@ -2775,7 +2805,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Semantic Smoothing",
     category: "Allineamento AI & Bias",
     definition: "Tendenza degli LLM ad appianare contraddizioni e lacune del prompt producendo un testo formalmente ineccepibile che occulta le falle logiche originarie.",
-    aliases: ["Levigatura Semantica"]
+    aliases: ["Levigatura Semantica", "semantic smoothing", "Semantic smoothing", "levigatura semantica"]
   },
   "Separazione Fisica": {
     title: "Separazione Fisica",
@@ -2993,6 +3023,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Configurazione dello spazio degli stati generabile a partire dallo stato iniziale mediante una sequenza lecita di transizioni di programma.",
     aliases: ["Reachable State"]
   },
+  "Stocastico": {
+    title: "Stocastico (Processo Stocastico)",
+    category: "Fondamenti Matematici & AI",
+    definition: "Processo o comportamento regolato dal caso o governato da distribuzioni probabilistiche, in contrapposizione a un sistema puramente deterministico. Gli LLM sono generatori stocastici di sequenze di token.",
+    aliases: ["stocastico", "stocastica", "stocastici", "stocastiche", "processo stocastico", "natura stocastica"]
+  },
   "STRIDE": {
     title: "STRIDE",
     category: "Threat Modeling",
@@ -3152,6 +3188,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Concorrenza & Vulnerabilità",
     definition: "Condizione di competizione (race condition) originata dalla frattura temporale tra il momento in cui una precondizione viene verificata e il momento dell'azione.",
     aliases: ["Time-Of-Check to Time-Of-Use"]
+  },
+  "Topologia": {
+    title: "Topologia (Topologia dei Sistemi)",
+    category: "Architettura del Software",
+    definition: "Studio della struttura di connessione, dei confini, delle traiettorie di dipendenza e delle relazioni reticolari o spaziali tra i componenti e i flussi di dati di un sistema.",
+    aliases: ["topologia", "topologico", "topologica", "topologici", "topologiche", "topologicamente"]
   },
   "Traceability": {
     title: "Traceability (Tracciabilità dell'Assurance)",
