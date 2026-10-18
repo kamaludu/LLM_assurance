@@ -39,7 +39,7 @@ Principi, Verifica, Evidenze e Governance**
 
 ###  PARTE I — Fondamenti epistemici e decisionali
 
-[Guida ai 5 concetti fondamentali dell'Assurance](#guida-ai-5-concetti)
+- [Guida ai 5 concetti fondamentali dell'Assurance](#guida-ai-5-concetti)
 
 1. [Problem Definition — definizione rigorosa del problema e dell'obiettivo](#step-1-problem-definition)
 2. [Risk Classification — classificazione e analisi del rischio](#step-2-risk-classification)
@@ -97,7 +97,7 @@ Principi, Verifica, Evidenze e Governance**
 - [Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
 - [Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
 - [Elementi di Teoria dei Grafi](#appendice-grafi)
-- [Logica del Primo Ordine](#appendice-logica)
+- [Elementi di Logica del Primo Ordine](#appendice-logica)
 - [Prompt Master per lo studio dei singoli step](#prompt-master)
 - [GLOSSARIO](#glossario-manuale)
 - [Bibliografia essenziale](#bibliografia-essenziale)
@@ -1329,11 +1329,14 @@ FALSO POSITIVO DI ASSURANCE (STATO: PASS NON VALIDO)
 ```
 
 #### 10.1 *Semantic Smoothing* e *Sycophancy*
+> Il fenomeno del **Semantic Smoothing** (o levigatura semantica) scaturisce dall'addestramento mediante RLHF.  
+>  
+
 I modelli linguistici sono addestrati mediante *Reinforcement Learning from Human Feedback* (RLHF) a risultare utili e collaborativi (*sycophancy*). Di fronte a un problema formulato in modo contraddittorio o privo di dati fondamentali, l'LLM tende ad appianare le discrepanze (*semantic smoothing*), producendo un documento formalmente ineccepibile che occulta le falle logiche originarie.
 L'ingegnere che riceve un output ben impaginato e ricco di lessico ingegneristico cade vittima dell'*automation bias*, scambiando la bellezza espositiva per completezza di analisi.
 
 #### 10.2 Iniezione dei Priors Statistici del Modello
-Quando una variabile del problema non è esplicitata, l'LLM attinge ai pattern più frequenti nel suo corpus di addestramento:
+Quando una variabile del problema non è esplicitata, l'LLM attinge ai pattern più frequenti e ai propri **priors** statistici di default:
 - In assenza di vincoli sul tempo, assume la semantica dell'orologio di sistema di un server web Linux.
 - In assenza di vincoli numerici, assume l'aritmetica a virgola mobile IEEE 754 a 64 bit standard.
 - In assenza di vincoli di connettività, assume una connessione Internet HTTP/REST affidabile.
@@ -1749,6 +1752,9 @@ Nell'ingegneria meccanica o civile tradizionale, il rischio viene classicamente 
 ```text
 Rischio_Classico = Probabilita(Guasto) * Gravita(Danno)
 ```
+> Questo paradigma, comunemente definito **modello di usura classico**, presuppone che i componenti falliscano per logorio fisico, attrito, fatica dei materiali o disturbi casuali.  
+>  
+
 Questo paradigma presuppone che i componenti falliscano per usura, attrito, fatica dei materiali o disturbi casuali distribuiti secondo curve gaussiane o di Poisson (es. *Mean Time Between Failures* - MTBF).
 
 **Perché questa formulazione crolla nel software e nei sistemi basati su LLM**:
@@ -3567,6 +3573,7 @@ Ogni clausola di una specifica appartiene formalmente a una di due categorie:
 - **Proprietà di Liveness ("Qualcosa di buono prima o poi accade")**:
   - Prescrive il raggiungimento di uno stato desiderato nel corso dell'esecuzione;
   - Non può essere smentita da una sequenza finita: finché il sistema è attivo, la proprietà potrebbe teoricamente realizzarsi in un passo successivo;
+  - Garantisce il raggiungimento di uno stato desiderato entro un tempo finito o secondo un limite **asintotico**;
   - *Esempio*: "Ogni messaggio in coda viene elaborato entro un tempo finito."
 
 > [!TIP]
@@ -3724,6 +3731,8 @@ Se questa relazione non sussiste:
 - O i requisiti `R` sono internamente contraddittori rispetto ai vincoli del Mondo fisico.
 
 #### 5.3 Tecniche di Analisi e Validazione della Specifica
+> La verifica di consistenza si avvale di tecniche di **SAT/SMT Solving**, convertendo la specifica in equazioni logiche.
+>  
 Prima di passare alla fase di implementazione del codice, la specifica deve essere sottoposta a tre verifiche formali:
 
 1. **Verifica di Consistenza (SAT/SMT Solving)**:
@@ -4034,6 +4043,8 @@ La specifica era **incompleta rispetto al dominio operativo reale**. L'ingegnere
 #### 10.1 *Semantic Smoothing* e Mascheramento delle Ambiguità
 Gli LLM possiedono un'elevata abilità nel trasformare frasi incomplete o contraddittorie in contratti formalmente eleganti. 
 Se il requisito dell'ingegnere omette la gestione del timeout, l'LLM inserisce tacitamente una clausola plausibile (es. `timeout = 30s`). L'ingegnere che esamina il documento subisce l'*Automation Bias*: vedendo una specifica ordinata, strutturata in tabelle e scritta con sintassi corretta, presume che ogni decisione sia stata validata sul dominio reale. L'ambiguità non è stata risolta mediante analisi ingegneristica: è stata semplicemente mascherata sotto una forma linguistica rassicurante.
+> Attraverso il **Semantic Smoothing**, i modelli linguistici colmano le lacune logiche trasformando requisiti incompleti in contratti apparentemente ineccepibili.  
+>  
 
 #### 10.2 Iniezione Silenziosa dei Priors Statistici del Modello
 Quando un LLM formalizza una specifica, non applica deduzioni logiche pure: attinge ai pattern statistici dominanti nel proprio corpus di pre-addestramento.
@@ -5618,6 +5629,8 @@ Se `P` è violato dal chiamante, l'implementazione `C` non è tenuta a garantire
 #### 5.5 Proprietà Relazionali e Metamorfiche
 
 Non tutte le proprietà critiche si limitano a vincolare un singolo stato. Molte delle proprietà più potenti per disarmare le allucinazioni e i bug introdotti dagli LLM sono **relazionali**: confrontano il comportamento del sistema su esecuzioni multiple o con trasformazioni degli input.
+> Tra le verifiche relazionali più efficaci per il software generato da LLM spiccano le **proprietà metamorfiche**, regole che vincolano la relazione attesa tra gli output a fronte di trasformazioni controllate degli input.  
+>  
 
 Le principali classi di proprietà relazionali sono:
 
@@ -29617,7 +29630,7 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
 
 <a name="appendice-logica"></a>
 
-## ⊙ Logica del Primo Ordine
+## ⊙ Elementi di Logica del Primo Ordine
 ***Guida di consultazione***
 
 ### Indice
