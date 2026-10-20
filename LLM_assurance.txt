@@ -7073,13 +7073,14 @@ L'assurance di un sistema fallisce quando si apre una frattura in uno dei tre pi
 ```text
 [L'ARTEFATTO DA VALUTARE (Codice, Specifica, Test generati da LLM)]
                               |
-        +---------------------+---------------------+
-        |                     |                     |
-        v                     v                     v
-[1. GAP DI COMPRENSIONE]  [2. GAP DI VERIFICA]   [3. GAP DI AUTORITÀ]
-"Non capisco cosa fa      "Capisco l'obiettivo,  "So che è rischioso,
- realmente questo codice   ma non ho i metodi per ho visto il difetto,
- sotto condizioni limite"  provare che non fallirà" ma non posso bloccarlo"
+        +---------------------+-------------------------+
+        |                     |                         |
+        v                     v                         v
+[1. GAP DI COMPRENSIONE]  [2. GAP DI VERIFICA]    [3. GAP DI AUTORITÀ]
+"Non capisco cosa fa      "Capisco l'obiettivo,   "So che è rischioso,
+realmente questo codice   ma non ho i metodi per   ho visto il difetto,
+sotto condizioni limite"  provare che non fallirà" ma non posso bloccarlo"
+
 ```
 
 1. **Gap di Comprensione (Understanding Gap):**  
@@ -7136,15 +7137,17 @@ Definiamo la **Complessità Epistemica Richiesta** `C_req(A)` come una funzione 
 C_req(A) = f( Risk_Level(A), State_Space_Cardinality(A), Concurrency_Degree(A) )
 ```
 
-Definiamo la Capacità di Verifica Effettiva C_eff(V) dell'agente o del team di verifica V come:
+Definiamo la **Capacità di Verifica Effettiva** `C_eff(V)` dell'agente o del team di verifica V come:
 
+```text
 C_eff(V) = Understanding(V, A) * Methodology(V) * Tooling(V) * (1.0 - Time_Pressure_Factor)
+```
 
 Dove:
-- Understanding(V, A) in [0.0, 1.0]: grado di comprensione causale del codice e del dominio applicativo.
-- Methodology(V) in [0.0, 1.0]: rigore e sistematicita' dei metodi analitici di verifica impiegati.
-- Tooling(V) in [0.0, 1.0]: adeguatezza degli oracoli e degli strumenti di verifica indipendenti.
-- Time_Pressure_Factor in [0.0, 1.0): indice di fretta e pressione sulle scadenze (0.0 = tempo ideale privo di urgenza; tendente a 1.0 = fretta estrema che degrada la vigilanza critica).
+- `Understanding(V, A)` in [0.0, 1.0]: grado di comprensione causale del codice e del dominio applicativo.
+- `Methodology(V)` in [0.0, 1.0]: rigore e sistematicita' dei metodi analitici di verifica impiegati.
+- `Tooling(V)` in [0.0, 1.0]: adeguatezza degli oracoli e degli strumenti di verifica indipendenti.
+- `Time_Pressure_Factor` in [0.0, 1.0): indice di fretta e pressione sulle scadenze (0.0 = tempo ideale privo di urgenza; tendente a 1.0 = fretta estrema che degrada la vigilanza critica).
 
 Il **Teorema del Vuoto di Assurance** stabilisce:
 > *Se `C_eff(V) < C_req(A)`, lo stato epistemico reale dell'artefatto non può essere `PASS`. Qualsiasi verdetto positivo registrato in tale condizione costituisce formalmente un'asserzione priva di evidenza valida, e lo stato di assurance deve essere degradato a `UNKNOWN`.*
@@ -7176,7 +7179,7 @@ In questa situazione, la probabilità che il revisore apponga il timbro di appro
 ```text
 P(Approval == TRUE | Bug == TRUE) -> 1.0 (per C_eff -> 0)
 ```
-*(Come si legge questa formula? La barra verticale `|` indica una probabilità condizionata e si legge "dato che" oppure "sapendo che". La formula esprime formalmente una legge di comportamento cognitivo: la probabilità che un revisore umano apponga la firma di approvazione formale, sapendo che il codice contiene un bug critico latente, tende matematicamente al 100% man mano che la sua effettiva capacità di verifica `C_eff` crolla verso lo zero per effetto di fretta, stanchezza o incompetenza).*
+*(Come si legge questa formula? La barra verticale* `|` *indica una probabilità condizionata e si legge "dato che" oppure "sapendo che". La formula esprime formalmente una legge di comportamento cognitivo: la probabilità che un revisore umano apponga la firma di approvazione formale, sapendo che il codice contiene un bug critico latente, tende matematicamente al 100% man mano che la sua effettiva capacità di verifica `C_eff` crolla verso lo zero per effetto di fretta, stanchezza o incompetenza).*
 
 Il processo di `REVIEW` cessa di essere un filtro epistemico e si trasforma in un mero condotto di propagazione del rischio non controllato.
 
@@ -7398,29 +7401,29 @@ Questa configurazione annulla completamente l'indipendenza epistemica (trattata 
 Il modo più distruttivo in cui i gap di competenza inquinano l'assurance è la **transizione spuria degli stati decisionali**:
 
 ```text
-                    CONDIZIONE REALE DI SISTEMA:
-               Il codice contiene una race condition.
-                 Gli strumenti attuali non possono
-                     dimostrarne l'assenza.
-                                |
-                                v
-                   STATO EPISTEMICO LEGITTIMO:
-                       >>> UNKNOWN <<<
-                                |
-                                v
-               INTERVENTO DEL GAP DI COMPETENZA:
-        - Il revisore non conosce il modello di concorrenza.
-        - L'LLM rassicura: "Codice thread-safe certificato".
-        - Pressione sui tempi: "Dobbiamo rilasciare oggi".
-                                |
-                                v
-                   FALSIFICAZIONE DECISIONALE:
-             Lo stato UNKNOWN viene arbitrariamente
-                 convertito a >>> PASS <<<.
-                                |
-                                v
-                     FALSA ASSURANCE TOTALE
-               (Il disastro accade in produzione)
+             CONDIZIONE REALE DI SISTEMA:
+        Il codice contiene una race condition.
+          Gli strumenti attuali non possono
+             dimostrarne l'assenza.
+                         |
+                         v
+            STATO EPISTEMICO LEGITTIMO:
+                 >>> UNKNOWN <<<
+                         |
+                         v
+        INTERVENTO DEL GAP DI COMPETENZA:
+ - Il revisore non conosce il modello di concorrenza.
+ - L'LLM rassicura: "Codice thread-safe certificato".
+ - Pressione sui tempi: "Dobbiamo rilasciare oggi".
+                         |
+                         v
+            FALSIFICAZIONE DECISIONALE:
+      Lo stato UNKNOWN viene arbitrariamente
+          convertito a >>> PASS <<<.
+                         |
+                         v
+              FALSA ASSURANCE TOTALE
+        (Il disastro accade in produzione)
 ```
 
 Un team affetto da gap di competenza non sa di non sapere (cade nel quadrante degli *Unknown Unknowns* dello Step 5). Il codice viene marcato `PASS` non sulla base di un'evidenza positiva, ma sulla base dell'**incapacità di rilevare il guasto**. Questo viola il principio epistemico fondamentale:
@@ -7435,7 +7438,7 @@ Gli LLM possono essere integrati nel ciclo di revisione per mitigare il deficit 
 #### Cosa un LLM PUÒ fare per supportare la competenza umana:
 - **Traduzione Pedagogica:** Spiegare a uno sviluppatore la semantica di una libreria legacy o di un'istruzione a basso livello complessa, accelerando l'acquisizione della comprensione di base.
 - **Brainstorming di Domande per l'Audit:** Suggerire all'ingegnere revisore una lista di domande avversariali da porsi durante la review (es. *"Hai verificato cosa accade se la connessione cade tra la riga 12 e la riga 15?"*).
-- **Rilevamento di Complessità Ciclotomica:** Evidenziare porzioni di codice generate con annidamenti condizionali eccessivamente oscuri che richiedono refactoring per essere rese umanamente ispezionabili.
+- **Rilevamento della complessità del flusso di controllo:** identificare porzioni di codice caratterizzate da annidamenti condizionali profondi, numerosi percorsi di esecuzione o dipendenze logiche difficili da ricostruire. Valutare se la struttura ostacoli la comprensione, la verifica dei requisiti e l'individuazione degli errori; ove necessario, proporre un refactoring che migliori la verificabilità senza alterare il comportamento previsto.
 
 #### Cosa un LLM NON PUÒ fare:
 - **Fornire Giustificazioni Empiriche Autonome:** Quando un LLM spiega *"Ho scelto questo algoritmo perché garantisce l'assenza di collisioni"*, tale spiegazione è un'**ASSUMPTION** o un'**HYPOTHESIS** del modello, mai un **FACT**. La spiegazione dell'LLM non possiede alcuna validità probatoria.
@@ -29642,15 +29645,22 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
 6. **Parentesi, raggruppamento e precedenza**
 7. **Uguaglianza, definizione e assegnazione**
 8. **Proprietà delle formule**
-9. **Glossario essenziale**
-10. **Esempi di lettura**
-11. **Convenzioni da ricordare**
+9. **Conseguenza logica e inferenza**
+10. **Soddisfacibilità e consistenza delle specifiche**
+11. **Equivalenze logiche e negazione dei requisiti**
+12. **Formalizzazione delle proprietà del software**
+13. **SAT, SMT e verifica automatica**
+14. **Glossario essenziale**
+15. **Esempi di lettura**
+16. **Convenzioni da ricordare**
+
+---
 
 ### 1. Scopo e convenzioni
 
 La Logica del Primo Ordine è una branca della **Logica Formale** utilizzata per rappresentare oggetti, proprietà degli oggetti e relazioni tra oggetti. Consente di esprimere enunciati mediante simboli, variabili, predicati, connettivi logici e quantificatori.
 
-Questa appendice è una guida di consultazione per riconoscere e interpretare la notazione logica utilizzata nel manuale. Introduce i simboli fondamentali, ne descrive il significato e illustra le principali convenzioni sintattiche e semantiche.
+Questa appendice è una guida di consultazione per riconoscere e interpretare la notazione logica utilizzata nel manuale. Introduce i simboli fondamentali, ne descrive il significato e illustra le principali convenzioni sintattiche e semantiche, fornendo le basi per formalizzare requisiti, riconoscere contraddizioni e interpretare gli esiti della verifica formale.
 
 Nel manuale si adotta una notazione testuale basata su caratteri ASCII, utile quando i simboli matematici non sono disponibili o non sono pratici da utilizzare. Questa scelta non costituisce uno standard universale: in altri testi, linguaggi e strumenti si possono incontrare rappresentazioni differenti dello stesso concetto.
 
@@ -29661,6 +29671,8 @@ Nelle sezioni seguenti:
 - **Varianti nei linguaggi di programmazione** indica operatori che possono avere un significato simile in determinati linguaggi, senza implicare che siano equivalenti universali della notazione logica.
 
 Le forme testuali qui adottate servono a leggere e scrivere il manuale: non garantiscono che la stessa sintassi sia accettata direttamente da un parser, da un dimostratore automatico o da un linguaggio di programmazione.
+
+---
 
 ### 2. Simboli e notazioni
 
@@ -29781,10 +29793,10 @@ I simboli `<`, `>`, `≤` e `≥` presuppongono una relazione d'ordine appropria
 
 #### 2.4 Variabili, costanti, funzioni e predicati
 
-- **Variabile** — Notazione tipica: `x`, `y`, `z`. Simbolo che può denotare un elemento del dominio.
-- **Costante** — Notazione tipica: `a`, `b`, `c`. Simbolo interpretato come un elemento specifico del dominio.
-- **Funzione** — Notazione tipica: `f(x)`, `g(x,y)`. Espressione che, applicata a una tupla di argomenti, denota un elemento del dominio.
-- **Predicato** — Notazione tipica: `P(x)`, `R(x,y)`. Simbolo che esprime una proprietà o una relazione e che, applicato a termini, produce una formula atomica.
+- **Variabile** — Notazione tipica: `x`, `y`, `z`. Simbolo che può denotare un elemento del dominio (es. lo stato di una variabile software o un input dinamico).
+- **Costante** — Notazione tipica: `a`, `b`, `c`. Simbolo interpretato come un elemento specifico del dominio (es. un valore di configurazione o un parametro fisso).
+- **Funzione** — Notazione tipica: `f(x)`, `g(x,y)`. Espressione che, applicata a una tupla di argomenti, denota un elemento del dominio (es. un calcolo matematico deterministico privo di effetti collaterali).
+- **Predicato** — Notazione tipica: `P(x)`, `R(x,y)`. Simbolo che esprime una proprietà o una relazione e che, applicato a termini, produce una formula atomica (es. una guardia o una condizione booleana sullo stato).
 - **Formula atomica** — Esempi: `P(x)`, `R(x,y)`, `x = y`. Formula elementare, non costruita mediante connettivi o quantificatori a partire da formule più semplici.
 - **Formula composta** — Esempio: `P(x) AND Q(x)`. Formula ottenuta combinando formule mediante connettivi logici o quantificatori.
 - **Termine** — Esempi: `x`, `a`, `f(x)`. Espressione che denota un elemento del dominio.
@@ -29875,16 +29887,17 @@ Il simbolo `⊂` è usato in modo non uniforme: alcuni autori lo impiegano per l
 
 La forma grafica, da sola, non è sempre sufficiente a identificare il significato di un simbolo. Occorre considerare il contesto matematico, logico o informatico in cui compare.
 
+---
+
 ### 3. Elementi fondamentali della Logica del Primo Ordine
 
 #### 3.1 Dominio di interpretazione
 
 Il **dominio** è l'insieme degli oggetti di cui si parla. Le variabili e le costanti denotano elementi del dominio; le funzioni restituiscono elementi del dominio; i predicati esprimono proprietà o relazioni tra elementi.
 
-Per esempio, se il dominio è costituito da numeri interi, `x` può rappresentare un intero e `P(x)` può esprimere una proprietà di tale intero.
+Nel contesto della modellazione software e di sistema, il dominio è tipicamente costituito dallo **spazio degli stati**, dall'insieme dei tipi di dato ammessi, dalle configurazioni o dalle tracce di esecuzione.
 
-> Ad esempio, se il dominio è l'insieme di tutti gli esseri umani, x può indicare una persona e P(x) può significare «x è alto».
->
+Per esempio, se il dominio è l'insieme dei messaggi scambiati su un bus di comunicazione, `x` può rappresentare un singolo pacchetto e `Valid(x)` può esprimere la correttezza del suo checksum.
 
 Nella semantica classica della Logica del Primo Ordine si assume normalmente che il dominio contenga almeno un elemento.
 
@@ -29936,6 +29949,8 @@ Esempi:
 
 La stessa lettera può comparire in una formula con occorrenze libere e vincolate: occorre quindi considerare l'ambito di ciascun quantificatore, non soltanto il nome della variabile.
 
+---
+
 ### 4. Connettivi logici e valori di verità
 
 Le formule della logica classica assumono uno dei due valori di verità: vero o falso. I connettivi combinano formule e determinano il valore di verità della formula composta in funzione dei valori delle formule componenti.
@@ -29962,6 +29977,8 @@ Nella tabella seguente, `P` e `Q` sono formule; `V` indica vero e `F` indica fal
 
 L'implicazione non esprime necessariamente una relazione causale. Nella logica classica, il suo significato è determinato dalla tabella di verità.
 
+---
+
 ### 5. Quantificatori
 
 I quantificatori esprimono proprietà che valgono per tutti gli elementi del dominio oppure per almeno un elemento.
@@ -29974,7 +29991,7 @@ La formula
 
 si legge: «per ogni `x`, vale `P(x)`».
 
-È vera se `P(x)` è vera per tutti gli elementi del dominio.
+È vera se `P(x)` è vera per tutti gli elementi del dominio. Nel contesto del software, esprime tipicamente un requisito globale o un'invariante che ogni input, dato o stato deve soddisfare.
 
 #### 5.2 Quantificatore esistenziale
 
@@ -29984,7 +30001,7 @@ La formula
 
 si legge: «esiste un `x` tale che `P(x)`».
 
-È vera se almeno un elemento del dominio soddisfa `P(x)`.
+È vera se almeno un elemento del dominio soddisfa `P(x)`. Esprime la presenza di almeno un'istanza, configurazione o scenario operativo che rispetta la condizione specificata.
 
 #### 5.3 Esistenza unica
 
@@ -30018,7 +30035,9 @@ La negazione di una formula quantificata può essere riscritta scambiando il qua
 - `NOT (forall x: P(x))` equivale a `exists x: NOT P(x)`.
 - `NOT (exists x: P(x))` equivale a `forall x: NOT P(x)`.
 
-In termini intuitivi, negare che una proprietà valga per tutti significa affermare che esiste almeno un'eccezione. Negare che esista un elemento con una proprietà significa affermare che nessun elemento la possiede.
+In termini intuitivi, negare che una proprietà valga per tutti significa affermare che esiste almeno un'eccezione (un controesempio). Negare che esista un elemento con una proprietà significa affermare che nessun elemento la possiede.
+
+---
 
 ### 6. Parentesi, raggruppamento e precedenza
 
@@ -30054,6 +30073,8 @@ Quando non è stata definita una regola di precedenza condivisa, è preferibile 
 
 Non bisogna trasferire automaticamente le regole di precedenza di un linguaggio di programmazione alla notazione logica.
 
+---
+
 ### 7. Uguaglianza, definizione e assegnazione
 
 Queste tre nozioni possono essere rappresentate con simboli simili, ma hanno funzioni differenti.
@@ -30082,9 +30103,11 @@ può indicare l'assegnazione di un nuovo valore alla variabile `x`, se il lingua
 
 Altri linguaggi usano `:=` o altre forme di assegnazione.
 
-In matematica, invece, l'equazione x = x + 1 è un'affermazione di uguaglianza che risulta impossibile, non ammettendo alcuna soluzione nel dominio dei numeri ordinari.
+In matematica, invece, l'equazione `x = x + 1` è un'affermazione di uguaglianza che risulta impossibile, non ammettendo alcuna soluzione nel dominio dei numeri ordinari.
 
 Il significato di una notazione deve quindi essere interpretato nel linguaggio in cui compare.
+
+---
 
 ### 8. Proprietà delle formule
 
@@ -30108,31 +30131,309 @@ Due formule sono **logicamente equivalenti** se, in ogni interpretazione ammissi
 
 Una notazione possibile per indicare l'equivalenza logica è `≡`, ma il simbolo non è usato uniformemente in tutti i testi: può indicare anche altre forme di identità o equivalenza definite dal formalismo.
 
-### 9. Glossario essenziale
+---
+
+### 9. Conseguenza logica e inferenza
+
+#### 9.1 Conseguenza logica
+
+Una formula `Q` è conseguenza logica di un insieme di premesse `Γ` quando `Q` è vera in ogni interpretazione in cui tutte le formule di `Γ` sono vere.
+
+La notazione adottata è:
+
+`Γ |= Q`
+
+Per esempio:
+
+`{ P -> Q, P } |= Q`
+
+Le due premesse implicano logicamente `Q`: non esiste un'interpretazione in cui entrambe le premesse siano vere e `Q` sia falsa.
+
+La conseguenza logica riguarda ciò che segue necessariamente dalle premesse. Non garantisce che le premesse descrivano correttamente il sistema reale.
+
+#### 9.2 Differenza tra implicazione e conseguenza logica
+
+L'implicazione `P -> Q` è una formula interna al linguaggio logico.
+
+La conseguenza logica `P |= Q` è invece una relazione semantica di metalinguaggio tra una premessa e una conclusione: indica che ogni interpretazione che rende vera `P` rende vera anche `Q`.
+
+Le due notazioni sono correlate, ma non intercambiabili.
+
+#### 9.3 Conseguenza logica e dimostrazione
+
+La conseguenza logica è una proprietà semantica. Una dimostrazione formale è una derivazione ottenuta mediante regole di inferenza di un sistema formale.
+
+La notazione `Γ ⊢ Q` indica che `Q` è sintatticamente derivabile da `Γ` nel sistema di dimostrazione adottato.
+
+In un sistema corretto (*sound*) rispetto alla semantica, ciò che è dimostrabile deve essere una conseguenza logica delle premesse. La completezza (*completeness*) del sistema, invece, garantisce che tutte le conseguenze logiche esprimibili nel formalismo considerato siano anche dimostrabili.
+
+La notazione `⊢` non va confusa con `|=`: la prima riguarda la derivazione formale (sintassi), la seconda la conseguenza semantica (modelli).
+
+---
+
+### 10. Soddisfacibilità e consistenza delle specifiche
+
+#### 10.1 Soddisfacibilità di una formula
+
+Una formula è soddisfacibile se esiste almeno un'interpretazione ammissibile che la rende vera.
+
+Per esempio, assumendo che `x` appartenga al dominio dei numeri reali:
+
+`x > 0 AND x < 10`
+
+è soddisfacibile, perché esistono valori che soddisfano entrambe le condizioni, come `x = 5`.
+
+Al contrario:
+
+`x > 10 AND x < 5`
+
+è insoddisfacibile nel dominio dei numeri reali, perché nessun valore soddisfa contemporaneamente entrambe le condizioni.
+
+#### 10.2 Soddisfacibilità di un insieme di vincoli
+
+Una specifica può essere rappresentata, almeno in parte, come un insieme di formule che esprimono requisiti, proprietà e vincoli.
+
+Un insieme di formule è soddisfacibile se esiste almeno un'interpretazione che le rende tutte vere contemporaneamente.
+
+Se la specifica è rappresentata dalle formule `C1`, `C2`, ..., `Cn`, la sua soddisfacibilità può essere espressa come:
+
+`Sat(C1 AND C2 AND ... AND Cn) == TRUE`
+
+La notazione `Sat(...)` è una convenzione descrittiva adottata qui per indicare la soddisfacibilità, non un operatore universale della Logica del Primo Ordine.
+
+Se non esiste alcuna interpretazione che soddisfi tutti i vincoli, l'insieme è insoddisfacibile. Ciò può indicare requisiti incompatibili, ipotesi contraddittorie oppure un modello formalizzato in modo errato.
+
+#### 10.3 Soddisfacibilità, validità e correttezza
+
+Le seguenti proprietà devono essere distinte:
+
+- **Soddisfacibilità:** esiste almeno un'interpretazione in cui la formula è vera.
+- **Insoddisfacibilità:** non esiste alcuna interpretazione ammissibile in cui la formula è vera.
+- **Validità logica:** la formula è vera in tutte le interpretazioni ammissibili.
+- **Correttezza rispetto all'obiettivo:** la specifica rappresenta adeguatamente ciò che il sistema deve realizzare.
+
+La soddisfacibilità non implica la validità logica. Una formula può essere vera in alcune interpretazioni e falsa in altre.
+
+Inoltre, la soddisfacibilità non dimostra che una specifica sia corretta rispetto all'obiettivo, completa, sicura o realizzabile nell'ambiente operativo previsto.
+
+#### 10.4 Consistenza e ipotesi di modellazione
+
+La consistenza di una specifica dipende dai vincoli formalizzati e dalle ipotesi adottate.
+
+Un insieme di vincoli può risultare soddisfacibile perché il modello ammette interpretazioni che non corrispondono al sistema reale. Per esempio, un modello può omettere un vincolo ambientale essenziale oppure assumere una disponibilità di risorse che non esiste.
+
+Per questo motivo, la verifica della soddisfacibilità deve essere accompagnata dalla verifica delle ipotesi, del dominio e della corrispondenza tra formule e requisiti.
+
+---
+
+### 11. Equivalenze logiche e negazione dei requisiti
+
+#### 11.1 Equivalenze fondamentali
+
+Le equivalenze logiche consentono di trasformare una formula in un'altra con lo stesso valore di verità in tutte le interpretazioni ammissibili.
+
+Esempi:
+
+- `NOT (P AND Q)` è equivalente a `(NOT P) OR (NOT Q)`.
+- `NOT (P OR Q)` è equivalente a `(NOT P) AND (NOT Q)`.
+- `P -> Q` è equivalente a `(NOT P) OR Q`.
+- `P -> Q` è equivalente a `(NOT Q) -> (NOT P)` (legge di contrapposizione).
+- `NOT (NOT P)` è equivalente a `P` (doppia negazione).
+- `P <-> Q` è equivalente a `(P -> Q) AND (Q -> P)`.
+
+Queste equivalenze possono essere utilizzate per semplificare formule, verificare condizioni, chiarire percorsi fail-safe e rendere esplicite le negazioni dei requisiti.
+
+#### 11.2 Negazione dei requisiti quantificati
+
+Le regole di negazione dei quantificatori sono particolarmente utili per individuare controesempi.
+
+Per esempio:
+
+`forall x: Valid(x)`
+
+afferma che tutti gli elementi del dominio soddisfano `Valid`.
+
+La sua negazione è:
+
+`exists x: NOT Valid(x)`
+
+che afferma che esiste almeno un elemento che non soddisfa la proprietà.
+
+Se un requisito afferma che una proprietà deve valere per tutti gli input ammessi, la ricerca di un input che viola quella proprietà fornisce un controesempio al requisito formalizzato.
+
+#### 11.3 Controesempi e verifica
+
+Un controesempio è un'interpretazione o un'assegnazione che rende falsa una proprietà che si vorrebbe dimostrare valida.
+
+Per verificare:
+
+`forall x: P(x)`
+
+è sufficiente trovare un caso ammissibile in cui `P(x)` sia falsa per dimostrare che la formula non è valida.
+
+L'assenza di controesempi in un insieme limitato di test, tuttavia, non dimostra da sola la validità universale della formula. La conclusione dipende dal metodo di verifica e dalla copertura del dominio.
+
+---
+
+### 12. Formalizzazione delle proprietà del software
+
+#### 12.1 Requisiti come formule
+
+Un requisito può essere espresso mediante predicati, relazioni, quantificatori e connettivi logici.
+
+Per esempio, si definisca:
+
+- `Authenticated(u)`: l'utente `u` è autenticato.
+- `Authorized(u,r)`: l'utente `u` è autorizzato ad accedere alla risorsa `r`.
+- `CanAccess(u,r)`: l'utente `u` può accedere alla risorsa `r`.
+
+Un requisito di autorizzazione può essere formalizzato come:
+
+`forall u: forall r: CanAccess(u,r) -> Authorized(u,r)`
+
+La formula afferma che ogni accesso consentito deve essere autorizzato.
+
+Questa formalizzazione non dimostra che il software implementi il requisito: rende esplicita la proprietà che deve essere verificata.
+
+#### 12.2 Invarianti
+
+Un invariante è una proprietà che deve rimanere vera in tutti gli stati ai quali il requisito si applica.
+
+Per esempio, se `balance(a)` rappresenta il saldo di un conto `a`, il vincolo:
+
+`forall a: balance(a) >= 0`
+
+esprime che nessun conto può avere un saldo negativo, assumendo che il dominio e il significato del saldo siano definiti in modo appropriato.
+
+La formalizzazione di un invariante richiede di precisare:
+- il dominio degli oggetti interessati;
+- gli stati nei quali la proprietà deve valere;
+- le condizioni iniziali;
+- le transizioni che possono modificare lo stato;
+- le eccezioni eventualmente ammesse.
+
+Una formula isolata non dimostra che l'invariante sia preservato durante l'esecuzione del programma.
+
+#### 12.3 Precondizioni e postcondizioni
+
+Una precondizione esprime le condizioni che devono essere vere prima dell'esecuzione di un'operazione. Una postcondizione esprime le proprietà attese dopo l'esecuzione, quando l'operazione termina secondo le condizioni previste.
+
+In molti contesti di specifica formale, il comportamento di un'operazione viene espresso come una relazione tra lo stato precedente (`s`) e lo stato successivo (`s'`):
+
+`Precondition(s) AND Transition(s, s') -> Postcondition(s')`
+
+Questa formula esprime che, se la precondizione è soddisfatta nello stato iniziale e il sistema esegue una transizione valida, lo stato finale soddisferà la postcondizione.
+
+Questa forma rappresenta uno schema concettuale: per formalizzare rigorosamente il comportamento di un programma occorre precisare le condizioni di terminazione, gli eventuali effetti collaterali, le eccezioni previste e i vincoli di frame (quali variabili e componenti dello stato non devono essere modificate dall'operazione).
+
+#### 12.4 Limiti della formalizzazione
+
+Una proprietà formalizzata può essere verificata soltanto rispetto al significato attribuito ai simboli, al dominio e alle ipotesi adottate.
+
+Un requisito espresso in modo formalmente corretto può comunque:
+- omettere casi rilevanti;
+- rappresentare in modo errato l'intento del committente;
+- assumere condizioni ambientali non realistiche;
+- non coprire proprietà di sicurezza o affidabilità necessarie.
+
+La formalizzazione rende le affermazioni più precise e verificabili, ma non sostituisce la validazione dei requisiti né la valutazione del contesto operativo (*Validation* vs *Verification*).
+
+---
+
+### 13. SAT, SMT e verifica automatica
+
+#### 13.1 SAT
+
+SAT è il problema di determinare se una formula della logica proposizionale è soddisfacibile, cioè se esiste un'assegnazione di valori di verità alle variabili proposizionali che renda vera la formula.
+
+Per esempio:
+
+`P AND NOT Q`
+
+è soddisfacibile, perché esiste un'assegnazione, come `P = TRUE` e `Q = FALSE`, che rende vera la formula.
+
+Al contrario:
+
+`P AND NOT P`
+
+è insoddisfacibile, perché nessuna assegnazione può rendere contemporaneamente vere `P` e `NOT P`.
+
+Un solver SAT può determinare la soddisfacibilità di formule proposizionali e, quando la formula è soddisfacibile, può restituire un'assegnazione che costituisce un modello.
+
+#### 13.2 SMT
+
+SMT, acronimo di *Satisfiability Modulo Theories*, estende il problema della soddisfacibilità proposizionale integrando teorie formali, per esempio l'uguaglianza, l'aritmetica lineare o non lineare, i vettori di bit (*bit-vectors*) e gli array.
+
+Un esempio di vincoli aritmetici è:
+
+`x > 0 AND x < 10`
+
+Un solver SMT può valutare la soddisfacibilità di tali vincoli rispetto alla teoria e al dominio numerico supportati.
+
+La disponibilità di teorie e la capacità di risolvere un problema dipendono dal solver e dal formalismo utilizzato.
+
+#### 13.3 Logica del Primo Ordine e limiti dei solver
+
+La logica del primo ordine esprime proprietà generali mediante quantificatori, predicati, funzioni e relazioni.
+
+La soddisfacibilità generale della logica del primo ordine è indecidibile: non esiste un algoritmo che, per ogni formula del primo ordine, termini sempre restituendo correttamente una risposta sulla sua soddisfacibilità.
+
+Questo non impedisce di verificare automaticamente molte classi specifiche di formule o frammenti decidibili. I risultati pratici dipendono dal formalismo, dalle restrizioni adottate e dalle capacità dello strumento.
+
+Non si deve quindi presumere che ogni formula del primo ordine possa essere verificata automaticamente da un solver SAT o SMT.
+
+#### 13.4 Interpretazione dei risultati
+
+L'esito di un solver deve essere interpretato nel contesto del problema:
+
+- **Soddisfacibile (`SAT`):** esiste un modello compatibile con i vincoli formalizzati.
+- **Insoddisfacibile (`UNSAT`):** non esiste alcun modello compatibile con i vincoli, rispetto alla semantica adottata.
+- **Sconosciuto o limite raggiunto (`UNKNOWN` / Timeout):** lo strumento non ha determinato l'esito entro le proprie capacità teoriche o le risorse di calcolo disponibili.
+
+Un modello soddisfacente non dimostra che i requisiti siano corretti rispetto all'obiettivo reale. Un risultato di insoddisfacibilità non identifica automaticamente quale requisito sia errato: può essere necessario analizzare i vincoli e le ipotesi per localizzare il conflitto.
+
+La verifica automatica fornisce quindi evidenza rispetto al modello formalizzato, non una garanzia assoluta di correttezza del sistema.
+
+---
+
+### 14. Glossario essenziale
 
 - **Ambito (scope)** — Parte della formula governata da un quantificatore o delimitata da un raggruppamento.
 - **Argomento** — Termine fornito a una funzione o a un predicato.
 - **Arità** — Numero di argomenti di una funzione o di un predicato.
 - **Connettivo** — Operatore logico che combina o modifica formule.
+- **Conseguenza logica** — Relazione semantica per cui una conclusione è vera in tutte le interpretazioni che rendono vere le premesse.
+- **Consistenza di una specifica** — Assenza di incompatibilità logiche o contraddizioni tra i vincoli formalizzati, rispetto alla semantica adottata.
+- **Controesempio** — Interpretazione o assegnazione che dimostra la falsità di una proprietà che si vorrebbe valida.
 - **Costante** — Simbolo interpretato come un elemento specifico del dominio.
 - **Dominio** — Insieme degli oggetti considerati nell'interpretazione.
 - **Equivalenza logica** — Relazione tra formule che hanno lo stesso valore di verità in ogni interpretazione e per ogni assegnazione pertinente.
 - **Formula atomica** — Formula elementare, come `P(x)` o `x = y`.
 - **Formula composta** — Formula costruita usando connettivi o quantificatori.
-- **Funzione** — Simbolo interpretato come una funzione dagli argomenti a un elemento del dominio.
+- **Funzione** — Simbolo interpretato come una mappa dagli argomenti a un elemento del dominio.
 - **Insoddisfacibile** — Formula che non è vera in alcuna interpretazione ammissibile e per alcuna assegnazione delle variabili libere.
+- **Invariante** — Proprietà che deve rimanere vera in tutti gli stati ammissibili ai quali si applica.
+- **Modello** — Interpretazione che rende vere le formule considerate.
+- **Postcondizione** — Proprietà attesa dopo l'esecuzione di un'operazione, secondo le condizioni specificate.
+- **Precondizione** — Condizione che deve essere soddisfatta prima dell'esecuzione di un'operazione.
 - **Predicato** — Simbolo che esprime una proprietà o una relazione tra elementi del dominio.
-- **Quantificatore** — Operatore che esprime universalità o esistenza.
+- **Quantificatore** — Operatore che esprime universalità (`forall`) o esistenza (`exists`).
+- **SAT** — Problema della soddisfacibilità della logica proposizionale.
+- **SMT** — Problema della soddisfacibilità di formule rispetto a teorie formali dedicate (es. aritmetica, uguaglianza).
 - **Soddisfacibile** — Formula vera in almeno un'interpretazione ammissibile e per almeno un'assegnazione delle variabili libere.
-- **Termine** — Espressione che denota un elemento del dominio.
+- **Solver** — Strumento software automatico che determina la soddisfacibilità o la validità di una formula.
+- **Termine** — Espressione sintattica che denota un elemento del dominio.
 - **Valida** — Formula vera in tutte le interpretazioni ammissibili e per tutte le assegnazioni delle variabili libere.
 - **Variabile** — Simbolo che può denotare un elemento del dominio.
 - **Variabile libera** — Variabile la cui occorrenza non è vincolata da un quantificatore.
 - **Variabile vincolata** — Variabile la cui occorrenza ricade nell'ambito di un quantificatore corrispondente.
+- **Verifica formale** — Uso di metodi matematici e logici per stabilire proprietà di un modello o di un sistema rispetto a una specifica dichiarata.
 
-### 10. Esempi di lettura
+---
 
-Gli esempi seguenti illustrano la lettura della notazione e non introducono nuove convenzioni.
+### 15. Esempi di lettura
+
+Gli esempi seguenti illustrano la lettura della notazione e collegano la logica alla formalizzazione e alla verifica dei requisiti.
 
 #### Esempio 1 — Proprietà universale
 
@@ -30162,7 +30463,7 @@ Regola: *«Se piove (P), allora prendo l'ombrello (Q).»*
 Analizziamo i quattro casi possibili:  
 1. Piove (P è vero) e prendo l'ombrello (Q è vero): La regola è stata rispettata (Vero).
 2. Piove (P è vero) ma NON prendo l'ombrello (Q è falso): La regola è stata violata (Falso). Questo è l'unico caso in cui l'implicazione è falsa.
-3. NON piove (P è falso) eppure prendo comunque l'ombrello (Q è vero): La regola iniziale diceva solo cosa fare se piove, ma non vietava di portare l'ombrello anche con il sole (magari lo uso come parasole). Di conseguenza, la regola non è stata smentita (Vero).
+3. NON piove (P è falso) eppure prendo comunque l'ombrello (Q è vero): La regola iniziale diceva solo cosa fare se piove, ma non vietava di portare l'ombrello anche con il sole. Di conseguenza, la regola non è smentita (Vero).
 4. NON piove (P è falso) e NON prendo l'ombrello (Q è falso): La premessa non si è verificata e la regola non è stata violata (Vero).
 
 #### Esempio 5 — Negazione di una proprietà universale
@@ -30181,15 +30482,88 @@ Esprime che almeno un elemento del dominio non soddisfa `P`.
 
 La variabile `x` è vincolata nell'ambito di `P(x)`, mentre `y` è libera in `Q(y)`.
 
-### 11. Convenzioni da ricordare
+#### Esempio 7 — Soddisfacibilità di vincoli numerici
+
+Si considerino i vincoli:
+
+`x > 0`  
+`x < 10`
+
+Assumendo il dominio dei numeri reali, esistono valori che soddisfano entrambi i vincoli, per esempio `x = 5`. L'insieme è quindi soddisfacibile.
+
+Consideriamo invece:
+
+`x > 10`  
+`x < 5`
+
+Non esiste un valore reale che soddisfi contemporaneamente entrambi i vincoli. L'insieme è insoddisfacibile.
+
+La conclusione vale rispetto al dominio e all'interpretazione specificati.
+
+#### Esempio 8 — Una specifica soddisfacibile ma inadeguata (verità vacua)
+
+Si consideri il requisito:
+
+`forall u: CanAccess(u,resource) -> Authenticated(u)`
+
+La formula afferma che ogni utente che può accedere alla risorsa deve essere autenticato.
+
+La formula risulta soddisfacibile anche in un modello in cui nessun utente può accedere alla risorsa (`CanAccess` sempre falso). In tale modello, l'implicazione è banalmente vera per ogni utente perché il suo antecedente è sempre falso.
+
+Il requisito non garantisce quindi che gli utenti autorizzati possano effettivamente accedere alla risorsa, né specifica quali utenti debbano essere autorizzati.
+
+Questo esempio mostra che la consistenza logica non garantisce da sola la completezza, l'utilità o l'adeguatezza del requisito.
+
+#### Esempio 9 — Individuazione di un conflitto tra vincoli
+
+Si considerino i vincoli:
+
+`forall x: Enabled(x) -> CanExecute(x)`  
+`forall x: Enabled(x) -> NOT CanExecute(x)`
+
+Se esiste almeno un elemento abilitato, le due formule impongono che lo stesso elemento possa e non possa eseguire l'operazione, rendendo l'insieme insoddisfacibile.
+
+Se invece nessun elemento è abilitato, entrambe le formule risultano vere.
+
+Per concludere che l'intera specifica sia insoddisfacibile occorre quindi rendere esplicita l'ipotesi operativa, aggiungendo per esempio:
+
+`exists x: Enabled(x)`
+
+L'insieme dei tre vincoli diventa insoddisfacibile. L'esempio mostra perché la verifica deve considerare congiuntamente i vincoli e le ipotesi sul dominio.
+
+#### Esempio 10 — Requisito universale e controesempio
+
+Si consideri il requisito:
+
+`forall u: Authenticated(u) -> Authorized(u)`
+
+Il requisito afferma che ogni utente autenticato è autorizzato.
+
+Un utente `a` per cui:
+
+`Authenticated(a) = TRUE`  
+`Authorized(a) = FALSE`
+
+costituisce un controesempio e dimostra che la formula non è valida nel modello considerato.
+
+Il risultato non dimostra, da solo, che il sistema software reale violi il requisito: occorre stabilire se il modello e l'assegnazione rappresentino uno stato effettivamente raggiungibile ed ammissibile nel sistema.
+
+---
+
+### 16. Convenzioni da ricordare
 
 - `NOT`, `AND`, `OR`, `->` e `<->` sono le forme testuali adottate nel manuale per i principali connettivi logici.
 - `forall`, `exists` ed `exists!` sono le forme testuali adottate per i quantificatori universale, esistenziale ed esistenziale unico.
-- Le forme testuali sono convenzioni di scrittura del manuale, non una sintassi universale riconosciuta da tutti gli strumenti.
+- `Γ |= Q` indica che `Q` è conseguenza logica delle premesse `Γ`.
+- `Γ ⊢ Q` indica che `Q` è derivabile da `Γ` mediante le regole sintattiche del sistema formale adottato.
 - Le variabili denotano elementi del dominio; le funzioni producono termini; i predicati applicati a termini producono formule atomiche.
-- I quantificatori vincolano le variabili nel proprio ambito; le occorrenze esterne a tale ambito possono rimanere libere.
+- I quantificatori vincolano le variabili nel proprio ambito; le occorrenze esterne a tale ambito rimangono libere.
 - Le parentesi rendono esplicito il raggruppamento delle formule. Se la precedenza degli operatori non è definita, è preferibile non affidarsi a regole implicite.
-- Le varianti notazionali e gli operatori dei linguaggi di programmazione vanno interpretati nel rispettivo contesto.
+- La soddisfacibilità richiede almeno un modello compatibile; la validità richiede che la formula sia vera in tutte le interpretazioni ammissibili.
+- La consistenza logica riguarda i vincoli formalizzati: non garantisce che essi rappresentino correttamente l'obiettivo del sistema o che siano completi.
+- SAT riguarda la soddisfacibilità proposizionale; SMT integra teorie formali dedicate (es. aritmetica); la soddisfacibilità generale della logica del primo ordine è indecidibile.
+- Un solver verifica proprietà del modello e dei vincoli forniti. I risultati non sostituiscono la validazione dei requisiti, la corretta implementazione e la valutazione del contesto operativo.
+- La formalizzazione è utile ed efficace solo se dominio, interpretazioni, ipotesi ambientali e significato dei predicati sono definiti con precisione.
 
 ---
 
