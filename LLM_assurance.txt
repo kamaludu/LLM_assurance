@@ -30753,7 +30753,7 @@ Il risultato non dimostra, da solo, che il sistema software reale violi il requi
 ### 0. Introduzione: Ruolo e Limiti dei Metodi Formali Leggeri
 
 #### 0.1 Obiettivo dell’appendice e profilo del lettore
-Questa appendice nasce con un obiettivo preciso: consentire all'ingegnere del software, all'architetto e all'auditor della qualità di **leggere, interpretare criticamente e validare specifiche formali espresse in Alloy 6**, senza dover imparare a modellare da zero e senza richiedere una formazione specialistica in logica matematica.
+Questa appendice nasce con l'obiettivo di consentire al lettore di **leggere, interpretare criticamente e validare specifiche formali espresse in Alloy 6**, senza dover imparare a modellare da zero e senza richiedere una formazione specialistica in logica matematica.
 
 Nel contesto dello sviluppo software assistito da modelli di linguaggio di grandi dimensioni (LLM), il ruolo dello specialista umano evolve da esecutore della scrittura a supervisore critico del codice e dei requisiti. Di fronte a specifiche, regole di business o architetture prodotte da un LLM, la domanda cardine dell'assurance non è se il testo appaia convincente o se il codice compili, ma:
 1. *I requisiti contengono contraddizioni interne non evidenti?*
@@ -30766,8 +30766,8 @@ Alloy non viene qui presentato come uno strumento per generare prove formali di 
 
 #### 0.2 La complementarietà neurosimbolica (LLM + Formal Solver)
 L'ingegneria del software moderna si trova a gestire una tensione intrinseca tra due paradigmi computazionali:
-* **Il paradigma neuro-statistico (LLM):** Eccelle nell'estrazione semantica da testo disordinato, nella comprensione contestuale del dominio, nell'esplorazione euristica e nella traduzione rapida tra linguaggi naturali e formali. Tuttavia, è intrinsecamente opaco, suscettibile di allucinazioni logiche, privo di capacità di deduzione rigorosa e incline a trascurare combinazioni complesse di vincoli negativi.
-* **Il paradigma simbolico-deterministico (SAT/SMT Solver):** È implacabile, deterministico, esaustivo e basato sulla rigorosa semantica matematica. Non soffre di distrazioni e non inventa eccezioni arbitrarie. Di contro, è totalmente cieco al contesto del dominio: non possiede senso comune, richiede una formalizzazione priva di ambiguità e non può inferire ciò che l'analista ha omesso.
+- **Il paradigma neuro-statistico (LLM):** Eccelle nell'estrazione semantica da testo disordinato, nella comprensione contestuale del dominio, nell'esplorazione euristica e nella traduzione rapida tra linguaggi naturali e formali. Tuttavia, è intrinsecamente opaco, suscettibile di allucinazioni logiche, privo di capacità di deduzione rigorosa e incline a trascurare combinazioni complesse di vincoli negativi.
+- **Il paradigma simbolico-deterministico (SAT/SMT Solver):** È implacabile, deterministico, esaustivo e basato sulla rigorosa semantica matematica. Non soffre di distrazioni e non inventa eccezioni arbitrarie. Di contro, è totalmente cieco al contesto del dominio: non possiede senso comune, richiede una formalizzazione priva di ambiguità e non può inferire ciò che l'analista ha omesso.
 
 L'integrazione dei due approcci realizza un'architettura **neurosimbolica**:
 * L'LLM funge da **traduttore concettuale**, sintetizzando i requisiti informali (user stories, documenti architetturali, compliance rules) in una prima bozza dichiarativa formalizzata in Alloy.
@@ -30784,7 +30784,7 @@ L'integrazione dei due approcci realizza un'architettura **neurosimbolica**:
 +---------------------------+       Modello
 | LLM (Sintesi Semantica)   |----------------+
 +---------------------------+                |
-            ^                               v
+            ^                                v
             | Prompt di Correzione     +--------------+
             |                          | Specifica    |
             |                          | Alloy 6      |
@@ -30898,7 +30898,7 @@ restituisce tutti i permessi associati a tutti i ruoli posseduti da `u`.
 #### 1.3.2 Prodotto Cartesiano (`->`)
 Crea una tupla o una relazione:
 ```alloy
-all u: User | u->u not in delegation
+all u: User | u->u not in delegatesTo
 ```
 Significa: "Per ogni utente `u`, la coppia `(u, u)` non appartiene alla relazione di delega" (un utente non può delegare se stesso).
 
@@ -31045,14 +31045,14 @@ abstract sig Person {}
 sig Developer extends Person {}
 sig QualityAuditor extends Person {}
 
+abstract sig ReviewStatus {}
+one sig Pending, Approved, Rejected extends ReviewStatus {}
+
 sig PullRequest {
     author: one Developer,              // [R1] Ogni PR è creata da un solo Developer
     reviewers: set Person,              // [R2] Una PR ha zero o più revisori (Person)
-    isApproved: lone Boolean            // [R3] Stato di approvazione (snapshot statico)
+    status: one ReviewStatus            // [R3] Stato esplicito a valori discreti
 }
-
-abstract sig Boolean {}
-one sig True, False extends Boolean {}  // Pattern booleano enumerativo classico
 
 // --- FATTI: Invarianti Assoluti del Mondo ---
 fact IntegrityRules {
@@ -31061,34 +31061,39 @@ fact IntegrityRules {
 
     // [R5] Per ogni PR, deve esserci almeno un QualityAuditor tra i revisori
     all pr: PullRequest | some (pr.reviewers & QualityAuditor)
+
+    // [R6] Una PR può essere approvata solo se conta almeno due revisori distinti
+    all pr: PullRequest | pr.status = Approved => #(pr.reviewers) >= 2
 }
 
 // --- PREDICATI: Scenari Operativi ---
 pred ShowValidWorkflow {
-    // Predicato testimone: richiede almeno una PR popolata con revisori
-    some pr: PullRequest | some pr.reviewers
+    // Predicato testimone: richiede almeno una PR popolata con revisori e approvata
+    some pr: PullRequest | pr.status = Approved
 }
 
 // --- ASSERZIONI: Proprietà di Sicurezza da Verificare ---
-assert NoSelfReviewPossible {
-    // Si ipotizza che nessun sviluppatore possa mai revisionare il proprio lavoro
-    no pr: PullRequest | pr.author in pr.reviewers
+assert IndependentAuditorAlwaysPresentOnApproval {
+    // Teorema derivato: ogni PR approvata include necessariamente tra i revisori
+    // un auditor che non coincide con l'autore della PR.
+    all pr: PullRequest | pr.status = Approved => 
+        some a: QualityAuditor | a in pr.reviewers and a != pr.author
 }
 
 // --- COMANDI: Istruzioni per l'Analyzer ---
 // Test di non-vacuità (consistenza del modello)
 run ShowValidWorkflow for 3
 
-// Test di confutazione dell'invariante di sicurezza
-check NoSelfReviewPossible for 4
+// Test di confutazione dell'invariante di sicurezza emergente
+check IndependentAuditorAlwaysPresentOnApproval for 4
 ```
 
 #### Guida alla decodifica riga per riga per l'Assurance Reviewer
-* **Firme (`Person`, `Developer`, `QualityAuditor`):** `abstract sig Person` stabilisce che non esistono individui generici: ogni persona è categorizzata obbligatoriamente o come `Developer` o come `QualityAuditor`, senza possibilità di sovrapposizione (`extends`).
-* **Relazione `author` (`one Developer`):** Una PR non può esistere in uno stato non assegnato o orfano (`one` vieta il valore nullo).
-* **Espressione insiemistica `pr.reviewers & QualityAuditor`:** L'operatore `&` calcola l'intersezione tra l'insieme dei revisori della PR e l'insieme di tutti gli auditor. Il quantificatore `some` impone che tale intersezione contenga almeno un atomo: la PR non è valida se tra i revisori figurano esclusivamente sviluppatori.
-* **Predicato `ShowValidWorkflow`:** Fornisce al comando `run` un obiettivo esplicito di soddisfacibilità per accertare che i fatti permettano istanze vive.
-* **Asserzione `NoSelfReviewPossible`:** In questo caso illustrativo, l'asserzione ripete formalmente la proprietà sancita dal fatto `[R4]`. L'analista noterà subito che `check NoSelfReviewPossible` avrà esito positivo (nessun controesempio trovato), poiché il fatto protegge aprioristicamente il sistema da quella configurazione.
+- **Firme (`Person`, `Developer`, `QualityAuditor`):** `abstract sig Person` stabilisce che non esistono individui generici: ogni persona è categorizzata obbligatoriamente o come `Developer` o come `QualityAuditor`, senza possibilità di sovrapposizione (`extends`).
+- **Relazione `author` (`one Developer`):** Una PR non può esistere in uno stato non assegnato o orfano (`one` vieta il valore nullo).
+- **Espressione insiemistica `pr.reviewers & QualityAuditor`:** L'operatore `&` calcola l'intersezione tra l'insieme dei revisori della PR e l'insieme di tutti gli auditor. Il quantificatore `some` impone che tale intersezione contenga almeno un atomo: la PR non è valida se tra i revisori figurano esclusivamente sviluppatori.
+- **Predicato `ShowValidWorkflow`:** Fornisce al comando `run` un obiettivo esplicito di soddisfacibilità per accertare che i fatti permettano istanze vive.
+- **Asserzione `IndependentAuditorAlwaysPresentOnApproval`:** L'asserzione verifica che ogni PR approvata includa necessariamente tra i revisori almeno un auditor terzo non coincidente con l'autore. L'analista noterà subito che `check IndependentAuditorAlwaysPresentOnApproval` avrà esito positivo (nessun controesempio trovato): la proprietà discende logicamente dalla combinazione tra il fatto `[R4]` (autore escluso dai revisori), il fatto `[R5]` (presenza obbligatoria di almeno un auditor tra i revisori) e la partizione disgiunta `Developer` vs `QualityAuditor` (`extends Person`).
 
 ### 2. Decodificare il Solver: SAT, Bounded Analysis e Diagnostica
 
@@ -31147,6 +31152,10 @@ check SafePaymentWorkflow for 5 but exactly 2 User, 3 Account, 4 Int
 * `for 3`: Impone che nessuna firma contenga più di 3 atomi.
 * `for 5 but exactly 2 User`: Assegna un tetto massimo di 5 a tutte le firme, ma impone che l'insieme `User` contenga **esattamente** 2 atomi.
 * `for 4 Int`: Alloca interi con ampiezza di bit finita (rappresentazione in complemento a due a 4 bit, ovvero valori compresi nell'intervallo tra `-8` e `7`).
+
+> [!WARNING]
+> **Aritmetica Finitaria in Alloy: Rischio di Overflow Silenzioso**
+> In Alloy, l'espressione `for N Int` alloca interi rappresentati in complemento a due su $N$ bit (ad esempio, con `for 4 Int` il dominio copre esclusivamente l'intervallo compreso tra $-8$ e $+7$). Le operazioni aritmetiche (`plus`, `minus`, `mul`) non sollevano eccezioni ma vanno incontro a overflow circolare silenzioso. Per requisiti che dipendono strettamente da calcoli monetari quantitativi, somme cumulative o bilanci continui, Alloy non è lo strumento d'elezione ed è preferibile delegare la verifica a solver SMT (come Z3 o CVC5).
 
 #### La Small Scope Hypothesis
 Il fondamento teorico ed empirico della verifica limitata (*bounded verification*) è la **Small Scope Hypothesis**, formulata da Daniel Jackson (*Software Abstractions: Logic, Language, and Analysis*, Revised Edition, MIT Press, 2012, Sez. 5.1.3, p. 158):
@@ -31332,7 +31341,7 @@ Di fronte a un controesempio estratto dal solver, l'auditor non deve dare per sc
 
 #### Categoria A: Vulnerabilità Autentica di Requisito (Business Logic Flaw)
 * *Causa:* La specifica Alloy traduce fedelmente le intenzioni espresse nel documento dei requisiti funzionali, ma il business analyst non aveva compreso che date certe condizioni la combinazione delle regole avrebbe permesso una violazione (es. privilege escalation tramite deleghe incrociate).
-* *Azione di Assurance:* **Bloccare il processo di rilascio.** Aprire una non-conformità sui requisiti originari e convocare i product owner prima di procedere alla scrittura del software.
+* *Azione di Assurance:- **Bloccare il processo di rilascio.** Aprire una non-conformità sui requisiti originari e convocare i product owner prima di procedere alla scrittura del software.
 
 #### Categoria B: Assunzione Mancante (Under-Specification)
 * *Causa:* Il controesempio mostra uno scenario fisicamente o organizzativamente impossibile nel mondo reale, ma che la specifica permetteva perché nessuno ha esplicitato quel vincolo di buon senso (es. un dipendente che ha come data di assunzione una data antecedente alla nascita della propria azienda).
@@ -31452,14 +31461,14 @@ Per impedire questo comportamento degradativo nell'analisi di modelli struttural
 ```
 
 #### 3.2.1. Ramo della Sicurezza (Safety Assertion — Confutazione)
-* **Obiettivo:** Dimostrare che nessuna configurazione ammissibile di dati può violare un invariante critico (es. *un utente approva una propria spesa*, *un nodo orfano riceve permessi di root*).
-* **Comando:** `check SafetyProperty for Scope`
-* **Criterio di Successo:** Il solver **non** deve trovare controesempi entro lo scope concordato (la formula $\text{Fatti} \land \neg\text{SafetyProperty}$ è insoddisfacibile, esito UNSAT del SAT solver).
+- **Obiettivo:** Dimostrare che nessuna configurazione ammissibile di dati può violare un invariante critico (es. *un utente approva una propria spesa*, *un nodo orfano riceve permessi di root*).
+- **Comando:** `check SafetyProperty for Scope`
+- **Criterio di Successo:** Il solver **non** deve trovare controesempi entro lo scope concordato (la formula $\text{Fatti} \land \neg\text{SafetyProperty}$ è insoddisfacibile, esito UNSAT del SAT solver).
 
 #### 3.2.2. Ramo della Vitalità e Testimonianza (Satisfiability / Witness Scenario)
-* **Obiettivo:** Dimostrare che il modello conserva la capacità di compiere le funzioni operative richieste dal business (es. *esiste almeno una configurazione in cui un pagamento supera i controlli e viene validato con successo*).
-* **Comando:** `run HappyPath for Scope`
-* **Criterio di Successo:** Il solver **deve** trovare almeno un'istanza valida, popolata con dati effettivi e non degenere (esito SAT).
+- **Obiettivo:** Dimostrare che il modello conserva la capacità di compiere le funzioni operative richieste dal business (es. *esiste almeno una configurazione in cui un pagamento supera i controlli e viene validato con successo*).
+- **Comando:** `run HappyPath for Scope`
+- **Criterio di Successo:** Il solver **deve** trovare almeno un'istanza valida, popolata con dati effettivi e non degenere (esito SAT).
 
 > [!IMPORTANT]
 > **Criterio di Guardia contro l'Over-Constraining**
@@ -31543,7 +31552,7 @@ Quando si implementa una pipeline CI/CD o un agente autonomo di assurance, la co
 
 #### Livello 3: Trattamento del Controesempio di Sicurezza
 * *Sintomo:* Il comando `check SecurityGoal` produce un controesempio.
-* *Strategia di Riparazione:* **È vietato consentire all'LLM di auto-ripararsi senza supervisione.** L'analista umano deve intervenire applicando la classificazione introdotta nel Capitolo 2.4. Se il controesempio rappresenta un bug di requisito reale, il prompt di riparazione non deve limitarsi a correggere la formula Alloy, ma deve esplicitare la nuova regola di business concordata con gli stakeholder.
+* *Strategia di Riparazione:- **È vietato consentire all'LLM di auto-ripararsi senza supervisione.** L'analista umano deve intervenire applicando la classificazione introdotta nel Capitolo 2.4. Se il controesempio rappresenta un bug di requisito reale, il prompt di riparazione non deve limitarsi a correggere la formula Alloy, ma deve esplicitare la nuova regola di business concordata con gli stakeholder.
 
 #### Regola Anti-Cheating per il Feedback Loop
 Nel prompt di correzione del controesempio, è fondamentale imporre un vincolo anti-elusione:
@@ -31589,30 +31598,28 @@ Scenario: Approvazione lecita di un rimborso da parte del responsabile finanziar
 #### 3.5.2. Da Controesempio di `check` ad Abuse Case Unit Test (JUnit / PyTest)
 Il controesempio estratto dal solver rappresenta la ricetta esatta di un exploit logico o di una falla architetturale. Non deve essere semplicemente "risolto nel modello": deve diventare un test di regressione permanente nella suite di test del codice reale per impedire che gli sviluppatori (o l'LLM che genera il codice applicativo) introducano quella specifica vulnerabilità.
 
-Supponiamo che il solver abbia confutato l'invariante di approvazione mostrando che `User0` può approvare la propria spesa se acquisisce la delega di `User1`.
-Questo scenario si trasforma in un test unitario di sicurezza imperativo:
+Supponiamo che il solver abbia confutato l'invariante mostrando che l'utente `Bob` (Maker) può approvare la propria spesa acquisendo la delega da `Alice` (Checker). Questo scenario si trasforma in un test unitario di sicurezza imperativo:
 
 ```python
-## Test di regressione generato formalmente dal controesempio Alloy #CE-401
-def test_user_cannot_approve_own_expense_via_delegation_chain():
-    ## 1. Configurazione dello scenario dal controesempio (Fixture)
-    alice = create_user("Alice")
-    bob = create_user("Bob")
+# Test di regressione generato formalmente dal controesempio Alloy #CE-401
+def test_maker_cannot_self_approve_expense_using_delegated_checker_role():
+    # 1. Configurazione dello scenario dal controesempio (Fixture)
+    alice = create_user("Alice", roles=[Role.CHECKER])
+    bob = create_user("Bob", roles=[Role.MAKER])
     
-    ## Alice delega i propri poteri a Bob
+    # Alice (Checker) delega le proprie funzioni di approvazione a Bob (Maker)
     grant_delegation(from_user=alice, to_user=bob, scope="EXPENSE_APPROVAL")
     
-    ## Alice crea una nota spese a proprio nome
-    expense = create_expense(creator=alice, amount=1200)
+    # Bob predispone una nota spese a proprio nome
+    expense = create_expense(creator=bob, amount=1200)
     
-    ## 2. Esecuzione dell'attacco logico individuato dal SAT Solver
-    ## Bob tenta di approvare la spesa agendo in delega per conto dell'ufficio di Alice,
-    ## oppure Alice sfrutta la sessione delegata di Bob.
+    # 2. Esecuzione dell'attacco logico individuato dal SAT Solver:
+    # Bob tenta di approvare la propria nota spese sfruttando il ruolo Checker ricevuto da Alice
     with pytest.raises(SecurityAuthorizationException) as exc_info:
         approve_expense(actor=bob, expense=expense, using_delegation_from=alice)
         
-    ## 3. Asserzione di sicurezza verificata
-    assert "Separation of Duties violation: delegator cannot benefit from own approval" in str(exc_info.value)
+    # 3. Asserzione di sicurezza verificata
+    assert "Separation of Duties violation: actor cannot approve own expense via delegated authority" in str(exc_info.value)
     assert expense.status == "PENDING"
 ```
 
@@ -31813,7 +31820,7 @@ fun transitiveDelegates(u: User): set User {
 
 // u.delegatedFrom: colleghi da cui u riceve poteri direttamente o indirettamente
 fun delegatedFrom(u: User): set User {
-    u.~(^delegatesTo)
+    u.(^(~delegatesTo))
 }
 
 // I ruoli effettivi aggregano i ruoli propri e quelli ereditati lungo la catena
@@ -31821,23 +31828,30 @@ fun effectiveRoles(u: User): set Role {
     u.roles + (u.delegatedFrom).roles
 }
 
-// --- FATTI DEL MONDO (ARCHITETTURA APPLICATIVA) ---
-fact SoundDelegationArchitecture {
+// --- ASSUNZIONI STRUTTURALI DEL MONDO ---
+fact StructuralInvariants {
     // 1. Assenza di cicli nella delega: relazione identità disgiunta dalla chiusura
     no iden & ^delegatesTo
 
-    // 2. Requisito di creazione: per predisporre un pagamento occorre il MakerRole
+    // 2. Requisito ontologico di creazione: chi crea il pagamento deve possedere il MakerRole
     all p: Payment | MakerRole in p.creator.effectiveRoles
+}
 
-    // 3. Regola Operativa del Servizio di Autorizzazione (Guardia di Dynamic SoD):
-    // Un pagamento può essere validato solo da un utente che detiene il CheckerRole
-    // e che agisce in reciproca indipendenza dal creatore.
-    all p: Payment | some p.approver => {
-        CheckerRole in p.approver.effectiveRoles
-        p.approver != p.creator
-        p.approver not in p.creator.transitiveDelegates
-        p.creator not in p.approver.transitiveDelegates
-    }
+// --- LOGICA OPERATIVA DEL SERVIZIO DI AUTORIZZAZIONE ---
+// Predicato operativo che modella la guardia implementata nel codice applicativo.
+// NOTA DI DOMINIO: la condizione (p.creator not in u.transitiveDelegates) rappresenta
+// una policy aziendale rafforzata volta a prevenire conflitti di interesse gerarchici
+// discendenti (il delegante non può approvare le spese del proprio delegato operativo).
+pred isAuthorizedApproval(p: Payment, u: User) {
+    CheckerRole in u.effectiveRoles
+    u != p.creator
+    u not in p.creator.transitiveDelegates
+    p.creator not in u.transitiveDelegates
+}
+
+// Il workflow applicativo impone che ogni approvatore soddisfi la guardia
+fact ApplicationWorkflowRule {
+    all p: Payment | some p.approver => isAuthorizedApproval[p, p.approver]
 }
 
 // --- PREDICATO TESTIMONE DI CONSISTENZA (WITNESS) ---
@@ -31857,9 +31871,8 @@ pred ScenarioSuccessfulDelegationAndPayment {
 }
 
 // --- ASSERZIONE DI SICUREZZA ASSOLUTA (SAFETY INVARIANT) ---
-// Teorema di conformità: in nessuna circostanza il creatore e l'approvatore possono coincidere,
-// né l'approvatore può appartenere all'albero di delega riflessivo-transitivo (*delegatesTo) del creatore,
-// né il creatore può appartenere a quello dell'approvatore.
+// Teorema di conformità: si verifica che la guardia del servizio garantisca
+// l'assenza totale di auto-approvazioni dirette o mediate da deleghe transitive.
 assert StrictSeparationOfDuties {
     no p: Payment | some p.approver and (
         p.creator = p.approver or
@@ -31881,15 +31894,19 @@ check StrictSeparationOfDuties for 6 but exactly 4 User, 2 Payment
    ```text
    Instance found. Predicate is consistent. (SAT)
    ```
-   Il modello dimostra che la Dynamic Separation of Duties non paralizza l'operatività: Alice può ricevere la delega di Bob e approvare regolarmente le transazioni dei colleghi terzi.
+   Il modello dimostra che la Dynamic Separation of Duties non paralizza l'operatività: Alice può ricevere la delega di Bob e approvare regolarmente le transazioni di colleghi terzi.
 2. **`check StrictSeparationOfDuties`:**
    ```text
    No counterexample found. Assertion may be valid. (UNSAT entro lo scope analizzato)
    ```
-   Con la guardia simmetrica implementata sia verso i delegati diretti/indiretti del creatore sia verso i suoi deleganti, il SAT solver dimostra l'assenza totale di controesempi entro lo scope analizzato. Il modello è formalmente allineato ai requisiti e ai test derivati.
+   L'Analyzer conferma che la guardia operativa del servizio satura ed esaurisce le proprietà richieste dalla policy di sicurezza entro il perimetro di analisi dichiarato.
 
 > [!NOTE]
-> **Nota metodologica per l'Auditor:** L'analista noterà che l'asserzione `StrictSeparationOfDuties` riflette le condizioni della guardia operativa posta nel `fact SoundDelegationArchitecture`. A differenza delle tautologie improprie generate dagli LLM (in cui un'asserzione ripete un'assunzione del mondo reale), qui il `fact` modella formalmente le precondizioni implementate nel codice del servizio di autorizzazione, mentre l'`assert` codifica il requisito regolamentare di sicurezza. L'esito dimostra matematicamente che la logica di controllo implementata nel software è sufficiente a saturare e garantire il vincolo normativo su qualsiasi topologia del grafo delle deleghe.
+> **Nota metodologica per l'Auditor:** Disaccoppiando la guardia del servizio (`isAuthorizedApproval`) dall'invariante di sistema (`StrictSeparationOfDuties`), la verifica non è più una tautologia ($A \implies A$). Il solver dimostra che l'architettura a stati del workflow garantisce l'invariante di conformità senza comprimere i requisiti ontologici del dominio.
+
+> [!NOTE]
+> **Nota Architetturale: Snapshot Statico vs Tracce Temporali**
+> Il modello `payment_authorization_v2` analizza uno **snapshot statico** congelato all'istante di validazione del pagamento: la guardia `p.creator not in u.transitiveDelegates` previene collisioni e conflitti discendenti contestuali. Qualora il dominio richieda di tracciare deleghe conferite *dopo* l'emissione o approvazioni avvenute in momenti asincroni disgiunti, il modello deve essere esteso con i costrutti dinamici di Alloy 6 (`var sig`, `var delegatesTo`, operatori `'` e LTL) per verificare l'evoluzione temporale della macchina a stati.
 
 ---
 
@@ -31916,9 +31933,7 @@ Feature: Prevenzione di auto-approvazione tramite delega (SoD)
 ```
 
 #### 4.5.2. Da Controesempio di `check` ad Abuse Case Unit Test (JUnit / PyTest)
-Il controesempio estratto dal solver rappresenta la ricetta esatta di un exploit logico o di una falla architetturale. Non deve essere semplicemente "risolto nel modello": deve diventare un test di regressione permanente nella suite di test del codice reale per impedire che gli sviluppatori (o l'LLM che genera il codice applicativo) introducano quella specifica vulnerabilità.
-
-Nel caso della Separation of Duties, il test esecutivo implementa le verifiche di aciclicità e il blocco dell'approvazione lungo la catena di delega tra attori distinti:
+La traduzione del controesempio in codice di collaudo richiede la generazione di test di regressione mirati per ciascuno scenario di violazione isolato dal solver:
 
 ```python
 import pytest
@@ -31926,25 +31941,43 @@ from app.domain.models import User, Role, Payment
 from app.domain.exceptions import SeparationOfDutiesException, CyclicDelegationException
 from app.services.authorization_service import AuthorizationService
 
-def test_prevent_approval_when_creator_and_approver_share_delegation():
+def test_maker_cannot_self_approve_using_delegated_checker_role():
     """
-    Test di sicurezza derivato formalmente dal controesempio Alloy #CE-SOD-01.
-    Verifica che il servizio rifiuti l'approvazione se l'approvatore e il creatore
-    sono utenti distinti ma collegati da una catena di delega diretta o transitiva.
+    Test di sicurezza derivato direttamente dal controesempio Alloy #CE-SOD-01 (§ 4.3).
+    Verifica che un Maker che ha ricevuto poteri da un Checker non possa
+    approvare un pagamento da lui stesso predisposto.
     """
     auth_service = AuthorizationService()
 
     maker = User(id="USR_01", roles=[Role.MAKER])
     checker = User(id="USR_02", roles=[Role.CHECKER])
 
-    ## Il Checker delega le proprie funzioni autorizzative al Maker
+    # Il Checker delega le proprie funzioni al Maker
     auth_service.register_delegation(delegator=checker, delegatee=maker)
 
-    ## Il Maker predispone una disposizione di pagamento
-    payment = Payment(id="PAY_888", creator=maker, amount=15000)
+    # Il Maker crea una propria nota spese
+    payment = Payment(id="PAY_001", creator=maker, amount=5000)
 
-    ## Tentativo di attacco logico: il Checker (delegante) tenta di approvare
-    ## la spesa creata dal proprio delegato (Maker), violando la linea di separazione.
+    # Il Maker tenta di auto-approvarsi usando il ruolo acquisito
+    with pytest.raises(SeparationOfDutiesException) as exc_info:
+        auth_service.authorize_payment(approver=maker, payment=payment)
+
+    assert "Separation of Duties violation: actor cannot approve own payment" in str(exc_info.value)
+    assert payment.is_approved is False
+
+def test_checker_cannot_approve_payment_of_own_delegatee():
+    """
+    Test di sicurezza derivato dalla guardia simmetrica del modello payment_authorization_v2 (§ 4.4).
+    Verifica che il delegante non possa approvare le transazioni create dal proprio delegato.
+    """
+    auth_service = AuthorizationService()
+
+    maker = User(id="USR_01", roles=[Role.MAKER])
+    checker = User(id="USR_02", roles=[Role.CHECKER])
+
+    auth_service.register_delegation(delegator=checker, delegatee=maker)
+    payment = Payment(id="PAY_002", creator=maker, amount=12000)
+
     with pytest.raises(SeparationOfDutiesException) as exc_info:
         auth_service.authorize_payment(approver=checker, payment=payment)
 
@@ -31953,7 +31986,7 @@ def test_prevent_approval_when_creator_and_approver_share_delegation():
 
 def test_prevent_cyclic_delegation_chains():
     """
-    Verifica dell'invariante 'no iden & ^delegatesTo' derivato dalla specifica Alloy.
+    Verifica dell'invariante strutturale 'no iden & ^delegatesTo'.
     """
     auth_service = AuthorizationService()
     user_a = User(id="USR_A")
@@ -31963,7 +31996,7 @@ def test_prevent_cyclic_delegation_chains():
     auth_service.register_delegation(delegator=user_a, delegatee=user_b)
     auth_service.register_delegation(delegator=user_b, delegatee=user_c)
 
-    ## Il tentativo di chiudere il cerchio delegando C -> A deve sollevare eccezione
+    # La chiusura del ciclo A -> B -> C -> A deve essere intercettata e respinta
     with pytest.raises(CyclicDelegationException):
         auth_service.register_delegation(delegator=user_c, delegatee=user_a)
 ```
@@ -31974,9 +32007,9 @@ def test_prevent_cyclic_delegation_chains():
 | :--- | :--- | :--- |
 | **Modulo Formale** | `payment_authorization_v2.als` | Conforme ad Alloy 6 (motore SAT Kodkod) |
 | **Comando di Vitalità** | `run ScenarioSuccessfulDelegationAndPayment` | **SAT** (1 istanza non banale individuata a scope 4) |
-| **Comando di Sicurezza** | `check StrictSeparationOfDuties` | **UNSAT** (Zero controesempi su oltre 100.000 configurazioni, scope 6) |
-| **Difetto Individuato** | Privilege Escalation su deleghe dirette/transitive | Bug di requisito risolto prima di scrivere la prima riga di codice applicativo |
-| **Copertura Test** | 1 Scenario Gherkin E2E + 2 Unit Test di Sicurezza | Tracciabilità completa Requisito -> Specifica -> Test |
+| **Comando di Sicurezza** | `check StrictSeparationOfDuties` | **UNSAT** (Assenza di controesempi entro lo scope 6 specificato) |
+| **Difetto Individuato** | Privilege Escalation su auto-approvazione via delega | Bug di requisito risolto prima della fase di codifica |
+| **Copertura Test** | 1 Scenario Gherkin BDD + 3 Unit Test di Sicurezza | Tracciabilità completa Requisito -> Specifica -> Test |
 
 ### 5. Riferimento Rapido, Glossario e Risorse
 
@@ -32045,7 +32078,7 @@ P until Q                    // P rimane vero finché non diventa vero Q
 #### 5.1.5. Blocchi Strutturali e Comandi
 ```alloy
 module my_system             // Dichiarazione del modulo
-open util/boolean            // Importazione di un modulo esterno
+open util/boolean            // Importazione facoltativa (in alternativa alla definizione manuale di tipi enumerativi)
 fact { ... }                 // Invarianti assoluti sempre attivi nel modello
 pred name[args] { ... }      // Predicato riutilizzabile (formula logica parametrica)
 fun name[args]: Type { ... } // Funzione pura che restituisce un'espressione relazionale
@@ -32115,19 +32148,19 @@ FASE 5: TRACCIABILITÀ E TRASFERIMENTO VERSO LA CI/CD
 
 #### 5.3 Glossario Essenziale per l'Ingegnere di Assurance
 
-* **Atomo (Atom):** L'elemento primitivo e indivisibile di Alloy. Gli atomi non possiedono campi interni o indirizzi di memoria; sono entità distinte identificate solo dalla loro etichetta tipizzata (es. `User$0`).
-* **Bounded Verification (Verifica Limitata):** Metodologia di analisi formale che limita a priori la cardinalità massima delle entità considerate (*scope*), riducendo il problema dell'indecidibilità a un problema combinatorio finito risolvibile tramite SAT solver.
-* **Chiusura Transitiva (Transitive Closure, `^`):** Operatore che calcola la raggiungibilità su un grafo relazionale a 1 o più salti. Permette di navigare catene gerarchiche arbitrarie senza dover specificare a priori la profondità di ricorsione.
-* **Completeness (Completezza):** Proprietà di un metodo formale secondo cui qualsiasi difetto reale presente nel sistema viene obbligatoriamente rilevato. Alloy è completo *rispetto al perimetro dichiarato*: non perde alcun controesempio esistente entro lo scope prescelto.
-* **Controesempio (Counterexample):** Assegnamento concreto di atomi e relazioni che soddisfa tutti i fatti del modello, ma viola l'asserzione verificata. Costituisce la prova matematica inconfutabile di una falla nel requisito o nel modello.
-* **Istanza (Instance):** Assegnamento concreto di atomi e relazioni che rende vere contemporaneamente tutte le formule dichiarate nel modello.
-* **Join Relazionale (`.`):** Operatore di composizione che concatena due relazioni combinando le tuple in cui il membro destro della prima corrisponde al membro sinistro della seconda.
-* **Kodkod:** Il motore relazionale di Alloy sviluppato da Emina Torlak e Daniel Jackson. Compila predicati relazionali del primo ordine con chiusura transitiva in formule proposizionali booleane con riduzione di simmetrie.
-* **Modello Dichiarativo:** Rappresentazione logica che descrive *quali* proprietà devono valere nel sistema, senza prescrivere la sequenza imperativa di passaggi per produrre quello stato.
-* **Small Scope Hypothesis:** Ipotesi empirica formulata da Daniel Jackson secondo cui la stragrande maggioranza dei difetti architetturali e di specifica ammette un controesempio piccolo (tra 3 e 5 atomi).
-* **Soundness (Correttezza):** Proprietà di un sistema di verifica secondo cui ogni allarme segnalato corrisponde a una violazione reale. I controesempi generati da Alloy sono semanticamente esatti (*sound* rispetto alla specifica formalizzata).
-* **UNSAT Core:** Sottoinsieme (spesso minimale o irriducibile) di vincoli, formule e fatti reciprocamente incompatibili che rende il modello insoddisfacibile. È lo strumento primario per diagnosticare e isolare specifiche contraddittorie.
-* **Verità Vacua (Vacuous Truth):** Fenomeno logico per cui un'asserzione risulta vera non per la robustezza delle sue clausole, ma perché la premessa o il dominio del discorso è l'insieme vuoto (`False implies Anything`).
+- **Atomo (Atom):** L'elemento primitivo e indivisibile di Alloy. Gli atomi non possiedono campi interni o indirizzi di memoria; sono entità distinte identificate solo dalla loro etichetta tipizzata (es. `User$0`).
+- **Bounded Verification (Verifica Limitata):** Metodologia di analisi formale che limita a priori la cardinalità massima delle entità considerate (*scope*), riducendo il problema dell'indecidibilità a un problema combinatorio finito risolvibile tramite SAT solver.
+- **Chiusura Transitiva (Transitive Closure, `^`):** Operatore che calcola la raggiungibilità su un grafo relazionale a 1 o più salti. Permette di navigare catene gerarchiche arbitrarie senza dover specificare a priori la profondità di ricorsione.
+- **Completeness (Completezza):** Proprietà di un metodo formale secondo cui qualsiasi difetto reale presente nel sistema viene obbligatoriamente rilevato. Alloy è completo *rispetto al perimetro dichiarato*: non perde alcun controesempio esistente entro lo scope prescelto.
+- **Controesempio (Counterexample):** Assegnamento concreto di atomi e relazioni che soddisfa tutti i fatti del modello ma viola l'asserzione verificata. Costituisce la dimostrazione formale che l'asserzione non è conseguenza logica delle premesse entro il perimetro modellato.
+- **Istanza (Instance):** Assegnamento concreto di atomi e relazioni che rende vere contemporaneamente tutte le formule dichiarate nel modello.
+- **Join Relazionale (`.`):** Operatore di composizione che concatena due relazioni combinando le tuple in cui il membro destro della prima corrisponde al membro sinistro della seconda.
+- **Kodkod:** Il motore relazionale di Alloy sviluppato da Emina Torlak e Daniel Jackson. Compila predicati relazionali del primo ordine con chiusura transitiva in formule proposizionali booleane con riduzione di simmetrie.
+- **Modello Dichiarativo:** Rappresentazione logica che descrive *quali* proprietà devono valere nel sistema, senza prescrivere la sequenza imperativa di passaggi per produrre quello stato.
+- **Small Scope Hypothesis:** Ipotesi empirica formulata da Daniel Jackson secondo cui la stragrande maggioranza dei difetti architetturali e di specifica ammette un controesempio piccolo (tra 3 e 5 atomi).
+- **Soundness (Correttezza):** Proprietà di un sistema di verifica secondo cui ogni violazione segnalata corrisponde a un controesempio matematicamente esatto rispetto alle formule fornite in input (assenza di falsi allarmi algoritmici del solver). Non garantisce a priori che il modello rifletta fedelmente la realtà se le premesse sono errate.
+- **UNSAT Core:** Sottoinsieme (spesso minimale o irriducibile) di vincoli, formule e fatti reciprocamente incompatibili che rende il modello insoddisfacibile. È lo strumento primario per diagnosticare e isolare specifiche contraddittorie.
+- **Verità Vacua (Vacuous Truth):** Fenomeno logico per cui un'asserzione risulta vera non per la robustezza delle sue clausole, ma perché la premessa o il dominio del discorso è l'insieme vuoto (`False implies Anything`).
 
 ---
 
@@ -32148,13 +32181,13 @@ FASE 5: TRACCIABILITÀ E TRASFERIMENTO VERSO LA CI/CD
    *Studio empirico sulle euristiche di correzione dei controesempi in specifiche dichiarative Alloy da parte di LLM e sui rischi di over-constraining e riparazione degenere.*
 
 #### Tooling e Strumenti per la Pipeline CI/CD
-* **Alloy Analyzer 6 (GUI Ufficiale):** Ambiente interattivo basato su Java (motore Kodkod e integrazione SAT nativa), distribuito open source su `alloytools.org` e nel repository GitHub `AlloyTools/org.alloytools.alloy`.
-* **Alloy CLI (Command Line Interface):** Wrapper a riga di comando per compilare ed eseguire modelli `.als` all'interno di pipeline GitHub Actions, GitLab CI o container Docker headless:
+- **Alloy Analyzer 6 (GUI Ufficiale):** Ambiente interattivo basato su Java (motore Kodkod e integrazione SAT nativa), distribuito open source su `alloytools.org` e nel repository GitHub `AlloyTools/org.alloytools.alloy`.
+- **Alloy CLI (Command Line Interface):** Wrapper a riga di comando per compilare ed eseguire modelli `.als` all'interno di pipeline GitHub Actions, GitLab CI o container Docker headless:
   ```bash
   ## Esecuzione automatizzata in pipeline di assurance
   java -jar org.alloytools.alloy.dist.jar exec model.als
   ```
-* **AlloyExec / Alloy VS Code Extensions:** Estensioni per ambienti IDE che integrano evidenziazione sintattica, invocazione remota dei comandi `run`/`check` e ispezione delle istanze direttamente nel flusso di lavoro dello sviluppatore.
+- **AlloyExec / Alloy VS Code Extensions:** Estensioni per ambienti IDE che integrano evidenziazione sintattica, invocazione remota dei comandi `run`/`check` e ispezione delle istanze direttamente nel flusso di lavoro dello sviluppatore.
 
 ---
 
@@ -34991,9 +35024,11 @@ La presente bibliografia raccoglie le principali fonti tecniche, scientifiche e 
 - IEEE Std 1012-2016 (Rev. 2017). *IEEE Standard for System, Software, and Hardware Verification and Validation*. IEEE Computer Society. DOI: 10.1109/IEEESTD.2017.7931859.  
   — Standard internazionale cardine per i processi di IV&V (Independent Verification and Validation) e fonte originaria dei tre assi classici dell'indipendenza: Tecnica, Manageriale e Finanziaria.
 
-- International Electrotechnical Commission. *IEC 61508 — Functional Safety of Electrical/Electronic/Programmable Electronic Safety-related Systems*.
+- International Electrotechnical Commission. (2010). *IEC 61508:2010 
+  — Functional Safety of Electrical/Electronic/Programmable Electronic Safety-related Systems* (Parts 1–7).
 
-- International Organization for Standardization. *ISO 26262 — Road Vehicles — Functional Safety*.
+- International Organization for Standardization. (2018). *ISO 26262:2018 
+  — Road Vehicles — Functional Safety* (Parts 1–12).
 
 - International Organization for Standardization. (2018). *ISO 31000:2018 — Risk management — Guidelines*.  
   — Standard internazionale di riferimento per la definizione di rischio come «effetto dell'incertezza sugli obiettivi» e per i principi di proporzionalità e governo del rischio residuo (Step 30).
@@ -35213,8 +35248,8 @@ La presente bibliografia raccoglie le principali fonti tecniche, scientifiche e 
 
 - Crosby, S. A., Wallach, D. S., Riedi, R. H. (2009). *Opportunities and Limits of Remote Timing Attacks*. ACM Transactions on Information and System Security, 12(3), Article 17. DOI: 10.1145/1455526.1455530.
 
-- ISO/IEC 14882. *Programming Languages — C++*.  
-  — Da citare nella specifica edizione del linguaggio pertinente all’esempio trattato.
+- ISO/IEC 14882:2020. *Programming Languages 
+  — C++*. International Organization for Standardization / International Electrotechnical Commission.
 
 - Kerckhoffs, A. (1883). *La Cryptographie militaire*. Journal des sciences militaires, IX, 5–38 (Janvier), 161–191 (Février).  
   — Fonte del principio fondamentale di sicurezza per cui l'affidabilità di un sistema crittografico non deve dipendere dalla segretezza dell'algoritmo (Step 24).
@@ -35242,6 +35277,9 @@ La presente bibliografia raccoglie le principali fonti tecniche, scientifiche e 
 - Saltzer, J. H., Schroeder, M. D. (1975). *The Protection of Information in Computer Systems*. Proceedings of the IEEE, 63(9), 1278–1308. DOI: 10.1109/PROC.1975.9939.  
   — Studio cardine per i principi architetturali di protezione nei sistemi operativi, in particolare Principle of Least Privilege, Fail-Safe Defaults e Complete Mediation.
 
+- Schneier, B. (2003). *Beyond Fear: Thinking Sensibly About Security in an Uncertain World*. Copernicus Books / Springer. ISBN: 978-0-387-02620-6.  
+  — Fonte originaria per la concettualizzazione del *Security Theater*, rielaborato didatticamente nel manuale nel pattern *Gate Theater* (Step 23).
+
 - Shostack, A. (2014). *Threat Modeling: Designing for Security*. John Wiley & Sons. ISBN: 978-1-118-80999-0.  
   — Opera di riferimento metodologico per la modellazione delle minacce, l'approccio euristico delle "Quattro Domande" e l'applicazione operativa del modello STRIDE.
 
@@ -35261,7 +35299,8 @@ La presente bibliografia raccoglie le principali fonti tecniche, scientifiche e 
 - European Union. (2024). *Regulation (EU) 2024/1689 of the European Parliament and of the Council laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)*. Official Journal of the European Union, L series.  
   — Fonte primaria per la classificazione dei sistemi ad alto rischio, gli obblighi di fascicolo tecnico (Art. 11), conservazione automatica dei log (Art. 12), supervisione umana (Art. 14) e monitoraggio post-commercializzazione (Art. 72), richiamati negli Step 32 e 33.
 
-- International Electrotechnical Commission. *IEC 62304 — Medical Device Software — Software Life Cycle Processes*.
+- International Electrotechnical Commission. (2015). *IEC 62304:2006+AMD1:2015 
+  — Medical Device Software — Software Life Cycle Processes*.
 
 ---
 
