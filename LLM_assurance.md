@@ -31106,26 +31106,26 @@ La logica del primo ordine con relazioni e chiusura transitiva è, nel caso gene
 +---------------------------------------------------------+
 | Specifica Alloy 6 (Relazioni, Firme, Fatti, Asserzioni) |
 +---------------------------------------------------------+
-                          |
-                          v  Alloy Compiler & Front-end
-+--------------------------------------------------------+
-| Modello Relazionale Finito + Assegnazione Scope        |
-+--------------------------------------------------------+
-                          |
-                          v  Kodkod (Relational Engine)
-+--------------------------------------------------------+
-| Matrici Booleane Sparse & Riduzione delle Simmetrie    |
-+--------------------------------------------------------+
-                          |
-                          v  Traduzione CNF (Tseitin Transform)
-+--------------------------------------------------------+
-| Formula Proposizionale Booleana (Milioni di Clausole)  |
-+--------------------------------------------------------+
-                          |
-                          v  SAT Solver (MiniSat, Glucose, SAT4J)
-+--------------------------------------------------------+
-| Esito: SAT (Istanza Trovata) oppure UNSAT (Nessun CE)  |
-+--------------------------------------------------------+
+                    |
+                    v  Alloy Compiler & Front-end
++---------------------------------------------------------+
+| Modello Relazionale Finito + Assegnazione Scope         |
++---------------------------------------------------------+
+                    |
+                    v  Kodkod (Relational Engine)
++---------------------------------------------------------+
+| Matrici Booleane Sparse & Riduzione delle Simmetrie     |
++---------------------------------------------------------+
+                    |
+                    v  Traduzione CNF (Tseitin Transform)
++---------------------------------------------------------+
+| Formula Proposizionale Booleana (Milioni di Clausole)   |
++---------------------------------------------------------+
+                    |
+                    v  SAT Solver (MiniSat, Glucose, SAT4J)
++---------------------------------------------------------+
+| Esito: SAT (Istanza Trovata) oppure UNSAT (Nessun CE)   |
++---------------------------------------------------------+
 ```
 
 La pipeline si articola in quattro stadi fondamentali:
@@ -31155,7 +31155,7 @@ check SafePaymentWorkflow for 5 but exactly 2 User, 3 Account, 4 Int
 
 > [!WARNING]
 > **Aritmetica Finitaria in Alloy: Rischio di Overflow Silenzioso**
-> In Alloy, l'espressione `for N Int` alloca interi rappresentati in complemento a due su $N$ bit (ad esempio, con `for 4 Int` il dominio copre esclusivamente l'intervallo compreso tra $-8$ e $+7$). Le operazioni aritmetiche (`plus`, `minus`, `mul`) non sollevano eccezioni ma vanno incontro a overflow circolare silenzioso. Per requisiti che dipendono strettamente da calcoli monetari quantitativi, somme cumulative o bilanci continui, Alloy non è lo strumento d'elezione ed è preferibile delegare la verifica a solver SMT (come Z3 o CVC5).
+> In Alloy, l'espressione `for N Int` alloca interi rappresentati in complemento a due su `N` bit (ad esempio, con `for 4 Int` il dominio copre esclusivamente l'intervallo compreso tra `-8` e `+7`). Le operazioni aritmetiche (`plus`, `minus`, `mul`) non sollevano eccezioni ma vanno incontro a overflow circolare silenzioso. Per requisiti che dipendono strettamente da calcoli monetari quantitativi, somme cumulative o bilanci continui, Alloy non è lo strumento d'elezione ed è preferibile delegare la verifica a solver SMT (come Z3 o CVC5).
 
 #### La Small Scope Hypothesis
 Il fondamento teorico ed empirico della verifica limitata (*bounded verification*) è la **Small Scope Hypothesis**, formulata da Daniel Jackson (*Software Abstractions: Logic, Language, and Analysis*, Revised Edition, MIT Press, 2012, Sez. 5.1.3, p. 158):
@@ -31463,7 +31463,7 @@ Per impedire questo comportamento degradativo nell'analisi di modelli struttural
 #### 3.2.1. Ramo della Sicurezza (Safety Assertion — Confutazione)
 - **Obiettivo:** Dimostrare che nessuna configurazione ammissibile di dati può violare un invariante critico (es. *un utente approva una propria spesa*, *un nodo orfano riceve permessi di root*).
 - **Comando:** `check SafetyProperty for Scope`
-- **Criterio di Successo:** Il solver **non** deve trovare controesempi entro lo scope concordato (la formula $\text{Fatti} \land \neg\text{SafetyProperty}$ è insoddisfacibile, esito UNSAT del SAT solver).
+- **Criterio di Successo:** Il solver **non** deve trovare controesempi entro lo scope concordato (la formula `Fatti ∧ ¬SafetyProperty` è insoddisfacibile, esito UNSAT del SAT solver).
 
 #### 3.2.2. Ramo della Vitalità e Testimonianza (Satisfiability / Witness Scenario)
 - **Obiettivo:** Dimostrare che il modello conserva la capacità di compiere le funzioni operative richieste dal business (es. *esiste almeno una configurazione in cui un pagamento supera i controlli e viene validato con successo*).
@@ -32200,7 +32200,8 @@ Demandare all'LLM l'onere dell'esplorazione tassonomica iniziale e affidare al r
 
 ### NOTE SU FONTI, LICENZE E MARCHI
 Alloy è un linguaggio di modellazione formale open source sviluppato dal Software Design Group del Massachusetts Institute of Technology (MIT) e mantenuto dalla comunità su alloytools.org.  
-Tutti i riferimenti bibliografici, gli schemi e i contributi scientifici citati appartengono ai rispettivi autori e istituzioni editoriali. Tutti i marchi registrati, i nomi di linguaggi e i prodotti software terzi richiamati nel testo (tra cui Java, Python, Z3, TLA+, PyTest, Gherkin, Cucumber, GitHub e altri) sono utilizzati esclusivamente a fini identificativi, didattici e comparativi, nel rispetto dei diritti dei legittimi proprietari.
+Tutti i riferimenti bibliografici, gli schemi e i contributi scientifici citati appartengono ai rispettivi autori e istituzioni editoriali.  
+Tutti i marchi registrati, i nomi di linguaggi e i prodotti software terzi richiamati nel testo (tra cui Java, Python, Z3, TLA+, PyTest, Gherkin, Cucumber, GitHub e altri) sono utilizzati esclusivamente a fini identificativi, didattici e comparativi, nel rispetto dei diritti dei legittimi proprietari.
 
 ---
 
