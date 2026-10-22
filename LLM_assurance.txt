@@ -29666,6 +29666,7 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
 4. **Connettivi logici e valori di verità**
    - 4.1 Tabella di verità
    - 4.2 Interpretazione dei connettivi e logica per programmatori
+   - 4.3 Condizioni necessarie, sufficienti e fallacie logiche
 5. **Quantificatori**
    - 5.1 Quantificatore universale
    - 5.2 Quantificatore esistenziale
@@ -29689,6 +29690,7 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
    - 9.1 Conseguenza logica
    - 9.2 Differenza tra implicazione e conseguenza logica
    - 9.3 Conseguenza semantica e dimostrazione sintattica
+   - 9.4 Schemi di inferenza: Modus Ponens e Modus Tollens
 10. **Soddisfacibilità e consistenza delle specifiche**
     - 10.1 Soddisfacibilità di una formula
     - 10.2 Soddisfacibilità di un insieme di vincoli
@@ -29697,7 +29699,7 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
 11. **Equivalenze logiche e negazione dei requisiti**
     - 11.1 Equivalenze fondamentali
     - 11.2 Negazione dei requisiti quantificati
-    - 11.3 Controesempi e verifica
+    - 11.3 Falsificazione popperiana, controesempi e limiti del testing
 12. **Formalizzazione delle proprietà del software**
     - 12.1 Requisiti come formule
     - 12.2 Invarianti
@@ -29969,8 +29971,8 @@ Questi simboli **non sono connettivi logici** e non vanno inseriti all'interno d
   - Simbolo matematico: `⊨`
   - Varianti notazionali o ASCII: `models`
   - Significato: esprime una conseguenza logica o un soddisfacimento semantico stringente su tutti i modelli. La scrittura `Γ |= Q` stabilisce che la conclusione `Q` è vera in **tutti** i possibili stati o scenari ammissibili in cui sono simultaneamente vere le formule dell'insieme di premesse `Γ`. Nella modellazione e assurance dei sistemi:
-    `W AND S |= R`
-    stabilisce che, se le assunzioni sul mondo operativo (`W`) sono rispettate e il software rispetta le sue specifiche (`S`), allora il requisito di sicurezza (`R`) è matematicamente garantito.
+    `{ W, S } |= R`  (talvolta scritta nei report tecnici come `W AND S |= R`)
+    stabilisce che, se l'insieme formato dalle assunzioni sul mondo operativo (`W`) e dalle specifiche del software (`S`) è soddisfatto, allora il requisito di sicurezza (`R`) è matematicamente garantito.
   - *Come si legge a parole:* «Dalle premesse... segue semanticamente che...» oppure «Garantisce che...».
 
 - **Non conseguenza semantica `|/=`**
@@ -30092,6 +30094,50 @@ L'implicazione non esprime necessariamente una relazione causale o temporale. Ne
 Molti errori nella stesura dei requisiti derivano dal confondere l'implicazione logica `P -> Q` con il comando procedurale imperativo `if (P) { Q }`:
 - Nei linguaggi di programmazione, se la condizione `P` è falsa, il corpo `Q` non viene eseguito e il flusso salta oltre.
 - Nella logica formale, l'implicazione `P -> Q` è un'espressione che restituisce **sempre** un risultato booleano. Se la premessa `P` non si verifica (è falsa), l'intera formula assume il valore `TRUE`. L'implicazione esprime una promessa: se la condizione iniziale non si è verificata, la promessa non è stata infranta.
+
+#### 4.3 Condizioni necessarie, sufficienti e fallacie logiche
+
+Nei requisiti software e nell'ingegneria dei sistemi, l'implicazione e la doppia implicazione formalizzano i vincoli di dipendenza tra proprietà. Nel linguaggio naturale si tende spesso a confondere ciò che è *sufficiente* con ciò che è *necessario*: formalizzare queste nozioni evita ambiguità e contratti software errati.
+
+Per comprendere la differenza, consideriamo due generiche proprietà `A` e `B`:
+
+- **Condizione Sufficiente («A è sufficiente per B»):**
+  Significa che il verificarsi di `A` **basta da solo** a garantire la verità di `B`. Non serve verificare altro.
+  - *Regola di formalizzazione:* la condizione sufficiente si posiziona come **antecedente** (a sinistra della freccia).
+  - *Formula:* `A -> B`
+  - *Nel linguaggio naturale:* «Se si verifica A, allora si verifica B».
+  - *Esempio nel mondo reale:* «Essere a Roma (`A`) è condizione *sufficiente* per essere in Italia (`B`)» (`Roma -> Italia`). Se sei a Roma sei certamente in Italia, anche se non è l'unico modo (potresti essere a Napoli).
+  - *Esempio nel software:* «Superare 5 tentativi falliti (`A`) è condizione *sufficiente* per bloccare l'account (`B`)» (`TentativiFalliti > 5 -> AccountBloccato`).
+
+- **Condizione Necessaria («A è necessaria per B»):**
+  Significa che la proprietà `A` è un **prerequisito indispensabile, obbligatorio**: se manca `A`, è impossibile che si verifichi `B`. Senza `A`, `B` non può sussistere.
+  - *Regola di formalizzazione:* la condizione necessaria si posiziona come **conseguente** (a destra della freccia), oppure si esprime per contrapposizione negando l'antecedente.
+  - *Formula:* `B -> A`  (logicamente equivalente a: `NOT A -> NOT B`)
+  - *Nel linguaggio naturale:* «B si verifica **solo se** si verifica A».
+  - *Esempio nel mondo reale:* «Avere almeno 18 anni (`A`) è condizione *necessaria* per conseguire la patente B (`B`)» (`Patente -> Diciottenne`, ovvero: se non hai 18 anni, scordati la patente: `NOT Diciottenne -> NOT Patente`). Avere 18 anni è indispensabile, ma da solo non basta per guidare (bisogna superare gli esami).
+  - *Esempio nel software:* «Avere un token di sessione valido (`A`) è condizione *necessaria* per autorizzare il bonifico (`B`)» (`AutorizzaBonifico -> TokenValido`). Se il token non è valido, il bonifico non può avvenire. Avere il token, tuttavia, non è da solo sufficiente (occorre anche avere saldo sufficiente).
+
+- **Sintesi sulla singola implicazione `P -> Q`:**
+  All'interno della medesima formula `P -> Q`:
+  - `P` (antecedente) è la **condizione sufficiente** per `Q`.
+  - `Q` (conseguente) è la **condizione necessaria** per `P`.
+
+- **Condizione Necessaria e Sufficiente:**
+  Si verifica quando due proprietà sono interamente vincolate l'una all'altra: `A` basta per avere `B`, e non può esserci `B` senza `A`.
+  - *Formula:* `A <-> B` (oppure «A se e solo se B»).
+  - *Esempio nel software:* «Il semaforo emette luce verde (`A`) se e solo se la corsia di incrocio è bloccata dal rosso (`B`)».
+
+##### Due fallacie logiche da evitare nell'interpretazione dei Requisiti 
+
+Si consideri la specifica:  
+`P -> Q`  *(Esempio: «Se la batteria scende sotto il 10% (P), allora il sistema deve accendere il LED rosso (Q)»)*
+
+1. **Fallacia dell'Affermazione del Conseguente:**
+   - *Errore:* Osservare che il LED rosso è acceso (`Q = TRUE`) e dedurre erroneamente che la batteria sia per forza scarica (`P = TRUE`).
+   - *Perché è un errore:* La formula garantisce cosa accade quando `P` è vero, ma non vieta che il LED rosso (`Q`) possa accendersi anche per altre cause (es. test iniziale dei LED o errore del sensore di temperatura).
+2. **Fallacia della Negazione dell'Antecedente:**
+   - *Errore:* Constatare che la batteria è carica al 50% (`P = FALSE`) e dedurre erroneamente che il LED rosso debba essere sicuramente spento (`Q = FALSE`).
+   - *Perché è un errore:* Se l'antecedente è falso, l'implicazione `FALSE -> Q` è soddisfatta a prescindere dal fatto che il LED sia acceso o spento. Non si può assumere `NOT Q` solo perché manca `P`.
 
 ---
 
@@ -30310,6 +30356,28 @@ Quando uno strumento di verifica formale fallisce nel provare una proprietà, si
 `Γ |/- Q`  (simbolo matematico: `Γ ⊬ Q`)
 Nei processi di software assurance, questo esito impone di determinare se la mancata dimostrazione sia dovuta a un reale difetto di specifica/implementazione o a un limite intrinseco dell'algoritmo di prova.
 
+#### 9.4 Schemi di inferenza: Modus Ponens e Modus Tollens
+
+Nei processi di garanzia della qualità (assurance) e nella dimostrazione formale, gli schemi di inferenza consentono di derivare conclusioni inoppugnabili a partire da regole note e da fatti accertati sullo stato del sistema.
+
+- **Modus Ponens (Regola di derivazione diretta):**
+  Stabilisce che se è valida un'implicazione (`P -> Q`) e si constata che l'antecedente `P` è vero, allora la conclusione `Q` è formalmente garantita.
+  - *Notazione formale:* `{ P -> Q, P } |= Q`
+  - *Come si legge a parole:* «Dato che P implica Q, ed essendo vero P, ne segue necessariamente Q».
+  - *Esempio nel software:*
+    - Regola di sicurezza nota: «Se la memoria allocata supera la soglia critica (`P`), il controllore deve eseguire il flush dei buffer su disco (`Q`)».
+    - Fatto accertato dal monitor: «La memoria ha superato la soglia critica (`P = TRUE`)».
+    - Inferenza deduttiva: «Il flush su disco deve risultare eseguito (`Q = TRUE`)».
+
+- **Modus Tollens (Regola di confutazione per contrapposizione):**
+  Stabilisce che se è valida un'implicazione (`P -> Q`) ma si constata che il conseguente `Q` è falso (`NOT Q`), allora ne deriva necessariamente la falsità dell'antecedente (`NOT P`).
+  - *Notazione formale:* `{ P -> Q, NOT Q } |= NOT P`
+  - *Come si legge a parole:* «Dato che P implica Q, ma Q è falso, ne segue necessariamente che P non era vero».
+  - *Esempio nell'analisi dei guasti e post-incident audit (Root-Cause Analysis):*
+    - Proprietà del protocollo: «Se la transazione bancaria è stata completata con successo (`P`), allora deve esistere il record crittografico di conferma nei log di audit (`Q`)».
+    - Riscontro durante l'ispezione: «Non esiste alcun record di conferma nei log (`NOT Q`)».
+    - Inferenza deduttiva: «La transazione non è andata a buon fine con successo (`NOT P`)». Non occorre verificare il resto del flusso: l'assenza della condizione necessaria certifica l'assenza dell'evento.
+
 ---
 
 ### 10. Soddisfacibilità e consistenza delle specifiche
@@ -30406,17 +30474,34 @@ che afferma che esiste almeno un elemento che non soddisfa la proprietà.
 
 Se un requisito afferma che una proprietà deve valere per tutti gli input ammessi, la ricerca di un input che viola quella proprietà fornisce un controesempio al requisito formalizzato.
 
-#### 11.3 Controesempi e verifica
+#### 11.3 Falsificazione popperiana, controesempi e limiti del testing
 
-Un controesempio è un'interpretazione o un'assegnazione che rende falsa una proprietà che si vorrebbe dimostrare valida.
+La quasi totalità dei requisiti di sicurezza e affidabilità del software assume una forma quantificata universale:
+`forall x: Proprietà(x)`  
+(Ad esempio: *«Per ogni sequenza di input x ammissibile, il servizio restituisce una risposta valida entro 100 ms»*).
 
-Per verificare:
+La verifica pratica di queste formule evidenzia un principio cardine dell'epistemologia, introdotto dal filosofo Karl Popper: l'**asimmetria logica tra verificabilità e falsificazione**.
 
-`forall x: P(x)`
+##### L'asimmetria popperiana
+- **Mille casi favorevoli non dimostrano una legge universale:**  
+  Data l'affermazione universale *«Tutti i cigni sono bianchi»*, osservare 1.000 o 100.000 cigni bianchi non costituisce una dimostrazione matematica della regola: esisterà sempre la possibilità logica che esista un cigno nero non ancora osservato.
+- **Un singolo caso contrario demolisce la legge universale:**  
+  L'individuazione accertata di **un unico cigno nero** basta da sola a confutare istantaneamente e per sempre la formula universale.
 
-è sufficiente trovare un caso ammissibile in cui `P(x)` sia falsa per dimostrare che la formula non è valida.
+##### Traduzione nell'assurance del software e limite del testing
+Nello sviluppo del software, lo spazio degli stati operativi, dei parametri e delle sequenze temporali è combinatoriamente infinito o sterminato:
 
-L'assenza di controesempi in un insieme limitato di test, tuttavia, non dimostra da sola la validità universale della formula. La conclusione dipende dal metodo di verifica e dalla copertura del dominio.
+1. **Il testing tradizionale non dimostra la correttezza:**  
+   Eseguire con successo una suite di 50.000 casi di test conferma che il software funziona per quei 50.000 casi specifici. Se l'insieme dei test `{t_1, t_2, ..., t_n}` non esaurisce l'intero dominio `D`, vale che:
+   `{ Proprietà(t_1), Proprietà(t_2), ..., Proprietà(t_n) } |/= forall x: Proprietà(x)`  
+   Non abbiamo la certezza matematica che il caso numero 50.001 non violi la memoria o non provochi un deadlock.
+2. **Il celebre aforisma di Dijkstra:**  
+   Come sintetizzò l'informatico Edsger W. Dijkstra:  
+   *«Il testing di un programma può dimostrare la presenza di bug, ma mai la loro assenza.»*
+
+##### Il ruolo del controesempio: Testing vs Verifica Formale
+- **Il testing come tentativo metodico di falsificazione:** Test di unità, integration test e fuzzing non sono dimostrazioni di correttezza, bensì tentativi empirici di falsificare l'ipotesi di correttezza. Se un test fallisce, il framework ha trovato un **controesempio** concreto (`exists x: NOT Proprietà(x)`), provando il difetto.
+- **La verifica formale come prova universale:** L'impiego di solutori SMT, model checker e dimostratori di teoremi supera il limite del testing: analizzando simbolicamente l'intero spazio degli stati rispetto ai vincoli logici, un dimostratore automatico è in grado di **garantire che non esiste alcun controesempio ammissibile**, certificando la proprietà universale.
 
 ---
 
@@ -30434,9 +30519,9 @@ Per esempio, si definisca:
 
 Un requisito di autorizzazione può essere formalizzato come:
 
-`forall u: forall r: CanAccess(u,r) -> Authorized(u,r)`
+`forall u: forall r: (CanAccess(u,r) -> Authorized(u,r))`
 
-La formula afferma che ogni accesso consentito deve essere autorizzato.
+La formula afferma che ogni accesso consentito deve essere autorizzato. Le parentesi delimitano l'ambito di `u` ed `r` a tutta l'implicazione, rendendo l'enunciato una formula chiusa.
 
 Questa formalizzazione non dimostra che il software implementi il requisito: rende esplicita la proprietà che deve essere verificata.
 
@@ -30549,9 +30634,12 @@ La verifica automatica fornisce quindi evidenza rispetto al modello formalizzato
 
 ### 14. Glossario essenziale
 
+- **Affermazione del conseguente** — Errore logico (fallacia formale) in cui, data la regola `P -> Q`, si constata la verità del conseguente `Q` e si conclude erroneamente che debba essere vero anche l'antecedente `P`.
 - **Ambito (scope)** — Parte della formula governata da un quantificatore o delimitata da un raggruppamento.
 - **Argomento** — Termine fornito a una funzione o a un predicato.
 - **Arità** — Numero di argomenti di una funzione o di un predicato.
+- **Condizione necessaria** — Prerequisito indispensabile affinché un'altra proprietà possa sussistere. Affermare che «A è necessaria per B» significa che se manca A, B non può essere vero (`B -> A`, equivalente a `NOT A -> NOT B`).
+- **Condizione sufficiente** — Proprietà che da sola garantisce la verità di un'altra. Affermare che «A è sufficiente per B» significa che il verificarsi di A comporta immancabilmente B (`A -> B`).
 - **Connettivo** — Operatore logico che combina o modifica formule (`NOT`, `AND`, `OR`, `->`, `<->`, `XOR`).
 - **Conseguenza semantica (`|=`, `⊨`)** — Relazione per cui una conclusione è vera in tutte le interpretazioni e in tutti i modelli che rendono vere le premesse.
 - **Consistenza di una specifica** — Assenza di incompatibilità logiche o contraddizioni tra i vincoli formalizzati, rispetto alla semantica adottata.
@@ -30561,6 +30649,7 @@ La verifica automatica fornisce quindi evidenza rispetto al modello formalizzato
 - **Dominio** — Insieme degli oggetti considerati nell'interpretazione.
 - **Enunciato (formula chiusa / sentence)** — Formula priva di variabili libere, dotata di valore di verità autonomo e definito all'interno di un'interpretazione.
 - **Equivalenza logica** — Relazione tra formule che hanno lo stesso valore di verità in ogni interpretazione e per ogni assegnazione pertinente.
+- **Falsificazione popperiana** — Principio epistemologico formulato da Karl Popper secondo cui un'ipotesi universale non può essere dimostrata dall'osservazione di casi favorevoli finiti, ma può essere confutata deduttivamente da un singolo controesempio.
 - **Formula aperta** — Formula che contiene almeno una variabile libera non quantificata, il cui valore di verità dipende da assegnazioni esterne.
 - **Formula atomica** — Formula elementare, come `P(x)` o `x = y`.
 - **Formula composta** — Formula costruita usando connettivi o quantificatori.
@@ -30568,6 +30657,9 @@ La verifica automatica fornisce quindi evidenza rispetto al modello formalizzato
 - **Insoddisfacibile** — Formula che non è vera in alcuna interpretazione ammissibile e per alcuna assegnazione delle variabili libere.
 - **Invariante** — Proprietà che deve rimanere vera in tutti gli stati ammissibili ai quali si applica.
 - **Modello** — Interpretazione che rende vere le formule considerate.
+- **Modus Ponens** — Regola d'inferenza deduttiva: data una regola condizionale `P -> Q` e la verità accertata dell'antecedente `P`, ne segue necessariamente la verità del conseguente `Q` (`{ P -> Q, P } |= Q`).
+- **Modus Tollens** — Regola d'inferenza per contrapposizione: data la regola `P -> Q` e la constatazione che il conseguente `Q` è falso (`NOT Q`), ne segue necessariamente che l'antecedente `P` era falso (`{ P -> Q, NOT Q } |= NOT P`).
+- **Negazione dell'antecedente** — Errore logico (fallacia formale) in cui, data la regola `P -> Q`, si constata la falsità dell'antecedente `P` e si deduce a torto che debba essere falso anche il conseguente `Q`.
 - **Non conseguenza semantica (`|/=`, `⊭`)** — Asserzione dell'esistenza di almeno un modello o scenario in cui le premesse sono vere ma la conclusione risulta falsa.
 - **Non derivabilità sintattica (`|/-`, `⊬`)** — Impossibilità di ricavare una dimostrazione formale della formula all'interno delle regole del sistema logico dato.
 - **Postcondizione** — Proprietà attesa dopo l'esecuzione di un'operazione, secondo le condizioni specificate.
@@ -30727,6 +30819,9 @@ Il risultato non dimostra, da solo, che il sistema software reale violi il requi
 - SAT riguarda la soddisfacibilità proposizionale; SMT integra teorie formali dedicate (es. aritmetica); la soddisfacibilità generale della logica del primo ordine è indecidibile.
 - Un solver verifica proprietà del modello e dei vincoli forniti. I risultati non sostituiscono la validazione dei requisiti, la corretta implementazione e la valutazione del contesto operativo.
 - La formalizzazione è utile ed efficace solo se dominio, interpretazioni, ipotesi ambientali e significato dei predicati sono definiti con precisione.
+- Nella formula `P -> Q`, l'antecedente `P` è condizione *sufficiente* per `Q`, mentre il conseguente `Q` è condizione *necessaria* per `P` («P è vero solo se Q è vero»). Per formalizzare che «A è condizione necessaria per B», posiziona A a destra (`B -> A`).
+- Schemi deduttivi cardine: il *Modus Ponens* ricava il conseguente dalla presenza accertata dell'antecedente (`{ P -> Q, P } |= Q`), mentre il *Modus Tollens* esclude l'antecedente constatando l'assenza del conseguente (`{ P -> Q, NOT Q } |= NOT P`).
+- Principio di falsificazione popperiana: nessun numero finito di test favorevoli prova un requisito universale `forall x: P(x)`. Il testing empirico serve a scovare controesempi (evidenzia i bug); solo l'analisi logico-formale garantisce l'assenza assoluta di controesempi nell'intero dominio considerato.
 
 ---
 
@@ -30831,7 +30926,7 @@ In Alloy valgono tre principi fondamentali:
 #### 1.2 Firme, campi e molteplicità
 Il mattoncino fondamentale di Alloy è la firma (`sig`), che introduce un tipo base o un insieme di atomi.
 
-#### Dichiarazione di Firme
+##### Dichiarazione di Firme
 ```alloy
 // Un insieme di atomi chiamato User
 sig User {}
@@ -30850,7 +30945,7 @@ Qualora si volessero definire sottoinsiemi non disgiunti (sovrapponibili), si us
 sig Auditor in User {} // Un Auditor è un sottoinsieme di User; a differenza di extends, le firme con 'in' possono sovrapporsi ad altri ruoli o sottoinsiemi di User
 ```
 
-#### Campi e Molteplicità
+##### Campi e Molteplicità
 All'interno di una firma si dichiarano le relazioni verso altre entità, accompagnate da modificatori di molteplicità:
 
 ```alloy
@@ -30930,7 +31025,7 @@ SeniorManager <: approves
 approves :> HighRiskPayment
 ```
 
-#### Tavola di Decodifica: Da Alloy al Linguaggio Naturale e SQL
+##### Tavola di Decodifica: Da Alloy al Linguaggio Naturale e SQL
 
 | Espressione Alloy | Significato Concettuale | Corrispettivo Concettuale SQL / OOP |
 | :--- | :--- | :--- |
@@ -30946,7 +31041,7 @@ approves :> HighRiskPayment
 #### 1.4 Logica del primo ordine e quantificatori
 I vincoli logici definiscono le regole che ogni istanza valida deve rispettare.
 
-#### Quantificatori
+##### Quantificatori
 La sintassi generale è:
 ```text
 quantificatore variabile: Insieme | espressione_booleana
@@ -30958,7 +31053,7 @@ quantificatore variabile: Insieme | espressione_booleana
 * `one x: X | P(x)`: Esiste esattamente un atomo `x` in `X` per cui `P(x)` è vero.
 * `lone x: X | P(x)`: Esiste al massimo un atomo `x` in `X` per cui `P(x)` è vero (zero o uno).
 
-#### Connettivi Logici
+##### Connettivi Logici
 * Congiunzione: `and` oppure `&&`
 * Disgiunzione: `or` oppure `||`
 * Negazione: `not` oppure `!`
@@ -31138,7 +31233,7 @@ La pipeline si articola in quattro stadi fondamentali:
 
 #### 2.2 Lo Scope e la Small Scope Hypothesis
 
-#### Che cos'è lo Scope
+##### Che cos'è lo Scope
 In Alloy, l'esplorazione non avviene mai su un universo indefinito. Il comando di esecuzione deve specificare la cardinalità massima delle entità considerate, detta **scope**:
 
 ```alloy
@@ -31157,7 +31252,7 @@ check SafePaymentWorkflow for 5 but exactly 2 User, 3 Account, 4 Int
 > **Aritmetica Finitaria in Alloy: Rischio di Overflow Silenzioso**
 > In Alloy, l'espressione `for N Int` alloca interi rappresentati in complemento a due su `N` bit (ad esempio, con `for 4 Int` il dominio copre esclusivamente l'intervallo compreso tra `-8` e `+7`). Le operazioni aritmetiche (`plus`, `minus`, `mul`) non sollevano eccezioni ma vanno incontro a overflow circolare silenzioso. Per requisiti che dipendono strettamente da calcoli monetari quantitativi, somme cumulative o bilanci continui, Alloy non è lo strumento d'elezione ed è preferibile delegare la verifica a solver SMT (come Z3 o CVC5).
 
-#### La Small Scope Hypothesis
+##### La Small Scope Hypothesis
 Il fondamento teorico ed empirico della verifica limitata (*bounded verification*) è la **Small Scope Hypothesis**, formulata da Daniel Jackson (*Software Abstractions: Logic, Language, and Analysis*, Revised Edition, MIT Press, 2012, Sez. 5.1.3, p. 158):
 
 > *"Most bugs have small counterexamples"*  
@@ -31167,7 +31262,7 @@ In termini operativi per l'ingegnere di assurance, questa ipotesi implica che se
 
 I difetti logici del software non richiedono un milione di record per manifestarsi: richiedono **combinazioni sfavorevoli di relazioni** (es. due nodi in ciclo, un utente con doppio ruolo incompatibile, un puntatore ricorsivo, una transazione autorizzata a metà). Esplorare in modo esaustivo tutte le combinazioni fino a uno scope pari a 4 o 5 garantisce un livello di confidenza straordinariamente elevato, molto superiore al testing casuale.
 
-#### Il limite epistemologico: Bounded Search vs. Dimostrazione Universale
+##### Il limite epistemologico: Bounded Search vs. Dimostrazione Universale
 L'ingegnere di assurance deve evitare un errore interpretativo grave: **confondere l'assenza di controesempi con una dimostrazione matematica universale di correttezza**.
 
 | Esito dell'Analyzer | Interpretazione Errata | Interpretazione Corretta e Conforme all'Assurance |
@@ -31185,7 +31280,7 @@ L'ingegnere di assurance deve evitare un errore interpretativo grave: **confonde
 #### 2.3 Il Pericolo Silenzioso: Verità Vacua e Inconsistenza dei Fatti
 Nel contesto della generazione assistita da LLM, il rischio più insidioso non è ricevere un controesempio (che evidenzia un problema noto), ma ottenere un esito positivo ingannevole (*falso positivo di verifica*).
 
-#### Il principio di esplosione (*Ex Falso Quodlibet*) e le istanze degenerate
+##### Il principio di esplosione (*Ex Falso Quodlibet*) e le istanze degenerate
 In logica classica, da una premessa falsa segue qualsiasi conseguenza:
 ```text
 Se P è FALSO, allora l'implicazione (P => Q) è SEMPRE VERA, indipendentemente da Q.
@@ -31202,7 +31297,7 @@ Di conseguenza, quando si lancia un comando `check Invariant`:
    ```
 4. L'auditor conclude superficialmente che il sistema è sicuro, mentre in realtà il modello è **logicamente vacuo** o privo di stati operativi utili.
 
-#### Esempio di allucinazione dell'LLM con verità vacua
+##### Esempio di allucinazione dell'LLM con verità vacua
 Si consideri questo modello generato da un assistente AI per verificare lo stato di sicurezza degli accessi a un caveau:
 
 ```alloy
@@ -31243,7 +31338,7 @@ Se si esegue `check AllDoorsAreSecure for 3`:
   ```
 Il controllo passa con successo non perché le porte siano effettivamente sicure, ma perché l'universo delle porte è stato cancellato dalla contraddizione dei fatti.
 
-#### Il Protocollo Obbligatorio di Non-Vacuità
+##### Il Protocollo Obbligatorio di Non-Vacuità
 Per prevenire questo fallimento critico, l'ingegnere di assurance deve applicare una regola aurea tassativa:
 
 > [!WARNING]
@@ -31266,7 +31361,7 @@ run ScenarioWitness for 3
 
 Se `run ScenarioWitness` restituisce *"No instance found"*, la specifica è fallata: i fatti impediscono l'operatività del dominio e l'asserzione verificata al passo precedente era una verità vacua.
 
-#### Diagnosi tramite UNSAT Core
+##### Diagnosi tramite UNSAT Core
 Nelle versioni di Alloy Analyzer configurate con solver compatibili (come SAT4J con Unsat Core o MiniSat Prover), quando un modello è insoddisfacibile è possibile estrarre l'**UNSAT Core**. Il tool evidenzia visivamente il sottoinsieme di vincoli e fatti reciprocamente incompatibili, consentendo all'analista di isolare la contraddizione logica introdotta dall'LLM senza dover ispezionare manualmente l'intera specifica.
 
 ---
@@ -31279,7 +31374,7 @@ Counterexample found. Assertion is invalid.
 ```
 Il controesempio è la risorsa di massimo valore per l'assurance: è una prova formale inconfutabile che il requisito, così come formulato, non garantisce la proprietà attesa.
 
-#### Dalla visualizzazione a grafo alla trascrizione analitica
+##### Dalla visualizzazione a grafo alla trascrizione analitica
 L'Analyzer apre tipicamente una finestra grafica che mostra gli atomi come nodi e le relazioni come archi diretti. Nei modelli complessi, questa rappresentazione visiva può apparire come un groviglio inestricabile (*graph spaghetti*).
 
 Per eseguire l'audit, l'analista deve selezionare la modalità testuale o tabellare (*Tree View* o *Txt/Table* nel visualizzatore di Alloy), che isola il valore delle relazioni stato per stato.
@@ -31315,7 +31410,7 @@ La trascrizione rivela chiaramente la dinamica dell'attacco logico o dell'anomal
 3. Superficialmente, l'autore (`User$0`) e l'approvatore (`User$1`) risultano distinti.
 4. Tuttavia, la relazione `delegatesTo` mostra che `User$0` ha delegato le proprie funzioni a `User$1`. Di fatto, `User$0` ha approvato il proprio documento sfruttando l'identità del delegato.
 
-#### Tassonomia dei Controesempi per l'Auditor
+##### Tassonomia dei Controesempi per l'Auditor
 Di fronte a un controesempio estratto dal solver, l'auditor non deve dare per scontato che l'errore risieda nel codice o nell'LLM. Esistono quattro categorie distinte di cause radice:
 
 ```text
@@ -31339,19 +31434,19 @@ Di fronte a un controesempio estratto dal solver, l'auditor non deve dare per sc
 +-----------------+  +-----------------+  +-----------------+  +-----------------+
 ```
 
-#### Categoria A: Vulnerabilità Autentica di Requisito (Business Logic Flaw)
+**Categoria A: Vulnerabilità Autentica di Requisito (Business Logic Flaw)**  
 * *Causa:* La specifica Alloy traduce fedelmente le intenzioni espresse nel documento dei requisiti funzionali, ma il business analyst non aveva compreso che date certe condizioni la combinazione delle regole avrebbe permesso una violazione (es. privilege escalation tramite deleghe incrociate).
 * *Azione di Assurance:- **Bloccare il processo di rilascio.** Aprire una non-conformità sui requisiti originari e convocare i product owner prima di procedere alla scrittura del software.
 
-#### Categoria B: Assunzione Mancante (Under-Specification)
+**Categoria B: Assunzione Mancante (Under-Specification)**  
 * *Causa:* Il controesempio mostra uno scenario fisicamente o organizzativamente impossibile nel mondo reale, ma che la specifica permetteva perché nessuno ha esplicitato quel vincolo di buon senso (es. un dipendente che ha come data di assunzione una data antecedente alla nascita della propria azienda).
 * *Azione di Assurance:* Aggiungere un vincolo formale (`fact`) che delimiti l'ambiente operativo, documentando l'assunzione nel registro dei requisiti architetturali.
 
-#### Categoria C: Allucinazione Formale dell'LLM (Specification Translation Bug)
+**Categoria C: Allucinazione Formale dell'LLM (Specification Translation Bug)**  
 * *Causa:* Il requisito informale era corretto e conteneva la clausola necessaria, ma l'LLM ha tradotto male la formula logica (es. ha usato `or` anziché `and`, ha dimenticato il modificatore `disj`, oppure ha applicato una negazione al ramo errato di un'implicazione).
 * *Azione di Assurance:* Correggere il predicato logico o ri-promptare l'LLM fornendo l'errore analitico come feedback.
 
-#### Categoria D: Asserzione Eccessivamente Rigida (Over-Constrained Assertion)
+**Categoria D: Asserzione Eccessivamente Rigida (Over-Constrained Assertion)**  
 * *Causa:* L'asserzione controllata pretende proprietà più forti di quelle richieste dal contratto di sicurezza (es. pretende che nessun utente abbia due ruoli contemporaneamente, quando il sistema prevede legittimamente il multi-ruolo purché non vi sia conflitto di interessi).
 * *Azione di Assurance:* Riformulare l'asserzione (`assert`) in modo conforme ai reali obiettivi di sicurezza del sistema.
 
@@ -31479,14 +31574,14 @@ Per impedire questo comportamento degradativo nell'analisi di modelli struttural
 #### 3.3 Strategie di Prompting per Alloy 6
 Per ottenere modelli Alloy rigorosi ed evitare sintassi obsolete (come quelle di Alloy 4), è indispensabile fornire al modello di linguaggio un contesto strutturato tramite opportune istruzioni di sistema (*system prompt*) e schemi vincolati.
 
-#### Regole Guida per il System Prompt
+##### Regole Guida per il System Prompt
 Nel prompt di sistema devono essere sancite le seguenti direttive imperative:
 1. **Target esplicito ad Alloy 6:** Specificare che il motore di destinazione è Alloy 6, imponendo l'uso dei costrutti relazionali corretti e vietando le librerie temporali esterne obsolete (es. `open util/ordering[Time]` deve essere sostituito dall'uso nativo di `var` o da modelli puramente strutturali).
 2. **Separazione tassativa tra Dominio e Regole di Business:** Vietare l'incorporamento di logiche transazionali all'interno della dichiarazione delle firme. Le firme (`sig`) definiscono esclusivamente la tassonomia ontologica; i `fact` descrivono le assunzioni del mondo fisico; i `pred` descrivono le azioni o le policy; le `assert` descrivono i requisiti di sicurezza.
 3. **Divieto di tautologie formali:** Vietare la creazione di asserzioni che ricalchino testualmente la definizione di un `fact` già presente nel modello.
 4. **Obbligo della Spiegazione Naturale Parallela:** Per ogni vincolo non banale, l'LLM deve fornire un commento che spieghi la ratio in linguaggio naturale, permettendo la revisione incrociata da parte dell'auditor umano.
 
-#### Template Operativo: Generazione di una Specifica con Filtro
+##### Template Operativo: Generazione di una Specifica con Filtro
 Il seguente template può essere integrato direttamente negli strumenti di automazione dell'assurance:
 
 ```markdown
@@ -31542,19 +31637,19 @@ Quando si implementa una pipeline CI/CD o un agente autonomo di assurance, la co
                                          +-----------------------------------+
 ```
 
-#### Livello 1: Risoluzione Automatica di Errori Sintattici e di Tipo
+##### Livello 1: Risoluzione Automatica di Errori Sintattici e di Tipo
 * *Sintomo:* Il compilatore Alloy solleva eccezioni sintattiche (es. `Syntax error at line X: token unexpected`, `Arity mismatch: relation has arity 2 but expected 3`).
 * *Strategia di Riparazione:* Questo livello non richiede comprensione del dominio di business. È sufficiente re-iniettare il messaggio diagnostico e lo stack trace dell'errore nel contesto dell'LLM con un prompt minimalista: *"Alloy Compiler error: [Errore]. Correggi la dichiarazione preservando la semantica relazionale."* I modelli linguistici allineati sul codice correggono tipicamente tali difetti formali al primo tentativo quando guidati dall'output del compilatore.
 
-#### Livello 2: Risoluzione di Fatti Incompatibili (UNSAT / Consistenza)
+##### Livello 2: Risoluzione di Fatti Incompatibili (UNSAT / Consistenza)
 * *Sintomo:* Il comando `run Witness` risponde *"No instance found"*.
 * *Strategia di Riparazione:* Estrarre l'**UNSAT Core** prodotto dal solver. Fornire all'LLM l'elenco esatto delle righe di codice che collidono tra loro e intimare: *"I fatti alle righe [A, B] sono mutuamente esclusivi nel mondo reale. Rimuovi la sovrapposizione o allenta la molteplicità mantenendo ammissibile lo scenario Witness."*
 
-#### Livello 3: Trattamento del Controesempio di Sicurezza
+##### Livello 3: Trattamento del Controesempio di Sicurezza
 * *Sintomo:* Il comando `check SecurityGoal` produce un controesempio.
-* *Strategia di Riparazione:- **È vietato consentire all'LLM di auto-ripararsi senza supervisione.** L'analista umano deve intervenire applicando la classificazione introdotta nel Capitolo 2.4. Se il controesempio rappresenta un bug di requisito reale, il prompt di riparazione non deve limitarsi a correggere la formula Alloy, ma deve esplicitare la nuova regola di business concordata con gli stakeholder.
+* *Strategia di Riparazione:* - **È vietato consentire all'LLM di auto-ripararsi senza supervisione.** L'analista umano deve intervenire applicando la classificazione introdotta nel Capitolo 2.4. Se il controesempio rappresenta un bug di requisito reale, il prompt di riparazione non deve limitarsi a correggere la formula Alloy, ma deve esplicitare la nuova regola di business concordata con gli stakeholder.
 
-#### Regola Anti-Cheating per il Feedback Loop
+##### Regola Anti-Cheating per il Feedback Loop
 Nel prompt di correzione del controesempio, è fondamentale imporre un vincolo anti-elusione:
 
 > [!WARNING]
@@ -31623,7 +31718,7 @@ def test_maker_cannot_self_approve_expense_using_delegated_checker_role():
     assert expense.status == "PENDING"
 ```
 
-#### Matrice di Tracciabilità per l'Assurance
+##### Matrice di Tracciabilità per l'Assurance
 Per soddisfare gli standard di audit e conformità (es. ISO 26262, IEC 62304, DO-178C o framework AI Act), il processo di filtraggio formale conclude il proprio ciclo popolando la **Matrice di Tracciabilità Requisito-Modello-Verifica**:
 
 | ID Requisito | Descrizione Business | Vincolo Formale Alloy | Artefatto Solver | Test Esecutivo Derivato | Stato Assurance |
@@ -31637,10 +31732,10 @@ Per soddisfare gli standard di audit e conformità (es. ISO 26262, IEC 62304, DO
 #### 4.1 Requisiti di business e User Story iniziale
 Per osservare il funzionamento di Alloy come filtro di specifica, analizziamo un caso concreto tipico dei sistemi bancari e delle piattaforme aziendali: **l'autorizzazione delle disposizioni di spesa con principio di Separation of Duties (SoD)**.
 
-#### Contesto Operativo
+##### Contesto Operativo
 Una piattaforma di corporate banking consente ai dipendenti di una multinazionale di predisporre ed emettere pagamenti verso terzi. Per prevenire frodi interne e ottemperare alle normative contabili (es. Sarbanes-Oxley Act / standard EBA), la piattaforma deve impedire che una spesa venga creata e autorizzata dalla medesima persona fisica. Inoltre, per garantire continuità operativa durante i periodi di ferie o assenza, il sistema introduce il meccanismo delle **deleghe temporanee**.
 
-#### La User Story e i Requisiti Informali
+##### La User Story e i Requisiti Informali
 L'ingegnere dei requisiti inserisce nel backlog aziendale la seguente specifica:
 
 ```text
@@ -31659,7 +31754,7 @@ CRITERI DI ACCETTAZIONE INFORMALI:
 6. Se un utente riceve una delega, acquisisce tutti i ruoli del delegante.
 ```
 
-#### Il Punto Cieco dell'LLM
+##### Il Punto Cieco dell'LLM
 Se si chiede a un LLM di generare direttamente l'implementazione del servizio applicativo (es. un microservizio Spring Boot o Node.js), il modello produrrà un controllo superficiale del tipo:
 ```python
 if payment.creator_id == current_user.id:
@@ -31725,7 +31820,7 @@ run ShowValidPayment for 3
 check NoSelfApprovalNaive for 4
 ```
 
-#### Valutazione Iniziale della Specifica
+##### Valutazione Iniziale della Specifica
 1. **Compilazione:** La sintassi è corretta in Alloy 6 (l'inversione `~` è applicata alla relazione binaria `delegatesTo`).
 2. **Consistenza (`run ShowValidPayment`):** Il solver trova un'istanza valida. Due utenti distinti (`User0` Maker, `User1` Checker) gestiscono un pagamento. Il modello non è vacuo.
 3. **Verifica della proprietà (`check NoSelfApprovalNaive`):** 
@@ -31762,7 +31857,7 @@ Relazioni Assegnate:
   }
 ```
 
-#### Decodifica dell'Anomalia
+##### Decodifica dell'Anomalia
 Cosa è accaduto?
 1. `User$0` possiede originariamente solo il ruolo di `MakerRole`. Crea legittimamente il pagamento `Payment$0`.
 2. `User$1` (che possiede il `CheckerRole`) è andato in ferie e ha delegato le proprie prerogative a `User$0`.
@@ -31770,7 +31865,7 @@ Cosa è accaduto?
 4. Nel momento dell'approvazione, il fatto `R3` richiede solo che `CheckerRole in p.approver.effectiveRoles`. Poiché `User$0` possiede tale ruolo via delega, il sistema gli consente di impostarsi come `approver` del pagamento da lui stesso creato!
 5. L'asserzione `NoSelfApprovalNaive` crolla: la Separation of Duties è violata alla radice.
 
-#### Non solo: La Trappola della Delega Transitiva e Circolare
+##### Non solo: La Trappola della Delega Transitiva e Circolare
 Esaminando più a fondo il modello, l'analista nota altre due falle concettuali non coperte dall'LLM:
 1. **Mancanza di chiusura transitiva sulle deleghe:** 
    La formula generata dall'LLM:
@@ -31787,12 +31882,12 @@ Esaminando più a fondo il modello, l'analista nota altre due falle concettuali 
 
 Per sanare la vulnerabilità emersa nel controesempio, non si deve ricorrere a divieti arbitrari sui ruoli globali (che impedirebbero legittime deleghe operative tra colleghi), né a verifiche sbilanciate. Dobbiamo modellare una **Separation of Duties Dinamica (DSoD)**: il sistema consente ai dipendenti di detenere ruoli multipli o deleghe temporanee, ma impone una guardia operativa bidirezionale che impedisce approvazioni se tra creatore e approvatore sussiste una qualsiasi linea di procura.
 
-#### Ridefinizione dei Requisiti di Dominio e Architettura
+##### Ridefinizione dei Requisiti di Dominio e Architettura
 1. **Aciclicità del grafo di delega:** La delega deve formare un grafo aciclico diretto (DAG). Nessun utente può appartenere alla propria catena di delega transitiva.
 2. **Ereditarietà transitiva:** I poteri autorizzativi si propagano lungo la catena di procura tramite chiusura transitiva (`^`).
 3. **Guardia Operativa di Approvazione (Dynamic SoD Guard):** L'approvazione di una specifica spesa da parte del servizio di autorizzazione richiede che l'approvatore possieda il `CheckerRole` (nativo o delegato) e **non condivida alcuna linea di delega con il creatore** (l'approvatore non è tra i delegati del creatore, e il creatore non è tra i delegati dell'approvatore).
 
-#### La Specifica Alloy 6 Corretta e Verificata
+##### La Specifica Alloy 6 Corretta e Verificata
 Di seguito viene presentata la specifica completa: il modello consente a un Maker di ricevere procure da un Checker (coerentemente con gli scenari BDD e i test unitari), implementando la guardia simmetrica necessaria per garantire l'invariante di sicurezza.
 
 ```alloy
@@ -31889,7 +31984,7 @@ run ScenarioSuccessfulDelegationAndPayment for 4 but exactly 3 User, 1 Payment
 check StrictSeparationOfDuties for 6 but exactly 4 User, 2 Payment
 ```
 
-#### Esito dei Comandi nel Solver
+##### Esito dei Comandi nel Solver
 1. **`run ScenarioSuccessfulDelegationAndPayment`:**
    ```text
    Instance found. Predicate is consistent. (SAT)
@@ -32166,7 +32261,7 @@ FASE 5: TRACCIABILITÀ E TRASFERIMENTO VERSO LA CI/CD
 
 #### 5.4 Bibliografia e Strumenti Software
 
-#### Riferimenti Accademici e Libri di Testo Fondamentali
+##### Riferimenti Accademici e Libri di Testo Fondamentali
 1. **Jackson, Daniel.** *Software Abstractions: Logic, Language, and Analysis.* Revised Edition, MIT Press, 2012.  
    *Il testo seminale che definisce il paradigma di Alloy, la semantica relazionale e la Small Scope Hypothesis.*
 2. **Cunha, Alcino; Macedo, Nuno; Brunel, Julien; Chemouil, David.** *Practical Alloy: A Hands-on Guide to Formal Software Design.* 2021 (disponibile online su `practicalalloy.github.io`).  
@@ -32174,13 +32269,13 @@ FASE 5: TRACCIABILITÀ E TRASFERIMENTO VERSO LA CI/CD
 3. **Torlak, Emina; Jackson, Daniel.** *"Kodkod: A Relational Model Finder."* International Conference on Tools and Algorithms for the Construction and Analysis of Systems (TACAS), Springer, 2007.  
    *La memoria tecnica che illustra l'architettura del compilatore booleano relazionale e le tecniche di rottura delle simmetrie usate da Alloy.*
 
-#### Ricerca su Metodi Formali, LLM e Riparazione Automatica
+##### Ricerca su Metodi Formali, LLM e Riparazione Automatica
 4. **Ma, Lezhi; Liu, Shangqing; Li, Yi; Xie, Xiaofei; Bu, Lei.** *"SpecGen: Automated Generation of Formal Program Specifications via Large Language Models."* Proceedings of the IEEE/ACM 47th International Conference on Software Engineering (ICSE), 2025.  
    *Analisi dell'efficacia e delle criticità nella traduzione e sintesi automatizzata di specifiche formali da requisiti in linguaggio naturale tramite modelli linguistici.*
 5. **Alhanahnah, Mohannad; Hasan, Md Rashedul; Xu, Lisong; Bagheri, Hamid.** *"An Empirical Evaluation of Pre-trained Large Language Models for Repairing Declarative Formal Specifications."* Empirical Software Engineering, Springer, vol. 30, art. 149, 2025.  
    *Studio empirico sulle euristiche di correzione dei controesempi in specifiche dichiarative Alloy da parte di LLM e sui rischi di over-constraining e riparazione degenere.*
 
-#### Tooling e Strumenti per la Pipeline CI/CD
+##### Tooling e Strumenti per la Pipeline CI/CD
 - **Alloy Analyzer 6 (GUI Ufficiale):** Ambiente interattivo basato su Java (motore Kodkod e integrazione SAT nativa), distribuito open source su `alloytools.org` e nel repository GitHub `AlloyTools/org.alloytools.alloy`.
 - **Alloy CLI (Command Line Interface):** Wrapper a riga di comando per compilare ed eseguire modelli `.als` all'interno di pipeline GitHub Actions, GitLab CI o container Docker headless:
   ```bash
@@ -32191,7 +32286,7 @@ FASE 5: TRACCIABILITÀ E TRASFERIMENTO VERSO LA CI/CD
 
 ---
 
-#### Conclusione: Il Valore dell'Assurance Neurosimbolica
+##### Conclusione: Il Valore dell'Assurance Neurosimbolica
 L'impiego di Alloy 6 e dei solver SAT come filtro di specifica non mira a eliminare l'apporto dell'intelligenza artificiale generativa, ma a trasformarla da un generatore probabilistico non verificato a un potente assistente di progettazione supervisionato.
 
 Demandare all'LLM l'onere dell'esplorazione tassonomica iniziale e affidare al risolutore logico il verdetto rigoroso dell'analisi formale entro il perimetro dichiarato realizza il paradigma ideale dello **shift-left formale**: individuare e neutralizzare le violazioni logiche e di conformità nel momento del ciclo di vita in cui costano meno, proteggendo il codice di produzione prima ancora che venga scritto.
