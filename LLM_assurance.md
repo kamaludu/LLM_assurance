@@ -32,14 +32,14 @@ Principi, Verifica, Evidenze e Governance**
 ## **Indice completo**<!-- @style: size=20px; color=#3b8503 -->
 
 - [Informazioni sul documento](#assurance-intro)
-- [Nota terminologica](#nota-terminologica)
-- [Guida di Lettura per Ruoli](#guida-per-ruoli)
+- [➠ Nota terminologica](#nota-terminologica)
+- [⛶ Guida di Lettura per Ruoli](#guida-per-ruoli)
 
 **①**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 ###  PARTE I — Fondamenti epistemici e decisionali
 
-- [Guida ai 5 concetti fondamentali dell'Assurance](#guida-ai-5-concetti)
+- [✰ Guida ai 5 concetti fondamentali dell'Assurance](#guida-ai-5-concetti)
 
 1. [Problem Definition — definizione rigorosa del problema e dell'obiettivo](#step-1-problem-definition)
 2. [Risk Classification — classificazione e analisi del rischio](#step-2-risk-classification)
@@ -94,14 +94,14 @@ Principi, Verifica, Evidenze e Governance**
 
 ### APPENDICI
 
-- [Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
-- [Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
-- [Elementi di Teoria dei Grafi](#appendice-grafi)
-- [Elementi di Logica e Specifica Formale](#appendice-logica)
-- [Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM](#appendice-alloy)
-- [Prompt Master per lo studio dei singoli step](#prompt-master)
-- [GLOSSARIO](#glossario-manuale)
-- [Bibliografia essenziale](#bibliografia-essenziale)
+- [※ Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
+- [⬡ Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
+- [⊹ Elementi di Teoria dei Grafi](#appendice-grafi)
+- [⊙ Elementi di Logica e Specifica Formale](#appendice-logica)
+- [◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM](#appendice-alloy)
+- [✧ Prompt Master per lo studio dei singoli step](#prompt-master)
+- [❖ GLOSSARIO](#glossario-manuale)
+- [▤ Bibliografia essenziale](#bibliografia-essenziale)
 - [Nota di trasparenza e genesi del testo](#nota-utilizzo-ia)
 - [GNU Free Documentation License](#gnu-fdl-license)
 
@@ -575,7 +575,7 @@ Ogni lettore puo' quindi partire dalle sezioni piu' vicine alle proprie responsa
 
 <a name="guida-ai-5-concetti"></a>
 
-## ⬠ Guida ai 5 concetti fondamentali dell'Assurance
+## ✰ Guida ai 5 concetti fondamentali dell'Assurance
 
 ---
 
@@ -29099,7 +29099,7 @@ La compresenza empirica di questi fenomeni non costituisce una tautologia né pr
 
 ---
 
-### Bibliografia essenziale
+### Bibliografia essenziale dell'Appendice 
 
 - Fiske, S. T., & Taylor, S. E. (1991). *Social Cognition* (2nd ed.). McGraw-Hill.
 - Goddard, K., Roudsari, A., & Wyatt, J. C. (2012). Automation bias: A systematic review of frequency, effect mediators, and mitigators. *Journal of the American Medical Informatics Association*, 19(1), 121–127. https://doi.org/10.1136/amiajnl-2011-000089
@@ -29122,7 +29122,7 @@ La compresenza empirica di questi fenomeni non costituisce una tautologia né pr
 
 <a name="appendice-sw"></a>
 
-## ⛾ Strumenti per la verifica e l’assurance del software assistito da LLM
+## ⬡ Strumenti per la verifica e l’assurance del software assistito da LLM
 
 Gli strumenti elencati di seguito supportano attività di analisi statica, test automatici, misurazione della copertura, analisi dinamica, verifica della sicurezza, verifica formale e valutazione di sistemi che integrano modelli linguistici a runtime. Sono organizzati per area funzionale; il loro ambito di applicazione dipende dal linguaggio, dall'architettura del sistema e dalla configurazione adottata.
 
@@ -33344,9 +33344,9 @@ La regola fondamentale è:
 
 <a name="glossario-manuale"></a>
 
-## ⚿ GLOSSARIO
+## ❖ GLOSSARIO
 
-[**↓ Indice del Glossario**](#indice-glossario)
+[**▼ Indice del Glossario**](#indice-glossario)
 
 ### Introduzione al Glossario
 
@@ -33503,6 +33503,8 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [False Assurance (Falsa Garanzia di Fiducia / Falsa Certezza di Correttezza)](#false-assurance-falsa-garanzia-di-fiducia--falsa-certezza-di-correttezza)
 - [Feature Flag (Feature Toggle)](#feature-flag-feature-toggle)
 - [Finding (Riscontro / Risultato di Verifica)](#finding-riscontro--risultato-di-verifica)
+- [Flaky Test (Test Instabile / Intermittente)](#flaky-test-test-instabile--intermittente)
+- [Functional Core, Imperative Shell (Nucleo Funzionale e Guscio Imperativo)](#functional-core-imperative-shell-nucleo-funzionale-e-guscio-imperativo)
 - [Fuzzing (Fuzz Testing)](#fuzzing-fuzz-testing)
 
 #### G
@@ -33517,6 +33519,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Hazard (Pericolo di Sistema)](#hazard-pericolo-di-sistema)
 - [High Cardinality (Alta Cardinalità)](#high-cardinality-alta-cardinalità)
 - [Hollow Test (Test Cavo)](#hollow-test-test-cavo)
+- [Human-in-the-Loop (HITL) / Man-in-the-loop](#human-in-the-loop-hitl--man-in-the-loop)
 - [Human Review (Revisione Umana di Assurance)](#human-review-revisione-umana-di-assurance)
 - [HYPOTHESIS (Ipotesi di Lavoro)](#hypothesis-ipotesi-di-lavoro)
 
@@ -33542,6 +33545,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [LGTM Syndrome (Looks Good To Me)](#lgtm-syndrome-looks-good-to-me)
 - [Liveness Property (Proprietà di Vivacità)](#liveness-property-proprietà-di-vivacità)
 - [LLM (Large Language Model)](#llm-large-language-model)
+- [LLM-as-a-Judge](#llm-as-a-judge)
 - [LLM-Assisted Implementation (Sviluppo Assistito da LLM)](#llm-assisted-implementation-sviluppo-assistito-da-llm)
 - [Locus of Enforcement (Punto Esclusivo di Presidio)](#locus-of-enforcement-punto-esclusivo-di-presidio)
 
@@ -33550,6 +33554,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Metamorphic Testing (Testing Metamorfico)](#metamorphic-testing-testing-metamorfico)
 - [MITRE ATLAS](#mitre-atlas)
 - [Model Drift (Deriva del Modello)](#model-drift-deriva-del-modello)
+- [Modello Mondo-Macchina (World-Machine Model / Jackson & Zave)](#modello-mondo-macchina-world-machine-model--jackson--zave)
 - [Multi-Agent Echo Chamber](#multi-agent-echo-chamber)
 - [Multi-Model Audit](#multi-model-audit)
 - [Mutation Score (Punteggio di Mutazione)](#mutation-score-punteggio-di-mutazione)
@@ -33584,6 +33589,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Post-Deployment Analysis](#post-deployment-analysis)
 - [Post-Deployment Evidence (Evidenza Post-Deployment)](#post-deployment-evidence-evidenza-post-deployment)
 - [Problem Space vs Solution Space (Spazio del Problema vs della Soluzione)](#problem-space-vs-solution-space-spazio-del-problema-vs-della-soluzione)
+- [Prompt Priming (Condizionamento del Prompt)](#prompt-priming-condizionamento-del-prompt)
 - [Proof (Dimostrazione Matematica / Prova Formale)](#proof-dimostrazione-matematica--prova-formale)
 - [Property (Proprietà)](#property-proprietà)
 - [Property Coverage (Copertura delle Proprietà)](#property-coverage-copertura-delle-proprietà)
@@ -33606,6 +33612,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Risk Classification (Classificazione del Rischio)](#risk-classification-classificazione-del-rischio)
 - [Risk Item](#risk-item)
 - [Risk Reduction (Riduzione del Rischio)](#risk-reduction-riduzione-del-rischio)
+- [Risk Smuggling / Risk Downgrading (Contrabbando / Declassamento del Rischio)](#risk-smuggling--risk-downgrading-contrabbando--declassamento-del-rischio)
 - [Risk Register (Registro dei Rischi)](#risk-register-registro-dei-rischi)
 - [Rollback](#rollback)
 - [Rollbackability (Capacità di Rollback)](#rollbackability-capacità-di-rollback)
@@ -33622,6 +33629,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Second Opinion](#second-opinion)
 - [Secret Scanning](#secret-scanning)
 - [Semantic Drift (Deriva Semantica)](#semantic-drift-deriva-semantica)
+- [Semantic Smoothing (Levigatura Semantica)](#semantic-smoothing-levigatura-semantica)
 - [Shannon Entropy (Entropia di Shannon)](#shannon-entropy-entropia-di-shannon)
 - [Shrinking (Riduzione Algoritmica del Controesempio)](#shrinking-riduzione-algoritmica-del-controesempio)
 - [Silent Canary](#silent-canary)
@@ -33630,6 +33638,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Source & Sink (Sorgente e punto di arrivo / Sink del flusso dati)](#source--sink-sorgente-e-punto-di-arrivo--sink-del-flusso-dati)
 - [Specification (Specifica)](#specification-specifica)
 - [Specification Borrowing](#specification-borrowing)
+- [Specification-Driven Generation (SDG)](#specification-driven-generation-sdg)
 - [Specification Validity (Validità della Specifica)](#specification-validity-validità-della-specifica)
 - [Specification Verification (Verifica della Specifica)](#specification-verification-verifica-della-specifica)
 - [Spec-Fitting](#spec-fitting)
@@ -33642,6 +33651,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Taint Analysis (Analisi di contaminazione del flusso dati)](#taint-analysis-analisi-di-contaminazione-del-flusso-dati)
 - [Tautological Oracle / Tautological Test](#tautological-oracle--tautological-test)
 - [Telemetry (Telemetria di Sistema)](#telemetry-telemetria-di-sistema)
+- [Terna di Hoare (Hoare Triple)](#terna-di-hoare-hoare-triple)
 - [Threat (Minaccia)](#threat-minaccia)
 - [Threat Modeling (Modellazione delle Minacce)](#threat-modeling-modellazione-delle-minacce)
 - [Threshold Tampering (Manipolazione delle Soglie)](#threshold-tampering-manipolazione-delle-soglie)
@@ -33652,6 +33662,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Type-Driven Design](#type-driven-design)
 
 #### U
+- [Under-specification vs Over-specification (Sotto-specificazione vs Sovra-specificazione)](#under-specification-vs-over-specification-sotto-specificazione-vs-sovra-specificazione)
 - [UNKNOWN (Stato Epistemico Non Noto / Verdetto di Incertezza)](#unknown-stato-epistemico-non-noto--verdetto-di-incertezza)
 
 #### V
@@ -33667,7 +33678,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### A
 
@@ -34005,7 +34016,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### B
 
@@ -34041,7 +34052,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### C
 
@@ -34196,7 +34207,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### D
 
@@ -34270,7 +34281,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### E
 
@@ -34324,7 +34335,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### F
 
@@ -34374,13 +34385,33 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Nel contesto del manuale:** Negli Step 17, 22, 29 e 32 alimenta il catalogo delle discrepanze e l'aggiornamento della Knowledge Base.  
 **Termini correlati:** Discrepancy, Audit, Post-Deployment Evidence.
 
+#### Flaky Test (Test Instabile / Intermittente)
+**Categoria:** Termine tecnico consolidato  
+**In inglese:** *Flaky Test*  
+**In italiano:** Test intermittente / non deterministico  
+**Definizione:** Caso di test automatizzato che, a parità di codice sorgente, configurazione dell'ambiente di esecuzione e dati di input forniti, manifesta esiti discordanti (alternando PASS e FAIL) tra esecuzioni successive ripetute.  
+**Nel contesto del manuale:** Trattato negli Step 16 (Automated Testing) e 23 (Evidence-Based Decision Gates) come spia critica di corse concorrenti (race conditions), assunzioni temporali fragili, mancato isolamento delle risorse o asincronie non controllate nel codice generato o assistito da LLM. Il manuale vieta esplicitamente l'anti-pattern del *Flaky Test Silencing* (rieseguire ciclicamente il test fino a ottenere casualmente un esito verde per sbloccare la pipeline).  
+**Distinzioni importanti:** `Flaky Test != Test non deterministico accettabile`. Un test intermittente non rappresenta un disturbo transitorio innocuo, ma la prova empirica dell'esistenza di stati concorrenti o temporali in cui un'invariante di sistema viene violata.  
+**Nota epistemica:** Silenziare l'intermittenza tramite retry automatici occulta l'evidenza del guasto, trasformando una dimostrazione positiva di difetto (`FAIL`) in una falsa sicurezza (`PASS`).  
+**Termini correlati:** Automated Testing, Decision Gate, Race Condition, False Assurance.
+
+#### Functional Core, Imperative Shell (Nucleo Funzionale e Guscio Imperativo)
+**Categoria:** Pattern architetturale consolidato  
+**In inglese:** *Functional Core, Imperative Shell*  
+**In italiano:** Nucleo funzionale puro e guscio imperativo  
+**Definizione:** Pattern di progettazione architetturale che isola la logica di calcolo del software in un nucleo interno costituito esclusivamente da funzioni pure e deterministiche (prive di effetti collaterali, accessi al filesystem, socket di rete o letture del clock), demandando la gestione dello stato mutabile, dell'I/O e dell'orchestrazione a un guscio perimetrale esterno.  
+**Nel contesto del manuale:** Nello Step 13 (Implementation Design) costituisce il pattern cardine per governare il codice generato da LLM: confinando la logica di business nel nucleo puro, si rende possibile testare e confutare gli invarianti critici tramite Property-Based Testing (Step 18) in modo deterministico e immediato, senza dipendere da mock o da ambienti esterni complessi.  
+**Distinzioni importanti:** `Functional Core != Assenza di I/O nel sistema`. L'I/O non viene eliminato, ma concentrato e confinato nel guscio (*Imperative Shell*), impedendogli di inquinare la logica delle decisioni e il presidio degli invarianti.  
+**Nota epistemica:** Il nucleo funzionale abilita la *Modular Assurance*: garantisce che la correttezza delle proprietà critiche possa essere provata localmente senza dover orchestrare l'intero stack distribuito.  
+**Termini correlati:** Implementation Design, Locus of Enforcement, Property-Based Testing, Containment, Type-Driven Design.
+
 #### Fuzzing (Fuzz Testing)
 **Categoria:** Termine tecnico d'uso professionale consolidato  
 *Vedi: Fuzzing definito in Capitolo 18 (Property-Based Testing, Fuzzing & Adversarial Testing), Sezione 4 e categorizzato nelle sue architetture in Sezione 5.2.*
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### G
 
@@ -34410,7 +34441,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### H
 
@@ -34426,6 +34457,16 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Costrutto didattico introdotto dal manuale  
 *Vedi: Hollow Test definito come anomalia di tracciabilità in Capitolo 7 (Traceability), Sezione 3.3 e Sezione 4.*
 
+#### Human-in-the-Loop (HITL) / Man-in-the-loop
+**Categoria:** Modello di controllo e termine tecnico consolidato  
+**In inglese:** *Human-in-the-Loop (HITL) / Man-in-the-loop*  
+**In italiano:** Controllo con operatore umano nel loop operativo  
+**Definizione:** Modello di interazione uomo-macchina in cui un processo software automatizzato o assistito da modelli linguistici non possiede l'autorità di eseguire o finalizzare un'azione verso il mondo esterno senza la revisione, l'autorizzazione o l'intervento esplicito di un operatore umano.  
+**Nel contesto del manuale:** Formalizzato nello Step 3 (Sez. 2.3) accanto a HOTL (*Human-on-the-loop*) e HIC (*Human-in-command*), e analizzato criticamente negli Step 2, 8, 10 e 24. Il manuale decostruisce l'anti-pattern dell'«illusione della mitigazione tramite Human-in-the-Loop», dimostrando come in assenza di tempo congruo, competenza specifica e strumenti diagnostici indipendenti la presenza umana decada sistematicamente in ratifica passiva (*rubber-stamping*).  
+**Distinzioni importanti:** `Presenza umana nel loop != Controllo effettivo del rischio`. Avere un operatore che conferma un'azione non costituisce mitigazione valida se l'operatore soffre di automation bias o non dispone della riserva cognitiva per falsificare l'output del modello.  
+**Nota epistemica:** Il paradigma HITL soddisfa i criteri di assurance solo se rispetta le condizioni del *Meaningful Human Control* (carico cognitivo sostenibile, tempo di ispezione proporzionato e potere effettivo di veto).  
+**Termini correlati:** Meaningful Human Control, Rubber-Stamping, Automation Bias, Automation Complacency, Human Review, Two-Person Integrity.
+
 #### Human Review (Revisione Umana di Assurance)
 **Categoria:** Termine di governance e normativo  
 *Vedi: Human Review definita nel processo didattico in Capitolo 24 (Human Review & Formal Approval), Sezione 1, Sezione 4.3 e Sezione 5.*
@@ -34436,7 +34477,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### I
 
@@ -34478,7 +34519,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### K
 
@@ -34492,7 +34533,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### L
 
@@ -34520,6 +34561,16 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Acronimo / Termine tecnico consolidato  
 *Vedi: Large Language Model introdotto nell'ambito dell'assurance in Capitolo 1 (Sez. 1) e analizzato nei suoi vettori di compiacenza e allucinazione in Capitolo 1 (Sez. 10).*
 
+#### LLM-as-a-Judge
+**Categoria:** Termine tecnico d'uso professionale / Anti-pattern metodologico  
+**In inglese:** *LLM-as-a-Judge*  
+**In italiano:** Giudizio / valutazione delegata a un LLM  
+**Definizione:** Pratica consistente nell'impiegare un modello linguistico per valutare, validare, criticare o classificare la correttezza, la sicurezza o l'aderenza a specifiche dell'output, del codice o dei test generati da un altro modello (o da se stesso), emettendo punteggi o verdetti di accettabilità.  
+**Nel contesto del manuale:** Esaminato negli Step 8, 11, 20 e 23 come manifestazione di *Epistemic Proxy* e potenziale generatore di falsa assurance. Il manuale ne vieta l'uso come oracolo di sicurezza autonomo o arbitro nei Decision Gate per livelli di rischio medio-alti (AL-2, AL-3), evidenziando che i modelli condividono la medesima natura statistica, dataset di pre-addestramento sovrapposti e vulnerabilità alla compiacenza (*sycophancy*).  
+**Distinzioni importanti:** `LLM-as-a-Judge != Independent Verification`. L'accordo o la valutazione espressa da un LLM su un altro LLM costituisce al più una *second opinion* correlata, mai un'evidenza probatoria indipendente o un oracolo deterministico disaccoppiato.  
+**Nota epistemica:** L'adozione di un LLM come giudice non vincolato a oracoli formali introduce un regresso all'infinito (chi valida l'oracolo che valida l'oracolo?) e maschera i difetti tramite allucinazioni diagnostiche persuasive.  
+**Termini correlati:** Multi-Model Audit, Multi-Agent Echo Chamber, Sycophancy, Oracle Independence, Correlated Error, Epistemic Proxy.
+
 #### LLM-Assisted Implementation (Sviluppo Assistito da LLM)
 **Categoria:** Termine d'arte e metodologico del manuale  
 *Vedi: LLM-Assisted Implementation definita come trasformazione condizionata in Capitolo 15 (LLM-Assisted Implementation), Sezione 1 e Sezione 4.*
@@ -34530,7 +34581,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### M
 
@@ -34549,6 +34600,16 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 #### Model Drift (Deriva del Modello)
 **Categoria:** Termine scientifico consolidato (Machine Learning)  
 *Vedi: Model Drift definito come variazione statistica delle risposte LLM nel tempo in Capitolo 32 (Periodic Review), Sezione 5 e Sezione 17.*
+
+#### Modello Mondo-Macchina (World-Machine Model / Jackson & Zave)
+**Categoria:** Modello concettuale ed epistemico consolidato  
+**In inglese:** *World-Machine Model*  
+**In italiano:** Modello Mondo-Macchina  
+**Definizione:** Modello formale dell'ingegneria dei requisiti (derivato da Michael Jackson e Pamela Zave) che esprime la correttezza condizionale del software attraverso la relazione di conseguenza logica semantica `W AND S |= R`: se le assunzioni sul mondo esterno (`W`) sono vere e la macchina rispetta la specifica (`S`) alla frontiera dei fenomeni condivisi, allora i requisiti (`R`) nel mondo reale risultano logicamente soddisfatti.  
+**Nel contesto del manuale:** Costituisce la base epistemica della Parte I (sviluppata nella Guida ai 5 concetti fondamentali e negli Step 1, 2 e 4). Stabilisce che il software in sé non produce danni direttamente: il danno si manifesta sempre nel Mondo esterno (`W`) quando i simboli attraversano l'interfaccia.  
+**Distinzioni importanti:** `Macchina corretta (M |= S) != Requisito soddisfatto (R)`. Se una delle assunzioni sul contesto esterno si rivela falsa nella realtà operativa (`W_reale != W_assunto`), la macchina opererà senza bug rispetto alla specifica ma violerà comunque i requisiti del mondo reale, provocando incidenti.  
+**Nota epistemica:** Demolisce l'alibi difensivo *"il codice ha funzionato perfettamente, è l'utente o il sensore che ha sbagliato"*: l'assurance impone di progettare la specifica tenendo conto delle fragilità e dei limiti del mondo circostante.  
+**Termini correlati:** Requirement, Specification, Assumption, Conditional Correctness, Adeguatezza, Shared Phenomena.
 
 #### Multi-Agent Echo Chamber
 **Categoria:** Anti-pattern denominato dal manuale  
@@ -34577,7 +34638,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### N
 
@@ -34608,7 +34669,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### O
 
@@ -34655,7 +34716,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### P
 
@@ -34715,6 +34776,16 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Distinzione epistemica obbligatoria  
 *Vedi: Separazione tra Spazio del Problema e Spazio della Soluzione formalizzata in Capitolo 1 (Problem Definition), Sezione 3.1.*
 
+#### Prompt Priming (Condizionamento del Prompt)
+**Categoria:** Termine tecnico / Rischio metodologico  
+**In inglese:** *Prompt Priming / Chain-of-Custody Priming*  
+**In italiano:** Condizionamento / inquinamento del contesto del prompt  
+**Definizione:** L'alterazione non intenzionale della distribuzione probabilistica di risposta di un modello linguistico causata dall'inserimento, nel contesto della conversazione o del prompt, di ipotesi, spiegazioni, conclusioni pregresse o verdetti formulati dall'utente o da altri modelli.  
+**Nel contesto del manuale:** Analizzato negli Step 20 e 21 come causa primaria di *Falsa Indipendenza*: sottoporre un artefatto a un secondo modello chiedendogli se la spiegazione del primo sia corretta distrugge la neutralità dell'audit, spingendo il modello a convergere per compiacenza (*sycophancy*) sull'ipotesi suggerita.  
+**Distinzioni importanti:** `Blind Review != Prompt Priming`. Una revisione cieca interroga il modello fornendogli unicamente codice e specifica a stanza chiusa; il priming inquina il processo fornendo le giustificazioni dell'autore, annullando l'indipendenza epistemica.  
+**Nota epistemica:** Il priming trasforma un potenziale revisore indipendente in una cassa di risonanza dell'errore originale, portando a consensi unanimi su codice difettoso.  
+**Termini correlati:** Blind Review, Clean-Room Protocol for LLM, Multi-Model Audit, Sycophancy, Anchoring Bias.
+
 #### Proof (Dimostrazione Matematica / Prova Formale)
 **Categoria:** Distinzione epistemica obbligatoria  
 **In inglese:** *Proof / Formal Proof*  
@@ -34742,7 +34813,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### R
 
@@ -34827,6 +34898,16 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Nel contesto del manuale:** È distinta dall'eliminazione del rischio: qualsiasi riduzione lascia attivo un rischio residuo (R_res > 0).  
 **Termini correlati:** Risk, Residual Risk, Control.
 
+#### Risk Smuggling / Risk Downgrading (Contrabbando / Declassamento del Rischio)
+**Categoria:** Anti-pattern metodologico denominato dal manuale  
+**In inglese:** *Risk Smuggling / Risk Downgrading*  
+**In italiano:** Contrabbando del rischio / declassamento artificioso del rischio  
+**Definizione:** Pratica metodologica scorretta mediante la quale un rischio elevato viene artificialmente ridotto o trasferito al di fuori del perimetro analizzato, ad esempio ridefinendo in modo restrittivo i confini del sistema, frammentando una funzione critica in sottocomponenti analizzati isolatamente o qualificando un componente che governa asset critici come semplice "elaboratore di testo non privilegiato".  
+**Nel contesto del manuale:** Formalizzato nello Step 2 (Sez. 9.1) come manovra atta a sottrarre arbitrariamente un componente ai requisiti rigorosi imposti dal corrispondente Assurance Level (AL-2 o AL-3), sostituendo verifiche formali e oracoli indipendenti con test superficiali.  
+**Distinzioni importanti:** `Risk Smuggling != Risk Reduction legittima`. La riduzione del rischio altera la topologia architetturale riducendo fisicamente il blast radius (es. revoca dei permessi o sandboxing nello Step 14); il risk smuggling altera unicamente l'etichetta documentale lasciando il pericolo immutato nel mondo reale.  
+**Nota epistemica:** Viola la *Regola di Non-Diluizione del Rischio*: se il fallimento potenziale comporta un danno catastrofico e irreversibile, il livello di assurance non può essere negoziato al ribasso argomentando una presunta bassa frequenza statistica.  
+**Termini correlati:** Risk Classification, Assurance Level, Blast Radius, Rule of Non-Dilution, NO-GO.
+
 #### Risk Register (Registro dei Rischi)
 **Categoria:** Strumento di governance e normativo consolidato  
 *Vedi: Risk Register definito come dispositivo di governo dinamico dell'incertezza in Capitolo 30 (Risk Register & Knowledge Base), Sezione 4, Sezione 5 e Sezione 8.*
@@ -34857,7 +34938,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### S
 
@@ -34893,6 +34974,16 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Costrutto didattico del manuale  
 *Vedi: Semantic Drift definita in Capitolo 7 (Traceability, Sez. 4) e formalizzata nell'evoluzione non controllata del codice in Capitolo 31 (Change Impact Analysis, Sez. 5).*
 
+#### Semantic Smoothing (Levigatura Semantica)
+**Categoria:** Costrutto concettuale applicato dal manuale  
+**In inglese:** *Semantic Smoothing*  
+**In italiano:** Levigatura semantica / appianamento semantico  
+**Definizione:** La propensione strutturale dei modelli linguistici allineati tramite RLHF ad attenuare, mascherare o colmare tacitamente discrepanze logiche, ambiguità o contraddizioni presenti nel prompt dell'utente, sintetizzando risposte fluide, eleganti e stilisticamente coerenti ma fondate su presupposti arbitrari e assunzioni silenti.  
+**Nel contesto del manuale:** Esaminato negli Step 1, 3 e 4 come vettore scatenante dell'*Automation Bias*: l'ingegnere che riceve una specifica o un codice privo di asprezze sintattiche scambia la bellezza espositiva per correttezza metodologica, omettendo l'audit critico delle premesse di dominio sottostanti.  
+**Distinzioni importanti:** `Semantic Smoothing != Semantic Drift`. Il semantic drift è lo slittamento temporale del significato tra versioni successive; il semantic smoothing è l'atto istantaneo con cui l'LLM elimina l'attrito logico di una specifica imperfetta fabbricando una coerenza artificiale.  
+**Nota epistemica:** Trasforma l'incertezza informativa (`UNKNOWN`) in una falsa certezza (`FACT` o `ASSUMPTION` non dichiarata), violando il principio di trasparenza epistemica.  
+**Termini correlati:** Sycophancy, Plausibility Trap, Underspecification, False Assurance, Automation Bias.
+
 #### Shannon Entropy (Entropia di Shannon)
 **Categoria:** Termine scientifico consolidato (teoria dell'informazione)  
 *Vedi: Shannon Entropy definita nella formula di densità di casualità in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.6.*
@@ -34925,6 +35016,16 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Anti-pattern denominato dal manuale  
 *Vedi: Specification Borrowing definito come anti-pattern di ricostruzione della specifica dal codice in Capitolo 21 (Independent Verification), Sezione 10.*
 
+#### Specification-Driven Generation (SDG)
+**Categoria:** Costrutto didattico/operativo formalizzato dal manuale  
+**In inglese:** *Specification-Driven Generation (SDG)*  
+**In italiano:** Generazione guidata da specifica  
+**Definizione:** Metodologia operativa per lo sviluppo assistito da LLM in cui la sintesi del codice candidato è rigorosamente preceduta, delimitata e vincolata da contratti formali (precondizioni, postcondizioni, invarianti di sicurezza e tipi statici chiusi) approvati a monte. Il modello è vincolato a implementare esclusivamente il corpo interno di funzioni pure entro confini deterministici, con divieto tassativo di alterare le interfacce, aggiungere dipendenze o introdurre effetti collaterali non tracciati.  
+**Nel contesto del manuale:** Costituisce il modello normativo dello Step 15, formalizzato per superare e respingere l'anti-pattern del *Vibe Coding*.  
+**Distinzioni importanti:** `Specification-Driven Generation != Prompting generico`. Nell'SDG il prompt non contiene istruzioni informali libere, ma trasferisce al modello un contratto immutabile derivato dagli Step 4, 6 e 13, imponendo l'inserimento difensivo di guardie a runtime (*Defensive Invariant Embedding*).  
+**Nota epistemica:** Tratta l'output dell'LLM non come codice definitivo, ma come un'ipotesi algoritmica candidata (I_candidate) da sottoporre immediatamente a verifica empirica e confutazione.  
+**Termini correlati:** Vibe Coding, Design by Contract, LLM-Assisted Implementation, Invariant, Defensive Invariant Embedding.
+
 #### Specification Validity (Validità della Specifica)
 **Categoria:** Termine metodologico consolidato  
 *Vedi: Specification Validity definita sui sei pilastri di conformità semantica in Capitolo 9 (Specification Validity), Sezione 1, Sezione 3.2 e Sezione 4.*
@@ -34955,7 +35056,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### T
 
@@ -34970,6 +35071,16 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 #### Telemetry (Telemetria di Sistema)
 **Categoria:** Termine tecnico consolidato  
 *Vedi: Telemetry definita nella tassonomia MELT in Capitolo 26 (Observability, Sez. 4.2) e distinta dall'evidenza probatoria nella catena di trasformazione in Sezione 8.1.*
+
+#### Terna di Hoare (Hoare Triple)
+**Categoria:** Modello logico-matematico formale consolidato  
+**In inglese:** *Hoare Triple*  
+**In italiano:** Terna di Hoare  
+**Definizione:** Costrutto fondativo della logica assiomatica dei programmi (introdotto da C.A.R. Hoare) espresso nella forma `{ P } C { Q }`, dove P è la precondizione che deve valere sullo stato prima dell'esecuzione, C è il comando o blocco di codice eseguito, e Q è la postcondizione garantita come vera al termine dell'elaborazione, a patto che P fosse soddisfatta all'inizio e che C termini.  
+**Nel contesto del manuale:** Utilizzata negli Step 4 (Specification), Step 6 (Critical Properties) e Step 13 (Implementation Design) per formalizzare i contratti software dei componenti generati da LLM, stabilendo una chiara linea di demarcazione tra gli obblighi a carico dell'ambiente chiamante (P) e le garanzie offerte dal codice (Q).  
+**Distinzioni importanti:** `{ P } C { Q } != if (P) { C; Q }`. La terna di Hoare non è una struttura di controllo procedurale del codice, ma un'asserzione logica sull'evoluzione dello stato di un automa. Se il chiamante viola la precondizione (P = FALSE), l'implementazione C non è vincolata ad alcuna garanzia di comportamento.  
+**Nota epistemica:** Rappresenta lo strumento formale con cui si vincola l'LLM: la postcondizione Q definisce l'oracolo logico esatto contro cui falsificare l'implementazione candidata C.  
+**Termini correlati:** Design by Contract, Precondition, Postcondition, Invariant, Implementation Design.
 
 #### Threat (Minaccia)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
@@ -35009,9 +35120,20 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### U
+
+#### Under-specification vs Over-specification (Sotto-specificazione vs Sovra-specificazione)
+**Categoria:** Termini tecnici consolidati dell'ingegneria dei requisiti  
+**In inglese:** *Under-specification vs Over-specification*  
+**In italiano:** Sotto-specificazione vs Sovra-specificazione  
+**Definizione:** Due patologie simmetriche che compromettono la validità e l'efficacia di una specifica tecnica:  
+- *Sotto-specificazione (Under-specification)*: condizione di incompletezza o ambiguità in cui i requisiti omettono vincoli essenziali (casi limite, fallimenti di rete, condizioni di errore, limiti di memoria), consentendo molteplici comportamenti mutuamente incompatibili e delegando all'LLM decisioni arbitrarie basate su medie statistiche di addestramento;  
+- *Sovra-specificazione (Over-specification)*: inclusione indebita di dettagli implementativi, scelte algoritmiche interne o vincoli architetturali contingenti all'interno della specifica di interfaccia, limitando inutilmente lo spazio delle soluzioni senza apportare alcun incremento di assurance.  
+**Nel contesto del manuale:** Trattate negli Step 1, 4 e 9. La sotto-specificazione è la causa prima dell'allucinazione e del *Semantic Smoothing*; la sovra-specificazione distrugge l'indipendenza dei test costringendo gli oracoli a verificare l'implementazione anziché le proprietà di confine.  
+**Distinzioni importanti:** Una specifica corretta deve essere esaustiva sui vincoli osservabili alla frontiera (*Boundary Completeness*) e rigorosamente neutra rispetto ai dettagli algoritmici interni (*Declarative Specification*).  
+**Termini correlati:** Specification, Specification Validity, Declarative Specification, Semantic Smoothing, Underspecification.
 
 #### UNKNOWN (Stato Epistemico Non Noto / Verdetto di Incertezza)
 **Categoria:** Stato epistemico formale / Valore decisionale del manuale  
@@ -35019,7 +35141,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### V
 
@@ -35045,7 +35167,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ---
 
-[↑ Indice del Glossario](#indice-glossario)
+[▲ Indice del Glossario](#indice-glossario)
 
 ### W
 
@@ -35069,7 +35191,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 <a name="bibliografia-essenziale"></a>
 
-## ⌸ Bibliografia essenziale
+## ▤ Bibliografia essenziale
 
 La presente bibliografia raccoglie le principali fonti tecniche, scientifiche e normative cui fanno riferimento i concetti, i modelli e le distinzioni utilizzati nel presente manuale. Le citazioni non implicano che le formulazioni del manuale siano riproduzioni testuali delle fonti: ove indicato, i concetti sono rielaborati e integrati nel modello didattico del manuale.
 
