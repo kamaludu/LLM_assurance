@@ -95,13 +95,14 @@ Principi, Verifica, Evidenze e Governance**
 ### APPENDICI
 
 - [※ Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
+- [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm)
 - [⬡ Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
 - [⊹ Elementi di Teoria dei Grafi](#appendice-grafi)
 - [⊙ Elementi di Logica e Specifica Formale](#appendice-logica)
 - [◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM](#appendice-alloy)
 - [✧ Prompt Master per lo studio dei singoli step](#prompt-master)
 - [❖ GLOSSARIO](#glossario-manuale)
-- [▤ Bibliografia essenziale](#bibliografia-essenziale)
+- [▤ Bibliografia essenziale](#bibliografia-essenziale-man)
 - [Nota di trasparenza e genesi del testo](#nota-utilizzo-ia)
 - [GNU Free Documentation License](#gnu-fdl-license)
 
@@ -29116,6 +29117,411 @@ La compresenza empirica di questi fenomeni non costituisce una tautologia né pr
 
 ---
 
+[Torna all'Indice](#indice-completo)
+
+<a name="appendice-diversita-llm"></a>
+
+## ✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit
+***Quadro Euristico di Diversità Tecnica, Limiti dell'Accordo e Difesa in Profondità per il Software Assurance***
+
+**Indice:**
+1. Inquadramento Metodologico e Orizzonte Temporale
+2. Le Cinque Dimensioni di Analisi della Diversità Tecnica
+3. Matrice Euristica di Diversità Tecnica Potenziale (11 × 11)
+4. Tassonomia delle Famiglie di Modelli (Snapshot 2025/2026)
+5. Principi di Accoppiamento, Competenza di Dominio e Difesa in Profondità
+6. Protocollo di Revisione Avversariale Basato su Evidenze
+7. Quadro Informativo sui Modelli e Note di Accessibilità
+8. Sintesi dei Criteri di Assurance
+
+---
+
+### 1. Inquadramento Metodologico e Orizzonte Temporale
+
+> [!NOTE]
+> **Riferimento temporale dello snapshot tecnologico: Scenario consolidato 2025 / inizio 2026**  
+> Questa appendice documenta il panorama tecnologico dei modelli linguistici di frontiera consolidatosi tra la fine del **2024 e i primi mesi del 2026**. I modelli menzionati comprendono rilasci ufficiali accertati dello snapshot (inclusi *Llama 3.3 70B* rilasciato da Meta nel dicembre 2024 e *Claude 3.7 Sonnet* rilasciato da Anthropic nel febbraio 2025 come modello ibrido a ragionamento esteso).  
+> 
+> *Avvertenza metodologica permanente:*  
+> Nel settore dell'intelligenza artificiale generativa, i singoli prodotti commerciali sono soggetti a rapido turnover.  
+> La presente appendice **non propone una misura metrologica o empiricamente validata di indipendenza statistica degli errori**, bensì una **valutazione euristica e qualitativa della diversità tecnica potenziale**. Il suo scopo è orientare la selezione dei modelli da sottoporre a verifica comparativa nel quadro del *Multi-Model Audit* (Step 20), prevenendo l'accoppiamento acritico di sistemi che condividono la medesima filiera di sviluppo.
+
+---
+
+### 2. Le Cinque Dimensioni di Analisi della Diversità Tecnica
+
+Nello Step 20 (*Multi-Model Audit*) si assume come principio metodologico fondamentale che l'accordo tra modelli non dimostra la correttezza del software: modelli differenti possono convergere sul medesimo errore logico a causa di euristiche comuni o distorsioni condivise nei dati di addestramento.
+
+> [!TIP]
+> **L'analogia dei correttori di bozze (Ponte intuitivo per non specialisti)**  
+> Se chiedi a due persone di correggere una formula complessa, ma entrambe hanno studiato sullo stesso manuale che conteneva un errore di stampa, è molto probabile che entrambe considerino corretta la formula o condividano il medesimo angolo cieco.  
+> Moltiplicare i controlli tra modelli che hanno attinto alle medesime fonti statistiche non riduce proporzionalmente il rischio: rischia solo di amplificare la sicurezza percepita attorno a un errore comune. Cercare "diversità tecnica" significa selezionare un secondo controllore che abbia un'architettura e un metodo di addestramento il più possibile estranei al primo.
+
+Nel valutare la diversità tecnica potenziale tra un modello generatore `M_gen` e un modello revisore `M_audit`, si esaminano **cinque dimensioni analitiche** (che non devono essere presunte matematicamente ortogonali, in quanto presentano parziali interdipendenze):
+
+**DIMENSIONI DI ANALISI DELLA DIVERSITÀ TECNICA**
+
+1. **Genealogia dei Pesi** → Inizializzazione *from-scratch* (da zero) vs derivazione/fine-tuning
+2. **Pipeline Dati e Distillazione** → Web crawl proprietario vs dataset aperti vs distillazione sintetica
+3. **Paradigma di Inferenza** → Autoregressivo denso standard vs MoE (Mixture of Experts) vs Test-Time Reasoning
+4. **Metodo di Post-Training** → RLHF convenzionale *(allineamento basato su feedback umano)* vs Constitutional AI vs RL su task formali
+5. **Contesto del Laboratorio** → Informazione contestuale sulla filiera ingegneristica e di allineamento
+
+#### Distinzioni Epistemiche Fondamentali:
+```text
+DIVERSITÀ TECNICA POTENZIALE
+          !=
+INDIPENDENZA EMPIRICA DEGLI ERRORI
+          !=
+EFFICACIA PROBATORIA DELL'AUDIT
+```
+* **Diversità Tecnica Potenziale:** Differenze strutturali e documentabili nei pesi, nell'architettura di rete, nel paradigma di inferenza e nelle tecniche dichiarate di post-training.
+* **Indipendenza Empirica degli Errori:** Proprietà statistica per cui la probabilità di guasto del revisore è condizionatamente scorrelata da quella del generatore (`P(E_audit | E_gen) ~= P(E_audit)`). Tale proprietà non può essere dedotta a priori dalla sola architettura: richiede misurazioni sperimentali su benchmark dedicati con difetti noti.
+* **Efficacia Probatoria dell'Audit:** Capacità effettiva del modello revisore di individuare e dimostrare violazioni reali sul compito specifico. Un modello con elevata diversità tecnica potenziale può risultare un revisore inefficace se privo di sufficiente competenza sul linguaggio o sul dominio in esame.
+
+---
+
+### 3. Matrice di Diversità tra Modelli per il Controllo Incrociato (11 × 11)
+
+---
+
+#### 3.1 Come Capire se Due Modelli Futuri Sono Diversi (Regola Pratica per gli Anni a Venire)
+
+I nomi commerciali cambiano rapidamente, ma l'evoluzione delle architetture tende a seguire alcuni criteri tecnici identificabili. Se in futuro occorre confrontare due modelli non presenti nella tabella (es. GPT-5, Claude 4, Llama 4), è possibile applicare questa semplice sequenza logica:
+
+1. **LA REGOLA DEL PUNTO DI PARTENZA (BASELINE):**
+   - Se i due modelli sono stati creati dalla **stessa azienda o laboratorio** (es. due modelli OpenAI, o due modelli Google) $\rightarrow$ Si parte dal livello base **BASSA**.
+   - Se i due modelli appartengono ad **aziende concorrenti e indipendenti** (es. uno americano e uno cinese, o uno commerciale e uno open-source) $\rightarrow$ Si parte dal livello base **MEDIA**.
+
+2. **AGGIUNGI O TOGLI LIVELLI DI DIVERSITÀ (+ / -):**
+   - **Togli un livello (scende a MINIMA):** Se il modello B è un derivato diretto, un riadattamento o una versione rimpicciolita/distillata che usa i pesi del modello A (es. modelli basati su Llama).
+   - **Aggiungi un livello (+1):** Se uno dei due è un modello a "risposta rapida" (predizione standard) e l'altro alloca tempo per "pensare e valutare ipotesi prima di rispondere" (modelli di tipo *Reasoning* con catena di pensiero, come o1 o DeepSeek-R1).
+   - **Aggiungi un livello (+1):** Se uno è un modello denso (tutti i neuroni attivi a ogni parola) e l'altro usa un'architettura a esperti sparsi (*Mixture of Experts - MoE*).
+   - **Aggiungi un livello (+1):** Se uno è un modello generico e l'altro è stato addestrato appositamente su trilioni di righe di codice sorgente (es. i modelli specializzati *-Coder*).
+
+3. **VALUTA QUANTO È TRASPARENTE L'INFORMAZIONE:**
+   - Assegna `[*]` (Alta confidenza) se entrambi i modelli hanno pesi scaricabili e relazioni tecniche aperte.
+   - Assegna `[o]` (Media confidenza) se almeno uno è un servizio commerciale chiuso di cui l'azienda rivela solo dettagli parziali.
+   - Assegna `[?]` (Bassa confidenza) se il sistema è un programma commerciale "scatola nera" che usa modelli altrui con modifiche non dichiarate.
+
+---
+
+#### 3.2 Definizione Completa dei Livelli di Diversità
+
+* **NESSUNA:** Stesso identico modello o stessa sessione di chat (il modello fa da revisore a se stesso).
+* **MINIMA:** Modello derivato direttamente, wrapper commerciale o forte dipendenza dai pesi di base del primo modello.
+* **BASSA:** Stessa azienda o forte continuità genealogica; cambia principalmente il metodo di risposta (es. modello standard vs modello di ragionamento dello stesso laboratorio).
+* **MEDIA:** Aziende differenti, ma stessa impostazione tecnica generale (modelli densi standard) e ampia sovrapposizione nei testi e nel codice pubblico su cui hanno studiato.
+* **MEDIA-ALTA:** Diversità potenziale superiore alla media per divergenze documentate sui dati (es. archivi proprietari Google) o per forte specializzazione sul codice, pur senza disaccoppiamento totale.
+* **ALTA:** Differenza marcata su più aspetti indipendenti (es. architetture diverse come MoE, diverse tecniche di allenamento e dati).
+* **MOLTO-ALTA:** Massima diversità tecnica potenziale riscontrabile: architettura di calcolo diversa (Denso vs MoE), metodo di risposta disaccoppiato (Next-token standard vs Ragionamento esteso su task formali) e laboratori indipendenti.
+
+---
+
+#### 3.3 Matrice della Diversità tra Modelli (Chi è diverso da chi?)
+
+> [!CAUTION]
+> **TRE AVVERTENZE CRITICHE SULL'USO DELLA MATRICE**  
+> 1. **La diversità tecnica è reciproca, ma l'efficacia del controllo non lo è:** Se il modello A è tecnicamente molto diverso dal modello B, ciò non garantisce che entrambi siano ugualmente bravi a trovare errori. La capacità di revisione dipende da quanto il modello conosce il linguaggio del tuo codice.  
+> 2. **`MOLTO-ALTA` non significa "miglior controllore":** Indica solo che i due modelli sono stati costruiti con metodi il più possibile differenti. Se scegli un modello a diversità massima che però non conosce il framework usato dal tuo software, otterrai una revisione scadente.  
+> 3. **Stima orientativa prudente:** Questa tabella riassume le differenze tecnologiche accertate; non è una garanzia matematica che i due modelli non possano occasionalmente sbagliare sulla stessa cosa.
+
+> [!TIP]
+> **COME USARE QUESTA TABELLA IN PRATICA (In 4 semplici passaggi):**
+> 
+> L'obiettivo è trovare un modello revisore che ragioni con presupposti tecnici e architetturali il più possibile differenti da chi ha scritto il codice, evitando errori condivisi.
+> 
+> 1. **Trova sulla colonna a sinistra** il modello con cui hai generato o intendi generare il codice (es. riga `GPT-4o`).
+> 2. **Scorri la riga orizzontalmente** e cerca i modelli contrassegnati con **ALTA** o **MOLTO-ALTA**.
+>    * *Criterio di prudenza:* I modelli contrassegnati con *NESSUNA*, *MINIMA* o *BASSA* condividono gran parte dei pesi o della filiera tecnica: hanno un'alta probabilità di avere gli stessi angoli ciechi e darti ragione anche su un errore.
+> 3. **Tra i modelli a diversità elevata, scegli quello adatto al tuo codice (Sez. 5.1):** Se devi controllare codice di programmazione puro, privilegia modelli che eccellono nel codice (es. *Qwen-Coder* o *DeepSeek-R1*).
+> 4. **Esegui il controllo alla cieca:** Apri una nuova chat con il modello scelto e inviagli il codice usando **esclusivamente il template della Sezione 6**, senza dirgli chi ha scritto il codice né cosa ne pensi tu.
+
+*Come si legge: incrocia il modello che ha scritto il codice (sulla sinistra) con quello che vorresti usare per controllarlo (in alto).*
+
+| MODELLO | GPT-4o | MS Copilot | o1/o3-mini | Claude 3.5/3.7 | Gemini 2.0 | DS-V3 (MoE) | DS-R1 (Reason) | Qwen-Coder | Llama 3.3 | Nemotron | Kimi |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **GPT-4o** | NESSUNA | MINIMA `[?]` | BASSA `[o]` | MEDIA `[o]` | MEDIA-ALTA `[o]` | ALTA `[o]` | MOLTO-ALTA `[o]` | ALTA `[o]` | MEDIA `[o]` | MEDIA `[o]` | ALTA `[o]` |
+| **MS Copilot** | MINIMA `[?]` | NESSUNA | BASSA `[?]` | MEDIA `[?]` | MEDIA-ALTA `[?]` | ALTA `[?]` | MOLTO-ALTA `[?]` | ALTA `[?]` | MEDIA `[?]` | MEDIA `[?]` | ALTA `[?]` |
+| **o1/o3-mini** | BASSA `[o]` | BASSA `[?]` | NESSUNA | MEDIA-ALTA `[o]` | MEDIA-ALTA `[o]` | MOLTO-ALTA `[o]` | ALTA `[o]` | ALTA `[o]` | MEDIA-ALTA `[o]` | MEDIA-ALTA `[o]` | ALTA `[o]` |
+| **Claude 3.5/3.7** | MEDIA `[o]` | MEDIA `[?]` | MEDIA-ALTA `[o]` | NESSUNA | MEDIA-ALTA `[o]` | ALTA `[o]` | MOLTO-ALTA `[o]` | ALTA `[o]` | MEDIA `[o]` | MEDIA `[o]` | ALTA `[o]` |
+| **Gemini 2.0** | MEDIA-ALTA `[o]` | MEDIA-ALTA `[?]` | MEDIA-ALTA `[o]` | MEDIA-ALTA `[o]` | NESSUNA | ALTA `[o]` | MOLTO-ALTA `[o]` | ALTA `[o]` | MEDIA-ALTA `[o]` | MEDIA-ALTA `[o]` | ALTA `[o]` |
+| **DeepSeek-V3** | ALTA `[o]` | ALTA `[?]` | MOLTO-ALTA `[o]` | ALTA `[o]` | ALTA `[o]` | NESSUNA | BASSA `[*]` | MEDIA-ALTA `[*]` | ALTA `[*]` | ALTA `[*]` | MEDIA-ALTA `[*]` |
+| **DeepSeek-R1** | MOLTO-ALTA `[o]` | MOLTO-ALTA `[?]` | ALTA `[o]` | MOLTO-ALTA `[o]` | MOLTO-ALTA `[o]` | BASSA `[*]` | NESSUNA | MOLTO-ALTA `[*]` | MOLTO-ALTA `[*]` | MOLTO-ALTA `[*]` | MEDIA-ALTA `[*]` |
+| **Qwen-Coder** | ALTA `[o]` | ALTA `[?]` | ALTA `[o]` | ALTA `[o]` | ALTA `[o]` | MEDIA-ALTA `[*]` | MOLTO-ALTA `[*]` | NESSUNA | MEDIA-ALTA `[*]` | MEDIA-ALTA `[*]` | MEDIA-ALTA `[*]` |
+| **Llama 3.3** | MEDIA `[o]` | MEDIA `[?]` | MEDIA-ALTA `[o]` | MEDIA `[o]` | MEDIA-ALTA `[o]` | ALTA `[*]` | MOLTO-ALTA `[*]` | MEDIA-ALTA `[*]` | NESSUNA | MINIMA `[*]` | ALTA `[*]` |
+| **Nemotron** | MEDIA `[o]` | MEDIA `[?]` | MEDIA-ALTA `[o]` | MEDIA `[o]` | MEDIA-ALTA `[o]` | ALTA `[*]` | MOLTO-ALTA `[*]` | MEDIA-ALTA `[*]` | MINIMA `[*]` | NESSUNA | ALTA `[*]` |
+| **Kimi** | ALTA `[o]` | ALTA `[?]` | ALTA `[o]` | ALTA `[o]` | ALTA `[o]` | MEDIA-ALTA `[*]` | MEDIA-ALTA `[*]` | MEDIA-ALTA `[*]` | ALTA `[*]` | ALTA `[*]` | NESSUNA |
+
+> **Significato dei simboli tra parentesi accanto a ciascun livello:**  
+> Servono a mostrare quanto possiamo verificare in modo trasparente queste caratteristiche tecniche:  
+> - `[*]` **Trasparente:** Entrambi i modelli hanno pesi aperti e dettagli tecnici completamente documentati e verificabili.  
+> - `[o]` **Parzialmente chiuso:** Almeno uno dei due è un modello commerciale proprietario a pesi chiusi con documentazione parziale.  
+> - `[?]` **Scatola nera:** Uno dei due è un'applicazione chiusa (come Copilot) che integra modelli altrui con modifiche o filtri non del tutto dichiarati.  
+>  
+> *Nota operativa su Claude 3.7:* La tabella considera Claude 3.7 nella modalità di risposta standard. Se viene attivata la funzione di ragionamento esteso opzionale (*extended thinking*), la diversità verso modelli senza reasoning (es. GPT-4o) aumenta di un grado, passando da `MEDIA `[o]` a `MEDIA-ALTA `[o]`.
+
+---
+
+#### 3.4 Spiegazione Tecnica degli Incroci Principali
+
+* **GPT-4o vs MS Copilot (`MINIMA `[?]`):** Evidenza di stretta dipendenza tecnologica dai modelli base OpenAI; confidenza bassa per via della variabilità delle configurazioni enterprise e dei filtri proprietari Microsoft.
+* **GPT-4o vs o1/o3-mini (`BASSA `[o]`):** Stesso laboratorio e continuità nei dati di addestramento, ma divergenza nel metodo di risposta (ragionamento interno con catena di pensiero).
+* **Llama 3.3 vs Nemotron (`MINIMA `[*]`):** Condividono i medesimi pesi di partenza di Meta; per questo motivo Nemotron non è consigliabile come revisore principale per codice scritto da Llama 3 (parentela genealogica diretta).
+* **Qwen-Coder vs DeepSeek-R1 (`MOLTO-ALTA `[*]`):** Massima divergenza tecnica: architettura diversa (Denso vs MoE a esperti), paradigma di calcolo disaccoppiato (Next-token standard vs Ragionamento con RL puro) e laboratori indipendenti.
+* **Llama 3.3 vs DeepSeek-R1 (`MOLTO-ALTA `[*]`):** Modello denso generalista occidentale a pesi aperti vs Modello a ragionamento MoE orientale. Piena divergenza su architettura, dati e metodo di calcolo.
+* **OpenAI o1/o3-mini vs DeepSeek-R1 (`ALTA `[o]`):** Entrambi usano ragionamento esteso prima di rispondere, ma divergono nettamente nell'architettura (Denso proprietario vs MoE aperto) e nei metodi di addestramento.
+* **Kimi vs Modelli Occidentali (GPT-4o, Claude) (`ALTA `[o]`):** Laboratorio indipendente asiatico specializzato su contesti ultra-lunghi vs Architetture dense occidentali.
+* **Kimi vs DeepSeek e Qwen (`MEDIA-ALTA `[*]`):** Pur appartenendo all'area asiatica, rappresentano laboratori e architetture differenti, offrendo una valida alternativa di controllo incrociato.
+
+---
+
+### 4. Tassonomia delle Famiglie di Modelli (Snapshot 2025/2026)
+
+Le famiglie di modelli considerate rappresentano differenti archetipi architetturali e metodologici riscontrabili nello snapshot di riferimento:
+
+#### Cluster 1: OpenAI (Frontiera Commerciale USA — Approccio Duale)
+* **Modelli rappresentativi:** GPT-4o (Dense Multimodale standard), o1 / o3-mini (Test-Time Reasoning).
+* **Caratteristiche tecniche documentate:** Architetture dense proprietarie. I modelli della serie *o* allocano compute dinamico durante l'inferenza (*test-time reasoning* con catene di pensiero interne non direttamente accessibili all'utente: il modello genera e valuta ipotesi prima di rispondere), mostrando elevata efficacia su compiti algoritmici e matematici.
+* **Fattori di accoppiamento:** Forte influenza sui benchmark pubblici globali e impiego massiccio di pipeline sintetiche proprietarie.
+
+#### Cluster 2: Microsoft Copilot (Integrazione Enterprise)
+* **Modelli rappresentativi:** Copilot (versioni Web ed Enterprise).
+* **Caratteristiche tecniche:** Servizio applicativo che poggia prevalentemente su modelli di fondazione della famiglia OpenAI (in particolare varianti di GPT-4o), integrati con sistemi di recupero documentale proprietari, strumenti di orchestrazione e filtri di moderazione configurabili.
+* **Valutazione di diversità:** Presenta una marcata dipendenza tecnologica dai modelli base di OpenAI. Salvo esplicita documentazione di modelli alternativi sottostanti, non può essere considerato un revisore indipendente rispetto a GPT-4o.
+
+#### Cluster 3: Anthropic (Allineamento Costituzionale e Coerenza Contestuale)
+* **Modelli rappresentativi:** Claude 3.5 Sonnet, Claude 3.7 Sonnet (modello ibrido rilasciato a inizio 2025, integrato con modalità di ragionamento esteso opzionale).
+* **Caratteristiche tecniche:** Allineamento basato su *Constitutional AI* (il modello viene guidato facendogli verificare l'output contro un insieme esplicito di principi e regole scritte tramite RLAIF, *Reinforcement Learning from AI Feedback*). Elevata aderenza alle specifiche e precisione nel refactoring sintattico.
+* **Fattori di accoppiamento:** Condivide con l'ecosistema della West Coast USA ampie porzioni di dati di crawling web aperti e analoghe convenzioni di moderazione.
+
+#### Cluster 4: Google DeepMind (Infrastruttura Dati su Larga Scala)
+* **Modelli rappresentativi:** Gemini 1.5 Pro, Gemini 2.0 (versioni Flash e Pro, con varianti Flash-Thinking).
+* **Caratteristiche tecniche:** Modelli multimodali nativi con finestre di contesto estese (fino a 1–2 milioni di token). Addestramento che beneficia dell'infrastruttura di indicizzazione e dei corpus proprietari di Google (Search, documentazione scientifica, repository indicizzati).
+* **Valutazione di diversità:** Offre una potenziale differenziazione nella pipeline di pre-training rispetto ai modelli basati esclusivamente su dump web pubblici, pur condividendo molti standard industriali di validazione.
+
+#### Cluster 5: DeepSeek (Architettura MoE e Reinforcement Learning Multifase)
+* **Modelli rappresentativi:** DeepSeek-V3 (Mixture of Experts sparso), DeepSeek-R1 (Reasoning model).
+* **Caratteristiche tecniche:** Divergenza sia architetturale (modello *MoE - Mixture of Experts*, in cui per ogni token si attiva solo una frazione specializzata dei parametri totali) sia di post-training. R1 adotta un processo di addestramento che include una fase rilevante di Reinforcement Learning su compiti a riscontro oggettivo tramite algoritmi di ottimizzazione diretta (GRPO, *Group Relative Policy Optimization*) combinata con fasi di SFT (*Supervised Fine-Tuning*). Pesi aperti verificabili.
+* **Fattori di accoppiamento:** Utilizzo di dati di pre-training pubblici internazionali e parziale distillazione da modelli di frontiera; i dati non garantiscono indipendenza su convenzioni applicative non binarie.
+
+#### Cluster 6: Alibaba / Qwen (Specializzazione Verticale sul Codice)
+* **Modelli rappresentativi:** Qwen 2.5-Coder (varianti dense 7B, 14B, 32B), QwQ-32B (Reasoning aperto).
+* **Caratteristiche tecniche:** Modelli a pesi aperti con pre-addestramento intensivo documentato nei relativi technical report su oltre 5.5 trilioni di token dedicati a codice sorgente, documentazione tecnica e commit di repository multilingua.
+* **Valutazione di diversità:** Elevata competenza sintattica su molteplici linguaggi di programmazione, utile come revisore di aderenza ai contratti di codice, pur basato sul paradigma di predizione densa.
+
+#### Cluster 7: Ecosistema Pesi Aperti Occidentale (Meta / Mistral)
+* **Modelli rappresentativi:** Llama 3.1 / 3.3 (70B, 405B rilasciati da Meta tra metà e fine 2024), Mistral Codestral, Mistral Large.
+* **Caratteristiche tecniche:** Modelli generalisti densi (Llama) e modelli specializzati su codice o con architetture MoE (Mistral/Mixtral). Costituiscono una base accessibile per audit riproducibili e ispezioni locali in ambienti on-premise isolati.
+* **Fattori di accoppiamento:** Forte esposizione ai medesimi benchmark pubblici occidentali e porzioni condivise di codice GitHub.
+
+#### Cluster 8: xAI / Altri Attori Emergenti (Inquadramento Contestuale)
+* **Modelli rappresentativi:** Grok (versioni 2/3 e varianti di ragionamento esteso).
+* **Caratteristiche tecniche:** Addestramento condotto su cluster proprietari su larga scala (Colossus), con enfasi dichiarata su risposte dirette e integrazione di dati in tempo reale. Pur non inclusi nella matrice operativa a 11 modelli (per vincoli di accessibilità gratuita diretta e quote API per audit sistematici nei periodi di riferimento), rappresentano un polo tecnologico indipendente dai consorzi storici di San Francisco.
+
+#### Cluster 9: Nvidia AI (Famiglia Nemotron e Post-Training Specialistico)
+* **Modelli rappresentativi:** Llama-3.1-Nemotron-70B-Instruct, Nemotron-4 340B.
+* **Caratteristiche tecniche documentate:** Modelli a pesi aperti ad alte prestazioni con una duplice natura:
+  1. *Varianti derivate (es. Llama-3.1-Nemotron):* poggiano sui pesi base di Meta (Cluster 7), ma adottano un post-training radicalmente riallineato tramite la suite proprietaria *NeMo-Aligner*, reward model avanzati e massiccio impiego di dati sintetici;
+  2. *Varianti native (es. Nemotron-4 340B):* pre-addestrate da zero su oltre 9 trilioni di token con forte orientamento a compiti analitici e di sintesi del codice.
+* **Valutazione di diversità:** Se il modello è basato su Llama, condivide la genealogia dei pesi con il Cluster 7; se nativo, presenta diversità tecnica ALTA rispetto a OpenAI e Google.
+
+#### Cluster 10: Moonshot AI (Famiglia Kimi — Pioniere dell'Ultra-Long Context)
+* **Modelli rappresentativi:** Kimi Chat (Moonshot v1), Kimi k1.5 (con reasoning avanzato su codice e matematica).
+* **Caratteristiche tecniche documentate:** Laboratorio indipendente cinese pioniere nell'ingegneria del contesto esteso (finestre di contesto native fino a 2 milioni di token).
+* **Valutazione di diversità:** Si colloca nell'asse asiatico indipendente: diversità tecnica ALTA o MOLTO-ALTA rispetto ai modelli occidentali densi (GPT-4o, Claude). Presenta una diversità potenziale MEDIA-ALTA rispetto a DeepSeek e Qwen per via della separazione societaria e architetturale, pur condividendo parziali sovrapposizioni nei dati di pre-training in lingua asiatica.
+
+---
+
+### 5. Principi di Accoppiamento, Competenza di Dominio e Difesa in Profondità
+
+#### 5.1 Pre-Filtraggio per Competenza di Dominio
+La scelta del modello revisore non può basarsi unicamente sulla matrice di diversità. Un revisore appartenente a una coppia a diversità `MOLTO-ALTA` risulta inefficace se non possiede un'adeguata competenza diagnostica sullo stack tecnologico dell'applicazione.
+
+> **Regola Operativa di Pre-Filtraggio:**  
+> Prima di consultare la matrice di diversità, **filtrare i potenziali revisori in base alla competenza dimostrata sul dominio del codice**:
+> - Se il codice include primitive a basso livello (C, Rust, assembly, kernel), privilegiare modelli con pre-addestramento intensivo su linguaggi formali (es. Qwen 2.5-Coder, DeepSeek-R1);
+> - Se il codice riguarda logiche contrattuali o specifiche di business con complesse dipendenze contestuali, privilegiare modelli con spiccata aderenza semantica (es. Claude 3.5/3.7 Sonnet);
+> - Se il modello a diversità massima manifesta lacune diagnostiche sul linguaggio target, **è opportuno selezionare un revisore di categoria inferiore (es. ALTA o MEDIA-ALTA) che garantisca comprovata competenza tecnica sul contesto specifico**.
+
+#### 5.2 Rischio di Data Contamination e Benchmark Leakage
+Un pericolo primario nel Multi-Model Audit è l'illusione di revisione indipendente dovuta a correlazioni latenti nei dati di addestramento:
+
+* **Contaminazione da Codice Pubblico e Benchmark:**  
+  Se il frammento di codice sotto esame è estratto da repository pubblici storici (GitHub), tutorial noti o librerie open source, è probabile che sia presente nel pre-training sia del generatore che del revisore. In tale scenario, il revisore rischia di non compiere una verifica logica indipendente, ma di richiamare pattern statistici memorizzati durante il pre-training: l'accordo favorevole rischia di riflettere la frequenza del codice nel corpus comune anziché la corretta aderenza alla specifica.
+* **Contaminazione da Dati Sintetici Incrociati (Cross-Synthetic Leakage):**  
+  Oltre al codice pubblico condiviso, un vettore documentato di correlazione tra modelli di laboratori distinti è l'uso incrociato di dataset sintetici. Diversi modelli open-weights e specialistici includono nelle fasi di SFT o allineamento dati generati o distillati da modelli commerciali di frontiera (in particolare famiglie OpenAI o Anthropic). Tale dipendenza indiretta può indurre euristiche diagnostiche coincidenti e punti ciechi condivisi.
+* **Mitigazione Operativa di Assurance:**  
+  Nell'eseguire l'audit, testare l'efficacia diagnostica della coppia preferibilmente su **codice sintetico o proprietario inedito**, rinominando identificatori e alterando la struttura sintattica per disinnescare la memorizzazione dei token e stimolare l'analisi logico-semantica.
+  
+#### 5.3 Fattibilità Operativa, Latenza e Vincoli di Risorse
+L'impiego di modelli basati su *Test-Time Reasoning* (o1, DeepSeek-R1) introduce un costo computazionale e una latenza per richiesta significativamente superiori rispetto ai modelli autoregressivi standard:
+- Nei cicli veloci di Continuous Integration (CI/CD ad alta frequenza), invocare revisori reasoning su ogni commit può risultare economicamente e operativamente gravoso.
+- **Strategia di Scalatura Proporzionata:** Riservare i revisori a ragionamento esteso (`MOLTO-ALTA`) ai componenti critici di livello AL-2 e AL-3 (*Assurance Level*, livelli di garanzia del software definiti nello Step 10), impiegando revisori a media diversità ma a bassa latenza (es. modelli densi specializzati) per i controlli intermedi di livello AL-0 e AL-1.
+
+> [!WARNING]
+> **Ragionamento a Inferenza (Test-Time Reasoning) $\neq$ Garanzia di Correttezza Formale**  
+> L'allocazione di compute dinamico durante l'inferenza (come nei modelli o1, o3-mini o DeepSeek-R1) incrementa significativamente la profondità di analisi rispetto alla predizione next-token immediata, ma non costituisce una dimostrazione formale di correttezza.  
+> Un modello reasoning può comunque convergere su conclusioni errate, produrre razionalizzazioni logiche apparentemente coerenti ma fondate su premesse difettose (*reasoning hallucination*) o manifestare deviazioni da iper-focalizzazione (*overthinking*). La diagnosi del revisore reasoning rimane un'ipotesi probabilistica che deve essere corroborata dalle evidenze esecutive dei Livelli 3, 4 e 5.
+
+#### 5.4 L'Architettura a Cinque Livelli Complementari di Verifica
+I livelli operativi di verifica non costituiscono una gerarchia rigida e sequenziale: operano in modo **complementare, iterativo e spesso parallelo** (in particolare i Livelli 3 e 4):
+
+```text
+          LIVELLI COMPLEMENTARI DI VERIFICA DEL SOFTWARE
+          
+  [Livello 1] LLM Generatore
+              Produce l'implementazione candidata a partire dalla specifica (Step 15).
+                   |
+                   v
+  [Livello 2] LLM Revisore Indipendente
+              Esegue l'ispezione avversariale su contratti e casi limite (Step 20).
+                   |
+        +----------+----------+ (Esecuzione iterativa e parallela)
+        |                     |
+        v                     v
+  [Livello 3]           [Livello 4]
+  Analisi Statica       Test Dinamici, PBT e Fuzzing
+  e Controlli           Ricerca empirica di controesempi riproducibili
+  Deterministici        tramite esecuzione del software
+  (AST, tipi, SAST,     (PBT, fuzzing con Atheris, regressione)
+   SCA, secret scan)    (Step 16, 18).
+  (Step 17).                  |
+        |                     |
+        +----------+----------+
+                   |
+                   v
+  [Livello 5] Verifica Formale o Revisione Umana Specialistica
+              Dimostrazione matematica di proprietà definite (ove applicabile tramite
+              model checking o SMT solver) e delibera di gate con firma umana (Step 21, 24).
+```
+
+*Nota esplicativa per non specialisti sugli strumenti deterministici:*  
+* **Livello 3 (Analisi Statica):** Ispezione del codice senza eseguirlo. Include l'analisi dell'Albero Sintattico (*AST - Abstract Syntax Tree*), la verifica dei tipi di dato, l'individuazione di vulnerabilità di sicurezza (*SAST - Static Application Security Testing*), il controllo delle vulnerabilità nelle librerie terze (*SCA - Software Composition Analysis*) e la ricerca di password o token esposti (*secret scan*).  
+* **Livello 4 (Test Dinamici):** Esecuzione del software alla ricerca di fallimenti. Include test basati su proprietà (*PBT - Property-Based Testing*, con generazione casuale di input estremi), test casuali guidati dalla copertura del codice (*Fuzzing*) e suite di non-regressione.  
+* **Livello 5 (Verifica Formale):** Dimostrazione matematica rigorosa che il software soddisfa la specifica per ogni possibile input, effettuata tramite risolutori logici (*SMT solver - Satisfiability Modulo Theories*) o esplorazione esaustiva degli stati (*Model Checking*).
+
+---
+
+### 6. Protocollo di Revisione Avversariale Basato su Evidenze
+
+> [!IMPORTANT]
+> **Neutralità Epistemica e Riproducibilità del Controesempio**  
+> Il protocollo di audit deve guidare il modello alla ricerca rigorosa di violazioni **senza imporre la conclusione che il codice sia necessariamente difettoso** (che indurrebbe falsi allarmi) e **senza richiedere conferme generiche di correttezza** (che stimolerebbero la compiacenza / *sycophancy*).  
+> Ogni controesempio segnalato deve includere le **precondizioni ambientali ed esecutive** necessarie per renderlo riproducibile da parte del verificatore umano o di un test runner automatico.
+
+#### Note Operative di Prompting:
+- **Codice in lingua inglese:** Sebbene il prompt metodologico sia riportato in italiano, la stragrande maggioranza del codice e delle specifiche tecniche di settore adotta l'inglese. Il prompt può essere erogato mantenendo le istruzioni in italiano anche per codice inglese; tuttavia, per modelli open-weights di scala inferiore (es. 7B o 14B), è consigliabile utilizzare la versione tradotta in lingua inglese del medesimo prompt per evitare disallineamenti di tokenizzazione cross-linguistica.
+
+#### Template Operativo di Prompting (Blind Review Prompt)
+
+```text
+RUOLO:
+Agisci come revisore indipendente di software con competenze in analisi statica, 
+sicurezza applicativa, modelli di concorrenza e verifica dei requisiti.
+
+CONTESTO:
+Devi verificare se il codice candidato soddisfa integralmente la specifica fornita.
+Non presumere che il codice sia privo di errori, né che sia necessariamente difettoso.
+Il tuo obiettivo è identificare discrepanze dimostrabili rispetto alla specifica.
+
+SPECIFICA ATTESA:
+[Inserire requisiti formali, contratti pre/post-condizione, tipi e invarianti critici]
+
+CODICE CANDIDATO SOTTO ESAME:
+[Inserire il codice sorgente da verificare]
+
+ISTRUZIONI DI REVISIONE:
+1. Esamina attivamente la presenza di:
+   - Violazioni delle postcondizioni e degli invarianti contrattuali;
+   - Condizioni di contesa (race conditions), deadlock o problemi di concorrenza asincrona;
+   - Errori sui valori limite (off-by-one, underflow/overflow, divisioni per zero);
+   - Assunzioni implicite non verificate sull'ambiente, sui dati o sulle risorse esterne;
+   - Eccezioni non controllate o mascherate che corrompono lo stato del sistema.
+2. Per ogni difetto reale rilevato, indica tassativamente:
+   - La clausola specifica o l'invariante violato;
+   - La catena causale che collega l'input o lo stato alla violazione;
+   - IL CONTROESEMPIO MINIMO RIPRODUCIBILE: specifica il valore esatto di input o 
+     la sequenza temporale di chiamate. QUALORA IL DIFETTO DIPENDA DA CONCORRENZA, 
+     STATO PERSISTENTE O AMBIENTE, ESPLICITA LE PRECONDIZIONI ESATTE NECESSARIE PER LA RIPRODUZIONE.
+3. Distingui rigorosamente i difetti dimostrati mediante controesempio dalle semplici 
+   ipotesi non verificate e dai suggerimenti di stile.
+4. NON inventare difetti e non segnalare violazioni prive di riscontro riproducibile.
+5. Se non individui violazioni della specifica, descrivi analiticamente i controlli eseguiti 
+   ed esplicita i limiti della tua analisi. Non dedurre la correttezza assoluta dalla sola 
+   assenza di controesempi.
+6. Se la specifica è ambigua o incompleta, segnala lo stato di incertezza indicando quali 
+   chiarimenti sono indispensabili, senza tentare assunzioni arbitrarie.
+
+FORMATO DELLA RISPOSTA:
+
+[VERDETTO]: 
+(Scegliere tassativamente tra: VIOLAZIONE DIMOSTRATA | NESSUNA VIOLAZIONE INDIVIDUATA | INCONCLUDENTE)
+
+[REQUISITO O INVARIANTE COINVOLTO]: 
+(Identificativo della clausola violata, oppure "Nessuno")
+
+[EVIDENZA E CONTROESEMPIO RIPRODUCIBILE]: 
+(Input specifico, traccia di esecuzione o payload con relative precondizioni di ambiente e stato; 
+oppure "Nessuna violazione riscontrata entro i controlli eseguiti")
+
+[ANALISI CAUSALE]: 
+(Spiegazione tecnica della discrepanza tra specifica e implementazione, 
+oppure sintesi delle proprietà verificate con successo)
+
+[LIMITI DELL'ANALISI E RISCHI RESIDUI]: 
+(Aspetti non coperti dalla revisione, assunzioni operative aperte, controlli dinamici raccomandati)
+```
+
+---
+
+### 7. Quadro Informativo sui Modelli e Note di Accessibilità
+
+> [!NOTE]
+> **Datazione dello Snapshot Informativo: Scenario consolidato 2025 / inizio 2026**  
+> I canali di accesso, le interfacce, i limiti di quota e i livelli di servizio gratuiti descritti nella tabella seguente riflettono le condizioni operative rilevate alla data dello snapshot e sono soggetti a modifiche unilaterali da parte dei fornitori. Si raccomanda la consultazione delle fonti ufficiali primarie per la verifica delle condizioni operative correnti.
+
+| Famiglia / Modello | Fornitore / Origine | Architettura Principale | Paradigma di Inferenza | Canale di Accesso / Piattaforma Indicativa (Snapshot 2025/2026) | Riferimento Tecnico / Documentazione Ufficiale |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **GPT-4o** | OpenAI (USA) | Dense Transformer | Autoregressivo standard multimodale | Piattaforma `chatgpt.com` (tier base gratuito). | OpenAI GPT-4o System Card (openai.com) |
+| **MS Copilot** | Microsoft (USA) | Integrazione basata su modelli OpenAI | Autoregressivo con orchestrazione enterprise | `copilot.microsoft.com` / app (account consumer/business). | Microsoft Copilot Documentation (learn.microsoft.com) |
+| **o1 / o3-mini** | OpenAI (USA) | Dense con Test-Time Compute | Ragionamento esteso via catena di pensiero | Piattaforma `chatgpt.com` (quote limitate per utenti registrati). | OpenAI o1/o3 System Cards (openai.com) |
+| **Claude 3.5 / 3.7 Sonnet** | Anthropic (USA) | Dense Transformer | Autoregressivo (3.7 include hybrid reasoning) | Piattaforma `claude.ai` (tier con rate-limit dinamico). | Anthropic Claude 3.5/3.7 Model Cards (anthropic.com) |
+| **Gemini 2.0 (Flash / Pro)** | Google DeepMind (USA) | Multimodale nativo | Autoregressivo (con varianti Thinking) | `aistudio.google.com` (accesso API sviluppatori) e `gemini.google.com`. | Google DeepMind Gemini 2.0 Technical Reports (deepmind.google) |
+| **DeepSeek-V3** | DeepSeek (Cina) | Mixture of Experts (MoE sparso con MLA - *Multi-head Latent Attention*) | Autoregressivo sparso | Piattaforma `chat.deepseek.com` e API open cloud. | DeepSeek-V3 Technical Report (arxiv.org) |
+| **DeepSeek-R1** | DeepSeek (Cina) | MoE con Test-Time Compute | Ragionamento esteso (post-training RL con GRPO) | Piattaforma `chat.deepseek.com` (toggle DeepThink), Groq, HuggingChat. | DeepSeek-R1 Technical Report (arxiv.org) |
+| **Qwen 2.5-Coder (32B)** | Alibaba Cloud (Cina) | Dense specializzato su codice | Autoregressivo standard | `chat.qwenlm.ai`, HuggingFace Chat, o locale via Ollama/vLLM. | Qwen 2.5-Coder Technical Report (github.com/QwenLM) |
+| **Llama 3.3 (70B)** | Meta AI (USA) | Dense open-weights | Autoregressivo generalista | Piattaforme open cloud (Groq, Together) o locale su workstation. | Meta Llama 3.3 Model Card (ai.meta.com/llama) |
+| **Nemotron (70B/340B)** | Nvidia (USA) | Dense / Pesi base Llama riallineati | Autoregressivo standard con NeMo-Aligner | Piattaforma `build.nvidia.com` e modelli open-weights su HuggingFace. | Nvidia Nemotron Technical Reports (nvidia.com) |
+| **Kimi (k1.5 / v1)** | Moonshot AI (Cina) | Dense / Ultra-long context | Autoregressivo (con varianti di reasoning) | Piattaforma `kimi.moonshot.cn` e API sviluppatori. | Moonshot AI Kimi Documentation (moonshot.cn) |
+
+### 7.1 Piattaforme Aggregatrici di Terze Parti (es. freetochat.app, Groq, OpenRouter, HuggingChat)
+
+Diversi modelli open-weights e di frontiera (inclusi *DeepSeek-R1*, *Llama 3.3*, *Qwen 2.5-Coder*, varianti *Nemotron* e *Kimi*) sono accessibili a costo zero tramite **piattaforme di aggregazione e web gateway terzi** (come `freetochat.app`, `groq.com`, `huggingface.co/chat` o `openrouter.ai`).
+
+Nel quadro del Software Assurance, l'uso di questi aggregatori è legittimo per attività di studio, confronto preliminare e prototipazione, ma introduce **tre vincoli operativi e di sicurezza**:
+
+1. **Rischio di Quantizzazione Implicita (Quantization Drift):**  
+   Per abbattere i costi di inferenza e la memoria video (VRAM), diversi gateway gratuiti non eseguono il modello a piena precisione numerica (16-bit), ma utilizzano versioni compresse a 4-bit o 8-bit (es. quantizzazioni AWQ, GGUF o EXL2). Studi e benchmark empirici documentano che una quantizzazione spinta (es. 4-bit) può degradare le capacità di ragionamento logico fine e la precisione nell'individuazione di casi limite numerici.
+2. **Rischio dei Prompt di Sistema Nascosti (Invisible Priming):**  
+   Alcuni aggregatori terzi inseriscono istruzioni di sistema non dichiarate a monte della sessione (per imporre brevità, filtri specifici o formattazione). Questo wrapper può alterare il comportamento del revisore, indebolendo la neutralità prescritta dal protocollo della **Sezione 6 (Step 20)**.
+3. **Vincoli di Confinamento e Riservatezza dei Dati (Step 14 e Step 17):**  
+   In un processo di software assurance conforme, l'invio di codice proprietario, dati sensibili o configurazioni contenenti token e chiavi di accesso a gateway terzi gratuiti privi di accordi formali di protezione e trattamento dati (DPA/BPA - *Data Processing Agreement* o *Business Associate Agreement*) costituisce una violazione del perimetro di confinamento (Step 14) e non è ammesso.
+
+---
+
+### 8. Sintesi dei Criteri di Assurance
+
+Per garantire che l'audit multi-modello fornisca evidenze difendibili all'interno del percorso di software assurance:
+1. **La diversità tecnica è un'euristica:** Rappresenta una condizione abilitante per ridurre la correlazione tra modelli, ma non dimostra matematicamente l'indipendenza statistica degli errori.
+2. **Pre-filtrare per competenza di dominio:** La diversità architetturale non compensa l'eventuale incapacità del modello di interpretare correttamente il linguaggio di programmazione o i vincoli del sistema.
+3. **L'assenza di violazioni individuate non è prova di correttezza:** Un esito di *Nessuna violazione individuata* certifica unicamente che il revisore non ha identificato controesempi riproducibili nel perimetro analizzato; non certifica l'assenza di difetti nell'implementazione.
+4. **Legittimità dell'esito inconcludente:** Il protocollo di revisione deve prevedere e ammettere formalmente l'esito *Inconcludente*, consentendo al modello di segnalare ambiguità della specifica senza essere forzato a generare allucinazioni diagnostiche.
+5. **Subordinazione all'evidenza deterministica:** I rilievi dell'audit multi-modello devono essere sistematicamente corroborati o confutati attraverso i livelli complementari di assurance: analisi statica e controlli deterministici (Step 17), testing dinamico guidato da proprietà e fuzzing (Step 16 e 18) e approvazione formale da parte di revisori umani qualificati con formale autorità decisionale (Step 21 e 24).
+
+
+---
+
 <div class="pagebreak"></div>
 
 [Torna all'Indice](#indice-completo)
@@ -35189,7 +35595,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 [Torna all'Indice](#indice-completo)
 
-<a name="bibliografia-essenziale"></a>
+<a name="bibliografia-essenziale-man"></a>
 
 ## ▤ Bibliografia essenziale
 
