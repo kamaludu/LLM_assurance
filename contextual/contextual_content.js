@@ -3027,7 +3027,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Stocastico (Processo Stocastico)",
     category: "Fondamenti Matematici & AI",
     definition: "Processo o comportamento regolato dal caso o governato da distribuzioni probabilistiche, in contrapposizione a un sistema puramente deterministico. Gli LLM sono generatori stocastici di sequenze di token.",
-    aliases: ["stocastico", "stocastica", "stocastici", "stocastiche", "processo stocastico", "natura stocastica"]
+    aliases: ["stocastico", "stocastica", "stocastici", "stocastiche", "stocasticita", "processo stocastico", "natura stocastica"]
   },
   "STRIDE": {
     title: "STRIDE",
