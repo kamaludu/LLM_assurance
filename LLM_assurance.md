@@ -12,15 +12,13 @@
 > [!TIP]
 >
 > ***Un manuale didattico per comprendere e costruire catene di Assurance, fornendo gli strumenti pratici per valutare criticamente il software sviluppato o assistito da Large Language Models.***
->
+>  
 
 > [!WARNING]
 >
 > **Software Assurance:** 
 > È il percorso strutturato che ci permette di dimostrare, prove alla mano, che un sistema software è sicuro, affidabile e fa esattamente ciò per cui è stato progettato. Non significa solo "testare se funziona", ma raccogliere tutte le evidenze, le motivazioni e le scelte progettuali necessarie per giustificare la nostra fiducia nel sistema, tenendo sempre in conto i margini di rischio, i limiti e le incertezze inevitabili.
->
-
-
+>  
 
 <div class="pagebreak"></div>
 
@@ -31,13 +29,13 @@ Principi, Verifica, Evidenze e Governance**
 
 ## **Indice completo**<!-- @style: size=20px; color=#3b8503 -->
 
-- [Informazioni sul documento](#assurance-intro)
+- [ⓘ Informazioni sul documento](#assurance-intro)
 - [➠ Nota terminologica](#nota-terminologica)
 - [⛶ Guida di Lettura per Ruoli](#guida-per-ruoli)
 
 **①**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
-###  PARTE I — Fondamenti epistemici e decisionali
+###  [PARTE I — Fondamenti epistemici e decisionali](#parte-1)
 
 - [✰ Guida ai 5 concetti fondamentali dell'Assurance](#guida-ai-5-concetti)
 
@@ -56,7 +54,7 @@ Principi, Verifica, Evidenze e Governance**
 
 **②**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
-### PARTE II — Implementazione e verifica  
+### [PARTE II — Implementazione e verifica](#parte-2)  
 
 13. [Implementation Design — progettazione dell'implementazione](#step-13-implementation-design)
 14. [Containment & Least Authority — contenimento e principio del minimo privilegio](#step-14-containment-least)
@@ -73,16 +71,16 @@ Principi, Verifica, Evidenze e Governance**
 
 **③**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
-### PARTE III — Esercizio controllato
+### [PARTE III — Esercizio controllato](#parte-3)
 
 25. [Staging, Canary & Feature Flags — ambienti di staging, canary release e feature flag](#step-25-staging-canary)
 26. [Observability — osservabilità](#step-26-observability)
 27. [Alerting & Runbooks — allarmi e procedure operative](#step-27-alerting-runbooks)
-28. [Rollback, Fallback & Circuit Breakers — rollback, fallback e circuit breaker](#step-28-rollback-fallback)
+28. [Rollback, Fallback & Circuit Breakers](#step-28-rollback-fallback)
 
 **④**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
-### PARTE IV — Evoluzione e mantenimento dell'assurance
+### [PARTE IV — Evoluzione e mantenimento dell'assurance](#parte-4)
 
 29. [Post-Deployment Analysis — analisi post-deployment e incidenti](#step-29-post-deployment)
 30. [Risk Register & Knowledge Base — registro dei rischi e knowledge base](#step-30-risk-register)
@@ -92,7 +90,7 @@ Principi, Verifica, Evidenze e Governance**
   
 **Ⓐ**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
-### APPENDICI
+### [APPENDICI](#appendici-man)
 
 - [※ Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
 - [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm)
@@ -103,8 +101,8 @@ Principi, Verifica, Evidenze e Governance**
 - [✧ Prompt Master per lo studio dei singoli step](#prompt-master)
 - [❖ GLOSSARIO](#glossario-manuale)
 - [▤ Bibliografia essenziale](#bibliografia-essenziale-man)
-- [Nota di trasparenza e genesi del testo](#nota-utilizzo-ia)
-- [GNU Free Documentation License](#gnu-fdl-license)
+- [✍ Nota di trasparenza e genesi del testo](#nota-utilizzo-ia)
+- [🄯 GNU Free Documentation License](#gnu-fdl-license)
 
 ---
 
@@ -112,7 +110,9 @@ Principi, Verifica, Evidenze e Governance**
 
 <a name="assurance-intro"></a>
 
-## Informazioni sul documento
+[Torna all'Indice](#indice-completo)
+
+## ⓘ Informazioni sul documento
 
 **Assurance del Software Assistito da LLM**  
 **Principi, Verifica, Evidenze e Governance**
@@ -565,6 +565,8 @@ Ogni lettore puo' quindi partire dalle sezioni piu' vicine alle proprie responsa
 ---
 
 <div class="pagebreak"></div>
+
+<a name="parte-1"></a>
 
 **① Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
@@ -10632,6 +10634,8 @@ Non si scrive codice per vedere se funziona; si progetta la struttura affinché 
 
 <div class="pagebreak"></div>
 
+<a name="parte-2"></a>
+
 **② Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 # PARTE II — Implementazione e verifica
@@ -20653,6 +20657,8 @@ L'approvazione dello Step 24 non autorizza la fiducia cieca: autorizza esclusiva
 
 <div class="pagebreak"></div>
 
+<a name="parte-3"></a>
+
 **③ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 # PARTE III — Esercizio controllato
@@ -23328,7 +23334,7 @@ L'acquisizione della piena padronanza concettuale, metodologica ed epistemica de
 
 <a name="step-28-rollback-fallback"></a>
 
-## CAPITOLO 28 — Rollback, Fallback & Circuit Breakers (Rollback, fallback e circuit breaker)
+## CAPITOLO 28 — Rollback, Fallback & Circuit Breakers
 
 ---
 
@@ -24349,6 +24355,8 @@ L'esercizio controllato ha dimostrato che il sistema sa sopravvivere al guasto c
 ---
 
 <div class="pagebreak"></div>
+
+<a name="parte-4"></a>
 
 **④ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
@@ -28909,6 +28917,8 @@ La chiusura, l'archiviazione e la capitalizzazione delle lezioni non costituisco
 
 <div class="pagebreak"></div>
 
+<a name="appendici-man"></a>
+
 **Ⓐ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 # APPENDICI
@@ -29125,14 +29135,14 @@ La compresenza empirica di questi fenomeni non costituisce una tautologia né pr
 ***Quadro Euristico di Diversità Tecnica, Limiti dell'Accordo e Difesa in Profondità per il Software Assurance***
 
 **Indice:**
-1. Inquadramento Metodologico e Orizzonte Temporale
-2. Le Cinque Dimensioni di Analisi della Diversità Tecnica
-3. Matrice Euristica di Diversità Tecnica Potenziale (11 × 11)
-4. Tassonomia delle Famiglie di Modelli (Snapshot 2025/2026)
-5. Principi di Accoppiamento, Competenza di Dominio e Difesa in Profondità
-6. Protocollo di Revisione Avversariale Basato su Evidenze
-7. Quadro Informativo sui Modelli e Note di Accessibilità
-8. Sintesi dei Criteri di Assurance
+1. **Inquadramento Metodologico e Orizzonte Temporale**
+2. **Le Cinque Dimensioni di Analisi della Diversità Tecnica**
+3. **Matrice Euristica di Diversità Tecnica Potenziale** (11 × 11)
+4. **Tassonomia delle Famiglie di Modelli** (Snapshot 2025/2026)
+5. **Principi di Accoppiamento, Competenza di Dominio e Difesa in Profondità**
+6. **Protocollo di Revisione Avversariale Basato su Evidenze**
+7. **Quadro Informativo sui Modelli e Note di Accessibilità**
+8. **Sintesi dei Criteri di Assurance**
 
 ---
 
@@ -36048,7 +36058,7 @@ La bibliografia può quindi essere letta secondo quattro livelli: **fonti scient
 
 <a name="nota-utilizzo-ia"></a>
 
-## Nota di trasparenza e genesi del testo
+## ✍ Nota di trasparenza e genesi del testo
 
 Questo manuale è nato per un motivo molto semplice: avevo bisogno di capire e studiare la software assurance, soprattutto ora che uso spesso gli LLM per scrivere codice.
 
@@ -36071,7 +36081,7 @@ Prendetelo quindi per quello che è: una mappa di studio molto approfondita, una
 
 <a name="gnu-fdl-license"></a>
 
-## GNU Free Documentation License
+## 🄯 GNU Free Documentation License
 
 ```text
 
