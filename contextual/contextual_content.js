@@ -1514,19 +1514,19 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Human-in-Command (HIC)",
     category: "Governance & Controllo",
     definition: "Paradigma di controllo in cui l'essere umano definisce obiettivi, stabilisce i confini invalicabili di operatività del software e conserva l'autorità formale di revocarne l'autonomia.",
-    aliases: ["HIC", "Human-in-Command"]
+    aliases: ["HIC", "Human-in-Command", "Man-in-Command"]
   },
   "Human-in-the-Loop": {
     title: "Human-in-the-Loop (HITL)",
     category: "Governance & Controllo",
     definition: "Paradigma in cui il software propone un'azione e l'azione non può essere eseguita nel mondo reale senza un comando o autorizzazione esplicita dell'operatore umano.",
-    aliases: ["HITL", "Human-in-the-Loop"]
+    aliases: ["HITL", "Human-in-the-Loop", "Man-in-the-Loop"]
   },
   "Human-on-the-Loop": {
     title: "Human-on-the-Loop (HOTL)",
     category: "Governance & Controllo",
     definition: "Paradigma operativo in cui il software esegue l'azione autonomamente e l'operatore umano monitora il processo disponendo di strumenti e tempo per intervenire con un arresto di emergenza.",
-    aliases: ["HOTL", "Human-on-the-Loop"]
+    aliases: ["HOTL", "Human-on-the-Loop", "Man-on-the-Loop"]
   },
   "HYPOTHESIS": {
     title: "HYPOTHESIS (Ipotesi di Lavoro)",
