@@ -54,8 +54,8 @@
 - **Traduzir o manual:** Se deseja traduzir este manual para outro idioma, trabalhe diretamente no ficheiro fonte em Markdown (`.md`). De acordo com a **GNU FDL v1.3** (Secção 8), as traduções são consideradas versões modificadas e devem ser distribuídas sob os mesmos termos de licença, preservando a autoria e os avisos originais.
 
 **🇨🇳 简体中文：**
-- **使用机器翻译阅读：** 强烈建议从 [Releases](../../releases/latest) 页面下载独立的 **`.html`** 文件，并使用浏览器（Chrome、Edge、Safari）内置的“翻译网页”功能打开，以便自动翻译页面内容。不建议直接翻译 PDF 版本，因为这可能会破坏页面排版和代码块的格式。
-- **翻译手册：** 如果您希望将本手册翻译成其他语言，请直接使用 Markdown 源文件（`.md`）。根据 **GNU FDL v1.3**（第 8 节）的规定，翻译被视为修改版本，必须按照相同的许可条款进行发布，并保留原始作者署名及所有原始声明。
+- **使用机器翻译即时阅读：** 建议从 [Releases](https://github.com/kamaludu/LLM_assurance/releases/latest) 页面下载 **`.html`** 文件，并在浏览器（Chrome、Edge、Safari）中打开，使用浏览器内置的网页自动翻译功能。
+- **正式翻译：** 如果希望制作本手册的翻译版本，应直接使用 Markdown 源文件 `.md`。翻译版本被视为衍生作品，必须遵守 **GNU FDL v1.3**（第 8 节）的许可条款。
 
 </details>
 
