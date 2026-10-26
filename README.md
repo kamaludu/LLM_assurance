@@ -27,7 +27,7 @@
 ---
 
 <details>
-<summary> 🌍 <b>Translations & International Readers: 🇮🇹 🇬🇧 🇫🇷 🇩🇪 🇪🇸 🇵🇹<br> (Click to expand / Clicca per espandere)</b></summary>
+<summary> 🌍 <b>Translations & International Readers: 🇮🇹 🇬🇧 🇫🇷 🇩🇪 🇪🇸 🇵🇹 🇨🇳 <br> (Click to expand / Clicca per espandere)</b></summary>
 
 **🇮🇹 Italiano:**
 - **Lettura immediata con traduttore automatico:** Si consiglia di scaricare il file **`.html`** dalla sezione [Releases](../../releases/latest) e aprirlo nel browser (Chrome, Edge, Safari) utilizzando la funzione nativa di traduzione automatica della pagina.
@@ -52,6 +52,10 @@
 **🇵🇹 Português:**
 - **Leitura com tradução automática:** Recomenda-se descarregar o ficheiro autónomo **`.html`** na secção [Releases](../../releases/latest) e abri-lo num navegador web (Chrome, Edge, Safari) usando a função nativa de tradução de páginas. Não se recomenda traduzir diretamente a versão em PDF, pois isso quebra a formatação e os blocos de código.
 - **Traduzir o manual:** Se deseja traduzir este manual para outro idioma, trabalhe diretamente no ficheiro fonte em Markdown (`.md`). De acordo com a **GNU FDL v1.3** (Secção 8), as traduções são consideradas versões modificadas e devem ser distribuídas sob os mesmos termos de licença, preservando a autoria e os avisos originais.
+
+**🇨🇳 简体中文：**
+- **使用机器翻译阅读：** 强烈建议从 [Releases](../../releases/latest) 页面下载独立的 **`.html`** 文件，并使用浏览器（Chrome、Edge、Safari）内置的“翻译网页”功能打开，以便自动翻译页面内容。不建议直接翻译 PDF 版本，因为这可能会破坏页面排版和代码块的格式。
+- **翻译手册：** 如果您希望将本手册翻译成其他语言，请直接使用 Markdown 源文件（`.md`）。根据 **GNU FDL v1.3**（第 8 节）的规定，翻译被视为修改版本，必须按照相同的许可条款进行发布，并保留原始作者署名及所有原始声明。
 
 </details>
 
