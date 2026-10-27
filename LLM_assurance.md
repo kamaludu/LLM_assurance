@@ -31,7 +31,7 @@ Principi, Verifica, Evidenze e Governance**
 
 ## **Indice completo**<!-- @style: size=20px; color=#3b8503 -->
 
-- [ⓘ Informazioni sul documento](#assurance-intro)
+- [⌘ Informazioni sul documento](#assurance-intro)
 - [➠ Nota terminologica](#nota-terminologica)
 - [⛶ Guida di Lettura per Ruoli](#guida-per-ruoli)
 
@@ -97,6 +97,7 @@ Principi, Verifica, Evidenze e Governance**
 - [※ Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
 - [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm)
 - [⬡ Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
+- [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
 - [⊹ Elementi di Teoria dei Grafi](#appendice-grafi)
 - [⊙ Elementi di Logica e Specifica Formale](#appendice-logica)
 - [◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM](#appendice-alloy)
@@ -114,7 +115,7 @@ Principi, Verifica, Evidenze e Governance**
 
 [Torna all'Indice](#indice-completo)
 
-## ⓘ Informazioni sul documento
+## ⌘ Informazioni sul documento
 
 **Assurance del Software Assistito da LLM**  
 **Principi, Verifica, Evidenze e Governance**
@@ -9620,40 +9621,40 @@ Separazione Metodologica
 Indipendenza Epistemica
 ```
 
-- Separazione Fisica: File sorgente diversi, macchine virtuali separate o repository distinti. Non fornisce alcun valore di indipendenza concettuale.
-- Separazione Procedurale: Due agenti o ruoli distinti (ad esempio agente software A genera il codice, agente software B genera i test), ma B opera sul contesto fornito da A. Valore di indipendenza molto basso.
-- Separazione Metodologica: L'oracolo è costruito prima del codice e ricavato da paradigmi disgiunti (ad esempio specifica dichiarativa basata su proprietà rispetto a codice procedurale generato da LLM). Valore medio-alto.
-- Indipendenza Epistemica: Assenza dimostrabile di sorgenti comuni di errore concettuale, statistico e normativo tra I e Omega. Valore massimo.
+- **Separazione Fisica:** File sorgente diversi, macchine virtuali separate o repository distinti. Non fornisce alcun valore di indipendenza concettuale.
+- **Separazione Procedurale:** Due agenti o ruoli distinti (ad esempio agente software A genera il codice, agente software B genera i test), ma B opera sul contesto fornito da A. Valore di indipendenza molto basso.
+- **Separazione Metodologica:** L'oracolo è costruito prima del codice e ricavato da paradigmi disgiunti (ad esempio specifica dichiarativa basata su proprietà rispetto a codice procedurale generato da LLM). Valore medio-alto.
+- **Indipendenza Epistemica:** Assenza dimostrabile di sorgenti comuni di errore concettuale, statistico e normativo tra I e Omega. Valore massimo.
 
 #### 8.3 Modello Matematico del Fallimento Correlato
 Siano:
-- E_I: L'evento in cui l'implementazione I commette un errore rispetto al predicato reale Phi.
-- E_Omega: L'evento in cui l'oracolo Omega commette un errore di valutazione (falso negativo, dichiarando PASS su output non conforme).
+- `E_I`: L'evento in cui l'implementazione I commette un errore rispetto al predicato reale Phi.
+- `E_Omega`: L'evento in cui l'oracolo Omega commette un errore di valutazione (falso negativo, dichiarando PASS su output non conforme).
 
 La probabilita' che un difetto passi inosservato attraverso la procedura di collaudo corrisponde alla probabilita' congiunta:
 ```text
 P(Falsa_Assurance) = P(E_I e E_Omega) = P(E_I) * P(E_Omega | E_I)
 ```
 
-Introduciamo il coefficiente di accoppiamento epistemico rho (con 0 <= rho <= 1):
+Introduciamo il coefficiente di accoppiamento epistemico `rho` (con `0 <= rho <= 1`):
 ```text
 P(E_Omega | E_I) = P(E_Omega) + rho * (1 - P(E_Omega))
 ```
 
 Analizziamo i casi limite:
 
-**Caso 1:** Indipendenza Epistemica Ideale (rho = 0)
+**Caso 1:** Indipendenza Epistemica Ideale (`rho = 0`)
 Quando non vi è accoppiamento:
 `P(E_Omega | E_I) = P(E_Omega)`
 
 La probabilita' di errore congiunto diventa:
 `P(Falsa_Assurance) = P(E_I) * P(E_Omega)`
 
-Se P(E_I) = 10^-2 e P(E_Omega) = 10^-3, allora:
+Se `P(E_I) = 10^-2` e `P(E_Omega) = 10^-3`, allora:
 `P(Falsa_Assurance) = 10^-5`
 La procedura di verifica riduce il rischio operativo di tre ordini di grandezza.
 
-**Caso 2:** Accoppiamento Circolare da LLM (rho -> 1)
+**Caso 2:** Accoppiamento Circolare da LLM (`rho -> 1`)
 Se I e Omega derivano dal medesimo LLM, dallo stesso prompt o da modelli fortemente correlati sullo stesso codice:
 `P(E_Omega | E_I) circa uguale a 1.0`
 
@@ -29787,6 +29788,751 @@ La menzione dei software, il collegamento agli URL ufficiali e le relative descr
 
 La licenza GNU Free Documentation License (GNU FDL) con cui è distribuito il presente manuale disciplina unicamente il testo dell'opera documentale e non altera, estende né pregiudica le licenze autonome con cui sono distribuiti i singoli strumenti software catalogati.
 
+---
+
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="appendice-sandbox"></a>
+
+## ▣ Progettazione di Sandbox ed Esecuzione Isolata
+***Atlante Tecnologico dei Meccanismi di Confinamento per l'Assurance del Codice Sintetico***
+
+### Mappa dell'Appendice
+
+  1. **Premessa epistemica e finalità operativa**
+     - Raccordo metodologico con gli STEP del manuale
+     - La natura del codice non fidato e l'insufficienza dei controlli verbali
+  2. **I cinque assi operativi dell'isolamento (Modello analitico interdipendente)**
+     - Asse 1: Spazio dei Nomi (Visibilità delle entità)
+     - Asse 2: Controllo e Contabilizzazione delle Risorse (Disponibilità)
+     - Asse 3: Filtro e Intercettazione delle Chiamate di Sistema (Superficie di syscall)
+     - Asse 4: Connettività e Isolamento di Rete (Traffico di trasporto)
+     - Asse 5: Autorità su Oggetti ed Entità del Sistema (Riferimenti, LSM e credenziali)
+  3. **L'Atlante delle famiglie architetturali di confinamento**
+     - Famiglia A: Confinamento di percorso (`chroot`)
+     - Famiglia B: Isolamento a livello di sistema operativo (`FreeBSD Jails`, `Linux Namespaces/cgroups`)
+     - Famiglia C: Container applicativi OCI (`Docker`, `Podman`)
+     - Famiglia D: Interposizione e kernel in user space (`gVisor`)
+     - Famiglia E: Virtualizzazione hardware (`MicroVM` e `VM tradizionali`)
+     - Famiglia F: Ambienti a memoria lineare e runtime capability (`WebAssembly / WASI`)
+  4. **Capability, Object-Capability e autorizzazioni di servizio**
+     - Dal modello basato su identità (ACL) al modello a capability
+     - Proprietà capability-like dei File Descriptor Unix e limiti dell'autorità ambientale residua
+     - Vincoli kernel alla risoluzione dei percorsi (`openat2`)
+     - Distinzione tra Object-Capability e Token di autorizzazione applicativi (Bearer Token / JWT)
+  5. **Criteri di selezione e prontuario di consultazione**
+     - Selezione guidata dal modello di minaccia
+     - Matrice comparativa multi-parametro
+     - Albero decisionale condizionale
+  6. **Superfici d'attacco, evasioni (Escape) e falsi sensi di sicurezza**
+     - Modalità privilegiata e disattivazione delle difese
+     - Esposizione di socket amministrativi
+     - Precondizioni di abuso dei filesystem pseudo-kernel (`/proc` e `/sys`)
+     - Ambito reale del vincolo `noexec` e mediazione degli interpreti
+     - Effimerità reale contro persistenza latente
+  7. **Baseline illustrativa di hardening per runner di codice sintetico su Linux**
+     - Scheda dell'ambiente di riferimento
+     - Configurazione Podman rootless documentata
+     - Gestione del ciclo di vita: watchdog e timeout
+     - Immutabilità del digest crittografico e verifica di filiera
+     - Suite minima di test negativi di conformità
+  8. **Glossario operativo dei termini di confinamento**
+
+---
+
+### 1. PREMESSA EPISTEMICA E FINALITÀ OPERATIVA
+
+Nello **STEP 14 ([Capitolo 14: Containment & Least Authority](#step-14-containment-least))** di questo manuale è stato formalizzato il principio cardine secondo cui:
+
+```text
+Authority(C) = Permissions(C)
+             + AccessibleResources(C)
+             + ExecutableActions(C)
+             + ReachableComponents(C)
+             + DataAccessScope(C)
+```
+
+Il quadro concettuale dello STEP 14 stabilisce una netta distinzione epistemica: il codice generato, modificato o pilotato da modelli linguistici di grandi dimensioni (Large Language Models, LLM) non può essere assunto a priori come corretto, privo di effetti collaterali o immune a manipolazioni avversariali. Confinare un modulo non serve a prevenire i suoi difetti logici interni, ma a circoscrivere in modo deterministico il raggio d'impatto (*blast radius*) in caso di deviazione, garantendo la recuperabilità dello stato complessivo del sistema.
+
+Questo principio si raccorda direttamente con gli altri passi della catena di assurance:
+- Con lo **STEP 16 (Automated Testing)**: l'esecuzione dinamica di suite di test su codice generato richiede un ambiente che impedisca a routine difettose di alterare la macchina ospite o inquinare gli oracoli di test.
+- Con lo **STEP 17 (Static Analysis, SAST, SCA & Secret Scanning)**: la verifica dell'integrità della filiera (*supply chain*) e la neutralizzazione di pacchetti allucinati (*slopsquatting*) trovano nella sandbox la barriera di sicurezza che impedisce a script di installazione malevoli di accedere a risorse sensibili.
+- Con lo **STEP 18 (Property-Based Testing, Fuzzing & Adversarial Testing)**: l'iniezione massiva di input anomali su parser e interfacce richiede ambienti a bassissimo costo di ripristino capaci di contenere crash, leak di memoria ed esaurimento delle risorse.
+- Con lo **STEP 19 (Threat Modeling & Red Teaming)**: la simulazione di scenari di attacco (come l'iniezione indiretta di prompt e l'uso indebito di tool da parte di agenti autonomi) esige barriere di sistema che impediscano l'escalation di privilegi e l'esfiltrazione di dati.
+
+Spesso chi sviluppa affida la sicurezza a indicazioni fornite in linguaggio naturale all'interno del prompt (ad esempio: *"Non accedere a directory esterne a quella di lavoro"*). Tali direttive costituiscono difese euristiche deboli: possono essere aggirate da iniezioni avversariali, deviazioni probabilistiche del modello o malfunzionamenti algoritmici. L'unica barriera affidabile è quella imposta strutturalmente dal sistema operativo o dall'hardware sottostante.
+
+Questa appendice funge da **Atlante tecnologico e Prontuario di consultazione operativa**. Il suo scopo è:
+1. Spiegare come il sistema operativo e l'hardware realizzano fisicamente i confini di isolamento.
+2. Mappare le famiglie architetturali di confinamento evidenziandone i confini reali e le superfici di fiducia (*trust base*).
+3. Fornire criteri di selezione basati sul modello di minaccia per orientare la scelta dell'ambiente di prova o di esecuzione.
+4. Definire una baseline illustrativa di hardening per runner effimeri, accompagnata da procedure di verifica empirica.
+
+---
+
+### 2. I CINQUE ASSI OPERATIVI DELL'ISOLAMENTO
+
+Un programma in esecuzione è costituito da istruzioni macchina caricate nella memoria ad accesso casuale (RAM) ed elaborate dall'unità centrale di elaborazione (CPU). Finché un processo effettua calcoli aritmetici o manipola dati all'interno dello spazio di memoria virtuale a esso assegnato, la sua capacità di alterare l'ambiente circostante è circoscritta.
+
+Per interagire con il mondo esterno (leggere o scrivere file su disco, trasmettere pacchetti di rete, avviare processi concorrenti, interrogare timer di precisione), il programma deve richiedere l'intervento dell'arbitro del sistema: il **Kernel del sistema operativo**. Questa richiesta formale prende il nome di **chiamata di sistema (*System Call* o *syscall*)**.
+
+Una sandbox (*ambiente di confino*) non è un blocco monolitico impenetrabile; è una composizione di controlli, filtri e meccanismi di isolamento disposti lungo i canali di interazione tra l'applicazione e le risorse fisiche o logiche dell'elaboratore.
+
+Per analizzare e progettare una sandbox in modo rigoroso, adottiamo un **modello a cinque assi operativi**. Questi assi non sono compartimenti stagni e indipendenti; sono **dimensioni analitiche interdipendenti** che si sovrappongono e si condizionano reciprocamente.
+
+```text
+                  I CINQUE ASSI OPERATIVI DELL'ISOLAMENTO
+                                     |
+         +---------------------------+---------------------------+
+         |                           |                           |
+       ASSE 1                      ASSE 2                      ASSE 3
+  Spazio dei Nomi            Controllo Risorse            Filtro Syscall
+  "Cosa puo' vedere           "Quanto puo'                "Quali chiamate
+   il programma?"              consumare?"                 puo' invocare?"
+  (Namespaces)                (cgroups v2)                (seccomp-bpf, ptrace)
+         |                           |                           |
+         +---------------------------+---------------------------+
+                                     |
+                       +-------------+-------------+
+                       |                           |
+                     ASSE 4                      ASSE 5
+                Isolamento Rete             Autorita' su Oggetti
+               "Con chi puo'               "A quali risorse e handle
+                comunicare?"                ha accesso effettivo?"
+               (Net namespace,             (File descriptor, mount,
+                firewalling)                LSM Landlock, credenziali)
+```
+
+#### Asse 1: Spazio dei Nomi (Visibilità delle entità)
+Governa quali risorse globali del sistema operativo siano visibili e nominabili dal processo. In una configurazione priva di isolamento, un processo ha visibilità su tutti i processi attivi, su tutte le interfacce di rete e sull'intero albero del filesystem. L'isolamento dello spazio dei nomi partiziona queste viste: il processo osserva solo gli elementi associati al proprio contesto, operando come se fosse l'unica entità presente.
+- *Meccanismo principale in Linux*: i **Namespaces** (PID per i processi, Mount per i filesystem, Network per la rete, User per le identità utente, IPC per la memoria condivisa, UTS per l'hostname, Cgroup per la vista della gerarchia delle risorse).
+- *Attenzione metodologica*: I namespace modificano la *visibilità* e l'identificazione delle risorse; non costituiscono di per sé un sistema generale di autorizzazione o di controllo degli accessi.
+
+#### Asse 2: Controllo e Contabilizzazione delle Risorse (Disponibilità)
+Governa la quantità massima di risorse computazionali fisiche che il processo o il gruppo di processi ha la facoltà di assorbire. Il codice generato da un LLM può contenere loop infiniti, allocazioni incontrollate di memoria (*memory leaks*) o tentativi di generare ricorsivamente processi figli (*fork-bomb*).
+- *Meccanismo principale in Linux*: i **Control Groups versione 2 (cgroups v2)**, tramite controller dedicati: `cpu.max` (quota di tempo CPU), `memory.max` (soglia massima di memoria RAM oltre la quale interviene il meccanismo di Out-Of-Memory killer), `pids.max` (limite numerico rigido ai task concorrenti) e `io.max` (banda di input/output su disco).
+- *Attenzione metodologica*: I cgroups sono meccanismi di misurazione e regolazione volumetrica; non impediscono l'accesso a dati riservati né proteggono l'integrità logica dei file.
+
+#### Asse 3: Filtro e Intercettazione delle Syscall (Superficie di chiamata)
+Governa quali chiamate di sistema il processo sia autorizzato a richiedere al kernel host. Il kernel Linux espone centinaia di chiamate di sistema (il cui numero esatto e la cui disponibilità variano in base all'architettura hardware e alla versione del kernel). La maggior parte degli algoritmi e dei runtime applicativi necessita unicamente di una frazione ridotta di queste (chiamate di base per I/O come `read`, `write`, sincronizzazione come `futex`, terminazione come `exit_group`). Chiamate specialistiche o storiche (come `ptrace`, `bpf`, `kexec_load`, `pivot_root`, `io_uring`) espongono codice interno del kernel che può contenere vulnerabilità sfruttabili per uscire dall'ambiente di confino.
+- *Meccanismi principali*: **`seccomp-bpf`** (Secure Computing Mode combinato con Berkeley Packet Filter) per intercettare e filtrare le syscall prima della loro esecuzione nel kernel, notificando errori (`SECCOMP_RET_ERRNO`), terminando il processo (`SECCOMP_RET_KILL_PROCESS`) o delegando la decisione a un supervisore esterno in user space (`SECCOMP_RET_USER_NOTIF`).
+
+#### Asse 4: Connettività e Isolamento di Rete (Traffico di trasporto)
+Governa la facoltà del programma di scambiare pacchetti di rete attraverso protocolli a livello di trasporto e internet (TCP/IP, UDP, raw socket). Nei flussi di lavoro assistiti da LLM, questo asse impedisce:
+1. L'esfiltrazione intenzionale o accidentale di dati sensibili, credenziali o frammenti di codice proprietario verso endpoint esterni.
+2. Il contatto con infrastrutture di Command & Control (C2) o il download dinamico di payload di secondo livello non verificati.
+- *Meccanismi principali*: Network Namespace dedicato privo di interfacce virtuali connesse a bridge esterni, disabilitazione delle rotte di default (default-deny egress), regole di packet filtering locale (nftables/iptables) e restrizione sulle famiglie di socket creabili.
+
+#### Asse 5: Autorità su Oggetti ed Entità del Sistema (Riferimenti, LSM e credenziali)
+Governa l'insieme specifico di oggetti del sistema (file, directory, dispositivi hardware in `/dev`, socket Unix, credenziali) su cui il processo può esercitare azioni di lettura, scrittura, modifica o esecuzione. Questo asse include:
+- Gli attributi associati ai punti di montaggio (ad esempio filesystem montati con flag di sola lettura `MS_RDONLY` o divieto di esecuzione binaria diretta `MS_NOEXEC`).
+- L'autorità concessa o revocata a livello di kernel tramite Linux Security Modules (LSM), in particolare **`Landlock LSM`**, che consente a processi ordinari non privilegiati di autolimitare i propri diritti di accesso su gerarchie di filesystem o porte di rete.
+- I descrittori di file (*File Descriptors*) ereditati dal processo genitore o passati tramite socket IPC.
+- Le credenziali di sicurezza formali (identificatori utente UID, identificatori di gruppo GID, capability POSIX del kernel).
+
+> [!NOTE]
+> **Interdipendenza tra Asse 1 e Asse 5: la persistenza dei File Descriptor ereditati**  
+> L'isolamento dello spazio dei nomi (Asse 1) e l'autorità sugli oggetti (Asse 5) devono essere coordinati. Un errore concettuale diffuso consiste nel ritenere che, rimuovendo un file dal filesystem visibile al processo figlio, tale file sia inaccessibile.  
+> Nei sistemi operativi conformi allo standard POSIX, se il processo genitore apre un file riservato (ad esempio `/etc/shadow`) ottenendo il descrittore numerico `3`, e successivamente genera un processo figlio senza impostare il flag `O_CLOEXEC` (*close-on-exec*), il descrittore `3` rimane aperto ed ereditato nella tabella del figlio.  
+> Anche se lo spazio dei nomi di montaggio del figlio non contiene la directory `/etc` e il filesystem appare vuoto, al processo figlio basterà invocare la chiamata `read(3, buffer, 1024)` per leggere i dati riservati. L'autorità risiede nell'handle aperto (Asse 5), non nella visibilità del percorso (Asse 1).
+
+---
+
+### 3. L'ATLANTE DELLE FAMIGLIE ARCHITETTURALI DI CONFINAMENTO
+
+Nel progettare o valutare una sandbox, è tecnicamente fuorviante ordinare le soluzioni lungo una scala monodimensionale (dal "meno sicuro" al "più sicuro"). Tale rappresentazione semplificata mescola proprietà eterogenee: il tipo di risorsa condivisa, il modello computazionale, la compatibilità con binari preesistenti e la vastità della superficie di fiducia (*trust base*).
+
+Ad esempio, un modulo WebAssembly non è intrinsecamente "più sicuro" di una MicroVM: sono risposte architetturali a problemi differenti. WebAssembly opera mediante isolamento della memoria lineare all'interno di un runtime in user space; una MicroVM impiega il supporto hardware del microprocessore per eseguire un kernel guest separato.
+
+La corretta classificazione ingegneristica raggruppa le tecnologie in **famiglie architetturali distinte**, identificando per ciascuna il confine primario di sicurezza, i meccanismi utilizzati e i limiti strutturali.
+
+```text
+                  LE FAMIGLIE ARCHITETTURALI DEL CONFINAMENTO
+
+  +-------------------------+   +-------------------------+
+  | FAMIGLIA A              |   | FAMIGLIA B              |
+  | Confinamento di         |   | Isolamento a Livello OS |
+  | Percorso                |   |                         |
+  | [chroot]                |   | [FreeBSD Jails,         |
+  | Confine: Path filesystem|   |  Linux Namespaces/cgroup|
+  +-------------------------+   +-------------------------+
+               |                             |
+  +-------------------------+   +-------------------------+
+  | FAMIGLIA C              |   | FAMIGLIA D              |
+  | Container OCI           |   | User-Space Kernel       |
+  | [Podman, Docker]        |   | [gVisor (runsc)]        |
+  | Confine: Orchestrazione |   | Confine: Interposizione |
+  |          di primitive OS|   |          delle Syscall  |
+  +-------------------------+   +-------------------------+
+               |                             |
+  +-------------------------+   +-------------------------+
+  | FAMIGLIA E              |   | FAMIGLIA F              |
+  | Virtualizzazione HW     |   | Bytecode & Capability   |
+  | [MicroVM Firecracker,   |   | [WebAssembly / WASI]    |
+  |  VM tradizionali KVM]   |   | Confine: Memoria lineare|
+  | Confine: Hypervisor /   |   |          e API Host     |
+  |          Kernel Guest   |   +-------------------------+
+  +-------------------------+
+```
+
+---
+
+#### Famiglia A: Confinamento di Percorso (`chroot`)
+- **Meccanismo operativo**: Introdotto originariamente nella versione 7 di Unix (1979), il comando e la relativa chiamata di sistema `chroot` modificano la directory radice logica (`/`) per il processo chiamante e per tutti i suoi discendenti. I percorsi al di sopra della directory specificata non possono essere nominati o risolti attraverso le normali operazioni di percorso relativo o assoluto.
+- **Confine primario**: Risoluzione testuale dei percorsi del filesystem da parte del Virtual Filesystem (VFS) del kernel.
+- **Kernel condiviso con l'host?**: **SÌ**, integralmente e senza alcuna mediazione.
+- **Limiti strutturali e vettori di evasione**: `chroot` non è stato progettato come barriera di sicurezza per codice non fidato. Se un processo opera con privilegi di superutente (`UID 0`) o dispone della Linux capability `CAP_SYS_CHROOT`, l'evasione dalla gabbia è banale:
+  1. Il processo apre un descrittore a una directory esterna prima dell'invocazione di `chroot`.
+  2. In alternativa, il processo crea una directory temporanea all'interno del chroot, applica un secondo `chroot` nidificato verso di essa, e risale l'albero delle directory dell'host invocando iterativamente `chdir("..")` fino a raggiungere la vera radice fisica, reimpostando infine la radice con una nuova chiamata `chroot(".")`.
+  3. `chroot` non applica alcuna limitazione sui processi (Asse 1), sull'assorbimento di memoria o CPU (Asse 2), sulle syscall (Asse 3) o sulla rete (Asse 4).
+- **Valutazione di Assurance**: **INSUFFICIENTE**. Non utilizzabile come meccanismo autonomo per l'esecuzione di codice generato da LLM.
+
+---
+
+#### Famiglia B: Isolamento a Livello di Sistema Operativo (`FreeBSD Jails`, `Linux Namespaces + cgroups`)
+- **Meccanismo operativo**: Il kernel del sistema operativo implementa strutture dati distinte per partizionare le entità globali, mantenendo un unico kernel condiviso per l'intera macchina fisica.
+  - *FreeBSD Jails*: Introdotte nel 1999, rappresentano una soluzione completa di virtualizzazione a livello OS. Una *jail* isola simultaneamente la vista del filesystem, l'albero dei processi, il sottosistema degli account utente (un utente con privilegi di root nella jail non ha autorità al di fuori di essa) e lo stack di rete, sia assegnando indirizzi IP dedicati sia allocando uno stack di rete virtualizzato indipendente tramite il framework VNET.
+  - *Linux Namespaces e cgroups v2*: In Linux l'isolamento è ottenuto combinando primitive disaccoppiate. I namespace partizionano le tabelle del kernel; i cgroups v2 regolano le quote di risorse. Non esiste una singola entità "gabbia", ma un processo a cui vengono associati diversi namespace contemporaneamente (`clone` con flag `CLONE_NEW*` o `unshare`).
+- **Confine primario**: Tabelle di stato e controlli interni del kernel del sistema operativo host.
+- **Kernel condiviso con l'host?**: **SÌ**, direttamente.
+- **Limiti strutturali e vettori di evasione**: Poiché il kernel è unico e condiviso, qualsiasi vulnerabilità di corruzione della memoria nel codice del kernel host (ad esempio un difetto di tipo *Use-After-Free* nel sottosistema di rete, nei driver di dispositivo o nella gestione della memoria condivisa) può essere sfruttata da codice non fidato per acquisire privilegi arbitrari (*Ring 0 / Kernel Space*), scavalcando qualsiasi confine di namespace.
+- **Valutazione di Assurance**: **APPROPRIATO PER TEST FUNZIONALI ORDINARI**, ma non sufficiente in scenari con codice attivamente avversariale o su host che condividono dati critici multi-tenant.
+
+---
+
+#### Famiglia C: Container Applicativi OCI (`Docker`, `Podman`)
+- **Meccanismo operativo**: I motori di container conformi agli standard OCI (Open Container Initiative) non costituiscono un nuovo tipo di isolamento logico o hardware. Un container OCI è **un'orchestrazione standardizzata di primitive del sistema operativo**: un runtime di basso livello (come `crun` o `runc`) configura l'ambiente assemblando i namespace Linux prescritti, associa i limiti cgroups v2, applica un profilo `seccomp-bpf` predefinito, configura le policy del modulo di sicurezza (AppArmor o SELinux) e avvia il programma a partire da un'immagine di filesystem immutabile.
+- **Modalità Rootful contro Rootless**:
+  - In modalità *Rootful* (tipica delle installazioni standard di Docker), il demone di gestione esegue come utente `root` dell'host. Se un processo nel container evade a causa di un difetto del runtime o di un'errata configurazione dei mount, si ritrova con privilegi di root sulla macchina ospite.
+  - In modalità *Rootless* (supportata nativamente da Podman e configurabile in Docker), il motore e il container vengono eseguiti interamente all'interno del contesto di un utente host non privilegiato. L'utente `root` all'interno del container è mappato, tramite un *User Namespace*, sull'UID dell'utente non privilegiato all'esterno.
+- **Confine primario**: Composizione delle policy di sicurezza e delle primitive del kernel host.
+- **Kernel condiviso con l'host?**: **SÌ**, direttamente.
+- **Limiti strutturali**: La modalità Rootless riduce l'impatto di un'eventuale evasione confinandolo, in prima approssimazione, all'autorità dell'utente host che ha avviato il processo. Tuttavia, **non azzera i rischi di compromissione**: un'evasione può comunque accedere a tutti i dati, file, token e chiavi SSH appartenenti all'utente host chiamante, oppure sfruttare vulnerabilità del kernel per tentare una privilege escalation locale sull'host.
+- **Valutazione di Assurance**: **BASELINE OPERATIVA ORDINARIA** per suite di test automatizzati (Step 16) e pipeline di integrazione continua, a condizione di operare rigorosamente in modalità Rootless e con profili difensivi attivi.
+
+---
+
+#### Famiglia D: Interposizione e Kernel in User Space (`gVisor`)
+- **Meccanismo operativo**: Sviluppato per ridurre la superficie di esposizione diretta del kernel nei container multi-tenant, gVisor si inserisce come runtime OCI alternativo (`runsc`). Sostituisce l'inoltro diretto delle syscall al kernel host mediante un kernel applicativo emulato che esegue nello spazio utente (*User Space*):
+  - **Sentry**: Un kernel applicativo, scritto in linguaggio a gestione sicura della memoria (Go), che intercetta le chiamate di sistema emesse dal programma sandboxato (tramite meccanismi basati su KVM o `ptrace`). Il Sentry implementa internamente la logica delle chiamate e gestisce la memoria dell'applicazione senza trasmettere la richiesta originale al kernel host.
+  - **Gofer**: Un processo separato che funge da mediatore per l'accesso controllato alle porzioni consentite del filesystem host, comunicando con il Sentry tramite protocolli IPC chiusi (basati sul protocollo 9P o versioni ottimizzate).
+- **Confine primario**: Interposizione delle chiamate di sistema ed emulazione del comportamento del kernel in user space.
+- **Kernel condiviso con l'host?**: **SÌ, MA MEDIATO**. Il carico di lavoro applicativo non interagisce direttamente con il kernel host; tuttavia, il Sentry e il Gofer devono a loro volta effettuare chiamate di sistema al kernel host per allocare risorse fisiche e attendere eventi.
+- **Superficie di fiducia (Trust Base)**: La correttezza dell'implementazione del Sentry e del Gofer, il runtime Go sottostante e il sottoinsieme ristretto di syscall host utilizzate da gVisor.
+- **Limiti strutturali e trade-off**:
+  - *Overhead computazionale*: La mediazione in user space comporta un costo in termini di latenza e consumo CPU nei carichi di lavoro caratterizzati da frequenti operazioni di I/O su filesystem o socket di rete.
+  - *Compatibilità*: Non tutte le chiamate di sistema o le opzioni avanzate di Linux sono implementate nel Sentry; applicazioni che utilizzano syscall esoteriche o moduli kernel specifici possono non essere compatibili.
+- **Valutazione di Assurance**: **PROFILO DI SICUREZZA ELEVATO PER CODICE NON FIDATO**, ideale per l'esecuzione di script arbitrari generati da LLM che richiedono un'interfaccia compatibile con Linux ma necessitano di un isolamento superiore a quello offerto dai container standard.
+
+---
+
+#### Famiglia E: Virtualizzazione Hardware (`MicroVM` e `VM Tradizionali`)
+- **Meccanismo operativo**: Questa famiglia abbandona la condivisione del sistema operativo host. Il confine di sicurezza non è tracciato da costrutti logici del software, ma è presidiato dal silicio del microprocessore tramite istruzioni hardware di virtualizzazione (Intel VT-x, AMD-V, ARM Virtualization Extensions). Il componente di mediazione primario è l'**Hypervisor** (in ambiente Linux tipicamente `KVM`). All'interno dello spazio isolato viene avviato un sistema operativo autonomo completo: il **Kernel Guest**.
+  - *VM Tradizionali (QEMU/KVM)*: Emulano una piattaforma hardware completa (scheda madre, bus PCI complessi, controller grafici, controller USB e periferiche legacy). Questa flessibilità comporta tempi di avvio misurabili in secondi o decine di secondi e un'impronta di memoria di centinaia di megabyte solo per sostenere il kernel guest e il processo emulatore.
+  - *MicroVM (Firecracker, o Kata Containers configurato con VMM minimali)*: Progettate specificamente per carichi effimeri e serverless. Il Virtual Machine Monitor (VMM) è spogliato di qualsiasi dispositivo emulato non indispensabile. Vengono forniti unicamente controller di rete virtuali (`virtio-net`), dischi a blocchi virtuali (`virtio-block`), un timer e un'interfaccia seriale essenziale. Kata Containers estende questo modello fornendo un'interfaccia compatibile con OCI sopra differenti hypervisor (QEMU, Cloud Hypervisor, Firecracker).
+- **Confine primario**: Virtualizzazione hardware della CPU e gestione degli accessi di memoria tramite tabelle di traduzione hardware (Second Level Address Translation - SLAT / EPT / NPT).
+- **Kernel condiviso con l'host?**: **NO**. Il carico di lavoro dialoga esclusivamente con il proprio kernel guest.
+- **Limiti strutturali e vettori residui**: Sebbene la compromissione del kernel guest non implichi la compromissione dell'host, la protezione non è assoluta:
+  1. *Vulnerabilità del VMM*: Difetti nell'implementazione dei driver virtuali (`virtio`) all'interno del VMM in esecuzione sull'host possono consentire a un attaccante che ha compromesso il kernel guest di evadere verso il processo VMM host.
+  2. *Vulnerabilità dell'Hypervisor (KVM)*: Bug nel codice di gestione delle transizioni di stato del processore all'interno del modulo kernel KVM.
+  3. *Canali Laterali Microarchitetturali (Side-Channel)*: Attacchi basati sulla misurazione dei tempi di accesso alla cache del processore (come varianti di Spectre o attacchi di esecuzione speculativa) possono consentire l'estrazione di informazioni attraverso i confini della VM se l'hypervisor non applica adeguate barriere di schedulazione sui core logici condivisi (SMT / Hyper-Threading).
+- **Valutazione di Assurance**: **MASSIMO CONFINE SISTEMISTICO**. È l'architettura raccomandata per agenti autonomi dotati di facoltà di shell aperte, esecuzione di codice arbitrario non fidato su nodi condivisi o elaborazione di input attivamente avversariali.
+
+---
+
+#### Famiglia F: Ambienti a Memoria Lineare e Runtime Capability (`WebAssembly / WASI`)
+- **Meccanismo operativo**: WebAssembly (Wasm) è un formato di istruzioni binario originariamente progettato per l'esecuzione protetta di codice ad alte prestazioni all'interno dei motori dei browser web. Quando eseguito sul lato server mediante runtime dedicati (come *Wasmtime*, *WasmEdge* o *Wasmer*), Wasm adotta un paradigma computazionale basato su due vincoli:
+  - **Memoria Lineare Protetta**: Il modulo Wasm non dispone di indirizzi di memoria fisici o virtuali del sistema operativo. Il runtime alloca al modulo un blocco contiguo di memoria lineare in user space. Ogni accesso in lettura o scrittura viene validato rispetto ai confini di questo intervallo: tentativi di indirizzare memoria esterna innescano un'eccezione di protezione del runtime (*trap*) che arresta immediatamente l'esecuzione.
+  - **WASI (WebAssembly System Interface)**: A differenza di un binario Linux, che include chiamate di sistema per richiedere risorse al kernel, un modulo Wasm compilato non possiede chiamate di sistema native. Tutte le interazioni con il mondo esterno avvengono tramite funzioni esplicitamente importate dal runtime ospite secondo lo standard WASI.
+- **Confine primario**: Isolamento del bytecode da parte del runtime in user space e assenza strutturale di chiamate di sistema dirette.
+- **Kernel condiviso con l'host?**: Il modulo Wasm non dialoga con il kernel host; tuttavia, il processo runtime che lo ospita utilizza il kernel host per operare.
+- **Superficie di fiducia (Trust Base)**: Il compilatore JIT o l'interprete del runtime WebAssembly, le librerie native del runtime e l'insieme delle funzioni e capability esposte dall'host al modulo.
+- **Limiti strutturali**:
+  - *Compatibilità limitata*: Non tutti i programmi possono essere eseguiti in Wasm. Il codice sorgente deve essere compilabile nel target Wasm (ad esempio linguaggi come Rust, C, C++, Go, o interpreti precompilati in Wasm). Non supporta l'esecuzione diretta di script o binari nativi eterogenei privi di toolchain adeguata.
+  - *La sicurezza dipende dall'host*: Se il runtime WASI viene configurato concedendo l'accesso indiscriminato a una directory dell'host, il modulo potrà leggere e alterare tutti i file inclusi in quel sottoalbero.
+- **Valutazione di Assurance**: **PROFILO OTTIMALE PER LOGICHE PURE E PARSER**, non idoneo per carichi di lavoro che richiedono l'uso di comandi di sistema, interpreti complessi non portati su Wasm o interfacce di rete non mediate.
+
+---
+
+### 4. CAPABILITY, OBJECT-CAPABILITY E AUTORIZZAZIONI DI SERVIZIO
+
+Nel campo della sicurezza applicata, il termine *Capability* viene frequentemente utilizzato con accezioni contrastanti, inducendo confusioni concettuali. È indispensabile disambiguare i modelli di autorizzazione, separando le proprietà formali del kernel dalle credenziali di servizio utilizzate a livello applicativo.
+
+```text
+                  CONFRONTO TRA MODELLI DI AUTORIZZAZIONE
+
+  MODELLO BASATO SU IDENTITA' (ACL)        MODELLO A CAPABILITY
+  "Chi sta effettuando la richiesta?"      "Quale handle protetto possiedi?"
+                 |                                        |
+                 v                                        v
+  [ Soggetto: Utente Bob ]                 [ Capability: Handle / FD 4 ]
+                 |                                        |
+                 v                                        v
+  [ Il sistema verifica la lista           [ Il possesso dell'handle non
+    dei permessi associata a Bob ]           falsificabile conferisce l'accesso ]
+                 |                                        |
+                 v                                        v
+  Rischio: AMBIENT AUTHORITY               Vantaggio: MINIMA AUTORITA' CIRCOSCRITTA
+  (Bob puo' fare tutto cio' che            (Il processo puo' interagire solo
+   la sua identita' consente)               con la risorsa designata dall'handle)
+```
+
+#### 4.1 Dal Modello Basato su Identità al Modello a Capability
+- **Access Control List (ACL - Basato su Identità)**:
+  Il sistema verifica l'identità autenticata del soggetto chiamante (utente, gruppo, ruolo) e consulta una matrice di controllo accessi associata all'oggetto per stabilire se l'azione sia lecita.
+  *La criticità epistemica (Ambient Authority)*: L'autorità è legata all'ambiente di esecuzione del soggetto. Se un programma in esecuzione sotto l'account di Alice viene ingannato da un input malevolo (ad esempio un attacco di iniezione di prompt), il programma agirà sfruttando tutta l'autorità attribuita ad Alice nel sistema, potendo leggere, alterare o cancellare qualsiasi file su cui Alice possiede permessi, anche se estraneo al compito corrente.
+- **Capability-Based Security (Basato sul Possesso)**:
+  Una *capability* (nel senso formale introdotto da Dennis e Van Horn nel 1966) è un riferimento protetto e non falsificabile a un oggetto, indissolubilmente legato a un insieme determinato di diritti di accesso su di esso. Il possesso del riferimento costituisce condizione necessaria e sufficiente per esercitare l'autorità.
+  *L'analogia didattica*: La chiave magnetica programmata di una camera d'albergo. La serratura non richiede il passaporto né si preoccupa di chi stia inserendo la scheda; verifica unicamente che la scheda contenga il codice crittografico corretto per azionare quel singolo battente. Se non possiedi la scheda, la stanza non è accessibile.
+
+#### 4.2 Proprietà Capability-Like dei File Descriptor Unix
+Nei sistemi conformi a POSIX, il meccanismo che più si avvicina a un'architettura a capability è il **File Descriptor (FD)** del kernel.
+Quando un processo apre un file mediante la chiamata `open()`, il kernel verifica l'identità dell'utente contro i permessi del filesystem. Una volta superata questa fase iniziale, il kernel alloca una voce nella tabella dei file aperti e restituisce al processo un intero non negativo (ad esempio `5`).
+
+Da questo momento:
+- Il descrittore `5` rappresenta un handle opaco gestito direttamente dal kernel.
+- Il processo non deve più specificare il percorso sul disco per compiere operazioni; utilizza il descrittore numerico (`read(5, ...)`, `write(5, ...)`).
+- Se il processo trasferisce questo descrittore a un processo figlio o a un altro processo tramite un socket di dominio Unix (`SCM_RIGHTS`), il processo ricevente acquisisce l'autorità di operare sul file sottostante anche se opera all'interno di una sandbox priva di accesso visivo al filesystem o con un'identità priva di permessi su quel file.
+
+**I limiti dell'autorità ambientale residua in Unix**:  
+Un normale processo Unix **non opera in un sistema object-capability puro**. Anche se utilizza i descrittori di file per l'I/O, il processo conserva normalmente una vasta autorità ambientale implicita fornita dal sistema:
+- Può utilizzare il descrittore speciale `AT_FDCWD` per aprire percorsi relativi alla directory di lavoro corrente.
+- Può invocare chiamate di sistema che risolvono percorsi assoluti arbitrari sul filesystem host (se non confinato tramite namespace o chroot).
+- Eredita credenziali di processo, variabili d'ambiente e socket di sistema.
+
+Un'architettura di confinamento basata su capability richiede quindi l'eliminazione sistematica dell'autorità ambientale residua: il processo deve essere privato della possibilità di risolvere nuovi percorsi per nome, potendo interagire unicamente con i descrittori esplicitamente pre-allocati e passati dall'ambiente supervisore.
+
+#### 4.3 Vincoli Kernel alla Risoluzione dei Percorsi (`openat2`)
+Negli scenari in cui un componente confinato debba comunque aprire file all'interno di una specifica gerarchia delimitata (ad esempio la directory di un progetto generato da LLM), l'uso ingenuo di funzioni di manipolazione di stringhe o normalizzazione di percorsi espone al rischio di vulnerabilità di *Path Traversal* (Step 17).
+
+La chiamata di sistema `openat2` (introdotta nel kernel Linux 5.6) permette di imporre **vincoli deterministici a livello di kernel durante la singola operazione di risoluzione del percorso**, mediante una struttura di controllo (`struct open_how`) e specifici flag di risoluzione:
+- `RESOLVE_BENEATH`: Rifiuta qualsiasi operazione di risoluzione che tenti di risalire al di sopra della directory radice indicata dal descrittore di base `dirfd`. Se il percorso contiene sequenze di `../` che porterebbero a uscire dalla cartella, il kernel fallisce la chiamata restituendo l'errore `EXDEV`.
+- `RESOLVE_IN_ROOT`: Tratta il `dirfd` fornito come se fosse la radice `/` del sistema per quella singola operazione, impedendo che symlink assoluti o percorsi con prefisso `/` conducano all'esterno del sottoalbero.
+- `RESOLVE_NO_MAGICLINKS`: Blocca l'attraversamento di collegamenti simbolici speciali esposti da `/proc` (come `/proc/self/exe` o `/proc/self/fd/N`), che costituiscono un vettore ricorrente di evasione dai container.
+- `RESOLVE_NO_SYMLINKS`: Disabilita del tutto l'inseguimento di collegamenti simbolici.
+- `RESOLVE_NO_XDEV`: Impedisce alla risoluzione di attraversare punti di montaggio differenti all'interno della stessa gerarchia.
+
+*Condizioni di correttezza di `openat2`*:  
+`openat2` non sostituisce una sandbox completa; governa unicamente la singola risoluzione. La sua efficacia dipende dal rispetto di condizioni precise:
+1. Il `dirfd` di partenza deve essere affidabile e aperto con il flag `O_PATH` o `O_DIRECTORY` prima dell'esecuzione del codice non fidato.
+2. I percorsi passati devono essere relativi al `dirfd`. Se viene fornito un percorso assoluto privo di `RESOLVE_IN_ROOT`, il `dirfd` viene ignorato.
+3. Ogni nuovo descrittore restituito deve essere protetto con il flag `O_CLOEXEC` per evitare leak involontari a processi secondari.
+
+#### 4.4 Demarcazione tra Object-Capability e Token Applicativi di Rete
+Per preservare la precisione terminologica del manuale, stabiliamo la demarcazione concettuale tra due categorie di controllo accessi spesso confuse:
+
+| Dimensione | Object-Capability (Livello Kernel / Runtime) | Token di Autorizzazione Applicativo (Livello Rete) |
+| :--- | :--- | :--- |
+| **Natura del Meccanismo** | Handle protetto gestito dal kernel dell'OS o dal runtime di memoria (es. File Descriptor POSIX, handle WASI). | Stringa alfanumerica strutturata (es. token OAuth 2.0, token JWT firmato, bearer token opaco). |
+| **Protezione dell'Handle** | **Non falsificabile per disegno architetturale**: risiede in una tabella di memoria accessibile solo al kernel; il processo possiede solo un indice numerico intero. | **Segreto crittografico**: la sua sicurezza dipende dalla robustezza della firma, dalla segretezza del canale di trasmissione e dalla protezione da esfiltrazione. |
+| **Ambito di Applicazione** | Confinamento dei processi locali, accessi al filesystem locale, memoria e canali IPC. | Chiamate di rete verso API di terze parti, database remoti, microservizi distribuiti. |
+| **Modalità di Esercizio** | Passato direttamente come parametro a chiamate di sistema o invocazioni di runtime. | Trasmesso come intestazione di protocollo applicativo (es. header HTTP `Authorization: Bearer <token>`). |
+| **Rischio Principale** | Ereditarietà accidentale di descrittori non tracciati privi di flag close-on-exec. | Esfiltrazione tramite log, riutilizzo non autorizzato prima della scadenza (*replay attack*), scope eccessivo. |
+
+*Integrazione nei flussi di lavoro LLM*:  
+Nello sviluppo di architetture assistite da modelli linguistici (in particolare per agenti dotati di facoltà di invocare tool, Step 19), entrambi i modelli operano in maniera sinergica:
+- L'**Object-Capability** isola l'ambiente di esecuzione locale dello script o dell'agente, impedendo l'accesso non autorizzato a file o socket di sistema dell'host.
+- Il **Token di Autorizzazione Applicativo** governa l'interazione tra l'agente e le API esterne: deve essere generato con autorizzazioni strettamente circoscritte al singolo task (*scope minimo*), vincolato a specifici endpoint e associato a un tempo di vita residuo ridotto (*Time-To-Live - TTL*), garantendo il rispetto del principio di minima autorità anche sul piano dei servizi distribuiti.
+
+---
+
+### 5. CRITERI DI SELEZIONE E PRONTUARIO DI CONSULTAZIONE
+
+La selezione dell'ambiente di confinamento per una pipeline di sviluppo, test o esecuzione assistita da LLM non può basarsi unicamente sul tipo di codice da eseguire. Deve scaturire dall'integrazione tra la **Classificazione del Rischio dello STEP 2** e il **Modello di Minaccia dello STEP 19**.
+
+Un errore frequente consiste nell'adottare un approccio apodittico, prescrivendo la tecnologia più complessa (come una macchina virtuale completa) per compiti a basso rischio, oppure confidando in container standard non rinforzati per eseguire codice attivamente ostile o pilotato da agenti con accesso a credenziali sensibili.
+
+Il criterio guida deve rispondere a sei quesiti di assurance:
+1. *Qual è l'impatto massimo tollerabile sull'infrastruttura in caso di fallimento o compromissione dell'ambiente?* (Step 2)
+2. *Il codice richiede binari nativi Linux precompilati, interpreti complessi, o può essere isolato in un runtime WebAssembly?*
+3. *È accettabile condividere il kernel del sistema operativo host con il carico di lavoro sotto esame?*
+4. *Quali risorse esterne (database, filesystem host, servizi cloud) devono essere raggiungibili dal carico di lavoro?*
+5. *Qual è la superficie di fiducia (Trust Base) che si è disposti ad accettare come non compromessa?*
+6. *Quale evidenza empirica indipendente dimostra che i controlli configurati sono attivi ed efficaci?* (Step 11 e Step 16)
+
+---
+
+#### 5.1 Matrice Comparativa Multi-Parametro delle Tecnologie
+La tabella seguente confronta le famiglie architetturali analizzate nella Sezione 3.
+
+*(Nota metodologica sulle metriche: Le stime prestazionali riportate sono ordini di grandezza qualitativi indicativi. Le prestazioni reali dipendono dall'architettura della CPU, dalla velocità dello storage, dalla dimensione dell'immagine e del kernel guest, e dalla specifica metrica considerata: ad esempio, il tempo fino all'avvio del supervisore VMM differisce dal tempo necessario a raggiungere l'init guest o ad avere lo stack applicativo pronto a ricevere comandi. Le proprietà descritte riflettono i modelli architetturali e non costituiscono certificazione automatica di sicurezza per una configurazione specifica).*
+
+| Tecnologia / Famiglia | Confine Primario di Sicurezza | Kernel Condiviso con Host? | Latenza di Avvio Indicativa | Impronta Memoria Tipica | Superficie di Fiducia Primaria (Trust Base) | Idoneità e Vincoli nel Software Assistito da LLM |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **chroot** | Risoluzione percorsi del filesystem | **SÌ**, integralmente | Istantanea ($< 1$ ms) | Nulla (quella del processo) | Kernel host, gestione permessi root | **Inadeguato da solo**: utile unicamente per build deterministiche legacy o step preparatori interni. |
+| **FreeBSD Jails** | Isolamento a livello di kernel OS | **SÌ** (Kernel FreeBSD) | Minima ($< 10$ ms) | Minima (strutture kernel) | Kernel host FreeBSD, regole del devfs | Buono per pipeline di test su sistemi BSD; isola utenti, processi e rete VNET. |
+| **Linux Namespaces + cgroups v2** | Primitive native del kernel disaccoppiate | **SÌ** (Kernel Linux) | Minima ($< 5$ ms) | Minima (strutture kernel) | Kernel Linux host | Adatto per test di unità e fuzzing interno non avversariale (Step 18). |
+| **Container OCI Rootless (Podman)** | Orchestrazione di primitive OS e policy | **SÌ** (Kernel Linux) | Bassa ($\sim 200$-$500$ ms per runc/crun) | Bassa ($\sim 10$-$20$ MB runtime) | Kernel host, runtime OCI, configurazione seccomp/LSM | **Baseline standard** per suite di test automatici (Step 16) e pipeline di CI/CD. |
+| **gVisor (runsc)** | Kernel applicativo in user space | **SÌ, MA MEDIATO** (Syscall intercettate) | Bassa ($\sim 150$-$400$ ms) | Media ($\sim 20$-$50$ MB Sentry/Gofer) | Implementazione del Sentry, runtime Go, proxy Gofer | Raccomandato per elaborazione di formati non fidati o endpoint esposti a codice arbitrario. |
+| **MicroVM (Firecracker)** | Virtualizzazione hardware della CPU | **NO** (Usa un Kernel Guest separato) | Bassa ($\sim 50$-$150$ ms al guest init) | Bassa ($\sim 5$-$15$ MiB per il solo VMM) | Modulo KVM, implementazione VMM (Rust), CPU fisica | **Opzione preferibile per Agenti Autonomi** con accesso a shell o compilatori arbitrari. |
+| **Kata Containers** | Architettura di container isolati via VM | **NO** (Usa un Kernel Guest separato) | Moderata ($\sim 300$-$800$ ms in base al VMM) | Media ($\sim 30$-$100$ MB in base a QEMU/Cloud-Hypervisor) | Hypervisor scelto, kernel guest, agent Kata, KVM | Permette di usare l'interfaccia OCI/Kubernetes mantenendo il confine di virtualizzazione hardware. |
+| **VM Tradizionale (KVM/QEMU)** | Emulazione hardware completa | **NO** (Usa un Kernel Guest separato) | Alta ($> 5$ secondi) | Alta ($> 512$ MB per sistema guest) | Hypervisor QEMU, modulo KVM, firmware UEFI virtuale | Necessaria per sistemi operativi differenti (es. Windows) o dipendenze da dispositivi complessi. |
+| **WebAssembly (WASI)** | Memoria lineare e Capability runtime | **NO** (Isolamento logico in user space) | Istantanea ($< 1$ ms) | Minima ($< 5$ MB per il runtime) | Runtime Wasm (es. Wasmtime), API host esplicitamente esposte | **Ottimale per parser e funzioni pure**; richiede codice compilabile nel target Wasm. |
+
+---
+
+#### 5.2 Albero Decisionale Condizionale
+Il seguente diagramma logico guida la selezione della tecnologia in base a requisiti operativi, vincoli di compatibilità e modello di minaccia:
+
+```text
+                  ALBERO DECISIONALE PER IL SANDBOXING
+
+                       [ MODELLO DI MINACCIA ]
+                                  |
+         +------------------------+------------------------+
+         |                                                 |
+[ Codice Benigno / Basso Rischio ]              [ Codice Non Fidato / Rischio Elevato ]
+- Test di regressione interni (Step 16)         - Codice sintetico con dipendenze esterne
+- Moduli assistiti da LLM su specifiche chiuse   - Campagne di Fuzzing avversariale (Step 18)
+- Minaccia principale: bug o loop accidentali   - Agenti con accesso a shell o tool (Step 19)
+         |                                                 |
+         v                                                 v
+Il codice puo' essere compilato                 E' accettabile condividere il kernel
+ed eseguito in WebAssembly?                      del sistema operativo host?
+    |                                                      |
+    +---> [SI] ===> WEBASSEMBLY (WASI)        +------------+------------+
+    |               Isolamento memoria        |                         |
+    |               lineare e capability     [SI]                      [NO]
+    |               esplicite sull'host       |                         |
+    |                                         v                         v
+    +---> [NO]                             GVISOR (runsc)            La sandbox deve eseguire
+            \                              Mediazione syscall        infrastrutture container
+             \                             in user space senza       o processi effimeri snelli?
+              v                            accesso diretto al               |
+       CONTAINER ROOTLESS                  kernel host          +-----------+-----------+
+       (Podman / crun)                                          |                       |
+       Isolamento tramite                                 [Container OCI]          [Runner Snello]
+       namespaces, cgroups                                      |                       |
+       e drop capabilities                                      v                       v
+                                                         KATA CONTAINERS        MICROVM
+                                                         Interfaccia container  (Firecracker)
+                                                         sopra hypervisor KVM   Kernel guest minimo,
+                                                                                boot millisecondi
+```
+
+---
+
+### 6. SUPERFICI D'ATTACCO, CONTAINER ESCAPE E FALSI SENSI DI SICUREZZA
+
+Configurare un ambiente di isolamento basandosi su assunzioni intuitive senza verificare le reali condizioni al contorno è una delle fonti primarie di **Falsa Assurance** (concetto formalizzato nello STEP 14 e nello STEP 19).
+
+Nel mondo dei container Linux e delle sandbox di sistema, la maggior parte delle evasioni (*escape*) non scaturisce da attacchi crittografici complessi, ma da configurazioni eccessivamente permissive introdotte per comodità di sviluppo.
+
+#### 6.1 Modalità Privilegiata e Disattivazione delle Difese
+In molte pipeline di integrazione continua, l'utente o lo script generato da un LLM tenta di risolvere errori di autorizzazione aggiungendo il flag:
+```bash
+docker run --privileged ...  # ERRORE ARCHITETTURALE
+```
+- **La realtà tecnica**: Il flag `--privileged` non si limita a concedere permessi utente; disabilita quasi l'intera architettura di sicurezza del motore di containerizzazione. Rimuove il profilo seccomp, disabilita i vincoli di AppArmor o SELinux, ripristina tutte le Linux capability del kernel e rende accessibili all'interno del container tutti i nodi di dispositivo dell'host (`/dev`).
+- **Conseguenza di sicurezza**: Un processo in esecuzione all'interno di un container avviato con `--privileged` (e con UID 0) può individuare la partizione del disco fisico dell'host (ad esempio `/dev/nvme0n1p1`), montarla localmente tramite syscall `mount()` e riscrivere i file binari o le configurazioni dell'host. La presenza del container non costituisce più un confine di sicurezza.
+
+#### 6.2 Esposizione di Socket Amministrativi (`docker.sock`)
+Quando si progetta un runner in cui il codice generato dall'LLM deve eseguire compiti di packaging o costruire immagini secondarie, viene frequentemente adottato l'anti-pattern del montaggio del socket di controllo:
+```bash
+-v /var/run/docker.sock:/var/run/docker.sock  # ERRORE ARCHITETTURALE
+```
+- **La realtà tecnica**: Il socket Unix del demone Docker rappresenta l'interfaccia di comunicazione per l'API di gestione dell'intero motore. L'accesso in lettura e scrittura a questo socket equivale all'accesso al piano di controllo dell'host.
+- **Conseguenza di sicurezza**: Il codice non ha alcun bisogno di cercare vulnerabilità nel kernel: può semplicemente inviare una richiesta all'API del demone ordinando l'avvio di un container secondario che monti la cartella radice `/` dell'host con permessi completi di lettura e scrittura.
+
+#### 6.3 Precondizioni di Abuso dei Filesystem Pseudo-Kernel (`/proc` e `/sys`)
+Nei sistemi Linux, `/proc` e `/sys` sono interfacce virtuali fornite dal kernel per esporre strutture dati, tabelle dei processi e parametri di configurazione del sistema.
+
+Spesso si afferma genericamente che montare `/proc` in scrittura consenta l'evasione immediata. È necessario specificare le **precondizioni tecniche indispensabili affinché tale abuso sia realizzabile**:
+- Modificare parametri critici dell'host (come `/proc/sys/kernel/core_pattern`, che specifica il programma invocato dal kernel in caso di crash) richiede che il container sia in esecuzione con privilegi amministrativi (`CAP_SYS_ADMIN`), che operi nel namespace utente iniziale dell'host (non rootless) e che il percorso `/proc/sys` non sia stato mascherato in sola lettura dal runtime OCI.
+- Se queste condizioni sfavorevoli sussistono simultaneamente, la scrittura di un comando arbitrario in `core_pattern` seguita dall'induzione di un crash controllato (`SIGSEGV`) provoca l'esecuzione di quel comando con privilegi di root sull'host.
+- *Regola di Assurance*: I container sicuri utilizzano User Namespaces indipendenti, mantengono `/proc` e `/sys` montati in sola lettura e mascherano percorsi sensibili (`/proc/sysrq-trigger`, `/proc/kcore`, `/sys/firmware`).
+
+#### 6.4 Ambito Reale del Vincolo `noexec` e Mediazione degli Interpreti
+Un malinteso diffuso consiste nel considerare il montaggio di una cartella con l'attributo `noexec` come una difesa completa contro l'esecuzione di codice arbitrario.
+- **Cosa fa realmente `noexec`**: È un attributo applicato dal Virtual Filesystem (VFS) a livello di punto di montaggio. Segnala al kernel di rifiutare la chiamata di sistema `execve()` e le sue varianti per i file residenti su quel filesystem. Se un processo tenta di eseguire direttamente un binario (ad esempio un file ELF compilato) o uno script dotato di hashbang (`#!/bin/sh`) tramite `./tmp/payload`, il kernel intercetta la syscall e restituisce un errore di autorizzazione (`EACCES`).
+- **Cosa NON fa `noexec` (La mediazione dell'interprete)**: Non impedisce a un programma eseguibile autorizzato situato su un altro filesystem (ad esempio `/usr/bin/python3`, `/bin/sh`, o `/usr/bin/node`) di aprire il file in sola lettura (`open()` con `O_RDONLY`), leggere i byte del sorgente in memoria RAM (`read()`) e interpretarli internamente:
+  ```bash
+  # Invocazione diretta: BLOCCATA da noexec a livello VFS
+  /tmp/untrusted_script.py  ==> Fallisce con errore EACCES (Permission Denied)
+
+  # Invocazione mediata: ESEGUITA regolarmente dall'interprete
+  python3 /tmp/untrusted_script.py ==> L'interprete legge i dati ed esegue il codice
+  ```
+- *Valutazione di Assurance*: `noexec` è una misura di difesa in profondità valida per impedire l'esecuzione diretta di binari scaricati o compilati nella cartella temporanea; non sostituisce il confinamento del processo, la limitazione degli interpreti disponibili nell'ambiente e il filtraggio delle syscall.
+
+#### 6.5 Effimerità Reale contro Persistenza Latente
+Il modello concettuale del runner effimero prevede che l'ambiente nasca, esegua la verifica e venga distrutto senza lasciare tracce. Tuttavia, possono sussistere forme di **persistenza occulta** tra esecuzioni successive:
+1. *Cache condivise di pacchetti*: Se più istanze di test condividono un volume host per la cache delle dipendenze (ad esempio la cache di `pip`, `npm` o `cargo`) al fine di velocizzare i tempi di build, uno script malevolo o allucinato può inquinare la cache (*cache poisoning*), alterando il comportamento delle esecuzioni successive.
+2. *Memoria condivisa residua*: Se i segmenti di memoria condivisa POSIX (`/dev/shm`) non vengono svuotati o isolati tramite namespace IPC dedicati, i dati elaborati da un task possono rimanere accessibili al task successivo.
+3. *File descriptor aperti non chiusi*: Demoni supervisori che mantengono connessioni socket aperte verso servizi interni attraverso molteplici istanze di container.
+
+---
+
+### 7. BASELINE ILLUSTRATIVA DI HARDENING PER RUNNER DI CODICE SINTETICO SU LINUX
+
+Per fornire un riferimento pratico e riproducibile, definiamo una **baseline illustrativa di hardening** per l'esecuzione di codice non fidato in ambienti Linux.
+
+Questa configurazione è concepita per compiti di verifica automatica (Step 16) e per carichi di lavoro batch che richiedono l'esecuzione di script non verificati all'interno di pipeline di assurance.
+
+---
+
+#### 7.1 Scheda dell'Ambiente di Riferimento
+La configurazione descritta è verificata e valida sotto le seguenti condizioni operative minime:
+
+```text
++------------------------------------------------------------------------------+
+| SCHEDA DELL'AMBIENTE DI RIFERIMENTO (BASELINE PODMAN ROOTLESS)               |
++------------------------------------------------------------------------------+
+| Sistema Operativo:         Linux (distribuzioni enterprise / standard)       |
+| Versione Minima Kernel:    Linux 5.15 LTS o superiore (raccomandato >= 6.1)  |
+| Architettura CPU:          x86_64 oppure AArch64                             |
+| Motore di Container:       Podman versione 4.5 o superiore (modalita' rootless)|
+| Runtime OCI:               crun (raccomandato per basse latenze) o runc      |
+| Gestione Risorse:          cgroups v2 unificato (abilitato di default)       |
+| Modulo LSM Attivo:         SELinux in modalita' Enforcing o AppArmor attivo  |
+| Politica Seccomp:          Allow-list fail-closed su formato JSON conforme   |
++------------------------------------------------------------------------------+
+```
+
+---
+
+#### 7.2 Il Comando Illustrativo di Riferimento
+Il seguente comando illustra l'applicazione coordinata dei parametri di contenimento discussi nei cinque assi operativi:
+
+```bash
+podman run --rm \
+  --name "runner-task-8f3a21" \
+  --timeout 30 \
+  --stop-timeout 5 \
+  --network none \
+  --read-only \
+  --tmpfs /tmp:rw,noexec,nosuid,nodev,size=64m \
+  --cap-drop ALL \
+  --security-opt no-new-privileges \
+  --security-opt seccomp=/etc/containers/seccomp_runner_strict.json \
+  --pids-limit 128 \
+  --memory 256m \
+  --memory-swap 256m \
+  --cpus 1.0 \
+  --user 65534:65534 \
+  registry.internal.corp/testing-harness/python@sha256:7f83b1657ff1... \
+  python3 -u -B /app/test_entrypoint.py
+```
+
+*(Nota operativa per la riproduzione: Sostituire il percorso del profilo seccomp, il registry, il digest SHA-256 e il comando applicativo con gli artefatti verificati per la propria infrastruttura locale. L'esempio assume la presenza dell'immagine pre-scaricata nella cache locale per evitare accessi di rete in fase di avvio).*
+
+---
+
+#### 7.3 Analisi Dettagliata dei Parametri di Sicurezza
+
+```text
++------------------------------------------------------------------------------+
+| ANALISI DEI PARAMETRI DELLA BASELINE                                         |
++------------------------------------------------------------------------------+
+| OPZIONE CLI                   | EFFETTO DI SICUREZZA E ASSE DI RIFERIMENTO   |
++-------------------------------+----------------------------------------------+
+| --rm                          | Richiede la rimozione automatica del         |
+|                               | container e del relativo writable layer      |
+|                               | gestito al termine dell'esecuzione.          |
+|                               |                                              |
+| --timeout 30                  | Watchdog del runtime: impone un tempo limite |
+|                               | massimo di 30 secondi di esecuzione, dopo il |
+|                               | quale il runtime avvia la terminazione dei   |
+|                               | processi del container (Asse 2).             |
+|                               |                                              |
+| --stop-timeout 5              | Definisce il tempo di grazia (5 secondi) tra |
+|                               | l'invio del segnale SIGTERM e l'invio        |
+|                               | definitivo di SIGKILL all'intero cgroup.     |
+|                               |                                              |
+| --network none                | Isola lo stack IP (Asse 4). Il container     |
+|                               | dispone solo dell'interfaccia di loopback e  |
+|                               | non puo' instradare pacchetti verso l'esterno|
+|                               | o verso altre reti dell'host.                |
+|                               |                                              |
+| --read-only                   | Monta il filesystem radice (rootfs) in sola  |
+|                               | lettura (Asse 5). Previene alterazioni dei   |
+|                               | binari di sistema e infezioni persistenti.   |
+|                               |                                              |
+| --tmpfs /tmp:...size=64m      | Alloca un filesystem volatile in RAM (tmpfs) |
+|                               | limitato a 64 MB con flag nosuid (disabilita |
+|                               | bit setuid), nodev (impedisce la creazione   |
+|                               | di nodi di dispositivo) e noexec.            |
+|                               |                                              |
+| --cap-drop ALL                | Rimuove tutte le Linux capabilities POSIX    |
+|                               | (Asse 5). Toglie permessi di manipolare      |
+|                               | interfacce di rete, tracciare processi o     |
+|                               | modificare proprietà dei file.               |
+|                               |                                              |
+| --security-opt                | Impone il bit PR_SET_NO_NEW_PRIVS a livello  |
+|   no-new-privileges           | di kernel: impedisce che binari con bit      |
+|                               | setuid possano elevare i privilegi del task. |
+|                               |                                              |
+| --security-opt seccomp=...    | Applica una policy restrittiva con modello   |
+|                               | fail-closed (defaultAction: ERRNO) che       |
+|                               | blocca le chiamate di sistema non esplicite. |
+|                               |                                              |
+| --pids-limit 128              | Limita il numero massimo di task allocabili  |
+|                               | nel cgroup a 128, neutralizzando tentativi   |
+|                               | di fork-bomb o esaurimento della tabella PID.|
+|                               |                                              |
+| --memory / --memory-swap 256m | Limita la memoria RAM a 256 MB. Fissare lo   |
+|                               | swap allo stesso valore disabilita lo swap   |
+|                               | aggiuntivo, evitando contesa su disco.       |
+|                               |                                              |
+| --user 65534:65534            | Forza l'esecuzione con UID e GID numerici    |
+|                               | non privilegiati (corrispondenti a 'nobody' /|
+|                               | 'nogroup' su distribuzioni Linux standard).  |
+|                               |                                              |
+| @sha256:...                   | Garantisce l'integrita' e l'immutabilita'    |
+|                               | del contenuto dell'immagine (Step 17).       |
++------------------------------------------------------------------------------+
+```
+
+---
+
+#### 7.4 I Quattro Pilastri di Controllo Operativo
+
+##### 1. Watchdog Deterministico e Gestione del Ciclo di Vita
+È un errore metodologico affidarsi al comando generico da terminale `timeout 30s podman run ...`. Se il comando `timeout` dell'host scade, invia un segnale di arresto al processo client della riga di comando di Podman. Se il client si interrompe in modo anomalo o non propaga il segnale, il container sottostante e il relativo processo monitor (`conmon`) possono rimanere attivi in background consumando risorse sull'host.
+
+La configurazione robusta impiega:
+- Il flag nativo `--timeout 30`, con cui il motore Podman/crun programma internamente un timer sul processo supervisore del cgroup.
+- Il flag `--stop-timeout 5`, che garantisce che, se il codice non intercetta o rifiuta il segnale di chiusura ordinata (`SIGTERM`), dopo 5 secondi il kernel invii un segnale di abbattimento forzato non intercettabile (`SIGKILL`) a tutti i processi appartenenti al cgroup.
+- Un supervisore esterno di livello superiore (ad esempio un orchestratore o uno script di controllo CI/CD) che, al termine del periodo atteso, verifichi esplicitamente lo stato di uscita del container mediante `podman ps -a` e forzi la bonifica di eventuali residui tramite `podman rm -f`.
+
+##### 2. Immutabilità del Digest contro Fiducia nella Filiera (Supply Chain)
+L'identificazione dell'immagine mediante digest crittografico SHA-256 (ad esempio `python@sha256:7f83b165...` anziché `python:latest` o `python:3.11`) garantisce l'**integrità e l'immutabilità del contenuto**: accerta che i bit scaricati ed eseguiti corrispondano esattamente all'hash referenziato, prevenendo attacchi in cui un tag dinamico viene sovrascritto su un registro pubblico.
+
+Tuttavia, come stabilito nello **STEP 17 (Static Analysis, SAST, SCA & Secret Scanning)**:
+- Il digest garantisce che l'immagine non sia mutata; non dimostra che il suo contenuto fosse sicuro all'origine.
+- La fiducia nella filiera richiede la verifica della firma crittografica dell'immagine (ad esempio tramite standard *Cosign / Sigstore*), la convalida dei certificati di attestazione della build (*in-toto*) e la scansione dell'inventario SBOM delle dipendenze per escludere vulnerabilità note (CVE) o pacchetti allucinati (*slopsquatting*).
+
+##### 3. Politica Seccomp con Modello Fail-Closed
+I profili seccomp predefiniti dei motori di container adottano storicamente un approccio di tipo *block-list*: autorizzano circa 300 syscall e ne bloccano esplicitamente alcune decine ritenute pericolose.
+
+Per un runner dedicato all'assurance del codice sintetico, l'approccio raccomandato è **ad allow-list con politica di default fail-closed**:
+- Il file di policy (`seccomp_runner_strict.json`) deve dichiarare `"defaultAction": "SCMP_ACT_ERRNO"`, associandovi il codice di errore `EPERM` o `ENOSYS`.
+- Qualsiasi chiamata di sistema non esplicitamente inclusa nell'elenco delle chiamate ammesse viene respinta dal kernel con errore immediato, senza eseguire il codice nel kernel.
+- Vengono escluse sistematicamente chiamate per la creazione di namespace (`clone`, `unshare`), manipolazione di bpf (`bpf`), debug e tracciamento (`ptrace`), gestione di chiavi del kernel (`keyctl`) e chiamate asincrone a rischio (`io_uring_setup`).
+
+##### 4. Suite Minima di Test Negativi di Conformità
+Dichiarare che la sandbox sia blindata sulla base delle opzioni passate alla riga di comando non costituisce evidenza valida di assurance (Step 11, 14 e 16). L'infrastruttura di esecuzione deve essere sottoposta a **test negativi empirici di conformità**, verificando che i confini dichiarati respingano attivamente le operazioni non consentite.
+
+Ogni test negativo deve verificare una proprietà specifica senza assumere a priori un codice d'errore universale (il rifiuto può manifestarsi come `EACCES`, `EPERM`, `EROFS` o `ENETUNREACH` a seconda del livello architetturale che intercetta l'azione).
+
+Esempio di suite di verifica empirica dei confini da eseguire all'interno della sandbox:
+
+```python
+# test_sandbox_compliance.py
+# Suite di test negativi per verificare empiricamente i confini della sandbox
+import os
+import socket
+import pytest
+
+def test_ipv4_tcp_egress_is_blocked():
+    """
+    Verifica empirica Asse 4: accerta che il traffico TCP IPv4 verso
+    indirizzi instradabili esterni fallisca (la rete deve essere disconnessa).
+    """
+    with pytest.raises(OSError) as excinfo:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(2.0)
+        # Tentativo di connessione verso un indirizzo IP pubblico di test
+        s.connect(("1.1.1.1", 80))
+    # Il fallimento attesta che il traffico non puo' uscire
+    assert excinfo.value is not None
+
+def test_filesystem_root_is_readonly():
+    """
+    Verifica empirica Asse 5: accerta che il filesystem radice sia
+    montato in sola lettura e impedisca la creazione o modifica di file.
+    """
+    with pytest.raises(OSError) as excinfo:
+        with open("/usr/bin/probe_test_file.txt", "w") as f:
+            f.write("tentativo_scrittura_non_autorizzato")
+    # Il kernel deve rifiutare con Read-only file system (EROFS) o Permission Denied
+    assert excinfo.value is not None
+
+def test_pids_limit_prevents_forkbomb():
+    """
+    Verifica empirica Asse 2: accerta che il limite pids.max arresti
+    la generazione incontrollata di processi prima di saturare l'host.
+    """
+    created_pids = []
+    max_test_iterations = 200  # Superiore alla quota pids-limit di 128
+    hit_exception = False
+
+    try:
+        for _ in range(max_test_iterations):
+            pid = os.fork()
+            if pid == 0:
+                # Processo figlio: attende passivamente
+                os._exit(0)
+            else:
+                created_pids.append(pid)
+    except BlockingIOError:
+        # Errore tipico (EAGAIN) restituito da fork() quando pids.max e' raggiunto
+        hit_exception = True
+    except OSError:
+        hit_exception = True
+    finally:
+        # Bonifica dei processi generati
+        for p in created_pids:
+            try:
+                os.waitpid(p, 0)
+            except OSError:
+                pass
+
+    assert hit_exception, "Il limite sui PID non ha intercettato la generazione di processi!"
+```
+
+Se uno qualsiasi di questi test negativi non solleva l'eccezione attesa (ad esempio se la connessione verso l'esterno ha successo o il file in `/usr/bin` viene scritto), l'infrastruttura di esecuzione si trova in uno stato di fallimento di sicurezza. Il Decision Gate dello **STEP 23** deve emettere un verdetto di **NO-GO**, impedendo il rilascio o la validazione del software fino al ripristino delle barriere.
+
+---
+
+### 8. GLOSSARIO OPERATIVO DEI TERMINI DI CONFINAMENTO
+
+- **Air-Gapping (Isolamento Fisico o Logico di Rete)**:
+  Configurazione architetturale in cui un sistema di calcolo è totalmente privo di connessioni fisiche, interfacce virtuali o rotte di instradamento verso reti esterne o internet. Un ambiente con rete configurata su `--network none` isola il traffico IP ordinario pur mantenendo normalmente attiva l'interfaccia di loopback locale (`lo`).
+- **Ambient Authority (Autorità Ambientale)**:
+  Modello di sicurezza in cui le autorizzazioni di un programma derivano implicitamente dal contesto in cui è avviato (ad esempio dall'identità dell'utente che lo esegue o dal gruppo di appartenenza), anziché essere esplicitamente passate come riferimenti circoscritti a ciascuna singola richiesta operativa.
+- **Attack Surface (Superficie d'Attacco)**:
+  L'insieme complessivo delle interfacce software, chiamate di sistema accessibili, porte di rete, protocolli di comunicazione, formati di file analizzati e contesti di esecuzione attraverso cui un attore (umano o software avversariale) può inviare dati per tentare di alterare il comportamento atteso del sistema.
+- **Blast Radius (Raggio d'Impatto)**:
+  L'ampiezza massima potenziale dei danni, corruzioni di dati, perdite di confidenzialità o degradazioni del servizio che un componente software può causare all'infrastruttura complessiva qualora fallisca o devii dal proprio comportamento nominale.
+- **Capability (Riferimento autorizzante non falsificabile)**:
+  In teoria della sicurezza dei sistemi, un riferimento opaco e non falsificabile a una risorsa (oggetto in memoria, file, canale di comunicazione), indissolubilmente legato a uno specifico insieme di diritti operativi su di essa. Il semplice possesso del riferimento costituisce titolo necessario e sufficiente per accedere alla risorsa.
+- **Control Groups (cgroups v2)**:
+  Primitive del kernel Linux deputate alla misurazione, ripartizione, contabilizzazione e limitazione dell'assorbimento delle risorse fisiche (tempo CPU, memoria RAM, operazioni di I/O su storage e numero massimo di processi concorrenti) per gruppi gerarchici di processi.
+- **Escape (Evasione dalla Sandbox)**:
+  Condizione in cui un processo in esecuzione all'interno di un ambiente confinato riesce, sfruttando vulnerabilità del kernel, difetti del Virtual Machine Monitor o configurazioni errate, a scavalcare le barriere di isolamento acquisendo autorità non autorizzata sull'host sottostante.
+- **Hypervisor (Virtual Machine Monitor - VMM)**:
+  Componente software, firmware o hardware (come KVM, QEMU, Firecracker, Xen) che virtualizza e governa le risorse della CPU e della memoria fisica, consentendo l'esecuzione sicura e simultanea di molteplici sistemi operativi ospiti (*Guest OS*) isolati tra loro.
+- **Landlock LSM**:
+  Modulo di sicurezza nativo del kernel Linux (Linux Security Module) che consente a processi ordinari, senza richiedere privilegi amministrativi o autorizzazioni di root, di applicare vincoli restrittivi deterministici all'accesso a specifiche gerarchie del filesystem e alla connettività di rete per se stessi e per i propri processi discendenti. I diritti disponibili dipendono dalla versione dell'ABI (Application Binary Interface) supportata dal kernel in uso.
+- **Linux Capability POSIX**:
+  Partizione dei privilegi storicamente attribuiti all'utente superutente `root` (`UID 0`) in unità operative granulari e indipendenti (ad esempio `CAP_NET_BIND_SERVICE` per collegarsi a porte basse, `CAP_SYS_PTRACE` per tracciare processi, `CAP_CHOWN` per modificare i proprietari dei file). Rimuovere tutte le capabilities (`cap-drop ALL`) impedisce a un processo di esercitare tali facoltà speciali.
+- **MicroVM**:
+  Macchina virtuale minimale basata su virtualizzazione assistita da hardware (KVM), priva di emulazione di periferiche legacy complesse. Concepita per carichi di lavoro effimeri e serverless, offre un confine hardware con kernel guest separato a fronte di tempi di avvio misurabili in frazioni di secondo e un'impronta di memoria del VMM ridotta a pochi megabyte.
+- **Namespaces (Spazi dei Nomi Linux)**:
+  Primitive del kernel Linux che partizionano e isolano la visibilità delle risorse globali di sistema (albero dei PID, punti di montaggio del filesystem, stack di rete, identificatori utente UID/GID, code di messaggi IPC e hostname) tra insiemi differenti di processi.
+- **OCI (Open Container Initiative)**:
+  Consorzio industriale aperto che formalizza e mantiene gli standard tecnici indipendenti relativi al formato delle immagini dei container (*Image Specification*) e alle modalità di esecuzione del loro ciclo di vita da parte dei runtime di basso livello (*Runtime Specification*).
+- **Privilege Escalation (Scalata dei Privilegi)**:
+  Tecnica o catena di exploit mediante la quale un processo dotato di autorizzazioni limitate sfrutta una debolezza architetturale, una configurazione permissiva o un bug di corruzione della memoria per acquisire un livello di autorità superiore rispetto a quello previsto per la sua funzione.
+- **Rootless Container**:
+  Modalità operativa dei motori di containerizzazione (come Podman o Docker Rootless) in cui sia il processo di gestione sia il container stesso vengono eseguiti interamente privi di privilegi di superutente sull'host. Tramite gli User Namespaces, l'utente `root` interno al container è mappato su un UID ordinario non privilegiato dell'host, circoscrivendo l'autorità massima dell'ambiente alle sole risorse accessibili a quell'utente host.
+- **seccomp-bpf (Secure Computing Mode con filtri BPF)**:
+  Meccanismo di isolamento del kernel Linux che intercetta le chiamate di sistema invocate da un processo, confrontandole con un programma di filtraggio scritto in bytecode BPF. Consente di definire allow-list di syscall ammesse, respingendo quelle non autorizzate con errori emulati (`SECCOMP_RET_ERRNO`) o provocando la terminazione immediata del processo (`SECCOMP_RET_KILL_PROCESS`).
+- **Side-Channel Attack (Attacco a Canale Laterale)**:
+  Metodologia di violazione della sicurezza che deduce informazioni riservate (come chiavi crittografiche o dati residenti nella memoria di altri domini) misurando parametri operativi fisici dell'elaboratore (tempi di risposta, latenze di accesso alle linee della cache della CPU, consumo energetico) anziché sfruttare vulnerabilità logiche dirette del software.
+- **System Call (Syscall - Chiamata di Sistema)**:
+  Interfaccia formale standardizzata attraverso cui un programma in esecuzione nello spazio utente a poteri limitati (*User Space*) richiede al kernel del sistema operativo (*Kernel Space*) di compiere operazioni privilegiate sull'hardware, sullo storage, sulla rete o sulla tabella dei processi.
+- **Trap (Eccezione di Runtime / Interruzione)**:
+  Interruzione sincrona sollevata dal microprocessore o dal runtime di esecuzione a fronte di un'istruzione illecita (ad esempio accesso a memoria non allocata, divisione per zero o tentativo di eseguire un'istruzione privilegiata), che trasferisce immediatamente il controllo al gestore di sicurezza del sistema.
+- **WASI (WebAssembly System Interface)**:
+  Standardizzazione modulare di interfacce di sistema basata sul paradigma delle capability, concepita per consentire a moduli compilati in formato WebAssembly di interagire con le risorse del sistema operativo ospite (file, orologi, variabili) unicamente attraverso handle e permessi esplicitamente concessi dall'ambiente runtime esterno.
+- **Watchdog Timer (Timer Supervisore)**:
+  Meccanismo di controllo indipendente (implementato a livello di sistema operativo o di processo supervisore) preposto al monitoraggio del tempo di esecuzione di un'attività. Interviene forzando l'arresto definitivo della computazione qualora il compito superi il limite temporale prefissato (*timeout rigido*).
+
+  
 ---
 
 <div class="pagebreak"></div>
