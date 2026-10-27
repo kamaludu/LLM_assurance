@@ -21,6 +21,8 @@
 
 > *Nota: Questo indice riflette fedelmente la struttura del file sorgente master (`LLM_assurance.md`). Le versioni esportate (PDF, EPUB, DOCX) nelle Release potrebbero presentare discrepanze temporali rispetto all'ultimo commit.*
 
+---
+
 ### Indice completo
 
 - ⌘ Informazioni sul documento
@@ -88,6 +90,8 @@
 - ▤ Bibliografia essenziale
 - ✍ Nota di trasparenza e genesi del testo
 - 🄯 GNU Free Documentation License
+
+---
 
 </details>
 
