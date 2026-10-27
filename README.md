@@ -16,6 +16,8 @@
 > *(I file sono disponibili nella sezione **Assets** dell'ultima release pubblicata)*
 > 
 
+---
+
 <details>
 <summary>📖 <b>Clicca per espandere l'Indice Completo del Manuale (sorgente .md)</b></summary>
 
@@ -94,6 +96,8 @@
 ---
 
 </details>
+
+---
 
 > [!NOTE]
 > ℹ️ **Nota di lettura**: Il file sorgente del manuale (`LLM_assurance.md`) è un'opera 
