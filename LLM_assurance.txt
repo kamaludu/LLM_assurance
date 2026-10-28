@@ -11817,6 +11817,8 @@ Per comprendere e attuare questo STEP, il lettore deve saper distinguere chiaram
 | **Audit dell'autorità** | Riconoscere l'autorità ambientale implicita accordata all'applicazione dal contesto operativo. |
 | **Verifica dei confini** | Eseguire test negativi di scavalcamento dei limiti (privilege escalation, breakout, network probing). |
 
+> Per l'atlante delle famiglie architetturali, i 5 assi di isolamento e la baseline di hardening, vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
+
 #### Gap tipici del lettore assistito da LLM
 1. **Confusione tra autorizzazione applicativa e autorizzazione di sistema**: Credere che validare un input a livello applicativo (es. tramite un controllo condizionale generato dall'LLM) equivalga a rimuovere l'autorità di accesso a monte (es. permessi del file system o credenziali del database).
 2. **Illusione del prompt come perimetro di sicurezza**: Credere che istruire l'LLM con direttive del tipo *"Non accedere ad altri file oltre a quelli nella cartella /tmp"* costituisca una misura di contenimento.
@@ -11839,7 +11841,9 @@ Per assimilare i contenuti di questo capitolo, sono necessari i seguenti presupp
 > - **La Chiamata di Sistema (Syscall):** Ogni volta che il software ha bisogno di toccare il mondo fisico reale (leggere un file, allocare memoria, aprire una connessione di rete), è costretto a fermarsi e bussare al controllore supremo del computer (il *Kernel*) attraverso una richiesta standardizzata chiamata *chiamata di sistema* (syscall).
 > - **Il Descrittore di File (File Descriptor) e il Socket:** Quando il kernel autorizza l'accesso a un file o a un canale di rete, non consegna l'hardware al programma: gli consegna un semplice "scontrino numerico" (il descrittore o socket). Il programma può interagire con la risorsa solo esibendo quello scontrino.
 > 
-> *La conseguenza cruciale per l'assurance:* Confinare un'applicazione non significa "sperare che il codice dell'LLM sia educato e non guardi i file altrui". Significa configurare il kernel (tramite strumenti come container, permessi utente e filtri *seccomp*) affinché, quando il codice genera una syscall non autorizzata (es. tentare di leggere `/etc/passwd` o aprire un socket verso internet), il kernel risponda con un rifiuto categorico a livello hardware, impedendo l'azione sul nascere a prescindere da cosa il codice tenti di fare.
+> *La conseguenza cruciale per l'assurance:* Confinare un'applicazione non significa "sperare che il codice dell'LLM sia educato e non guardi i file altrui". Significa configurare il kernel (tramite strumenti come container, permessi utente e filtri *seccomp*) affinché, quando il codice genera una syscall non autorizzata (es. tentare di leggere `/etc/passwd` o aprire un socket verso internet), il kernel risponda con un rifiuto categorico a livello hardware, impedendo l'azione sul nascere a prescindere da cosa il codice tenti di fare.  
+> 
+> Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
 
 2. **Autorizzazione basata su identità vs Autorizzazione basata su capacità**:
    - *Access Control List (ACL)*: Un soggetto autenticato possiede permessi enumerati su un oggetto.
@@ -13788,6 +13792,9 @@ Lo stato dell'assurance è formalmente **FAIL**. Il difetto dell'implementazione
 - **Collegamento con lo STEP 14**: Dobbiamo verificare che un worker non fidato non possa violare la propria sandbox scrivendo su percorsi di sistema.
 - **Obiettivo**: Il test deve simulare un'istruzione malevola o difettosa e accertare che il sistema operativo o l'architettura di confino sollevi un'eccezione di protezione.
 
+> [!TIP]  
+> Per la suite completa di test negativi di conformità e la configurazione del runner effimero, si veda la Sezione 7 dell'[Appendice ▣](#appendice-sandbox).
+    
 ```python
 # test_containment.py
 import pytest
@@ -14375,6 +14382,8 @@ L'introduzione dei modelli generativi nello sviluppo software ha creato un nuovo
 
 Di conseguenza, l'SCA applicato al codice generato o assistito da LLM ha l'obbligo metodologico di verificare l'**autenticità, l'anzianità di registrazione e le metriche di popolarità** di qualsiasi nuovo componente aggiunto.
 
+> La risoluzione preventiva e la build delle dipendenze devono avvenire all'interno di una sandbox priva di accesso di rete o confinata, vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox) (Asse 4)
+
 #### 6.6. Secret Scanning: pattern matching, entropia ed esposizione
 
 La ricerca di credenziali e segreti si basa su due metodologie complementari:
@@ -14820,6 +14829,8 @@ L'assegnazione dello stato decisionale all'interno del gate dello Step 17 non se
   1. Presenza di un segreto operativo attivo (token API, chiave crittografica) nel codice o nella cronologia dei commit Git, a prescindere dalla presenza di successivi commit di cancellazione.
   2. Presenza di un pacchetto con indicatori di anomalia compatibili con *Package Hallucination* o *Slopsquatting* (es. libreria registrata da poche ore con zero storico o maintainer ignoto).
   3. Vulnerabilità critica nota (CVSS >= 9.0 con EPSS elevato) in una dipendenza direttamente esposta alla rete, in assenza di meccanismi di contenimento verificati (Step 14).
+
+> Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
 
 #### Limiti Residui
 
@@ -15346,6 +15357,8 @@ Il Fuzzing è orientato all'esplorazione dei confini esposti del software (parse
                +---------------+
 ```
 
+> Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
+
 ---
 
 #### 5.3 Adversarial Testing per Software Determinista e Componenti Ibridi LLM
@@ -15648,6 +15661,8 @@ il programma fallisce con:
 RuntimeError: Violazione del contratto d'interfaccia: UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0
 ```
 Il fuzzer ha forzato il superamento dei controlli sui primi tre byte e ha individuato il byte non conforme `0xff` che manda in crash il decodificatore.
+
+> Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
 
 ---
 
@@ -16244,6 +16259,8 @@ CONFIGURAZIONE DI ASSURANCE (Confini di fiducia espliciti):
 
 Se il flusso di dati passa dall'LLM al Tool Operativo senza attraversare il Confine C (un verificatore deterministico indipendente), qualsiasi compromissione del contesto dell'LLM si traduce immediatamente in esecuzione di comandi non autorizzati sul sistema di destinazione.
 
+> Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
+
 #### 5.3 L'Assunzione Metodologica dell'Assume Breach
 Il Red Teaming moderno opera sotto l'assunzione di **Assume Breach**:
 - Non coincide con l'affermazione fattuale che il sistema sia già compromesso in produzione.
@@ -16524,6 +16541,8 @@ Il superamento di una suite statica di jailbreak generici crea un'illusione di s
 | **2. "Downstream Blindness" (Costrutto Didattico del Manuale)**<br>Progettare i componenti software a valle dell'LLM assumendo che i dati restituiti dal modello siano sintatticamente e semanticamente affidabili solo perché originati da un'infrastruttura interna. |
 | **3. Confondere Allineamento del Modello con Sicurezza del Sistema**<br>Assumere che un modello classificato come "safe" dai benchmark pubblici protegga l'applicazione da vulnerabilità logiche, violazioni di accesso ai dati (IDOR) o chiamate a funzioni non autorizzate. |
 | **4. Penetration Testing Senza Scopo (Scope Castrato)**<br>Vietare al team di test di inviare allegati reali o di simulare input provenienti da terze parti per paura di alterare i dati di staging. |
+
+> Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
 
 ---
 
@@ -29778,6 +29797,8 @@ Questa categoria include strumenti specializzati nell'ispezione, nel red-teaming
 | [NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) &nbsp;◆ | Definisce regole e guardrail a runtime per impedire derive tematiche, jailbreak e risposte insicure. | Applicazioni conversazionali, Python | Apache-2.0 |
 | [Presidio](https://data-privacy-stack.github.io/presidio/) &nbsp;◆ | Identifica e anonimizza dati personali (PII) nei flussi di testo prima dell'invio ai modelli o dello storage. | Dati testuali e immagini, Python / REST | MIT |
 
+> Vedi anche: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
+
 ---
 
 ### Nota sulle licenze e sul diritto d'autore
@@ -36129,7 +36150,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 #### Sandbox
 **Categoria:** Termine tecnico di cybersecurity consolidato  
 **Definizione:** Ambiente di confino e isolamento che limita l'autorità operativa di un processo non fidato sul sistema operativo host, intercettando chiamate di sistema, isolando la rete e contingentando le risorse tramite meccanismi kernel o hardware.  
-*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority), Sezione 4 e Sezione 8, e Appendice Sandbox.*
+*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority), Sezione 4 e Sezione 8, e [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox).*
 
 #### SAST (Static Application Security Testing)
 **Categoria:** Acronimo / Termine tecnico consolidato  
