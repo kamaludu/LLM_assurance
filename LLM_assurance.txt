@@ -34648,7 +34648,7 @@ La regola fondamentale è:
 Il presente Glossario costituisce una sezione didattica e di consultazione autonoma del manuale *Assurance del Software Assistito da LLM: Principi, Verifica, Evidenze e Governance*. Il suo scopo è definire formalmente, disambiguare e contestualizzare i termini tecnici, le sigle, i costrutti epistemici e i modelli operativi utilizzati nei 33 STEP dell'opera.
 
 #### Criteri di inclusione e delimitazione
-In conformità con le linee guida metodologiche del manuale, l'inclusione delle voci risponde a una regola di stretta pertinenza: **un termine non è inserito semplicemente perché comune o rilevante nel settore informatico, ma solo se è formalmente attestato nel testo del manuale o se risulta indispensabile per comprendere una distinzione concettuale esplicitamente sviluppata nei capitoli**.
+In conformità con le linee guida metodologiche del manuale, l'inclusione delle voci risponde a una regola di stretta pertinenza: un termine non è inserito semplicemente perché comune o rilevante nel settore informatico, ma solo se è formalmente attestato nel testo del manuale o se risulta indispensabile per comprendere una distinzione concettuale esplicitamente sviluppata nei capitoli.
 
 #### Separazione tra Glossario e Bibliografia
 Il glossario risponde esclusivamente alla domanda: *«Che cosa significa questo termine nel contesto tecnico e didattico del manuale?»*.  
@@ -34657,10 +34657,10 @@ La documentazione delle fonti primarie, dei paper accademici, delle norme intern
 #### Categorie terminologiche adottate
 Ciascuna voce riporta esplicitamente il proprio inquadramento:
 1. **Termine tecnico consolidato**: concetto d'uso generale nell'ingegneria del software o nella sicurezza informatica.
-2. **Termine normativo o standardizzato**: definizione allineata a standard formali internazionali.
-3. **Termine inglese d'uso professionale**: lemma anglosassone mantenuto in lingua originale secondo la prassi tecnica.
+2. **Termine normativo o standardizzato**: definizione allineata a standard formali internazionali (ISO/IEC/IEEE, NIST, RTCA).
+3. **Termine d'uso professionale**: lemma o convenzione di settore mantenuta secondo la prassi tecnica.
 4. **Acronimo / Sigla**: abbreviazione o codice convenzionale.
-5. **Costrutto didattico/operativo del manuale**: modello analitico, formula logica o tassonomia formalizzata internamente per finalità di insegnamento e governance; non costituisce standard universale *de jure*.
+5. **Costrutto didattico/operativo del manuale**: modello analitico, formula logica o tassonomia formalizzata internamente per finalità di insegnamento e governance; non costituisce standard universale de jure.
 6. **Anti-pattern denominato dal manuale**: schema fallimentare ricorrente catalogato con denominazione didattica specifica.
 7. **Stato epistemico / Valore decisionale**: etichetta formale che esprime lo statuto probatorio di una proposizione o di un gate.
 
@@ -34885,7 +34885,6 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Post-Deployment Evidence (Evidenza Post-Deployment)](#post-deployment-evidence-evidenza-post-deployment)
 - [Problem Space vs Solution Space (Spazio del Problema vs della Soluzione)](#problem-space-vs-solution-space-spazio-del-problema-vs-della-soluzione)
 - [Prompt Priming (Condizionamento del Prompt)](#prompt-priming-condizionamento-del-prompt)
-- [Proof (Dimostrazione Matematica / Prova Formale)](#proof-dimostrazione-matematica--prova-formale)
 - [Property (Proprietà)](#property-proprietà)
 - [Property Coverage (Copertura delle Proprietà)](#property-coverage-copertura-delle-proprietà)
 - [Property-Based Testing (PBT)](#property-based-testing-pbt)
@@ -34969,7 +34968,9 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### W
 - [Warranty (Garanzia contrattuale / commerciale)](#warranty-garanzia-contrattuale--commerciale)
-- [WORM (Write Once, Read Many)](#worm-write-once-read-many)
+- [WORM - Write Once, Read Many](#worm---write-once-read-many)
+
+[▲ Torna all' Introduzione](#glossario-manuale)
 
 ---
 
@@ -34979,335 +34980,233 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Absence of Expected Signal (Assenza di Segnale Atteso)
 **Categoria:** Costrutto didattico/operativo del manuale  
-**In inglese:** *Absence of Expected Signal*  
-**In italiano:** Assenza di segnale atteso  
-**Definizione:** Condizione operativa silente in cui un flusso telemetrico, un tasso di log, una frequenza di allarmi o un volume di eventi fisiologicamente previsti scompare o scende a livelli anomali senza provocare eccezioni a runtime o codici di errore espliciti.  
-**Nel contesto del manuale:** Costituisce una delle sei manifestazioni fenomenologiche analizzate nello Step 29 (Post-Deployment Analysis). Segnala potenziali blocchi nei middleware, filtri difettosi o derive nei modelli generativi che scartano silenziosamente transazioni.  
-**Distinzioni importanti:** Differisce dall'*Incident* manifesto: l'assenza di segnale non solleva allarmi infrastrutturali immediati ed è invisibile ai monitoraggi convenzionali non basati su soglie minime di frequenza.  
-**Nota epistemica:** Rappresenta una violazione diretta dell'invariante telemetrico: dimostra operativamente che `NO ALERT != NO FAILURE`.  
-**Termini correlati:** Telemetry Distortion, Alert Starvation, Observability, Post-Deployment Analysis.
+**Definizione:** Condizione operativa silente in cui un flusso telemetrico, un tasso di log, una frequenza di allarmi o un volume di eventi fisiologicamente previsti scompare o scende a livelli anomali senza provocare eccezioni a runtime o codici di errore espliciti. Segnala potenziali blocchi nei middleware, filtri difettosi o derive nei modelli generativi che scartano silenziosamente transazioni.  
+*Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis), Sezione 4 e Sezione 7.*
 
 #### Accountability (Rendicontabilità / Imputabilità)
 **Categoria:** Termine normativo e di governance  
-**In inglese:** *Accountability*  
-**In italiano:** Rendicontabilità, responsabilità istituzionale o giuridica  
-**Definizione:** L'obbligo formale, istituzionale e non delegabile di rispondere delle decisioni, delle conseguenze operative e dell'accettazione del rischio residuo generate da un sistema software nei confronti dell'organizzazione, dei regolatori e degli stakeholder esterni.  
-**Nel contesto del manuale:** Nello Step 3 (Authority & Responsibility) e nello Step 24 (Human Review & Formal Approval), l'Accountability è associata a una singola persona fisica nominata (ruolo *Accountable* nella matrice ARCI-V). Il manuale stabilisce il principio cardine secondo cui la delega della produzione di codice a un LLM non trasferisce né attenua in alcun modo l'Accountability dell'essere umano che approva il rilascio.  
-**Distinzioni importanti:** *Accountability* si distingue nettamente da *Operational Responsibility* (la responsabilità esecutiva di completare un'attività tecnica) e da *Authority* (il mandato legittimo di assumere decisioni).  
-**Nota epistemica:** Un modello linguistico, un compilatore o una pipeline di automazione non possiedono soggettività giuridica né patrimonio e non possono essere resi *Accountable*.  
-**Termini correlati:** Authority, Operational Responsibility, Decision Responsibility, Governance, ARCI-V, Approval.
+**Definizione:** L'obbligo formale, istituzionale e non delegabile di rispondere delle decisioni, delle conseguenze operative e dell'accettazione del rischio residuo generate da un sistema software nei confronti dell'organizzazione, dei regolatori e degli stakeholder esterni. È associata a una singola persona fisica nominata (ruolo *Accountable* nella matrice ARCI-V).  
+*Approfondimento nel manuale: vedi Capitolo 3 (Authority & Responsibility, Sez. 3.1 e 4) e Capitolo 24 (Human Review & Formal Approval, Sez. 4.3 e 7.3).*
 
 #### Achieved Assurance (Assurance Conseguita / Raggiunta)
 **Categoria:** Costrutto didattico del manuale  
-**In inglese:** *Achieved Assurance*  
-**In italiano:** Garanzia probatoria effettivamente conseguita  
-**Definizione:** La misura qualitativa della solidità, completezza e indipendenza delle evidenze empiriche e logiche concretamente raccolte ed esaminate a valle di una campagna di verifica e collaudo.  
-**Nel contesto del manuale:** Viene formalizzata nello Step 10 (Assurance Level) e nello Step 21 (Independent Verification) all'interno del modello decisionale `A_ach(E, I(E))`. Rappresenta la controparte fattuale dell'*Assurance Richiesta* (A_req).  
-**Distinzioni importanti:** `Achieved Assurance != Required Assurance`. Confondere l'esigenza con il risultato conduce a decisioni arbitrarie. Se $A_{ach} < A_{req}$, il Decision Gate (Step 23) deve tassativamente emettere `NO-GO`.  
-**Nota epistemica:** L'assurance raggiunta è determinata dalla qualità degli oracoli e dall'indipendenza delle prove (I(E)), non dalla semplice quantità numerica di test eseguiti.  
-**Termini correlati:** Required Assurance, Assurance Level, Decision Gate, Epistemic Independence.
+**Definizione:** La misura qualitativa della solidità, completezza e indipendenza delle evidenze empiriche e logiche concretamente raccolte ed esaminate a valle di una campagna di verifica e collaudo. Costituisce la controparte fattuale dell'Assurance Richiesta (`A_req`); se `A_ach < A_req`, il gate decisionale deve imporre lo stato bloccante di NO-GO.  
+*Approfondimento nel manuale: vedi Capitolo 10 (Assurance Level, Sez. 3.1 e 6.1) e Capitolo 21 (Independent Verification, Sez. 7).*
 
 #### Actionability (Azionabilità)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Actionability*  
-**In italiano:** Azionabilità operativa  
-**Definizione:** La caratteristica di una notifica di allarme che fornisce al destinatario un quadro informativo non ambiguo, corredato da procedure e manovre concrete, verificabili e consentite dai permessi di sistema per mitigare o risolvere il disservizio.  
-**Nel contesto del manuale:** Nello Step 27 (Alerting & Runbooks), un allarme privo di azionabilità (che notifica una deviazione su cui l'operatore non può o non deve intervenire) è classificato come rumore sistemico, causa primaria di *Alert Fatigue*.  
-**Distinzioni importanti:** `Actionability != Visibility`. Mostrare una variazione su un grafico telemetrico non equivale a fornire una procedura operativa azionabile.  
-**Termini correlati:** Alert, Runbook, Alert Fatigue.
+**Definizione:** La caratteristica di una notifica di allarme che fornisce al destinatario un quadro informativo non ambiguo, corredato da procedure e manovre concrete, verificabili e consentite dai permessi di sistema per mitigare o risolvere il disservizio. Un allarme privo di azionabilità costituisce mero rumore operativo ed è causa primaria di *Alert Fatigue*.  
+*Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 5.*
 
 #### Adeguatezza (Adequacy)
 **Categoria:** Termine logico-metodologico consolidato  
-**In inglese:** *Adequacy*  
-**In italiano:** Adeguatezza semantica della specifica  
-**Definizione:** La proprietà di un sistema di requisiti e di specifiche formali per cui il loro soddisfacimento congiunto nell'ambiente operativo reale implica logicamente la risoluzione del problema di dominio originario (`W AND S |= R`).  
-**Nel contesto del manuale:** Trattata nello Step 1 (Problem Definition) e nello Step 4 (Specification) sulla base del modello Mondo-Macchina (Jackson & Zave).  
-**Distinzioni importanti:** `Adequacy != Correctness`. Un software può essere matematicamente corretto rispetto alla specifica (M |= S), ma del tutto inadeguato rispetto al mondo reale (W & S !|= R) se la specifica poggia su assunzioni ambientali false o ignora vincoli fisici.  
-**Nota epistemica:** La correttezza è una proprietà interna; l'adeguatezza è una proprietà esterna orientata al dominio.  
-**Termini correlati:** Correctness, Problem Space vs Solution Space, Specification, Assurance Adequacy.
+**Definizione:** La proprietà di un sistema di requisiti e di specifiche formali per cui il loro soddisfacimento congiunto nell'ambiente operativo reale implica logicamente la risoluzione del problema di dominio originario (`W AND S |= R`). Si distingue dalla correttezza: un software può essere privo di bug rispetto alla specifica, ma inadeguato rispetto al mondo reale se le assunzioni ambientali sono errate.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Problem Definition, Sez. 3.2), Capitolo 4 (Specification, Sez. 5.2) e Capitolo 9 (Specification Validity, Sez. 3.1).*
 
 #### Adversarial Input (Input Avversariale)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Adversarial Input*  
-**In italiano:** Input avversariale / malevolo  
-**Definizione:** Un vettore di ingresso strutturato deliberatamente per sfruttare una debolezza algoritmica, saturare risorse di sistema (es. attacchi ReDoS), eludere barriere logiche di sicurezza o indurre deviazioni nei modelli di calcolo probabilistici.  
-**Nel contesto del manuale:** Costituisce l'oggetto di indagine primario dello Step 18 (Property-Based Testing, Fuzzing & Adversarial Testing) e dello Step 19 (Threat Modeling & Red Teaming).  
-**Distinzioni importanti:** Differisce dal dato anomalo stocastico: l'input avversariale possiede una struttura mirata a massimizzare l'impatto sul sistema.  
-**Termini correlati:** Fuzzing, Threat Modeling, Red Teaming, Indirect Prompt Injection.
+**Definizione:** Un vettore di ingresso strutturato deliberatamente per sfruttare una debolezza algoritmica, saturare risorse di sistema (es. attacchi ReDoS), eludere barriere logiche di sicurezza o indurre deviazioni nei modelli di calcolo probabilistici o nei parser a valle.  
+*Approfondimento nel manuale: vedi Capitolo 18 (PBT, Fuzzing & Adversarial Testing, Sez. 4 e 5.3) e Capitolo 19 (Threat Modeling & Red Teaming, Sez. 6).*
 
 #### Agent (Agente software / agente basato su LLM)
-**Categoria:** Termine tecnico con significato dipendente dal dominio  
-**In inglese:** *Agent / LLM-based Agent*  
-**In italiano:** Agente software basato su modello linguistico  
-**Definizione:** Sistema software in cui un Large Language Model opera come componente di elaborazione per pianificare passaggi, interpretare istruzioni in linguaggio naturale e invocare funzioni o strumenti esterni (*tool-calling*) nell'ambito di flussi operativi delegati.  
-**Nel contesto del manuale:** Esaminato nello Step 14 (Containment & Least Authority) e nello Step 19 (Threat Modeling). Il manuale vieta tassativamente di concedere autorità diretta e aperta agli agenti su asset critici, imponendo l'uso di barriere deterministiche esterne (guardrail).  
-**Distinzioni importanti:** `Agent != Autonomous Entity`. L'agente software non implica necessariamente un'autonomia completa o incontrollata: il livello di delega e confinamento deve essere rigidamente perimetrato dall'architettura.  
-**Termini correlati:** Excessive Agency, Containment, Principle of Least Authority.
+**Categoria:** Termine tecnico d'uso professionale consolidato  
+**Definizione:** Sistema software in cui un Large Language Model opera come componente di elaborazione per pianificare passaggi, interpretare istruzioni in linguaggio naturale e invocare funzioni o strumenti esterni (*tool-calling*) nell'ambito di flussi operativi delegati. Il manuale ne impone il contenimento perimetrale e il divieto di concessione di autorità diretta non mediata da guardrail deterministici.  
+*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority, Sez. 17) e Capitolo 19 (Threat Modeling & Red Teaming, Sez. 4 e 5.2).*
 
 #### Alert (Allarme)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Alert*  
-**In italiano:** Allarme, notifica operativa  
-**Definizione:** Segnale asincrono emesso automaticamente da un motore di monitoraggio quando una o più serie temporali telemetriche violano un predicato logico prefissato per una determinata durata, richiedendo un'azione correttiva.  
-**Nel contesto del manuale:** Nello Step 27 (Alerting & Runbooks) costituisce il ponte operativo tra l'osservabilità e l'intervento umano. Deve essere obbligatoriamente associato a un runbook verificato.  
-**Distinzioni importanti:** `Alert != Incident`, `Alert != Failure`, `Alert != Root Cause`, `No Alert != No Failure`. L'allarme è una notifica, non l'evento dannoso né la sua spiegazione causale.  
-**Termini correlati:** Alert Fatigue, Alert Starvation, Runbook, Burn Rate.
+**Definizione:** Segnale asincrono generato automaticamente quando una metrica o un aggregato di dati telemetrici soddisfa una condizione logica di violazione per una durata specificata, indicando uno stato anomalo che richiede attenzione o intervento operativo. Deve essere obbligatoriamente associato a un runbook verificato.  
+*Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 4, Sezione 5 e Sezione 6.*
 
 #### Alert Carpet Bombing
 **Categoria:** Anti-pattern denominato dal manuale  
-**In inglese:** *Alert Carpet Bombing*  
-**In italiano:** Bombardamento a tappeto di allarmi  
-**Definizione:** Pratica scorretta consistente nel generare automaticamente centinaia di regole di allerta per ogni metrica o risorsa esposta dall'infrastruttura, privando le notifiche di azionabilità e inondando gli operatori di rumore continuo.  
-**Nel contesto del manuale:** analizzato nel Capitolo 27 come una delle cause primarie dell'abbandono della sorveglianza e della disattivazione dei canali di reperibilità.  
-**Distinzioni importanti:** Contrasta con l'alerting basato sui sintomi e sul consumo del budget di errore (*Burn Rate*).  
-**Termini correlati:** Alert Fatigue, Actionability, Alert.
+**Definizione:** Pratica scorretta consistente nel generare automaticamente centinaia di regole di allerta per ogni metrica o risorsa esposta dall'infrastruttura, privando le notifiche di azionabilità e inondando gli operatori di rumore continuo, distruggendone la vigilanza critica.  
+*Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 11.*
 
 #### Alert Fatigue (Affaticamento da Allarmi)
-**Categoria:** Termine tecnico consolidato  
-**In inglese:** *Alert Fatigue*  
-**In italiano:** Affaticamento / desensibilizzazione da allarmi  
-**Definizione:** Fenomeno psicologico e organizzativo per cui un volume eccessivo di notifiche non azionabili, transitorie o false induce gli operatori a ignorare sistematicamente gli allarmi, ritardando la risposta durante incidenti reali.  
-**Nel contesto del manuale:** Trattato nello Step 26 e nello Step 27 come rischio primario di degradazione della vigilanza umana a runtime.  
-**Distinzioni importanti:** `Alert Fatigue != Pigrizia operativa`. È una risposta cognitiva documentata a un sistema informativo degradato dal rumore.  
-**Termini correlati:** Actionability, Burn Rate, Alert Carpet Bombing.
+**Categoria:** Termine tecnico consolidato (fattori umani e SRE)  
+**Definizione:** Fenomeno psicologico e organizzativo per cui un volume eccessivo di notifiche non azionabili, transitorie o false induce gli operatori a ignorare sistematicamente gli allarmi, ritardando o omettendo la risposta durante incidenti reali e gravi.  
+*Approfondimento nel manuale: vedi Capitolo 26 (Observability, Sez. 12) e Capitolo 27 (Alerting & Runbooks, Sez. 5 e 11).*
 
 #### Alert Starvation (Sotto-rilevazione / Mancanza di allarmi)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Alert Starvation / Under-alerting*  
-**In italiano:** Sotto-rilevazione, scarsità / assenza di allarmi a fronte di guasti  
-**Definizione:** Condizione patologica in cui un sistema subisce violazioni delle proprietà critiche o disservizi reali senza che alcuna notifica venga generata, a causa di omissioni progettuali, soglie errate o soppressione delle eccezioni.  
-**Nel contesto del manuale:** Formalizzato nello Step 27; si verifica tipicamente quando il codice generato da LLM cattura genericamente le eccezioni (`except Exception: return ok`), mascherando il guasto interno ai monitoraggi di rete.  
-**Distinzioni importanti:** È l'opposto dell'*Alert Fatigue*: l'operatore vive in una falsa sicurezza (*Green Dashboard Fallacy*) mentre il sistema corrompe lo stato o degrada il servizio.  
-**Termini correlati:** False Assurance, Green Dashboard Fallacy, Silent Semantic Failure.
+**Definizione:** Condizione patologica in cui un sistema subisce violazioni delle proprietà critiche o disservizi reali senza che alcuna notifica venga generata, a causa di omissioni progettuali, soglie errate o soppressione delle eccezioni a livello di codice (es. blocchi try/except generici generati da LLM).  
+*Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 5 e Sezione 10.2.*
 
 #### Alloy
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Alloy Analyzer*  
-**In italiano:** Linguaggio e analizzatore formale relazionale Alloy  
-**Definizione:** Linguaggio di specifica formale dichiarativo basato sulla logica del primo ordine e sul calcolo relazionale, supportato da un analizzatore automatico che sfrutta risolutori SAT per ricercare controesempi entro un ambito finito (*Bounded Model Checking*).  
-**Nel contesto del manuale:** Citato nello Step 9 (Specification Validity) come metodo formale leggero per verificare la consistenza interna e l'assenza di contraddizioni in specifiche complesse prima della scrittura del codice.  
-**Termini correlati:** Specification, Specification Validity, Model Checking.
+**Definizione:** Linguaggio di specifica formale dichiarativo basato sulla logica del primo ordine e sul calcolo relazionale, supportato da un analizzatore automatico che sfrutta risolutori SAT per ricercare controesempi entro un ambito finito (*Bounded Model Checking*). Nel manuale è impiegato come filtro di specifica per disinnescare allucinazioni logiche degli LLM prima della scrittura del codice.  
+*Approfondimento nel manuale: vedi Capitolo 9 (Specification Validity, Sez. 5.3 e 17) e Appendice Alloy (Sez. 0 e 1).*
 
 #### Ambient Authority (Autorità Ambientale)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Ambient Authority*  
-**In italiano:** Autorità ambientale / implicita  
-**Definizione:** Modello di controllo accessi in cui l'autorità necessaria per compiere un'operazione non è passata esplicitamente tramite un token o capacità specifica, ma è implicitamente associata all'ambiente di esecuzione o all'identità del processo chiamante (es. privilegi dell'utente `root`).  
-**Nel contesto del manuale:** Nello Step 14 (Containment & Least Authority) viene individuata come causa primaria di vulnerabilità catastrofiche nel codice generato da LLM: se il processo possiede permessi ambientali ampi, qualsiasi allucinazione del codice ha facoltà di distruggere file o connettersi alla rete.  
-**Distinzioni importanti:** Si oppone alla sicurezza basata su capacità (*Capability-Based Security*).  
-**Termini correlati:** Principle of Least Authority, Sandbox, Capability.
+**Definizione:** Modello di controllo accessi in cui l'autorità necessaria per compiere un'operazione non è passata esplicitamente tramite un token o capacità specifica, ma è implicitamente associata all'ambiente di esecuzione o all'identità del processo chiamante (es. privilegi dell'utente `root` o credenziali globali del container). Costituisce una vulnerabilità sistemica primaria quando il codice è generato da LLM.  
+*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority), Sezione 4 e Sezione 5.*
 
 #### Amnesia Epistemica (Epistemic Amnesia)
 **Categoria:** Costrutto didattico/operativo introdotto dal manuale  
-**In inglese:** *Epistemic Amnesia*  
-**In italiano:** Amnesia epistemica  
-**Definizione:** La dispersione o perdita irreversibile delle giustificazioni logiche, delle assunzioni, della provenienza dei prompt, dei limiti noti e delle evidenze di prova che accompagna sessioni di sviluppo e rilascio assistite da LLM non formalizzate in un archivio persistente.  
-**Nel contesto del manuale:** Costituisce la patologia primaria affrontata nello Step 30 (Risk Register & Knowledge Base) e nello Step 33 (Closure & Lessons Learned). Provoca la continua riproposizione dei medesimi difetti a ogni nuovo ciclo o prompt.  
-**Distinzioni importanti:** `Amnesia Epistemica != Perdita del codice sorgente`. Il codice sorgente rimane archiviato nel repository di versione, ma l'organizzazione ha perso il *perché* quel codice sia stato ritenuto affidabile e quali assunzioni ne garantiscano la tenuta.  
-**Termini correlati:** Knowledge Base di Assurance, Negative Memory, Assurance Closure Package (ACP).
+**Definizione:** La dispersione o perdita irreversibile delle giustificazioni logiche, delle assunzioni, della provenienza dei prompt, dei limiti noti e delle evidenze di prova che accompagna sessioni di sviluppo e rilascio assistite da LLM non formalizzate in un archivio persistente. Conduce alla continua reintroduzione degli stessi difetti già risolti in passato.  
+*Approfondimento nel manuale: vedi Capitolo 30 (Risk Register & Knowledge Base, Sez. 1) e Capitolo 33 (Closure & Lessons Learned, Sez. 1 e 5).*
 
 #### Anomaly (Anomalia)
-**Categoria:** Termine normativo e standardizzato  
-**In inglese:** *Anomaly*  
-**In italiano:** Anomalia operativa o fenomenologica  
-**Definizione:** Qualsiasi deviazione, evento inatteso o comportamento osservato nel sistema che differisce dalle aspettative o dal modello nominale, prima che ne sia stata accertata la causa o verificata la conformità.  
-**Nel contesto del manuale:** Nello Step 22 (Discrepancy Analysis) e nello Step 29 (Post-Deployment Analysis), l'anomalia rappresenta l'osservazione empirica di partenza.  
-**Distinzioni importanti:** `Anomaly != Discrepancy`. L'anomalia è l'osservazione empirica generica; la discrepanza è la divergenza formale misurata rispetto a un riferimento giustificato di specifica.  
-**Termini correlati:** Discrepancy, Incident, Root Cause Analysis.
+**Categoria:** Termine normativo e standardizzato (IEEE 1044)  
+**Definizione:** Qualsiasi deviazione, evento inatteso o comportamento osservato nel sistema che differisce dalle aspettative o dal modello nominale, prima che ne sia stata accertata la causa o verificata la conformità rispetto a una specifica formalizzata.  
+*Approfondimento nel manuale: vedi Capitolo 22 (Discrepancy Analysis, Sez. 4) e Capitolo 29 (Post-Deployment Analysis, Sez. 4).*
 
 #### Anti-Pattern
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Anti-Pattern*  
-**In italiano:** Anti-pattern, schema controproducente  
-**Definizione:** Una soluzione architetturale, procedurale o implementativa ricorrente che appare apparentemente vantaggiosa o intuitiva, ma che si rivela sistematicamente inefficace, dannosa o generatrice di debito tecnico ed epistemico.  
-**Nel contesto del manuale:** Il testo identifica e nomina specifici anti-pattern operativi legati all'interazione tra sviluppatori e modelli linguistici (es. *Vibe Coding*, *Prompt Mirroring*, *Spec-Fitting*, *Rubber-Stamping*, *Dashboard Myopia*).  
-**Termini correlati:** False Assurance, Competence Gap, Vibe Coding.
+**Definizione:** Una soluzione architetturale, procedurale o implementativa ricorrente che appare apparentemente vantaggiosa, rapida o intuitiva, ma che si rivela sistematicamente inefficace, dannosa o generatrice di debito tecnico ed epistemico nel ciclo di vita del software.  
+*Approfondimento nel manuale: trattato trasversalmente in tutti i capitoli della Parte II, III e IV.*
 
 #### API (Application Programming Interface)
 **Categoria:** Acronimo / Sigla tecnica consolidata  
-**Estensione completa inglese:** *Application Programming Interface*  
-**Descrizione italiana:** Interfaccia di programmazione delle applicazioni  
-**Definizione:** Insieme formalizzato di regole, firme di funzione, contratti e protocolli che consentono a componenti software distinti di comunicare ed effettuare scambi informativi in modo disaccoppiato.  
-**Nel contesto del manuale:** Rappresenta la frontiera primaria su cui si applicano i contratti di interfaccia (Step 4), le barriere di confinamento (Step 14) e la gestione delle dipendenze esterne verso i provider di modelli linguistici (Step 28).  
-**Termini correlati:** Specification, Shared Phenomena, Boundary.
+**Definizione:** Insieme formalizzato di regole, firme di funzione, contratti e protocolli che consentono a componenti software distinti di comunicare ed effettuare scambi informativi in modo disaccoppiato, rappresentando la frontiera primaria per l'imposizione dei contratti di interfaccia e dei confini di confino.  
+*Approfondimento nel manuale: vedi Capitolo 4 (Specification, Sez. 2.1) e Capitolo 14 (Containment, Sez. 5).*
 
 #### Approval (Approvazione Formale)
 **Categoria:** Termine di governance e normativo  
-**In inglese:** *Formal Approval*  
-**In italiano:** Approvazione formale, atto vincolante di rilascio  
-**Definizione:** L'atto formale, esplicito, tracciabile e non ripudiabile con cui un'autorità umana dotata di competenza specifica attesta che il sistema software possiede un corpo di evidenze sufficiente rispetto al livello di rischio, accettando formalmente il rischio residuo.  
-**Nel contesto del manuale:** Costituisce il momento decisionale sovrano formalizzato nello Step 3 (Authority & Responsibility) e nello Step 24 (Human Review & Formal Approval).  
-**Distinzioni importanti:** `Approval != Proof of Correctness`, `Approval != Zero Risk`. L'approvazione non rende il codice matematicamente privo di errori; sancisce che la fiducia riposta in esso è razionalmente e formalmente giustificata.  
-**Nota epistemica:** Il manuale sancisce il *Principio di Non-Delega della Responsabilità Decisionale*: nessun LLM o pipeline di CI può essere investito del potere di emettere approvazioni formali.  
-**Termini correlati:** Accountability, Authority, Decision Gate, Two-Person Integrity.
+**Definizione:** L'atto formale, esplicito, tracciabile e non ripudiabile con cui un'autorità umana dotata di competenza specifica attesta che il sistema software possiede un corpo di evidenze sufficiente rispetto al livello di rischio, accettando formalmente il rischio residuo prima del passaggio alle fasi operative.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Authority & Responsibility, Sez. 3.4 e 4) e Capitolo 24 (Human Review & Formal Approval, Sez. 4.3 e 7).*
 
 #### Arbitrato dei Modelli (Model Arbitration)
 **Categoria:** Costrutto didattico del manuale  
-**In inglese:** *Model Arbitration*  
-**In italiano:** Arbitrato o risoluzione del disaccordo tra modelli  
-**Definizione:** Il processo mediante il quale si analizzano e risolvono le divergenze di giudizio emerse tra più LLM distinti nel corso di un audit comparativo.  
-**Nel contesto del manuale:** Nello Step 20 (Multi-Model Audit) viene categoricamente vietato l'arbitrato puramente democratico o demandato a un ulteriore LLM: il disaccordo tra modelli costituisce un segnale diagnostico che deve essere risolto mediante oracoli formali esterni o perizia umana di dominio.  
-**Termini correlati:** Multi-Model Audit, Consenso Fragile vs Consenso Robusto.
+**Definizione:** Il processo mediante il quale si analizzano e risolvono le divergenze di giudizio emerse tra più LLM distinti nel corso di un audit comparativo. Il manuale vieta categoricamente l'arbitrato puramente democratico (maggioranza) o delegato a un ulteriore LLM, imponendo l'intervento di oracoli deterministici o perizia umana di dominio.  
+*Approfondimento nel manuale: vedi Capitolo 20 (Multi-Model Audit), Sezione 4 e Sezione 12.*
 
 #### ARCI-V (Matrice di Responsabilità di Assurance)
 **Categoria:** Modello concettuale didattico formalizzato dal manuale  
-**In inglese:** *ARCI-V Matrix*  
-**In italiano:** Matrice ARCI-V  
-**Definizione:** Estensione metodologica della classica matrice RACI concepita dal manuale per governare i ruoli di assurance: *Accountable* (singola persona fisica che risponde istituzionalmente), *Responsible* (chi produce l'artefatto), *Consulted* (esperti interpellati), *Informed* (destinatari di notifica passiva) e *Verified* (autorità di verifica indipendente da chi ha prodotto il codice).  
-**Nel contesto del manuale:** Formalizzata nello Step 3 per impedire la dispersione delle responsabilità tipica dei comitati o dei team assistiti da AI. Un LLM può coadiuvare `R` o `C`, ma non può mai assumere `A` né `V`.  
-**Termini correlati:** Accountability, Authority, Decision Responsibility.
+**Definizione:** Estensione metodologica della classica matrice RACI concepita dal manuale per governare i ruoli di assurance: *Accountable* (singola persona fisica con responsabilità finale), *Responsible* (chi produce l'artefatto), *Consulted* (esperti interpellati), *Informed* (destinatari di notifica passiva) e *Verified* (autorità di verifica indipendente da chi ha prodotto il codice).  
+*Approfondimento nel manuale: formalizzato in Capitolo 3 (Authority & Responsibility), Sezione 5.2.*
 
 #### Assertion (Asserzione)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Assertion*  
-**In italiano:** Asserzione logica, istruzione di controllo a runtime  
-**Definizione:** Un'istruzione o enunciato logico inserito nel codice sorgente o in un test che postula che un determinato predicato debba valere come vero in quel punto esatto dell'esecuzione; se il predicato è falso, l'esecuzione fallisce immediatamente.  
-**Nel contesto del manuale:** Nello Step 15 (Invariant Embedding) e nello Step 16 (Automated Testing), le asserzioni sono strumenti per imporre il principio *fail-fast*.  
-**Distinzioni importanti:** `Assertion != Evidence`. Dichiarare `assert balance >= 0` è una pretesa logica del programmatore; l'evidenza è la dimostrazione indipendente che tale riga non fallirà mai in produzione.  
-**Termini correlati:** Invariant, Oracle, Property, Evidence.
+**Definizione:** Istruzione o enunciato logico inserito nel codice sorgente o in un test che postula che un determinato predicato debba valere come vero in quel punto esatto dell'esecuzione; se il predicato è falso, l'esecuzione si interrompe immediatamente. Un'asserzione è un comando di controllo, non una prova di correttezza a priori.  
+*Approfondimento nel manuale: vedi Capitolo 6 (Sez. 6), Capitolo 15 (Sez. 4 e 7.3) e Capitolo 16 (Sez. 6).*
 
 #### Assume Breach
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-**In inglese:** *Assume Breach*  
-**In italiano:** Assunzione di compromissione avvenuta  
-**Definizione:** Paradigma di sicurezza e modellazione delle minacce in cui si assume a priori che l'avversario sia già riuscito a violare il perimetro difensivo iniziale o che un componente interno sia compromesso o allucinato, concentrando le verifiche sulla capacità del sistema di contenere la propagazione laterale.  
-**Nel contesto del manuale:** Adottato nello Step 14 (Containment) e nello Step 19 (Threat Modeling & Red Teaming) per testare la tenuta dei trust boundaries attorno agli agenti LLM.  
-**Termini correlati:** Threat Modeling, Blast Radius, Trust Boundary, Containment.
+**Definizione:** Paradigma di sicurezza e modellazione delle minacce in cui si assume a priori che l'avversario sia già riuscito a violare il perimetro difensivo iniziale o che un componente interno sia compromesso o allucinato, concentrando le verifiche sulla capacità dell'architettura di contenere la propagazione laterale del danno.  
+*Approfondimento nel manuale: applicato in Capitolo 14 (Containment) e Capitolo 19 (Threat Modeling & Red Teaming, Sez. 5.3).*
 
 #### Assumption (Assunzione)
 **Categoria:** Stato epistemico / Termine normativo consolidato  
-**In inglese:** *Assumption*  
-**In italiano:** Assunzione, presupposto operativo  
-**Definizione:** Una proposizione o condizione riguardante l'ambiente esterno, i dati, le piattaforme o gli utenti che viene assunta come vera per poter sviluppare o verificare il sistema, ma che non è sotto il nostro controllo causale diretto e richiede verifica e monitoraggio continuo.  
-**Nel contesto del manuale:** Costituisce uno dei cinque stati del modello epistemico (Step 1, 5, 12).  
-**Distinzioni importanti:** `Assumption != Fact`, `Assumption != Requirement`. Un fatto è dimostrato empiricamente; un requisito è un dovere del codice; un'assunzione è una scommessa condizionale sul mondo esterno (A => P).  
-**Nota epistemica:** Se un'assunzione critica decade (A = FALSE), l'impalcatura di correttezza condizionale collassa e l'assurance della proprietà decade a `UNKNOWN` o `FAIL`.  
-**Termini correlati:** Fact, Conditional Correctness, Assumption Verification, Unknown.
+**Definizione:** Proposizione o condizione riguardante l'ambiente esterno, i dati, le piattaforme o gli utenti che viene considerata vera per poter sviluppare o verificare il sistema, ma che non è sotto il nostro controllo causale diretto e richiede verifica e monitoraggio continuo. Se un'assunzione critica decade, l'assurance della proprietà correlata collassa.  
+*Approfondimento nel manuale: formalizzato nel modello a 5 stati in Capitolo 1 (Sez. 3.3) e trattato estesamente in Capitolo 5 e Capitolo 12.*
 
 #### Assumption Drift (Deriva delle Assunzioni)
 **Categoria:** Costrutto didattico del manuale  
-**In inglese:** *Assumption Drift*  
-**In italiano:** Deriva operativa delle assunzioni  
-**Definizione:** Il fenomeno per cui un'assunzione di contesto dimostrata vera al momento del rilascio degrada e diventa falsa nel tempo a causa dell'evoluzione dell'ambiente, dei volumi di carico, delle dipendenze terze o delle modifiche ai protocolli.  
-**Nel contesto del manuale:** analizzato nel Capitolo 12 e nello Step 32 come una delle principali cause di guasti silenti nei sistemi stabili privi di modifiche al codice sorgente.  
-**Termini correlati:** Assumption Verification, Periodic Review, Model Drift.
+**Definizione:** Il fenomeno per cui un'assunzione di contesto dimostrata vera al momento del rilascio degrada e diventa falsa nel tempo a causa dell'evoluzione dell'ambiente, dei volumi di carico, delle dipendenze terze o delle modifiche ai protocolli operativi.  
+*Approfondimento nel manuale: vedi Capitolo 12 (Assumption Verification, Sez. 16) e Capitolo 32 (Periodic Review, Sez. 4 e 8).*
 
 #### Assumption Mocking
 **Categoria:** Anti-pattern denominato dal manuale  
-**In inglese:** *Assumption Mocking*  
-**In italiano:** Simulazione tautologica dell'assunzione tramite mock  
-**Definizione:** La pratica fallace consistente nel testare un componente software sostituendo l'ambiente esterno con un mock o stub programmato per restituire esattamente le risposte ipotizzate dallo sviluppatore o dall'LLM, trasformando il test in una tautologia circolare.  
-**Nel contesto del manuale:** Nello Step 12 e 16, evidenzia come i test passino al 100% semplicemente perché il mock replica l'allucinazione del codice.  
-**Termini correlati:** Hollow Test, Automated Testing, False Assurance.
+**Definizione:** La pratica fallace consistente nel testare un componente software sostituendo l'ambiente esterno con un mock o stub programmato per restituire esattamente le risposte ipotizzate dallo sviluppatore o dall'LLM, trasformando il test in una tautologia circolare che maschera le discrepanze dell'ambiente reale.  
+*Approfondimento nel manuale: vedi Capitolo 12 (Assumption Verification, Sez. 12.1) e Capitolo 16 (Automated Testing, Sez. 10.1).*
 
 #### Assumption Verification (Verifica delle Assunzioni)
 **Categoria:** Termine metodologico consolidato  
-**In inglese:** *Assumption Verification*  
-**In italiano:** Verifica e convalida delle assunzioni  
-**Definizione:** Il processo analitico ed empirico mediante il quale le condizioni postulate sull'ambiente, sui dati o sulle piattaforme esterne vengono sottoposte a prova oggettiva, convertite in invarianti architetturali garantite o confinate tramite guardrail operativi.  
-**Nel contesto del manuale:** Costituisce l'oggetto dello Step 12. Applica le tre strategie canoniche di trattamento: *Verify* (prova empirica), *Eliminate* (riprogettazione architetturale) o *Contain/Accept* (confinamento attivo a runtime con guardia difensiva).  
-**Termini correlati:** Assumption, Conditional Correctness, Assumption Drift.
+**Definizione:** Il processo analitico ed empirico mediante il quale le condizioni postulate sull'ambiente, sui dati o sulle piattaforme esterne vengono sottoposte a prova oggettiva, convertite in invarianti architetturali garantite o confinate tramite guardrail operativi a runtime (*Verify*, *Eliminate*, *Contain/Accept*).  
+*Approfondimento nel manuale: trattato estesamente in Capitolo 12 (Assumption Verification).*
 
 #### Assurance (Software Assurance)
-**Categoria:** Termine normativo e d'arte consolidato  
-**In inglese:** *Software Assurance*  
-**In italiano:** Garanzia formale e giustificata del software (mantenuto comunemente come *Assurance*)  
-**Definizione:** Il percorso strutturato, sistematico e documentato finalizzato a produrre una fiducia razionalmente giustificata (*justified confidence*) che un sistema software soddisfi determinate proprietà critiche di sicurezza, affidabilità e correttezza, operando entro limiti di rischio accettabili per l'intero ciclo di vita.  
-**Nel contesto del manuale:** Rappresenta l'architrave dell'intera opera. Non coincide con il semplice testing o con la garanzia commerciale ex-post (*warranty*), ma costituisce l'edificio probatorio esplicito che connette la formulazione del problema (Step 1) alla chiusura formale (Step 33).  
-**Distinzioni importanti:** `Assurance != Insurance` (copertura finanziaria del danno economico residuo), `Assurance != Warranty` (obbligo contrattuale di riparazione o risarcimento), `Assurance != Confidence` (la confidenza è uno stato soggettivo; l'assurance è una proprietà epistemica oggettiva supportata da evidenze).  
-**Termini correlati:** Assurance Case, Evidence, Justified Confidence, Assurance Level, Warranty, Insurance.
+**Categoria:** Termine normativo e d'arte consolidato (ISO/IEC/IEEE 15026-1)  
+**Definizione:** L'insieme strutturato di argomentazioni, evidenze, assunzioni, verifiche e decisioni attraverso cui si acquisiscono e si valutano le basi necessarie per una fiducia razionalmente giustificata (*justified confidence*) che un sistema software soddisfi determinate proprietà o asserzioni (claim), tenendo conto di rischi, limiti e incertezze operative.  
+*Approfondimento nel manuale: vedi Nota Terminologica iniziale (Sez. 1-6) e Guida ai 5 concetti fondamentali.*
 
 #### Assurance Adequacy (Adeguatezza dell'Assurance)
 **Categoria:** Concetto metodologico consolidato  
-**In inglese:** *Assurance Adequacy*  
-**In italiano:** Adeguatezza probatoria dell'assurance  
-**Definizione:** La condizione per cui l'argomentazione e le evidenze raccolte sono qualitativamente e metodologicamente idonee a giustificare che il software operi in conformità agli obiettivi del mondo reale (`W AND S |= R`).  
-**Nel contesto del manuale:** Valutata negli Step 1, 9 e 10 per impedire che una verifica formalmente corretta mascheri l'inadeguatezza rispetto al problema reale.  
-**Termini correlati:** Adeguatezza, Evidence Sufficiency, Verification, Validation.
+**Definizione:** La condizione per cui l'argomentazione e le evidenze raccolte sono qualitativamente e metodologicamente idonee a giustificare che il software operi in conformità agli obiettivi del mondo reale (`W AND S |= R`), prevenendo che una verifica formalmente corretta mascheri l'inadeguatezza rispetto al problema reale.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 3.2), Capitolo 9 (Sez. 5.1) e Capitolo 10 (Sez. 6.2).*
 
 #### Assurance Boundary (Confine di Assurance)
 **Categoria:** Costrutto didattico/operativo del manuale  
-**In inglese:** *Assurance Boundary*  
-**In italiano:** Confine di assurance / perimetro di giustificazione probatoria  
 **Definizione:** La linea di demarcazione formale e concettuale che separa ciò che il processo di verifica controlla ed evidenzia direttamente (il software sotto esame) da ciò che viene accettato dall'ambiente esterno sotto forma di assunzioni o assiomi operativi non verificati direttamente (hardware, runtime, API terze).  
-**Nel contesto del manuale:** Formalizzato nello Step 5 e nello Step 7. Stabilisce che estendere arbitrariamente l'assurance oltre questo confine senza raccogliere evidenze empiriche indipendenti genera falsa sicurezza (*False Assurance*).  
-**Distinzioni importanti:** `Assurance Boundary != System Boundary`. Il confine di sistema delimita l'hardware e il codice; il confine di assurance delimita ciò su cui disponiamo di prove valide rispetto a ciò che viene assunto senza prova.  
-**Termini correlati:** Assumption, Epistemic Boundary, Blast Radius, Containment.
+*Approfondimento nel manuale: vedi Capitolo 5 (Assumptions & Unknowns, Sez. 3.3) e Capitolo 7 (Traceability, Sez. 14.2).*
 
 #### Assurance Case (Fascicolo / Argomentazione di Assurance)
-**Categoria:** Termine normativo consolidato  
-*Vedi: Assurance Case definito in Nota Terminologica (Sez. 1), formalizzato in Capitolo 1 (Problem Definition, Sez. 2.2) e strutturato per la governance in Capitolo 30 (Risk Register & Knowledge Base, Sez. 4).*
+**Categoria:** Termine normativo consolidato (ISO/IEC/IEEE 15026-2)  
+**Definizione:** Struttura argomentativa esplicita, documentata e auditabile che collega sistematicamente claim (asserzioni su proprietà o sicurezza del sistema), evidenze empiriche e assunzioni di contesto, al fine di fornire una fiducia razionalmente giustificata nel comportamento del software.  
+*Approfondimento nel manuale: formalizzato nella struttura deduttiva in Capitolo 5 (Sez. 5.1), governato nel ciclo di vita in Capitolo 30 (Sez. 4) e consolidato per la chiusura in Capitolo 33 (Sez. 5).*
 
 #### Assurance Closure (Chiusura dell'Assurance)
 **Categoria:** Termine metodologico del manuale  
-*Vedi: Closure & Archival definita in Capitolo 33 (Closure & Lessons Learned), Sezione 5 e Sezione 6.*
+**Definizione:** Processo formale che congela l'insieme delle evidenze probatorie al termine di una release o di un ciclo di sviluppo, certificando che le attività di verifica sono concluse rispetto ai criteri stabiliti e autorizzando la transizione all'archiviazione senza pretesa di sanare difetti a posteriori.  
+*Approfondimento nel manuale: vedi Capitolo 33 (Closure & Lessons Learned), Sezione 5 e Sezione 6.*
 
 #### Assurance Closure Package (ACP)
 **Categoria:** Modello concettuale didattico formalizzato dal manuale  
-*Vedi: Assurance Closure Package definito in Capitolo 33 (Closure & Lessons Learned), Sezione 5 e Sezione 8.1.*
+**Definizione:** Fascicolo strutturato, verificabile e autocontenuto composto da quindici elementi canonici (specifiche, evidenze, oracoli, invarianti, log, registri dei rischi) che documenta e sigilla crittograficamente la giustificazione razionale dello stato finale del software prima dell'archiviazione.  
+*Approfondimento nel manuale: vedi Capitolo 33 (Closure & Lessons Learned), Sezione 5 e Sezione 8.1.*
 
 #### Assurance Integrity Level (AIL)
 **Categoria:** Rinvio terminologico e sinonimo operativo  
 **Definizione:** Denominazione alternativa per *Assurance Level (AL)* impiegata nello Step 2 per analogia con i framework industriali di sicurezza funzionale (SIL/ASIL/DAL). Nella metodologia del presente manuale corrisponde integralmente alla scala unificata `AL-0 .. AL-3`.  
-*Vedi: Assurance Level (AL).*
+*Approfondimento nel manuale: vedi Capitolo 2 (Risk Classification, Sez. 5.2) e Capitolo 10 (Assurance Level).*
 
 #### Assurance Level (AL)
 **Categoria:** Modello concettuale didattico formalizzato dal manuale  
-**In inglese:** *Assurance Level (AL)*  
-**In italiano:** Livello di assurance operativo  
-**Definizione:** Indice categorico discreto (da AL-0 ad AL-3 nel modello didattico del manuale) che prescrive a priori la profondità metodologica, la quantità, la qualità e il grado di indipendenza delle evidenze richieste per ritenere accettabile una proprietà critica, calcolato nello Step 10 combinando la severità del danno, l'esposizione operativa, l'autonomia del sistema, la reversibilità, la sensibilità dei dati, il contenimento e l'incertezza generativa dell'LLM.
+**Definizione:** Indice categorico discreto (da AL-0 ad AL-3 nel modello del manuale) che prescrive a priori la profondità metodologica, la quantità, la qualità e il grado di indipendenza delle evidenze richieste per ritenere accettabile una proprietà critica, calcolato nello Step 10 combinando severità del danno, esposizione operativa, autonomia del sistema, reversibilità, sensibilità dei dati, contenimento e incertezza generativa dell'LLM.  
+*Approfondimento nel manuale: formalizzato analiticamente in Capitolo 10 (Assurance Level, Sez. 5 e 7).*
 
 #### Assurance State (Stato di Assurance)
 **Categoria:** Costrutto metodologico del manuale  
-**In inglese:** *Assurance State*  
-**In italiano:** Stato di garanzia / conformità probatoria  
 **Definizione:** La qualifica formale attribuita a una proprietà critica, a un componente o all'intero sistema all'interno di un gate decisionale, basata sulla conformità dell'evidenza rispetto alla policy di gate. Gli stati ammessi dal manuale sono: `PASS`, `PARTIAL`, `UNKNOWN`, `FAIL`, `NOT APPLICABLE`, `NO-GO`.  
-**Nel contesto del manuale:** Costituisce la base decisionale degli Step 23, 24 e 25. La precedenza categorica è: `NO-GO > FAIL > UNKNOWN > PARTIAL > PASS`.  
-**Termini correlati:** Decision Gate, PASS, UNKNOWN, NO-GO.
+*Approfondimento nel manuale: vedi Capitolo 23 (Evidence-Based Decision Gates), Sezione 5.2 e Sezione 5.3.*
 
 #### AST (Abstract Syntax Tree)
 **Categoria:** Acronimo / Termine tecnico consolidato  
-*Vedi: Abstract Syntax Tree definito in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 3 e Sezione 5.*
+**Definizione:** Struttura dati ad albero gerarchica che rappresenta la struttura sintattica e logica del codice sorgente, priva di dettagli puramente testuali o tipografici (spaziature, commenti), impiegata dagli analizzatori statici e dai compilatori per verificare regole sintattiche, tipi e pattern di codice.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 3 e Sezione 5.*
 
 #### Asimmetria Generazione-Verifica (Generation-Verification Asymmetry)
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Asimmetria Generazione-Verifica definita in Capitolo 8 (Competence Gaps), Sezione 3.2.*
+**Definizione:** Fenomeno sistemico per cui il costo temporale e cognitivo necessario per generare codice o specifiche tramite LLM tende a zero, mentre il costo e la complessità per verificarne criticamente la correttezza, la concorrenza, la sicurezza e gli invarianti rimangono elevati o aumentano, inducendo il rischio di approvazioni cieche (*rubber-stamping*).  
+*Approfondimento nel manuale: formalizzato in Capitolo 8 (Competence Gaps), Sezione 3.2.*
 
 #### Attack (Attacco)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-*Vedi: Attack definito in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 6.1.*
+**Definizione:** Sequenza coordinata, deliberata e finalizzata di azioni od operazioni mediante cui un agente ostile sfrutta una o più vulnerabilità software o architetturali per violare gli invarianti di sicurezza, confidenzialità o integrità del sistema.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 6.1.*
 
 #### Attack Surface (Superficie d'Attacco)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-*Vedi: Attack Surface definita in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4.*
+**Definizione:** La totalità dei punti d'ingresso, canali di rete, interfacce API, formati di file analizzati e contesti di esecuzione attraverso cui un attore esterno o non fidato può interagire con il sistema o tentare di iniettarvi dati.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4.*
 
 #### Audit
 **Categoria:** Termine tecnico e normativo consolidato  
-*Vedi: Audit definito formalmente in Capitolo 21 (Independent Verification, Sez. 4.1) e inquadrato per l'assurance continuativa in Capitolo 32 (Periodic Review, Sez. 5 e 6).*
+**Definizione:** Esame formale, strutturato, documentato e preferibilmente indipendente condotto rispetto a criteri e requisiti prefissati, volto a verificare la conformità, l'integrità e la sufficienza probatoria dei processi e degli artefatti di assurance, distinguendosi dal testing esecutivo e dal monitoraggio passivo.  
+*Approfondimento nel manuale: formalizzato in Capitolo 21 (Independent Verification, Sez. 4.1) e inquadrato per l'assurance continuativa in Capitolo 32 (Periodic Review, Sez. 5 e 6).*
 
 #### Audit Independence (Indipendenza dell'Audit)
 **Categoria:** Termine metodologico e normativo  
-*Vedi: Indipendenza dell'Audit definita in Capitolo 21 (Independent Verification, Sez. 4.2) e formalizzata nelle sue quattro dimensioni in Capitolo 32 (Periodic Review, Sez. 15).*
+**Definizione:** Grado di disaccoppiamento sostanziale lungo quattro dimensioni (organizzativa, procedurale, tecnica ed epistemica) che assicura che l'ente o la persona che esegue l'audit non condivida conflitti d'interesse, pressioni di rilascio, strumenti o gli stessi bias cognitivi del team che ha sviluppato il software.  
+*Approfondimento nel manuale: vedi Capitolo 21 (Independent Verification, Sez. 4.2) e formalizzato nelle sue dimensioni in Capitolo 32 (Periodic Review, Sez. 15).*
 
 #### Audit Trail (Traccia di Audit)
 **Categoria:** Termine tecnico e normativo consolidato  
-*Vedi: Audit Trail definito in Capitolo 3 (Authority & Responsibility, Sez. 5.1) e regolamentato per l'analisi forense in Capitolo 29 (Post-Deployment Analysis, Sez. 4 e 9).*
+**Definizione:** Registrazione cronologica, append-only, immutabile e verificabile di tutti gli eventi significativi, comandi privilegiati eseguiti, transizioni di stato e approvazioni autorizzate all'interno del sistema, essenziale per la ricostruzione forense post-incidente.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Authority & Responsibility, Sez. 5.1) e Capitolo 29 (Post-Deployment Analysis, Sez. 4 e 9).*
 
 #### Authority (Autorità Decisionale)
 **Categoria:** Termine di governance e normativo  
-*Vedi: Authority definita in Capitolo 3 (Authority & Responsibility, Sez. 3.1 e Sez. 4) e formalizzata per il contenimento architetturale in Capitolo 14 (Containment & Least Authority, Sez. 7.1).*
+**Definizione:** Il mandato formale, legittimo e riconosciuto dall'organizzazione che attribuisce a un individuo o a un ruolo designato il potere vincolante di approvare transizioni di gate, deliberare l'accettazione del rischio residuo o imporre il blocco (NO-GO) del software.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Authority & Responsibility, Sez. 3.1 e 4) e formalizzato per il confinamento architetturale in Capitolo 14 (Containment & Least Authority, Sez. 7.1).*
 
 #### Authority Inversion (Inversione dell'Autorità)
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Authority Inversion definita in Capitolo 3 (Authority & Responsibility), Sezione 4 e Sezione 9.3.*
+**Definizione:** Situazione operativa patologica in cui l'operatore umano si adegua acriticamente alle raccomandazioni o al codice generato dal modello AI, subordinando il proprio giudizio alla predizione algoritmica e invertendo la gerarchia decisionale.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Authority & Responsibility), Sezione 4 e Sezione 9.3.*
 
 #### Automation Bias (Distorsione da Automazione)
 **Categoria:** Termine scientifico consolidato (fattori umani)  
-*Vedi: Automation Bias definito in Capitolo 1 (Problem Definition, Sez. 10.4), Capitolo 3 (Sez. 10.4) e formalizzato nello studio dei gap cognitivi in Capitolo 8 (Competence Gaps, Sez. 4).*
+**Definizione:** Tendenza psicologica e cognitiva a favorire acriticamente le indicazioni, le analisi o il codice forniti da sistemi automatizzati o LLM, considerandoli corretti e riducendo l'attenzione analitica anche a fronte di discrepanze evidenti o contraddizioni logiche.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 10.4), Capitolo 3 (Sez. 10.4), Capitolo 8 (Competence Gaps, Sez. 4) e Appendice Psicologia Cognitiva.*
 
 #### Automation Complacency (Autocompiacimento da Automazione)
 **Categoria:** Termine scientifico consolidato (fattori umani)  
-*Vedi: Automation Complacency definita in Capitolo 2 (Risk Classification), Sezione 4 e Sezione 8.2.*
+**Definizione:** Stato di ingiustificata riduzione della vigilanza e del monitoraggio continuo da parte degli operatori umani, indotto dalla percezione di elevata affidabilità dell'automazione in contesti multi-tasking, che porta a non accorgersi di guasti rari o anomalie semantiche.  
+*Approfondimento nel manuale: vedi Capitolo 2 (Risk Classification), Sezione 4 e Sezione 8.2.*
 
 ---
 
@@ -35317,33 +35216,34 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Backward Traceability (Tracciabilità all'Indietro)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Backward Traceability definita in Capitolo 7 (Traceability), Sezione 3.2 e Sezione 4.*
+**Definizione:** Capacità metodologica di risalire deterministicamente da un qualsiasi artefatto esecutivo (funzione, riga di codice, configurazione, test) al requisito, alla proprietà critica e all'obiettivo primario che ne hanno motivato l'introduzione, utilizzata primariamente per identificare e rimuovere il codice orfano (*orphan code*).  
+*Approfondimento nel manuale: vedi Capitolo 7 (Traceability), Sezione 3.2 e Sezione 4.*
 
 #### Baseline (Linea Base di Riferimento)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Baseline definita per i rilasci progressivi in Capitolo 25 (Staging, Canary & Feature Flags, Sez. 4.3) e applicata alla telemetria comparativa in Capitolo 26 (Observability, Sez. 7.2).*
+**Definizione:** Configurazione o istanza stabile, consolidata e verificata del software (o dei suoi parametri operativi e telemetrici), utilizzata come termine oggettivo di confronto per valutare scostamenti, regressioni o anomalie introdotte da una nuova versione candidata (es. Canary).  
+*Approfondimento nel manuale: vedi Capitolo 25 (Staging, Canary & Feature Flags, Sez. 4.3) e Capitolo 26 (Observability, Sez. 7.2).*
 
 #### Blameless Post-Mortem
 **Categoria:** Termine tecnico consolidato (cultura SRE)  
-*Vedi: Blameless Post-Mortem definito in Capitolo 29 (Post-Deployment Analysis, Sez. 4 e Sez. 8) e applicato alla capitalizzazione in Capitolo 33 (Closure & Lessons Learned, Sez. 5).*
+**Definizione:** Pratica metodologica di indagine retrospettiva post-incidente che analizza i fattori sistemici, architetturali e procedurali che hanno reso possibile il fallimento, escludendo punizioni o colpevolizzazioni individuali per massimizzare la trasparenza e l'apprendimento, preservando al contempo la responsabilità di governance.  
+*Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis, Sez. 4 e 8) e Capitolo 33 (Closure & Lessons Learned, Sez. 5).*
 
 #### Blast Radius (Raggio d'Impatto)
 **Categoria:** Termine tecnico d'uso professionale consolidato  
-*Vedi: Blast Radius definito in Capitolo 1 (Sez. 4), Capitolo 2 (Sez. 3.3 e 4), formalizzato in Capitolo 14 (Containment, Sez. 4 e 7.3) e modellato su grafi di dipendenza in Capitolo 31 (Change Impact Analysis, Sez. 5 e 8).*
+**Definizione:** La massima estensione sistemica, economica, temporale o fisica dei danni e delle risorse compromesse qualora un componente software fallisca, devii dalla specifica o venga violato.  
+*Approfondimento nel manuale: vedi Capitolo 2 (Sez. 3.3 e 4), Capitolo 14 (Sez. 4 e 7.3) e la modellazione a grafo in Capitolo 31 (Change Impact Analysis, Sez. 5 e 8).*
 
 #### Blind Review (Revisione Cieca)
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Blind Review definita in Capitolo 20 (Multi-Model Audit, Sez. 4 e Sez. 8.1) e integrata nel protocollo Clean-Room in Capitolo 21 (Independent Verification, Sez. 5.2).*
+**Definizione:** Protocollo operativo di audit in cui ciascun modello linguistico o revisore valuta l'artefatto software in completo isolamento, senza accedere ai giudizi, ai ragionamenti o ai prompt formulati da altri valutatori, eliminando l'effetto gregge e il condizionamento reciproco (*prompt priming*).  
+*Approfondimento nel manuale: vedi Capitolo 20 (Multi-Model Audit, Sez. 4 e 8.1) e Capitolo 21 (Independent Verification, Sez. 5.2).*
 
 #### Burn Rate (Tasso di Consumo del Budget di Errore)
 **Categoria:** Termine tecnico consolidato (Site Reliability Engineering)  
-**In inglese:** *Burn Rate*  
-**In italiano:** Tasso di consumo del budget di errore  
 **Definizione:** Parametro quantitativo adimensionale che misura la velocità con cui un sistema consuma il proprio budget di errore rispetto alla velocità nominale di consumo costante calcolata sull'obiettivo di servizio (SLO):  
 `BurnRate = (ErrorRate) / (ErrorBudget)`  
-**Nel contesto del manuale:** Nello Step 27 (Alerting & Runbooks) è utilizzato per definire regole di allarme multi-finestra, eliminando le soglie statiche rumorose.  
-**Distinzioni importanti:** `Burn Rate != Error Budget`. L'Error Budget è la quota totale consentita di fallimento; il Burn Rate è la velocità temporale di esaurimento di tale quota.  
-**Termini correlati:** Error Budget, SLO, SLI, Alerting.
+*Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 5 e Sezione 8.2.*
 
 ---
 
@@ -35353,153 +35253,133 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Canary Deployment / Canary Release
 **Categoria:** Termine tecnico d'uso professionale consolidato  
-*Vedi: Canary Release definita in Capitolo 25 (Staging, Canary & Feature Flags), Sezione 4.3 e formalizzata dimensionalmente in Sezione 5.2.*
+**Definizione:** Tecnica di rilascio controllato e progressivo in cui una nuova versione del software viene esposta a una percentuale minima e rappresentativa di traffico reale (es. 1-5%), preservando la versione baseline sul resto del carico per contenere il blast radius e raccogliere telemetria in-vivo.  
+*Approfondimento nel manuale: vedi Capitolo 25 (Staging, Canary & Feature Flags), Sezione 4.3 e formalizzata dimensionalmente in Sezione 5.2.*
 
 #### Capability (Capacità)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Capability / Capability-Based Security*  
-**In italiano:** Capacità di accesso / token infalsificabile  
-**Definizione:** Nei sistemi operativi e nell'architettura di sicurezza, un token o riferimento infalsificabile che designa una specifica risorsa e accorda al suo possessore un insieme delimitato di diritti di operazione su di essa.  
-**Nel contesto del manuale:** Nello Step 14 è contrapposta all'autorità ambientale (*Ambient Authority*): il codice assistito da LLM deve ricevere unicamente capability esplicite ed effimere, senza ereditare privilegi impliciti dall'ambiente host.  
-**Termini correlati:** Ambient Authority, Principle of Least Authority, Containment.
+**Definizione:** Nei sistemi operativi e nell'architettura di sicurezza, un token o riferimento infalsificabile gestito dal kernel o runtime che designa una specifica risorsa e accorda al suo possessore un insieme delimitato di diritti operativi su di essa, realizzando la sicurezza basata su possesso in contrapposizione all'autorità ambientale.  
+*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority, Sez. 4) e Appendice Sandbox (Sez. 4).*
 
 #### Cardinality Blindness (Cecità da Cardinalità)
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Cardinality Blindness definita in Capitolo 26 (Observability), Sezione 11.3.*
+**Definizione:** Anti-pattern consistente nell'aggregare la telemetria applicativa esclusivamente su medie o contatori globali a bassa cardinalità, rendendo invisibili anomalie o allucinazioni logiche che impattano una ristretta frazione di utenti o specifiche transazioni limite.  
+*Approfondimento nel manuale: vedi Capitolo 26 (Observability), Sezione 11.3.*
 
 #### Causal Narrative Bias (Bias della Narrazione Causale)
-**Categoria:** Termine scientifico / Costrutto applicato  
-*Vedi: Causal Narrative Bias definito in Capitolo 29 (Post-Deployment Analysis), Sezione 11.*
+**Categoria:** Costrutto concettuale applicato dal manuale  
+**Definizione:** La propensione cognitiva e generativa a costruire a posteriori una spiegazione di causa-effetto lineare, plausibile ed elegante dell'incidente che collega solo i fatti evidenti, scartando i dettagli contraddittori o le contese concorrenti reali.  
+*Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis), Sezione 11.*
 
 #### CFG (Control Flow Graph)
 **Categoria:** Acronimo / Termine tecnico consolidato  
-*Vedi: Control Flow Graph definito in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 3 e Sezione 5.*
+**Definizione:** Grafo orientato che modella tutti i possibili percorsi di esecuzione e salti condizionali che un programma può percorrere durante l'esecuzione, impiegato dagli strumenti di analisi statica per analizzare la raggiungibilità dei blocchi di codice.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 3 e Sezione 5.*
 
 #### Change Impact Analysis (CIA)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Change Impact Analysis (CIA)*  
-**In italiano:** Analisi dell'impatto delle modifiche  
-**Definizione:** Processo metodologico e tracciabile volto a determinare le conseguenze sistemiche potenziali ed effettive di una modifica proposta su componenti, contratti, assunzioni, invarianti e sul perimetro di validità delle evidenze di assurance pregresse.  
-**Nel contesto del manuale:** Costituisce l'oggetto dello Step 31. Dimostra che una modifica sintatticamente minima generata da un LLM può possedere un raggio d'impatto semantico globale, rendendo non più applicabili le prove raccolte in precedenza.  
-**Distinzioni importanti:** `Diff Locale != Impatto Locale`. Valutare il cambiamento guardando solo le righe modificate è un errore epistemico.  
-**Termini correlati:** Blast Radius, Regression Test Selection (RTS), Ripple Effect, Semantic Drift.
+**Definizione:** Processo sistematico e tracciabile mediante il quale si determinano le conseguenze potenziali ed effettive di una modifica proposta su componenti, contratti, assunzioni, invarianti e sul perimetro di validità delle evidenze di assurance pregresse.  
+*Approfondimento nel manuale: vedi Capitolo 31 (Change Impact Analysis), Sezione 1 e Sezione 4.*
 
 #### Circuit Breaker
 **Categoria:** Termine tecnico d'uso professionale consolidato  
-**Definizione:** Dispositivo logico distribuito che intercetta le comunicazioni verso una risorsa instabile e, al superamento di parametri critici di fallimento, transita in uno stato di apertura per interrompere preventivamente le chiamate future e mitigare il consumo di risorse.  
-*Vedi: Circuit Breaker definito in Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 4.1, Sezione 5 e Sezione 6.3.*
+**Definizione:** Dispositivo logico distribuito che intercetta le comunicazioni verso una risorsa esterna instabile; al superamento di parametri critici di fallimento, transita in uno stato di apertura per interrompere preventivamente le chiamate future, mitigando il consumo di risorse locali ed evitando guasti a cascata.  
+*Approfondimento nel manuale: vedi Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 4.1, Sezione 5 e Sezione 6.3.*
 
 #### Circuit Breaker States (Closed, Open, Half-Open)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Circuit Breaker States*  
-**In italiano:** Stati dell'interruttore automatico di circuito  
-**Definizione:** Gli stati canonici della macchina a stati finiti che governa le interazioni verso una dipendenza esterna:  
-- *CLOSED*: stato nominale, le richieste fluiscono regolarmente;  
-- *OPEN*: circuito aperto a fronte del superamento delle soglie di errore; le richieste sono intercettate e respinte immediatamente (*fail-fast*);  
-- *HALF-OPEN*: stato di prova in cui un volume contingentato di traffico viene inviato per saggiare la ripresa della dipendenza.  
-**Nel contesto del manuale:** Formalizzati nello Step 28.  
-**Distinzioni importanti:** Non va confuso con l'*Open/Closed Principle (OCP)* della progettazione orientata agli oggetti (SOLID).  
-**Termini correlati:** Circuit Breaker, Fallback, Fail-Fast.
+**Definizione:** Gli stati canonici della macchina a stati finiti che governa le interazioni verso una dipendenza esterna: *CLOSED* (stato nominale, traffico regolare), *OPEN* (circuito aperto, fallimento rapido immediato fail-fast), *HALF-OPEN* (stato di prova in cui un volume contingentato di richieste sentinella sonda la ripresa del servizio).  
+*Approfondimento nel manuale: formalizzato analiticamente in Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 6.3 e Sezione 8.1.*
 
 #### Clean-Room Protocol for LLM
 **Categoria:** Modello concettuale didattico formalizzato dal manuale  
-**In inglese:** *Clean-Room Protocol for LLM*  
-**In italiano:** Protocollo di verifica a stanza cieca per software assistito da LLM  
-**Definizione:** Procedura didattica e metodologica di verifica indipendente in cui il verificatore riceve esclusivamente la specifica formale dei requisiti e i contratti di interfaccia, operando in totale isolamento rispetto al codice sorgente generato dall'LLM, ai prompt utilizzati dall'autore e ai test unitari predisposti dal team di sviluppo.  
-**Nel contesto del manuale:** Introdotto nello Step 21 (Independent Verification) per annullare l'effetto ancoraggio (*anchoring bias*) e impedire che il verificatore adatti inconsapevolmente i propri oracoli di test alle allucinazioni o alle assunzioni del costruttore.  
-**Distinzioni importanti:** Differisce dal metodo formale storico di *Cleanroom Software Engineering* (Harlan Mills / IBM) e dal *clean-room reverse engineering* legale per la protezione del copyright.  
-**Termini correlati:** Independent Verification, Epistemic Independence, Blind Review, Oracle.
+**Definizione:** Procedura didattica e metodologica di verifica indipendente in cui il verificatore riceve esclusivamente la specifica formale dei requisiti e i contratti di interfaccia, sviluppando i propri oracoli di test senza mai accedere al codice sorgente dell'implementazione, ai prompt informali dell'autore o ai test predisposti dal team di sviluppo.  
+*Approfondimento nel manuale: vedi Capitolo 21 (Independent Verification), Sezione 5.2.*
 
 #### Closure & Archival (Chiusura e Archiviazione)
 **Categoria:** Termine metodologico e normativo  
-*Vedi: Closure & Archival definita in Capitolo 33 (Closure & Lessons Learned), Sezione 5 e Sezione 6.*
+**Definizione:** L'atto formale, documentato e definitivo con cui un progetto, una release o un ciclo di esercizio viene dichiarato concluso, congelando le evidenze probatorie, consolidando la conoscenza acquisita nel Risk Register e definendo le condizioni di retention.  
+*Approfondimento nel manuale: vedi Capitolo 33 (Closure & Lessons Learned), Sezione 4, Sezione 5 e Sezione 6.*
 
 #### Code Coverage (Copertura del Codice)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Code Coverage*  
-**In italiano:** Copertura sintattica del codice  
-**Definizione:** Metrica che quantifica la percentuale di elementi strutturali del codice sorgente (istruzioni, rami, condizioni) attraversati ed eseguiti durante l'esecuzione di una suite di test.  
-**Nel contesto del manuale:** Nello Step 16 e Step 23 è definita come misura di esclusione: se una riga non è coperta, sappiamo che non è stata verificata; ma un'alta copertura non prova l'assenza di bug se i test contengono asserzioni deboli o oracoli tautologici.  
-**Distinzioni importanti:** `Code Coverage != Property Coverage`.  
-**Termini correlati:** Automated Testing, Property Coverage, Green Board Fallacy.
+**Definizione:** Metrica che quantifica la percentuale di elementi strutturali del codice sorgente (istruzioni, rami, condizioni) eseguiti durante una suite di test. È una misura di esclusione sintattica (indica ciò che non è stato collaudato); un'alta copertura non prova l'assenza di difetti semantici se le asserzioni sono deboli, permissive o se gli oracoli sono tautologici.  
+*Approfondimento nel manuale: vedi Capitolo 16 (Automated Testing, Sez. 5.3) e Capitolo 23 (Decision Gates, Sez. 4.2).*
 
 #### Common Cause Failure (Guasto per Causa Comune)
 **Categoria:** Termine normativo e scientifico consolidato  
-*Vedi: Common Cause Failure definito in Capitolo 2 (Risk Classification), Sezione 4 e Sezione 9.4.*
+**Definizione:** Fallimento simultaneo di due o più componenti (anche apparentemente ridondanti o indipendenti) originato da una medesima vulnerabilità, dipendenza condivisa o assunzione fallace sottostante (es. due modelli LLM addestrati sullo stesso corpus web).  
+*Approfondimento nel manuale: vedi Capitolo 2 (Risk Classification, Sez. 4 e 9.4) e Capitolo 20 (Multi-Model Audit, Sez. 5.2).*
 
 #### Competence (Competenza)
 **Categoria:** Distinzione epistemica obbligatoria  
-**In inglese:** *Competence*  
-**In italiano:** Competenza tecnica ed epistemica  
-**Definizione:** L'effettiva padronanza delle metodologie scientifiche, delle regole logiche e dei vincoli di dominio necessaria per comprendere, analizzare criticamente e falsificare il comportamento del software e le evidenze prodotte.  
-**Nel contesto del manuale:** Nello Step 3 e Step 8 è distinta da *Authority* e da *Tool Usage*: la capacità di interrogare un LLM non implica il possesso della competenza per giudicarne la correttezza.  
-**Termini correlati:** Authority, Competence Gap, Epistemic Responsibility.
+**Definizione:** L'effettiva padronanza delle metodologie scientifiche, delle regole logiche e dei vincoli di dominio necessaria per comprendere, analizzare criticamente e falsificare il comportamento del software e le evidenze prodotte, distinta dal mero possesso di autorità formale o dall'uso di tool.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Authority & Responsibility, Sez. 3.2 e 5.3) e Capitolo 8 (Competence Gaps, Sez. 5).*
 
 #### Competence Gap (Divario di Competenza)
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Competence Gap formalizzato nella triade analitica in Capitolo 8 (Competence Gaps), Sezione 3.1 e Sezione 4.*
+**Definizione:** La discrepanza riscontrata tra le competenze necessarie per progettare, verificare o autorizzare un artefatto software e le competenze effettivamente possedute dal personale incaricato, formalizzata nella triade: *Gap di Comprensione*, *Gap di Verifica* e *Gap di Autorità*.  
+*Approfondimento nel manuale: formalizzato in Capitolo 8 (Competence Gaps), Sezione 3.1 e Sezione 4.*
 
 #### Conditional Correctness (Correttezza Condizionale)
 **Categoria:** Termine logico-metodologico consolidato  
-*Vedi: Conditional Correctness definita in Capitolo 12 (Assumption Verification), Sezione 3.2, Sezione 4 e Sezione 7.*
+**Definizione:** La garanzia formale che il sistema software rispetti le proprie specifiche se e solo se l'insieme delle assunzioni dichiarate sul contesto esterno (`A`) risulta rigorosamente vero nel runtime operativo reale (`A -> P`).  
+*Approfondimento nel manuale: vedi Capitolo 12 (Assumption Verification), Sezione 3.2, Sezione 4 e Sezione 7.*
 
 #### Confidence (Confidenza / Fiducia Soggettiva)
 **Categoria:** Distinzione epistemica obbligatoria  
-*Vedi: Distinzione tra Confidence ed Evidence formalizzata in Capitolo 2 (Sez. 6.5), Capitolo 3 (Sez. 6.3) e Capitolo 5 (Assumptions & Unknowns, Sez. 6.3).*
+**Definizione:** Stato psicologico o statistico soggettivo di fiducia nell'accuratezza o affidabilità di un sistema, che non costituisce evidenza probatoria e non deve mai essere scambiato per una giustificazione oggettiva di assurance.  
+*Approfondimento nel manuale: vedi Capitolo 2 (Sez. 6.5), Capitolo 3 (Sez. 6.3) e Capitolo 5 (Assumptions & Unknowns, Sez. 6.3).*
 
 #### Consenso Fragile vs Consenso Robusto
 **Categoria:** Costrutto didattico introdotto dal manuale  
-**In inglese:** *Fragile Consensus vs Robust Consensus*  
-**In italiano:** Consenso fragile vs consenso robusto tra modelli  
-**Definizione:** Distinzione qualitativa che discrimina la natura dell'accordo unanime tra più LLM:  
-- *Consenso Fragile*: condizione in cui due o più modelli emettono lo stesso verdetto formale (es. PASS), ma supportandolo con catene di ragionamento incompatibili, oppure quando minime variazioni sintattiche del prompt provocano l'immediata divergenza delle risposte;  
-- *Consenso Robusto*: concordanza stabile in cui i modelli convergono sulla medesima dimostrazione causale a fronte di perturbazioni sintattiche del codice.  
-**Nel contesto del manuale:** Formalizzato nello Step 20 (Multi-Model Audit) per impedire che il consenso unanime venga scambiato automaticamente per una prova di correttezza oggettiva.  
-**Termini correlati:** Multi-Model Audit, Correlated Error, Sycophancy.
+**Definizione:** Distinzione qualitativa che discrimina la natura dell'accordo unanime tra più LLM: *Consenso Fragile* quando i modelli concordano sul verdetto ma con ragionamenti incompatibili o sensibili a minime perturbazioni sintattiche; *Consenso Robusto* quando convergono stabilmente sulla medesima dimostrazione causale.  
+*Approfondimento nel manuale: vedi Capitolo 20 (Multi-Model Audit), Sezione 4 e Sezione 14.*
 
 #### Containment (Contenimento Architetturale)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Containment definito in Capitolo 14 (Containment & Least Authority), Sezione 4 e formalizzato insiemisticamente in Sezione 7.*
+**Definizione:** Insieme di meccanismi architetturali, infrastrutturali e logici che impongono barriere invalicabili attorno a un'unità di esecuzione, impedendo che i suoi effetti collaterali si propaghino al di fuori del perimetro autorizzato in caso di fallimento o allucinazione.  
+*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority), Sezione 4 e Sezione 7.*
 
 #### Control (Controllo)
 **Categoria:** Termine tecnico e normativo (ISO 31000)  
-**In inglese:** *Control*  
-**In italiano:** Controllo, presidio tecnico o procedurale  
 **Definizione:** Qualsiasi misura tecnica, architetturale, logica o procedurale (es. asserzione di invariante, sandbox, circuit breaker, regola di linter) progettata e implementata per modificare il rischio mitigando un pericolo.  
-**Nel contesto del manuale:** Nello Step 30 è distinto dall'effetto reale: il controllo è il meccanismo predisposto; la mitigazione è l'effetto misurato; l'evidenza è la prova che il controllo funzioni.  
-**Termini correlati:** Control Effectiveness, Mitigation, Risk Register.
+*Approfondimento nel manuale: vedi Capitolo 30 (Risk Register & Knowledge Base), Sezione 4 e Sezione 7.3.*
 
 #### Control Effectiveness (Efficacia del Controllo)
 **Categoria:** Formalizzazione quantitativa didattica del manuale  
-**In inglese:** *Control Effectiveness*  
-**In italiano:** Efficacia verificata della mitigazione  
-**Definizione:** Misura dell'abbattimento effettivo del rischio garantito da un insieme di controlli, vincolata alla presenza di evidenze empiriche verificabili (Validity = 1). Se un controllo non è corroborato da prove indipendenti, la sua efficacia operativa è convenzionalmente pari a zero.  
-**Nel contesto del manuale:** Formalizzata nello Step 30 tramite la funzione `E_mitig`.  
-**Termini correlati:** Control, Residual Risk, Risk Register.
+**Definizione:** Misura dell'abbattimento effettivo del rischio garantito da un insieme di controlli, vincolata alla presenza di evidenze empiriche verificabili (`Validity = 1`). Se un controllo non è corroborato da prove indipendenti, la sua efficacia operativa è convenzionalmente pari a zero.  
+*Approfondimento nel manuale: vedi Capitolo 30 (Risk Register & Knowledge Base), Sezione 7.3.*
 
 #### Controllability (Controllabilità Architetturale)
 **Categoria:** Termine tecnico e di teoria dei sistemi  
-*Vedi: Controllability definita in Capitolo 2 (Sez. 3.2 e 4) e formalizzata come criterio logico di design in Capitolo 13 (Implementation Design, Sez. 5 e 8.2).*
+**Definizione:** Capacità dell'operatore o del framework di test di pilotare lo stato interno di un modulo verso qualsiasi configurazione ammissibile stimolando esclusivamente le sue interfacce pubbliche contrattualizzate.  
+*Approfondimento nel manuale: vedi Capitolo 2 (Sez. 3.2 e 4) e Capitolo 13 (Implementation Design, Sez. 5 e 8.2).*
 
 #### Correctness (Correttezza)
 **Categoria:** Distinzione epistemica obbligatoria  
-*Vedi: Correttezza distinta dall'adeguatezza in Capitolo 1 (Sez. 3.2), dalla plausibilità in Capitolo 1 (Sez. 6.4) e formalizzata rispetto alla specifica in Capitolo 4 (Specification, Sez. 6.5).*
+**Definizione:** La corrispondenza matematica e semantica esatta tra il comportamento esibito dal software in ogni stato ammissibile e le prescrizioni definite nella specifica formale (`M |= S`), distinta sia dalla plausibilità stilistica sia dall'adeguatezza rispetto al mondo reale.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 3.2 e 6.4), Capitolo 4 (Sez. 6.5) e Capitolo 15 (Sez. 6).*
 
 #### Correlated Error (Errore Correlato)
 **Categoria:** Termine scientifico e metodologico consolidato  
-*Vedi: Correlated Error definito in Capitolo 10 (Assurance Level, Sez. 4) e formalizzato matematicamente nello studio multi-modello in Capitolo 20 (Multi-Model Audit, Sez. 4 e 5.2).*
+**Definizione:** Coincidenza sistematica di fallimento o di giudizio errato tra due o più modelli, strumenti o valutatori, causata dalla condivisione di dati di pre-addestramento, architetture omogenee o assunzioni culturali comuni.  
+*Approfondimento nel manuale: vedi Capitolo 10 (Assurance Level, Sez. 4) e Capitolo 20 (Multi-Model Audit, Sez. 4 e 5).*
 
 #### Critical Property (Proprietà Critica)
-**Categoria:** Termine metodologico consolidato  
-*Vedi: Critical Property definita in Capitolo 6 (Critical Properties & Invariants), Sezione 3.2 e Sezione 4.*
+**Categoria:** Termine logico e metodologico consolidato  
+**Definizione:** Predicato logico vincolante formalizzato sull'intero spazio degli stati ammissibili (es. invariante di non-negatività, assenza di deadlock), la cui violazione comporterebbe danni gravi, irreversibili o inaccettabili rispetto al modello di rischio.  
+*Approfondimento nel manuale: vedi Capitolo 6 (Critical Properties & Invariants), Sezione 3.2 e Sezione 4.*
 
 #### CVE / CVSS / EPSS
 **Categoria:** Acronimi / Standard internazionali di sicurezza  
-*Vedi: CVE, CVSS ed EPSS definiti negli standard di sicurezza della filiera in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.4.*
+**Definizione:** Standard della filiera software: *CVE* assegna un identificatore univoco a una vulnerabilità nota; *CVSS* ne quantifica la severità tecnica intrinseca (da 0.0 a 10.0); *EPSS* ne stima la probabilità empirica di sfruttamento attivo a breve termine.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.4.*
 
 #### CWE (Common Weakness Enumeration)
 **Categoria:** Acronimo / Standard internazionale di sicurezza  
-*Vedi: CWE definita in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.2.*
+**Definizione:** Tassonomia formale e dizionario standardizzato internazionale che cataloga e descrive le classi di debolezze, difetti e vulnerabilità architetturali e implementative ricorrenti nel software.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.2.*
 
 ---
 
@@ -35509,71 +35389,83 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Dashboard Myopia (Miopia da Dashboard)
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Dashboard Myopia definita in Capitolo 26 (Observability), Sezione 11.1.*
+**Definizione:** La tendenza fuorviante a valutare la salute di un sistema basandosi esclusivamente su cruscotti infrastrutturali aggregati (CPU, memoria, codici HTTP), assumendo indebitamente che l'assenza di crash corrisponda alla correttezza semantica della logica generata dall'LLM.  
+*Approfondimento nel manuale: vedi Capitolo 26 (Observability), Sezione 11.1.*
 
 #### Dead Man's Switch / Heartbeat Monitoring
 **Categoria:** Termine tecnico d'uso professionale consolidato  
-*Vedi: Dead Man's Switch definito in Capitolo 27 (Alerting & Runbooks), Sezione 17.2.*
+**Definizione:** Meccanismo di sicurezza a rilascio continuo in cui un sottosistema o sonda invia segnali periodici (heartbeat) a un supervisore indipendente; l'interruzione del segnale oltre una soglia temporale attiva allarmi critici per indisponibilità silente del sistema di osservabilità.  
+*Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 17.2 (nel testo citato come Dead Man's Snitch / Heartbeat).*
 
 #### Decision Gate (Gate Decisionale Basato sull'Evidenza)
 **Categoria:** Modello concettuale didattico formalizzato dal manuale  
-**In inglese:** *Evidence-Based Decision Gate*  
-**In italiano:** Gate decisionale basato sull'evidenza  
 **Definizione:** Barriera logica, architetturale e deterministica che subordina la transizione di un componente software verso una fase di rilascio, staging o esercizio al soddisfacimento di criteri probatori espliciti, verificando la completezza delle evidenze, l'indipendenza degli oracoli e l'esaurimento del budget di discrepanza.  
-**Nel contesto del manuale:** Costituisce l'oggetto dello Step 23. Applica l'algebra degli stati decisionali (`PASS`, `PARTIAL`, `UNKNOWN`, `FAIL`, `NO-GO`) secondo il principio di non-compensazione: decine di controlli secondari superati non possono compensare l'incertezza (`UNKNOWN`) su un'invariante critica.  
-**Termini correlati:** Assurance State, Evidence Dossier, Discrepancy Budget, NO-GO.
+*Approfondimento nel manuale: formalizzato analiticamente in Capitolo 23 (Evidence-Based Decision Gates).*
 
 #### Decision Responsibility (Responsabilità Decisionale)
 **Categoria:** Termine di governance e normativo  
-*Vedi: Principio di Conservazione della Responsabilità Decisionale formalizzato in Capitolo 3 (Authority & Responsibility, Sez. 1.2, 3.1 e 4) e confermato in Capitolo 24 (Human Review, Sez. 7.3).*
+**Definizione:** Principio metodologico ed etico secondo cui l'autorità e l'obbligo di rispondere formalmente del rilascio, dell'approvazione e dell'accettazione del rischio residuo appartengono inderogabilmente a persone fisiche identificate, escludendo qualsiasi delega ad algoritmi o modelli.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Authority & Responsibility, Sez. 1.2 e 4) e Capitolo 24 (Human Review, Sez. 7.3).*
 
 #### Declarative Specification (Specifica Dichiarativa)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Declarative Specification definita in Capitolo 4 (Specification), Sezione 3.1 e Sezione 4.*
+**Definizione:** Formulazione che prescrive *cosa* il software deve calcolare o mantenere vero (invarianti, relazioni matematiche) senza specificare la sequenza procedurale di passi algoritmici per ottenerlo, consentendo la verifica indipendente delle implementazioni.  
+*Approfondimento nel manuale: vedi Capitolo 4 (Specification), Sezione 3.1 e Sezione 4.*
 
 #### Default Deny (Rifiuto Predefinito)
 **Categoria:** Termine normativo di sicurezza consolidato  
-*Vedi: Default Deny definito in Capitolo 14 (Containment & Least Authority), Sezione 4.*
+**Definizione:** Modello architetturale di controllo degli accessi in cui qualsiasi azione, canale di rete, syscall o lettura di dati è esplicitamente negata a meno che non sia stata preventivamente e formalmente autorizzata da una regola specifica.  
+*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority), Sezione 4.*
 
 #### Degradation (Degrado Operativo)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Degradation definita nella tassonomia degli eventi operativi in Capitolo 29 (Post-Deployment Analysis), Sezione 4.*
+**Definizione:** Erosione misurabile e progressiva dei margini di sicurezza, di prestazione o di riserva computazionale (es. latenza P99 raddoppiata, consumo anomalo di connessioni), che preannuncia il collasso di un invariante pur senza aver ancora scatenato errori fatali visibili.  
+*Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis), Sezione 4.*
 
 #### Design by Contract (DbC - Progettazione per Contratto)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Design by Contract definito mediante la logica di Hoare in Capitolo 4 (Specification, Sez. 2.2) e applicato architetturalmente in Capitolo 13 (Implementation Design, Sez. 4.3).*
+**Definizione:** Metodologia di progettazione del software che struttura le interfacce attraverso contratti formali composti da precondizioni a carico del chiamante, postcondizioni garantite dal modulo ed invarianti che devono valere universalmente prima e dopo ogni transizione.  
+*Approfondimento nel manuale: formalizzato mediante la logica di Hoare in Capitolo 4 (Sez. 2.2) e applicato architetturalmente in Capitolo 13 (Implementation Design, Sez. 4.3).*
 
 #### Detection vs Prevention (Rilevamento vs Prevenzione)
 **Categoria:** Distinzione epistemica obbligatoria  
-*Vedi: Distinzione tra Detection e Prevention formalizzata in Capitolo 1 (Sez. 6.5), Capitolo 2 (Sez. 6.1) e Capitolo 4 (Specification, Sez. 6.6).*
+**Definizione:** Distinzione fondamentale tra identificare una condizione nociva o anomala dopo che si è verificata (*Detection*) e progettare i vincoli di tipo o di architettura in modo tale che la condizione nociva sia resa fisicamente o logicamente impossibile a priori (*Prevention*).  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 6.5), Capitolo 2 (Sez. 6.1) e Capitolo 4 (Specification, Sez. 6.6).*
 
 #### Diff Drowning (Annegamento nel Diff)
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Diff Drowning definito in Capitolo 24 (Human Review & Formal Approval), Sezione 11.2.*
+**Definizione:** La condizione in cui un operatore presenta al revisore una quantità sproporzionata di codice generato in blocco (es. oltre 500 righe di modifica), saturando la capacità di ispezione del revisore e inducendo l'abbandono dell'analisi analitica a favore dell'approvazione cieca.  
+*Approfondimento nel manuale: vedi Capitolo 24 (Human Review & Formal Approval), Sezione 11.2.*
 
 #### Differential Oracle (Oracolo Differenziale)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Differential Oracle formalizzato nella tassonomia degli oracoli in Capitolo 11 (Independent Evidence & Oracles), Sezione 7 (Punto 5).*
+**Definizione:** Procedura che confronta il comportamento dell'implementazione candidata con quello di un'implementazione indipendente di riferimento (es. versione legacy collaudata o algoritmo matematicamente limpido ma non ottimizzato), sollevando allarmi su qualsiasi discrepanza.  
+*Approfondimento nel manuale: formalizzato nella tassonomia degli oracoli in Capitolo 11 (Independent Evidence & Oracles), Sezione 7 (Punto 5).*
 
 #### Discrepancy (Discrepanza)
-**Categoria:** Termine normativo consolidato  
-*Vedi: Discrepancy definita in Capitolo 22 (Discrepancy Analysis), Sezione 4 e formalizzata relazionalmente in Sezione 7.1.*
+**Categoria:** Termine normativo consolidato (IEEE 1044)  
+**Definizione:** Divergenza formale, oggettiva e documentata osservata tra il comportamento effettivo del software e un riferimento di specifica, invariante o oracolo formalmente validato e giustificato.  
+*Approfondimento nel manuale: vedi Capitolo 22 (Discrepancy Analysis), Sezione 4 e formalizzata relazionalmente in Sezione 7.1.*
 
 #### Discrepancy Analysis (Analisi delle Discrepanze)
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Discrepancy Analysis definita in Capitolo 22 (Discrepancy Analysis), Sezione 1 e Sezione 5.*
+**Definizione:** Processo strutturato e basato su prove volto a classificare l'origine di un disallineamento (nel codice, nella specifica, nell'oracolo o nell'ambiente), accertarne la causa radice sistemica e deliberare la disposizione formale della correzione.  
+*Approfondimento nel manuale: trattato estesamente in Capitolo 22 (Discrepancy Analysis).*
 
 #### Discrepancy Budget (Budget di Discrepanza)
 **Categoria:** Costrutto didattico del manuale  
-*Vedi: Discrepancy Budget definito in Capitolo 22 (Discrepancy Analysis, Sez. 4) e applicato come vincolo ai gate in Capitolo 23 (Evidence-Based Decision Gates, Sez. 4.3 e 5.3).*
+**Definizione:** Il numero massimo di discrepanze residue non bloccanti (minori o informative) tollerate formalmente dalla policy di gate per consentire la transizione condizionata verso ambienti a rischio superiore.  
+*Approfondimento nel manuale: vedi Capitolo 22 (Discrepancy Analysis, Sez. 4) e applicato come vincolo ai gate in Capitolo 23 (Decision Gates, Sez. 4.3 e 5.3).*
 
 #### Disposition (Disposizione della Discrepanza)
 **Categoria:** Termine normativo consolidato  
-*Vedi: Disposition definita nelle sue categorie formali in Capitolo 22 (Discrepancy Analysis), Sezione 4 e Sezione 5.1.*
+**Definizione:** Decisione formale di governance che delibera l'azione prescritta per gestire una discrepanza: correzione del codice (*Correct Implementation*), rettifica della specifica (*Correct Specification*), emendamento dell'oracolo o accettazione formale del rischio (*Accept As-Is*).  
+*Approfondimento nel manuale: vedi Capitolo 22 (Discrepancy Analysis), Sezione 4 e Sezione 5.1.*
 
 #### Downstream Blindness
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Downstream Blindness definita come anti-pattern architetturale in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 10 (Punto 2).*
+**Definizione:** Errore architetturale consistente nel progettare i componenti software a valle di un LLM assumendo che i dati generati dal modello siano sintatticamente e semanticamente affidabili solo perché originati da un'infrastruttura interna, omettendo la validazione deterministica.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 10 (Punto 2).*
 
 ---
 
@@ -35583,51 +35475,63 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Ephemeral Worker
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Ephemeral Worker definito nel pattern di isolamento in Capitolo 14 (Containment & Least Authority), Sezione 8.*
+**Definizione:** Modello di confinamento ed esecuzione basato su processi o container a ciclo di vita atomico e transitorio: l'ambiente viene istanziato per eseguire un singolo task, raccoglie l'output ed è immediatamente distrutto, prevenendo accumuli di memoria, processi orfani o persistenza latente.  
+*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority), Sezione 8.*
 
 #### Epistemic Laundering (Riciclaggio Epistemico)
 **Categoria:** Costrutto concettuale applicato dal manuale  
-*Vedi: Epistemic Laundering definito in Capitolo 5 (Assumptions & Unknowns), Sezione 4 e descritto nel ciclo di distorsione in Sezione 10.*
+**Definizione:** Fenomeno patologico mediante cui un'ipotesi probabilistica o un'assunzione arbitraria introdotta da un LLM viene recepita nei commenti del codice, trascritta nella documentazione di progetto e progressivamente citata fino ad assumere lo status ingiustificato di fatto accertato privo di prova empirica.  
+*Approfondimento nel manuale: vedi Capitolo 5 (Assumptions & Unknowns), Sezione 4 e descritto nel ciclo di distorsione in Sezione 10.*
 
 #### Epistemic Proxy (Sostituto Epistemico)
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Epistemic Proxy definito in Capitolo 8 (Competence Gaps), Sezione 3.4 e Sezione 4.*
+**Definizione:** L'entità (umana o modello artificiale) a cui viene delegata l'acquisizione di una certezza conoscitiva o la revisione di un componente senza che essa possieda l'indipendenza metodologica, i requisiti formali o la comprensione causale necessari per produrre evidenza valida.  
+*Approfondimento nel manuale: vedi Capitolo 8 (Competence Gaps), Sezione 3.4 e Sezione 4.*
 
 #### Epistemic Responsibility (Responsabilità Epistemica)
 **Categoria:** Concetto filosofico e di governance applicata  
-*Vedi: Epistemic Responsibility definita in Capitolo 3 (Sez. 1.2), Capitolo 15 (LLM-Assisted Implementation, Sez. 14) e Capitolo 24 (Human Review, Sez. 4.3 e 7.3).*
+**Definizione:** Il dovere professionale, etico e metodologico di giustificare razionalmente la fiducia riposta in una proprietà software, dimostrando che essa poggia su evidenze oggettive, tracciabili e indipendenti, e non sulla mera plausibilità del testo o sull'accettazione acritica di predizioni algoritmiche.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Sez. 1.2), Capitolo 15 (LLM-Assisted Implementation, Sez. 14) e Capitolo 24 (Human Review, Sez. 4.3 e 7.3).*
 
 #### Epistemic Risk (Rischio Epistemico)
 **Categoria:** Termine concettuale consolidato  
-*Vedi: Epistemic Risk e Matrice di Rischio Epistemico formalizzati in Capitolo 5 (Assumptions & Unknowns), Sezione 18.*
+**Definizione:** L'esposizione al fallimento sistemico derivante non dalla variabilità stocastica dell'ambiente, ma dalla nostra ignoranza, da assunzioni errate o dalla mancanza di conoscenza verificata sul comportamento del software, sulle dipendenze e sui vincoli di dominio.  
+*Approfondimento nel manuale: formalizzato nella Matrice di Rischio Epistemico in Capitolo 5 (Assumptions & Unknowns), Sezione 18.*
 
 #### Error Budget (Budget di Errore)
-**Categoria:** Termine normativo consolidato (SRE)  
-*Vedi: Error Budget definito in Capitolo 27 (Alerting & Runbooks), Sezione 5 e calcolato analiticamente in Sezione 8.2.*
+**Categoria:** Termine normativo consolidato (Site Reliability Engineering)  
+**Definizione:** La quota massima di inaffidabilità, scostamento o disservizio consentita a un sistema software su base temporale mobile, calcolata come complemento all'obiettivo di livello di servizio (`ErrorBudget = 1.0 - SLO`). Se esaurita, i gate bloccano i rilasci ordinari.  
+*Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 5 e formalizzato analiticamente in Sezione 8.2.*
 
 #### Evidence (Evidenza di Assurance)
 **Categoria:** Distinzione epistemica obbligatoria  
-*Vedi: Evidence definita nei principi epistemici in Nota Terminologica (Sez. 1), formalizzata nella catena di verifica in Capitolo 11 (Independent Evidence & Oracles, Sez. 5.2) e applicata ai gate in Capitolo 23 (Decision Gates, Sez. 4.1).*
+**Definizione:** Reperto empirico, formale, oggettivo, tracciabile e riproducibile (log di test, output di model checking, traccia di analisi statica) che fornisce giustificazione razionale e corroborazione a una determinata claim o proprietà critica del software.  
+*Approfondimento nel manuale: vedi Nota Terminologica iniziale (Sez. 1), Capitolo 11 (Independent Evidence & Oracles, Sez. 5.2) e Capitolo 23 (Decision Gates, Sez. 4.1).*
 
 #### Evidence Independence (Indipendenza delle Evidenze)
 **Categoria:** Concetto metodologico consolidato  
-*Vedi: Evidence Independence definita nella gerarchia dei livelli in Capitolo 1 (Sez. 11.1), formalizzata sul vettore di disaccoppiamento in Capitolo 11 (Sez. 4 e 8.1-8.3) e applicata all'audit in Capitolo 21 (Sez. 13).*
+**Definizione:** Condizione per cui la fonte probatoria e l'oracolo che attestano la conformità di una proprietà non condividono assunzioni, canali causali, modelli di prompt, dataset di addestramento o interessi organizzativi con il componente che ha generato il codice sotto esame.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 11.1), formalizzata sul vettore di disaccoppiamento in Capitolo 11 (Sez. 4 e 8) e applicata all'audit in Capitolo 21 (Sez. 13).*
 
 #### Evidence Sufficiency (Sufficienza dell'Evidenza)
 **Categoria:** Concetto metodologico consolidato  
-*Vedi: Evidence Sufficiency definita in Capitolo 11 (Sez. 6.4) e formalizzata nei requisiti decisionali di gate in Capitolo 23 (Evidence-Based Decision Gates, Sez. 4.3).*
+**Definizione:** Condizione per cui l'insieme di evidenze indipendenti raccolte è quantitativamente e qualitativamente adeguato a giustificare l'ammissione dell'artefatto al gate decisionale rispetto alla severità del rischio e alle prescrizioni dell'Assurance Level stabilito.  
+*Approfondimento nel manuale: vedi Capitolo 11 (Sez. 6.4) e formalizzata nei requisiti decisionali di gate in Capitolo 23 (Evidence-Based Decision Gates, Sez. 4.3).*
 
 #### Excessive Agency (Eccesso di Delega Agenziale)
 **Categoria:** Termine standardizzato (OWASP Top 10 for LLM)  
-*Vedi: Excessive Agency definita in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4.*
+**Definizione:** Vulnerabilità architetturale in cui a un agente software basato su LLM vengono accordati permessi, tool operativi o canali di esecuzione sproporzionati rispetto alle reali necessità di specifica, in assenza di guardrail deterministici o validazione manuale vincolante a valle.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4.*
 
 #### Expand/Contract Pattern (Pattern a Espansione e Contrazione)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Expand/Contract Pattern definito per la convivenza di schemi dati in Capitolo 25 (Staging, Canary & Flags, Sez. 5.4 e 17.2) e applicato alla reversibilità dei database in Capitolo 28 (Rollback, Sez. 5 e 9.2).*
+**Definizione:** Strategia architetturale di migrazione additiva in più fasi (chiamata anche *Parallel Run*), che consente a una versione software consolidata (Baseline) e a una nuova versione sperimentale (Canary) di coesistere e operare contemporaneamente sullo stesso database senza incompatibilità di schema.  
+*Approfondimento nel manuale: vedi Capitolo 25 (Staging, Canary & Flags, Sez. 5.4 e 17.2) e applicato alla reversibilità in Capitolo 28 (Rollback, Sez. 5 e 9.2).*
 
 #### Exploit
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-*Vedi: Exploit definito nella catena di attacco in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 6.1.*
+**Definizione:** Tecnica, sequenza di comandi, stringa di input o frammento di codice appositamente strutturato per sfruttare una specifica vulnerabilità software, forzando il sistema a deviare dal comportamento atteso o a violare i propri confini di sicurezza.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 6.1.*
 
 ---
 
@@ -35637,73 +35541,58 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### FACT (Fatto Accertato)
 **Categoria:** Stato epistemico formale del manuale  
-*Vedi: FACT definito come stato primario del modello epistemico in Capitolo 1 (Problem Definition, Sez. 3.3) e formalizzato in Capitolo 5 (Assumptions & Unknowns, Sez. 3.1 e 4).*
+**Definizione:** Proposizione verificata in modo oggettivo mediante misurazione empirica diretta, documentazione formale autoritativa, vincolo fisico o dimostrazione logica inconfutabile, priva di dipendenza da assunzioni probabilistiche non verificate.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Problem Definition, Sez. 3.3) e formalizzato in Capitolo 5 (Assumptions & Unknowns, Sez. 3.1 e 4).*
 
 #### FAIL
 **Categoria:** Stato decisionale vincolante formale del manuale  
-*Vedi: FAIL formalizzato come stato decisionale vincolante in Capitolo 1 (Sez. 13.1) e governato dalle regole di precedenza di gate in Capitolo 23 (Evidence-Based Decision Gates, Sez. 5.2).*
+**Definizione:** Stato decisionale che attesta la dimostrazione empirica o formale che una proprietà critica è stata violata, che una discrepanza ha superato il budget ammesso o che una contraddizione logica interna è presente nel sistema; impone l'arresto immediato del Decision Gate.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 13.1) e governato dalle regole di precedenza in Capitolo 23 (Evidence-Based Decision Gates, Sez. 5.2).*
 
 #### Fail-Closed vs Fail-Open
 **Categoria:** Termini tecnici consolidati  
-**In inglese:** *Fail-Closed vs Fail-Open*  
-**In italiano:** Cedimento sicuro con blocco (Fail-Closed) vs Cedimento permissivo con continuità (Fail-Open)  
-**Definizione:** Scelta architetturale che governa il comportamento del software in caso di guasto imprevisto:  
-- *Fail-Closed (Sicurezza prioritaria)*: in caso di anomalia o timeout, il sistema rifiuta l'elaborazione, revoca gli accessi o interrompe il servizio per proteggere l'integrità dei dati e la riservatezza;  
-- *Fail-Open (Disponibilità prioritaria)*: in caso di guasto, il sistema consente l'accesso o prosegue l'esecuzione per evitare disservizi all'utente, accettando un degrado temporaneo della sicurezza.  
-**Nel contesto del manuale:** Nello Step 28 (Circuit Breakers & Fallback) si prescrive che nei sistemi a medio e alto rischio (AL-2, AL-3) i guardrail debbano operare tassativamente in modalità *Fail-Closed*.  
-**Termini correlati:** Fail-Safe, Circuit Breaker, Fallback, Containment.
+**Definizione:** Scelta architetturale che governa il comportamento del software in caso di guasto imprevisto: *Fail-Closed* privilegia l'integrità e la sicurezza rifiutando l'elaborazione o revocando gli accessi; *Fail-Open* privilegia la disponibilità operativa consentendo l'accesso o proseguendo l'esecuzione con controlli degradati.  
+*Approfondimento nel manuale: vedi Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 6.2.*
 
 #### Fail-Safe
 **Categoria:** Termine normativo e ingegneristico consolidato  
-*Vedi: Fail-Safe definito nei limiti di integrità in Capitolo 1 (Sez. 5.2), nei contratti robusti in Capitolo 4 (Sez. 7.1) e distinto dalla degradazione controllata in Capitolo 28 (Rollback & Fallback, Sez. 6.2).*
+**Definizione:** Proprietà di progettazione per cui, in presenza di un guasto interno, di una violazione di precondizione o di un errore hardware, il sistema transita automaticamente e deterministicamente in uno stato sicuro predefinito che impedisce danni alle persone, all'ambiente o ai patrimoni.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 5.2), Capitolo 4 (Sez. 7.1) e distinto dal fallback in Capitolo 28 (Rollback & Fallback, Sez. 6.2).*
 
 #### Fallback
 **Categoria:** Termine tecnico d'uso professionale consolidato  
-*Vedi: Fallback definito in Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 4.1, Sezione 5 e formalizzato nella matrice di fedeltà semantica in Sezione 6.2.*
+**Definizione:** Ramo esecutivo alternativo e controllato attivato a fronte dell'indisponibilità, del timeout o del fallimento del percorso primario, preposto a generare una risposta deterministica, parziale o differita, salvaguardando le proprietà minime a costo di una fedeltà ridotta.  
+*Approfondimento nel manuale: vedi Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 4.1, Sezione 5 e Sezione 6.2.*
 
 #### False Assurance (Falsa Garanzia di Fiducia / Falsa Certezza di Correttezza)
 **Categoria:** Concetto epistemico cardine del manuale  
-**In inglese:** *False Assurance*  
-**In italiano:** Falsa garanzia di fiducia / falsa certezza di correttezza  
-**Definizione:** Lo stato patologico di un processo di ingegneria o di governance in cui un'organizzazione nutre una fiducia razionalmente ingiustificata nella correttezza, sicurezza o adeguatezza di un sistema software, generata da verifiche tautologiche, metriche non pertinenti, oracoli correlati o compiacenza algoritmica.  
-**Nel contesto del manuale:** È il nemico metodologico primario dell'opera. Il manuale ne prescrive la definizione evitando "falsa sicurezza", termine che ingenera confusione linguistica con i concetti di *security* o *safety*.  
-**Termini correlati:** Plausibility Trap, Sycophancy, Green Board Fallacy, Echo Chamber Gate.
+**Definizione:** Stato patologico in cui un'organizzazione o un team nutre una fiducia razionalmente ingiustificata nella correttezza, sicurezza o adeguatezza di un sistema software, indotta da verifiche superficiali, oracoli tautologici, metriche non pertinenti o compiacenza del modello linguistico.  
+*Approfondimento nel manuale: trattato sistematicamente in tutti i capitoli dell'opera (in particolare Step 1, 10, 11, 16, 20, 23 e 24).*
 
 #### Feature Flag (Feature Toggle)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Feature Flag definito in Capitolo 25 (Staging, Canary & Feature Flags), Sezione 4.3 e formalizzato nei vincoli di fail-safe default in Sezione 5.3.*
+**Definizione:** Meccanismo decisionale valutato a runtime che consente di attivare, disattivare o rimodulare selettivamente percorsi logici del codice senza procedere alla ridistribuzione del binario software, separando fisicamente il deployment dal rilascio effettivo del servizio.  
+*Approfondimento nel manuale: vedi Capitolo 25 (Staging, Canary & Feature Flags), Sezione 4.3 e Sezione 5.3.*
 
 #### Finding (Riscontro / Risultato di Verifica)
 **Categoria:** Termine normativo e metodologico consolidato  
-**In inglese:** *Finding*  
-**In italiano:** Riscontro di verifica, rilievo formale  
-**Definizione:** Evidenza oggettiva e verificabile emersa durante un'attività di audit, analisi statica, test o indagine post-deployment, che attesta una non-conformità rispetto a un criterio o evidenzia una vulnerabilità/discrepanza accertata.  
-**Nel contesto del manuale:** Negli Step 17, 22, 29 e 32 alimenta il catalogo delle discrepanze e l'aggiornamento della Knowledge Base.  
-**Termini correlati:** Discrepancy, Audit, Post-Deployment Evidence.
+**Definizione:** Evidenza oggettiva e verificabile emersa durante un'attività di audit, analisi statica, test o indagine post-deployment, che attesta una non-conformità rispetto a un criterio o evidenzia una vulnerabilità/discrepanza accertata nel codice o nei processi.  
+*Approfondimento nel manuale: vedi Capitolo 17, Capitolo 22, Capitolo 29 e Capitolo 32.*
 
 #### Flaky Test (Test Instabile / Intermittente)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Flaky Test*  
-**In italiano:** Test intermittente / non deterministico  
-**Definizione:** Caso di test automatizzato che, a parità di codice sorgente, configurazione dell'ambiente di esecuzione e dati di input forniti, manifesta esiti discordanti (alternando PASS e FAIL) tra esecuzioni successive ripetute.  
-**Nel contesto del manuale:** Trattato negli Step 16 (Automated Testing) e 23 (Evidence-Based Decision Gates) come spia critica di corse concorrenti (race conditions), assunzioni temporali fragili, mancato isolamento delle risorse o asincronie non controllate nel codice generato o assistito da LLM. Il manuale vieta esplicitamente l'anti-pattern del *Flaky Test Silencing* (rieseguire ciclicamente il test fino a ottenere casualmente un esito verde per sbloccare la pipeline).  
-**Distinzioni importanti:** `Flaky Test != Test non deterministico accettabile`. Un test intermittente non rappresenta un disturbo transitorio innocuo, ma la prova empirica dell'esistenza di stati concorrenti o temporali in cui un'invariante di sistema viene violata.  
-**Nota epistemica:** Silenziare l'intermittenza tramite retry automatici occulta l'evidenza del guasto, trasformando una dimostrazione positiva di difetto (`FAIL`) in una falsa sicurezza (`PASS`).  
-**Termini correlati:** Automated Testing, Decision Gate, Race Condition, False Assurance.
+**Definizione:** Caso di test automatizzato che, a parità di codice sorgente, configurazione di runtime e input forniti, manifesta esiti discordanti (alternando PASS e FAIL) tra esecuzioni successive. Costituisce la prova empirica di race condition, dipendenze temporali o assunzioni fragili, la cui intermittenza non deve mai essere silenziata con retry automatici.  
+*Approfondimento nel manuale: vedi Capitolo 16 (Automated Testing, Sez. 4) e Capitolo 23 (Decision Gates, Sez. 10.2).*
 
 #### Functional Core, Imperative Shell (Nucleo Funzionale e Guscio Imperativo)
 **Categoria:** Pattern architetturale consolidato  
-**In inglese:** *Functional Core, Imperative Shell*  
-**In italiano:** Nucleo funzionale puro e guscio imperativo  
-**Definizione:** Pattern di progettazione architetturale che isola la logica di calcolo del software in un nucleo interno costituito esclusivamente da funzioni pure e deterministiche (prive di effetti collaterali, accessi al filesystem, socket di rete o letture del clock), demandando la gestione dello stato mutabile, dell'I/O e dell'orchestrazione a un guscio perimetrale esterno.  
-**Nel contesto del manuale:** Nello Step 13 (Implementation Design) costituisce il pattern cardine per governare il codice generato da LLM: confinando la logica di business nel nucleo puro, si rende possibile testare e confutare gli invarianti critici tramite Property-Based Testing (Step 18) in modo deterministico e immediato, senza dipendere da mock o da ambienti esterni complessi.  
-**Distinzioni importanti:** `Functional Core != Assenza di I/O nel sistema`. L'I/O non viene eliminato, ma concentrato e confinato nel guscio (*Imperative Shell*), impedendogli di inquinare la logica delle decisioni e il presidio degli invarianti.  
-**Nota epistemica:** Il nucleo funzionale abilita la *Modular Assurance*: garantisce che la correttezza delle proprietà critiche possa essere provata localmente senza dover orchestrare l'intero stack distribuito.  
-**Termini correlati:** Implementation Design, Locus of Enforcement, Property-Based Testing, Containment, Type-Driven Design.
+**Definizione:** Schema di progettazione che isola l'intera logica di dominio in un nucleo di funzioni pure e deterministiche (prive di accessi a disco, rete o clock), relegando lo stato mutabile e l'I/O a un guscio perimetrale. Nel codice assistito da LLM abilita la verifica modulare degli invarianti tramite property-based testing senza dipendere da mock complessi.  
+*Approfondimento nel manuale: formalizzato per il codice assistito da LLM in Capitolo 13 (Implementation Design), Sezione 4.2 e Sezione 5.*
 
 #### Fuzzing (Fuzz Testing)
 **Categoria:** Termine tecnico d'uso professionale consolidato  
-*Vedi: Fuzzing definito in Capitolo 18 (Property-Based Testing, Fuzzing & Adversarial Testing), Sezione 4 e categorizzato nelle sue architetture in Sezione 5.2.*
+**Definizione:** Tecnica di verifica dinamica che inietta flussi massicci di dati casuali, semi-strutturati o mutati all'interno delle interfacce software, monitorando l'insorgenza di crash, violazioni di memoria, loop infiniti o eccezioni non controllate (spesso guidata dalla copertura dei rami).  
+*Approfondimento nel manuale: formalizzato analiticamente in Capitolo 18 (PBT, Fuzzing & Adversarial Testing), Sezione 4 e Sezione 5.2.*
 
 ---
 
@@ -35713,27 +35602,33 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### GameDay (Esercitazione Operativa di Guasto)
 **Categoria:** Termine tecnico consolidato (Site Reliability Engineering)  
-*Vedi: GameDay definito come procedura di collaudo empirico in Capitolo 27 (Alerting & Runbooks), Sezione 5 e Sezione 15.2.*
+**Definizione:** Sessione controllata e pianificata in ambiente clone in cui viene iniettato deliberatamente un guasto di sistema per misurare empiricamente l'efficacia delle regole di allarme e verificare l'eseguibilità concreta dei runbook da parte del personale reperibile.  
+*Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 5 e Sezione 15.2.*
 
 #### Gate Theater (La Finzione del Gate)
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Gate Theater definito come anti-pattern di conformità superficiale in Capitolo 23 (Evidence-Based Decision Gates), Sezione 11.2.*
+**Definizione:** Allestimento di un'infrastruttura di controllo e gating visivamente complessa e ricca di dashboard formali, le cui regole interne sono tuttavia prive di effettivo potere bloccante (es. flag di prosecuzione automatica su errore o soglie permissive prive di controllo semantico).  
+*Approfondimento nel manuale: vedi Capitolo 23 (Evidence-Based Decision Gates), Sezione 11.2.*
 
 #### Ghost Code (Codice Fantasma)
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Ghost Code definito in Capitolo 15 (LLM-Assisted Implementation), Sezione 4 e disciplinato nel protocollo di audit in Sezione 15.*
+**Definizione:** Porzioni di codice sorgente, rami decisionali, costrutti difensivi opachi o dipendenze presenti nel codice generato dall'LLM che non derivano da alcun requisito della specifica né da vincoli architetturali approvati, introdotti per completamento statistico arbitrario del modello.  
+*Approfondimento nel manuale: vedi Capitolo 15 (LLM-Assisted Implementation), Sezione 4 e Sezione 15.*
 
 #### Golden Calibration Set
-**Categoria:** Termine tecnico consolidato  
-*Vedi: Golden Calibration Set definito come dataset di riferimento congelato in Capitolo 32 (Periodic Review), Sezione 5, Sezione 9 e Sezione 17.*
+**Categoria:** Termine tecnico consolidato (ML Engineering)  
+**Definizione:** Insieme di dati di prova, casi clinici, estratti contabili o scenari di business storici, congelati e convalidati formalmente da commissioni di esperti indipendenti, utilizzato per misurare la deriva semantica (drift) o le allucinazioni del modello a parità di input nel tempo.  
+*Approfondimento nel manuale: vedi Capitolo 32 (Periodic Review), Sezione 5, Sezione 9 e Sezione 17.*
 
 #### Green Board Fallacy (La Fallacia della Bacheca Verde)
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Green Board Fallacy definita in Capitolo 23 (Decision Gates, Sez. 11.1) e contestualizzata per l'assenza di allarmi in Capitolo 27 (Alerting, Sez. 12.2).*
+**Definizione:** Errore cognitivo ed epistemico consistente nel dedurre che un'applicazione sia priva di difetti o pronta per la produzione unicamente dal fatto che tutte le spie o i job della dashboard di Continuous Integration risultino verdi, ignorando se i test siano tautologici o ciechi sui requisiti.  
+*Approfondimento nel manuale: vedi Capitolo 23 (Decision Gates, Sez. 11.1) e Capitolo 27 (Alerting, Sez. 12.2).*
 
 #### Ground Truth (Verità di Riferimento / Verità sul Campo)
 **Categoria:** Termine scientifico consolidato  
-*Vedi: Ground Truth definita in Capitolo 5 (Assumptions & Unknowns, Sez. 4) e applicata agli oracoli di benchmark in Capitolo 18 (Sez. 16.3).*
+**Definizione:** Lo stato reale, fattuale e oggettivo del dominio fisico, biologico, legale o matematico, accertato tramite evidenza empirica diretta e indipendente da qualsiasi modello simbolico o interpretazione generata da un LLM.  
+*Approfondimento nel manuale: vedi Capitolo 5 (Assumptions & Unknowns, Sez. 4) e applicato negli oracoli di benchmark in Capitolo 11 (Independent Evidence & Oracles, Sez. 16.3 e 17.3).*
 
 ---
 
@@ -35742,34 +35637,34 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 ### H
 
 #### Hazard (Pericolo di Sistema)
-**Categoria:** Termine normativo consolidato  
-*Vedi: Hazard definito e distinto dall'Harm in Capitolo 2 (Risk Classification, Sez. 3.1 e 4) e formalizzato come punto di innesco del rischio in Capitolo 30 (Risk Register, Sez. 4).*
+**Categoria:** Termine normativo consolidato (Safety Engineering)  
+**Definizione:** Condizione di stato intrinseca del sistema software che, in congiunzione con specifiche condizioni ambientali esterne avverse, genera il potenziale per causare un danno (*Harm*) nel mondo reale.  
+*Approfondimento nel manuale: formalizzato e distinto dall'Harm in Capitolo 2 (Risk Classification, Sez. 3.1 e 4) e mappato nel Risk Register in Capitolo 30 (Sez. 4).*
 
 #### High Cardinality (Alta Cardinalità)
 **Categoria:** Termine tecnico consolidato (telemetria e database)  
-*Vedi: High Cardinality definita nella telemetria applicativa in Capitolo 26 (Observability), Sezione 4.3 e Sezione 5.3.*
+**Definizione:** Proprietà di un insieme di dati telemetrici o metriche che presentano un numero elevatissimo di valori unici e distinti (es. `user_id`, `transaction_id`, `trace_id`), indispensabile per isolare anomalie o allucinazioni logiche rare che colpiscono singole transazioni, ma onerosa per costi di archiviazione ed elaborazione.  
+*Approfondimento nel manuale: vedi Capitolo 26 (Observability), Sezione 5.3 e Sezione 8.1.*
 
 #### Hollow Test (Test Cavo)
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Hollow Test definito come anomalia di tracciabilità in Capitolo 7 (Traceability), Sezione 3.3 e Sezione 4.*
+**Definizione:** Caso di test automatizzato formalmente presente nella suite ed eseguito dalla pipeline, ma il cui oracolo è vacuo, debolissimo o non pertinente rispetto alla proprietà critica di riferimento (es. asserire unicamente che l'output non sia nullo o che il processo non sia andato in crash).  
+*Approfondimento nel manuale: vedi Capitolo 7 (Traceability), Sezione 3.3 e Sezione 4.*
 
 #### Human-in-the-Loop (HITL) / Man-in-the-loop
 **Categoria:** Modello di controllo e termine tecnico consolidato  
-**In inglese:** *Human-in-the-Loop (HITL) / Man-in-the-loop*  
-**In italiano:** Controllo con operatore umano nel loop operativo  
-**Definizione:** Modello di interazione uomo-macchina in cui un processo software automatizzato o assistito da modelli linguistici non possiede l'autorità di eseguire o finalizzare un'azione verso il mondo esterno senza la revisione, l'autorizzazione o l'intervento esplicito di un operatore umano.  
-**Nel contesto del manuale:** Formalizzato nello Step 3 (Sez. 2.3) accanto a HOTL (*Human-on-the-loop*) e HIC (*Human-in-command*), e analizzato criticamente negli Step 2, 8, 10 e 24. Il manuale decostruisce l'anti-pattern dell'«illusione della mitigazione tramite Human-in-the-Loop», dimostrando come in assenza di tempo congruo, competenza specifica e strumenti diagnostici indipendenti la presenza umana decada sistematicamente in ratifica passiva (*rubber-stamping*).  
-**Distinzioni importanti:** `Presenza umana nel loop != Controllo effettivo del rischio`. Avere un operatore che conferma un'azione non costituisce mitigazione valida se l'operatore soffre di automation bias o non dispone della riserva cognitiva per falsificare l'output del modello.  
-**Nota epistemica:** Il paradigma HITL soddisfa i criteri di assurance solo se rispetta le condizioni del *Meaningful Human Control* (carico cognitivo sostenibile, tempo di ispezione proporzionato e potere effettivo di veto).  
-**Termini correlati:** Meaningful Human Control, Rubber-Stamping, Automation Bias, Automation Complacency, Human Review, Two-Person Integrity.
+**Definizione:** Modello di interazione uomo-macchina in cui un processo software automatizzato o assistito da LLM non possiede l'autorità di eseguire o finalizzare un'azione verso il mondo esterno senza la preventiva autorizzazione di un operatore umano. Mitiga il rischio solo se rispetta le condizioni del Controllo Umano Significativo, evitando che la presenza umana decada in ratifica passiva (*rubber-stamping*).  
+*Approfondimento nel manuale: formalizzato nello Step 3 (Sez. 2.3) e analizzato criticamente negli Step 2 (Sez. 8.2), 8, 10 e 24.*
 
 #### Human Review (Revisione Umana di Assurance)
 **Categoria:** Termine di governance e normativo  
-*Vedi: Human Review definita nel processo didattico in Capitolo 24 (Human Review & Formal Approval), Sezione 1, Sezione 4.3 e Sezione 5.*
+**Definizione:** Ispezione critica, analitica ed epistemica condotta da un operatore umano qualificato sull'artefatto software e sul relativo dossier probatorio, mirata a identificare omissioni semantiche, assunzioni non dichiarate e limiti architetturali che sfuggono ai controlli automatici.  
+*Approfondimento nel manuale: trattata estesamente in Capitolo 24 (Human Review & Formal Approval).*
 
 #### HYPOTHESIS (Ipotesi di Lavoro)
 **Categoria:** Stato epistemico formale del manuale  
-*Vedi: HYPOTHESIS definita nel modello epistemico in Capitolo 1 (Problem Definition, Sez. 3.3) e formalizzata in Capitolo 5 (Assumptions & Unknowns, Sez. 3.1 e 4).*
+**Definizione:** Spiegazione o congettura provvisoria proposta per interpretare un fenomeno o prevedere un comportamento a runtime, priva di valore probatorio definitivo finché non viene confermata o confutata sperimentalmente tramite oracoli deterministici.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Problem Definition, Sez. 3.3) e Capitolo 5 (Assumptions & Unknowns, Sez. 3.1 e 4).*
 
 ---
 
@@ -35779,39 +35674,48 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Implementation Design (Progettazione dell'Implementazione)
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Implementation Design definito come strutturazione architetturale orientata alla verificabilità in Capitolo 13 (Implementation Design), Sezione 1 e Sezione 4.*
+**Definizione:** La strutturazione architetturale del sistema software in unità disaccoppiate, osservabili, contenibili e testabili isolatamente, finalizzata a rendere tecnicamente possibile la costruzione di evidenze probatorie per le proprietà critiche.  
+*Approfondimento nel manuale: trattato estesamente in Capitolo 13 (Implementation Design).*
 
 #### Incident (Incidente)
 **Categoria:** Termine normativo consolidato  
-*Vedi: Incident definito nella tassonomia fenomenologica operativa in Capitolo 29 (Post-Deployment Analysis), Sezione 4 e Sezione 7.*
+**Definizione:** Evento operativo non pianificato che ha interrotto, degradato gravemente o violato la sicurezza, l'integrità o la disponibilità di una funzione di business o di un invariante contrattuale del sistema, richiedendo un intervento di contenimento o ripristino.  
+*Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis), Sezione 4 e Sezione 7.*
 
 #### Independent Verification (Verifica Indipendente / IV&V)
-**Categoria:** Termine normativo consolidato  
-*Vedi: Independent Verification definita in Capitolo 21 (Independent Verification), Sezione 1 e Sezione 4.1.*
+**Categoria:** Termine normativo consolidato (IEEE 1012)  
+**Definizione:** Processo strutturato di verifica condotto da soggetti, processi o strumenti dotati di autonomia tecnica, manageriale, finanziaria ed epistemica rispetto a chi ha sviluppato il software, operando su specifiche formali senza condividere i bias del costruttore.  
+*Approfondimento nel manuale: trattato estesamente in Capitolo 21 (Independent Verification).*
 
 #### Independent Verification Report (IVR)
 **Categoria:** Artefatto tecnico e normativo formale  
-*Vedi: Independent Verification Report definito come artefatto probatorio formale in Capitolo 21 (Independent Verification), Sezione 4.1 e Sezione 8.2.*
+**Definizione:** Relazione tecnica strutturata e firmata emessa dall'autorità di verifica indipendente, che attesta formalmente le discrepanze rilevate, il profilo di indipendenza applicato e l'idoneità dell'evidenza per i gate decisionali.  
+*Approfondimento nel manuale: formalizzato in Capitolo 21 (Independent Verification), Sezione 4.1 e Sezione 8.2.*
 
 #### Indipendenza Epistemica (Epistemic Independence)
 **Categoria:** Costrutto concettuale cardine del manuale  
-*Vedi: Indipendenza Epistemica definita nella tassonomia dell'indipendenza in Capitolo 1 (Sez. 11.1), formalizzata sul modello del fallimento correlato in Capitolo 11 (Sez. 4 e 8) e strutturata sulle dieci dimensioni operative in Capitolo 21 (Sez. 4.2 e 13).*
+**Definizione:** Condizione in cui due processi di valutazione, oracoli o modelli non condividono la medesima catena causale di errore, le stesse assunzioni non verificate, lo stesso inquadramento di prompt o le medesime distorsioni di addestramento statistico.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 11.1), Capitolo 11 (Sez. 4 e 8) e Capitolo 21 (Sez. 4.2 e 13).*
 
 #### Indirect Prompt Injection (Iniezione Indiretta di Prompt)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-*Vedi: Indirect Prompt Injection definita come vettore di attacco a dati non fidati in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 8.2.*
+**Definizione:** Vettore di attacco in cui un modello linguistico elabora dati non attendibili provenienti da terze parti (pagine web, file PDF, email, record di database) contenenti istruzioni avversariali nascoste che sovrascrivono il system prompt primario, deviando il comportamento del modello.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 8.2.*
 
 #### Inherent Risk (Rischio Inerente)
 **Categoria:** Termine normativo consolidato (ISO 31000)  
-*Vedi: Inherent Risk definito in assenza di controlli in Capitolo 30 (Risk Register & Knowledge Base), Sezione 4 e Sezione 7.2.*
+**Definizione:** Il livello di rischio intrinseco associato a un componente, tecnologia o architettura software valutato nello stato iniziale, ovvero in assenza totale di controlli, barriere difensive o test dedicati.  
+*Approfondimento nel manuale: vedi Capitolo 30 (Risk Register & Knowledge Base), Sezione 4 e Sezione 7.2.*
 
 #### Insurance (Copertura Assicurativa)
 **Categoria:** Termine giuridico-finanziario  
-*Vedi: Insurance definita e distinta nettamente da Assurance e Warranty in Nota Terminologica (Sez. 2).*
+**Definizione:** Contratto finanziario o attuariale mediante il quale determinate conseguenze economiche derivanti dal concretizzarsi di un rischio vengono trasferite a un assicuratore terzo; non coincide con l'Assurance (giustificazione razionale della confidenza tecnica) né con la Warranty (garanzia contrattuale di conformità del prodotto).  
+*Approfondimento nel manuale: vedi Nota Terminologica iniziale (Sezione 2).*
 
 #### Invariant (Invariante di Sistema / Invariante Critico)
 **Categoria:** Termine matematico e logico consolidato  
-*Vedi: Invariant definito nei contratti in Capitolo 4 (Sez. 2.2), formalizzato matematicamente nei sistemi di transizione in Capitolo 6 (Critical Properties & Invariants, Sez. 3.3, 4 e 5.2) e presidiato architetturalmente in Capitolo 13 (Sez. 4.4).*
+**Definizione:** Proprietà logica o relazione matematica che deve essere preservata come vera attraverso tutte le operazioni, transizioni e mutazioni di stato lecite del sistema software (`forall s in ReachableStates: Invariant(s) == TRUE`).  
+*Approfondimento nel manuale: formalizzato in Capitolo 4 (Sez. 2.2), Capitolo 6 (Critical Properties & Invariants, Sez. 3.3, 4 e 5.2) e Capitolo 13 (Sez. 4.4).*
 
 ---
 
@@ -35821,11 +35725,13 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Knowledge Base di Assurance
 **Categoria:** Modello concettuale didattico formalizzato dal manuale  
-*Vedi: Knowledge Base di Assurance definita come repository istituzionale di memoria tecnica in Capitolo 30 (Risk Register & Knowledge Base), Sezione 4 e Sezione 5.*
+**Definizione:** Archivio istituzionale, persistente e machine-readable che memorizza le evidenze empiriche storiche, le assunzioni confutate, i failure mode accertati e i vincoli architetturali emersi nei post-mortem, impedendo la reintroduzione di errori noti tramite generazioni LLM.  
+*Approfondimento nel manuale: formalizzato in Capitolo 30 (Risk Register & Knowledge Base), Sezione 4, Sezione 5 e Sezione 8.*
 
 #### Knowledge Entry
 **Categoria:** Struttura dati didattica del manuale  
-*Vedi: Knowledge Entry formalizzata nello schema strutturato di registrazione in Capitolo 30 (Risk Register & Knowledge Base), Sezione 8 e Sezione 9.2.*
+**Definizione:** Scheda strutturata (in formato JSON/YAML) archiviata nella Knowledge Base che formalizza un singolo difetto sistemico accertato, documentando provenienza, descrizione tecnica del fallimento, pattern vietato, pattern conforme e regola di linter automatica per la CI/CD.  
+*Approfondimento nel manuale: formalizzata in Capitolo 30 (Risk Register & Knowledge Base), Sezione 8 e Sezione 9.2.*
 
 ---
 
@@ -35835,45 +35741,48 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Least Authority (POLA - Principio della Minima Autorità)
 **Categoria:** Termine normativo e architetturale consolidato  
-*Vedi: Principle of Least Authority definito in Capitolo 14 (Containment & Least Authority), Sezione 4 e formalizzato insiemisticamente in Sezione 7.2.*
+**Definizione:** Principio architetturale secondo cui a ogni componente software deve essere concessa esclusivamente l'autorità operativa minima indispensabile per assolvere la specifica funzionale approvata, azzerando qualsiasi facoltà o risorsa eccedente (`ExcessAuthority == vuoto`).  
+*Approfondimento nel manuale: formalizzato insiemisticamente in Capitolo 14 (Containment & Least Authority), Sezione 4 e Sezione 7.2.*
 
 #### Least Privilege (PoLP - Principio del Minimo Privilegio)
 **Categoria:** Termine architetturale e normativo consolidato  
-*Vedi: Principle of Least Privilege definito in Capitolo 14 (Containment & Least Authority), Sezione 4 e distinto da Least Authority in Sezione 6 (Punto 1).*
+**Definizione:** Principio di sicurezza incentrato sull'assegnazione dei soli permessi e ruoli formali (identità utente, permessi POSIX, ruoli RBAC) strettamente necessari; nel manuale è trattato come uno strumento attuativo della più ampia Least Authority.  
+*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority), Sezione 4 e Sezione 6.*
 
 #### Lessons Learned (Lezioni Apprese)
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Lessons Learned definite nella catena di retroazione dell'assurance in Capitolo 33 (Closure & Lessons Learned), Sezione 4, Sezione 5 e Sezione 6.4.*
+**Definizione:** La sintesi concettuale strutturata degli scostamenti tra previsioni teoriche ed evidenze empiriche osservate sul campo, formulata come raccomandazione o ipotesi di miglioramento per aggiornare i requisiti e prevenire l'amnesia organizzativa.  
+*Approfondimento nel manuale: vedi Capitolo 33 (Closure & Lessons Learned), Sezione 4, Sezione 5 e Sezione 6.4.*
 
 #### LGTM Syndrome (Looks Good To Me)
 **Categoria:** Anti-pattern denominato dal manuale (gergo formalizzato)  
-*Vedi: LGTM Syndrome definita come anti-pattern di revisione acritica in Capitolo 24 (Human Review & Formal Approval), Sezione 11.1.*
+**Definizione:** Pratica scorretta consistente nell'approvare formalmente una pull request o un diff di codice generato da LLM sulla base di una lettura superficiale o della rassicurazione data da una suite di test verde, abdicando all'ispezione critica dei percorsi asincroni e degli invarianti.  
+*Approfondimento nel manuale: vedi Capitolo 24 (Human Review & Formal Approval), Sezione 11.1.*
 
 #### Liveness Property (Proprietà di Vivacità)
 **Categoria:** Termine logico-scientifico consolidato  
-*Vedi: Liveness Property definita in Capitolo 4 (Specification, Sez. 2.3) e formalizzata per le tracce infinite in Capitolo 6 (Critical Properties & Invariants, Sez. 3.4 e 4).*
+**Definizione:** Condizione formale che stabilisce che uno stato desiderato o un evento favorevole si verificherà prima o poi nel corso dell'esecuzione del sistema; non può essere confutata da una traccia finita e richiede verifiche temporizzate o dimostrazioni di terminazione.  
+*Approfondimento nel manuale: vedi Capitolo 4 (Specification, Sez. 2.3) e Capitolo 6 (Critical Properties & Invariants, Sez. 3.4 e 4).*
 
 #### LLM (Large Language Model)
 **Categoria:** Acronimo / Termine tecnico consolidato  
-*Vedi: Large Language Model introdotto nell'ambito dell'assurance in Capitolo 1 (Sez. 1) e analizzato nei suoi vettori di compiacenza e allucinazione in Capitolo 1 (Sez. 10).*
+**Definizione:** Modello computazionale probabilistico basato su architetture deep learning (generalmente Transformer) addestrato su moli massive di dati testuali per stimare distribuzioni di probabilità su sequenze di token, capace di generare codice, documentazione e sintesi in linguaggio naturale.  
+*Approfondimento nel manuale: analizzato nei limiti e nelle fallacie epistemiche in Capitolo 1 (Sez. 1.2 e 10) e trattato trasversalmente nell'opera.*
 
 #### LLM-as-a-Judge
 **Categoria:** Termine tecnico d'uso professionale / Anti-pattern metodologico  
-**In inglese:** *LLM-as-a-Judge*  
-**In italiano:** Giudizio / valutazione delegata a un LLM  
-**Definizione:** Pratica consistente nell'impiegare un modello linguistico per valutare, validare, criticare o classificare la correttezza, la sicurezza o l'aderenza a specifiche dell'output, del codice o dei test generati da un altro modello (o da se stesso), emettendo punteggi o verdetti di accettabilità.  
-**Nel contesto del manuale:** Esaminato negli Step 8, 11, 20 e 23 come manifestazione di *Epistemic Proxy* e potenziale generatore di falsa assurance. Il manuale ne vieta l'uso come oracolo di sicurezza autonomo o arbitro nei Decision Gate per livelli di rischio medio-alti (AL-2, AL-3), evidenziando che i modelli condividono la medesima natura statistica, dataset di pre-addestramento sovrapposti e vulnerabilità alla compiacenza (*sycophancy*).  
-**Distinzioni importanti:** `LLM-as-a-Judge != Independent Verification`. L'accordo o la valutazione espressa da un LLM su un altro LLM costituisce al più una *second opinion* correlata, mai un'evidenza probatoria indipendente o un oracolo deterministico disaccoppiato.  
-**Nota epistemica:** L'adozione di un LLM come giudice non vincolato a oracoli formali introduce un regresso all'infinito (chi valida l'oracolo che valida l'oracolo?) e maschera i difetti tramite allucinazioni diagnostiche persuasive.  
-**Termini correlati:** Multi-Model Audit, Multi-Agent Echo Chamber, Sycophancy, Oracle Independence, Correlated Error, Epistemic Proxy.
+**Definizione:** Pratica consistente nell'impiegare un modello linguistico per valutare, validare o classificare la correttezza del codice o dei test generati da un altro modello (o da se stesso). Il manuale ne vieta l'uso come oracolo di sicurezza autonomo per livelli AL-2 e AL-3 a causa dei bias correlati.  
+*Approfondimento nel manuale: vedi Capitolo 8 (Sez. 3.4), Capitolo 11 (Sez. 11.1), Capitolo 20 (Sez. 5) e Capitolo 23 (Sez. 11.4).*
 
 #### LLM-Assisted Implementation (Sviluppo Assistito da LLM)
 **Categoria:** Termine d'arte e metodologico del manuale  
-*Vedi: LLM-Assisted Implementation definita come trasformazione condizionata in Capitolo 15 (LLM-Assisted Implementation), Sezione 1 e Sezione 4.*
+**Definizione:** Processo di costruzione del software in cui il modello linguistico sintetizza il codice applicativo operando all'interno di una gabbia architetturale deterministica, vincolato da contratti immutabili, tipi statici rigidi e guardrail difensivi (*Invariant Embedding*).  
+*Approfondimento nel manuale: trattato estesamente in Capitolo 15 (LLM-Assisted Implementation).*
 
 #### Locus of Enforcement (Punto Esclusivo di Presidio)
 **Categoria:** Costrutto operativo e architetturale consolidato nel manuale  
-*Vedi: Locus of Enforcement definito come principio architetturale di unicità del controllo in Capitolo 13 (Implementation Design), Sezione 4.4 e Sezione 5.*
+**Definizione:** Il punto architetturale non ambiguo, circoscritto e chiaramente identificato a cui è delegata in via esclusiva la responsabilità di presidiare un invariante critico, impedendo che i controlli siano dispersi o duplicati in modo non verificabile nell'applicazione.  
+*Approfondimento nel manuale: vedi Capitolo 13 (Implementation Design), Sezione 4.4 e Sezione 5.*
 
 ---
 
@@ -35883,54 +35792,49 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Meaningful Human Control (Controllo Umano Significativo)
 **Categoria:** Termine etico e normativo consolidato  
-*Vedi: Meaningful Human Control definito nella triade di sostenibilità cognitiva in Capitolo 3 (Authority & Responsibility), Sezione 4 e Sezione 5.4.*
+**Definizione:** Condizione operativa in cui un supervisore umano dispone di sostenibilità del carico cognitivo, tempo di ispezione proporzionato, comprensione dell'informazione e potere tecnico effettivo di veto per bloccare un'azione autonoma o automatizzata prima che si tramuti in danno.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Authority & Responsibility), Sezione 4 e Sezione 5.4.*
 
 #### Metamorphic Testing (Testing Metamorfico)
 **Categoria:** Termine scientifico consolidato  
-*Vedi: Metamorphic Testing definito nella tassonomia degli oracoli in Capitolo 11 (Sez. 7, Punto 4) e applicato al testing di proprietà in Capitolo 18 (PBT, Sez. 4 e 13).*
+**Definizione:** Metodologia di collaudo che risolve il problema dell'oracolo verificando relazioni necessarie tra gli output di esecuzioni multiple a fronte di specifiche trasformazioni logiche degli input (es. se moltiplico per due l'input ordinato, la lunghezza dell'output deve raddoppiare).  
+*Approfondimento nel manuale: vedi Capitolo 11 (Sez. 7) e Capitolo 18 (PBT, Fuzzing & Adversarial Testing, Sez. 4 e 13).*
 
 #### MITRE ATLAS
 **Categoria:** Acronimo / Standard di sicurezza aperto  
-*Vedi: MITRE ATLAS definito come knowledge base di tattiche e procedure avversariali per AI in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4.*
+**Definizione:** Knowledge base globale aperta di tattiche, tecniche e procedure (TTP) avversariali basata sull'osservazione empirica di attacchi reali condotti contro sistemi che integrano componenti di machine learning e intelligenza artificiale.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4.*
 
 #### Model Drift (Deriva del Modello)
 **Categoria:** Termine scientifico consolidato (Machine Learning)  
-*Vedi: Model Drift definito come variazione statistica delle risposte LLM nel tempo in Capitolo 32 (Periodic Review), Sezione 5 e Sezione 17.*
+**Definizione:** La variazione statistica misurabile nelle risposte, nell'accuratezza o nell'aderenza ai vincoli esibita da un modello linguistico nel tempo a parità di prompt, dovuta ad aggiornamenti interni opachi o modifiche delle policy da parte del fornitore cloud.  
+*Approfondimento nel manuale: vedi Capitolo 32 (Periodic Review), Sezione 5 e Sezione 17.*
 
 #### Modello Mondo-Macchina (World-Machine Model / Jackson & Zave)
 **Categoria:** Modello concettuale ed epistemico consolidato  
-**In inglese:** *World-Machine Model*  
-**In italiano:** Modello Mondo-Macchina  
-**Definizione:** Modello formale dell'ingegneria dei requisiti (derivato da Michael Jackson e Pamela Zave) che esprime la correttezza condizionale del software attraverso la relazione di conseguenza logica semantica `W AND S |= R`: se le assunzioni sul mondo esterno (`W`) sono vere e la macchina rispetta la specifica (`S`) alla frontiera dei fenomeni condivisi, allora i requisiti (`R`) nel mondo reale risultano logicamente soddisfatti.  
-**Nel contesto del manuale:** Costituisce la base epistemica della Parte I (sviluppata nella Guida ai 5 concetti fondamentali e negli Step 1, 2 e 4). Stabilisce che il software in sé non produce danni direttamente: il danno si manifesta sempre nel Mondo esterno (`W`) quando i simboli attraversano l'interfaccia.  
-**Distinzioni importanti:** `Macchina corretta (M |= S) != Requisito soddisfatto (R)`. Se una delle assunzioni sul contesto esterno si rivela falsa nella realtà operativa (`W_reale != W_assunto`), la macchina opererà senza bug rispetto alla specifica ma violerà comunque i requisiti del mondo reale, provocando incidenti.  
-**Nota epistemica:** Demolisce l'alibi difensivo *"il codice ha funzionato perfettamente, è l'utente o il sensore che ha sbagliato"*: l'assurance impone di progettare la specifica tenendo conto delle fragilità e dei limiti del mondo circostante.  
-**Termini correlati:** Requirement, Specification, Assumption, Conditional Correctness, Adeguatezza, Shared Phenomena.
+**Definizione:** Modello formale dell'ingegneria dei requisiti che esprime la garanzia condizionale del software mediante la formula logica `W AND S |= R`: se le assunzioni sul mondo esterno (`W`) sono vere e la macchina rispetta la specifica (`S`), allora i requisiti reali (`R`) sono logicamente soddisfatti.  
+*Approfondimento nel manuale: formalizzato in Guida ai 5 concetti fondamentali, Capitolo 1 (Sez. 2.2) e Capitolo 4 (Sez. 2.1).*
 
 #### Multi-Agent Echo Chamber
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Multi-Agent Echo Chamber definita come anti-pattern di validazione circolare tra modelli in Capitolo 20 (Multi-Model Audit), Sezione 11.1.*
+**Definizione:** Configurazione patologica in cui più agenti o modelli linguistici (es. programmatore, revisore, security officer) interagiscono approvando reciprocamente il proprio codice su basi puramente linguistiche, moltiplicando la plausibilità apparente di una soluzione difettosa priva di riscontro empirico.  
+*Approfondimento nel manuale: formalizzato in Capitolo 20 (Multi-Model Audit), Sezione 11.1.*
 
 #### Multi-Model Audit
 **Categoria:** Costrutto didattico/operativo formalizzato dal manuale  
-*Vedi: Multi-Model Audit definito nel protocollo di revisione comparativa in Capitolo 20 (Multi-Model Audit), Sezione 1 e Sezione 4.*
+**Definizione:** Pratica di verifica in cui lo stesso artefatto di codice o specifica viene sottoposto in modalità cieca a più modelli linguistici per estrarre discrepanze e disaccordi, con il vincolo che il consenso unanime non costituisce prova di correttezza e il disaccordo impone l'arbitrato umano.  
+*Approfondimento nel manuale: trattato estesamente in Capitolo 20 (Multi-Model Audit).*
 
 #### Mutation Score (Punteggio di Mutazione)
 **Categoria:** Termine scientifico consolidato  
-**In inglese:** *Mutation Score*  
-**In italiano:** Punteggio / tasso di mutazione  
-**Definizione:** Metrica quantitativa che esprime il rapporto tra il numero di mutanti sintetici uccisi da una suite di test e il numero totale di mutanti generati non equivalenti:  
+**Definizione:** Rapporto numerico che misura la capacità discriminante di una suite di test, calcolato dividendo il numero di mutanti sintetici rilevati e uccisi per il numero totale di mutanti generati non equivalenti:  
 `MutationScore = (Mutanti Uccisi) / (Mutanti Totali - Mutanti Equivalenti)`  
-**Nel contesto del manuale:** Nello Step 16 quantifica il potere discriminante di una test suite, superando la pura copertura di riga.  
-**Termini correlati:** Mutation Testing, Discriminating Power.
+*Approfondimento nel manuale: formalizzato in Capitolo 16 (Automated Testing), Sezione 4 e Sezione 8.*
 
 #### Mutation Testing (Analisi di Mutazione)
 **Categoria:** Termine scientifico consolidato  
-**In inglese:** *Mutation Testing*  
-**In italiano:** Test di mutazione  
-**Definizione:** Tecnica di collaudo empirico consistente nell'iniettare alterazioni sintattiche deliberate nel codice sorgente per valutare se la suite di test possieda il potere discriminante di fallire a fronte di modifiche logiche.  
-**Nel contesto del manuale:** Trattata nello Step 16.  
-**Termini correlati:** Mutation Score, Automated Testing.
+**Definizione:** Metodologia empirica di collaudo che consiste nell'iniettare alterazioni sintattiche deliberate nel codice sorgente (es. invertire un operatore logico) per verificare se la suite di test possieda il potere discriminante di fallire intercettando la mutazione.  
+*Approfondimento nel manuale: vedi Capitolo 16 (Automated Testing), Sezione 4, Sezione 8 e Sezione 20.*
 
 ---
 
@@ -35940,28 +35844,28 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Near Miss (Quasi-incidente)
 **Categoria:** Termine normativo consolidato (Safety Engineering)  
-*Vedi: Near Miss definito nella fenomenologia degli eventi operativi in Capitolo 29 (Post-Deployment Analysis), Sezione 4 e illustrato in Sezione 12 (Scenario B).*
+**Definizione:** Condizione operativa critica in cui una grave rottura di sicurezza o un collasso sistemico è stato evitato solo per una contingenza favorevole o per un margine temporale minimo, costituendo evidenza empirica della presenza di un difetto latente nel software.  
+*Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis), Sezione 4 e Sezione 12 (Scenario B).*
 
 #### Negative Memory (Memoria Negativa di Assurance)
 **Categoria:** Costrutto metodologico proprio del manuale  
-**In inglese:** *Negative Memory*  
-**In italiano:** Memoria negativa dell'assurance  
-**Definizione:** La documentazione formale, esplicita e tracciabile di ciò che *non* è stato verificato, delle proprietà che sono rimaste in stato UNKNOWN, delle assunzioni prive di corroborazione empirica e delle condizioni operative limite al di fuori delle quali l'assurance decade.  
-**Nel contesto del manuale:** Costituisce il cardine dello Step 33 (Closure & Lessons Learned). Funge da barriera contro l'amnesia epistemica, impedendo che l'assenza di dati su una proprietà venga scambiata nel tempo per una garanzia di correttezza.  
-**Distinzioni importanti:** `Negative Memory != Registro dei Bug`. Non elenca i difetti del codice, ma i confini invalicabili entro cui le decisioni di rilascio sono state assunte.  
-**Termini correlati:** UNKNOWN, Assurance Closure Package, Risk Register.
+**Definizione:** La registrazione esplicita, strutturata e non occultata di ciò che *non* è stato verificato, delle proprietà rimaste in stato UNKNOWN, delle assunzioni prive di corroborazione e delle condizioni limite entro cui le decisioni di rilascio sono state assunte.  
+*Approfondimento nel manuale: formalizzato in Capitolo 33 (Closure & Lessons Learned), Sezione 5 e Sezione 16.*
 
 #### Negative Testing
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Negative Testing definito per le verifiche di confine in Capitolo 14 (Sez. 15) e formalizzato per il rigetto di input illeciti in Capitolo 16 (Automated Testing, Sez. 4 e 9.1).*
+**Definizione:** Procedura di collaudo volta ad accertare che il sistema rifiuti, intercetti o gestisca in sicurezza input non validi, violazioni di precondizioni, formati corrotti o tentativi deliberati di violazione dei perimetri di autorizzazione.  
+*Approfondimento nel manuale: vedi Capitolo 14 (Sez. 7.4), Capitolo 16 (Automated Testing, Sez. 4 e 9.1) e Appendice Sandbox (Sez. 7.4).*
 
 #### NO-GO
 **Categoria:** Stato decisionale vincolante formale del manuale  
-*Vedi: NO-GO formalizzato come stato decisionale di blocco assoluto in Capitolo 1 (Sez. 13.1), Capitolo 2 (Sez. 13.1) e governato come vincolo insuperabile di policy in Capitolo 23 (Evidence-Based Decision Gates, Sez. 5.2).*
+**Definizione:** Verdetto decisionale di blocco assoluto ed inderogabile emesso da un Decision Gate che vieta la promozione del software all'ambiente successivo a fronte di violazioni di invarianti critici, oracoli non indipendenti o assenza di evidenze probatorie.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 13.1), Capitolo 2 (Sez. 13.1) e formalizzato in Capitolo 23 (Decision Gates, Sez. 5.2).*
 
 #### NOT APPLICABLE
 **Categoria:** Stato decisionale formale del manuale  
-*Vedi: NOT APPLICABLE formalizzato nel modello degli stati decisionali in Capitolo 1 (Sez. 13.1) e applicato ai claim non pertinenti in Capitolo 23 (Evidence-Based Decision Gates, Sez. 5.2).*
+**Definizione:** Qualifica attribuita a un controllo o requisito di gate qualora la proprietà considerata non sia formalmente pertinente rispetto all'architettura, al modello di esecuzione o al dominio applicativo del modulo sotto esame.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 13.1) e Capitolo 23 (Evidence-Based Decision Gates, Sez. 5.2).*
 
 ---
 
@@ -35971,44 +35875,38 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Objective (Obiettivo di Sistema)
 **Categoria:** Distinzione epistemica obbligatoria  
-*Vedi: Objective definito in Capitolo 1 (Problem Definition, Sez. 3.1 e 4) e distinto formalmente dal Requirement in Capitolo 1 (Sez. 6.1).*
+**Definizione:** La finalità primaria di valore, sicurezza o conformità desiderata nel mondo reale che giustifica l'esistenza della Macchina dal punto di vista degli stakeholder, distinta dal requisito tecnico che ne prescrive l'attuazione.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Problem Definition, Sez. 3.1, 4 e 6.1).*
 
 #### Observability (Osservabilità)
 **Categoria:** Termine tecnico e di teoria dei sistemi consolidato  
-**In inglese:** *Observability*  
-**In italiano:** Osservabilità  
-**Definizione:** La proprietà architetturale che consente di dedurre lo stato interno di un sistema software e il rispetto degli invarianti basandosi esclusivamente sui dati telemetrici emessi verso l'esterno.  
-**Nel contesto del manuale:** Nello Step 26 è definita in generale, specificando poi la nozione di *osservabilità semantica* (invarianti di dominio) rispetto al semplice monitoraggio di piattaforma.  
-**Distinzioni importanti:** `Observability != Monitoring`.  
-**Termini correlati:** Runtime Invariant Probes, High Cardinality, MELT.
+**Definizione:** La proprietà architetturale che consente di dedurre lo stato logico interno del software e il rispetto degli invarianti basandosi esclusivamente sui dati telemetrici (metriche, log, tracce) emessi verso l'esterno, superando il monitoraggio puramente infrastrutturale.  
+*Approfondimento nel manuale: trattata estesamente in Capitolo 26 (Observability).*
 
 #### Oracle (Oracolo di Test)
 **Categoria:** Termine logico e scientifico consolidato  
-*Vedi: Test Oracle introdotto nel problema dell'oracolo in Capitolo 11 (Sez. 3.1, 4 e 5) e formalizzato come principio decisionale indipendente in Capitolo 16 (Automated Testing, Sez. 4 e 5).*
+**Definizione:** Il principio, meccanismo, formula o riferimento indipendente che stabilisce in modo deterministico e falsificabile se l'output o il comportamento osservato del software a fronte di uno stimolo sia conforme o difforme rispetto alla specifica.  
+*Approfondimento nel manuale: formalizzato nel problema dell'oracolo in Capitolo 11 e applicato al testing in Capitolo 16 e Capitolo 18.*
 
 #### Oracle Correctness (Correttezza dell'Oracolo)
 **Categoria:** Distinzione epistemica obbligatoria  
-**In inglese:** *Oracle Correctness*  
-**In italiano:** Correttezza logica dell'oracolo  
-**Definizione:** La validità concettuale del criterio di giudizio dell'oracolo rispetto all'intento della specifica, distinta dall'assenza di bug nello script software che implementa tale oracolo (*Oracle Implementation Correctness*).  
-**Nel contesto del manuale:** Formalizzata nello Step 11.6.  
-**Termini correlati:** Oracle, Oracle Independence, Test.
+**Definizione:** La validità logica del criterio di giudizio dell'oracolo rispetto all'intento della specifica, concettualmente distinta dall'assenza di bug nello script software o nella libreria che esegue concretamente il confronto.  
+*Approfondimento nel manuale: vedi Capitolo 11 (Independent Evidence & Oracles), Sezione 6.6.*
 
 #### Oracle Independence (Indipendenza dell'Oracolo)
 **Categoria:** Costrutto metodologico consolidato  
-**In inglese:** *Oracle Independence*  
-**In italiano:** Indipendenza dell'oracolo di test  
-**Definizione:** La condizione per cui la logica decisionale dell'oracolo è derivata da fonti terze o specifiche formali senza condividere il codice, i prompt o le assunzioni del componente sotto collaudo.  
-**Nel contesto del manuale:** Formalizzata negli Step 11, 16 e 21 per prevenire la *Trappola Circolare*.  
-**Termini correlati:** Oracle, Tautological Oracle, Epistemic Independence.
+**Definizione:** La condizione per cui la logica decisionale dell'oracolo è derivata da fonti terze, principi primi o specifiche formali senza condividere il codice, i prompt, le assunzioni o le allucinazioni del generatore LLM sotto esame.  
+*Approfondimento nel manuale: vedi Capitolo 11 (Sez. 4 e 8) e Capitolo 16 (Sez. 5).*
 
 #### Orphan Code (Codice Orfano)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Orphan Code definito come anomalia topologica di tracciabilità in Capitolo 7 (Traceability), Sezione 3.3 e Sezione 4.*
+**Definizione:** Istruzioni, moduli o funzionalità presenti nella base di codice eseguibile privi di tracciabilità verso un requisito approvato o una proprietà critica di specifica, spesso iniettati silenziosamente per completamento statistico da parte dell'LLM.  
+*Approfondimento nel manuale: formalizzato come anomalia di tracciabilità in Capitolo 7 (Traceability), Sezione 3.3 e Sezione 4.*
 
 #### OWASP Top 10 for LLM
 **Categoria:** Standard di sicurezza aperto  
-*Vedi: OWASP Top 10 for LLM definita come catalogo dei rischi applicativi per modelli linguistici in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4.*
+**Definizione:** Tassonomia aperta e consensuale che classifica le dieci vulnerabilità e rischi di sicurezza più critici e ricorrenti specifici delle applicazioni che integrano modelli linguistici (es. Prompt Injection, Insecure Output Handling, Excessive Agency).  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4.*
 
 ---
 
@@ -36018,94 +35916,88 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Package Hallucination (Allucinazione di Pacchetto)
 **Categoria:** Termine tecnico di cybersecurity applicata  
-*Vedi: Package Hallucination definita nei rischi di filiera software in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.5.*
+**Definizione:** Generazione da parte di un LLM di istruzioni di import o dichiarazioni di dipendenza riferite a librerie software non esistenti nei registri pubblici ufficiali (PyPI, npm), aprendo la superficie a vettori di attacco di tipo *slopsquatting*.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.5.*
 
 #### Parse, Don't Validate
 **Categoria:** Principio programmatico consolidato  
-**In inglese:** *Parse, Don't Validate*  
-**In italiano:** Decodifica a tipi chiusi anziché validazione diffusa  
-**Definizione:** Principio di progettazione in cui i dati non strutturati vengono convertiti alla frontiera in tipi di dato rigidi che escludono per costruzione gli stati non validi.  
-**Nel contesto del manuale:** Nello Step 13 attua il *Type-Driven Design*.  
-**Termini correlati:** Type-Driven Design, Implementation Design.
+**Definizione:** Principio di progettazione architetturale secondo cui i dati non strutturati o debolmente tipizzati vengono convertiti alla frontiera del sistema in tipi di dato rigidi e immutabili che escludono per costruzione logica la rappresentabilità di stati non validi.  
+*Approfondimento nel manuale: vedi Capitolo 13 (Implementation Design), Sezione 4.5.*
 
 #### PARTIAL
 **Categoria:** Stato decisionale formale del manuale  
-*Vedi: PARTIAL formalizzato come stato di garanzia condizionato in Capitolo 1 (Sez. 13.1) e applicato alle ammissioni confinate in Capitolo 23 (Evidence-Based Decision Gates, Sez. 5.2).*
+**Definizione:** Stato decisionale formale emesso da un Decision Gate o verifica quando le proprietà critiche primarie risultano soddisfatte, ma permangono incertezze secondarie o evidenze parziali che impongono l'ammissione subordinata a vincoli di confinamento operativo.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 13.1) e Capitolo 23 (Evidence-Based Decision Gates, Sez. 5.2).*
 
 #### PASS
 **Categoria:** Stato decisionale vincolante formale del manuale  
-*Vedi: PASS formalizzato come stato di verifica conforme al criterio in Capitolo 1 (Sez. 13.1) e governato nel rispetto del principio di non-compensazione in Capitolo 23 (Decision Gates, Sez. 5.2).*
+**Definizione:** Stato decisionale formale vincolante che attesta che una proprietà, claim o invariante è stato verificato conformemente ai criteri stabiliti e supportato da evidenze indipendenti e sufficienti rispetto alla classe di rischio.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 13.1) e Capitolo 23 (Evidence-Based Decision Gates, Sez. 5.2).*
 
 #### Patch-and-Pray (Toppa alla Cieca)
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Patch-and-Pray definito come anti-pattern di riparazione superficiale in Capitolo 22 (Discrepancy Analysis), Sezione 1 e Sezione 10.*
+**Definizione:** Anti-pattern diagnostico consistente nell'applicare ciclicamente toppe sintattiche superficiali suggerite dall'LLM a fronte di errori di test, silenziando il sintomo locale senza indagare né rimuovere la causa radice sistemica del difetto.  
+*Approfondimento nel manuale: vedi Capitolo 22 (Discrepancy Analysis), Sezione 1, Sezione 5.4 e Sezione 10.*
 
 #### Periodic Review (Revisione Periodica)
 **Categoria:** Termine normativo consolidato  
-*Vedi: Periodic Review definita come riesame sistematico dell'adeguatezza probatoria in Capitolo 32 (Periodic Review), Sezione 1 e Sezione 5.*
+**Definizione:** Processo retrospettivo sistematico e programmato mediante il quale si riesamina l'intero impianto di garanzia di un software in esercizio per verificare se le evidenze e le assunzioni originarie mantengano validità a fronte dell'evoluzione del contesto operativo.  
+*Approfondimento nel manuale: vedi Capitolo 32 (Periodic Review), Sezione 1 e Sezione 5.*
 
 #### Phantom Flag
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Phantom Flag definito come anti-pattern di rilascio con effetti collaterali persistenti in Capitolo 25 (Staging, Canary & Feature Flags), Sezione 10.2.*
+**Definizione:** Anti-pattern architetturale in cui una nuova funzionalità è formalmente racchiusa dietro un Feature Flag disabilitato (OFF), ma il modulo esegue comunque mutazioni persistenti o lock di risorse al momento dell'inizializzazione o bootstrap dell'applicazione.  
+*Approfondimento nel manuale: vedi Capitolo 25 (Staging, Canary & Feature Flags), Sezione 10.2.*
 
 #### Plausibility Trap (Trappola della Plausibilità)
 **Categoria:** Costrutto didattico del manuale  
-*Vedi: Plausibility Trap definita nella dinamica del fluency bias in Capitolo 24 (Human Review & Formal Approval), Sezione 5.2.*
+**Definizione:** Distorsione cognitiva ed epistemica per cui la scorrevolezza stilistica, l'eleganza formale e la leggibilità superficiale del codice generato da un LLM inducono i revisori a presumere la correttezza logica del software, abbattendo la vigilanza critica.  
+*Approfondimento nel manuale: vedi Capitolo 24 (Human Review & Formal Approval), Sezione 5.2.*
 
 #### Poison Fallback
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Poison Fallback definito come meccanismo di ripiego che genera corruzione semantica in Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 5 e Sezione 10.3.*
+**Definizione:** Meccanismo di ripiego che, pur di non restituire un errore esteriore all'utente, restituisce dati obsoleti, inconsistenti o arbitrari mascherandoli da risposte ordinarie, introducendo corruzione semantica nel dominio applicativo.  
+*Approfondimento nel manuale: vedi Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 5 e Sezione 10.3.*
 
 #### Post-Deployment Analysis
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Post-Deployment Analysis definita come processo di riconciliazione empirica in Capitolo 29 (Post-Deployment Analysis), Sezione 1 e Sezione 5.*
+**Definizione:** Processo analitico e diagnostico condotto sui dati empirici dell'esercizio in produzione per riconciliare il comportamento reale del software con le specifiche, indagando incidenti, anomalie silenti, degradi e quasi-incidenti (near misses).  
+*Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis), Sezione 1 e Sezione 5.*
 
 #### Post-Deployment Evidence (Evidenza Post-Deployment)
 **Categoria:** Costrutto metodologico del manuale  
-**In inglese:** *Post-Deployment Evidence*  
-**In italiano:** Evidenza empirica post-rilascio  
-**Definizione:** L'insieme dei fatti, log forensi, tracce e parametri telemetrici raccolti durante l'esercizio reale in produzione, analizzati e verificati rispetto agli invarianti di sistema.  
-**Nel contesto del manuale:** Formalizzata nello Step 29 nel modello di riconciliazione epistemica.  
-**Termini correlati:** Post-Deployment Analysis, Observability, Telemetry.
+**Definizione:** L'insieme dei fatti, log forensi, tracce distribuite e metriche ad alta cardinalità raccolti e convalidati durante l'operatività reale, utilizzati per verificare la tenuta degli invarianti sul campo e aggiornare l'assurance case.  
+*Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis), Sezione 5.*
 
 #### Problem Space vs Solution Space (Spazio del Problema vs della Soluzione)
 **Categoria:** Distinzione epistemica obbligatoria  
-*Vedi: Separazione tra Spazio del Problema e Spazio della Soluzione formalizzata in Capitolo 1 (Problem Definition), Sezione 3.1.*
+**Definizione:** Distinzione epistemica fondamentale tra la definizione della discrepanza da colmare nel mondo reale mediante il lessico del dominio applicativo (Problema) e la struttura tecnologica e algoritmica della macchina ideata per risolverla (Soluzione).  
+*Approfondimento nel manuale: vedi Capitolo 1 (Problem Definition), Sezione 3.1.*
 
 #### Prompt Priming (Condizionamento del Prompt)
 **Categoria:** Termine tecnico / Rischio metodologico  
-**In inglese:** *Prompt Priming / Chain-of-Custody Priming*  
-**In italiano:** Condizionamento / inquinamento del contesto del prompt  
-**Definizione:** L'alterazione non intenzionale della distribuzione probabilistica di risposta di un modello linguistico causata dall'inserimento, nel contesto della conversazione o del prompt, di ipotesi, spiegazioni, conclusioni pregresse o verdetti formulati dall'utente o da altri modelli.  
-**Nel contesto del manuale:** Analizzato negli Step 20 e 21 come causa primaria di *Falsa Indipendenza*: sottoporre un artefatto a un secondo modello chiedendogli se la spiegazione del primo sia corretta distrugge la neutralità dell'audit, spingendo il modello a convergere per compiacenza (*sycophancy*) sull'ipotesi suggerita.  
-**Distinzioni importanti:** `Blind Review != Prompt Priming`. Una revisione cieca interroga il modello fornendogli unicamente codice e specifica a stanza chiusa; il priming inquina il processo fornendo le giustificazioni dell'autore, annullando l'indipendenza epistemica.  
-**Nota epistemica:** Il priming trasforma un potenziale revisore indipendente in una cassa di risonanza dell'errore originale, portando a consensi unanimi su codice difettoso.  
-**Termini correlati:** Blind Review, Clean-Room Protocol for LLM, Multi-Model Audit, Sycophancy, Anchoring Bias.
-
-#### Proof (Dimostrazione Matematica / Prova Formale)
-**Categoria:** Distinzione epistemica obbligatoria  
-**In inglese:** *Proof / Formal Proof*  
-**In italiano:** Dimostrazione matematica formale  
-**Definizione:** Deduzione logica rigorosa derivata per via assiomatica a partire da un modello formale e da regole di inferenza matematicamente certe, che stabilisce universalmente che una data proprietà è vera per ogni stato raggiungibile del modello.  
-**Nel contesto del manuale:** Negli Step 5, 6 e 18 è contrapposta al concetto di evidenza empirica (*Evidence*): un milione di test superati con successo fornisce un'evidenza empirica estesa, ma non costituisce una *Proof*.  
-**Distinzioni importanti:** `Proof != Evidence`. La prova matematica garantisce la proprietà entro il modello astratto; se il modello non rappresenta fedelmente il mondo fisico (Step 1), la dimostrazione formale non previene il guasto reale.  
-**Termini correlati:** Evidence, Correctness, Invariant, Model Checking.
+**Definizione:** L'alterazione non intenzionale della distribuzione probabilistica di risposta di un modello linguistico causata dall'inserimento, nel contesto del prompt, di ipotesi, spiegazioni o conclusioni pregresse formulate dall'utente o da altri modelli. Distrugge la neutralità dell'audit spingendo il modello a convergere per compiacenza (*sycophancy*) sull'ipotesi suggerita.  
+*Approfondimento nel manuale: vedi Capitolo 20 (Multi-Model Audit), Sezione 4 e Sezione 9 (Controesempio 1), e Capitolo 21 (Independent Verification, Sez. 13).*
 
 #### Property (Proprietà)
 **Categoria:** Termine logico e formale consolidato  
-*Vedi: Property definita e distinta dal requisito in Capitolo 1 (Sez. 6.1) e formalizzata come predicato universale su stati di esecuzione in Capitolo 6 (Critical Properties & Invariants, Sez. 3.1 e 4).*
+**Definizione:** Predicato logico o matematico formale valutabile su stati di esecuzione o tracce del sistema (es. invariante di sicurezza, idempotenza), che definisce in modo non ambiguo e falsificabile il comportamento garantito dal software.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 6.1) e Capitolo 6 (Critical Properties & Invariants, Sez. 3.1 e 4).*
 
 #### Property Coverage (Copertura delle Proprietà)
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Property Coverage definita in Capitolo 6 (Sez. 4) e distinta dalla copertura sintattica di codice in Capitolo 16 (Automated Testing, Sez. 6).*
+**Definizione:** Misura qualitativa e metodologica che quantifica quanti invarianti critici, requisiti di specifica e partizioni di rischio siano effettivamente presidiati da test formali e oracoli indipendenti, distinta dalla mera copertura sintattica delle righe di codice.  
+*Approfondimento nel manuale: vedi Capitolo 6 (Critical Properties & Invariants, Sez. 3.4 e 17) e Capitolo 16 (Automated Testing, Sez. 6).*
 
 #### Property-Based Testing (PBT)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Property-Based Testing introdotto in Capitolo 6 (Sez. 4) e formalizzato nella sua architettura generativa con shrinking in Capitolo 18 (PBT, Fuzzing & Adversarial Testing, Sez. 4 e 5.1).*
+**Definizione:** Metodologia di collaudo dinamico in cui i test verificano la tenuta di invarianti universali su ampie distribuzioni di dati generati proceduralmente, con riduzione automatica al minimo controesempio riproducibile (shrinking).  
+*Approfondimento nel manuale: vedi Capitolo 6 (Sez. 4) e Capitolo 18 (PBT, Fuzzing & Adversarial Testing, Sez. 4 e 5.1).*
 
 #### Provenance (Provenienza)
 **Categoria:** Termine normativo consolidato (Supply Chain Security)  
-*Vedi: Provenance definita negli standard di sicurezza della supply chain in Capitolo 33 (Closure & Lessons Learned), Sezione 5 e Sezione 8.*
+**Definizione:** La catena documentata, tracciabile e crittograficamente verificabile che attesta l'origine storica di ogni componente software, modello di fondazione, prompt template, commit e configurazione impiegata nella costruzione del sistema.  
+*Approfondimento nel manuale: vedi Capitolo 33 (Closure & Lessons Learned), Sezione 5 e Sezione 8.*
 
 ---
 
@@ -36115,122 +36007,113 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### RCA (Root Cause Analysis - Analisi della Causa Radice)
 **Categoria:** Acronimo / Termine metodologico consolidato  
-*Vedi: Root Cause Analysis definita nel ciclo di vita della discrepanza in Capitolo 22 (Sez. 4 e 5.1) e formalizzata per i fattori contribuenti sistemici in Capitolo 29 (Post-Deployment Analysis, Sez. 8).*
+**Definizione:** Processo investigativo strutturato basato su prove volto a risalire dai sintomi e dai trigger superficiali ai fattori contribuenti profondi (sistemici, architetturali o procedurali), la cui rimozione impedisce stabilmente la reiterazione del guasto.  
+*Approfondimento nel manuale: vedi Capitolo 22 (Discrepancy Analysis, Sez. 4 e 5.1) e Capitolo 29 (Post-Deployment Analysis, Sez. 8).*
 
 #### RECOMMENDATION (Raccomandazione)
 **Categoria:** Stato epistemico formale del manuale  
-*Vedi: RECOMMENDATION definita nel modello epistemico in Capitolo 1 (Problem Definition, Sez. 3.3) e formalizzata in Capitolo 5 (Assumptions & Unknowns, Sez. 3.1 e 4).*
+**Definizione:** Informazione o linea guida metodologica proposta da standard o suggerita da modelli linguistici, priva di cogenza formale assoluta a meno di esplicita inclusione nei requisiti di specifica approvati.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Problem Definition, Sez. 3.3) e Capitolo 5 (Assumptions & Unknowns, Sez. 3.1 e 4).*
 
 #### Red Teaming
 **Categoria:** Termine tecnico d'uso professionale consolidato  
-*Vedi: Red Teaming definito come simulazione avversariale strategica orientata all'obiettivo in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 1, Sezione 4 e Sezione 5.*
+**Definizione:** Simulazione avversariale strategica e orientata all'obiettivo condotta assumendo il punto di vista di un attaccante, volta a verificare empiricamente se e come le difese complessive del sistema contengano tentativi di violazione e concatenazione di exploit.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 1, Sezione 4 e Sezione 5.*
 
 #### Regression Test Selection (RTS)
 **Categoria:** Termine scientifico consolidato  
-**In inglese:** *Regression Test Selection (RTS)*  
-**In italiano:** Selezione dei test di regressione  
-**Definizione:** Tecnica analitica volta a identificare il sottoinsieme minimo e sufficiente di casi di prova da rieseguire a fronte di una modifica, basandosi sull'analisi delle dipendenze del codice.  
-**Nel contesto del manuale:** Nello Step 31 delimita il perimetro di riesecuzione della suite di regressione.  
-**Distinzioni importanti:** `RTS != Regression Testing`. RTS è la tecnica di selezione algoritmica; Regression Testing è l'attività di collaudo complessiva.  
-**Termini correlati:** Regression Testing, Change Impact Analysis.
+**Definizione:** Disciplina analitica volta a selezionare il sottoinsieme minimo e sufficiente di test preesistenti da rieseguire a fronte di una modifica software, basandosi sull'analisi delle dipendenze e del grafo di propagazione dell'impatto.  
+*Approfondimento nel manuale: vedi Capitolo 31 (Change Impact Analysis), Sezione 5.*
 
 #### Regression Testing (Test di Regressione)
 **Categoria:** Termine tecnico consolidato  
-**In inglese:** *Regression Testing*  
-**In italiano:** Collaudo di regressione  
-**Definizione:** L'attività sistematica di riesecuzione di test a seguito di modifiche al codice o all'ambiente per accertare che le funzionalità preesistenti non siano state degradate o compromesse.  
-**Nel contesto del manuale:** Trattata negli Step 16, 22 e 31.  
-**Termini correlati:** Regression Test Selection (RTS), Change Impact Analysis.
+**Definizione:** L'attività sistematica di riesecuzione di test automatizzati o controlli formali a seguito di una modifica per accertare che le funzionalità e gli invarianti preesistenti non siano stati compromessi o degradati.  
+*Approfondimento nel manuale: vedi Capitolo 16, Capitolo 22 e Capitolo 31.*
 
 #### Required Assurance (Assurance Richiesta)
 **Categoria:** Costrutto didattico del manuale  
-*Vedi: Required Assurance definita e distinta dall'Assurance Raggiunta in Capitolo 10 (Assurance Level), Sezione 3.1 e Sezione 6.1.*
+**Definizione:** Il livello normativo e qualitativo di rigore probatorio imposto a priori dal profilo di rischio di una proprietà o componente, che stabilisce la soglia minima di evidenze necessaria per consentirne il rilascio.  
+*Approfondimento nel manuale: vedi Capitolo 10 (Assurance Level), Sezione 3.1 e Sezione 6.1.*
 
 #### Requirement (Requisito)
 **Categoria:** Termine normativo consolidato  
-*Vedi: Requirement formalizzato nel modello Mondo-Macchina in Capitolo 1 (Sez. 2.2 e 6.1), derivato dalla specifica in Capitolo 4 (Sez. 2.1 e 6.2) e distinto dalla proprietà logica in Capitolo 6 (Sez. 3.1).*
+**Definizione:** Prescrizione specifica sul comportamento atteso o sui vincoli della Macchina alla frontiera dei fenomeni condivisi, finalizzata a soddisfare un obiettivo nel mondo reale secondo il modello Mondo-Macchina.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 2.2 e 6.1), Capitolo 4 (Sez. 2.1 e 6.2) e Capitolo 6 (Sez. 3.1).*
 
 #### Residual Risk (Rischio Residuo)
 **Categoria:** Termine normativo consolidato (ISO 31000)  
-*Vedi: Residual Risk formalizzato nella sua relazione con il rischio inerente e l'efficacia dei controlli in Capitolo 30 (Risk Register & Knowledge Base), Sezione 4 e Sezione 7.3.*
+**Definizione:** La quota di rischio operativo che permane nel sistema dopo che tutti i controlli noti sono stati implementati e la cui efficacia è stata validata mediante prove empiriche e indipendenti.  
+*Approfondimento nel manuale: vedi Capitolo 30 (Risk Register & Knowledge Base), Sezione 4 e Sezione 7.3.*
 
 #### Residual Uncertainty (Incertezza Residua)
 **Categoria:** Concetto epistemico consolidato  
-**In inglese:** *Residual Uncertainty*  
-**In italiano:** Incertezza epistemica residua  
-**Definizione:** La quota di indeterminatezza non eliminabile che permane nel sistema software anche dopo aver completato l'intero impianto di test, verifiche statiche, audit indipendenti e contenimento architetturale, derivante dall'incompiutezza delle assunzioni sul mondo esterno e dalla natura probabilistica degli LLM.  
-**Nel contesto del manuale:** Trattata negli Step 5, 10, 23 e 30. L'obiettivo dell'assurance non è l'azzeramento dogmatico dell'incertezza, ma la sua quantificazione e delimitazione razionale per consentire un'accettazione consapevole del rischio residuo.  
-**Termini correlati:** Epistemic Risk, Residual Risk, Risk Acceptance, UNKNOWN.
+**Definizione:** La quota non eliminabile di indeterminatezza che permane nel sistema software derivante dall'incompiutezza delle assunzioni sul contesto esterno e dalla natura probabilistica dei modelli linguistici integrati.  
+*Approfondimento nel manuale: vedi Capitolo 5, Capitolo 10, Capitolo 23 e Capitolo 30.*
 
 #### Reversibility (Reversibilità)
 **Categoria:** Dimensione qualitativa di rischio  
-*Vedi: Reversibility definita come dimensione del danno in Capitolo 2 (Risk Classification, Sez. 3.2 e 4) e formalizzata nel vettore del profilo di rischio in Capitolo 10 (Assurance Level, Sez. 4 e 7.1).*
+**Definizione:** Misura della capacità e facilità con cui lo stato del sistema e dell'ambiente circostante può essere integralmente ripristinato alla condizione antecedente all'insorgenza di un guasto o di un'operazione errata.  
+*Approfondimento nel manuale: vedi Capitolo 2 (Risk Classification, Sez. 3.2 e 4) e Capitolo 10 (Assurance Level, Sez. 4 e 7.1).*
 
 #### Risk (Rischio)
 **Categoria:** Termine normativo consolidato (ISO 31000)  
-*Vedi: Risk formalizzato nella sua insufficienza classica per il software in Capitolo 2 (Sez. 2.2 e 4) e modellato parametricamente come tupla multidimensionale in Capitolo 30 (Risk Register, Sez. 4 e 7.2).*
+**Definizione:** Formalizzazione multidimensionale che esprime l'esposizione potenziale a una perdita o fallimento sistemico, risultante dalla combinazione di severità del danno, verosimiglianza di accadimento, rilevabilità e reversibilità operativa.  
+*Approfondimento nel manuale: vedi Capitolo 2 (Sez. 2.2 e 4) e Capitolo 30 (Risk Register & Knowledge Base, Sez. 4 e 7.2).*
 
 #### Risk Acceptance (Accettazione del Rischio)
 **Categoria:** Termine normativo e di governance (ISO 31000)  
-**In inglese:** *Risk Acceptance / Residual Risk Acceptance*  
-**In italiano:** Accettazione formale del rischio residuo  
-**Definizione:** La delibera formale con cui l'autorità designata accetta che il profilo di rischio residuo post-mitigazione sia tollerabile rispetto agli obiettivi operativi dell'organizzazione.  
-**Nel contesto del manuale:** Nello Step 3 e Step 30 è distinta dall'accettazione passiva o psicologica: richiede firma e tracciabilità formale.  
-**Termini correlati:** Residual Risk, Risk Register, Governance.
+**Definizione:** Atto decisionale formale ed esplicito con cui l'autorità designata delibera che il rischio residuo associato a un componente è tollerabile rispetto agli obiettivi di business, assumendosene la responsabilità di governance.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Authority & Responsibility) e Capitolo 30 (Risk Register & Knowledge Base, Sez. 4).*
 
 #### Risk Classification (Classificazione del Rischio)
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Risk Classification definita per l'allocazione proporzionata del rigore probatorio in Capitolo 2 (Risk Classification), Sezione 1 e Sezione 5.*
+**Definizione:** Processo analitico e propedeutico volto a determinare la severità, l'esposizione operativa e la reversibilità delle potenziali conseguenze di un guasto, per allocare proporzionatamente il rigore di assurance (AL).  
+*Approfondimento nel manuale: trattato estesamente in Capitolo 2 (Risk Classification).*
 
 #### Risk Item
 **Categoria:** Struttura dati formale del manuale  
-*Vedi: Risk Item formalizzato nello schema dichiarativo strutturato in Capitolo 30 (Risk Register & Knowledge Base), Sezione 7.2 e Sezione 9.1.*
+**Definizione:** Struttura dati dichiarativa e tracciabile che formalizza all'interno del Risk Register un singolo pericolo, specificando scenario d'innesco, assunzioni sottostanti, controlli implementati e profilo di rischio residuo.  
+*Approfondimento nel manuale: vedi Capitolo 30 (Risk Register & Knowledge Base), Sezione 7.2 e Sezione 9.1.*
 
 #### Risk Reduction (Riduzione del Rischio)
 **Categoria:** Distinzione epistemica obbligatoria  
-**In inglese:** *Risk Reduction / Risk Mitigation*  
-**In italiano:** Riduzione / mitigazione del rischio  
-**Definizione:** L'introduzione di controlli volti a diminuire la probabilità o l'impatto di un pericolo.  
-**Nel contesto del manuale:** È distinta dall'eliminazione del rischio: qualsiasi riduzione lascia attivo un rischio residuo (R_res > 0).  
-**Termini correlati:** Risk, Residual Risk, Control.
+**Definizione:** L'implementazione di contromisure architetturali o procedurali volte ad attenuare la probabilità o l'impatto di un pericolo; lascia invariabilmente aperto un margine di rischio residuo (R_res > 0).  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 6.6) e Capitolo 2 (Sez. 6.2).*
 
 #### Risk Smuggling / Risk Downgrading (Contrabbando / Declassamento del Rischio)
 **Categoria:** Anti-pattern metodologico denominato dal manuale  
-**In inglese:** *Risk Smuggling / Risk Downgrading*  
-**In italiano:** Contrabbando del rischio / declassamento artificioso del rischio  
-**Definizione:** Pratica metodologica scorretta mediante la quale un rischio elevato viene artificialmente ridotto o trasferito al di fuori del perimetro analizzato, ad esempio ridefinendo in modo restrittivo i confini del sistema, frammentando una funzione critica in sottocomponenti analizzati isolatamente o qualificando un componente che governa asset critici come semplice "elaboratore di testo non privilegiato".  
-**Nel contesto del manuale:** Formalizzato nello Step 2 (Sez. 9.1) come manovra atta a sottrarre arbitrariamente un componente ai requisiti rigorosi imposti dal corrispondente Assurance Level (AL-2 o AL-3), sostituendo verifiche formali e oracoli indipendenti con test superficiali.  
-**Distinzioni importanti:** `Risk Smuggling != Risk Reduction legittima`. La riduzione del rischio altera la topologia architetturale riducendo fisicamente il blast radius (es. revoca dei permessi o sandboxing nello Step 14); il risk smuggling altera unicamente l'etichetta documentale lasciando il pericolo immutato nel mondo reale.  
-**Nota epistemica:** Viola la *Regola di Non-Diluizione del Rischio*: se il fallimento potenziale comporta un danno catastrofico e irreversibile, il livello di assurance non può essere negoziato al ribasso argomentando una presunta bassa frequenza statistica.  
-**Termini correlati:** Risk Classification, Assurance Level, Blast Radius, Rule of Non-Dilution, NO-GO.
+**Definizione:** Pratica metodologica scorretta mediante cui un rischio elevato viene artificialmente ridotto o trasferito fuori perimetro tramite ridefinizione dei confini o frammentazione delle funzioni, sottraendolo ai requisiti di assurance prescritti.  
+*Approfondimento nel manuale: vedi Capitolo 2 (Risk Classification), Sezione 9.1.*
 
 #### Risk Register (Registro dei Rischi)
 **Categoria:** Strumento di governance e normativo consolidato  
-*Vedi: Risk Register definito come dispositivo di governo dinamico dell'incertezza in Capitolo 30 (Risk Register & Knowledge Base), Sezione 4, Sezione 5 e Sezione 8.*
+**Definizione:** Dispositivo dinamico di governance e memoria tecnica che censisce, valuta, monitora e governa l'intero ciclo di vita dei pericoli noti, dei controlli verificati e delle decisioni formali di accettazione del rischio.  
+*Approfondimento nel manuale: trattato estesamente in Capitolo 30 (Risk Register & Knowledge Base).*
 
 #### Rollback
 **Categoria:** Termine tecnico d'uso professionale consolidato  
-*Vedi: Rollback definito come annullamento controllato della versione in Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 4.1, Sezione 5 e Sezione 6.1.*
+**Definizione:** Procedura controllata con cui si disattiva la versione corrente del software o della configurazione per riattivare la versione precedente considerata valida, affrontando i problemi di compatibilità con lo stato persistente.  
+*Approfondimento nel manuale: vedi Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 4.1, Sezione 5 e Sezione 6.1.*
 
 #### Rollbackability (Capacità di Rollback)
 **Categoria:** Proprietà architetturale del software  
-*Vedi: Rollbackability definita e distinta dalla reversibilità dello stato persistente (`ROLLBACKABILITY != REVERSIBILITY`) in Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 5 e Sezione 6.1.*
-
-#### Root Cause
-**Categoria:** Rinvio terminologico  
-*Vedi: RCA (Root Cause Analysis).*
+**Definizione:** Proprietà che esprime la fattibilità tecnica di ripristinare il binario o la configurazione della versione precedente. Si distingue formalmente dalla reversibilità complessiva (`ROLLBACKABILITY != REVERSIBILITY`), poiché non garantisce automaticamente il ripristino dello stato persistente né annulla gli effetti collaterali esterni (es. pagamenti disposti o email inviate), che esigono transazioni di compensazione.  
+*Approfondimento nel manuale: vedi Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 5, Sezione 6.1 e Sezione 17.1.*
 
 #### Rubber-Stamping
 **Categoria:** Anti-pattern metodologico e comportamentale  
-*Vedi: Rubber-Stamping definito come anti-pattern di approvazione meramente formale / senza effettiva revisione in Capitolo 3 (Sez. 4 e 8.2), Capitolo 8 (Competence Gaps, Sez. 3.3 e 4) e Capitolo 24 (Human Review, Sez. 1 e 4.3).*
+**Definizione:** Anti-pattern procedurale consistente nell'approvare formalmente un artefatto di codice, una specifica o un gate senza aver condotto un'effettiva ispezione analitica, indotto da affaticamento cognitivo o da acritica fiducia nell'esito verde dei test.  
+*Approfondimento nel manuale: vedi Capitolo 3 (Sez. 4 e 8.2), Capitolo 8 (Competence Gaps, Sez. 3.3 e 4) e Capitolo 24 (Human Review, Sez. 1 e 4.3).*
 
 #### Runbook (Playbook)
 **Categoria:** Termine tecnico consolidato (Site Reliability Engineering)  
-*Vedi: Runbook definito come contratto esecutivo strutturato a sette dimensioni in Capitolo 27 (Alerting & Runbooks), Sezione 5 e Sezione 6.3.*
+**Definizione:** Contratto operativo strutturato, versionato e verificato a sette dimensioni che definisce trigger, precondizioni, autorizzazioni minime, manovre diagnostiche in sola lettura, mitigazioni e criteri di chiusura per uno specifico allarme.  
+*Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 5 e Sezione 6.3.*
 
 #### Runtime Invariant Probes (Sonde di Invariante a Runtime)
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Runtime Invariant Probes definite come meccanismi perimetrali di osservabilità semantica in Capitolo 26 (Observability), Sezione 4.3 e Sezione 5.2.*
+**Definizione:** Meccanismi perimetrali ed esogeni di intercettazione che verificano a tempo di esecuzione la conformità dei dati rispetto agli invarianti di specifica, emettendo telemetria strutturata in caso di violazione.  
+*Approfondimento nel manuale: vedi Capitolo 26 (Observability), Sezione 4.3 e Sezione 5.2.*
 
 ---
 
@@ -36240,115 +36123,128 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Safety Property (Proprietà di Sicurezza / Safety)
 **Categoria:** Termine logico-scientifico consolidato  
-*Vedi: Safety Property definita in Capitolo 4 (Specification, Sez. 2.3) e formalizzata per le tracce di fallimento finite in Capitolo 6 (Critical Properties & Invariants, Sez. 3.4 e 4).*
+**Definizione:** Condizione logica che stabilisce che nessuno stato non valido o disastroso deve mai essere raggiunto dal sistema; la sua violazione è sempre osservabile in un tempo finito mediante un controesempio discreto.  
+*Approfondimento nel manuale: vedi Capitolo 4 (Specification, Sez. 2.3) e Capitolo 6 (Critical Properties & Invariants, Sez. 3.4 e 4).*
 
 #### Sandbox
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-*Vedi: Sandbox definita come ambiente di confino ed esecuzione a minima autorità in Capitolo 14 (Containment & Least Authority), Sezione 4 e Sezione 8.*
+**Definizione:** Ambiente di confino e isolamento che limita l'autorità operativa di un processo non fidato sul sistema operativo host, intercettando chiamate di sistema, isolando la rete e contingentando le risorse tramite meccanismi kernel o hardware.  
+*Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority), Sezione 4 e Sezione 8, e Appendice Sandbox.*
 
 #### SAST (Static Application Security Testing)
 **Categoria:** Acronimo / Termine tecnico consolidato  
-*Vedi: SAST definito nell'analisi dei flussi di contaminazione (Taint Analysis) in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 4, Sezione 5 e Sezione 6.2.*
+**Definizione:** Analisi statica del codice sorgente che modella i grafi di controllo e di flusso dei dati per identificare cammini di contaminazione non protetti tra sorgenti non fidate (Source) e punti di esecuzione critici (Sink).  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 4, Sezione 5 e Sezione 6.2.*
 
 #### SBOM (Software Bill of Materials)
 **Categoria:** Acronimo / Standard normativo consolidato  
-*Vedi: SBOM definita per la tracciabilità delle dipendenze di filiera in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.4.*
+**Definizione:** Distinta base strutturata, machine-readable e standardizzata (CycloneDX o SPDX) che censisce tutti i componenti software, le librerie dirette e transitive e i relativi checksum crittografici.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.4.*
 
 #### SCA (Software Composition Analysis)
 **Categoria:** Acronimo / Termine tecnico consolidato  
-*Vedi: SCA definita per l'identificazione di CVE note nei pacchetti terzi in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 4, Sezione 5 e Sezione 6.4.*
+**Definizione:** Analisi automatizzata dell'albero delle dipendenze di terze parti volta a rilevare vulnerabilità di sicurezza pubblicamente note (CVE), problemi di conformità di licenza o anomalie nella filiera software.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 4, Sezione 5 e Sezione 6.4.*
 
 #### Second Opinion
 **Categoria:** Distinzione epistemica obbligatoria  
-*Vedi: Second Opinion definita e distinta dall'evidenza indipendente in Capitolo 2 (Sez. 6.6), Capitolo 3 (Sez. 6.6), Capitolo 20 (Multi-Model Audit, Sez. 6) e Capitolo 21 (Independent Verification, Sez. 6).*
+**Definizione:** Giudizio o parere tecnico consultivo emesso da un secondo valutatore o modello appartenente al medesimo paradigma epistemico; non costituisce evidenza indipendente né elimina i rischi di errori correlati.  
+*Approfondimento nel manuale: vedi Capitolo 2 (Sez. 6.6), Capitolo 3 (Sez. 6.6), Capitolo 20 (Multi-Model Audit, Sez. 6) e Capitolo 21 (Independent Verification, Sez. 6).*
 
 #### Secret Scanning
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-*Vedi: Secret Scanning definito nell'analisi di pattern ed entropia informativa in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 4, Sezione 5 e Sezione 6.6.*
+**Definizione:** Scansione statica automatizzata del codice sorgente, dei file di configurazione e dell'intera cronologia di versionamento volta a individuare chiavi crittografiche, password e token operativi esposti tramite pattern matching ed entropia di Shannon.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 4, Sezione 5 e Sezione 6.6.*
 
 #### Semantic Drift (Deriva Semantica)
 **Categoria:** Costrutto didattico del manuale  
-*Vedi: Semantic Drift definita in Capitolo 7 (Traceability, Sez. 4) e formalizzata nell'evoluzione non controllata del codice in Capitolo 31 (Change Impact Analysis, Sez. 5).*
+**Definizione:** Progressiva e silente alterazione del comportamento o del significato del codice lungo passaggi successivi di manutenzione o generazione assistita, che vìola assunzioni di dominio senza provocare errori sintattici visibili.  
+*Approfondimento nel manuale: vedi Capitolo 7 (Traceability, Sez. 4) e Capitolo 31 (Change Impact Analysis, Sez. 5).*
 
 #### Semantic Smoothing (Levigatura Semantica)
 **Categoria:** Costrutto concettuale applicato dal manuale  
-**In inglese:** *Semantic Smoothing*  
-**In italiano:** Levigatura semantica / appianamento semantico  
-**Definizione:** La propensione strutturale dei modelli linguistici allineati tramite RLHF ad attenuare, mascherare o colmare tacitamente discrepanze logiche, ambiguità o contraddizioni presenti nel prompt dell'utente, sintetizzando risposte fluide, eleganti e stilisticamente coerenti ma fondate su presupposti arbitrari e assunzioni silenti.  
-**Nel contesto del manuale:** Esaminato negli Step 1, 3 e 4 come vettore scatenante dell'*Automation Bias*: l'ingegnere che riceve una specifica o un codice privo di asprezze sintattiche scambia la bellezza espositiva per correttezza metodologica, omettendo l'audit critico delle premesse di dominio sottostanti.  
-**Distinzioni importanti:** `Semantic Smoothing != Semantic Drift`. Il semantic drift è lo slittamento temporale del significato tra versioni successive; il semantic smoothing è l'atto istantaneo con cui l'LLM elimina l'attrito logico di una specifica imperfetta fabbricando una coerenza artificiale.  
-**Nota epistemica:** Trasforma l'incertezza informativa (`UNKNOWN`) in una falsa certezza (`FACT` o `ASSUMPTION` non dichiarata), violando il principio di trasparenza epistemica.  
-**Termini correlati:** Sycophancy, Plausibility Trap, Underspecification, False Assurance, Automation Bias.
+**Definizione:** Propensione strutturale dei modelli linguistici allineati con feedback umano ad attenuare, mascherare o colmare tacitamente discrepanze logiche, ambiguità o contraddizioni presenti nel prompt dell'utente, producendo testi o specifiche formalmente eleganti ma fondate su presupposti arbitrari e assunzioni non dichiarate.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 10.1), Capitolo 3 (Sez. 10 e 10.2) e Capitolo 4 (Specification, Sez. 10.1).*
 
 #### Shannon Entropy (Entropia di Shannon)
 **Categoria:** Termine scientifico consolidato (teoria dell'informazione)  
-*Vedi: Shannon Entropy definita nella formula di densità di casualità in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.6.*
+**Definizione:** Misura statistica della densità di disordine e imprevedibilità dell'informazione contenuta in una stringa di caratteri, utilizzata dagli scanner di segreti per discriminare stringhe casuali ad alta entropia (chiavi, token) dal testo naturale.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.6.*
 
 #### Shrinking (Riduzione Algoritmica del Controesempio)
 **Categoria:** Termine tecnico consolidato (Property-Based Testing)  
-*Vedi: Shrinking introdotto in Capitolo 6 (Sez. 17) e formalizzato matematicamente nell'isolamento del controesempio minimo in Capitolo 18 (PBT, Fuzzing & Adversarial Testing, Sez. 4 e 5.1).*
+**Definizione:** Algoritmo euristico dei framework di Property-Based Testing che riduce iterativamente la complessità di un input che ha provocato un fallimento, isolando il controesempio minimo riproducibile.  
+*Approfondimento nel manuale: vedi Capitolo 6 (Sez. 17) e Capitolo 18 (PBT, Fuzzing & Adversarial Testing, Sez. 4 e 5.1).*
 
 #### Silent Canary
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Silent Canary definito come anti-pattern di rilascio su traffico non rappresentativo in Capitolo 25 (Staging, Canary & Feature Flags), Sezione 10.1.*
+**Definizione:** Anti-pattern di rilascio controllato in cui una versione canary viene promossa dopo una finestra di osservazione priva di allarmi, senza verificare se il traffico ricevuto fosse realmente rappresentativo dei flussi semantici critici.  
+*Approfondimento nel manuale: vedi Capitolo 25 (Staging, Canary & Feature Flags), Sezione 10.1.*
 
 #### Silent Semantic Failure (Fallimento Semantico Silenzioso)
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Silent Semantic Failure definito come modalità di guasto tipica del codice generato da LLM in Capitolo 26 (Observability), Sezione 1 e Sezione 5.1.*
+**Definizione:** Modalità di guasto caratteristica del software assistito da LLM in cui l'applicazione risponde regolarmente con codici di successo (es. HTTP 200) e latenze nominali, emettendo tuttavia dati semanticamente errati o corrompendo lo stato del database.  
+*Approfondimento nel manuale: vedi Capitolo 26 (Observability), Sezione 1 e Sezione 5.1.*
 
 #### Slopsquatting
 **Categoria:** Termine tecnico di cybersecurity applicata  
-*Vedi: Slopsquatting definito come attacco alla filiera su nomi di pacchetti allucinati in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.5.*
+**Definizione:** Vettore di attacco alla filiera software in cui attori ostili monitorano nomi di librerie inesistenti allucinate frequentemente dai modelli linguistici e le registrano sui repository pubblici (npm, PyPI) associandovi codice malevolo.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.5.*
 
 #### Source & Sink (Sorgente e punto di arrivo / Sink del flusso dati)
 **Categoria:** Termini tecnici consolidati (Taint Analysis)  
-*Vedi: Source e Sink definiti nella teoria del flusso di contaminazione in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.2.*
+**Definizione:** Termini cardine della Taint Analysis: la Source è l'istruzione che riceve dati esterni non fidati; il Sink è l'operazione critica (es. query SQL, comando shell) sensibile a manipolazioni malevole se non preceduta da idoneo sanitizzatore.  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.2.*
 
 #### Specification (Specifica)
 **Categoria:** Termine metodologico e normativo consolidato  
-*Vedi: Specification formalizzata nel modello Mondo-Macchina in Capitolo 1 (Sez. 2.2), definita come contratto di interfaccia in Capitolo 4 (Specification, Sez. 1 e 4) e formalizzata nella tupla S in Capitolo 4 (Sez. 5.1).*
+**Definizione:** Contratto formale, rigoroso e non ambiguo che prescrive le proprietà e le relazioni logiche attese tra gli ingressi e le uscite alla sola interfaccia condivisa tra la Macchina e l'ambiente circostante (`S`).  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 2.2), Capitolo 4 (Specification, Sez. 1, 4 e 5.1) e Capitolo 9.*
 
 #### Specification Borrowing
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Specification Borrowing definito come anti-pattern di ricostruzione della specifica dal codice in Capitolo 21 (Independent Verification), Sezione 10.*
+**Definizione:** Anti-pattern metodologico consistente nel ricostruire i requisiti o la specifica leggendo a posteriori il codice sorgente implementato o le docstring generate da un LLM, convalidando circolarmente gli errori del codice.  
+*Approfondimento nel manuale: vedi Capitolo 21 (Independent Verification), Sezione 10.*
 
 #### Specification-Driven Generation (SDG)
 **Categoria:** Costrutto didattico/operativo formalizzato dal manuale  
-**In inglese:** *Specification-Driven Generation (SDG)*  
-**In italiano:** Generazione guidata da specifica  
-**Definizione:** Metodologia operativa per lo sviluppo assistito da LLM in cui la sintesi del codice candidato è rigorosamente preceduta, delimitata e vincolata da contratti formali (precondizioni, postcondizioni, invarianti di sicurezza e tipi statici chiusi) approvati a monte. Il modello è vincolato a implementare esclusivamente il corpo interno di funzioni pure entro confini deterministici, con divieto tassativo di alterare le interfacce, aggiungere dipendenze o introdurre effetti collaterali non tracciati.  
-**Nel contesto del manuale:** Costituisce il modello normativo dello Step 15, formalizzato per superare e respingere l'anti-pattern del *Vibe Coding*.  
-**Distinzioni importanti:** `Specification-Driven Generation != Prompting generico`. Nell'SDG il prompt non contiene istruzioni informali libere, ma trasferisce al modello un contratto immutabile derivato dagli Step 4, 6 e 13, imponendo l'inserimento difensivo di guardie a runtime (*Defensive Invariant Embedding*).  
-**Nota epistemica:** Tratta l'output dell'LLM non come codice definitivo, ma come un'ipotesi algoritmica candidata (I_candidate) da sottoporre immediatamente a verifica empirica e confutazione.  
-**Termini correlati:** Vibe Coding, Design by Contract, LLM-Assisted Implementation, Invariant, Defensive Invariant Embedding.
+**Definizione:** Metodologia operativa per lo sviluppo assistito in cui la sintesi del codice candidato è preceduta, delimitata e vincolata da contratti formali immutabili (precondizioni, postcondizioni, invarianti e tipi statici chiusi) approvati a monte. Il modello implementa esclusivamente il corpo interno di funzioni pure senza alterare le interfacce, incorporando guardie difensive a runtime (*Invariant Embedding*) per superare l'anti-pattern del *vibe coding*.  
+*Approfondimento nel manuale: vedi Capitolo 15 (LLM-Assisted Implementation), Sezione 4 e Sezione 8.*
 
 #### Specification Validity (Validità della Specifica)
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Specification Validity definita sui sei pilastri di conformità semantica in Capitolo 9 (Specification Validity), Sezione 1, Sezione 3.2 e Sezione 4.*
+**Definizione:** Proprietà di una specifica tecnica che attesta il contemporaneo soddisfacimento di sei pilastri formali ed empirici: consistenza, completezza, realizzabilità fisica, non-ambiguità, falsificabilità e ancoraggio al dominio reale.  
+*Approfondimento nel manuale: trattata estesamente in Capitolo 9 (Specification Validity).*
 
 #### Specification Verification (Verifica della Specifica)
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Specification Verification definita e distinta dalla validazione della specifica in Capitolo 4 (Sez. 12.3) e formalizzata nella consistenza sintattica interna in Capitolo 9 (Specification Validity, Sez. 3.1 e 4).*
+**Definizione:** Procedura analitica e formale volta ad accertare che l'insieme dei requisiti e dei vincoli formalizzati sia internamente coerente, privo di contraddizioni logiche e privo di formule insoddisfacibili (`Spec |/- False`).  
+*Approfondimento nel manuale: vedi Capitolo 4 (Sez. 12.3) e Capitolo 9 (Specification Validity, Sez. 3.1 e 4).*
 
 #### Spec-Fitting
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Spec-Fitting definito come anti-pattern di adattamento della specifica al bug in Capitolo 22 (Discrepancy Analysis), Sezione 10.*
+**Definizione:** Anti-pattern consistente nel modificare a posteriori il testo dei requisiti o le asserzioni di test per farli coincidere con il comportamento difettoso esibito dal codice generato da LLM, mascherando una regressione funzionale.  
+*Approfondimento nel manuale: vedi Capitolo 22 (Discrepancy Analysis), Sezione 10.*
 
 #### Staging Environment (Ambiente di Staging)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Staging Environment definito in Capitolo 25 (Staging, Canary & Feature Flags), Sezione 4.3 e analizzato nei suoi limiti in Sezione 5.1.*
+**Definizione:** Ambiente di pre-produzione isolato, configurato per replicare l'architettura, la rete e i servizi dell'ambiente reale, impiegato per convalidare l'integrazione del software prima dell'esposizione al traffico operativo.  
+*Approfondimento nel manuale: vedi Capitolo 25 (Staging, Canary & Feature Flags), Sezione 4.3 e Sezione 5.1.*
 
 #### Staging Fidelity Gap
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Staging Fidelity Gap definito come discrepanza inevitabile tra laboratorio e realtà operativa in Capitolo 25 (Staging, Canary & Feature Flags), Sezione 5.1.*
+**Definizione:** Discrepanza strutturale inevitabile tra ambiente di pre-produzione e realtà operativa derivante da entropia dei dati storici, dinamica del carico concorrente e risposte asimmetriche delle dipendenze terze.  
+*Approfondimento nel manuale: vedi Capitolo 25 (Staging, Canary & Feature Flags), Sezione 5.1.*
 
 #### STRIDE
 **Categoria:** Acronimo / Metodologia di Threat Modeling consolidata  
-*Vedi: STRIDE definita come tassonomia analitica delle minacce alle proprietà di sicurezza in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 5.1.*
+**Definizione:** Metodologia analitica e tassonomia di modellazione delle minacce sviluppata da Microsoft che categorizza le violazioni delle proprietà di sicurezza in sei classi: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service ed Elevation of Privilege.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 5.1.*
 
 #### Sycophancy (Compiacenza Algoritmica dell'LLM)
 **Categoria:** Termine scientifico consolidato (AI Alignment)  
-*Vedi: Sycophancy definita nella tendenza del modello ad assecondare l'utente in Capitolo 1 (Problem Definition, Sez. 10.1), Capitolo 3 (Sez. 10.2), Capitolo 19 (Sez. 11) e Capitolo 20 (Multi-Model Audit, Sez. 5.2).*
+**Definizione:** Tendenza statistica dei modelli linguistici allineati con feedback umano ad assecondare le convinzioni, le preferenze e le premesse implicite dell'utente, confermando come sicure soluzioni difettose se il prompt è orientato alla conferma.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 10.1), Capitolo 3 (Sez. 10.2), Capitolo 19 (Sez. 11) e Capitolo 20 (Multi-Model Audit, Sez. 5.2).*
 
 ---
 
@@ -36358,61 +36254,63 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Taint Analysis (Analisi di contaminazione del flusso dati)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Taint Analysis definita nella propagazione del dato non fidato lungo il grafo di controllo in Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.2.*
+**Definizione:** Tecnica di analisi statica o dinamica che traccia la propagazione di variabili non fidate (tainted) lungo i cammini di controllo e di dato del programma fino al raggiungimento di punti di esecuzione sensibili (sink).  
+*Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.2.*
 
 #### Tautological Oracle / Tautological Test
 **Categoria:** Costrutto didattico introdotto dal manuale  
-*Vedi: Tautological Oracle definito nella trappola della verifica circolare in Capitolo 11 (Independent Evidence & Oracles, Sez. 4 e 10.1) e Capitolo 16 (Automated Testing, Sez. 4 e 5).*
+**Definizione:** Test automatizzato il cui oracolo ricalca specularmente la logica implementata nel codice generato dall'LLM (tipicamente quando il codice candidato viene fornito allo stesso modello con la richiesta di scriverne i relativi unit test), convalidando il programma rispetto ai suoi stessi errori e producendo una falsa garanzia di correttezza priva di valore probatorio.  
+*Approfondimento nel manuale: vedi Capitolo 11 (Independent Evidence & Oracles, Sez. 4 e 10.1) e Capitolo 16 (Automated Testing, Sez. 4 e 5).*
 
 #### Telemetry (Telemetria di Sistema)
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Telemetry definita nella tassonomia MELT in Capitolo 26 (Observability, Sez. 4.2) e distinta dall'evidenza probatoria nella catena di trasformazione in Sezione 8.1.*
+**Definizione:** Insieme dei dati grezzi emessi a runtime dal software (metriche, eventi, log strutturati, tracce distribuite) per consentire l'osservabilità e la diagnosi dello stato interno dei processi.  
+*Approfondimento nel manuale: vedi Capitolo 26 (Observability), Sezione 4.2 e Sezione 8.1.*
 
 #### Terna di Hoare (Hoare Triple)
 **Categoria:** Modello logico-matematico formale consolidato  
-**In inglese:** *Hoare Triple*  
-**In italiano:** Terna di Hoare  
-**Definizione:** Costrutto fondativo della logica assiomatica dei programmi (introdotto da C.A.R. Hoare) espresso nella forma `{ P } C { Q }`, dove P è la precondizione che deve valere sullo stato prima dell'esecuzione, C è il comando o blocco di codice eseguito, e Q è la postcondizione garantita come vera al termine dell'elaborazione, a patto che P fosse soddisfatta all'inizio e che C termini.  
-**Nel contesto del manuale:** Utilizzata negli Step 4 (Specification), Step 6 (Critical Properties) e Step 13 (Implementation Design) per formalizzare i contratti software dei componenti generati da LLM, stabilendo una chiara linea di demarcazione tra gli obblighi a carico dell'ambiente chiamante (P) e le garanzie offerte dal codice (Q).  
-**Distinzioni importanti:** `{ P } C { Q } != if (P) { C; Q }`. La terna di Hoare non è una struttura di controllo procedurale del codice, ma un'asserzione logica sull'evoluzione dello stato di un automa. Se il chiamante viola la precondizione (P = FALSE), l'implementazione C non è vincolata ad alcuna garanzia di comportamento.  
-**Nota epistemica:** Rappresenta lo strumento formale con cui si vincola l'LLM: la postcondizione Q definisce l'oracolo logico esatto contro cui falsificare l'implementazione candidata C.  
-**Termini correlati:** Design by Contract, Precondition, Postcondition, Invariant, Implementation Design.
+**Definizione:** Costrutto fondativo della logica assiomatica dei programmi espresso nella forma `{ P } C { Q }`, dove P è la precondizione, C è il comando e Q è la postcondizione garantita al termine, costituente la base per il Design by Contract.  
+*Approfondimento nel manuale: vedi Capitolo 4 (Specification, Sez. 2.2), Capitolo 6 (Sez. 5.4) e Capitolo 13 (Implementation Design, Sez. 8.1).*
 
 #### Threat (Minaccia)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-*Vedi: Threat definita nella catena concettuale di sicurezza in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 6.1.*
+**Definizione:** Condizione, capacità avversariale o evento potenziale capace di sfruttare una vulnerabilità software o architetturale per causare un danno al sistema o violare un invariante di sicurezza.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 6.1.*
 
 #### Threat Modeling (Modellazione delle Minacce)
 **Categoria:** Termine metodologico consolidato  
-*Vedi: Threat Modeling definito sul modello delle quattro domande di Shostack in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 1, Sezione 4 e Sezione 5.*
+**Definizione:** Processo strutturato di ingegneria della sicurezza volto a mappare i flussi di dati, individuare i confini di fiducia, analizzare i percorsi d'attacco potenziali (STRIDE, OWASP) e progettare contromisure architetturali deterministiche.  
+*Approfondimento nel manuale: trattato estesamente in Capitolo 19 (Threat Modeling & Red Teaming).*
 
 #### Threshold Tampering (Manipolazione delle Soglie)
 **Categoria:** Anti-pattern denominato dal manuale  
-*Vedi: Threshold Tampering definito come anti-pattern di indebolimento della policy di gate in Capitolo 23 (Evidence-Based Decision Gates), Sezione 11.3.*
+**Definizione:** Pratica scorretta consistente nel modificare al ribasso i parametri di rigore o le soglie di una policy di gate al solo scopo di sbloccare una pipeline bloccata da esiti non conformi.  
+*Approfondimento nel manuale: vedi Capitolo 23 (Evidence-Based Decision Gates), Sezione 11.3.*
 
 #### Timing Attack (Attacco di temporizzazione / CWE-208)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-**In inglese:** *Timing Attack*  
-**In italiano:** Canale laterale di temporizzazione / attacco temporale  
-**Definizione:** Tecnica di violazione della sicurezza in cui un attaccante deduce informazioni segrete (come password, token di sessione o chiavi crittografiche) misurando con estrema precisione le variazioni nei tempi di risposta del computer durante l'esecuzione di un confronto di stringhe o di un algoritmo di cifratura.  
-**Nel contesto del manuale:** Analizzato negli Step 8, 15 e 20 come esempio tipico di difetto generato dagli LLM: il modello introduce uscite anticipate (`early return`) per ottimizzare le prestazioni, distruggendo l'invariante di tempo costante (`hmac.compare_digest`).  
-**Termini correlati:** Secret Scanning, SAST, Side Channel.
+**Definizione:** Canale laterale in cui un avversario deduce informazioni segrete o bypassa autenticazioni misurando le minuscole variazioni nei tempi di risposta del software dovute a uscite anticipate nel confronto di stringhe o hash.  
+*Approfondimento nel manuale: vedi Capitolo 8 (Competence Gaps, Sez. 8.1) e Capitolo 20 (Multi-Model Audit, Sez. 8.2).*
 
 #### Traceability (Tracciabilità dell'Assurance)
 **Categoria:** Termine normativo consolidato  
-*Vedi: Traceability definita nella catena probatoria a dieci nodi in Capitolo 1 (Sez. 15.1) e formalizzata nel Grafo Aciclico Diretto (DAG) di giustificazione in Capitolo 7 (Traceability, Sez. 1, 4 e 5).*
+**Definizione:** La catena continua, verificabile e documentata che connette in modo bidirezionale gli obiettivi primari del mondo reale ai requisiti, assunzioni, invarianti, oracoli, implementazioni e approvazioni formali (Grafo DAG di giustificazione).  
+*Approfondimento nel manuale: formalizzata analiticamente in Capitolo 7 (Traceability).*
 
 #### Trust Boundary (Confine di Fiducia)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-*Vedi: Trust Boundary definito come variazione di autorità e affidabilità del dato in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 5.2.*
+**Definizione:** Linea di demarcazione logica o fisica in cui si verifica una variazione nel livello di privilegio, autorità, isolamento o affidabilità dei dati, che impone la validazione deterministica di qualsiasi informazione in transito.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4 e Sezione 5.2.*
 
 #### Two-Person Integrity (TPI)
 **Categoria:** Modello concettuale didattico formalizzato dal manuale  
-*Vedi: Two-Person Integrity definita come principio didattico dei quattro occhi e separazione tra operatore e revisore in Capitolo 24 (Human Review & Formal Approval), Sezione 4.3 e Sezione 7.2.*
+**Definizione:** Principio didattico e organizzativo dei quattro occhi applicato dal manuale, che impone che nessun componente critico possa avanzare verso l'esercizio senza l'ispezione indipendente e il consenso esplicito di almeno due figure qualificate distinte.  
+*Approfondimento nel manuale: vedi Capitolo 24 (Human Review & Formal Approval), Sezione 4.3 e Sezione 7.2.*
 
 #### Type-Driven Design
 **Categoria:** Termine tecnico consolidato  
-*Vedi: Type-Driven Design definito come modellazione a tipi chiusi per escludere stati non validi in Capitolo 13 (Implementation Design), Sezione 4.5.*
+**Definizione:** Approccio architetturale basato sul principio "Parse, don't validate", che modella le entità di dominio tramite tipi di dato rigidi e costruttori protetti che rendono gli stati non validi matematicamente irrappresentabili nel codice.  
+*Approfondimento nel manuale: vedi Capitolo 13 (Implementation Design), Sezione 4.5 e Sezione 20.*
 
 ---
 
@@ -36422,18 +36320,13 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Under-specification vs Over-specification (Sotto-specificazione vs Sovra-specificazione)
 **Categoria:** Termini tecnici consolidati dell'ingegneria dei requisiti  
-**In inglese:** *Under-specification vs Over-specification*  
-**In italiano:** Sotto-specificazione vs Sovra-specificazione  
-**Definizione:** Due patologie simmetriche che compromettono la validità e l'efficacia di una specifica tecnica:  
-- *Sotto-specificazione (Under-specification)*: condizione di incompletezza o ambiguità in cui i requisiti omettono vincoli essenziali (casi limite, fallimenti di rete, condizioni di errore, limiti di memoria), consentendo molteplici comportamenti mutuamente incompatibili e delegando all'LLM decisioni arbitrarie basate su medie statistiche di addestramento;  
-- *Sovra-specificazione (Over-specification)*: inclusione indebita di dettagli implementativi, scelte algoritmiche interne o vincoli architetturali contingenti all'interno della specifica di interfaccia, limitando inutilmente lo spazio delle soluzioni senza apportare alcun incremento di assurance.  
-**Nel contesto del manuale:** Trattate negli Step 1, 4 e 9. La sotto-specificazione è la causa prima dell'allucinazione e del *Semantic Smoothing*; la sovra-specificazione distrugge l'indipendenza dei test costringendo gli oracoli a verificare l'implementazione anziché le proprietà di confine.  
-**Distinzioni importanti:** Una specifica corretta deve essere esaustiva sui vincoli osservabili alla frontiera (*Boundary Completeness*) e rigorosamente neutra rispetto ai dettagli algoritmici interni (*Declarative Specification*).  
-**Termini correlati:** Specification, Specification Validity, Declarative Specification, Semantic Smoothing, Underspecification.
+**Definizione:** Due patologie simmetriche dei requisiti: la *sotto-specificazione* omette vincoli di confine essenziali delegando all'LLM scelte arbitrarie basate su medie statistiche; la *sovra-specificazione* incorpora dettagli implementativi e algoritmici interni, vincolando indebitamente la soluzione e impedendo la verifica indipendente dei contratti di interfaccia.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 4), Capitolo 4 (Sez. 4 e 9) e Capitolo 9 (Specification Validity, Sez. 3.4).*
 
 #### UNKNOWN (Stato Epistemico Non Noto / Verdetto di Incertezza)
 **Categoria:** Stato epistemico formale / Valore decisionale del manuale  
-*Vedi: UNKNOWN definito come stato epistemico primario di ignoranza documentata in Capitolo 1 (Problem Definition, Sez. 3.3 e 6.3), Capitolo 5 (Assumptions & Unknowns, Sez. 3.1 e 4) e applicato come esito bloccante ai gate in Capitolo 23 (Evidence-Based Decision Gates, Sez. 5.2).*
+**Definizione:** Stato formale che dichiara l'assenza di dati o l'impossibilità contingente di verificare una proprietà; nei Decision Gates agisce come blocco vincolante della transizione esattamente come una violazione conclamata.  
+*Approfondimento nel manuale: formalizzato come principio epistemico in Capitolo 1 (Sez. 3.3 e 6.3), Capitolo 5 (Sez. 3.1 e 4) e Capitolo 23 (Sez. 5.2).*
 
 ---
 
@@ -36443,23 +36336,28 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Vacuous Truth (Verità Vacua)
 **Categoria:** Termine logico e scientifico consolidato  
-*Vedi: Vacuous Truth definita nell'insoddisfacibilità delle precondizioni in Capitolo 4 (Specification, Sez. 3.3), illustrata nel testing in Capitolo 6 (Sez. 4 e 8.3) e Capitolo 18 (PBT & Fuzzing, Sez. 9, Controesempio 1).*
+**Definizione:** Fenomeno logico per cui un'asserzione condizionale universale (`forall x: P(x) -> Q(x)`) risulta formalmente vera unicamente perché la precondizione P(x) è sempre falsa nel dominio campionato, mascherando la mancata esecuzione del test.  
+*Approfondimento nel manuale: vedi Capitolo 4 (Sez. 3.3), Capitolo 6 (Sez. 4 e 8.3) e Capitolo 18 (PBT & Fuzzing, Sez. 9).*
 
 #### Validation (Validazione)
 **Categoria:** Distinzione epistemica obbligatoria  
-*Vedi: Validation formalizzata nel modello Mondo-Macchina in Capitolo 1 (Sez. 2.2), distinta dalla verifica in Capitolo 4 (Sez. 6.3 e 12.3), Capitolo 9 (Specification Validity, Sez. 3.1) e Capitolo 21 (Independent Verification, Sez. 6).*
+**Definizione:** Processo empirico ed epistemico volto ad accertare che il sistema software realizzi le effettive finalità e necessità del mondo reale (`Did we build the right system?` - W AND S |= R), distinto dalla verifica.  
+*Approfondimento nel manuale: vedi Capitolo 1 (Sez. 2.2), Capitolo 4 (Sez. 6.3), Capitolo 9 (Sez. 3.1) e Capitolo 21 (Sez. 6).*
 
 #### Verification (Verifica)
 **Categoria:** Distinzione epistemica obbligatoria  
-*Vedi: Verification formalizzata come conformità alla specifica in Capitolo 4 (Sez. 6.3 e 12.3), Capitolo 9 (Specification Validity, Sez. 3.1) e disciplinata nei requisiti di indipendenza in Capitolo 21 (Independent Verification, Sez. 4.1 e 6).*
+**Definizione:** Processo logico e analitico volto a dimostrare che il software soddisfi rigorosamente le prescrizioni della specifica formale dichiarata (`Did we build the system right?` - M |= S).  
+*Approfondimento nel manuale: vedi Capitolo 4 (Sez. 6.3), Capitolo 9 (Sez. 3.1) e Capitolo 21 (Independent Verification, Sez. 4.1 e 6).*
 
 #### Vibe Coding (Programmazione a Sensazione)
 **Categoria:** Anti-pattern denominato dal manuale (gergo contemporaneo delimitato)  
-*Vedi: Vibe Coding definito come anti-pattern metodologico di accettazione acritica del codice generato da LLM in Capitolo 15 (LLM-Assisted Implementation), Sezione 4 e Sezione 8.*
+**Definizione:** Anti-pattern contemporaneo consistente nell'accettare ed eseguire acriticamente codice generato da LLM basandosi solo sul fatto che compili o sembri funzionare, senza averne compreso la logica né validato i contratti.  
+*Approfondimento nel manuale: vedi Capitolo 15 (LLM-Assisted Implementation), Sezione 4 e Sezione 8.*
 
 #### Vulnerability (Vulnerabilità)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
-*Vedi: Vulnerability definita come debolezza intrinseca e distinta da minaccia e rischio in Capitolo 19 (Threat Modeling & Red Teaming), Sezione 6.1.*
+**Definizione:** Debolezza, difetto logico o lacuna architetturale presente nel software o nella configurazione che può essere sfruttata da una minaccia per violare le proprietà di sicurezza del sistema.  
+*Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 6.1.*
 
 ---
 
@@ -36469,15 +36367,17 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### Warranty (Garanzia contrattuale / commerciale)
 **Categoria:** Termine giuridico e commerciale  
-*Vedi: Warranty definita nei suoi confini commerciali e distinta nettamente da Assurance e Insurance in Nota Terminologica (Sez. 2).*
+**Definizione:** Impegno commerciale, legale o contrattuale che stabilisce un rimedio, risarcimento o riparazione economica in caso di difetti del prodotto; non coincide con l'Assurance ingegneristica né con l'assicurazione finanziaria (Insurance).  
+*Approfondimento nel manuale: vedi Nota Terminologica iniziale (Sez. 2).*
 
-#### WORM (Write Once, Read Many)
+#### WORM - Write Once, Read Many
 **Categoria:** Acronimo / Termine tecnico consolidato  
-**In inglese:** *WORM Storage (Write Once, Read Many)*  
-**In italiano:** Supporto di memorizzazione a scrittura singola e lettura multipla  
-**Definizione:** Modalità o supporto di archiviazione dati dotato di vincoli crittografici o hardware che consentono la scrittura del file una sola volta, impedendo qualsiasi successiva cancellazione, sovrascrittura o alterazione fino alla scadenza del periodo di ritenzione impostato.  
-**Nel contesto del manuale:** Nello Step 29 (Post-Deployment Analysis) e nello Step 33 (Closure & Lessons Learned) è prescritto per garantire l'immutabilità e la catena di custodia forense dei log di audit e dei manifesti crittografici di chiusura.  
-**Termini correlati:** Audit Trail, Provenance, Assurance Closure Package.
+**Definizione:** Modalità o supporto di archiviazione dati dotato di vincoli crittografici o hardware che consentono la scrittura del dato una sola volta, impedendone qualsiasi successiva modifica o cancellazione a tutela dell'immutabilità forense dell'audit trail.  
+*Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis, Sez. 9) e Capitolo 33 (Closure & Lessons Learned, Sez. 15).*
+
+---
+
+[▲ Indice del Glossario](#indice-glossario)
 
 ---
 
