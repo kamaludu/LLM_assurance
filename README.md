@@ -113,31 +113,38 @@
 <details>
 <summary> 🌍 <b>Translations & International Readers: 🇮🇹 🇬🇧 🇫🇷 🇩🇪 🇪🇸 🇵🇹 🇨🇳 <br> (Click to expand / Clicca per espandere)</b></summary>
 
-**🇮🇹 Italiano:**
+**🇮🇹 Italiano:**  
+**Manuale di Assurance del Software Assistito da LLM**  
 - **Lettura immediata con traduttore automatico:** Si consiglia di scaricare il file **`.html`** dalla sezione [Releases](../../releases/latest) e aprirlo nel browser (Chrome, Edge, Safari) utilizzando la funzione nativa di traduzione automatica della pagina.
 - **Traduzioni formali:** Chi desidera realizzare una versione tradotta del manuale deve operare sul file sorgente `.md`. Le traduzioni sono considerate opere derivate e devono rispettare i termini della **GNU FDL v1.3** (Sez. 8).
 
-**🇬🇧 English:**
+**🇬🇧 English:**  
+**Handbook of LLM-Assisted Software Assurance**  
 - **Reading with Machine Translation:** We strongly recommend downloading the standalone **`.html`** file from the [Releases](../../releases/latest) section and opening it in a web browser (Chrome, Edge, Safari) using the built-in "Translate page" feature. Translating the PDF version directly is discouraged as it breaks formatting and code blocks.
 - **Translating the Manual:** If you wish to translate this manual into another language, please work directly on the source Markdown file (`.md`). In accordance with **GNU FDL v1.3** (Section 8), translations are regarded as modified versions and must be distributed under the same license terms, preserving original authorship and notices.
 
-**🇫🇷 Français :**
+**🇫🇷 Français :**  
+**Manuel de l’assurance qualité des logiciels assistée par les LLM**  
 - **Lecture avec traduction automatique :** Il est fortement recommandé de télécharger le fichier indépendant **`.html`** depuis la section [Releases](../../releases/latest) et de l'ouvrir dans un navigateur web (Chrome, Edge, Safari) à l'aide de la fonction native de traduction de page. Il est déconseillé de traduire directement la version PDF car cela altère la mise en page et les blocs de code.
 - **Traduire le manuel :** Si vous souhaitez traduire ce manuel dans une autre langue, veuillez travailler directement sur le fichier source Markdown (`.md`). Conformément à la **GNU FDL v1.3** (Section 8), les traductions sont considérées comme des versions modifiées et doivent être distribuées sous les mêmes termes de licence, en préservant la mention de paternité et les avis d'origine.
 
-**🇩🇪 Deutsch:**
+**🇩🇪 Deutsch:**  
+**Handbuch zur Qualitätssicherung von LLM-gestützter Software**  
 - **Lesen mit automatischer Übersetzung:** Es wird dringend empfohlen, die eigenständige **`.html`**-Datei aus dem Bereich [Releases](../../releases/latest) herunterzuladen und in einem Webbrowser (Chrome, Edge, Safari) mit der integrierten Funktion „Seite übersetzen“ zu öffnen. Von einer direkten Übersetzung der PDF-Version wird abgeraten, da dies das Layout und Codeblöcke beschädigt.
 - **Handbuch übersetzen:** Wenn Sie dieses Handbuch in eine andere Sprache übersetzen möchten, arbeiten Sie bitte direkt mit der Markdown-Quelldatei (`.md`). Gemäß der **GNU FDL v1.3** (Abschnitt 8) gelten Übersetzungen als modifizierte Versionen und müssen unter denselben Lizenzbedingungen veröffentlicht werden, wobei die ursprüngliche Urheberschaft und alle Hinweise erhalten bleiben müssen.
 
-**🇪🇸 Español:**
+**🇪🇸 Español:**  
+**Manual de aseguramiento del software asistido por LLM**  
 - **Lectura con traducción automática:** Se recomienda descargar el archivo independiente **`.html`** desde la sección [Releases](../../releases/latest) y abrirlo en un navegador web (Chrome, Edge, Safari) utilizando la función nativa de traducción de páginas. Se desaconseja traducir directamente la versión en PDF, ya que altera el diseño y los bloques de código.
 - **Traducir el manual:** Si deseas traducir este manual a otro idioma, trabaja directamente sobre el archivo fuente en Markdown (`.md`). De acuerdo con la **GNU FDL v1.3** (Sección 8), las traducciones se consideran versiones modificadas y deben distribuirse bajo los mismos términos de licencia, preservando la autoría y los avisos originales.
 
-**🇵🇹 Português:**
+**🇵🇹 Português:**  
+**Manual de garantia da qualidade de software assistida por LLM**  
 - **Leitura com tradução automática:** Recomenda-se descarregar o ficheiro autónomo **`.html`** na secção [Releases](../../releases/latest) e abri-lo num navegador web (Chrome, Edge, Safari) usando a função nativa de tradução de páginas. Não se recomenda traduzir diretamente a versão em PDF, pois isso quebra a formatação e os blocos de código.
 - **Traduzir o manual:** Se deseja traduzir este manual para outro idioma, trabalhe diretamente no ficheiro fonte em Markdown (`.md`). De acordo com a **GNU FDL v1.3** (Secção 8), as traduções são consideradas versões modificadas e devem ser distribuídas sob os mesmos termos de licença, preservando a autoria e os avisos originais.
 
-**🇨🇳 简体中文：**
+**🇨🇳 简体中文：**  
+**大语言模型辅助软件保障手册**  
 - **使用机器翻译即时阅读：** 建议从 [Releases](https://github.com/kamaludu/LLM_assurance/releases/latest) 页面下载 **`.html`** 文件，并在浏览器（Chrome、Edge、Safari）中打开，使用浏览器内置的网页自动翻译功能。
 - **正式翻译：** 如果希望制作本手册的翻译版本，应直接使用 Markdown 源文件 `.md`。翻译版本被视为衍生作品，必须遵守 **GNU FDL v1.3**（第 8 节）的许可条款。
 
