@@ -148,7 +148,7 @@ I marchi citati (inclusi ISO, IEEE, MITRE ATLAS, OWASP, DO-178C) appartengono ai
 
 > [!NOTE]
 > Il concetto e la traduzione di **Assurance**  
-> Nel contesto dell'Ingegneria del Software e della Governance dei sistemi basati su Intelligenza Artificiale e LLM, la precisione terminologica non è un requisito puramente stilistico, ma una necessità epistemica e metodologica.  
+> Nel contesto dell'Ingegneria del Software e della Governance dei sistemi basati su Intelligenza Artificiale e LLM, la precisione terminologica non è un requisito puramente stilistico, ma una necessità epistemica (ossia, la necessità di definire con precisione ciò che si afferma e di disporre di basi adeguate per ritenerlo attendibile) e metodologica.  
 > Il termine inglese Assurance presenta una complessità semantica che non trova un unico corrispettivo sintetico ed esaustivo nella lingua italiana. Per evitare equivoci concettuali e operativi nell'applicazione dei principi esposti in questo manuale, la presente nota chiarisce il significato del termine, le sue possibili rese in italiano e la convenzione redazionale adottata.
 >
 
@@ -687,7 +687,7 @@ Per esempio, se una specifica presume che un sensore fornisca sempre dati corret
 
 #### 3. La Tassonomia Epistemica a 5 Stati
 
-Nel manuale non tutte le informazioni hanno lo stesso grado o tipo di certezza. Per questo ogni informazione rilevante deve essere classificata secondo il proprio **stato epistemico**, cioe' secondo cio' che possiamo ragionevolmente affermare di sapere su di essa.
+Nel manuale non tutte le informazioni hanno lo stesso grado o tipo di certezza. Per questo ogni informazione rilevante deve essere classificata secondo il proprio **stato epistemico**, ossia, la condizione che descrive che cosa sappiamo di un'informazione, su quali basi lo sappiamo e quanto possiamo ritenerla attendibile.
 
 I cinque stati sono:
 
@@ -29822,7 +29822,7 @@ La licenza GNU Free Documentation License (GNU FDL) con cui è distribuito il pr
 
 ### Mappa dell'Appendice
 
-  1. **Premessa epistemica e finalità operativa**
+  1. **Premesse concettuali e finalità operative**
      - Raccordo metodologico con gli STEP del manuale
      - La natura del codice non fidato e l'insufficienza dei controlli verbali
   2. **I cinque assi operativi dell'isolamento (Modello analitico interdipendente)**
@@ -29863,7 +29863,7 @@ La licenza GNU Free Documentation License (GNU FDL) con cui è distribuito il pr
 
 ---
 
-### 1. PREMESSA EPISTEMICA E FINALITÀ OPERATIVA
+### 1. PREMESSE CONCETTUALI E FINALITÀ OPERATIVE
 
 Nello **STEP 14 ([Capitolo 14: Containment & Least Authority](#step-14-containment-least))** di questo manuale è stato formalizzato il principio cardine secondo cui:
 
