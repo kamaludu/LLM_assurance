@@ -19,12 +19,13 @@
 ---
 
 <details>
-<summary>📑 <b>Clicca per espandere l'Indice Completo del Manuale (sorgente .md)</b></summary>
+<summary>📑 <b>Indice Completo del Manuale: <br> (Clicca per espandere)</b></summary>
 
 > *Nota: Questo indice riflette fedelmente la struttura del file sorgente master (`LLM_assurance.md`). Le versioni esportate (PDF, EPUB, DOCX) nelle Release potrebbero presentare discrepanze temporali rispetto all'ultimo commit.*
 
 ---
 
+**Assurance del Software Assistito da LLM**
 ### Indice completo
 
 - ⌘ Informazioni sul documento
