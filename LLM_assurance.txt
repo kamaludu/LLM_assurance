@@ -154,7 +154,7 @@ I marchi citati (inclusi ISO, IEEE, MITRE ATLAS, OWASP, DO-178C) appartengono ai
 
 ---
 
-**1. Definizione epistemica e ingegneristica**
+### 1. Definizione epistemica e ingegneristica
 
 Nella terminologia internazionale di *Systems and Software Assurance*, il riferimento principale è ISO/IEC/IEEE 15026-1:2025 — Systems and software engineering — Systems and software assurance — Part 1: Vocabulary and concepts.
 
@@ -203,7 +203,7 @@ L'Assurance riguarda la base complessiva e giustificata sulla quale è possibile
 
 ---
 
-**2. Assurance, Warranty e Insurance**
+### 2. Assurance, Warranty e Insurance
 
 I termini inglesi Assurance, Warranty e Insurance possono essere associati nel linguaggio comune all'idea generale di "garanzia", ma appartengono a concetti differenti.
 
@@ -236,9 +236,9 @@ Il fatto che in italiano entrambi possano essere associati al termine "garanzia"
 
 ---
 
-**3. Possibili corrispettivi italiani**
+### 3. Possibili corrispettivi italiani
 
-A. Garanzia
+**A. Garanzia**
 
 Portata: possibile resa italiana in determinati contesti tecnici.
 
@@ -252,7 +252,7 @@ Quando compare, deve essere esplicitamente qualificato nel significato tecnico a
 
 ---
 
-B. Assicurazione
+**B. Assicurazione**
 
 Il termine può comparire come resa storica di espressioni quali Quality Assurance in determinati contesti organizzativi e gestionali.
 
@@ -268,7 +268,7 @@ salvo il caso in cui si stia discutendo esplicitamente della terminologia storic
 
 ---
 
-C. Attestazione / Asseverazione
+**C. Attestazione / Asseverazione**
 
 Attestazione e asseverazione possono descrivere specifici atti formali, professionali, organizzativi o giuridici.
 
@@ -297,7 +297,7 @@ Un atto di approvazione o attestazione può quindi essere parte di un processo d
 
 ---
 
-D. Fiducia giustificata
+**D. Fiducia giustificata**
 
 Fiducia giustificata rappresenta una buona resa concettuale di justified confidence.
 
@@ -318,11 +318,11 @@ Per questo motivo viene utilizzata principalmente come spiegazione concettuale, 
 
 ---
 
-**4. Convenzione adottata nel manuale**
+### 4. Convenzione adottata nel manuale
 
 Il manuale adotta la seguente convenzione:
 
-4.1 Uso di "Assurance"
+#### 4.1 Uso di "Assurance"
 
 Il termine inglese Assurance viene mantenuto come termine d'arte.
 
@@ -334,7 +334,7 @@ La versione corrente di riferimento è ISO/IEC/IEEE 15026-1:2025; la precedente 
 
 ---
 
-4.2 Uso di "Garanzia del Software"
+#### 4.2 Uso di "Garanzia del Software"
 
 Quando sia necessario utilizzare una formulazione italiana, Garanzia del Software può essere utilizzato come resa descrittiva del concetto, purché il contesto chiarisca che non si tratta di:
 
@@ -347,7 +347,7 @@ Nel manuale, quindi, Assurance rimane il termine principale.
 
 ---
 
-4.3 Definizione operativa del manuale
+#### 4.3 Definizione operativa del manuale
 
 Ai fini del presente manuale, il termine Assurance viene utilizzato nella seguente accezione operativa:
 
@@ -359,7 +359,7 @@ Essa integra il concetto normativo di grounds for justified confidence con il mo
 
 ---
 
-**5. Distinzione fondamentale per il manuale**
+### 5. Distinzione fondamentale per il manuale
 
 Il concetto deve essere mantenuto distinto dai seguenti:
 ```text
@@ -425,7 +425,7 @@ La qualità dell'assurance dipende quindi dalla qualità e dalla pertinenza dell
 
 ---
 
-**6. Principio terminologico conclusivo**
+### 6. Principio terminologico conclusivo
 
 Nel presente manuale:
 
@@ -37078,79 +37078,8 @@ La presente bibliografia raccoglie le principali fonti tecniche, scientifiche e 
 
 ### Note editoriali sulla bibliografia
 
-La bibliografia non deve attribuire alle fonti esterne concetti che costituiscono invece elaborazioni didattiche originali del presente manuale, né rivendicare la paternità esclusiva di nozioni consolidate nell'ingegneria del software o nella letteratura di settore. 
-
-A tutela della trasparenza scientifica e del diritto d'autore, la presenza di un termine, modello o acronimo in queste note identifica la sua precisa linea di derivazione e ne delimita formalmente l'eventuale qualifica di **costrutto didattico originale**:
-
-- **Generation-Verification Asymmetry** deve essere trattata come sintesi concettuale del manuale, salvo individuazione di una fonte primaria sufficientemente stabile e pertinente.
-- **Epistemic Laundering**, qualora mantenuto nel testo, deve essere presentato come termine proveniente dalla letteratura recente e, nel suo impiego nell’assurance software, come estensione applicativa/analogia esplicitamente dichiarata.
-- **C_eff**, la triade dei *Competence Gaps*, la catena canonica di tracciabilità, i filtri di validazione della specifica, il vettore di disaccoppiamento a 10 dimensioni (`Indep_Vector`) e il modello di allocazione `Score_AL` devono essere identificati come **costrutti didattici del manuale**, non corrispondendo a una singola formulazione normativa o scientifica preesistente.
-- I concetti, i pattern diagnostici e i modelli operativi introdotti negli **STEP 18–33** devono essere considerati **costrutti didattici e metodologici propri del manuale**, nati dalla sintesi dei principi di sicurezza classica applicati ai failure mode dei modelli linguistici, e non devono essere attribuiti a specifiche norme preesistenti:
-  - **Consenso Fragile** e **Consenso Robusto** sono da intendersi come distinzione euristica e diagnostica dello Step 20 per valutare la tenuta dell'accordo tra modelli alle perturbazioni sintattiche;
-  - **Multi-Agent Echo Chamber** è impiegato come denominazione didattica di un anti-pattern che descrive l'approvazione circolare tra agenti AI privi di oracolo esterno, e non come termine tecnico standard;
-  - **Downstream Blindness** costituisce un costrutto didattico e una metafora dello Step 19 per denotare l'assenza ingiustificata di validazione deterministica a valle dell'output generato;
-  - **Prompt Mirroring** e **Specification Borrowing** sono denominazioni convenzionali adottate nel manuale per identificare specifici anti-pattern di verifica generativa nello Step 21;
-  - L'estensione dell'indipendenza all'**Asse Epistemico** costituisce un'integrazione didattica e metodologica proposta dal manuale rispetto alla triade classica definita da IEEE 1012;
-  - Il **Protocollo Clean-Room per LLM** è una procedura didattica propria del manuale finalizzata all'isolamento della specifica rispetto all'implementazione e ai prompt dell'autore; non deve essere confuso con il metodo formale di *Cleanroom Software Engineering* (Mills, IBM) né con il *clean-room reverse engineering* di natura brevettuale o legale;
-  - Il modello decisionale `A_ach(E, I(E)) < A_req(R) -> NO-GO` e il modello della **Valutazione Vettoriale del Rischio** `V_gate = [D_inv, D_ind, D_cov, D_disc]` rappresentano modelli logico-qualitativi propri del manuale per il governo dei gate (Step 23), non leggi matematiche o formule normative universali;
-  - Lo schema del **Discrepancy Record strutturato** rappresenta un modello operativo adottato nel manuale per garantire la tracciabilità delle anomalie (Step 22), e non un formato standard universale di assurance;
-  - **The Echo Chamber Gate**, **Green Board Fallacy**, **Threshold Tampering** e **Gate Theater** (quest'ultimo come adattamento didattico del concetto di *security theater* di Bruce Schneier) sono denominazioni didattiche dello Step 23 per catalogare le fallacie di conformità superficiale nelle pipeline di gating;
-  - **The Friday Afternoon Rubber-Stamp**, **The Sycophantic Review Assistant**, **Diff Drowning**, **Authority Mismatch**, **Blame Shifting** ed **Explanation Satiation** costituiscono denominazioni e costrutti didattici dello Step 24 per formalizzare le patologie della revisione umana su codice sintetico;
-  - **LGTM Syndrome** è un'espressione gergale della comunità degli sviluppatori formalizzata nel manuale (Step 24) come anti-pattern metodologico di approvazione acritica;
-  - L'**Ispezione Inversa** costituisce il protocollo metodologico dello Step 24 che subordina la lettura del codice alla previa analisi degli invarianti e alla ricerca attiva delle omissioni semantiche;
-  - **Two-Person Integrity (TPI)** è adottato nello Step 24 come principio didattico e organizzativo di separazione tra operatore del prompt e revisore, traendo origine storica dalla dottrina di sicurezza dei materiali crittografici (COMSEC) e dalla dottrina militare del controllo congiunto (*Two-Man Rule*);
-  - Il predicato formale `Approval(H, A, D, Omega)` costituisce una formalizzazione decisionale qualitativa propria del manuale;
-  - **Staging Fidelity Gap** costituisce il costrutto didattico dello Step 25 che formalizza la discrepanza strutturale inevitabile tra ambiente di laboratorio e realtà operativa;
-  - **The Silent Canary**, **The Phantom Flag**, **Lethal Schema Drift**, **The Impatient Canary** e **Flag Debt Explosion** sono costrutti e denominazioni didattiche dello Step 25 per denotare le anomalie dell'esposizione confinata e della convivenza tra versioni;
-  - Il modello qualitativo del Raggio d'Impatto `BR(t)` e il predicato `CanaryAdvance` costituiscono formalizzazioni algebriche qualitative del manuale per il governo del rilascio controllato;
-  - Le **Runtime Invariant Probes (Sonde di Invariante a Runtime)** costituiscono una proposta metodologica e didattica propria del manuale (Step 26) per collegare gli invarianti critici alla telemetria di runtime, pur potendo essere implementate mediante standard aperti come OpenTelemetry;
-  - La **Catena della Trasformazione Telemetrica** (`SYSTEM -> INSTRUMENTATION -> TELEMETRY -> OBSERVATION -> INTERPRETATION -> EVIDENCE -> ASSURANCE DECISION`) rappresenta la sintesi epistemica del manuale per distinguere il dato telemetrico grezzo dall'evidenza di assurance;
-  - **The Tautological Logger**, **The Drowned Dashboard**, **Dashboard Myopia**, **Self-Masking Instrumentation**, **Cardinality Blindness** e **Post-Hoc Metric Invention** costituiscono terminologia didattica dello Step 26 per catalogare i limiti dell'osservabilità applicata al codice generato da LLM;
-  - Il predicato `IsObservable(I, Y, [t_0, t_1])` costituisce un modello logico qualitativo del manuale introdotto per analogia concettuale con la teoria dei sistemi lineari;
-  - La **Catena di Rilevazione e Risposta Operativa** (`OBSERVATION -> DETECTION RULE -> ALERT -> CLASSIFICATION -> NOTIFICATION/ESCALATION -> RUNBOOK -> AUTHORIZED ACTION -> OBSERVATION OF EFFECT -> DECISION`) rappresenta il modello di processo didattico dello Step 27 per disarticolare il segnale telemetrico dall'intervento correttivo;
-  - L'**Anatomia del Runbook a Sette Dimensioni** (Trigger, Precondizioni, Autorizzazioni, Triage in sola lettura, Azioni di mitigazione ed effetti attesi, Condizioni di stop/escalation, Criteri di chiusura) costituisce un contratto esecutivo strutturato proprio del manuale per rendere verificabile e controllabile la procedura di emergenza (Step 27);
-  - Le disuguaglianze assiomatiche dell'alerting (`NO ALERT != NO FAILURE`, `ALERT != FAILURE`, `ALERT != ROOT CAUSE`, `ALERT != INCIDENT`, `INCIDENT != ROOT CAUSE`, `ALERT != PROOF OF FAILURE`, `RUNBOOK != GUARANTEED RECOVERY`, `MANY ALERTS != HIGH ASSURANCE`, `FEW ALERTS != LOW RISK`) costituiscono costrutti logico-didattici dello Step 27 per prevenire fallacie di giudizio operativo;
-  - **Alert Carpet Bombing**, **Alert Starvation by Omission**, **The Hallucinated CLI**, **Missing Read-Only Boundary**, **Circular Runbook Dependency**, **Blind Resolution Assumption** e **Static Threshold Drift** costituiscono denominazioni e anti-pattern didattici dello Step 27 per formalizzare i vizi dell'alerting e delle procedure generate da LLM;
-  - Il modello didattico dell'impatto cumulativo `I = sum(k=1 to M, TrafficVolume_k * ErrorRate_k * (MTTD_k + MTTR_k))` è un costrutto algebrico qualitativo introdotto per evidenziare la linearità del danno rispetto alla somma dei ritardi di rilevamento e mitigazione (Step 27);
-  - La **Catena di Contenimento e Recupero** (`FAILURE/DEGRADATION -> DETECTION -> CONTAINMENT -> RECOVERY STRATEGY -> EXECUTION -> OBSERVATION -> VERIFY RECOVERY -> UPDATED ASSURANCE STATE`) formalizza nello Step 28 la subordinazione del ripristino alla preventiva delimitazione del raggio di danno (*blast radius*);
-  - La distinzione assiomatica tra reversibilità del codice e reversibilità dello stato (**`ROLLBACKABILITY != REVERSIBILITY`**) costituisce il principio epistemico fondativo dello Step 28 per smontare l'illusione della neutralità del rollback in presenza di dati persistiti e side effect esterni;
-  - Le disuguaglianze della resilienza (`ROLLBACK != RECUPERO GARANTITO`, `FALLBACK != CORRETTEZZA`, `CIRCUIT BREAKER != PREVENZIONE DELLA CAUSA`, `MECHANISM AVAILABLE != MECHANISM WORKS`, `MECHANISM WORKS != RECOVERY COMPLETE`, `RECOVERY COMPLETE != DATA CORRECT`, `DATA CORRECT != ALL INVARIANTS RESTORED`) rappresentano strumenti di igiene concettuale propri dello Step 28;
-  - **Poison Fallback** costituisce un costrutto didattico originale del manuale (Step 28) per identificare i meccanismi di ripiego che, pur di non sollevare un errore esteriore, generano corruzione semantica nel dominio applicativo;
-  - **The Irreversible Migration Trap**, **Silent Fallback Corruption**, **The All-or-Nothing Probe**, **Shared Fate Recovery**, **Hardcoded Timeout Delusion** e **Infinite Retry Storm** sono denominazioni didattiche dello Step 28 per catalogare i difetti strutturali nel codice di recupero generato da modelli linguistici;
-  - La **Matrice di Fedeltà del Fallback** rispetto all'insieme delle proprietà critiche preservate o rilassate costituisce un modello concettuale qualitativo del manuale, introdotto in sostituzione di punteggi scalari arbitrari di qualità;
-  - La formalizzazione della **Realtà Operativa come Fonte di Evidenza e non come Oracolo** costituisce una distinzione epistemica propria del manuale (Step 29), volta a superare il bias della falsa compiacenza per cui un sistema che non crasha viene acriticamente considerato conforme alla specifica;
-  - La **Fenomenologia Operativa a Sei Dimensioni** (Incident, Degradation, Near Miss, Anomaly, Expected Operation, Absence of Expected Signal) rappresenta la tassonomia didattica dello Step 29 per estendere l'analisi post-deployment oltre il disservizio conclamato;
-  - Il **Vettore Multidimensionale di Impatto Operativo** `M(E) = (Sev(E), BR(E), W_exp(E), TTD(E), V_prop(E))` costituisce una modellazione parametrica qualitativa propria del manuale (Step 29) per quantificare l'evento operativo oltre i meri tassi probabilistici stazionari;
-  - Le disuguaglianze diagnostiche post-deployment (`OSSERVAZIONE != CAUSA DIMOSTRATA`, `ASSENZA DI INCIDENTE != ASSENZA DI RISCHIO`, `POST-MORTEM != PROVA DI CORRETTEZZA`, `SPIEGAZIONE PLAUSIBILE != CAUSA VERIFICATA`) rappresentano strumenti di igiene concettuale propri dello Step 29;
-  - La catena di propagazione sistemica post-incidente (`INCIDENT/ANOMALY -> DISCREPANCY ANALYSIS -> CAUSAL HYPOTHESIS -> EVIDENCE COLLECTION -> VERIFIED FINDING -> ASSURANCE UPDATE -> CHANGE IMPACT ANALYSIS`) formalizza la chiusura dell'anello di retroazione epistemica dello Step 29;
-  - **Prompt-Driven RCA**, **Patch-Over-Patch**, **Silent Defect Masking** e **Blind Blame to Dependencies** costituiscono denominazioni didattiche dello Step 29 per catalogare i vizi investigativi nell'analisi assistita da modelli linguistici;
-  - La de-costruzione dell'equivalenza ingenua **`RISK REGISTER -> RISCHI ELENCATI -> RISCHI GESTITI`** costituisce il principio di governance fondativo dello Step 30;
-  - Le **Disuguaglianze Assiomatiche del Rischio e della Conoscenza** (`RISK IDENTIFIED != RISK UNDERSTOOD`, `RISK DOCUMENTED != RISK CONTROLLED`, `RISK MITIGATED != RISK ELIMINATED`, `CONTROL DEFINED != CONTROL EFFECTIVE`, `CONTROL EFFECTIVE != RISK ZERO`, `RISK REGISTER COMPLETE != RISK LANDSCAPE COMPLETE`, `KNOWLEDGE STORED != KNOWLEDGE VALID`, `KNOWLEDGE VALID != KNOWLEDGE CURRENT`, `LLM-GENERATED RISK ITEM != VALIDATED RISK ASSESSMENT`) costituiscono costrutti logico-didattici dello Step 30;
-  - La formalizzazione discreta dell'Efficacia della Mitigazione vincolata alla validità dell'evidenza:
-    `E_mitig(M_i) = min(1.0, sum(k=1 to m, w_k * EvidenceWeight(c_k) * Validity(c_k)))` con `Validity(c_k) in {0, 1}`
-    costituisce un modello algebrico qualitativo del manuale (Step 30) per azzerare il valore di abbattimento del rischio di controlli privi di test empirici verificati;
-  - L'automa a stati finiti del rischio a 9 stati (`NEW`, `OPEN`, `MITIGATED`, `ACCEPTED`, `TRANSFERRED`, `AVOIDED`, `MONITORED`, `REOPENED`, `CLOSED`) rappresenta la formalizzazione operativa dello Step 30 per governare il ciclo di vita delle minacce;
-  - **Risk Register Completeness Illusion**, **The Inventory Fallacy**, **Write-Only Risk Register** e **Prompt Amnesia** sono denominazioni e anti-pattern didattici dello Step 30 per denotare l'amnesia tecnica e la falsa sicurezza documentale nelle sessioni con LLM;
-  - Il **Macro-Circuito Operativo di Assurance** (`STEP 28 Recovery -> STEP 29 Post-Deployment -> STEP 30 Risk & KB -> STEP 31 Change Impact`) formalizza nello Step 30 il flusso circolare continuo tra contenimento del danno, estrazione dell'evidenza empirica, memoria istituzionale e analisi preventiva del cambiamento;
-  - **L'Illusione di Località**, **Prompt CIA Amnesia**, **Diff Tunnel Vision** e **Mock-Shielded Illusion** costituiscono denominazioni e anti-pattern didattici propri del manuale (Step 31) per denotare la fallacia cognitiva secondo cui le modifiche generate da LLM abbiano impatto proporzionale alla dimensione del diff testuale;
-  - Il termine **Blast Radius**, pur appartenendo al gergo consolidato dell'ingegneria dei sistemi distribuiti e della sicurezza cloud, viene formalizzato nello Step 31 come modello a grafo orientato `Blast_Radius(C)` per l'analisi di raggiungibilità semantica e per la funzione di invalidazione dell'evidenza `Evid_Reassess(C)`;
-  - La **Catena Concettuale Centrale della CIA** (`CHANGE -> CHANGE CHARACTERIZATION -> DEPENDENCY / ASSUMPTION ANALYSIS -> POTENTIALLY IMPACTED PROPERTIES -> IMPACT ASSESSMENT -> EVIDENCE REASSESSMENT -> TARGETED RE-VERIFICATION -> UPDATED ASSURANCE STATE`) rappresenta il modello di processo metodologico originale dello Step 31 per governare razionalmente la ricalibrazione probatoria;
-  - Le disuguaglianze dell'impatto (`DIFF LOCALE != IMPATTO GLOBALE`, `MODIFICA PICCOLA != IMPATTO PICCOLO`, `TEST PASS != ASSURANCE PRESERVATA`, `NESSUN FAILURE OSSERVATO != NESSUN IMPATTO`, `LLM EXPLANATION != IMPACT EVIDENCE`, `LLM CONFIDENCE != ASSURANCE`, `ASSURANCE PRECEDENTE != AUTOMATICAMENTE VALIDA`, `ASSURANCE PRECEDENTE != AUTOMATICAMENTE INVALIDA`) costituiscono strumenti logico-didattici propri dello Step 31;
-  - **Audit Cerimoniale** e **Report Compiacente** costituiscono costrutti didattici e anti-pattern originali del manuale (Step 32) per formalizzare il fenomeno di falsa sicurezza generato dall'interazione tra *automation bias* e compiacenza generativa (*sycophancy*) nei processi di audit del software assistito da LLM;
-  - **Prompt Churn Ignorance** e **Mock Freeze Forever** rappresentano denominazioni didattiche dello Step 32 per descrivere l'obsolescenza silente dell'ambiente di test e la deriva dei prompt non tracciata;
-  - I termini **Model Drift** e **Concept Drift**, pur derivando dalla letteratura statistica del Machine Learning, vengono integrati nello Step 32 all'interno della **Funzione di Divergenza Contestuale** `D(C_0, C_t)` e del modello qualitativo di probabilità di inadeguatezza `P(Inadeguata(E) | D) = 1 - exp(-alpha * D)`, che costituiscono modelli algebrico-didattici propri del manuale a presidio del principio `TIME ELAPSED != ASSURANCE LOST`;
-  - La **Quadripartizione dell'Indipendenza di Audit** (Organizzativa, Procedurale, Tecnica ed Epistemica) costituisce un'estensione metodologica propria del manuale (Step 32) rispetto alla triade classica di IEEE 1012;
-  - **Amnesia Epistemica**, **Autoassoluzione Narrativa** e **Ghost Decommissioning** sono denominazioni e anti-pattern didattici originali del manuale (Step 33) per concettualizzare la perdita della memoria di progetto, la sostituzione della prova forense con narrazioni generative compiacenti e l'incompleta disattivazione di risorse LLM orfane;
-  - La **Memoria Negativa di Assurance** (articolata nelle nove dimensioni: *What was verified, What was not verified, What remained unknown, What assumptions remained, What risks remained, What evidence was deficient, What decisions were taken, Why they were taken, Under which conditions*) costituisce un costrutto metodologico originale del manuale (Step 33), introdotto per prevenire l'erosione epistemica da `UNKNOWN` ad `ASSUMED TRUE`;
-  - La struttura dell'**Assurance Closure Package a 15 elementi** costituisce un metamodello sintetico e didattico proprio del manuale (Step 33), progettato per raccordare in un fascicolo coerente le risultanze degli Step 1–32;
-  - Il modello formale di integrità `Root_Assurance_Hash` e la relativa disuguaglianza logico-epistemica `Integrity != Correctness != Completeness != Validity` costituiscono formalizzazioni analitiche proprie del manuale (Step 33);
-  - La **Catena Operativa di Chiusura** (`FINAL ASSURANCE STATE -> CLOSURE DECISION -> EVIDENCE PACKAGE -> INTEGRITY / PROVENANCE / RETENTION -> KNOWLEDGE CAPITALIZATION -> ARCHIVED ASSURANCE RECORD -> FUTURE REUSE / REVIEW / AUDIT`) rappresenta la formalizzazione metodologica dello Step 33 che sancisce il principio per cui la chiusura non crea garanzie retroattive;
-  - Le disuguaglianze della chiusura (`CLOSURE != CORRECTNESS`, `ARCHIVING != VALIDATION`, `PROVENANCE != TRUTH`, `PRESERVATION != INDEPENDENCE`, `DOCUMENTED != VERIFIED`, `VERIFIED != PERMANENTLY VALID`, `UNKNOWN ARCHIVED != UNKNOWN RESOLVED`, `LESSON LEARNED != VERIFIED CAUSAL LAW`, `LLM SUMMARY != EVIDENCE`, `LLM NARRATIVE != ROOT CAUSE`, `PROJECT ABANDONED != ASSURANCE ESTABLISHED`) rappresentano strumenti di igiene concettuale propri dello Step 33.
-- Le fonti normative e gli standard devono essere citati nella **versione effettivamente utilizzata** nel testo. In particolare, per l'assurance case il riferimento corrente è **ISO/IEC/IEEE 15026-2:2022** (e per il ciclo di vita **ISO/IEC/IEEE 15026-4:2021**), mentre le edizioni precedenti ritirate non devono essere utilizzate come norme vigenti.
-- Per i processi generali di ciclo di vita e manutenzione, **ISO/IEC/IEEE 12207:2017** e **ISO/IEC/IEEE 14764:2022** costituiscono i riferimenti normativi formali di riferimento.
-- Per le attestazioni crittografiche di provenienza, **SLSA v1.0** (OpenSSF) costituisce la specifica tecnica industriale di riferimento per la terminologia di *provenance* e *build integrity*.
-- Per gli esempi su AGV/AMR, **ISO 3691-4:2023** è la norma pubblicata da citare; la successiva ISO/DIS 3691-4 non va trattata come norma vigente finché non sarà formalmente approvata e pubblicata.
-- **Vibe Coding** deve essere considerato un termine gergale adottato dall'industria del software (popolarizzato da Andrej Karpathy nel febbraio 2025) e utilizzato nel manuale esclusivamente come etichetta descrittiva di un anti-pattern metodologico, non come concetto teorico formalizzato.
+La bibliografia non deve attribuire alle fonti esterne concetti che costituiscono invece elaborazioni didattiche originali del presente manuale, né rivendicare la paternità esclusiva di nozioni consolidate nell'ingegneria del software o nella letteratura di settore.  
+I termini contrassegnati nel testo come costrutti didattici sono elaborazioni originali dell'autore.
 
 ---
 
