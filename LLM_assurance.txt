@@ -982,6 +982,9 @@ Nell'assurance assistita da LLM, ogni enunciato descrittivo dell'ambiente o del 
 5. **UNKNOWN (Non Noto)**: Assenza esplicita di conoscenza o informazione su una variabile critica dell'ambiente o del dominio. Identificare e isolare un UNKNOWN previene decisioni progettuali basate su supposizioni arbitrarie.
    - *Esempio*: "Non è nota la risposta del sensore ottico in caso di condensazione di umidità superiore al 95%."
 
+> **Tassonomia (Taxonomy)**  
+> Struttura concettuale e gerarchica di classificazione che organizza entità, concetti, rischi o evidenze all'interno di categorie mutuamente esclusive e collettivamente esaustive rispetto a un determinato criterio di partizione. Nell'assurance del software assistito da LLM, la tassonomia (epistemica, degli oracoli, dei fallimenti) è lo strumento analitico con cui si impedisce la confusione tra piani concettuali diversi (es. distinguere un *Fact* da un *Assumption*, o un *Threat* da un *Vulnerability*), imponendo che ogni elemento del sistema possieda uno statuto conoscitivo univoco e verificabile.
+
 ---
 
 ### 4. TERMINOLOGIA TECNICA UNIFICATA
@@ -1953,10 +1956,6 @@ La classificazione in un livello AL stabilisce i vincoli di processo, architettu
 | **AL-1** | Rate limiting, log immutabili, controlli di congruenza runtime | Test di integrazione, Test a campione con oracoli sintetici | Separazione Procedurale. Review tra pari o LLM indipendenti. |
 | **AL-0** | Monitoraggio standard e gestione eccezioni ordinarie | Unit testing standard, Smoke testing | Autocertificazione dello sviluppatore/LLM consentita. |
 
-> [!NOTE]
-> **Guida alla lettura per non specialisti: i requisiti di verifica per AL-3**  
-> La tabella precedente include termini e strumenti propri della massima disciplina ingegneristica (come *TLA+*, *Coq*, *Model Checking* o la metrica di copertura avionica *MC/DC*). Il lettore non deve allarmarsi né presumere che per applicare il presente manuale sia necessario saper dimostrare teoremi matematici in Coq. Questi strumenti sono citati per rendere esplicito il livello qualitativo richiesto: mentre ai livelli AL-0 e AL-1 ci si accontenta di testare empiricamente che il software non vada in crash nei casi d'uso frequenti, al livello AL-3 (safety-critical) la gravità del danno potenziale esige che l'assenza di stati invalidi sia provata matematicamente su modelli formali indipendenti dal codice scritto. I concetti chiave di questo rigore (invarianti logiche, oracoli indipendenti, test basati su proprietà) saranno introdotti gradualmente e spiegati nei capitoli della Parte II.
-
 #### 5.4 La Regola di Non-Diluizione del Rischio
 Un errore frequente nelle matrici di rischio convenzionali consiste nell'eseguire medie aritmetiche o ponderate tra probabilità e gravità:
 ```text
@@ -2312,7 +2311,7 @@ Al termine dell'analisi del rischio, il revisore di assurance deve assegnare uno
 | STATO | CRITERIO METODOLOGICO DI ASSEGNAZIONE |
 | :--- | :--- |
 | **PASS** | Tutti i pericoli (Hazards) credibili nel Mondo (W) sono catalogati. Severità, Reversibilità e Controllabilità sono dimostrate da evidenze di dominio. L'AL è stato determinato applicando la regola di non-diluizione. Il raggio d'impatto è formalmente delimitato. Nessun elemento safety-critical permane su UNKNOWN. |
-| **PARTIAL** | Catalogo dei pericoli completato per i percorsi operativi nominali, ma analisi incompleta sulle condizioni ambientali di guasto o di stress estremo. Non autorizza lo sviluppo per AL-3/4. |
+| **PARTIAL** | Catalogo dei pericoli completato per i percorsi operativi nominali, ma analisi incompleta sulle condizioni ambientali di guasto o di stress estremo. Non autorizza lo sviluppo per AL-2 o AL-3. |
 | **UNKNOWN** | Mancanza di evidenze oggettive sulla severità del danno nel Mondo o sull'efficacia delle barriere di controllo umane. Lo STEP è sospeso in attesa di indagine empirica. |
 | **FAIL** | Identificazione di un errore concettuale nell'analisi (es. uso di probabilità numeriche soggettive per mascherare un pericolo catastrofico, o mancata inclusione di pericoli evidenti). |
 | **NOT APPLICABLE** | Il componente è un puro esercizio teorico disconnesso da qualsiasi effetto reale o operativo (rarissimo nell'assurance). |
@@ -2350,6 +2349,10 @@ AL-0   [========] 15% Rigore
        - Unit testing ordinario, Smoke testing
        - Monitoraggio standard, Revisione automatizzata ammessa
 ````
+
+> [!NOTE]
+> **Guida alla lettura per non specialisti: i requisiti di verifica per AL-3**  
+> Vengono utilizzati termini e strumenti propri della massima disciplina ingegneristica (come *TLA+*, *Coq*, *Model Checking* o la metrica di copertura avionica *MC/DC*). Il lettore non deve allarmarsi né presumere che per applicare il presente manuale sia necessario saper dimostrare teoremi matematici in Coq. Questi strumenti sono citati per rendere esplicito il livello qualitativo richiesto: mentre ai livelli AL-0 e AL-1 ci si accontenta di testare empiricamente che il software non vada in crash nei casi d'uso frequenti, al livello AL-3 (safety-critical) la gravità del danno potenziale esige che l'assenza di stati invalidi sia provata matematicamente su modelli formali indipendenti dal codice scritto. I concetti chiave di questo rigore (invarianti logiche, oracoli indipendenti, test basati su proprietà) saranno introdotti gradualmente e spiegati nei capitoli della Parte II.
 
 #### 14.2 Graduazione dell'Assurance Effort
 La proporzionalità impone che le risorse dell'ingegneria dell'assurance siano concentrate dove il potenziale di danno è maggiore. Dedicare settimane di verifica formale a un modulo AL-1 sottrae risorse critiche all'analisi degli invarianti di un modulo AL-3, creando un disequilibrio che aumenta il rischio sistemico complessivo dell'organizzazione.
@@ -4565,8 +4568,6 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
 
 ## CAPITOLO 5: ASSUMPTIONS & UNKNOWNS (Assunzioni, fatti e conoscenze mancanti)
 
----
-
 ### Mappa del Capitolo
 
  1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO                              
@@ -4580,7 +4581,7 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
  9. Controesempi e Casi di Rottura                                  
 10. Errori Comuni e Anti-pattern Epistemici                         
 11. False Assurance: La Generazione di Certezza Illusoria           
-12. Ruolo, Potenzialita e Limiti degli LLM nella Gestione delle Assunzioni
+12. Ruolo, potenzialità e Limiti degli LLM nella Gestione delle Assunzioni
 13. Indipendenza Epistemica delle Evidenze                          
 14. Relazioni di Tracciabilita con gli Altri STEP                   
 15. Casi Limite e Condizioni di Bordo                               
@@ -4594,16 +4595,16 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
 
 ### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
-Nei sistemi software tradizionali, un fallimento critico e raramente dovuto alla sola errata digitazione di un'istruzione imperativa. Nella stragrande maggioranza dei casi, il software fallisce perche il modello mentale del programmatore non corrispondeva alla realta del dominio operativo: il codice assumeva condizioni che non si sono verificate, oppure ignorava variabili determinanti rimaste invisibili durante la progettazione.
+Nei sistemi software tradizionali, un fallimento critico e raramente dovuto alla sola errata digitazione di un'istruzione imperativa. Nella stragrande maggioranza dei casi, il software fallisce perché il modello mentale del programmatore non corrispondeva alla realtà del dominio operativo: il codice assumeva condizioni che non si sono verificate, oppure ignorava variabili determinanti rimaste invisibili durante la progettazione.
 
-Nel software assistito o generato da Large Language Models (LLM), questo fenomeno epistemico subisce un'amplificazione radicale. Un LLM e un sistema probabilistico di completamento testuale, addestrato su correlazioni statistiche derivate da enormi moli di dati. Per sua natura intrinseca, quando viene interrogato per produrre una specifica, un'architettura, una funzione o un test case, il modello colma automaticamente le lacune informative introducendo premesse plausibili ma silenti. L'LLM non avverte il vuoto informativo come un ostacolo bloccante; al contrario, lo risolve statisticamente selezionando i pattern piu probabili, senza dichiarare che ha appena trasformato un'incognita fondamentale in un'assunzione arbitraria.
+Nel software assistito o generato da Large Language Models (LLM), questo fenomeno epistemico subisce un'amplificazione radicale. Un LLM e un sistema probabilistico di completamento testuale, addestrato su correlazioni statistiche derivate da enormi moli di dati. Per sua natura intrinseca, quando viene interrogato per produrre una specifica, un'architettura, una funzione o un test case, il modello colma automaticamente le lacune informative introducendo premesse plausibili ma silenti. L'LLM non avverte il vuoto informativo come un ostacolo bloccante; al contrario, lo risolve statisticamente selezionando i pattern più probabili, senza dichiarare che ha appena trasformato un'incognita fondamentale in un'assunzione arbitraria.
 
 Lo **STEP 5: Assumptions & Unknowns** ha l'obiettivo fondamentale di disarticolare questa dinamica ingannevole. Esso definisce i principi, i criteri rigorosi e gli strumenti analitici necessari per:
 
 1. Tracciare un confine netto tra cio che e empiricamente dimostrato (**FACT**), cio che e postulato come vero senza prova (**ASSUMPTION**), cio che e postulato come possibile spiegazione o previsione (**HYPOTHESIS**), cio che e suggerito come buona pratica operativa (**RECOMMENDATION**) e cio che e noto di non conoscere o completamente ignorato (**UNKNOWN**).
 2. Esplicitare tutte le assunzioni invisibili iniettate nel sistema dagli sviluppatori, dal contesto operativo e, soprattutto, dai suggerimenti e dal codice prodotto dagli LLM.
 3. Quantificare il debito epistemico che tali assunzioni scaricano sull'intero impianto di assurance.
-4. Impedire che test apparentemente validi producano una falsa sensazione di sicurezza (**False Assurance**), quando in realta verificano unicamente la coerenza interna di un sistema costruito sopra assunzioni false o incontrollate.
+4. Impedire che test apparentemente validi producano una falsa sensazione di sicurezza (**False Assurance**), quando in realtà verificano unicamente la coerenza interna di un sistema costruito sopra assunzioni false o incontrollate.
 
 Il principio cardine su cui poggia questo capitolo e severo:
 > *Una proprieta verificata con successo sopra un'assunzione falsa o non verificata non costituisce evidenza di correttezza del software, ma soltanto evidenza di coerenza sintattica all'interno di un perimetro illusorio.*
@@ -4615,7 +4616,7 @@ Il principio cardine su cui poggia questo capitolo e severo:
 Per comprendere e applicare rigorosamente questo STEP, il lettore deve possedere o acquisire la padronanza dei seguenti elementi concettuali derivati dagli step precedenti e dai fondamenti dell'ingegneria del software:
 
 *   **Problem Definition (dallo STEP 1):** La comprensione univoca degli obiettivi primari del sistema e dei vincoli del problema reale. Senza una delimitazione esplicita del problema, non e possibile distinguere cosa appartiene al perimetro controllato e cosa costituisce l'ambiente esterno da cui dipendono le assunzioni.
-*   **Risk Classification (dallo STEP 2):** La consapevolezza del profilo di criticita del sistema (Safety-Critical, Mission-Critical, Business-Critical, Low-Impact). La tolleranza verso un'assunzione non verificata e funzione diretta dell'impatto potenziale del suo fallimento.
+*   **Risk Classification (dallo STEP 2):** La consapevolezza del profilo di criticità del sistema (Safety-Critical, Mission-Critical, Business-Critical, Low-Impact). La tolleranza verso un'assunzione non verificata e funzione diretta dell'impatto potenziale del suo fallimento.
 *   **Authority & Responsibility (dallo STEP 3):** Il principio secondo cui l'accettazione del rischio derivante da un'assunzione non verificata puo essere formalizzata unicamente da un agente umano dotato della legittima autorita decisionale, e mai delegata a un output probabilistico di un LLM.
 *   **Specification (dallo STEP 4):** La capacita di leggere e analizzare una specifica tecnica distinguendo i requisiti comportamentali dalle mere scelte implementative.
 *   **Logica delle Proposizioni di Base:** La comprensione della regola classica di inferenza (Modus Ponens): se l'implicazione `A -> B` e vera, ma la premessa `A` e falsa, non possiamo concludere alcuno stato di verita su `B`. L'intero edificio dell'assurance crolla se le premesse sulle quali poggiano le dimostrazioni e i test si rivelano prive di ancoraggio empirico.
@@ -4668,7 +4669,7 @@ Per garantire la massima precisione interpretativa, ogni termine specialistico u
 *   **Fact — Fatto:** Enunciato descrittivo di uno stato di cose oggettivo, verificabile, corroborato da evidenza documentata e storicizzata, non soggetto a interpretazione probabilistica.
 *   **Hypothesis — Ipotesi:** Asserzione condizionale avanzata a scopo euristico o investigativo, formulata in termini falsificabili secondo il principio di Popper.
 *   **Unknown — Sconosciuto:** Carenza quantitativa o qualitativa di informazione circa una variabile, un comportamento o un vincolo del sistema o del suo contesto operativo.
-*   **Silent Assumption — Assunzione silente:** Premessa operativa o logica non formalizzata nei documenti ne dichiarata nel prompt o nel codice, ma necessaria affinche l'implementazione non produca un fallimento catastrofico.
+*   **Silent Assumption — Assunzione silente:** Premessa operativa o logica non formalizzata nei documenti ne dichiarata nel prompt o nel codice, ma necessaria affinché l'implementazione non produca un fallimento catastrofico.
 *   **Epistemic Laundering — Riciclaggio epistemico:** Il processo fallace mediante il quale un'ipotesi o un'assunzione probabilistica generata da un LLM viene copiata in una specifica o in un test, venendo progressivamente citata fino ad acquisire lo status ingiustificato di fatto accertato.
 *   **Epistemic Boundary — Confine epistemico:** Il perimetro oltre il quale un sistema di assurance cessa di richiedere evidenze empiriche dirette e accetta formalmente dei presupposti (assunzioni ambientali o assiomi di piattaforma).
 *   **Falsification Oracle — Oracolo di falsificazione:** Meccanismo, procedura o banco di prova progettato specificamente non per confermare un'assunzione, ma per sottoporla a condizioni limite in grado di smentirla (falsificarla).
@@ -4739,7 +4740,7 @@ Possiamo formalizzare il livello di consapevolezza e padronanza del sistema attr
 *   **Known Knowns (Fatti Verificati):** Requisiti chiaramente specificati, proprieta matematiche verificate, caratteristiche ambientali misurate con certezza.
 *   **Known Unknowns (Incognite Mappate):** Spazi di incertezza documentati. Sappiamo di non sapere. Esempio: non conosciamo il comportamento di una libreria di terze parti se sollecitata oltre 10.000 connessioni concorrenti; questo genera una specifica di test mirata o un'assunzione esplicita con piano di mitigazione.
 *   **Unknown Knowns (Assunzioni Tacite / Conoscenza Implicita):** Regole o presupposti noti a singoli esperti ma mai formalizzati, che gli sviluppatori applicano inconsciamente e che gli LLM indovinano solo se coincidenti con la media statistica del codice pubblico, rischiando il fallimento se il dominio e specialistico.
-*   **Unknown Unknowns (Punti Ciechi Critici):** Interazioni emergenti, falle di sicurezza a livello architetturale o discrepanze sistemiche di cui nessuno nel team e consapevole e che nessun prompt verso un LLM potra mai far emergere spontaneamente, perche manca la premessa stessa per interrogare il modello.
+*   **Unknown Unknowns (Punti Ciechi Critici):** Interazioni emergenti, falle di sicurezza a livello architetturale o discrepanze sistemiche di cui nessuno nel team e consapevole e che nessun prompt verso un LLM potra mai far emergere spontaneamente, perché manca la premessa stessa per interrogare il modello.
 
 ---
 
@@ -4759,11 +4760,11 @@ Confondere questi concetti epistemici fondamentali e la causa primaria della gen
 
 #### 6.1 Assumption vs Fact
 *   **Definizione:** Un fatto e supportato da evidenza storica, documentale o sperimentale diretta ed esaustiva. Un'assunzione e una scelta logica di ritenere vera una proposizione in assenza di tale evidenza completa.
-*   **Rischio:** Se un'assunzione (es. *"L'input dell'utente e sempre codificato in UTF-8 valido"*) viene etichettata come fatto, il sistema smette di implementare controlli sanitari e validazioni difensive. All'arrivo di una stringa con byte non validi (es. sequenze malformate ISO-8859-1), il sistema subisce crash, corruzione della memoria o vulnerabilita di tipo injection.
+*   **Rischio:** Se un'assunzione (es. *"L'input dell'utente e sempre codificato in UTF-8 valido"*) viene etichettata come fatto, il sistema smette di implementare controlli sanitari e validazioni difensive. All'arrivo di una stringa con byte non validi (es. sequenze malformate ISO-8859-1), il sistema subisce crash, corruzione della memoria o vulnerabilità di tipo injection.
 
 #### 6.2 Unknown vs False (L'errore *Argumentum ad Ignorantiam*)
 *   **Definizione:** Uno stato *Unknown* descrive una mancanza di conoscenza. Lo stato *False* e una valutazione logica che richiede la prova positiva dell'inconsistenza o della non sussistenza di una proprieta.
-*   **Rischio:** Ritenere che, poiche l'LLM o l'analista non hanno identificato vulnerabilita di sicurezza concorrente nella specifica architetturale, allora tali vulnerabilita siano *false* (inesistenti). L'assenza di evidenza di errore e epistemologicamente diversa dall'evidenza di assenza di errore.
+*   **Rischio:** Ritenere che, poiche l'LLM o l'analista non hanno identificato vulnerabilità di sicurezza concorrente nella specifica architetturale, allora tali vulnerabilità siano *false* (inesistenti). L'assenza di evidenza di errore e epistemologicamente diversa dall'evidenza di assenza di errore.
 
 #### 6.3 Confidence vs Evidence
 *   **Definizione:** L'evidenza e un artefatto oggettivo, riproducibile e sottoponibile ad audit indipendente (es. traccia di esecuzione, log crittografico, output di un model checker). La confidenza e uno stato psicologico o bayesiano soggettivo di fiducia nella correttezza del sistema.
@@ -4807,7 +4808,7 @@ Quando gli LLM partecipano alla redazione della specifica, alla progettazione o 
 
 #### 7.1 Assunzioni sul Dominio e sui Dati
 *   **Assunzione di Linearita e Monotonicita Temporale:** Il software generato assume che gli eventi arrivino in ordine temporale sequenziale rigido e che il tempo scorra in avanti senza salti o riconciliazioni NTP.
-*   **Assunzione di Completezza dell'Input:** Il codice generato assume che le strutture dati in ingresso contengano sempre campi valorizzati entro range conformi alla consuetudine (es. codici postali sempre numerici di 5 cifre, nomi mai piu lunghi di 64 caratteri).
+*   **Assunzione di Completezza dell'Input:** Il codice generato assume che le strutture dati in ingresso contengano sempre campi valorizzati entro range conformi alla consuetudine (es. codici postali sempre numerici di 5 cifre, nomi mai più lunghi di 64 caratteri).
 
 #### 7.2 Assunzioni sull'Ambiente di Esecuzione e Runtime
 *   **Assunzione di Monothreading e Assenza di Race Conditions:** Se un prompt chiede: *"Scrivi una classe per gestire un carrello e-commerce"*, l'LLM implementera quasi sempre una collezione non protetta da lock (es. un banale dizionario o `ArrayList`), introducendo la tacita assunzione che il codice non operera in un ambiente multi-thread asincrono.
@@ -4906,7 +4907,7 @@ def process_message(kafka_msg, db_conn):
 *   **FACT:** Kafka recapita messaggi con semantica garantita "at least once" (almeno una volta).  
     *(Spiegazione operativa: la garanzia "at least once" significa che per evitare la perdita di dati in caso di rallentamenti o disconnessioni di rete, il broker ripeterà l'invio del messaggio fino a ottenere conferma certa; questo comporta che lo stesso identico messaggio possa essere recapitato due o più volte, oppure arrivare disallineato rispetto alla sequenza temporale reale di generazione).*
 *   **ASSUMPTION NON DICHIARATA DALL'LLM:** L'LLM implementa un banale `UPDATE` lineare assumendo che l'ordine di arrivo dei messaggi al consumer corrisponda esattamente all'ordine cronologico di generazione fisica delle letture.
-*   **REALTA DI SISTEMA (Falsificazione dell'Assunzione):** In caso di re-balancing delle partizioni Kafka o di ritrasmissioni causate da fluttuazioni di rete, un messaggio con timestamp `10:00:00` puo essere consumato *dopo* un messaggio con timestamp `10:00:05`. Il codice dell'LLM sovrascrive un dato recente con uno obsoleto, falsificando l'invariante di stato del sistema fisico monitorato.
+*   **realtà DI SISTEMA (Falsificazione dell'Assunzione):** In caso di re-balancing delle partizioni Kafka o di ritrasmissioni causate da fluttuazioni di rete, un messaggio con timestamp `10:00:00` puo essere consumato *dopo* un messaggio con timestamp `10:00:05`. Il codice dell'LLM sovrascrive un dato recente con uno obsoleto, falsificando l'invariante di stato del sistema fisico monitorato.
 *   **RISOLUZIONE STEP 5:** Il team identifica l'assunzione di ordinamento implicito. L'assunzione viene dichiarata inaccettabile (FAIL). Il requisito deve essere integrato: inserimento di vincolo di monotonicita tramite controllo esplicito del timestamp del sensore:
     ```text
     UPDATE sensor_status 
@@ -5025,7 +5026,7 @@ Il risultato finale e una decisione strategica (es. andare in produzione con una
 
 ### 11. False Assurance: La Generazione di Certezza Illusoria
 
-La **False Assurance** (falsa sensazione di sicurezza) e il rischio metodologico piu insidioso nell'ingegneria del software assistita da intelligenza artificiale. Essa si verifica quando metriche formali positive mascherano l'inconsistenza delle fondamenta epistemiche.
+La **False Assurance** (falsa sensazione di sicurezza) e il rischio metodologico più insidioso nell'ingegneria del software assistita da intelligenza artificiale. Essa si verifica quando metriche formali positive mascherano l'inconsistenza delle fondamenta epistemiche.
 
 #### Lo Schema Fallace della Tripla Coerenza Sintattica
 
@@ -5105,7 +5106,7 @@ profilo di rischio [ES. MISSION-CRITICAL].
 IL TUO OBIETTIVO:
 Non scrivere codice. Non complimentarti per la soluzione.
 Analizza il testo ed estrai l'elenco rigoroso di tutte le ASSUNZIONI SILENTI (implicite)
-che il codice sta dando per scontate affinche non si verifichi un disastro operativo.
+che il codice sta dando per scontate affinché non si verifichi un disastro operativo.
 
 CLASSIFICA LE ASSUNZIONI NELLE SEGUENTI CATEGORIE:
 1. Assunzioni sull'infrastruttura e sui protocolli di rete.
@@ -5148,7 +5149,7 @@ Quando si valutano le assunzioni a supporto di un'asserzione di conformita, la v
 1.  **Separazione Fisica:** Banale dislocazione materiale. Avere `src/service.py` e `tests/test_service.py` non garantisce alcuna indipendenza logica se il secondo e derivato per copia-incolla concettuale dal primo.
 2.  **Separazione Procedurale:** Processi distinti. L'ingegnere A scrive la funzione; l'ingegnere B scrive i test. Tuttavia, se l'ingegnere B per scrivere i test legge unicamente il codice dell'ingegnere A (anziche la specifica dei requisiti formali di dominio), l'indipendenza evapora per contaminazione cognitiva.
 3.  **Separazione Metodologica:** Diversificazione delle tecniche analitiche (es. combinare test di mutazione con analisi statica del flusso dei dati). Migliora la capacita di intercettare bug implementativi, ma puo ancora condividere le assunzioni di dominio a monte.
-4.  **Indipendenza Epistemica:** Condizione in cui due o piu evidenze a supporto di una proprieta derivano da fonti di informazione non correlate, con modelli di fallimento indipendenti, prive di assunzioni sottostanti comuni e non suscettibili alla medesima distorsione. 
+4.  **Indipendenza Epistemica:** Condizione in cui due o più evidenze a supporto di una proprieta derivano da fonti di informazione non correlate, con modelli di fallimento indipendenti, prive di assunzioni sottostanti comuni e non suscettibili alla medesima distorsione. 
 
 Se due evidenze si basano sulla medesima assunzione silente `A_0`, il fallimento di `A_0` le distrugge entrambe contemporaneamente. La correlazione epistemica rende nulla l'accumulazione di evidenze apparentemente molteplici.
 
@@ -5156,7 +5157,7 @@ Se due evidenze si basano sulla medesima assunzione silente `A_0`, il fallimento
 
 ### 14. Relazioni di Tracciabilità con gli Altri STEP
 
-Lo STEP 5 non vive in isolamento; esso e il cardine che ancora le specifiche del software alla realta empirica.
+Lo STEP 5 non vive in isolamento; esso e il cardine che ancora le specifiche del software alla realtà empirica.
 
 ```text
   [STEP 1: Problem Definition]
@@ -5216,7 +5217,7 @@ OBJECTIVE
                   -> APPROVAL
 ```
 
-*   Se lo STEP 5 fallisce o viene omesso, lo **STEP 6 (Critical Properties)** definira invarianti poggiate sulla sabbia: proprieta matematiche bellissime ma irrilevanti perche formulate su assunzioni prive di riscontro reale.
+*   Se lo STEP 5 fallisce o viene omesso, lo **STEP 6 (Critical Properties)** definira invarianti poggiate sulla sabbia: proprieta matematiche bellissime ma irrilevanti perché formulate su assunzioni prive di riscontro reale.
 *   Lo **STEP 7 (Traceability)** deve associare a ogni assunzione un identificativo univoco (es. `ASM-042`) e tracciare formalmente quali requisiti dipendono da essa.
 *   Lo **STEP 8 (Competence Gaps)** attinge direttamente dall'elenco degli *Unknowns* dello STEP 5 per verificare se l'organizzazione possiede le competenze specialistiche necessarie per colmare tali lacune o se soffre di cecita cognitiva.
 *   Lo **STEP 12 (Assumption Verification)** chiude l'anello: prende ciascuna assunzione formalizzata nello STEP 5 e la sottopone a prova empirica, formale o contrattuale per elevarla a **FACT** o degradarla a **FALLACIA**, imponendo la riprogettazione del sistema.
@@ -5319,7 +5320,7 @@ L'algoritmo implementa caching idempotente e resistente a disconnessioni."
 ```
 
 ##### Richiesta di Audit per lo Scenario B:
-1.  Analizzare il test report ed esporre perche il risultato `Overall Result: PASS` rappresenta un caso manifesto di **False Assurance**.
+1.  Analizzare il test report ed esporre perché il risultato `Overall Result: PASS` rappresenta un caso manifesto di **False Assurance**.
 2.  Quali assunzioni sull'infrastruttura di rete e sulla topologia di clustering Redis vengono ignorate dal test?
 3.  Quale evidenza specifica deve essere pretesa prima di considerare valido questo test?
 
@@ -5554,6 +5555,9 @@ Tutte le proprietà del software possono essere rigorosamente classificate all'i
   * Stabilisce che il sistema garantisce il raggiungimento di uno stato desiderato entro un tempo futuro, non arrestandosi indefinitamente.
   * Caratteristica epistemica: Una violazione di liveness non può essere confutata da una traccia finita (il sistema potrebbe raggiungere lo stato buono subito dopo il termine dell'osservazione). La verifica richiede prove di terminazione o oracoli temporizzati.
   * *Esempi:* Ogni richiesta HTTP ricevuta riceve eventualmente una risposta; ogni lock acquisito viene prima o poi rilasciato; convergenza eventuale dello stato della replica (es. dei server smettono di essere disallineati e tornano a convergere).
+
+> **Starvation (Inedia / Deprivazione di Risorse)**  
+> Condizione patologica in cui un processo o un thread concorrente, pur essendo pronto per l'esecuzione (*runnable*) e non bloccato in deadlock, viene indefinitamente privato dell'accesso a una risorsa condivisa (tempo CPU, lock, connessione al database) a causa di politiche di accodamento sbilanciate, inversioni di priorità o algoritmi di scheduling non equi (*unfairness*). Nel software assistito da LLM, la starvation emerge frequentemente quando il codice generato impone cicli di lock sproporzionati o privilegia determinati flussi di lavoro, condannando i thread secondari a un'attesa potenzialmente infinita senza produrre crash immediati.
 
 ---
 
@@ -6528,7 +6532,7 @@ Per comprendere concretamente l'azione dell'algoritmo di invalidazione, consider
 
 | DISTINZIONE CRITICA | ERRORE COMUNE DI ASSURANCE |
 | :--- | :--- |
-| **Document Linking vs Epistemic Justification** | Ritenere che inserire un link Git in un ticket Jira basti a giustificare perche il codice soddisfa il requisito. |
+| **Document Linking vs Epistemic Justification** | Ritenere che inserire un link Git in un ticket Jira basti a giustificare perché il codice soddisfa il requisito. |
 | **Verification Traceability vs Validation Traceability** | Confondere la verifica che il codice rispetti la specifica con la convalida che la specifica soddisfi il business. |
 | **Property vs Oracle vs Evidence** | Considerare intercambiabili la legge logica, il decisore algoritmico e il log empirico generato dall'esecuzione. |
 | **Backward vs Forward Completeness** | Fermarsi alla forward traceability ignorando il codice parassita non tracciato iniettato dalle risposte LLM. |
@@ -7336,7 +7340,7 @@ Il team non possiede ne conosce strumenti di verifica formale per la concorrenza
 
 ##### La Realtà del Guasto Sistemico:
 L'uso di `std::memory_order_relaxed` consente alla CPU (specialmente su architetture ARM64 o PowerPC) o al compilatore di riordinare l'assegnazione `buffer[current_tail] = item` e l'aggiornamento del puntatore `tail.store(...)`.  
-Il consumatore può leggere il nuovo valore di `tail` prima che i byte di `item` siano stati effettivamente flushati in cache, leggendo memoria non inizializzata o dati corrotti. Il sistema scambierà pacchetti finanziari contenenti valori spazzatura.
+Il consumatore può leggere il nuovo valore di `tail` prima che i byte di `item` siano stati effettivamente scritti / trasferiti / sincronizzati in cache, leggendo memoria non inizializzata o dati corrotti. Il sistema scambierà pacchetti finanziari contenenti valori spazzatura.
 
 ##### Diagnosi dello Step 8:
 Il revisore non possedeva la capacità di verifica necessaria:
@@ -7429,7 +7433,7 @@ Un team istituisce una pipeline completamente automatizzata per accelerare il ri
 [Modello B: Test] 
         |
         v
-[Modello C: "Auditor"] ---> "Nessuna vulnerabilita rilevata" ---> AUTO-DEPLOY
+[Modello C: "Auditor"] ---> "Nessuna vulnerabilità rilevata" ---> AUTO-DEPLOY
         ^
         | (Stesso bias probabilistico, stesso pre-training,
         +-- assenza di comprensione semantica del mondo reale)
@@ -8578,7 +8582,7 @@ Lo **STEP 9: Specification Validity** rappresenta l'atto di verifica preventiva 
 4. **Terminologia**
 5. **Teoria completa: la determinazione del livello di assurance**
 6. **Distinzioni concettuali ed epistemiche critiche**
-7. **Formalizzazione del modello di allocazione (Notazione ASCII pura)**
+7. **Formalizzazione del modello di allocazione**
 8. **Esempi concreti**
 9. **Controesempi didattici**
 10. **Errori comuni e anti-pattern**
@@ -8978,7 +8982,7 @@ Se l'evidenza non soddisfa il profilo prescritto da `Controls(Required_AL(P_i))`
   ```text
   AL = AL-3
   ```
-- **Esito:**AL-3**.
+- **Esito:** **AL-3**.
 - **Implicazioni per l'assurance:** L'uso diretto di codice o test non formalmente verificati generati da LLM è categoricamente interdetto. È richiesta la specifica formale, la dimostrazione matematica dell'assenza di overflow e di violazione dei limiti di sicurezza (es. con linguaggi come SPARK/Ada o Coq), copertura MC/DC su hardware reale e validazione tramite oracolo matematico certificato da ente terzo.
 
 ---
@@ -10029,7 +10033,7 @@ Solo quando un'evidenza ha superato il vaglio di un oracolo autenticamente indip
 4. **Terminologia**
 5. **Teoria completa: La verifica epistemica delle assunzioni**
 6. **Distinzioni concettuali ed epistemiche critiche**
-7. **Formalizzazione della correttezza condizionale (Notazione ASCII pura)**
+7. **Formalizzazione della correttezza condizionale**
 8. **Tassonomia delle assunzioni critiche nel software assistito da LLM**
 9. **Le tre strategie di trattamento delle assunzioni**
 10. **Esempi concreti**
@@ -10122,7 +10126,7 @@ Gli LLM, al contrario, sono generatori statistici addestrati principalmente su c
 
 ---
 
-### 5. Teoria completa: La verifica epistemica delle assunzioni
+### 5. Teoria completa: La verifica sistematica delle assunzioni
 
 Verificare un'assunzione non significa semplicemente "sperare che sia ragionevole" o delegarne l'accettazione all'intuito dello sviluppatore o alla plausibilità linguistica di un LLM. È un'operazione analitica che deve seguire una catena di dipendenza epistemica rigorosa:
 
@@ -10153,7 +10157,7 @@ Se un'applicazione bancaria assume che il clock di sistema sia sincronizzato con
 
 > *(Sulla tavola di verità dell'implicazione materiale e la trappola della verità vacua, vedi l'appendice: [⊙ Elementi di Logica e Specifica Formale — Sez. 4.1 e 10.4](#appendice-logica)).*
 
-#### 5.2 Elicitazione delle assunzioni latenti
+#### 5.2 Identificazione delle assunzioni latenti
 La maggior parte delle assunzioni fatali non è documentata nelle specifiche: risiede silenziosa nei dettagli implementativi o nelle scorciatoie statistiche introdotte dall'LLM. Per estrarre le assunzioni latenti, l'ingegnere deve sottoporre ogni interfaccia e funzione a quattro domande di rottura:
 
 1. **Assunzioni sul Dominio dei Dati:** Quali forme, dimensioni, codifiche, insiemi di caratteri e valori limite stiamo assumendo non possano mai presentarsi in ingresso?
@@ -10210,7 +10214,7 @@ ASSUMPTION VERIFIED != SYSTEM VERIFIED
 
 ---
 
-### 7. Formalizzazione della correttezza condizionale (Notazione ASCII pura)
+### 7. Formalizzazione della correttezza condizionale
 
 Nel modello di assurance di questo manuale, la correttezza del software non è mai una proprietà isolata o assoluta. Essa deriva dalla congiunzione di tre elementi cardine:
 
@@ -10355,7 +10359,7 @@ Di fronte a ogni assunzione critica identificata nello STEP 5 ed esplicitata nel
   ```
 - **L'assunzione critica non dichiarata:** Il codice assume implicitamente che il database operi con un livello di isolamento `SERIALIZABLE` o che la riga sia bloccata con `SELECT FOR UPDATE`.
 - **Il processo di verifica dell'assunzione (STEP 12):**
-  1. *Elicitazione:* L'ingegnere di assurance estrae l'assunzione: *"L'operazione di lettura e aggiornamento è priva di race condition concorrenti"*.
+  1. *Identificazione:* L'ingegnere di assurance estrae l'assunzione: *"L'operazione di lettura e aggiornamento è priva di race condition concorrenti"*.
   2. *Verifica:* L'ingegnere verifica la configurazione dell'infrastruttura di produzione e scopre che il database PostgreSQL è configurato con il livello di default `READ COMMITTED`.
   3. *Invalidazione:* Sotto due richieste simultanee, la prima lettura legge 100, la seconda lettura legge 100, ed entrambe prelevano 100 da un saldo originario di 100. L'assunzione è **FALSA**.
   4. *Trattamento (Strategia B - Eliminazione):* Il codice viene rifattorizzato utilizzando una transazione atomica con lock esplicito o un'operazione condizionale `UPDATE accounts SET balance = balance - amount WHERE id = from_id AND balance >= amount`.
@@ -10363,7 +10367,7 @@ Di fronte a ogni assunzione critica identificata nello STEP 5 ed esplicitata nel
 #### Esempio 10.2: L'assunzione sulla codifica e dimensione delle stringhe
 - **Scenario:** Un LLM genera un modulo di elaborazione testi che memorizza documenti legali in un buffer a dimensione fissa basandosi sull'assunzione che 1 carattere sia sempre equivalente a 1 byte (codifica ASCII standard) e che nessun documento superi 65.535 caratteri.
 - **Il processo di verifica dell'assunzione (STEP 12):**
-  1. *Elicitazione:* L'assunzione estratta è: *"Tutti gli input sono stringhe ASCII a byte singolo e non contengono simboli Unicode multi-byte (es. emoji, caratteri cirillici o cinesi)"*.
+  1. *Identificazione:* L'assunzione estratta è: *"Tutti gli input sono stringhe ASCII a byte singolo e non contengono simboli Unicode multi-byte (es. emoji, caratteri cirillici o cinesi)"*.
   2. *Verifica:* L'analisi dei flussi di produzione reali mostra che il 14% dei documenti depositati contiene caratteri Unicode multi-byte (UTF-8 fino a 4 byte per carattere) e caratteri non stampabili.
   3. *Invalidazione:* L'assunzione è **FALSA**. L'allocazione a dimensione fissa troncava silenziosamente le stringhe a metà di un carattere multi-byte, corrompendo i dati legali e rendendo il parser JSON a valle incapace di decodificare il file.
   4. *Trattamento (Strategia C - Confinamento a Runtime):* Viene introdotto un validatore di schema in ingresso che calcola rigorosamente la dimensione in byte reali `len(text.encode('utf-8'))` e rifiuta qualsiasi input non conforme prima dell'elaborazione.
@@ -10394,7 +10398,7 @@ Di fronte a ogni assunzione critica identificata nello STEP 5 ed esplicitata nel
 
 Nella gestione delle assunzioni, gli ingegneri commettono sistematicamente i seguenti errori metodologici:
 
-#### 12.1 Anti-pattern: "Assumption Mocking" (Isolare il codice mockando via la realtà)
+#### 12.1 Anti-pattern: "Assumption Mocking" (Isolare il codice escludendo la realtà tramite simulazioni artificiali)
 Consiste nell'evitare di testare l'ambiente reale sostituendolo con mock statici calibrati sulle assunzioni dello sviluppatore.
 * *Perché è un errore:* Il mocking è utile per isolare i percorsi logici del codice, ma se non è affiancato da *Contract Testing* (es. contratti Pact o test di integrazione contro sandbox reali), non fornisce alcuna evidenza sulla veridicità delle assunzioni.
 
@@ -10445,7 +10449,7 @@ Il meccanismo attraverso cui le assunzioni non verificate generano False Assuran
 +-------------------------------------------------------------------------+
 ```
 
-L'illusione di sicurezza nasce dal fatto che **il test non ha interrogato l'ambiente, ma ha interrogato l'assunzione del generatore**.
+L'illusione di sicurezza nasce dal fatto che **il test <mark>non ha interrogato l'ambiente, ma ha interrogato l'assunzione del generatore</mark>**.
 
 ---
 
@@ -10457,7 +10461,7 @@ Nella gestione delle assunzioni critiche è essenziale evitare posizioni estreme
 > Un LLM può **assistere efficacemente** nell'identificazione, formalizzazione, ricerca di controesempi e preparazione della verifica di un'assunzione; tuttavia, la sufficienza probatoria dell'evidenza raccolta dipende rigorosamente dalla **natura dell'assunzione**, dall'**indipendenza della fonte di verifica**, dalla **competenza richiesta** per valutarla e dal **livello di rischio (Assurance Level)** della decisione.
 
 #### 14.1 Capacità e compiti di supporto dell'LLM (Cosa può fare)
-- **Elicitazione e reverse-engineering:** L'LLM è particolarmente abile nell'analizzare codice sorgente o specifiche non strutturate per far emergere assunzioni nascoste su tipi di dato, limiti di stringa, modelli di concorrenza o eccezioni non gestite.
+- **Identificazione e reverse-engineering:** L'LLM è particolarmente abile nell'analizzare codice sorgente o specifiche non strutturate per far emergere assunzioni nascoste su tipi di dato, limiti di stringa, modelli di concorrenza o eccezioni non gestite.
 - **Sintesi di scenari avversariali (*Falsification Probing*):** L'LLM può proporre input insoliti, sequenze temporali anomale o combinazioni di parametri progettate per sollecitare i punti deboli di un'assunzione.
 - **Formalizzazione logica:** Può tradurre un'assunzione espressa verbalmente in un predicato logico o in un'asserzione per framework di testing basato su proprietà (es. Hypothesis o QuickCheck).
 
@@ -10789,7 +10793,7 @@ Lo scopo di questo STEP è:
 4. **Isolare gli elementi ad alto rischio o a bassa confidenza** (inclusi i frammenti che saranno delegati a generazione LLM) rispetto al nucleo critico del sistema.
 5. **Stabilire la strategia di gestione dello stato e degli errori**, eliminando gli stati invalidi a livello di tipi e confini.
 
-Non si progetta per il solo funzionamento: si progetta per rendere possibile la costruzione di evidenze giustificative.
+<mark>Non si progetta per il solo funzionamento: si progetta per rendere possibile la costruzione di evidenze giustificative.</mark>
 
 ---
 
@@ -14152,7 +14156,7 @@ Lo STEP 16 (Automated Testing) trasforma la verifica del codice da atto di fede 
 5. **Terminologia tecnica essenziale**: glossario bilingue rigoroso e disambiguazione delle convenzioni d'uso.
 6. **Teoria completa**: dai fondamenti sintattici (AST, CFG, DFG) al SAST, limiti da indecidibilità (Rice), gestione della filiera (SCA, SBOM, Slopsquatting) e Secret Scanning.
 7. **Distinzioni concettuali ed epistemiche critiche**: demarcazioni obbligatorie per prevenire fallacie di giudizio.
-8. **Formalizzazione logico-matematica (in notazione ASCII pura)**: flusso informativo, astrazione, approssimazioni, precision e recall.
+8. **Formalizzazione logico-matematica**: flusso informativo, astrazione, approssimazioni, precision e recall.
 9. **Esempi pratici e didattici**: casi concreti di propagazione del taint, anomalia di pacchetto e rilevazione credenziali.
 10. **Controesempi diagnostici**: scenari in cui la conformità apparente maschera vulnerabilità critiche.
 11. **Errori comuni e anti-pattern operativi**: soppressione arbitraria dei warning, commit di rimozione cosmetica (`git rm`) e deleghe acritiche all'LLM.
@@ -16082,7 +16086,7 @@ Il Property-Based Testing, il Fuzzing guidato da copertura e il Testing Avversar
    - Assenza di exploit osservato != assenza di vulnerabilità
    - Sanificazione del prompt vs Contenimento architetturale
 7. **Formalizzazione logico-strutturale**
-   - Rappresentazione relazionale dei confini di fiducia e percorsi d'attacco (notazione ASCII pura)
+   - Rappresentazione relazionale dei confini di fiducia e percorsi d'attacco
    - Modello di rischio basato su precondizioni, esposizione e impatto senza probabilità arbitrarie
 8. **Esempi pratici e implementativi**
    - Caso 1: Threat Model architetturale (DFD + STRIDE) di un agente RAG per supporto clienti
@@ -17561,7 +17565,7 @@ L'audit multi-modello rappresenta uno strumento diagnostico di grande valore eur
    - Indipendenza richiesta != Indipendenza ottenuta != Indipendenza dimostrata
    - Spiegazione plausibile != Verifica dimostrata
 7. **Formalizzazione logico-strutturale**
-   - Il modello qualitativo e multidimensionale di allocazione dell'assurance (notazione ASCII pura)
+   - Il modello qualitativo e multidimensionale di allocazione dell'assurance
    - Valutazione della condizione decisionale: `A_ach < A_req -> NO-GO`
    - Perché il profilo di indipendenza non è riducibile a uno scalare numerico universale
 8. **Esempi pratici e implementativi**
@@ -18247,7 +18251,7 @@ La Verifica Indipendente costituisce il presidio metodologico che impedisce all'
    - Sintomo vs Causa radice; Difetto di codice vs Specifica invalida, incompleta o incoerente
    - Spiegazione plausibile dell'LLM (Ipotesi) != Diagnosi dimostrata (Fatto)
 7. **Formalizzazione logico-strutturale**
-   - Formalizzazione della discrepanza rispetto a un riferimento giustificato (in notazione ASCII pura)
+   - Formalizzazione della discrepanza rispetto a un riferimento giustificato
    - Lo spazio delle ipotesi causali e la scala epistemica: Plausible(H) != Supported(H) != Verified(H)
    - Rappresentazione del grafo causale sistemico
 8. **Esempi pratici e implementativi**
@@ -19994,7 +19998,7 @@ I punti fermi da ricordare sono:
     - Regole di non-delega nel processo didattico (divieto di approvazione autonoma, limiti della diversità dei modelli come surrogato dell'indipendenza).
 14. **Indipendenza del Revisore e Competenza Specifica sulla Proprietà**: Neutralità rispetto alla pressione di consegna, indipendenza dall'autore del prompt e competenza specifica sulla proprietà critica da verificare.
 15. **Assunzioni, Unknown e il Valore del Rifiuto Consapevole**: La sospensione del giudizio come atto di competenza. Dichiarare "Non comprendo questo modulo generato" come virtù di assurance.
-16. **Casi Limite Operativi**: Diff massivi (Mega-PRs), hotfix di emergenza con controlli compensativi e revisione differita, asimmetria tra esperto di dominio e programmatore di sistema.
+16. **Casi Limite Operativi**: Diff massivi (Richieste di integrazione massive), hotfix di emergenza con controlli compensativi e revisione differita, asimmetria tra esperto di dominio e programmatore di sistema.
 17. **Esercizi e Scenari Diagnostici**: Tre scenari pratici di revisione e decisione.
 18. **Soluzioni e Spiegazioni Dettagliate**: Risoluzione analitica con disamina dei fallimenti cognitivi ed epistemici.
 19. **Didattica del Trasferimento**: Scenari didattici applicati a contesti safety-critical, finanza ad alta frequenza e conformità dei dati sanitari.
@@ -20587,7 +20591,7 @@ Se il codice generato dall'LLM risulta talmente convoluto o non convenzionale da
 
 ### 16. Casi Limite Operativi
 
-#### Caso Limite 1: Diff Massivi Generati in Pochi Secondi (Mega-PRs)
+#### Caso Limite 1: Diff Massivi Generati in Pochi Secondi (Richieste di integrazione massive)
 Un operatore formula un prompt che riscrive l'intero strato di accesso ai dati, producendo una modifica di 3.000 righe di codice in una singola richiesta.
 - *Risoluzione*: **Rifiuto procedurale immediato**. La riserva cognitiva umana non consente un'ispezione analitica affidabile su dimensioni simili (*Diff Drowning*). Il processo deve imporre la suddivisione della modifica in unità atomiche e autocontenute (idealmente inferiori a 200–300 righe), ciascuna corredata dal proprio Review Dossier e dai relativi invarianti.
 
@@ -20835,7 +20839,7 @@ L'approvazione dello Step 24 non autorizza la fiducia cieca: autorizza esclusiva
    - Volume di traffico vs Sufficienza epistemica dell'osservazione;
    - Canary superato vs Dimostrazione di correttezza;
    - Disponibilità teorica del rollback vs Garanzia operativa di ripristino.
-7. **Formalizzazione Logico-Epistemica del Rilascio Progressivo**: Modello qualitativo del raggio d'impatto e predicato di promozione del Canary (modello didattico del manuale in notazione ASCII pura).
+7. **Formalizzazione Logico-Epistemica del Rilascio Progressivo**: Modello qualitativo del raggio d'impatto e predicato di promozione del Canary.
 8. **Tracciabilità delle Configurazioni di Rilascio**: Collegamento verificabile tra versione del codice, manifesti di configurazione, popolazioni target, finestre temporali e criteri di stop.
 9. **Esempi Pratici e Didattica del Codice per Non Programmatori**:
    - Implementazione di un router Canary basato su hash deterministico con guardia locale sull'invariante;
@@ -21713,7 +21717,7 @@ L'ingresso del software assistito da Large Language Models nell'ambiente operati
    - Assenza di allarmi vs Assenza di fallimenti;
    - Correlazione temporale vs Causalità tracciata.
 7. **Formalizzazione Logico-Epistemica dell'Osservabilità**:
-   - Modello formale didattico derivato per analogia dalla teoria dei sistemi (in notazione ASCII pura);
+   - Modello formale didattico derivato per analogia dalla teoria dei sistemi;
    - Predicato di Osservabilità dell'Invariante;
    - Analisi di divergenza statistica e comportamentale tra Baseline e Canary.
 8. **La Catena della Trasformazione Telemetrica e Tracciabilità**: Dal sistema alla decisione di assurance: `SYSTEM -> INSTRUMENTATION -> TELEMETRY -> OBSERVATION -> INTERPRETATION -> EVIDENCE -> ASSURANCE DECISION`. Tracciabilità bidirezionale dei segnali.
@@ -22117,129 +22121,266 @@ Analizziamo uno scenario didattico: un microservizio di calcolo dei rimborsi spe
 #### 9.1 Implementazione del Middleware di Invariante Semantico
 
 ```python
+import inspect
+import logging
+import math
 import time
 import uuid
-import logging
-from typing import Dict, Any, Callable
+from functools import wraps
+from numbers import Real
+from typing import Any, Callable, Dict
 
 logging.basicConfig(level=logging.INFO)
 audit_logger = logging.getLogger("TelemetryPipeline")
 
+
+class InvariantViolationError(RuntimeError):
+    """Il risultato viola un invariante di sicurezza."""
+
+
 class OpenTelemetrySimulator:
     """
-    Simula le API standard OpenTelemetry (Tracer e Meter).
-    Nell'infrastruttura reale, invia span e metriche a un OTel Collector.
+    Simulatore didattico della telemetria.
+    Non sostituisce l'SDK OpenTelemetry reale.
     """
-    def record_metric(self, name: str, value: float, attributes: Dict[str, Any]) -> None:
-        audit_logger.info(f"OTEL_METRIC: {name} = {value} | Attributes: {attributes}")
 
-    def emit_event(self, name: str, attributes: Dict[str, Any]) -> None:
-        audit_logger.warning(f"OTEL_EVENT: {name} | Attributes: {attributes}")
+    def record_metric(
+        self,
+        name: str,
+        value: float,
+        attributes: Dict[str, Any],
+    ) -> None:
+        audit_logger.info(
+            "OTEL_METRIC: %s = %s | Attributes: %s",
+            name,
+            value,
+            attributes,
+        )
+
+    def emit_event(
+        self,
+        name: str,
+        attributes: Dict[str, Any],
+    ) -> None:
+        audit_logger.warning(
+            "OTEL_EVENT: %s | Attributes: %s",
+            name,
+            attributes,
+        )
+
 
 otel_client = OpenTelemetrySimulator()
 
+
+def is_finite_number(value: Any) -> bool:
+    """Accetta numeri reali finiti, escludendo esplicitamente bool."""
+    return (
+        isinstance(value, Real)
+        and not isinstance(value, bool)
+        and math.isfinite(value)
+    )
+
+
 def invariant_probe(
-    invariant_id: str, 
-    min_val: float, 
-    max_val: float
+    invariant_id: str,
+    min_val: float,
+    max_val: float,
 ) -> Callable:
     """
-    Costrutto Didattico del Manuale: Sonda di Invariante Esogena.
-    Avvolge la funzione generata da LLM intercettando input e output.
+    Verifica input/output, registra la latenza e rileva
+    le violazioni dell'invariante.
+
+    Policy: fail-closed. Un risultato non valido non viene restituito.
     """
+
+    if not invariant_id:
+        raise ValueError("invariant_id non può essere vuoto.")
+
+    if (
+        not is_finite_number(min_val)
+        or not is_finite_number(max_val)
+        or min_val > max_val
+    ):
+        raise ValueError("Intervallo dell'invariante non valido.")
+
     def decorator(func: Callable) -> Callable:
+        signature = inspect.signature(func)
+
+        @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
-            # 1. Creazione del contesto strutturato con alta cardinalita'
-            trace_id = str(uuid.uuid4())
-            start_clock = time.perf_counter()
-            
-            payload = kwargs.get("expense_data", {})
-            user_id = payload.get("user_id", "UNKNOWN_USER")
-            original_receipt = payload.get("receipt_amount", 0.0)
-            commit_hash = kwargs.get("commit_hash", "UNVERSIONED")
+            trace_id = uuid.uuid4().hex
+            start = time.perf_counter()
+            outcome = "success"
 
-            execution_error = None
-            computed_result = None
-
-            # 2. Esecuzione della logica generata da LLM (scatola nera)
+            # Recupera gli argomenti anche se passati posizionalmente.
             try:
-                computed_result = func(*args, **kwargs)
-            except Exception as ex:
-                execution_error = ex
+                bound = signature.bind(*args, **kwargs)
+                bound.apply_defaults()
+            except TypeError:
+                # La chiamata è invalida: non invocare la funzione.
+                raise
+
+            payload = bound.arguments.get("expense_data", {})
+            if not isinstance(payload, dict):
+                raise TypeError("expense_data deve essere un dizionario.")
+
+            original_receipt = payload.get("receipt_amount", 0.0)
+            commit_hash = bound.arguments.get(
+                "commit_hash", "UNVERSIONED"
+            )
+
+            if (
+                not is_finite_number(original_receipt)
+                or original_receipt < 0
+            ):
                 otel_client.emit_event(
-                    name="application_exception_captured",
-                    attributes={
+                    "invalid_reimbursement_input",
+                    {
                         "trace_id": trace_id,
-                        "user_id": user_id,
-                        "error_message": str(ex),
-                        "commit_hash": commit_hash
-                    }
+                        "invariant_id": invariant_id,
+                        "commit_hash": str(commit_hash),
+                    },
                 )
-                raise ex
+                raise ValueError(
+                    "receipt_amount deve essere un numero finito >= 0."
+                )
+
+            try:
+                result = func(*args, **kwargs)
+            except Exception as exc:
+                outcome = "error"
+
+                otel_client.emit_event(
+                    "application_exception_captured",
+                    {
+                        "trace_id": trace_id,
+                        "exception_type": type(exc).__name__,
+                        "commit_hash": str(commit_hash),
+                    },
+                )
+                raise
             finally:
-                duration_ms = (time.perf_counter() - start_clock) * 1000.0
+                duration_ms = (
+                    time.perf_counter() - start
+                ) * 1000.0
 
-            # 3. VALUTAZIONE ESOGENA DELL'INVARIANTE A RUNTIME
-            if execution_error is None and isinstance(computed_result, (int, float)):
-                # Verifica Invariante: limiti ammessi e coerenza
-                is_compliant = (min_val <= computed_result <= max_val)
-                if original_receipt > 0.0 and computed_result <= 0.0:
-                    is_compliant = False
-
-                # Emissione metrica quantitativa continua
+                # Etichette a cardinalità limitata.
                 otel_client.record_metric(
-                    name="reimbursement_amount_eur",
-                    value=float(computed_result),
-                    attributes={
+                    "reimbursement_computation_latency_ms",
+                    duration_ms,
+                    {
+                        "operation": func.__name__,
+                        "outcome": outcome,
+                    },
+                )
+
+            # La funzione è terminata: verificare il risultato.
+            is_compliant = (
+                is_finite_number(result)
+                and min_val <= result <= max_val
+            )
+
+            if original_receipt > 0 and (
+                not is_finite_number(result) or result <= 0
+            ):
+                is_compliant = False
+
+            if is_finite_number(result):
+                otel_client.record_metric(
+                    "reimbursement_amount_eur",
+                    float(result),
+                    {
+                        "invariant_id": invariant_id,
+                        "compliant": str(is_compliant).lower(),
+                    },
+                )
+
+            if not is_compliant:
+                otel_client.emit_event(
+                    "invariant_breach_observed",
+                    {
                         "trace_id": trace_id,
-                        "user_id": user_id,
-                        "commit_hash": commit_hash,
-                        "is_compliant": is_compliant
-                    }
+                        "invariant_id": invariant_id,
+                        "original_receipt": float(original_receipt),
+                        "commit_hash": str(commit_hash),
+                    },
                 )
 
-                # Emissione metrica di latenza
-                otel_client.record_metric(
-                    name="reimbursement_computation_latency_ms",
-                    value=duration_ms,
-                    attributes={"commit_hash": commit_hash}
+                raise InvariantViolationError(
+                    f"Violazione dell'invariante {invariant_id}."
                 )
 
-                # Se l'invariante è violato, emettiamo un'osservazione esplicita di anomalia
-                if not is_compliant:
-                    otel_client.emit_event(
-                        name="invariant_breach_observed",
-                        attributes={
-                            "trace_id": trace_id,
-                            "invariant_id": invariant_id,
-                            "violating_value": computed_result,
-                            "original_receipt": original_receipt,
-                            "user_id": user_id,
-                            "commit_hash": commit_hash
-                        }
-                    )
+            return result
 
-            return computed_result
         return wrapper
+
     return decorator
 
-# --- APPLICAZIONE PRATICA ---
 
-# La funzione sottostante è stata generata interamente da un LLM
-@invariant_probe(invariant_id="INV_REIMBURSEMENT_BOUND", min_val=0.0, max_val=5000.0)
-def calculate_reimbursement_llm(expense_data: Dict[str, Any], commit_hash: str) -> float:
+# --- APPLICAZIONE ---
+
+@invariant_probe(
+    invariant_id="INV_REIMBURSEMENT_BOUND",
+    min_val=0.0,
+    max_val=5000.0,
+)
+def calculate_reimbursement_llm(
+    expense_data: Dict[str, Any],
+    commit_hash: str,
+) -> float:
     """
-    Algoritmo assistito da LLM.
-    Contiene un bug semantico: per scontrini con valuta estera (is_foreign=True),
-    applica erroneamente un fattore di azzeramento dovuto a una stringa non gestita.
+    Calcola il rimborso al 95% dell'importo in EUR.
+
+    Per valuta estera, richiede exchange_rate_to_eur:
+    unità EUR per unità della valuta originale.
     """
     receipt = expense_data.get("receipt_amount", 0.0)
     is_foreign = expense_data.get("is_foreign", False)
-    
+
+    if not is_finite_number(receipt) or receipt < 0:
+        raise ValueError("Importo dello scontrino non valido.")
+
     if is_foreign:
-        # ALLUCINAZIONE LOGICA: azzera il rimborso restituendo 0.0 invece del valore convertito!
-        return 0.0
+        exchange_rate = expense_data.get("exchange_rate_to_eur")
+
+        if (
+            not is_finite_number(exchange_rate)
+            or exchange_rate <= 0
+        ):
+            raise ValueError(
+                "Tasso di cambio EUR mancante o non valido."
+            )
+
+        receipt = receipt * exchange_rate
+
     return round(receipt * 0.95, 2)
+
+
+if __name__ == "__main__":
+    # Caso valido.
+    print(
+        calculate_reimbursement_llm(
+            {
+                "user_id": "USER-123",
+                "receipt_amount": 100.0,
+                "is_foreign": False,
+            },
+            commit_hash="abc123",
+        )
+    )
+
+    # Caso estero: il cambio deve essere esplicito.
+    print(
+        calculate_reimbursement_llm(
+            {
+                "user_id": "USER-123",
+                "receipt_amount": 100.0,
+                "is_foreign": True,
+                "exchange_rate_to_eur": 0.92,
+            },
+            commit_hash="abc123",
+        )
+    )
 ```
 
 #### 9.2 Spiegazione Concettuale per Non Programmatori
@@ -23929,109 +24070,238 @@ Il rollback del codice alla versione N arresterà l'ulteriore generazione di err
 Il seguente esempio implementa un circuit breaker esplicito che isola un microservice dalle degradazioni di un provider LLM remoto. Qualora il circuito si apra o la chiamata remota fallisca, il sistema non tenta di invocare un secondo LLM (che potrebbe soffrire delle medesime problematiche di rete o generare errori correlati), ma degrada su un algoritmo estrattivo locale, dichiarando esplicitamente la degradazione.
 
 ```python
-import time
 import logging
+import time
+from collections import deque
+from threading import Lock
+from typing import Any
 
 logger = logging.getLogger("assurance.resilience")
 
+
 class RemoteServiceException(Exception):
-    pass
+    """Errore noto del servizio remoto."""
+
 
 class CircuitBreakerOpenException(Exception):
-    pass
+    """Chiamata rifiutata dal circuit breaker."""
+
 
 class ProductionCircuitBreaker:
-    def __init__(self, failure_rate_threshold=0.5, recovery_timeout_sec=30.0, min_sample_size=10, probe_samples=3):
+    CLOSED = "CLOSED"
+    OPEN = "OPEN"
+    HALF_OPEN = "HALF-OPEN"
+
+    def __init__(
+        self,
+        failure_rate_threshold: float = 0.5,
+        recovery_timeout_sec: float = 30.0,
+        min_sample_size: int = 10,
+        probe_samples: int = 3,
+        window_size: int = 100,
+    ):
+        if not 0 < failure_rate_threshold <= 1:
+            raise ValueError("failure_rate_threshold deve essere in (0, 1].")
+        if recovery_timeout_sec <= 0:
+            raise ValueError("recovery_timeout_sec deve essere positivo.")
+        if min_sample_size < 1:
+            raise ValueError("min_sample_size deve essere >= 1.")
+        if probe_samples < 1:
+            raise ValueError("probe_samples deve essere >= 1.")
+        if window_size < min_sample_size:
+            raise ValueError("window_size deve essere >= min_sample_size.")
+
         self.failure_rate_threshold = failure_rate_threshold
         self.recovery_timeout_sec = recovery_timeout_sec
         self.min_sample_size = min_sample_size
         self.probe_samples = probe_samples
+        self.window_size = window_size
 
-        self.state = "CLOSED"
-        self.window_requests = 0
-        self.window_failures = 0
-        # Nota didattica: in un'implementazione reale di produzione, window_requests e window_failures
-        # devono essere gestiti tramite una finestra temporale mobile (sliding window ad anelli o bucket
-        # temporali) e non con contatori cumulativi a tempo indefinito.
-        self.state_entered_timestamp = time.time()
-        self.consecutive_probe_successes = 0
+        self.state = self.CLOSED
+        self.state_entered_timestamp = time.monotonic()
 
-    def before_call(self):
-        now = time.time()
-        if self.state == "OPEN":
-            if now - self.state_entered_timestamp >= self.recovery_timeout_sec:
-                self._transition_to("HALF-OPEN", now)
-            else:
-                raise CircuitBreakerOpenException("Circuito OPEN: chiamata remota bloccata preventivamente.")
+        # True = successo, False = fallimento.
+        self._outcomes = deque(maxlen=window_size)
+        self._consecutive_probe_successes = 0
+        self._half_open_in_flight = 0
+        self._lock = Lock()
 
-    def record_success(self):
-        now = time.time()
-        if self.state == "HALF-OPEN":
-            self.consecutive_probe_successes += 1
-            if self.consecutive_probe_successes >= self.probe_samples:
-                self._transition_to("CLOSED", now)
-        elif self.state == "CLOSED":
-            self.window_requests += 1
+    def before_call(self) -> None:
+        """Autorizza la chiamata e limita le probe concorrenti."""
+        now = time.monotonic()
 
-    def record_failure(self):
-        now = time.time()
-        if self.state == "HALF-OPEN":
-            self._transition_to("OPEN", now)
-        elif self.state == "CLOSED":
-            self.window_requests += 1
-            self.window_failures += 1
-            if self.window_requests >= self.min_sample_size:
-                rate = self.window_failures / self.window_requests
-                if rate >= self.failure_rate_threshold:
-                    self._transition_to("OPEN", now)
+        with self._lock:
+            if self.state == self.OPEN:
+                elapsed = now - self.state_entered_timestamp
+                if elapsed < self.recovery_timeout_sec:
+                    raise CircuitBreakerOpenException(
+                        "Circuito OPEN: chiamata remota bloccata."
+                    )
 
-    def _transition_to(self, new_state, timestamp):
-        logger.warning(f"CIRCUIT BREAKER TRANSITION: {self.state} -> {new_state}")
+                self._transition_to(self.HALF_OPEN, now)
+
+            if self.state == self.HALF_OPEN:
+                if self._half_open_in_flight >= self.probe_samples:
+                    raise CircuitBreakerOpenException(
+                        "Circuito HALF-OPEN: limite di probe concorrenti raggiunto."
+                    )
+
+                self._half_open_in_flight += 1
+
+    def record_success(self) -> None:
+        now = time.monotonic()
+
+        with self._lock:
+            if self.state == self.HALF_OPEN:
+                self._half_open_in_flight = max(
+                    0, self._half_open_in_flight - 1
+                )
+                self._consecutive_probe_successes += 1
+
+                if self._consecutive_probe_successes >= self.probe_samples:
+                    self._transition_to(self.CLOSED, now)
+                return
+
+            if self.state == self.CLOSED:
+                self._record_closed_outcome(True, now)
+
+            # Se il circuito è già OPEN, il risultato tardivo
+            # di una chiamata precedente non modifica lo stato.
+
+    def record_failure(self) -> None:
+        now = time.monotonic()
+
+        with self._lock:
+            if self.state == self.HALF_OPEN:
+                self._half_open_in_flight = max(
+                    0, self._half_open_in_flight - 1
+                )
+                self._transition_to(self.OPEN, now)
+                return
+
+            if self.state == self.CLOSED:
+                self._record_closed_outcome(False, now)
+
+    def _record_closed_outcome(
+        self, succeeded: bool, now: float
+    ) -> None:
+        self._outcomes.append(succeeded)
+
+        if len(self._outcomes) < self.min_sample_size:
+            return
+
+        failures = sum(not outcome for outcome in self._outcomes)
+        failure_rate = failures / len(self._outcomes)
+
+        if failure_rate >= self.failure_rate_threshold:
+            self._transition_to(self.OPEN, now)
+
+    def _transition_to(self, new_state: str, timestamp: float) -> None:
+        old_state = self.state
         self.state = new_state
         self.state_entered_timestamp = timestamp
-        self.window_requests = 0
-        self.window_failures = 0
-        self.consecutive_probe_successes = 0
+
+        self._outcomes.clear()
+        self._consecutive_probe_successes = 0
+        self._half_open_in_flight = 0
+
+        logger.warning(
+            "CIRCUIT BREAKER TRANSITION: %s -> %s",
+            old_state,
+            new_state,
+        )
 
 
 class DocumentAnalysisService:
-    def __init__(self, remote_llm_client, circuit_breaker: ProductionCircuitBreaker):
+    def __init__(
+        self,
+        remote_llm_client: Any,
+        circuit_breaker: ProductionCircuitBreaker,
+    ):
         self.client = remote_llm_client
         self.cb = circuit_breaker
 
     def analyze_document(self, text: str) -> dict:
+        # Un rifiuto del circuito non è un fallimento remoto:
+        # non deve incrementare il tasso di errore.
         try:
             self.cb.before_call()
-            # Invocazione remota con timeout rigoroso di 2.0 secondi
-            result = self.client.extract_key_clauses(text, timeout=2.0)
-            self.cb.record_success()
-            return {
-                "clauses": result,
-                "fidelity": "FULL_LLM_ANALYSIS",
-                "degraded": False,
-                "disclaimer": None
-            }
-        except (CircuitBreakerOpenException, RemoteServiceException, TimeoutError) as exc:
-            self.cb.record_failure()
-            logger.warning(f"Attivazione fallback locale a causa di: {type(exc).__name__}")
-            return self._fallback_deterministic_heuristic(text, reason=str(type(exc).__name__))
+        except CircuitBreakerOpenException as exc:
+            logger.warning("Fallback attivato: %s", type(exc).__name__)
+            return self._fallback_deterministic_heuristic(
+                text, reason=type(exc).__name__
+            )
 
-    def _fallback_deterministic_heuristic(self, text: str, reason: str) -> dict:
+        try:
+            # Il client deve applicare realmente il timeout
+            # alle operazioni di rete previste.
+            result = self.client.extract_key_clauses(
+                text, timeout=2.0
+            )
+        except Exception as exc:
+            # Rilascia l'eventuale slot HALF-OPEN e registra
+            # il fallimento. Le eccezioni inattese vengono poi
+            # propagate, evitando di nascondere bug applicativi.
+            self.cb.record_failure()
+
+            if not isinstance(
+                exc,
+                (
+                    RemoteServiceException,
+                    TimeoutError,
+                    ConnectionError,
+                ),
+            ):
+                raise
+
+            logger.warning(
+                "Fallback attivato per errore remoto: %s",
+                type(exc).__name__,
+            )
+            return self._fallback_deterministic_heuristic(
+                text, reason=type(exc).__name__
+            )
+
+        self.cb.record_success()
+        return {
+            "clauses": result,
+            "fidelity": "FULL_LLM_ANALYSIS",
+            "degraded": False,
+            "disclaimer": None,
+        }
+
+    def _fallback_deterministic_heuristic(
+        self, text: str, reason: str
+    ) -> dict:
         """
-        Fallback deterministico trasparente.
-        Non invoca un altro LLM per evitare fallimenti correlati.
-        Estrae righe contenenti parole chiave legali prefissate.
+        Fallback locale euristico.
+        Non invoca un altro LLM e non sostituisce una revisione legale.
         """
-        keywords = ["obbligo", "penale", "recesso", "risoluzione", "giurisdizione"]
-        lines = text.split("\n")
-        extracted = [l.strip() for l in lines if any(k in l.lower() for k in keywords)]
-        
+        keywords = (
+            "obbligo",
+            "penale",
+            "recesso",
+            "risoluzione",
+            "giurisdizione",
+        )
+
+        lines = text.splitlines()
+        extracted = [
+            line.strip()
+            for line in lines
+            if any(keyword in line.casefold() for keyword in keywords)
+        ]
+
         return {
             "clauses": extracted[:5],
             "fidelity": "PARTIAL_LOCAL_HEURISTIC",
             "degraded": True,
-            "disclaimer": "Servizio temporaneamente in modalita degradata. Analisi euristica parziale.",
-            "degradation_event": reason
+            "disclaimer": (
+                "Servizio in modalità degradata. "
+                "Estrazione euristica parziale: verificare manualmente "
+                "il documento prima di assumere decisioni legali."
+            ),
+            "degradation_event": reason,
         }
 ```
 
@@ -26201,17 +26471,18 @@ risk_item:
     richiesta, esaurendo i thread worker del container API.
 
   affected_assets:
-    "component:pricing-engine"
-    "api:calculate-cart"
+    - "component:pricing-engine"
+    - "api:calculate-cart"
 
   violated_properties:
-    "PROP-MAX-API-LATENCY-200MS"
-    "PROP-FAIR-RESOURCE-ALLOCATION"
+    - "PROP-MAX-API-LATENCY-200MS"
+    - "PROP-FAIR-RESOURCE-ALLOCATION"
 
   underlying_assumptions:
-    id: "ASSUMP-CART-01"
-      statement: "Si assumeva che i payload non superassero mai 50 righe per carrello."
-      status: "FALSIFIED" # I clienti B2B sottomettono file batch con oltre 2.000 righe
+    - id: "ASSUMP-CART-01"
+      statement: >
+        Si assumeva che i payload non superassero mai 50 righe per carrello.
+      status: "FALSIFIED"
       falsification_evidence: "telemetry/traces/slow_request_20260919.json"
 
   inherent_profile:
@@ -26224,35 +26495,52 @@ risk_item:
   epistemic_uncertainty: "LOW"
 
   controls:
-    control_id: "CTRL-ALGO-OPT"
-      description: "Rifattorizzazione dell'algoritmo tramite alberi di intervallo O(N log M)"
+    - control_id: "CTRL-ALGO-OPT"
+      description: >
+        Rifattorizzazione dell'algoritmo tramite alberi di intervallo,
+        con complessità dichiarata O(N log M).
       control_type: "ALGORITHMIC_REFACTORING"
       evidence_type: "BENCHMARK_SCALING_TEST"
       evidence_reference: "tests/benchmarks/test_pricing_scaling.py"
       weight: 0.70
       validity: 1
-    control_id: "CTRL-GATEWAY-LIMIT"
-      description: "Rigetto a monte tramite schema validator per carrelli > 250 elementi"
+
+    - control_id: "CTRL-GATEWAY-LIMIT"
+      description: >
+        Rigetto a monte tramite schema validator per carrelli con più
+        di 250 elementi.
       control_type: "INPUT_CONTAINMENT"
       evidence_type: "INTEGRATION_TEST"
       evidence_reference: "tests/api/test_cart_payload_limits.py"
       weight: 0.30
       validity: 1
 
+  performance_requirements:
+    max_latency_ms: 200
+    latency_measurement: "p99"
+    measurement_scope: "per API request"
+    verification_status: "PENDING"
+    verification_evidence: []
+
   residual_profile:
-    mitigation_effectiveness: 1.0
+    mitigation_effectiveness: null
     residual_severity: "MINOR"
     residual_likelihood: "IMPROBABLE"
     residual_detectability: "IMMEDIATE"
     residual_risk_tolerable: true
+    assessment_evidence: []
+    assessment_status: "PENDING_VALIDATION"
 
   governance_decision:
     decision: "PASS"
     formal_acceptance_signature: "VP_ENG_SIGN_OFF_SHA256_9c2d14..."
     review_period_days: 180
+    acceptance_criteria_reference: null
     traceability_links:
-      requirements: ["REQ-PRICING-PERF-01"]
-      knowledge_entries: ["KB-ALGO-014"]
+      requirements:
+        - "REQ-PRICING-PERF-01"
+      knowledge_entries:
+        - "KB-ALGO-014"
 ```
 
 ---
@@ -31125,6 +31413,22 @@ Le varianti dipendenti dal linguaggio non devono essere considerate intercambiab
 
 La disgiunzione inclusiva `OR` non va confusa con la disgiunzione esclusiva `XOR`.
 
+#### 2.1.1 Differenza notazionale ed epistemica tra `->` e `=>`
+
+Nel testo del manuale, nella logica formale e negli strumenti di modellazione (come Alloy o i linguaggi di programmazione), le sequenze grafiche `->` (freccia singola) e `=>` (freccia doppia, o *fat arrow*) assumono significati profondamente differenti a seconda del contesto di applicazione. Confonderle genera gravi errori di interpretazione.
+
+| Ambito di Utilizzo | Notazione `->` (Freccia Singola) | Notazione `=>` (Freccia Doppia) |
+| :--- | :--- | :--- |
+| **Logica Proposizionale del Manuale** | **Connettivo di Implicazione Logica standard:** lega due formule (`P -> Q`: «Se P allora Q»). È un'operazione che restituisce un valore booleano (`TRUE`/`FALSE`). | Variante stilistica di `->` usata in prompt ASCII o linguaggi formali per denotare l'implicazione (`P => Q`). Nel manuale si preferisce `->` per non confonderlo con `>=`. |
+| **Metalinguaggio e Tracciabilità di Processo** | **Flusso di Derivazione / Precedenza / DAG:** indica che B dipende da A o che A conduce a B (`CLAIM -> ARGUMENT -> EVIDENCE`). Non è un'implicazione logica, ma un arco orientato di dipendenza. | **Conseguenza formale rinforzata:** utilizzata spesso per esprimere deduzioni meta-logiche esplicite: `Condizione A ==> Risultato B`. |
+| **Linguaggio di Specifica Alloy 6** | **PRODOTTO CARTESIANO RELAZIONALE:** costruisce una relazione o una tupla tra insiemi (`User -> Role` rappresenta l'insieme di coppie `(User, Role)`). **Non è un'implicazione!** | **IMPLICAZIONE LOGICA / CONDIZIONALE:** esprime la condizione «se... allora...» all'interno di predicati e fatti (`cond => expr1 else expr2` oppure `P => Q`). |
+| **Linguaggi di Programmazione (Python, Rust, JS)** | Indica il **tipo di ritorno** di una funzione (`def f(x) -> int:`) o un operatore di accesso a membro puntatore in C/C++ (`ptr->field`). | Definisce una **funzione anonima / lambda** (in JS `(x) => x + 1`) o un ramo di pattern matching (in Rust `match x { 1 => ... }`). |
+
+**Regola mnemonica di assurance:**
+- Se stai leggendo o scrivendo formule in **Alloy**, ricorda l'inversione: `->` moltiplica relazioni (struttura), mentre `=>` esprime un'implicazione logica (regola).
+- Se stai leggendo formule logiche nel **corpo del manuale**, `->` è l'implicazione materiale standard (`P -> Q`), mentre nei diagrammi di flusso `->` è la freccia di dipendenza del grafo DAG.
+- **`=>` non deve mai essere confuso con `>=`** (maggiore o uguale).
+
 #### 2.2 Quantificatori
 
 - **Quantificatore universale `forall`**
@@ -32312,6 +32616,8 @@ Crea una tupla o una relazione:
 all u: User | u->u not in delegatesTo
 ```
 Significa: "Per ogni utente `u`, la coppia `(u, u)` non appartiene alla relazione di delega" (un utente non può delegare se stesso).
+
+> Vedi: [⊙ Elementi di Logica e Specifica Formale](#appendice-logica), sezione 2.1.1 Differenza notazionale ed epistemica tra `->` e `=>`
 
 #### 1.3.3 Inversione Relazionale (`~`)
 Inverte la direzione della tupla: se `creates` va da `User` a `Payment`, allora `~creates` va da `Payment` a `User`:
@@ -34715,6 +35021,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Approval (Approvazione Formale)](#approval-approvazione-formale)
 - [Arbitrato dei Modelli (Model Arbitration)](#arbitrato-dei-modelli-model-arbitration)
 - [ARCI-V (Matrice di Responsabilità di Assurance)](#arci-v-matrice-di-responsabilità-di-assurance)
+- [Asimmetria Generazione-Verifica (Generation-Verification Asymmetry)](#asimmetria-generazione-verifica-generation-verification-asymmetry)
 - [Assertion (Asserzione)](#assertion-asserzione)
 - [Assume Breach](#assume-breach)
 - [Assumption (Assunzione)](#assumption-assunzione)
@@ -34731,7 +35038,6 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Assurance Level (AL)](#assurance-level-al)
 - [Assurance State (Stato di Assurance)](#assurance-state-stato-di-assurance)
 - [AST (Abstract Syntax Tree)](#ast-abstract-syntax-tree)
-- [Asimmetria Generazione-Verifica (Generation-Verification Asymmetry)](#asimmetria-generazione-verifica-generation-verification-asymmetry)
 - [Attack (Attacco)](#attack-attacco)
 - [Attack Surface (Superficie d'Attacco)](#attack-surface-superficie-dattacco)
 - [Audit](#audit)
@@ -34869,6 +35175,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Meaningful Human Control (Controllo Umano Significativo)](#meaningful-human-control-controllo-umano-significativo)
 - [Metamorphic Testing (Testing Metamorfico)](#metamorphic-testing-testing-metamorfico)
 - [MITRE ATLAS](#mitre-atlas)
+- [Mock / Mocking (Simulacro di Prova)](#mock--mocking-simulacro-di-prova)
 - [Model Drift (Deriva del Modello)](#model-drift-deriva-del-modello)
 - [Modello Mondo-Macchina (World-Machine Model / Jackson & Zave)](#modello-mondo-macchina-world-machine-model--jackson--zave)
 - [Multi-Agent Echo Chamber](#multi-agent-echo-chamber)
@@ -34927,8 +35234,8 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Risk Classification (Classificazione del Rischio)](#risk-classification-classificazione-del-rischio)
 - [Risk Item](#risk-item)
 - [Risk Reduction (Riduzione del Rischio)](#risk-reduction-riduzione-del-rischio)
-- [Risk Smuggling / Risk Downgrading (Contrabbando / Declassamento del Rischio)](#risk-smuggling--risk-downgrading-contrabbando--declassamento-del-rischio)
 - [Risk Register (Registro dei Rischi)](#risk-register-registro-dei-rischi)
+- [Risk Smuggling / Risk Downgrading (Contrabbando / Declassamento del Rischio)](#risk-smuggling--risk-downgrading-contrabbando--declassamento-del-rischio)
 - [Rollback](#rollback)
 - [Rollbackability (Capacità di Rollback)](#rollbackability-capacità-di-rollback)
 - [Rubber-Stamping](#rubber-stamping)
@@ -34959,11 +35266,13 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Spec-Fitting](#spec-fitting)
 - [Staging Environment (Ambiente di Staging)](#staging-environment-ambiente-di-staging)
 - [Staging Fidelity Gap](#staging-fidelity-gap)
+- [Starvation (Inedia / Deprivazione di Risorse)](#starvation-inedia--deprivazione-di-risorse)  
 - [STRIDE](#stride)
 - [Sycophancy (Compiacenza Algoritmica dell'LLM)](#sycophancy-compiacenza-algoritmica-dellllm)
 
 #### T
 - [Taint Analysis (Analisi di contaminazione del flusso dati)](#taint-analysis-analisi-di-contaminazione-del-flusso-dati)
+- [Tassonomia (Taxonomy)](#tassonomia-taxonomy)
 - [Tautological Oracle / Tautological Test](#tautological-oracle--tautological-test)
 - [Telemetry (Telemetria di Sistema)](#telemetry-telemetria-di-sistema)
 - [Terna di Hoare (Hoare Triple)](#terna-di-hoare-hoare-triple)
@@ -35099,6 +35408,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Estensione metodologica della classica matrice RACI concepita dal manuale per governare i ruoli di assurance: *Accountable* (singola persona fisica con responsabilità finale), *Responsible* (chi produce l'artefatto), *Consulted* (esperti interpellati), *Informed* (destinatari di notifica passiva) e *Verified* (autorità di verifica indipendente da chi ha prodotto il codice).  
 *Approfondimento nel manuale: formalizzato in Capitolo 3 (Authority & Responsibility), Sezione 5.2.*
 
+#### Asimmetria Generazione-Verifica (Generation-Verification Asymmetry)
+**Categoria:** Costrutto didattico introdotto dal manuale  
+**Definizione:** Fenomeno sistemico per cui il costo temporale e cognitivo necessario per generare codice o specifiche tramite LLM tende a zero, mentre il costo e la complessità per verificarne criticamente la correttezza, la concorrenza, la sicurezza e gli invarianti rimangono elevati o aumentano, inducendo il rischio di approvazioni cieche (*rubber-stamping*).  
+*Approfondimento nel manuale: formalizzato in Capitolo 8 (Competence Gaps), Sezione 3.2.*
+
 #### Assertion (Asserzione)
 **Categoria:** Termine tecnico consolidato  
 **Definizione:** Istruzione o enunciato logico inserito nel codice sorgente o in un test che postula che un determinato predicato debba valere come vero in quel punto esatto dell'esecuzione; se il predicato è falso, l'esecuzione si interrompe immediatamente. Un'asserzione è un comando di controllo, non una prova di correttezza a priori.  
@@ -35178,11 +35492,6 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Acronimo / Termine tecnico consolidato  
 **Definizione:** Struttura dati ad albero gerarchica che rappresenta la struttura sintattica e logica del codice sorgente, priva di dettagli puramente testuali o tipografici (spaziature, commenti), impiegata dagli analizzatori statici e dai compilatori per verificare regole sintattiche, tipi e pattern di codice.  
 *Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 3 e Sezione 5.*
-
-#### Asimmetria Generazione-Verifica (Generation-Verification Asymmetry)
-**Categoria:** Costrutto didattico introdotto dal manuale  
-**Definizione:** Fenomeno sistemico per cui il costo temporale e cognitivo necessario per generare codice o specifiche tramite LLM tende a zero, mentre il costo e la complessità per verificarne criticamente la correttezza, la concorrenza, la sicurezza e gli invarianti rimangono elevati o aumentano, inducendo il rischio di approvazioni cieche (*rubber-stamping*).  
-*Approfondimento nel manuale: formalizzato in Capitolo 8 (Competence Gaps), Sezione 3.2.*
 
 #### Attack (Attacco)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
@@ -35826,6 +36135,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Knowledge base globale aperta di tattiche, tecniche e procedure (TTP) avversariali basata sull'osservazione empirica di attacchi reali condotti contro sistemi che integrano componenti di machine learning e intelligenza artificiale.  
 *Approfondimento nel manuale: vedi Capitolo 19 (Threat Modeling & Red Teaming), Sezione 4.*
 
+#### Mock / Mocking (Simulacro di Prova)  
+**Categoria:** Termine tecnico consolidato (testing automatizzato)  
+**Definizione:** Un doppio di test (*Test Double*) programmato che simula il comportamento di un componente o di una dipendenza esterna reale (es. database, API HTTP), registrando le interazioni, i parametri e la sequenza delle chiamate ricevute per verificarle a posteriori. Nell'assurance del codice generato da LLM, l'abuso dei mock (*Assumption Mocking* / *Over-Mocking*) costituisce un grave anti-pattern: programmando il mock con le stesse risposte attese dall'LLM, il test verifica soltanto l'accordo con il simulacro e non il comportamento reale della dipendenza, generando una falsa sicurezza priva di aderenza operativa.
+  
 #### Model Drift (Deriva del Modello)
 **Categoria:** Termine scientifico consolidato (Machine Learning)  
 **Definizione:** La variazione statistica misurabile nelle risposte, nell'accuratezza o nell'aderenza ai vincoli esibita da un modello linguistico nel tempo a parità di prompt, dovuta ad aggiornamenti interni opachi o modifiche delle policy da parte del fornitore cloud.  
@@ -36101,15 +36414,15 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** L'implementazione di contromisure architetturali o procedurali volte ad attenuare la probabilità o l'impatto di un pericolo; lascia invariabilmente aperto un margine di rischio residuo (R_res > 0).  
 *Approfondimento nel manuale: vedi Capitolo 1 (Sez. 6.6) e Capitolo 2 (Sez. 6.2).*
 
-#### Risk Smuggling / Risk Downgrading (Contrabbando / Declassamento del Rischio)
-**Categoria:** Anti-pattern metodologico denominato dal manuale  
-**Definizione:** Pratica metodologica scorretta mediante cui un rischio elevato viene artificialmente ridotto o trasferito fuori perimetro tramite ridefinizione dei confini o frammentazione delle funzioni, sottraendolo ai requisiti di assurance prescritti.  
-*Approfondimento nel manuale: vedi Capitolo 2 (Risk Classification), Sezione 9.1.*
-
 #### Risk Register (Registro dei Rischi)
 **Categoria:** Strumento di governance e normativo consolidato  
 **Definizione:** Dispositivo dinamico di governance e memoria tecnica che censisce, valuta, monitora e governa l'intero ciclo di vita dei pericoli noti, dei controlli verificati e delle decisioni formali di accettazione del rischio.  
 *Approfondimento nel manuale: trattato estesamente in Capitolo 30 (Risk Register & Knowledge Base).*
+
+#### Risk Smuggling / Risk Downgrading (Contrabbando / Declassamento del Rischio)
+**Categoria:** Anti-pattern metodologico denominato dal manuale  
+**Definizione:** Pratica metodologica scorretta mediante cui un rischio elevato viene artificialmente ridotto o trasferito fuori perimetro tramite ridefinizione dei confini o frammentazione delle funzioni, sottraendolo ai requisiti di assurance prescritti.  
+*Approfondimento nel manuale: vedi Capitolo 2 (Risk Classification), Sezione 9.1.*
 
 #### Rollback
 **Categoria:** Termine tecnico d'uso professionale consolidato  
@@ -36257,6 +36570,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Discrepanza strutturale inevitabile tra ambiente di pre-produzione e realtà operativa derivante da entropia dei dati storici, dinamica del carico concorrente e risposte asimmetriche delle dipendenze terze.  
 *Approfondimento nel manuale: vedi Capitolo 25 (Staging, Canary & Feature Flags), Sezione 5.1.*
 
+#### Starvation (Inedia / Deprivazione di Risorse)  
+**Categoria:** Termine tecnico consolidato (teoria della concorrenza e sistemi operativi)  
+**Definizione:** Condizione patologica in cui un processo o un thread concorrente, pur essendo pronto per l'esecuzione (*runnable*) e non bloccato in deadlock, viene indefinitamente privato dell'accesso a una risorsa condivisa (tempo CPU, lock, connessione al database) a causa di politiche di accodamento sbilanciate, inversioni di priorità o algoritmi di scheduling non equi (*unfairness*). Nel software assistito da LLM, la starvation emerge frequentemente quando il codice generato impone cicli di lock sproporzionati o privilegia determinati flussi di lavoro, condannando i thread secondari a un'attesa potenzialmente infinita senza produrre crash immediati.
+
 #### STRIDE
 **Categoria:** Acronimo / Metodologia di Threat Modeling consolidata  
 **Definizione:** Metodologia analitica e tassonomia di modellazione delle minacce sviluppata da Microsoft che categorizza le violazioni delle proprietà di sicurezza in sei classi: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service ed Elevation of Privilege.  
@@ -36277,6 +36594,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine tecnico consolidato  
 **Definizione:** Tecnica di analisi statica o dinamica che traccia la propagazione di variabili non fidate (tainted) lungo i cammini di controllo e di dato del programma fino al raggiungimento di punti di esecuzione sensibili (sink).  
 *Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.2.*
+
+#### Tassonomia (Taxonomy)  
+**Categoria:** Termine scientifico ed epistemico consolidato  
+**Definizione:** Struttura concettuale e gerarchica di classificazione che organizza entità, concetti, rischi o evidenze all'interno di categorie mutuamente esclusive e collettivamente esaustive rispetto a un determinato criterio di partizione. Nell'assurance del software assistito da LLM, la tassonomia (epistemica, degli oracoli, dei fallimenti) è lo strumento analitico con cui si impedisce la confusione tra piani concettuali diversi (es. distinguere un *Fact* da un *Assumption*, o un *Threat* da un *Vulnerability*), imponendo che ogni elemento del sistema possieda uno statuto conoscitivo univoco e verificabile.
 
 #### Tautological Oracle / Tautological Test
 **Categoria:** Costrutto didattico introdotto dal manuale  
