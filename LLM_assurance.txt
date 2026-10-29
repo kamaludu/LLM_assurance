@@ -3517,7 +3517,7 @@ Tuttavia, un problema chiaro, un profilo di rischio analizzato e un'autorità de
 
 Lo **STEP 4 — Specification** affronta il problema della formalizzazione del contratto operativo tra ciò che l'ambiente richiede e ciò che la macchina deve eseguire alla sua interfaccia. Senza una specifica rigorosa, i concetti fondamentali dell'ingegneria del software come "correttezza", "fallimento", "test" o "evidenza" perdono validità logica. Non è possibile asserire che un programma fallisce o funziona se non esiste un modello formale preliminare che stabilisca in modo inequivocabile che cosa costituisca un comportamento ammissibile.
 
-#### 1.2 La Rottura Epistemica dell'Interfaccia: Mondo vs Macchina
+#### 1.2 Demarcazione concettuale dell'Interfaccia: Mondo vs Macchina
 Nello sviluppo convenzionale, la specifica viene frequentemente confusa con una descrizione testuale informale dei desideri dell'utente. Nell'ingegneria del software assistita da LLM, questa confusione genera fallimenti sistemici primari.
 
 > [!CAUTION]  
@@ -4597,7 +4597,7 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
 
 Nei sistemi software tradizionali, un fallimento critico e raramente dovuto alla sola errata digitazione di un'istruzione imperativa. Nella stragrande maggioranza dei casi, il software fallisce perché il modello mentale del programmatore non corrispondeva alla realtà del dominio operativo: il codice assumeva condizioni che non si sono verificate, oppure ignorava variabili determinanti rimaste invisibili durante la progettazione.
 
-Nel software assistito o generato da Large Language Models (LLM), questo fenomeno epistemico subisce un'amplificazione radicale. Un LLM e un sistema probabilistico di completamento testuale, addestrato su correlazioni statistiche derivate da enormi moli di dati. Per sua natura intrinseca, quando viene interrogato per produrre una specifica, un'architettura, una funzione o un test case, il modello colma automaticamente le lacune informative introducendo premesse plausibili ma silenti. L'LLM non avverte il vuoto informativo come un ostacolo bloccante; al contrario, lo risolve statisticamente selezionando i pattern più probabili, senza dichiarare che ha appena trasformato un'incognita fondamentale in un'assunzione arbitraria.
+Nel software assistito o generato da Large Language Models (LLM), questo disallineamento concettuale subisce un'amplificazione radicale. Un LLM e un sistema probabilistico di completamento testuale, addestrato su correlazioni statistiche derivate da enormi moli di dati. Per sua natura intrinseca, quando viene interrogato per produrre una specifica, un'architettura, una funzione o un test case, il modello colma automaticamente le lacune informative introducendo premesse plausibili ma silenti. L'LLM non avverte il vuoto informativo come un ostacolo bloccante; al contrario, lo risolve statisticamente selezionando i pattern più probabili, senza dichiarare che ha appena trasformato un'incognita fondamentale in un'assunzione arbitraria.
 
 Lo **STEP 5: Assumptions & Unknowns** ha l'obiettivo fondamentale di disarticolare questa dinamica ingannevole. Esso definisce i principi, i criteri rigorosi e gli strumenti analitici necessari per:
 
@@ -6644,7 +6644,7 @@ TICKET JIRA MED-104: "Garantire che l'infusione di insulina non superi 5 unità/
 
 All'apparenza la matrice di tracciabilità è completa al 100%: il requisito è associato al commit, il commit contiene codice e test.
 
-##### Analisi dell'Inganno Epistemico:
+##### Analisi dell'illusione probatoria:
 Ispezionando il codice e i test generati dall'LLM emerge quanto segue:
 * Il codice in `pump_controller.py` contiene una condizione fallata:
   ```text
@@ -7194,7 +7194,7 @@ Questa operazione non chiude il gap di competenza; si limita a sostituire un rev
 
 Sia `A` un artefatto software generato con assistenza LLM (codice sorgente, configurazione, specifica o piano di test).
 
-Definiamo la **Complessità Epistemica Richiesta** `C_req(A)` come una funzione del profilo di rischio e dello spazio degli stati del sistema:
+Definiamo la **Complessità di verifica Richiesta** `C_req(A)` come una funzione del profilo di rischio e dello spazio degli stati del sistema:
 
 ```text
 C_req(A) = f( Risk_Level(A), State_Space_Cardinality(A), Concurrency_Degree(A) )
@@ -7410,7 +7410,7 @@ Il Principal Engineer esegue la review:
 
 L'ingegnere approva la PR (`LGTM - Looks Good To Me`).
 
-##### Il Fallimento Epistemico:
+##### L'errore di valutazione tecnica:
 L'operatore `signature == expected_sig` esegue un confronto carattere per carattere standard, che termina al primo byte differente. Questo introduce una vulnerabilità critica di **Timing Attack**: un attaccante da remoto, misurando le variazioni microscopiche dei tempi di risposta HTTP nell'ordine dei microsecondi, può ricostruire l'HMAC valido per qualsiasi payload contraffatto, elevando i propri privilegi a super-amministratore.
 
 Il Principal Engineer possedeva lo status formale e la seniority, ma **non la competenza specifica in crittografia applicata e side-channel attacks**.  
@@ -11791,7 +11791,7 @@ L'obiettivo dello **STEP 14 (Containment & Least Authority)** non è correggere 
 
 | MODELLO MENTALE DELLO STEP 14 |
 | :--- |
-| **Assunzione epistemica:**<br>"Il codice generato o modificato con l'assistenza di un LLM deve essere trattato a livello architetturale come codice potenzialmente difettoso, avversariale o instabile." |
+| **Postulato di sicurezza:**<br>"Il codice generato o modificato con l'assistenza di un LLM deve essere trattato a livello architetturale come codice potenzialmente difettoso, avversariale o instabile." |
 | **Obiettivo di assurance:**<br>"Garantire che, anche nel peggior scenario di fallimento logico, allucinazione o compromissione del codice, il danno massimo arrecabile all'integrità, riservatezza e disponibilità del sistema sia rigidamente circoscritto e limitato per costruzione." |
 
 Questo capitolo insegna a concepire la sicurezza e l'affidabilità non come una proprietà emergente dalla "bontà" dell'algoritmo o dalla fiducia nel suggerimento del modello, ma come una proprietà intrinseca dell'ambiente architetturale di esecuzione, basata sull'applicazione sistematica del **Principle of Least Authority (POLA)** e su barriere di confinamento non aggirabili.
@@ -14648,7 +14648,7 @@ L'utente lancia uno scanner sul working tree corrente e ottiene zero allarmi.
 - Nel working tree corrente la stringa non è presente.
 - **Tuttavia**, la credenziale è registrata permanentemente nel commit precedente all'interno del database ad oggetti di Git (`.git/objects/`).
 - Chiunque cloni il repository, consulti la cronologia (`git log -p`) o acceda a branch secondari può estrarre il token.
-- **Violazione Epistemica**: confondere la **rimozione della visibilità superficiale** con la **revoca dell'autorizzazione**. La credenziale rimane compromessa finché non viene revocata e rigenerata dal provider.
+- **Grave errore procedurale di sicurezza**: confondere la **rimozione della visibilità superficiale** con la **revoca dell'autorizzazione**. La credenziale rimane compromessa finché non viene revocata e rigenerata dal provider.
 
 ```text
                   CRONOLOGIA DEL VERSION CONTROL (GIT)
@@ -16976,7 +16976,7 @@ DISAGREEMENT
     !=
     automaticamente MODELLO DISSCENZIENTE CORRETTO
 ```
-Quando un modello segnala un problema e due modelli lo negano, non possiamo dedurre deterministicamente chi abbia ragione. Il disaccordo agisce come un **allarme di frizione epistemica**: segnala dove il team deve concentrare l'ispezione analitica umana o richiedere una prova formale.
+Quando un modello segnala un problema e due modelli lo negano, non possiamo dedurre deterministicamente chi abbia ragione. Il disaccordo agisce come un **Allarme di conflitto analitico**: segnala dove il team deve concentrare l'ispezione analitica umana o richiedere una prova formale.
 
 Per guidare razionalmente il valutatore di fronte agli esiti di un audit multi-modello, la seguente matrice stabilisce come interpretare le configurazioni di accordo e disaccordo senza cadere nella fallacia democratica del voto a maggioranza:
 
@@ -18015,7 +18015,7 @@ In questo scenario non c'è necessariamente una dipendenza finanziaria (il budge
 | **1. Prompt Mirroring**<br>Il verificatore adotta i medesimi prompt, contesti e formulazioni usati dal team di sviluppo, duplicando i punti ciechi originali. |
 | **2. Specification Borrowing (Prestito di Specifica)**<br>Il verificatore deduce i requisiti leggendo il codice sorgente o le docstring prodotte dall'autore, anziché attingere alle fonti primarie. |
 | **3. Process Audit as Product Verification**<br>Assumere che, poiché sono state rispettate le scadenze, i verbali sono firmati e la documentazione è completa (conformità di processo), l'algoritmo sia necessariamente corretto (qualità di prodotto). |
-| **4. Epistemic Capture (Cattura Epistemica)**<br>Il verificatore si fa spiegare il funzionamento dall'autore prima di iniziare l'analisi, assorbendone inconsapevolmente le giustificazioni. |
+| **4. Compromissione dell'indipendenza di giudizio**<br>Il verificatore si fa spiegare il funzionamento dall'autore prima di iniziare l'analisi, assorbendone inconsapevolmente le giustificazioni. |
 
 ---
 
@@ -18998,7 +18998,7 @@ L'analisi e la classificazione delle discrepanze costituisce il banco di prova d
 4. **Concetti Fondamentali e Terminologia**: Il flusso concettuale corretto (`EVIDENCE -> EVIDENCE ASSESSMENT -> ASSURANCE STATE -> DECISION GATE -> ADMIT / BLOCK / HOLD / ESCALATE`), le disuguaglianze epistemiche e la terminologia operativa.
 5. **Teoria Completa dei Decision Gates**: Il modello degli stati decisionali, la gestione dell'incertezza, la propagazione del dubbio probatorio e la distinzione tra stati di verifica e verdetti d'azione.
 6. **Distinzioni Concettuali ed Epistemiche Critiche**: Test superato vs Proprietà dimostrata; Pipeline verde vs Evidenza sufficiente; Volume probatorio vs Sufficienza probatoria.
-7. **Formalizzazione Logico-Epistemica del Modello Decisionale**: Riuso del modello concettuale dello Step 21 (`A_ach(E, I(E)) < A_req(R) -> NO-GO`), principio di non-compensazione e modello didattico vettoriale.
+7. **Modello logico di valutazione delle evidenze**: Riuso del modello concettuale dello Step 21 (`A_ach(E, I(E)) < A_req(R) -> NO-GO`), principio di non-compensazione e modello didattico vettoriale.
 8. **Tracciabilità nel Decision Gate**: Il costrutto didattico della tracciabilità tridimensionale (Requisito-Evidenza-Discrepanza).
 9. **Esempio Pratico e Didattica del Codice**: Implementazione di un motore di gate deterministico con spiegazione concettuale per non programmatori.
 10. **Controesempi Didattici**: Il fallimento della "Camera dell'Eco" (*The Echo Chamber Gate*) e l'illusione della validazione unanime tra modelli.
@@ -19036,7 +19036,7 @@ Codice generato + Test generati ---> CI Pipeline (exit code 0) ---> PASS ---> Tr
 
 L'obiettivo dello Step 23 è formalizzare e costruire **Evidence-Based Decision Gates** (Gate Decisionali Basati sull'Evidenza).
 
-Un Decision Gate Basato sull'Evidenza non è un semplice script che arresta il build su un'eccezione di runtime. È una **barriera decisionale, epistemica e architetturale** che impedisce la transizione di un componente software verso ambienti ad autorità, rischio o blast radius superiore a meno che non venga esibito un *Dossier di Evidenze* conforme a criteri predeterminati di:
+Un Decision Gate Basato sull'Evidenza non è un semplice script che arresta il build su un'eccezione di runtime. È una **barriera decisionale, probatoria e architetturale** che impedisce la transizione di un componente software verso ambienti ad autorità, rischio o blast radius superiore a meno che non venga esibito un *Dossier di Evidenze* conforme a criteri predeterminati di:
 1. Completezza rispetto alle proprietà critiche e agli invarianti (Step 6 e 10);
 2. Indipendenza epistemica degli oracoli di verifica (Step 11 e 21);
 3. Esaurimento controllato del Discrepancy Budget (Step 22);
@@ -19222,7 +19222,7 @@ Per evitare errori interpretativi sistematici, il valutatore del gate deve padro
 
 ---
 
-### 7. Formalizzazione Logico-Epistemica del Modello Decisionale
+### 7. Modello logico di valutazione delle evidenze
 
 Per formalizzare la decisione senza ricorrere a soglie arbitrarie, riutilizziamo ed estendiamo il modello qualitativo introdotto nello Step 21.
 
@@ -27120,7 +27120,7 @@ Per comprendere e applicare i principi di questo capitolo, è necessario avere a
 
 ### 4. Concetti fondamentali e catena concettuale centrale
 
-#### Modifica sintattica vs Modifica semantica vs Modifica epistemica
+#### Modifica sintattica vs Modifica semantica vs Impatto probatorio
 
 Ogni alterazione software si manifesta simultaneamente su tre livelli distinti:
 
@@ -27213,9 +27213,9 @@ La Change Impact Analysis si sviluppa formalmente su quattro dimensioni analitic
 +-------------------------------+
         |
         v
-+-------------------------------+
-|  4. Analisi Epistemica         | → Quali evidenze, test e assunzioni cadono?
-+-------------------------------+
++------------------------------------+
+| 4. Analisi della tenuta probatoria | → Quali evidenze, test e assunzioni cadono?
++------------------------------------+
 ```
 
 #### Dimensione 1: Analisi Sintattica
@@ -27242,7 +27242,7 @@ Traccia i canali attraverso cui la mutazione semantica può viaggiare all'intern
 - **Accoppiamento di dati (Data Coupling):** la struttura dei dati salvata su database, serializzata in JSON o depositata in cache è mutata? Se il componente A scrive un dato con un nuovo schema, il componente B fallirà durante il parsing?
 - **Accoppiamento temporale (Temporal Coupling):** la modifica altera la durata di esecuzione, l'ordine atteso degli eventi, o introduce condizioni di concorrenza su risorse condivise?
 
-#### Dimensione 4: Analisi Epistemica (Impatto sull'Assurance)
+#### Dimensione 4: Analisi della tenuta probatoria (Impatto sull'Assurance)
 
 Questa è la dimensione in cui si valuta il perimetro probatorio:
 - **Test di regressione:** identificare quali test coprono il codice modificato e quali test coprono i componenti impattati a valle.
@@ -28673,7 +28673,7 @@ L'audit periodico non è un atto burocratico di conformità formale, ma l'eserci
 
 ### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
-#### 1.1 Il problema dell'amnesia epistemica
+#### 1.1 Il problema dell'amnesia organizzativa
 
 Nel ciclo di vita del software convenzionale, la fase di chiusura viene spesso degradata a formalità burocratica: l'esecuzione dell'ultimo commit, lo scioglimento informale del gruppo di lavoro e il passaggio frettoloso al progetto successivo. Nello sviluppo assistito da Large Language Models (LLM), questa prassi innesca una grave patologia organizzativa ed epistemica: l'**amnesia epistemica** (*epistemic amnesia*).
 
@@ -28682,7 +28682,7 @@ Il problema centrale affrontato da questo STEP conclusivo è la dispersione irre
 - Si perde la capacità di dimostrare la diligenza professionale in sede di audit regolatorio, certificazione formale o contenzioso legale.
 - Gli stessi pattern di allucinazione, i medesimi prompt fragili e i disallineamenti contrattuali già affrontati verranno fatalmente ripetuti nei cicli successivi.
 
-| L'AMNESIA EPISTEMICA |
+| L'AMNESIA ORGANIZZATIVA |
 | :--- |
 | Codice congelato su repository Git<br>!= Fascicolo di Assurance archiviato (modelli, prompt, log persi)<br>!= Motivazione delle scelte preservata (perche' ci siamo fidati?)<br>!= Lezioni apprese capitalizzate (ripetizione garantita degli errori) |
 
@@ -29161,7 +29161,7 @@ La documentazione di chiusura deve esplicitare e congelare le seguenti risultanz
    9. UNDER WHICH CONDITIONS      -> Confini operativi al di fuori dei quali le decisioni cadono.
 ```
 
-#### 16.2 La barriera contro l'erosione epistemica
+#### 16.2 La barriera contro l'erosione della prudenza tecnica
 
 La memoria negativa impedisce che, con il passare del tempo e il ricambio generazionale dei programmatori, si verifichi la transizione indebita:
 
