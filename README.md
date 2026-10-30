@@ -94,8 +94,6 @@
 - ✍ Nota di trasparenza e genesi del testo
 - 🄯 GNU Free Documentation License
 
----
-
 </details>
 
 ---
@@ -112,6 +110,8 @@
 
 <details>
 <summary> 🌍 <b>Translations & International Readers: 🇮🇹 🇬🇧 🇫🇷 🇩🇪 🇪🇸 🇵🇹 🇨🇳 <br> (Click to expand / Clicca per espandere)</b></summary>
+
+---
 
 **🇮🇹 Italiano:**  
 **Manuale di Assurance del Software Assistito da LLM**  
