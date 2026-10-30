@@ -30147,7 +30147,7 @@ La licenza GNU Free Documentation License (GNU FDL) con cui è distribuito il pr
      - Gestione del ciclo di vita: watchdog e timeout
      - Immutabilità del digest crittografico e verifica di filiera
      - Suite minima di test negativi di conformità
-  8. **Glossario operativo dei termini di confinamento**
+  8. **Prontuario operativo dei termini di confinamento**
 
 ---
 
@@ -30796,52 +30796,29 @@ Se uno qualsiasi di questi test negativi non solleva l'eccezione attesa (ad esem
 
 ---
 
-### 8. GLOSSARIO OPERATIVO DEI TERMINI DI CONFINAMENTO
+### 8. PRONTUARIO OPERATIVO DEI TERMINI DI CONFINAMENTO
 
-- **Air-Gapping (Isolamento Fisico o Logico di Rete)**:
-  Configurazione architetturale in cui un sistema di calcolo è totalmente privo di connessioni fisiche, interfacce virtuali o rotte di instradamento verso reti esterne o internet. Un ambiente con rete configurata su `--network none` isola il traffico IP ordinario pur mantenendo normalmente attiva l'interfaccia di loopback locale (`lo`).
-- **Ambient Authority (Autorità Ambientale)**:
-  Modello di sicurezza in cui le autorizzazioni di un programma derivano implicitamente dal contesto in cui è avviato (ad esempio dall'identità dell'utente che lo esegue o dal gruppo di appartenenza), anziché essere esplicitamente passate come riferimenti circoscritti a ciascuna singola richiesta operativa.
-- **Attack Surface (Superficie d'Attacco)**:
-  L'insieme complessivo delle interfacce software, chiamate di sistema accessibili, porte di rete, protocolli di comunicazione, formati di file analizzati e contesti di esecuzione attraverso cui un attore (umano o software avversariale) può inviare dati per tentare di alterare il comportamento atteso del sistema.
-- **Blast Radius (Raggio d'Impatto)**:
-  L'ampiezza massima potenziale dei danni, corruzioni di dati, perdite di confidenzialità o degradazioni del servizio che un componente software può causare all'infrastruttura complessiva qualora fallisca o devii dal proprio comportamento nominale.
 - **Capability (Riferimento autorizzante non falsificabile)**:
   In teoria della sicurezza dei sistemi, un riferimento opaco e non falsificabile a una risorsa (oggetto in memoria, file, canale di comunicazione), indissolubilmente legato a uno specifico insieme di diritti operativi su di essa. Il semplice possesso del riferimento costituisce titolo necessario e sufficiente per accedere alla risorsa.
 - **Control Groups (cgroups v2)**:
   Primitive del kernel Linux deputate alla misurazione, ripartizione, contabilizzazione e limitazione dell'assorbimento delle risorse fisiche (tempo CPU, memoria RAM, operazioni di I/O su storage e numero massimo di processi concorrenti) per gruppi gerarchici di processi.
-- **Escape (Evasione dalla Sandbox)**:
-  Condizione in cui un processo in esecuzione all'interno di un ambiente confinato riesce, sfruttando vulnerabilità del kernel, difetti del Virtual Machine Monitor o configurazioni errate, a scavalcare le barriere di isolamento acquisendo autorità non autorizzata sull'host sottostante.
 - **Hypervisor (Virtual Machine Monitor - VMM)**:
   Componente software, firmware o hardware (come KVM, QEMU, Firecracker, Xen) che virtualizza e governa le risorse della CPU e della memoria fisica, consentendo l'esecuzione sicura e simultanea di molteplici sistemi operativi ospiti (*Guest OS*) isolati tra loro.
 - **Landlock LSM**:
   Modulo di sicurezza nativo del kernel Linux (Linux Security Module) che consente a processi ordinari, senza richiedere privilegi amministrativi o autorizzazioni di root, di applicare vincoli restrittivi deterministici all'accesso a specifiche gerarchie del filesystem e alla connettività di rete per se stessi e per i propri processi discendenti. I diritti disponibili dipendono dalla versione dell'ABI (Application Binary Interface) supportata dal kernel in uso.
 - **Linux Capability POSIX**:
   Partizione dei privilegi storicamente attribuiti all'utente superutente `root` (`UID 0`) in unità operative granulari e indipendenti (ad esempio `CAP_NET_BIND_SERVICE` per collegarsi a porte basse, `CAP_SYS_PTRACE` per tracciare processi, `CAP_CHOWN` per modificare i proprietari dei file). Rimuovere tutte le capabilities (`cap-drop ALL`) impedisce a un processo di esercitare tali facoltà speciali.
-- **MicroVM**:
-  Macchina virtuale minimale basata su virtualizzazione assistita da hardware (KVM), priva di emulazione di periferiche legacy complesse. Concepita per carichi di lavoro effimeri e serverless, offre un confine hardware con kernel guest separato a fronte di tempi di avvio misurabili in frazioni di secondo e un'impronta di memoria del VMM ridotta a pochi megabyte.
 - **Namespaces (Spazi dei Nomi Linux)**:
   Primitive del kernel Linux che partizionano e isolano la visibilità delle risorse globali di sistema (albero dei PID, punti di montaggio del filesystem, stack di rete, identificatori utente UID/GID, code di messaggi IPC e hostname) tra insiemi differenti di processi.
 - **OCI (Open Container Initiative)**:
   Consorzio industriale aperto che formalizza e mantiene gli standard tecnici indipendenti relativi al formato delle immagini dei container (*Image Specification*) e alle modalità di esecuzione del loro ciclo di vita da parte dei runtime di basso livello (*Runtime Specification*).
-- **Privilege Escalation (Scalata dei Privilegi)**:
-  Tecnica o catena di exploit mediante la quale un processo dotato di autorizzazioni limitate sfrutta una debolezza architetturale, una configurazione permissiva o un bug di corruzione della memoria per acquisire un livello di autorità superiore rispetto a quello previsto per la sua funzione.
-- **Rootless Container**:
-  Modalità operativa dei motori di containerizzazione (come Podman o Docker Rootless) in cui sia il processo di gestione sia il container stesso vengono eseguiti interamente privi di privilegi di superutente sull'host. Tramite gli User Namespaces, l'utente `root` interno al container è mappato su un UID ordinario non privilegiato dell'host, circoscrivendo l'autorità massima dell'ambiente alle sole risorse accessibili a quell'utente host.
-- **seccomp-bpf (Secure Computing Mode con filtri BPF)**:
-  Meccanismo di isolamento del kernel Linux che intercetta le chiamate di sistema invocate da un processo, confrontandole con un programma di filtraggio scritto in bytecode BPF. Consente di definire allow-list di syscall ammesse, respingendo quelle non autorizzate con errori emulati (`SECCOMP_RET_ERRNO`) o provocando la terminazione immediata del processo (`SECCOMP_RET_KILL_PROCESS`).
-- **Side-Channel Attack (Attacco a Canale Laterale)**:
-  Metodologia di violazione della sicurezza che deduce informazioni riservate (come chiavi crittografiche o dati residenti nella memoria di altri domini) misurando parametri operativi fisici dell'elaboratore (tempi di risposta, latenze di accesso alle linee della cache della CPU, consumo energetico) anziché sfruttare vulnerabilità logiche dirette del software.
 - **System Call (Syscall - Chiamata di Sistema)**:
   Interfaccia formale standardizzata attraverso cui un programma in esecuzione nello spazio utente a poteri limitati (*User Space*) richiede al kernel del sistema operativo (*Kernel Space*) di compiere operazioni privilegiate sull'hardware, sullo storage, sulla rete o sulla tabella dei processi.
 - **Trap (Eccezione di Runtime / Interruzione)**:
   Interruzione sincrona sollevata dal microprocessore o dal runtime di esecuzione a fronte di un'istruzione illecita (ad esempio accesso a memoria non allocata, divisione per zero o tentativo di eseguire un'istruzione privilegiata), che trasferisce immediatamente il controllo al gestore di sicurezza del sistema.
-- **WASI (WebAssembly System Interface)**:
-  Standardizzazione modulare di interfacce di sistema basata sul paradigma delle capability, concepita per consentire a moduli compilati in formato WebAssembly di interagire con le risorse del sistema operativo ospite (file, orologi, variabili) unicamente attraverso handle e permessi esplicitamente concessi dall'ambiente runtime esterno.
-- **Watchdog Timer (Timer Supervisore)**:
-  Meccanismo di controllo indipendente (implementato a livello di sistema operativo o di processo supervisore) preposto al monitoraggio del tempo di esecuzione di un'attività. Interviene forzando l'arresto definitivo della computazione qualora il compito superi il limite temporale prefissato (*timeout rigido*).
 
-  
+> Per altri termini utilizzati in questa Appendice, vedi il [❖ GLOSSARIO](#glossario-manuale) 
+
 ---
 
 <div class="pagebreak"></div>
@@ -31315,7 +31292,7 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
     - 13.2 SMT
     - 13.3 Logica del Primo Ordine e limiti dei solver
     - 13.4 Interpretazione dei risultati
-14. **Glossario essenziale**
+14. **Termini e definizioni**
 15. **Esempi di lettura**
 16. **Convenzioni da ricordare**
 
@@ -32252,51 +32229,37 @@ La verifica automatica fornisce quindi evidenza rispetto al modello formalizzato
 
 ---
 
-### 14. Glossario essenziale
+### 14. Termini e definizioni
 
-- **Affermazione del conseguente** — Errore logico (fallacia formale) in cui, data la regola `P -> Q`, si constata la verità del conseguente `Q` e si conclude erroneamente che debba essere vero anche l'antecedente `P`.
 - **Ambito (scope)** — Parte della formula governata da un quantificatore o delimitata da un raggruppamento.
 - **Argomento** — Termine fornito a una funzione o a un predicato.
 - **Arità** — Numero di argomenti di una funzione o di un predicato.
 - **Condizione necessaria** — Prerequisito indispensabile affinché un'altra proprietà possa sussistere. Affermare che «A è necessaria per B» significa che se manca A, B non può essere vero (`B -> A`, equivalente a `NOT A -> NOT B`).
 - **Condizione sufficiente** — Proprietà che da sola garantisce la verità di un'altra. Affermare che «A è sufficiente per B» significa che il verificarsi di A comporta immancabilmente B (`A -> B`).
 - **Connettivo** — Operatore logico che combina o modifica formule (`NOT`, `AND`, `OR`, `->`, `<->`, `XOR`).
-- **Conseguenza semantica (`|=`, `⊨`)** — Relazione per cui una conclusione è vera in tutte le interpretazioni e in tutti i modelli che rendono vere le premesse.
 - **Consistenza di una specifica** — Assenza di incompatibilità logiche o contraddizioni tra i vincoli formalizzati, rispetto alla semantica adottata.
-- **Controesempio** — Interpretazione, stato o assegnazione che dimostra la falsità di una proprietà che si vorrebbe valida.
 - **Costante** — Simbolo interpretato come un elemento specifico del dominio.
-- **Derivabilità sintattica (`|-`, `⊢`)** — Proprietà di una formula di essere formalmente dimostrabile a partire dalle premesse mediante le regole di inferenza del calcolo logico adottato.
 - **Dominio** — Insieme degli oggetti considerati nell'interpretazione.
 - **Enunciato (formula chiusa / sentence)** — Formula priva di variabili libere, dotata di valore di verità autonomo e definito all'interno di un'interpretazione.
 - **Equivalenza logica** — Relazione tra formule che hanno lo stesso valore di verità in ogni interpretazione e per ogni assegnazione pertinente.
-- **Falsificazione popperiana** — Principio epistemologico formulato da Karl Popper secondo cui un'ipotesi universale non può essere dimostrata dall'osservazione di casi favorevoli finiti, ma può essere confutata deduttivamente da un singolo controesempio.
 - **Formula aperta** — Formula che contiene almeno una variabile libera non quantificata, il cui valore di verità dipende da assegnazioni esterne.
 - **Formula atomica** — Formula elementare, come `P(x)` o `x = y`.
 - **Formula composta** — Formula costruita usando connettivi o quantificatori.
 - **Funzione** — Simbolo interpretato come una mappa dagli argomenti a un elemento del dominio.
 - **Insoddisfacibile** — Formula che non è vera in alcuna interpretazione ammissibile e per alcuna assegnazione delle variabili libere.
-- **Invariante** — Proprietà che deve rimanere vera in tutti gli stati ammissibili ai quali si applica.
 - **Modello** — Interpretazione che rende vere le formule considerate.
-- **Modus Ponens** — Regola d'inferenza deduttiva: data una regola condizionale `P -> Q` e la verità accertata dell'antecedente `P`, ne segue necessariamente la verità del conseguente `Q` (`{ P -> Q, P } |= Q`).
-- **Modus Tollens** — Regola d'inferenza per contrapposizione: data la regola `P -> Q` e la constatazione che il conseguente `Q` è falso (`NOT Q`), ne segue necessariamente che l'antecedente `P` era falso (`{ P -> Q, NOT Q } |= NOT P`).
-- **Negazione dell'antecedente** — Errore logico (fallacia formale) in cui, data la regola `P -> Q`, si constata la falsità dell'antecedente `P` e si deduce a torto che debba essere falso anche il conseguente `Q`.
 - **Non conseguenza semantica (`|/=`, `⊭`)** — Asserzione dell'esistenza di almeno un modello o scenario in cui le premesse sono vere ma la conclusione risulta falsa.
 - **Non derivabilità sintattica (`|/-`, `⊬`)** — Impossibilità di ricavare una dimostrazione formale della formula all'interno delle regole del sistema logico dato.
-- **Postcondizione** — Proprietà attesa dopo l'esecuzione di un'operazione, secondo le condizioni specificate.
-- **Precondizione** — Condizione che deve essere soddisfatta prima dell'esecuzione di un'operazione.
 - **Predicato** — Simbolo che esprime una proprietà o una relazione tra elementi del dominio.
 - **Quantificatore** — Operatore che esprime universalità (`forall`), esistenza (`exists`) o unicità (`exists!`).
-- **SAT** — Problema della soddisfacibilità della logica proposizionale.
-- **SMT** — Problema della soddisfacibilità di formule rispetto a teorie formali dedicate (es. aritmetica, uguaglianza).
 - **Soddisfacibile** — Formula vera in almeno un'interpretazione ammissibile e per almeno un'assegnazione delle variabili libere.
-- **Solver** — Strumento software automatico che determina la soddisfacibilità o la validità di una formula.
 - **Termine** — Espressione sintattica che denota un elemento del dominio.
 - **Valida** — Formula vera in tutte le interpretazioni ammissibili e per tutte le assegnazioni delle variabili libere.
 - **Variabile** — Simbolo che può denotare un elemento del dominio.
 - **Variabile libera** — Variabile la cui occorrenza non è vincolata da un quantificatore.
 - **Variabile vincolata** — Variabile la cui occorrenza ricade nell'ambito di un quantificatore corrispondente.
-- **Verifica formale** — Uso di metodi matematici e logici per stabilire proprietà di un modello o di un sistema rispetto a una specifica dichiarata.
-- **Verità vacua (vacuous truth)** — Circostanza in cui una formula condizionale universale risulta vera unicamente perché la sua premessa non si verifica mai nel dominio.
+
+> Per altri termini utilizzati in questa Appendice, vedi il [❖ GLOSSARIO](#glossario-manuale) 
 
 ---
 
@@ -32461,7 +32424,7 @@ Il risultato non dimostra, da solo, che il sistema software reale violi il requi
 2. **Decodificare il Solver: SAT, Bounded Analysis e Diagnostica**
 3. **Alloy come Filtro di Specifica nella Pipeline Neurosimbolica**
 4. **Caso Studio: Autorizzazioni, Deleghe e Separation of Duties (SoD)**
-5. **Riferimento Rapido, Glossario e Risorse**
+5. **Riferimento Rapido, Terminologia essenziale e Risorse**
 
 ---
 
@@ -32597,7 +32560,7 @@ La tabella che segue sintetizza i quattro operatori di molteplicità, sia quando
 #### 1.3 La Stele di Rosetta: Operatori Relazionali e Idiomi di Lettura
 Alloy usa un'algebra relazionale compatta. Per l'ingegnere abituato all'Object-Oriented Programming (OOP) o al linguaggio SQL, la notazione può risultare disorientante. La seguente trattazione decodifica gli operatori essenziali.
 
-#### 1.3.1 Navigazione e Join Relazionale (`.`)
+##### 1.3.1 Navigazione e Join Relazionale (`.`)
 Il punto (`.`) non è una chiamata di metodo OOP, ma l'operatore di **composizione/join relazionale**.
 Se `u` è un atomo di tipo `User` e `roles` è la relazione `User -> Role`, allora:
 ```alloy
@@ -32610,7 +32573,7 @@ u.roles.permissions
 ```
 restituisce tutti i permessi associati a tutti i ruoli posseduti da `u`.
 
-#### 1.3.2 Prodotto Cartesiano (`->`)
+##### 1.3.2 Prodotto Cartesiano (`->`)
 Crea una tupla o una relazione:
 ```alloy
 all u: User | u->u not in delegatesTo
@@ -32619,14 +32582,14 @@ Significa: "Per ogni utente `u`, la coppia `(u, u)` non appartiene alla relazion
 
 > Vedi: [⊙ Elementi di Logica e Specifica Formale](#appendice-logica), sezione 2.1.1 Differenza notazionale ed epistemica tra `->` e `=>`
 
-#### 1.3.3 Inversione Relazionale (`~`)
+##### 1.3.3 Inversione Relazionale (`~`)
 Inverte la direzione della tupla: se `creates` va da `User` a `Payment`, allora `~creates` va da `Payment` a `User`:
 ```alloy
 // p è un Payment. ~creates restituisce l'User che lo ha creato
 p.~creates
 ```
 
-#### 1.3.4 Chiusura Transitiva (`^`) e Riflessivo-Transitiva (`*`)
+##### 1.3.4 Chiusura Transitiva (`^`) e Riflessivo-Transitiva (`*`)
 È uno degli operatori più potenti e compatti di Alloy, fondamentale per analizzare grafi, catene di approvazione e gerarchie:
 * `^relazione`: Navigazione su 1 o più salti lungo la relazione (almeno un passo).
 * `*relazione`: Navigazione su 0 o più salti (include il punto di partenza: identità + chiusura transitiva).
@@ -32637,7 +32600,7 @@ e.^subordinateTo    // Tutti i superiori diretti e indiretti di `e` lungo la ger
 e.*subordinateTo    // L'impiegato `e` stesso, unito a tutti i suoi superiori
 ```
 
-#### 1.3.5 Restrizione di Dominio (`<:`) e Codominio (`:>`)
+##### 1.3.5 Restrizione di Dominio (`<:`) e Codominio (`:>`)
 Filtra una relazione in base all'insieme a sinistra o a destra:
 ```alloy
 // Considera solo le relazioni 'approves' che partono da SeniorManager
@@ -33177,12 +33140,12 @@ Per impedire questo comportamento degradativo nell'analisi di modelli struttural
                         +---------------------------------+
 ```
 
-#### 3.2.1. Ramo della Sicurezza (Safety Assertion — Confutazione)
+##### 3.2.1. Ramo della Sicurezza (Safety Assertion — Confutazione)
 - **Obiettivo:** Dimostrare che nessuna configurazione ammissibile di dati può violare un invariante critico (es. *un utente approva una propria spesa*, *un nodo orfano riceve permessi di root*).
 - **Comando:** `check SafetyProperty for Scope`
 - **Criterio di Successo:** Il solver **non** deve trovare controesempi entro lo scope concordato (la formula `Fatti ∧ ¬SafetyProperty` è insoddisfacibile, esito UNSAT del SAT solver).
 
-#### 3.2.2. Ramo della Vitalità e Testimonianza (Satisfiability / Witness Scenario)
+##### 3.2.2. Ramo della Vitalità e Testimonianza (Satisfiability / Witness Scenario)
 - **Obiettivo:** Dimostrare che il modello conserva la capacità di compiere le funzioni operative richieste dal business (es. *esiste almeno una configurazione in cui un pagamento supera i controlli e viene validato con successo*).
 - **Comando:** `run HappyPath for Scope`
 - **Criterio di Successo:** Il solver **deve** trovare almeno un'istanza valida, popolata con dati effettivi e non degenere (esito SAT).
@@ -33298,7 +33261,7 @@ Poiché un solver SAT genera assegnamenti di verità completi per ogni atomo e r
 +------------------------+              +------------------------+
 ```
 
-#### 3.5.1. Da Istanza di `run` a Happy Path Test (Gherkin / Cucumber)
+##### 3.5.1. Da Istanza di `run` a Happy Path Test (Gherkin / Cucumber)
 Un'istanza positiva dimostra un'interazione lecita. Supponiamo che l'Analyzer produca un'istanza in cui l'utente `Alice` con ruolo `FinanceManager` approva un rimborso `Expense#42` di importo 300 euro.
 Questa configurazione viene trascritta direttamente in uno scenario BDD leggibile da product owner e framework di collaudo:
 
@@ -33312,7 +33275,7 @@ Scenario: Approvazione lecita di un rimborso da parte del responsabile finanziar
   And il log di audit deve registrare l'approvatore "Alice"
 ```
 
-#### 3.5.2. Da Controesempio di `check` ad Abuse Case Unit Test (JUnit / PyTest)
+##### 3.5.2. Da Controesempio di `check` ad Abuse Case Unit Test (JUnit / PyTest)
 Il controesempio estratto dal solver rappresenta la ricetta esatta di un exploit logico o di una falla architetturale. Non deve essere semplicemente "risolto nel modello": deve diventare un test di regressione permanente nella suite di test del codice reale per impedire che gli sviluppatori (o l'LLM che genera il codice applicativo) introducano quella specifica vulnerabilità.
 
 Supponiamo che il solver abbia confutato l'invariante mostrando che l'utente `Bob` (Maker) può approvare la propria spesa acquisendo la delega da `Alice` (Checker). Questo scenario si trasforma in un test unitario di sicurezza imperativo:
@@ -33631,7 +33594,7 @@ check StrictSeparationOfDuties for 6 but exactly 4 User, 2 Payment
 
 A valle dell'approvazione del modello da parte del solver SAT, l'ingegnere di assurance traduce gli esiti formali in **artefatti tangibili per il ciclo di sviluppo CI/CD**.
 
-#### 4.5.1. Scenario di Collaudo BDD (Gherkin / Cucumber)
+##### 4.5.1. Scenario di Collaudo BDD (Gherkin / Cucumber)
 Il controesempio riscontrato al punto 4.3 viene formalizzato in un test funzionale automatizzato per impedire qualsiasi regressione futura nel codice di produzione:
 
 ```gherkin
@@ -33649,7 +33612,7 @@ Feature: Prevenzione di auto-approvazione tramite delega (SoD)
     And un allarme di sicurezza viene registrato nel registro di conformità audit
 ```
 
-#### 4.5.2. Da Controesempio di `check` ad Abuse Case Unit Test (JUnit / PyTest)
+##### 4.5.2. Da Controesempio di `check` ad Abuse Case Unit Test (JUnit / PyTest)
 La traduzione del controesempio in codice di collaudo richiede la generazione di test di regressione mirati per ciascuno scenario di violazione isolato dal solver:
 
 ```python
@@ -33718,7 +33681,7 @@ def test_prevent_cyclic_delegation_chains():
         auth_service.register_delegation(delegator=user_c, delegatee=user_a)
 ```
 
-#### 4.5.3. Matrice di Assurance Finale del Caso Studio
+##### 4.5.3. Matrice di Assurance Finale del Caso Studio
 
 | Parametro di Assurance | Valore / Esito | Note di Conformità |
 | :--- | :--- | :--- |
@@ -33732,7 +33695,7 @@ def test_prevent_cyclic_delegation_chains():
 
 #### 5.1 Cheat Sheet Sintattico di Alloy 6
 
-#### 5.1.1. Dichiarazioni e Molteplicità
+##### 5.1.1. Dichiarazioni e Molteplicità
 ```alloy
 sig A {}                     // Firma di base (insieme di atomi A)
 abstract sig B {}            // Firma astratta: non ha atomi propri, solo sottotipi
@@ -33746,7 +33709,7 @@ r: some Target               // Almeno uno (collezione non vuota)
 r: set Target                // Qualsiasi quantità (inclusa la collezione vuota)
 ```
 
-#### 5.1.2. Operatori Relazionali e Insiemistici
+##### 5.1.2. Operatori Relazionali e Insiemistici
 ```alloy
 a.r                          // Join relazionale: immagine di 'a' attraverso la relazione 'r'
 A -> B                       // Prodotto cartesiano tra insiemi o tuple
@@ -33766,7 +33729,7 @@ r :> Range                   // Restrizione di codominio: limita le tuple di 'r'
 #A                           // Cardinalità dell'insieme A (restituisce un intero)
 ```
 
-#### 5.1.3. Logica del Primo Ordine e Quantificatori
+##### 5.1.3. Logica del Primo Ordine e Quantificatori
 ```alloy
 all x: S | P[x]              // Universale: P è vero per ogni x in S
 some x: S | P[x]             // Esistenziale: P è vero per almeno un x in S
@@ -33783,7 +33746,7 @@ P <=> Q oppure P iff Q       // Doppia implicazione (se e solo se)
 cond => P else Q             // Condizionale: se 'cond' è vero vale P, altrimenti Q
 ```
 
-#### 5.1.4. Costrutti Temporali Nativi di Alloy 6
+##### 5.1.4. Costrutti Temporali Nativi di Alloy 6
 ```alloy
 r'                           // Post-stato: valore della relazione 'r' nel punto temporale successivo
 always P                     // Proprietà invariante: P deve valere in ogni stato presente e futuro
@@ -33792,7 +33755,7 @@ after P                      // P deve essere vero nello stato immediatamente su
 P until Q                    // P rimane vero finché non diventa vero Q
 ```
 
-#### 5.1.5. Blocchi Strutturali e Comandi
+##### 5.1.5. Blocchi Strutturali e Comandi
 ```alloy
 module my_system             // Dichiarazione del modulo
 open util/boolean            // Importazione facoltativa (in alternativa alla definizione manuale di tipi enumerativi)
@@ -33863,21 +33826,15 @@ FASE 5: TRACCIABILITÀ E TRASFERIMENTO VERSO LA CI/CD
 
 ---
 
-#### 5.3 Glossario Essenziale per l'Ingegnere di Assurance
+#### 5.3 Terminologia essenziale
 
 - **Atomo (Atom):** L'elemento primitivo e indivisibile di Alloy. Gli atomi non possiedono campi interni o indirizzi di memoria; sono entità distinte identificate solo dalla loro etichetta tipizzata (es. `User$0`).
-- **Bounded Verification (Verifica Limitata):** Metodologia di analisi formale che limita a priori la cardinalità massima delle entità considerate (*scope*), riducendo il problema dell'indecidibilità a un problema combinatorio finito risolvibile tramite SAT solver.
 - **Chiusura Transitiva (Transitive Closure, `^`):** Operatore che calcola la raggiungibilità su un grafo relazionale a 1 o più salti. Permette di navigare catene gerarchiche arbitrarie senza dover specificare a priori la profondità di ricorsione.
-- **Completeness (Completezza):** Proprietà di un metodo formale secondo cui qualsiasi difetto reale presente nel sistema viene obbligatoriamente rilevato. Alloy è completo *rispetto al perimetro dichiarato*: non perde alcun controesempio esistente entro lo scope prescelto.
-- **Controesempio (Counterexample):** Assegnamento concreto di atomi e relazioni che soddisfa tutti i fatti del modello ma viola l'asserzione verificata. Costituisce la dimostrazione formale che l'asserzione non è conseguenza logica delle premesse entro il perimetro modellato.
 - **Istanza (Instance):** Assegnamento concreto di atomi e relazioni che rende vere contemporaneamente tutte le formule dichiarate nel modello.
 - **Join Relazionale (`.`):** Operatore di composizione che concatena due relazioni combinando le tuple in cui il membro destro della prima corrisponde al membro sinistro della seconda.
 - **Kodkod:** Il motore relazionale di Alloy sviluppato da Emina Torlak e Daniel Jackson. Compila predicati relazionali del primo ordine con chiusura transitiva in formule proposizionali booleane con riduzione di simmetrie.
-- **Modello Dichiarativo:** Rappresentazione logica che descrive *quali* proprietà devono valere nel sistema, senza prescrivere la sequenza imperativa di passaggi per produrre quello stato.
-- **Small Scope Hypothesis:** Ipotesi empirica formulata da Daniel Jackson secondo cui la stragrande maggioranza dei difetti architetturali e di specifica ammette un controesempio piccolo (tra 3 e 5 atomi).
-- **Soundness (Correttezza):** Proprietà di un sistema di verifica secondo cui ogni violazione segnalata corrisponde a un controesempio matematicamente esatto rispetto alle formule fornite in input (assenza di falsi allarmi algoritmici del solver). Non garantisce a priori che il modello rifletta fedelmente la realtà se le premesse sono errate.
-- **UNSAT Core:** Sottoinsieme (spesso minimale o irriducibile) di vincoli, formule e fatti reciprocamente incompatibili che rende il modello insoddisfacibile. È lo strumento primario per diagnosticare e isolare specifiche contraddittorie.
-- **Verità Vacua (Vacuous Truth):** Fenomeno logico per cui un'asserzione risulta vera non per la robustezza delle sue clausole, ma perché la premessa o il dominio del discorso è l'insieme vuoto (`False implies Anything`).
+
+> Per altri termini utilizzati in questa Appendice, vedi il [❖ GLOSSARIO](#glossario-manuale) 
 
 ---
 
@@ -35007,7 +34964,9 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Actionability (Azionabilità)](#actionability-azionabilità)
 - [Adeguatezza (Adequacy)](#adeguatezza-adequacy)
 - [Adversarial Input (Input Avversariale)](#adversarial-input-input-avversariale)
+- [Affermazione del conseguente](#affermazione-del-conseguente)
 - [Agent (Agente software / agente basato su LLM)](#agent-agente-software--agente-basato-su-llm)
+- [Air-Gapping (Isolamento fisico o logico di rete)](#air-gapping-isolamento-fisico-o-logico-di-rete)
 - [Alert (Allarme)](#alert-allarme)
 - [Alert Carpet Bombing](#alert-carpet-bombing)
 - [Alert Fatigue (Affaticamento da Allarmi)](#alert-fatigue-affaticamento-da-allarmi)
@@ -35054,6 +35013,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Blameless Post-Mortem](#blameless-post-mortem)
 - [Blast Radius (Raggio d'Impatto)](#blast-radius-raggio-dimpatto)
 - [Blind Review (Revisione Cieca)](#blind-review-revisione-cieca)
+- [Bounded Verification (Verifica limitata)](#bounded-verification-verifica-limitata)
 - [Burn Rate (Tasso di Consumo del Budget di Errore)](#burn-rate-tasso-di-consumo-del-budget-di-errore)
 
 #### C
@@ -35071,10 +35031,13 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Common Cause Failure (Guasto per Causa Comune)](#common-cause-failure-guasto-per-causa-comune)
 - [Competence (Competenza)](#competence-competenza)
 - [Competence Gap (Divario di Competenza)](#competence-gap-divario-di-competenza)
+- [Completeness (Completezza)](#completeness-completezza)
 - [Conditional Correctness (Correttezza Condizionale)](#conditional-correctness-correttezza-condizionale)
 - [Confidence (Confidenza / Fiducia Soggettiva)](#confidence-confidenza--fiducia-soggettiva)
+- [Conseguenza semantica](#conseguenza-semantica)
 - [Consenso Fragile vs Consenso Robusto](#consenso-fragile-vs-consenso-robusto)
 - [Containment (Contenimento Architetturale)](#containment-contenimento-architetturale)
+- [Controesempio](#controesempio)
 - [Control (Controllo)](#control-controllo)
 - [Control Effectiveness (Efficacia del Controllo)](#control-effectiveness-efficacia-del-controllo)
 - [Controllability (Controllabilità Architetturale)](#controllability-controllabilità-architetturale)
@@ -35092,6 +35055,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Declarative Specification (Specifica Dichiarativa)](#declarative-specification-specifica-dichiarativa)
 - [Default Deny (Rifiuto Predefinito)](#default-deny-rifiuto-predefinito)
 - [Degradation (Degrado Operativo)](#degradation-degrado-operativo)
+- [Derivabilità sintattica](#derivabilità-sintattica)
 - [Design by Contract (DbC - Progettazione per Contratto)](#design-by-contract-dbc---progettazione-per-contratto)
 - [Detection vs Prevention (Rilevamento vs Prevenzione)](#detection-vs-prevention-rilevamento-vs-prevenzione)
 - [Diff Drowning (Annegamento nel Diff)](#diff-drowning-annegamento-nel-diff)
@@ -35109,6 +35073,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Epistemic Responsibility (Responsabilità Epistemica)](#epistemic-responsibility-responsabilità-epistemica)
 - [Epistemic Risk (Rischio Epistemico)](#epistemic-risk-rischio-epistemico)
 - [Error Budget (Budget di Errore)](#error-budget-budget-di-errore)
+- [Escape (Evasione dalla Sandbox)](#escape-evasione-dalla-sandbox)
 - [Evidence (Evidenza di Assurance)](#evidence-evidenza-di-assurance)
 - [Evidence Independence (Indipendenza delle Evidenze)](#evidence-independence-indipendenza-delle-evidenze)
 - [Evidence Sufficiency (Sufficienza dell'Evidenza)](#evidence-sufficiency-sufficienza-dellevidenza)
@@ -35123,6 +35088,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Fail-Safe](#fail-safe)
 - [Fallback](#fallback)
 - [False Assurance (Falsa Garanzia di Fiducia / Falsa Certezza di Correttezza)](#false-assurance-falsa-garanzia-di-fiducia--falsa-certezza-di-correttezza)
+- [Falsificazione popperiana](#falsificazione-popperiana)
 - [Feature Flag (Feature Toggle)](#feature-flag-feature-toggle)
 - [Finding (Riscontro / Risultato di Verifica)](#finding-riscontro--risultato-di-verifica)
 - [Flaky Test (Test Instabile / Intermittente)](#flaky-test-test-instabile--intermittente)
@@ -35174,10 +35140,13 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 #### M
 - [Meaningful Human Control (Controllo Umano Significativo)](#meaningful-human-control-controllo-umano-significativo)
 - [Metamorphic Testing (Testing Metamorfico)](#metamorphic-testing-testing-metamorfico)
+- [MicroVM (Macchina virtuale minimale)](#microvm-macchina-virtuale-minimale)
 - [MITRE ATLAS](#mitre-atlas)
 - [Mock / Mocking (Simulacro di Prova)](#mock--mocking-simulacro-di-prova)
 - [Model Drift (Deriva del Modello)](#model-drift-deriva-del-modello)
 - [Modello Mondo-Macchina (World-Machine Model / Jackson & Zave)](#modello-mondo-macchina-world-machine-model--jackson--zave)
+- [Modus Ponens](#modus-ponens)
+- [Modus Tollens](#modus-tollens)
 - [Multi-Agent Echo Chamber](#multi-agent-echo-chamber)
 - [Multi-Model Audit](#multi-model-audit)
 - [Mutation Score (Punteggio di Mutazione)](#mutation-score-punteggio-di-mutazione)
@@ -35187,6 +35156,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Near Miss (Quasi-incidente)](#near-miss-quasi-incidente)
 - [Negative Memory (Memoria Negativa di Assurance)](#negative-memory-memoria-negativa-di-assurance)
 - [Negative Testing](#negative-testing)
+- [Negazione dell'antecedente](#negazione-dellantecedente)
 - [NO-GO](#no-go)
 - [NOT APPLICABLE](#not-applicable)
 
@@ -35211,6 +35181,9 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Poison Fallback](#poison-fallback)
 - [Post-Deployment Analysis](#post-deployment-analysis)
 - [Post-Deployment Evidence (Evidenza Post-Deployment)](#post-deployment-evidence-evidenza-post-deployment)
+- [Postcondizione](#postcondizione)
+- [Precondizione](#precondizione)
+- [Privilege Escalation (Scalata dei privilegi)](#privilege-escalation-scalata-dei-privilegi)
 - [Problem Space vs Solution Space (Spazio del Problema vs della Soluzione)](#problem-space-vs-solution-space-spazio-del-problema-vs-della-soluzione)
 - [Prompt Priming (Condizionamento del Prompt)](#prompt-priming-condizionamento-del-prompt)
 - [Property (Proprietà)](#property-proprietà)
@@ -35238,6 +35211,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Risk Smuggling / Risk Downgrading (Contrabbando / Declassamento del Rischio)](#risk-smuggling--risk-downgrading-contrabbando--declassamento-del-rischio)
 - [Rollback](#rollback)
 - [Rollbackability (Capacità di Rollback)](#rollbackability-capacità-di-rollback)
+- [Rootless Container (Container senza privilegi di root)](#rootless-container-container-senza-privilegi-di-root)
 - [Rubber-Stamping](#rubber-stamping)
 - [Runbook (Playbook)](#runbook-playbook)
 - [Runtime Invariant Probes (Sonde di Invariante a Runtime)](#runtime-invariant-probes-sonde-di-invariante-a-runtime)
@@ -35246,17 +35220,24 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Safety Property (Proprietà di Sicurezza / Safety)](#safety-property-proprietà-di-sicurezza--safety)
 - [Sandbox](#sandbox)
 - [SAST (Static Application Security Testing)](#sast-static-application-security-testing)
+- [SAT (Boolean Satisfiability - Soddisfacibilità booleana)](#sat-boolean-satisfiability---soddisfacibilità-booleana)
 - [SBOM (Software Bill of Materials)](#sbom-software-bill-of-materials)
 - [SCA (Software Composition Analysis)](#sca-software-composition-analysis)
+- [seccomp-bpf (Secure Computing Mode con filtri BPF)](#seccomp-bpf-secure-computing-mode-con-filtri-bpf)
 - [Second Opinion](#second-opinion)
 - [Secret Scanning](#secret-scanning)
 - [Semantic Drift (Deriva Semantica)](#semantic-drift-deriva-semantica)
 - [Semantic Smoothing (Levigatura Semantica)](#semantic-smoothing-levigatura-semantica)
 - [Shannon Entropy (Entropia di Shannon)](#shannon-entropy-entropia-di-shannon)
 - [Shrinking (Riduzione Algoritmica del Controesempio)](#shrinking-riduzione-algoritmica-del-controesempio)
+- [Side-Channel Attack (Attacco a canale laterale)](#side-channel-attack-attacco-a-canale-laterale)
 - [Silent Canary](#silent-canary)
 - [Silent Semantic Failure (Fallimento Semantico Silenzioso)](#silent-semantic-failure-fallimento-semantico-silenzioso)
 - [Slopsquatting](#slopsquatting)
+- [Small Scope Hypothesis (Ipotesi del piccolo ambito)](#small-scope-hypothesis-ipotesi-del-piccolo-ambito)
+- [SMT (Satisfiability Modulo Theories - Soddisfacibilità modulo teorie)](#smt-satisfiability-modulo-theories---soddisfacibilità-modulo-teorie)
+- [Solver (Risolvitore)](#solver-risolvitore)
+- [Soundness (Correttezza formale)](#soundness-correttezza-formale)
 - [Source & Sink (Sorgente e punto di arrivo / Sink del flusso dati)](#source--sink-sorgente-e-punto-di-arrivo--sink-del-flusso-dati)
 - [Specification (Specifica)](#specification-specifica)
 - [Specification Borrowing](#specification-borrowing)
@@ -35288,6 +35269,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 #### U
 - [Under-specification vs Over-specification (Sotto-specificazione vs Sovra-specificazione)](#under-specification-vs-over-specification-sotto-specificazione-vs-sovra-specificazione)
 - [UNKNOWN (Stato Epistemico Non Noto / Verdetto di Incertezza)](#unknown-stato-epistemico-non-noto--verdetto-di-incertezza)
+- [UNSAT Core](#unsat-core)
 
 #### V
 - [Vacuous Truth (Verità Vacua)](#vacuous-truth-verità-vacua)
@@ -35298,9 +35280,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### W
 - [Warranty (Garanzia contrattuale / commerciale)](#warranty-garanzia-contrattuale--commerciale)
+- [WASI (WebAssembly System Interface)](#wasi-webassembly-system-interface)
+- [Watchdog Timer (Timer supervisore)](#watchdog-timer-timer-supervisore)
 - [WORM - Write Once, Read Many](#worm---write-once-read-many)
 
-[▲ Torna all' Introduzione](#glossario-manuale)
+[▲ Torna all'Introduzione](#glossario-manuale)
 
 ---
 
@@ -35338,10 +35322,17 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Un vettore di ingresso strutturato deliberatamente per sfruttare una debolezza algoritmica, saturare risorse di sistema (es. attacchi ReDoS), eludere barriere logiche di sicurezza o indurre deviazioni nei modelli di calcolo probabilistici o nei parser a valle.  
 *Approfondimento nel manuale: vedi Capitolo 18 (PBT, Fuzzing & Adversarial Testing, Sez. 4 e 5.3) e Capitolo 19 (Threat Modeling & Red Teaming, Sez. 6).*
 
+#### Affermazione del conseguente
+**Definizione:** Errore logico (fallacia formale) in cui, data la regola `P -> Q`, si constata la verità del conseguente `Q` e si conclude erroneamente che debba essere vero anche l'antecedente `P`.
+
 #### Agent (Agente software / agente basato su LLM)
 **Categoria:** Termine tecnico d'uso professionale consolidato  
 **Definizione:** Sistema software in cui un Large Language Model opera come componente di elaborazione per pianificare passaggi, interpretare istruzioni in linguaggio naturale e invocare funzioni o strumenti esterni (*tool-calling*) nell'ambito di flussi operativi delegati. Il manuale ne impone il contenimento perimetrale e il divieto di concessione di autorità diretta non mediata da guardrail deterministici.  
 *Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority, Sez. 17) e Capitolo 19 (Threat Modeling & Red Teaming, Sez. 4 e 5.2).*
+
+#### Air-Gapping (Isolamento fisico o logico di rete)
+**Categoria:** Termine normativo o standardizzato (IETF RFC 4949, NIST CSRC)
+**Definizione:** Configurazione di sicurezza nella quale due sistemi o domini di rete sono fisicamente disconnessi e privi di connessioni logiche automatizzate, impedendo il trasferimento diretto di dati tra essi. L'eventuale scambio di informazioni richiede un intervento esterno controllato, ad esempio mediante supporti rimovibili. In ambito container, la modalità `--network none` realizza invece un isolamento dello stack di rete del container rispetto alle reti esterne, mantenendo normalmente disponibile l'interfaccia di loopback (`lo`); non costituisce, da sola, un air gap in senso stretto.
 
 #### Alert (Allarme)
 **Categoria:** Termine tecnico consolidato  
@@ -35569,6 +35560,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Protocollo operativo di audit in cui ciascun modello linguistico o revisore valuta l'artefatto software in completo isolamento, senza accedere ai giudizi, ai ragionamenti o ai prompt formulati da altri valutatori, eliminando l'effetto gregge e il condizionamento reciproco (*prompt priming*).  
 *Approfondimento nel manuale: vedi Capitolo 20 (Multi-Model Audit, Sez. 4 e 8.1) e Capitolo 21 (Independent Verification, Sez. 5.2).*
 
+#### Bounded Verification (Verifica limitata)
+**Categoria:** Termine tecnico consolidato
+**Definizione:** Metodologia di verifica formale nella quale l'analisi viene circoscritta entro limiti finiti prestabiliti, quali la profondità di esecuzione, il numero di stati, la cardinalità delle entità o la dimensione del dominio considerato. Nel Bounded Model Checking, la proprietà da verificare viene controllata entro un numero massimo di passi di esecuzione, traducendo il problema in una formula SAT o SMT. L'assenza di controesempi entro il limite considerato non costituisce, di per sé, una dimostrazione della correttezza illimitata del sistema.
+
 #### Burn Rate (Tasso di Consumo del Budget di Errore)
 **Categoria:** Termine tecnico consolidato (Site Reliability Engineering)  
 **Definizione:** Parametro quantitativo adimensionale che misura la velocità con cui un sistema consuma il proprio budget di errore rispetto alla velocità nominale di consumo costante calcolata sull'obiettivo di servizio (SLO):  
@@ -35651,6 +35646,9 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** La discrepanza riscontrata tra le competenze necessarie per progettare, verificare o autorizzare un artefatto software e le competenze effettivamente possedute dal personale incaricato, formalizzata nella triade: *Gap di Comprensione*, *Gap di Verifica* e *Gap di Autorità*.  
 *Approfondimento nel manuale: formalizzato in Capitolo 8 (Competence Gaps), Sezione 3.1 e Sezione 4.*
 
+#### Completeness (Completezza)
+**Definizione:** Proprietà di un metodo formale secondo cui qualsiasi difetto reale presente nel sistema viene obbligatoriamente rilevato. Alloy è completo *rispetto al perimetro dichiarato*: non perde alcun controesempio esistente entro lo scope prescelto.
+
 #### Conditional Correctness (Correttezza Condizionale)
 **Categoria:** Termine logico-metodologico consolidato  
 **Definizione:** La garanzia formale che il sistema software rispetti le proprie specifiche se e solo se l'insieme delle assunzioni dichiarate sul contesto esterno (`A`) risulta rigorosamente vero nel runtime operativo reale (`A -> P`).  
@@ -35661,6 +35659,9 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Stato psicologico o statistico soggettivo di fiducia nell'accuratezza o affidabilità di un sistema, che non costituisce evidenza probatoria e non deve mai essere scambiato per una giustificazione oggettiva di assurance.  
 *Approfondimento nel manuale: vedi Capitolo 2 (Sez. 6.5), Capitolo 3 (Sez. 6.3) e Capitolo 5 (Assumptions & Unknowns, Sez. 6.3).*
 
+#### Conseguenza semantica 
+**Definizione:** Relazione formale, indicata con la notazione `|=` o `⊨`, per cui una conclusione è vera in tutte le interpretazioni e in tutti i modelli che rendono vere le premesse.
+
 #### Consenso Fragile vs Consenso Robusto
 **Categoria:** Costrutto didattico introdotto dal manuale  
 **Definizione:** Distinzione qualitativa che discrimina la natura dell'accordo unanime tra più LLM: *Consenso Fragile* quando i modelli concordano sul verdetto ma con ragionamenti incompatibili o sensibili a minime perturbazioni sintattiche; *Consenso Robusto* quando convergono stabilmente sulla medesima dimostrazione causale.  
@@ -35670,6 +35671,9 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine tecnico consolidato  
 **Definizione:** Insieme di meccanismi architetturali, infrastrutturali e logici che impongono barriere invalicabili attorno a un'unità di esecuzione, impedendo che i suoi effetti collaterali si propaghino al di fuori del perimetro autorizzato in caso di fallimento o allucinazione.  
 *Approfondimento nel manuale: vedi Capitolo 14 (Containment & Least Authority), Sezione 4 e Sezione 7.*
+
+#### Controesempio
+**Definizione:** Interpretazione, stato o assegnazione che dimostra la falsità di una proprietà che si vorrebbe valida.
 
 #### Control (Controllo)
 **Categoria:** Termine tecnico e normativo (ISO 31000)  
@@ -35752,6 +35756,9 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Erosione misurabile e progressiva dei margini di sicurezza, di prestazione o di riserva computazionale (es. latenza P99 raddoppiata, consumo anomalo di connessioni), che preannuncia il collasso di un invariante pur senza aver ancora scatenato errori fatali visibili.  
 *Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis), Sezione 4.*
 
+#### Derivabilità sintattica
+**Definizione:** Proprietà di una formula, indicata con la notazione : `|-` o `⊢`, di essere formalmente dimostrabile a partire dalle premesse mediante le regole di inferenza del calcolo logico adottato.
+
 #### Design by Contract (DbC - Progettazione per Contratto)
 **Categoria:** Termine tecnico consolidato  
 **Definizione:** Metodologia di progettazione del software che struttura le interfacce attraverso contratti formali composti da precondizioni a carico del chiamante, postcondizioni garantite dal modulo ed invarianti che devono valere universalmente prima e dopo ogni transizione.  
@@ -35833,6 +35840,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** La quota massima di inaffidabilità, scostamento o disservizio consentita a un sistema software su base temporale mobile, calcolata come complemento all'obiettivo di livello di servizio (`ErrorBudget = 1.0 - SLO`). Se esaurita, i gate bloccano i rilasci ordinari.  
 *Approfondimento nel manuale: vedi Capitolo 27 (Alerting & Runbooks), Sezione 5 e formalizzato analiticamente in Sezione 8.2.*
 
+#### Escape (Evasione dalla Sandbox)
+**Definizione:** Condizione in cui un processo in esecuzione all'interno di un ambiente confinato riesce, sfruttando vulnerabilità del kernel, difetti del Virtual Machine Monitor o configurazioni errate, a scavalcare le barriere di isolamento acquisendo autorità non autorizzata sull'host sottostante.
+*Approfondimento nel manuale: vedi ▣ Progettazione di Sandbox ed Esecuzione Isolata*
+
 #### Evidence (Evidenza di Assurance)
 **Categoria:** Distinzione epistemica obbligatoria  
 **Definizione:** Reperto empirico, formale, oggettivo, tracciabile e riproducibile (log di test, output di model checking, traccia di analisi statica) che fornisce giustificazione razionale e corroborazione a una determinata claim o proprietà critica del software.  
@@ -35898,6 +35909,9 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Concetto epistemico cardine del manuale  
 **Definizione:** Stato patologico in cui un'organizzazione o un team nutre una fiducia razionalmente ingiustificata nella correttezza, sicurezza o adeguatezza di un sistema software, indotta da verifiche superficiali, oracoli tautologici, metriche non pertinenti o compiacenza del modello linguistico.  
 *Approfondimento nel manuale: trattato sistematicamente in tutti i capitoli dell'opera (in particolare Step 1, 10, 11, 16, 20, 23 e 24).*
+
+#### Falsificazione popperiana
+**Definizione:** Principio epistemologico formulato da Karl Popper secondo cui un'ipotesi universale non può essere dimostrata dall'osservazione di casi favorevoli finiti, ma può essere confutata deduttivamente da un singolo controesempio.
 
 #### Feature Flag (Feature Toggle)
 **Categoria:** Termine tecnico consolidato  
@@ -36130,6 +36144,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Metodologia di collaudo che risolve il problema dell'oracolo verificando relazioni necessarie tra gli output di esecuzioni multiple a fronte di specifiche trasformazioni logiche degli input (es. se moltiplico per due l'input ordinato, la lunghezza dell'output deve raddoppiare).  
 *Approfondimento nel manuale: vedi Capitolo 11 (Sez. 7) e Capitolo 18 (PBT, Fuzzing & Adversarial Testing, Sez. 4 e 13).*
 
+#### MicroVM (Macchina virtuale minimale)
+**Categoria:** Termine d'uso professionale
+**Definizione:** Macchina virtuale leggera progettata per ridurre l'overhead computazionale e la superficie di attacco rispetto alle piattaforme di virtualizzazione tradizionali. Utilizza un hypervisor con supporto alla virtualizzazione hardware e un modello semplificato di dispositivi virtuali, eseguendo un kernel guest indipendente da quello dell'host. È particolarmente adatta a workload isolati, effimeri e serverless. I tempi di avvio e il consumo di memoria dipendono dall'implementazione, dalla configurazione e dal sistema operativo guest.
+*Approfondimento nel manuale: vedi ▣ Progettazione di Sandbox ed Esecuzione Isolata*
+
 #### MITRE ATLAS
 **Categoria:** Acronimo / Standard di sicurezza aperto  
 **Definizione:** Knowledge base globale aperta di tattiche, tecniche e procedure (TTP) avversariali basata sull'osservazione empirica di attacchi reali condotti contro sistemi che integrano componenti di machine learning e intelligenza artificiale.  
@@ -36148,6 +36167,14 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Modello concettuale ed epistemico consolidato  
 **Definizione:** Modello formale dell'ingegneria dei requisiti che esprime la garanzia condizionale del software mediante la formula logica `W AND S |= R`: se le assunzioni sul mondo esterno (`W`) sono vere e la macchina rispetta la specifica (`S`), allora i requisiti reali (`R`) sono logicamente soddisfatti.  
 *Approfondimento nel manuale: formalizzato in Guida ai 5 concetti fondamentali, Capitolo 1 (Sez. 2.2) e Capitolo 4 (Sez. 2.1).*
+
+#### Modus Ponens
+**Categoria:** Termine tecnico consolidato
+**Definizione:** Regola d'inferenza deduttiva: data una regola condizionale `P -> Q` e la verità accertata dell'antecedente `P`, ne segue necessariamente la verità del conseguente `Q` (`{ P -> Q, P } |= Q`).
+
+#### Modus Tollens
+**Categoria:** Termine tecnico consolidato
+**Definizione:** Regola d'inferenza per contrapposizione: data la regola `P -> Q` e la constatazione che il conseguente `Q` è falso (`NOT Q`), ne segue necessariamente che l'antecedente `P` era falso (`{ P -> Q, NOT Q } |= NOT P`).
 
 #### Multi-Agent Echo Chamber
 **Categoria:** Anti-pattern denominato dal manuale  
@@ -36190,6 +36217,9 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine tecnico consolidato  
 **Definizione:** Procedura di collaudo volta ad accertare che il sistema rifiuti, intercetti o gestisca in sicurezza input non validi, violazioni di precondizioni, formati corrotti o tentativi deliberati di violazione dei perimetri di autorizzazione.  
 *Approfondimento nel manuale: vedi Capitolo 14 (Sez. 7.4), Capitolo 16 (Automated Testing, Sez. 4 e 9.1) e Appendice Sandbox (Sez. 7.4).*
+
+#### Negazione dell'antecedente
+**Definizione:** Errore logico (fallacia formale) in cui, data la regola `P -> Q`, si constata la falsità dell'antecedente `P` e si deduce a torto che debba essere falso anche il conseguente `Q`.
 
 #### NO-GO
 **Categoria:** Stato decisionale vincolante formale del manuale  
@@ -36302,6 +36332,16 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Costrutto metodologico del manuale  
 **Definizione:** L'insieme dei fatti, log forensi, tracce distribuite e metriche ad alta cardinalità raccolti e convalidati durante l'operatività reale, utilizzati per verificare la tenuta degli invarianti sul campo e aggiornare l'assurance case.  
 *Approfondimento nel manuale: vedi Capitolo 29 (Post-Deployment Analysis), Sezione 5.*
+
+#### Postcondizione
+**Definizione:** Proprietà attesa dopo l'esecuzione di un'operazione, secondo le condizioni specificate.
+
+#### Precondizione
+**Definizione:** Condizione che deve essere soddisfatta prima dell'esecuzione di un'operazione.
+
+#### Privilege Escalation (Scalata dei privilegi)
+**Categoria:** Termine normativo o standardizzato (NIST CSRC; MITRE CAPEC-233)
+**Definizione:** Tecnica di compromissione della sicurezza mediante la quale un soggetto o un processo ottiene autorizzazioni superiori, oppure accede a privilegi appartenenti a un altro soggetto, rispetto a quelli originariamente assegnati. Può derivare dallo sfruttamento di vulnerabilità software, errori di configurazione, controlli di accesso inadeguati o difetti architetturali.
 
 #### Problem Space vs Solution Space (Spazio del Problema vs della Soluzione)
 **Categoria:** Distinzione epistemica obbligatoria  
@@ -36434,6 +36474,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Proprietà che esprime la fattibilità tecnica di ripristinare il binario o la configurazione della versione precedente. Si distingue formalmente dalla reversibilità complessiva (`ROLLBACKABILITY != REVERSIBILITY`), poiché non garantisce automaticamente il ripristino dello stato persistente né annulla gli effetti collaterali esterni (es. pagamenti disposti o email inviate), che esigono transazioni di compensazione.  
 *Approfondimento nel manuale: vedi Capitolo 28 (Rollback, Fallback & Circuit Breakers), Sezione 5, Sezione 6.1 e Sezione 17.1.*
 
+#### Rootless Container (Container senza privilegi di root)
+**Categoria:** Termine d'uso professionale
+**Definizione:** Modalità operativa di un motore di containerizzazione nella quale sia il processo di gestione del runtime sia i processi dei container vengono eseguiti senza privilegi di superutente nel namespace iniziale dell'host. Utilizza gli User Namespaces per rimappare gli identificatori UID e GID, consentendo anche al processo identificato come `root` all'interno del container di operare con un'identità non privilegiata sull'host. I privilegi effettivi restano circoscritti alle autorizzazioni dell'utente host e alle risorse esplicitamente accessibili.
+
 #### Rubber-Stamping
 **Categoria:** Anti-pattern metodologico e comportamentale  
 **Definizione:** Anti-pattern procedurale consistente nell'approvare formalmente un artefatto di codice, una specifica o un gate senza aver condotto un'effettiva ispezione analitica, indotto da affaticamento cognitivo o da acritica fiducia nell'esito verde dei test.  
@@ -36470,6 +36514,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Analisi statica del codice sorgente che modella i grafi di controllo e di flusso dei dati per identificare cammini di contaminazione non protetti tra sorgenti non fidate (Source) e punti di esecuzione critici (Sink).  
 *Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 4, Sezione 5 e Sezione 6.2.*
 
+#### SAT (Boolean Satisfiability - Soddisfacibilità booleana)
+**Categoria:** Acronimo / Sigla
+**Definizione:** Problema decisionale della soddisfacibilità booleana, consistente nel determinare se esiste almeno un'assegnazione di valori di verità alle variabili proposizionali che renda vera una formula della logica proposizionale. Se tale assegnazione esiste, la formula è soddisfacibile (SAT); altrimenti è insoddisfacibile (UNSAT).
+
 #### SBOM (Software Bill of Materials)
 **Categoria:** Acronimo / Standard normativo consolidato  
 **Definizione:** Distinta base strutturata, machine-readable e standardizzata (CycloneDX o SPDX) che censisce tutti i componenti software, le librerie dirette e transitive e i relativi checksum crittografici.  
@@ -36479,6 +36527,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Acronimo / Termine tecnico consolidato  
 **Definizione:** Analisi automatizzata dell'albero delle dipendenze di terze parti volta a rilevare vulnerabilità di sicurezza pubblicamente note (CVE), problemi di conformità di licenza o anomalie nella filiera software.  
 *Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 4, Sezione 5 e Sezione 6.4.*
+
+#### seccomp-bpf (Secure Computing Mode con filtri BPF)
+**Categoria:** Termine tecnico consolidato (Linux Kernel Documentation)
+**Definizione:** Meccanismo di sicurezza del kernel Linux che consente di applicare filtri alle chiamate di sistema invocate da un processo, valutandone il numero identificativo e, ove previsto, i parametri. Nella modalità seccomp-BPF, il filtraggio viene implementato mediante programmi BPF classici (cBPF), che restituiscono un'azione da applicare alla syscall. Tra le azioni disponibili figurano l'autorizzazione (`SECCOMP_RET_ALLOW`), il rifiuto con codice di errore (`SECCOMP_RET_ERRNO`), la generazione di un segnale (`SECCOMP_RET_TRAP`) e la terminazione del processo o del thread (`SECCOMP_RET_KILL_PROCESS`, `SECCOMP_RET_KILL_THREAD`).
 
 #### Second Opinion
 **Categoria:** Distinzione epistemica obbligatoria  
@@ -36510,6 +36562,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Algoritmo euristico dei framework di Property-Based Testing che riduce iterativamente la complessità di un input che ha provocato un fallimento, isolando il controesempio minimo riproducibile.  
 *Approfondimento nel manuale: vedi Capitolo 6 (Sez. 17) e Capitolo 18 (PBT, Fuzzing & Adversarial Testing, Sez. 4 e 5.1).*
 
+#### Side-Channel Attack (Attacco a canale laterale)
+**Categoria:** Termine normativo o standardizzato (NIST CSRC)
+**Definizione:** Tecnica di attacco che consente di dedurre informazioni riservate attraverso l'osservazione o la misurazione di caratteristiche non funzionali dell'esecuzione di un sistema informatico o crittografico, anziché attraverso l'accesso diretto alle informazioni protette o lo sfruttamento di una vulnerabilità logica tradizionale. I canali laterali possono comprendere tempi di esecuzione, latenze di accesso alla memoria e alle cache, consumo energetico, emissioni elettromagnetiche e acustiche.
+
 #### Silent Canary
 **Categoria:** Anti-pattern denominato dal manuale  
 **Definizione:** Anti-pattern di rilascio controllato in cui una versione canary viene promossa dopo una finestra di osservazione priva di allarmi, senza verificare se il traffico ricevuto fosse realmente rappresentativo dei flussi semantici critici.  
@@ -36524,6 +36580,22 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine tecnico di cybersecurity applicata  
 **Definizione:** Vettore di attacco alla filiera software in cui attori ostili monitorano nomi di librerie inesistenti allucinate frequentemente dai modelli linguistici e le registrano sui repository pubblici (npm, PyPI) associandovi codice malevolo.  
 *Approfondimento nel manuale: vedi Capitolo 17 (Static Analysis, SAST, SCA & Secret Scanning), Sezione 5 e Sezione 6.5.*
+
+#### Small Scope Hypothesis (Ipotesi del piccolo ambito)
+**Categoria:** Termine tecnico consolidato
+**Definizione:** Ipotesi metodologica, associata al lavoro di Daniel Jackson e alla metodologia Alloy, secondo cui numerosi errori di specifica e progettazione possono essere individuati esaminando istanze relativamente piccole del modello. Tale principio giustifica l'utilizzo di scope limitati durante l'analisi automatica, senza garantire che tutti i difetti siano rilevabili entro una determinata cardinalità.
+
+#### SMT (Satisfiability Modulo Theories - Soddisfacibilità modulo teorie)
+**Categoria:** Acronimo / Sigla
+**Definizione:** Problema decisionale della soddisfacibilità di formule logiche rispetto a una o più teorie formali interpretate, quali aritmetica, uguaglianza e funzioni non interpretate, array e bit-vector. Un SMT solver determina se esiste un'interpretazione delle variabili e delle funzioni che soddisfi simultaneamente i vincoli della formula e gli assiomi delle teorie coinvolte.
+
+#### Solver (Risolvitore)
+**Categoria:** Termine tecnico consolidato
+**Definizione:** Strumento software che applica algoritmi automatici per risolvere problemi formali, determinando, in funzione della logica e del dominio supportati, la soddisfacibilità di formule, l'esistenza di controesempi o altre proprietà matematiche. Può produrre un modello soddisfacente (SAT/model) oppure certificare l'insoddisfacibilità (UNSAT), nei limiti delle capacità e delle garanzie dell'implementazione.
+
+#### Soundness (Correttezza formale)
+**Categoria:** Termine tecnico consolidato
+**Definizione:** Proprietà di un sistema di verifica formale secondo cui i risultati prodotti rispettano la semantica matematica del problema specificato. Nel caso di un solver SAT/SMT, la soundness richiede che ogni risultato SAT sia accompagnato da un modello effettivamente soddisfacente e che ogni risultato UNSAT corrisponda a un insieme di vincoli realmente insoddisfacibile. Tale proprietà non garantisce che il modello formale rappresenti fedelmente il sistema reale, né che le ipotesi e i vincoli iniziali siano corretti.
 
 #### Source & Sink (Sorgente e punto di arrivo / Sink del flusso dati)
 **Categoria:** Termini tecnici consolidati (Taint Analysis)  
@@ -36670,6 +36742,10 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Stato formale che dichiara l'assenza di dati o l'impossibilità contingente di verificare una proprietà; nei Decision Gates agisce come blocco vincolante della transizione esattamente come una violazione conclamata.  
 *Approfondimento nel manuale: formalizzato come principio epistemico in Capitolo 1 (Sez. 3.3 e 6.3), Capitolo 5 (Sez. 3.1 e 4) e Capitolo 23 (Sez. 5.2).*
 
+#### UNSAT Core
+**Categoria:** Termine tecnico consolidato
+**Definizione:** Sottoinsieme dei vincoli, delle formule e delle asserzioni di un problema che risulta sufficiente a renderlo insoddisfacibile (UNSAT). Viene utilizzato per individuare e diagnosticare contraddizioni nella specifica o nel modello formale. Un UNSAT Core può essere minimale o irriducibile, qualora la rimozione di qualsiasi suo elemento renda nuovamente soddisfacibile il sottoinsieme, oppure minimo, qualora abbia cardinalità inferiore o uguale a quella di ogni altro core possibile.
+
 ---
 
 [▲ Indice del Glossario](#indice-glossario)
@@ -36707,10 +36783,18 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ### W
 
+#### WASI (WebAssembly System Interface)
+**Categoria:** Acronimo / Sigla
+**Definizione:** Insieme modulare di interfacce standardizzate che consentono ai moduli WebAssembly di interagire con servizi e risorse dell'ambiente di esecuzione, quali filesystem, orologi e altre funzionalità di sistema. Adotta un modello di accesso orientato alle capability, nel quale le risorse disponibili vengono esposte dal runtime attraverso interfacce e autorizzazioni esplicitamente configurate, limitando l'accesso alle funzionalità effettivamente concesse al modulo.
+
 #### Warranty (Garanzia contrattuale / commerciale)
 **Categoria:** Termine giuridico e commerciale  
 **Definizione:** Impegno commerciale, legale o contrattuale che stabilisce un rimedio, risarcimento o riparazione economica in caso di difetti del prodotto; non coincide con l'Assurance ingegneristica né con l'assicurazione finanziaria (Insurance).  
 *Approfondimento nel manuale: vedi Nota Terminologica iniziale (Sez. 2).*
+
+#### Watchdog Timer (Timer supervisore)
+**Categoria:** Termine tecnico consolidato
+**Definizione:** Meccanismo di supervisione temporale, implementato mediante hardware, firmware o software, che verifica la corretta prosecuzione di un'attività attraverso aggiornamenti periodici di un timer o segnali di controllo. Qualora l'aggiornamento atteso non avvenga entro l'intervallo temporale configurato, il watchdog attiva una specifica azione di recupero o contenimento, che può comprendere la generazione di un interrupt, la segnalazione di un errore, la terminazione di un processo o il reset del sistema.
 
 #### WORM - Write Once, Read Many
 **Categoria:** Acronimo / Termine tecnico consolidato  
