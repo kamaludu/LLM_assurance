@@ -184,7 +184,7 @@ Prendetelo quindi per quello che è: una mappa di studio molto approfondita, una
 
 - **Manuale e Contenuti** (`LLM_assurance.md` e formati derivati): 
   Rilasciati sotto licenza **[GNU Free Documentation License (GFDL) v1.3](COPYING-DOC)**.
-- **Pipeline e Strumenti di Compilazione** (`pipeline.sh`): 
+- **Pipeline e Strumenti di Compilazione**:
   Rilasciati come software libero sotto licenza **[GNU General Public License (GPL) v3](COPYING)**.
 - **Autore:** Cristian Evangelisti  
 - **Email:** `opensource@cevangel.anonaddy.me`  
