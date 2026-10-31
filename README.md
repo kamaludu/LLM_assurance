@@ -1,4 +1,4 @@
-# Assurance del Software Assistito da LLM
+# ⛓ Assurance del Software Assistito da LLM
 
 > [!TIP]
 > 🌐 **VERSIONE WEB NAVIGABILE**
@@ -25,7 +25,7 @@
 
 ---
 
-**Assurance del Software Assistito da LLM**
+**⛓ Assurance del Software Assistito da LLM**
 ### Indice completo
 
 - ⌘ Informazioni sul documento
@@ -42,7 +42,7 @@
 4. Specification — costruzione e analisi della specifica
 5. Assumptions & Unknowns — assunzioni, fatti e conoscenze mancanti
 6. Critical Properties & Invariants — proprietà critiche e invarianti
-7. Traceability — tracciabilità dalla finalità all'evidenza
+7 . Traceability — tracciabilità dalla finalità all'evidenza
 8. Competence Gaps — gap di comprensione, verifica e autorità
 9. Specification Validity — verifica della validità della specifica
 10. Assurance Level — determinazione del livello di assurance necessario
