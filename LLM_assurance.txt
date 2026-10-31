@@ -24,7 +24,7 @@
 
 ---
 
-**Assurance del Software Assistito da LLM  
+**⛓ Assurance del Software Assistito da LLM  
 Principi, Verifica, Evidenze e Governance**
 
 <a name="indice-completo"></a>
@@ -98,6 +98,7 @@ Principi, Verifica, Evidenze e Governance**
 - [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm)
 - [⬡ Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
 - [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
+- [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)
 - [⊹ Elementi di Teoria dei Grafi](#appendice-grafi)
 - [⊙ Elementi di Logica e Specifica Formale](#appendice-logica)
 - [◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM](#appendice-alloy)
@@ -579,7 +580,7 @@ Ogni lettore puo' quindi partire dalle sezioni più vicine alle proprie responsa
 
 <a name="parte-1"></a>
 
-**① Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
+**① ⛓ ⛓ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 # PARTE I — Fondamenti epistemici e decisionali
 
@@ -7149,6 +7150,8 @@ sotto condizioni limite"  provare che non fallirà" ma non posso bloccarlo"
 3. **Gap di Autorità (Authority Gap):**  
    Si manifesta quando l'ingegnere possiede sia la comprensione sia l'evidenza del malfunzionamento o dell'incertezza, ma la struttura organizzativa, la pressione sui tempi di rilascio (*time-to-market*) o la gerarchia aziendale gli negano il potere reale di imporre lo stato bloccante di **NO-GO**.
 
+> Sui Gap di Verifica e di Autorità derivante dall'ignoranza dei controlli di sistema, vedi: [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)
+
 #### 3.2 L'Asimmetria Generazione-Verifica (Generation-Verification Asymmetry)
 
 Nel paradigma assistito da LLM, il costo temporale e cognitivo della generazione di codice tende a zero, mentre il costo della verifica rigorosa cresce con la complessità dello spazio degli stati:
@@ -7273,6 +7276,8 @@ La catena di tracciabilità definita nello Step 7 subisce rotture specifiche a s
    difetto e marca APPROVED.    la decisione forzando
    FALSA ASSURANCE TOTALE.      il rilascio in produzione.
 ```
+
+> Sui Gap di Verifica e di Autorità derivante dall'ignoranza dei controlli di sistema, vedi: [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)
 
 ---
 
@@ -10722,7 +10727,7 @@ Non si scrive codice per vedere se funziona; si progetta la struttura affinché 
 
 <a name="parte-2"></a>
 
-**② Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
+**② ⛓ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 # PARTE II — Implementazione e verifica
 
@@ -11534,29 +11539,29 @@ Non serve disegnare un'architettura a strati complessa: basta isolare la decisio
 L'Implementation Design è lo snodo operativo tra la fase epistemica (Parte I) e la fase esecutiva (Parte II):
 
 ```text
-                        PARTE I (Fondamenti)
-                                 |
-           [Step 4, 6, 7, 10, 11, 12: Specifiche, Proprietà, Oracoli]
-                                 |
-                                 v
-        ====================================================
-        STEP 13: IMPLEMENTATION DESIGN (Struttura per l'Assurance)
-        ====================================================
-                                 |
-                                 +-----------------------------------+
-                                 |                                   |
-                                 v                                   v
-             [Step 14: Containment & Least Authority]     [Step 15: LLM-Assisted Impl.]
-             (Restrizione privilegi ed esecuzione          (Generazione mirata e
-              confinata dei componenti disegnati)          confinata del codice nei moduli)
-                                 |                                   |
-                                 +-----------------+-----------------+
-                                                   |
-                                                   v
-                                     [Step 16: Automated Testing]
-                                     [Step 17: Static Analysis]
-                                     [Step 18: Property-Based Testing]
-                                     (Verifica indipendente dei contratti)
+                 PARTE I (Fondamenti)
+                          |
+    [Step 4, 6, 7, 10, 11, 12: Specifiche, Proprietà, Oracoli]
+                          |
+                          v
+ ====================================================
+ STEP 13: IMPLEMENTATION DESIGN (Struttura per l'Assurance)
+ ====================================================
+                          |
+                          +-----------------------------------+
+                          |                                   |
+                          v                                   v
+     [Step 14: Containment & Least Authority]     [Step 15: LLM-Assisted Impl.]
+     (Restrizione privilegi ed esecuzione         (Generazione mirata e
+      confinata dei componenti disegnati)          confinata del codice nei moduli)
+                          |                                   |
+                          +-----------------+-----------------+
+                                            |
+                                            v
+                              [Step 16: Automated Testing]
+                              [Step 17: Static Analysis]
+                              [Step 18: Property-Based Testing]
+                              (Verifica indipendente dei contratti)
 ```
 
 - **Riceve da Step 6 (Critical Properties):** La lista degli invarianti che devono possedere un *Locus of Enforcement* architetturalmente identificabile.
@@ -11803,10 +11808,10 @@ Un lettore che sviluppa applicazioni web o script dati in linguaggi ad alto live
 
 La risposta a questa domanda costituisce il fondamento dello Step 14:
 1. **Il codice generato da un LLM è codice intrinsecamente non fidato a priori:** Quando un ingegnere umano scrive una funzione, conosce (o dovrebbe conoscere) quali librerie esterne invoca e se toccherà il disco o la rete. Quando un LLM genera decine di righe di logica, il codice può incorporare dipendenze allucinate, comandi nascosti di shell, letture arbitrarie di variabili d'ambiente contenenti chiavi crittografiche o cicli di calcolo infiniti.
-2. **Le barriere applicative scritte in linguaggio naturale non offrono garanzie deterministiche:** Istruire l'LLM nel prompt con frasi come *"Non accedere ad altri file oltre a quelli nella cartella temporanea"* non ha alcun valore di sicurezza formale. Un prompt injection indiretto, un jailbreak o una semplice allucinazione probabilistica del modello possono scavalcare qualsiasi indicazione testuale in qualsiasi momento.
+2. **Le barriere applicative scritte in linguaggio naturale non offrono garanzie deterministiche:** Istruire l'LLM nel prompt con frasi come *"Non accedere ad altri file oltre a quelli nella cartella temporanea"* non ha alcun valore di sicurezza formale. Un prompt injection indiretto, un jailbreak o una semplice allucinazione probabilistica del modello<mark> possono scavalcare qualsiasi indicazione testuale in qualsiasi momento</mark>.
 3. **L'unica barriera fisica non bypassabile risiede nel Kernel del sistema operativo:** Se il codice generato dall'LLM impazzisce o viene manipolato, non possiamo sperare che si auto-disciplini. Dobbiamo fare in modo che, quando il processo tenta di aprire una connessione verso internet o di leggere la cartella `/etc/passwd`, sia il microprocessore e il kernel del sistema operativo a bloccare fisicamente l'operazione con un rifiuto hardware categorico.
 
-Confinare un componente assistito da LLM a livello architetturale (*sandboxing*, disabilitazione dell'autorità ambientale, permessi di sola lettura sul disco, isolamento di rete) è l'unico modo razionale per ridurre il suo raggio d'impatto (*blast radius*). Non possiamo impedire a un modello statistico di sbagliare; possiamo e dobbiamo rendere fisicamente impossibile che il suo errore distrugga il server o esfiltri i dati dell'organizzazione.
+Confinare un componente assistito da LLM a livello architetturale (*sandboxing*, disabilitazione dell'autorità ambientale, permessi di sola lettura sul disco, isolamento di rete) è l'unico modo razionale per ridurre il suo raggio d'impatto (*blast radius*).<mark> Non possiamo impedire a un modello statistico di sbagliare; possiamo e dobbiamo rendere fisicamente impossibile che il suo errore distrugga il server o esfiltri i dati </mark>dell'organizzazione.
 
 ---
 
@@ -11829,6 +11834,8 @@ Per comprendere e attuare questo STEP, il lettore deve saper distinguere chiaram
 3. **Delega cieca della configurazione infrastrutturale**: Chiedere all'LLM di generare un Dockerfile o un manifesto Kubernetes e assumere che i permessi concessi di default siano minimi e corretti.
 
 Se il lettore non possiede le nozioni operative relative ai modelli di sicurezza del sistema operativo ospitante o ai modelli di autorizzazione del runtime di destinazione, **deve registrare un Competence Gap** e astenersi dal certificare la proprietà di contenimento.
+
+> Vedi: [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os) per acquisire le nozioni operative sui modelli di sicurezza di Linux, Windows, macOS, Android e dei runtime come WASI, Deno, Node, JVM e .NET CLR.
 
 ---
 
@@ -11863,7 +11870,8 @@ Se uno o più di questi concetti risultano ignoti, il lettore deve considerare l
 
 Per evitare ambiguità, adottiamo le seguenti convenzioni terminologiche:
 
-- **Principle of Least Authority (POLA) — Principio della minima autorità**: Principio architetturale secondo cui a ogni componente o agente deve essere concessa esclusivamente l'autorità minima indispensabile per compiere la propria funzione specifica, e nulla più. Rispetto al solo privilegio formale, l'autorità include le capacità operative, la visibilità dei dati, la raggiungibilità dei servizi di rete e la facoltà di mutare stato.
+- **Principle of Least Authority (POLA) — Principio della minima autorità**: Principio architetturale secondo cui a ogni componente o agente deve essere concessa esclusivamente l'autorità minima indispensabile per compiere la propria funzione specifica, e nulla più. Rispetto al solo privilegio formale, l'autorità include le capacità operative, la visibilità dei dati, la raggiungibilità dei servizi di rete e la facoltà di mutare stato.  
+  *(Sulla determinazione analitica dell'autorità effettiva risultante dall'intersezione tra policy del sistema operativo ospitante e permessi del runtime applicativo, vedi:[♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os) — Sez. 4).*
 - **Principle of Least Privilege (PoLP) — Principio del minimo privilegio**: Formulato classicamente da Saltzer e Schroeder (1975), stabilisce che ogni entità deve possedere solo i privilegi necessari. Nel quadro metodologico di questo manuale, **Least Privilege è considerato uno dei principali meccanismi tecnici di realizzazione della Least Authority** (focalizzato principalmente su credenziali, ruoli e permessi formali del sistema operativo o del database).
 - **Ambient Authority — Autorità ambientale**: Condizione in cui l'autorità per compiere un'operazione non è esplicitamente passata insieme alla richiesta, ma è implicitamente associata all'ambiente di esecuzione del soggetto chiamante. Esempio: un processo che esegue come utente `root` o amministratore possiede l'autorità ambientale di cancellare qualunque file, indipendentemente dal fatto che l'operazione specifica richiedesse o meno tale facoltà.
 - **Containment — Contenimento**: Insieme di meccanismi architetturali, infrastrutturali e logici che impongono barriere invalicabili attorno a un'unità di esecuzione, impedendo che i suoi effetti collaterali si propaghino al di fuori del perimetro autorizzato.
@@ -12719,6 +12727,7 @@ Un'implementazione può aderire alla lettera alla specifica approvata, ma fallir
 #### Delega della produzione != Delega della responsabilità epistemica
 È metodologicamente legittimo delegare al modello la stesura materiale della sintassi; non è mai legittimo delegare al modello la responsabilità di decidere se il risultato sia accettabile e sicuro.
 
+> Vedi: [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)
 ---
 
 ### 7. Formalizzazione dell'implementazione assistita
@@ -14325,6 +14334,8 @@ Il Static Application Security Testing modella il programma come un grafo matema
 Un'analisi SAST può operare a due livelli di granularità:
 - **Intra-procedurale**: l'analisi è confinata all'interno del corpo di una singola funzione o metodo. È computazionalmente rapida, ma non traccia il dato se esso viene passato come parametro a un'altra funzione.
 - **Inter-procedurale**: l'analisi attraversa i confini delle funzioni e dei moduli avvalendosi del *Call Graph*. È computazionalmente più costosa, ma indispensabile per intercettare vulnerabilità in architetture a strati in cui l'input entra nel controller e raggiunge il sink nello strato di accesso ai dati.
+
+> Vedi: [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)
 
 #### 6.3. Limiti teorici dell'analisi di programma: indecidibilità, Soundness, Completeness e approssimazione
 
@@ -16263,7 +16274,7 @@ CONFIGURAZIONE DI ASSURANCE (Confini di fiducia espliciti):
 
 Se il flusso di dati passa dall'LLM al Tool Operativo senza attraversare il Confine C (un verificatore deterministico indipendente), qualsiasi compromissione del contesto dell'LLM si traduce immediatamente in esecuzione di comandi non autorizzati sul sistema di destinazione.
 
-> Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
+> Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox) e [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)
 
 #### 5.3 L'Assunzione Metodologica dell'Assume Breach
 Il Red Teaming moderno opera sotto l'assunzione di **Assume Breach**:
@@ -20805,7 +20816,7 @@ L'approvazione dello Step 24 non autorizza la fiducia cieca: autorizza esclusiva
 
 <a name="parte-3"></a>
 
-**③ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
+**③ ⛓ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 # PARTE III — Esercizio controllato
 
@@ -24779,7 +24790,7 @@ L'esercizio controllato ha dimostrato che il sistema sa sopravvivere al guasto c
 
 <a name="parte-4"></a>
 
-**④ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
+**④ ⛓ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 # PARTE IV — Evoluzione e mantenimento dell'assurance
 
@@ -29360,7 +29371,7 @@ La chiusura, l'archiviazione e la capitalizzazione delle lezioni non costituisco
 
 <a name="appendici-man"></a>
 
-**Ⓐ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
+**Ⓐ ⛓ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 # APPENDICI
 
@@ -30179,6 +30190,8 @@ Questa appendice funge da **Atlante tecnologico e Prontuario di consultazione op
 3. Fornire criteri di selezione basati sul modello di minaccia per orientare la scelta dell'ambiente di prova o di esecuzione.
 4. Definire una baseline illustrativa di hardening per runner effimeri, accompagnata da procedure di verifica empirica.
 
+Vedi: [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os) per collegare la parte architetturale dei container/microVM con la tassonomia dei modelli di autorizzazione (DACL, TCC, SELinux, WASI).
+
 ---
 
 ### 2. I CINQUE ASSI OPERATIVI DELL'ISOLAMENTO
@@ -30818,6 +30831,428 @@ Se uno qualsiasi di questi test negativi non solleva l'eccezione attesa (ad esem
   Interruzione sincrona sollevata dal microprocessore o dal runtime di esecuzione a fronte di un'istruzione illecita (ad esempio accesso a memoria non allocata, divisione per zero o tentativo di eseguire un'istruzione privilegiata), che trasferisce immediatamente il controllo al gestore di sicurezza del sistema.
 
 > Per altri termini utilizzati in questa Appendice, vedi il [❖ GLOSSARIO](#glossario-manuale) 
+
+---
+
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="appendice-os"></a>
+
+## ♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime
+**Guida Operativa ai Controlli di Accesso, Privilegi di Piattaforma e Intersezione dell'Autorità per l'Assurance del Software Assistito da LLM**
+
+### INDICE SINTETICO
+
+1. **Introduzione e Obiettivo della Guida**
+2. **Modelli di Sicurezza del Sistema Operativo Ospitante (Host OS)**
+3. **Modelli di Autorizzazione del Runtime di Destinazione**
+4. **Interazione tra Livelli e Calcolo dell'Autorità Effettiva**
+5. **Matrice Comparativa e Prontuario Multipiattaforma**
+6. **Applicazione all'Assurance del Codice Assistito da LLM**
+7. **Riferimenti Tecnici e Bibliografia Essenziale**
+
+---
+
+### 1. INTRODUZIONE E OBIETTIVO DELLA GUIDA
+
+Nel Capitolo 14 (STEP 14: Containment & Least Authority) viene formalizzato un principio cardine dell'assurance: il codice generato o modificato tramite Large Language Models (LLM) deve essere trattato architetturalmente come non fidato. L'architettura deve imporre per costruzione il principio della minima autorità (*Principle of Least Authority*, POLA), riducendo il raggio d'impatto (*blast radius*) in caso di errore, allucinazione o deviazione logica.
+
+Lo stesso Capitolo 14 stabilisce un vincolo metodologico esplicito:
+> *"Se il valutatore non possiede le nozioni operative relative ai modelli di sicurezza del sistema operativo ospitante o ai modelli di autorizzazione del runtime di destinazione, deve registrare un Competence Gap e astenersi dal certificare la proprietà di contenimento."*
+
+Questa guida operativa colma sistematicamente tale divario cognitivo ed operativo. Il suo scopo è:
+1. Comprendere come i sistemi operativi moderni (Linux, Windows, macOS, Android, FreeBSD, OpenBSD) implementano l'identità, il controllo degli accessi, l'integrità e i vincoli di esecuzione.
+2. Comprendere come i diversi runtime applicativi (WASI, Deno, Node.js, CPython, JVM, .NET CLR) concedono, filtrano o ignorano i permessi del codice.
+3. Analizzare l'interazione tra questi due strati, dimostrando che l'autorità reale del software deriva dalla mediazione composta tra le concessioni dell'host OS e i controlli del runtime.
+
+Il codice generato da LLM omette frequentemente la gestione dei vincoli ambientali, assumendo la presenza di un filesystem globale scrivibile, connettività di rete aperta, memoria infinita e assenza di conflitti sui permessi. Comprendere i modelli reali di autorizzazione consente al lettore di identificare e neutralizzare queste assunzioni prima della distribuzione.
+
+---
+
+### 2. MODELLI DI SICUREZZA DEL SISTEMA OPERATIVO OSPITANTE (HOST OS)
+
+Il sistema operativo gestisce e protegge le risorse fisiche e logiche della macchina. L'accesso a risorse esterne (file, socket di rete, creazione di processi) e l'acquisizione primaria di memoria richiedono normalmente la mediazione del kernel attraverso chiamate di sistema (*syscall*), mentre operazioni successive (come l'allocazione da heap o arene già acquisiti in memoria) possono avvenire interamente nello spazio utente. I modelli di sicurezza dell'OS determinano se ciascuna richiesta debba essere autorizzata o respinta.
+
+```text
+                  MODELLI DI CONTROLLO ACCESSI NELL'HOST OS
+                                      |
+         +----------------------------+----------------------------+
+         |                                                         |
+        DAC                                                       MAC
+(Discretionary Access Control)                            (Mandatory Access Control)
+"Il proprietario della risorsa                            "Le policy di sicurezza sono
+ stabilisce chi può accedervi"                             centralizzate a livello di kernel;
+(Es. permessi POSIX, Windows DACL)                         l'utente non può derogarle"
+                                                          (Es. SELinux, AppArmor, Windows MIC)
+```
+
+#### 2.1 Identità, soggetti e credenziali di processo
+L'identità stabilisce "chi" sta tentando di eseguire un'operazione. Il soggetto non è la persona fisica, ma il processo computazionale che agisce per suo conto.
+
+- **Linux:**
+  Ogni processo Linux mantiene diverse credenziali all'interno delle strutture del kernel (`struct cred`), basate su identificatori numerici interi:
+  - *Real UID/GID*: l'identità dell'utente e del gruppo che ha avviato il processo.
+  - *Effective UID/GID*: l'identità primaria utilizzata dal kernel per verificare la maggior parte dei permessi sulle chiamate di sistema e sulle risorse IPC.
+  - *Saved Set-user-ID / Saved Set-group-ID*: conservano identificatori utilizzabili per ripristinare privilegi precedentemente acquisiti (secondo le regole previste per gli eseguibili `setuid`) dopo una temporanea de-escalation.
+  - *Filesystem UID/GID (`FSUID`/`FSGID`)*: utilizzati dal kernel Linux per la verifica specifica delle operazioni sul filesystem. Solitamente coincidono con gli Effective UID/GID, ma possono essere variati in modo indipendente senza alterare l'autorità sulle altre chiamate di sistema.
+  - *Gruppi supplementari*: lista di GID aggiuntivi ereditati per l'accesso a risorse condivise.
+  Il bit SUID consente a un file eseguibile di essere avviato con l'Effective UID del proprietario del file (storicamente `root`), costituendo un vettore critico di escalation dei privilegi (*privilege escalation*) se il codice generato contiene vulnerabilità.
+- **Windows:**
+  L'identità è rappresentata da un identificatore di sicurezza a lunghezza variabile denominato **SID** (*Security Identifier*, es. `S-1-5-21-...`), che identifica in modo univoco un account o un'entità di sicurezza nell'ambito dell'autorità che lo ha emesso (computer locale o dominio Active Directory). Quando un utente esegue l'accesso, l'autorità di sicurezza locale (LSASS) genera un **Access Token** primario associato alla sessione. Il token incapsula:
+  - Il SID dell'utente e i SID di tutti i gruppi di appartenenza;
+  - L'elenco dei privilegi amministrativi abilitati (*Privileges*);
+  - Il livello di integrità assegnato (*Mandatory Integrity Level*);
+  - Eventuali SID di restrizione (*Restricted Tokens*).
+  I singoli thread possono operare tramite *Impersonation Tokens*, assumendo temporaneamente un'identità differente per accedere a risorse specifiche.
+- **macOS:**
+  Combina l'infrastruttura POSIX (`UID`/`GID`) con audit session e con l'identità di firma del codice (*code-signing identity*). Oltre ai controlli POSIX tradizionali, specifici sottosistemi di macOS (come App Sandbox e TCC) verificano l'identità firmata dell'applicazione e gli *Entitlements* dichiarati nel binario.
+- **Android:**
+  Adotta una sandbox applicativa basata su Linux: a ogni applicazione viene assegnato all'installazione un **UID Linux dedicato** (*Application Sandbox*). Due applicazioni distinte possiedono UID differenti e non possono accedere ai rispettivi file privati né interagire direttamente in memoria, salvo tramite chiamate mediate dal framework (*Binder IPC*), file condivisi autorizzati o content provider espliciti. Nel modello multiutente, l'identità effettiva incorpora anche l'identificatore del profilo utente Android (con offset numerico sull'UID). Eccezioni storiche consentono la condivisione dello stesso UID tra app firmate dal medesimo sviluppatore (`sharedUserId`, deprecato).
+- **FreeBSD / OpenBSD:**
+  - *FreeBSD* adotta credenziali POSIX (Real, Effective, Saved UID/GID), infrastrutture di auditing del kernel e meccanismi di isolamento quali Jails, Capsicum e MAC Framework.
+  - *OpenBSD* adotta credenziali POSIX e un modello di hardening basato, tra gli altri meccanismi, su `pledge()` e `unveil()`. I due sistemi non devono essere considerati equivalenti quanto alle primitive di isolamento disponibili.
+
+#### 2.2 Controllo discrezionale degli accessi (DAC), ACL e valutazione canonica
+Nel modello DAC, il controllo degli accessi si basa sulle autorizzazioni associate alla risorsa dal suo proprietario.
+
+- **Permessi Standard POSIX (Linux, macOS, BSD):**
+  Ogni file e directory associa i permessi a tre classi: *User (proprietario)*, *Group (gruppo)*, *Others (altri)*. I diritti base sono Lettura (`r`), Scrittura (`w`), Esecuzione/Attraversamento (`x`). Nelle directory, `r` consente di elencare i nomi dei file, mentre `x` è indispensabile per accedere ai file contenuti e ai loro metadati.
+- **POSIX ACL estese:**
+  Consentono di associare a file e directory liste di controllo accessi con voci specifiche per utenti o gruppi arbitrari (es. `setfacl -m u:appworker:r-- file.txt` per consentire la sola lettura su un file, oppure `u:appworker:rx /dir` per consentire lettura e attraversamento di una directory).
+- **Windows DACL (Discretionary Access Control Lists) e Ordine Canonico:**
+  Ogni oggetto del sistema operativo (file, chiave di registro, mutex, pipe) è protetto da un descrittore di sicurezza contenente una **DACL**. La DACL è una lista ordinata di **ACE** (*Access Control Entries*).
+  - *Ordine canonico preferenziale delle ACE:*
+    1. ACE esplicite di tipo `Deny`.
+    2. ACE esplicite di tipo `Allow`.
+    3. ACE ereditate raggruppate per livello gerarchico genitore, mantenendo al proprio interno l'ordine `Deny` prima di `Allow`.
+  - *Algoritmo di valutazione sequenziale:* Il kernel esamina le ACE nell'ordine in cui compaiono nella lista. La valutazione tiene conto dei SID presenti e abilitati nel token del chiamante, dei diritti richiesti e dell'accumulo progressivo dei diritti concessi dalle ACE applicabili. La valutazione si arresta non appena tutti i diritti richiesti sono stati concessi, oppure non appena una singola ACE nega esplicitamente uno dei diritti richiesti. Se la lista termina senza che tutti i diritti siano stati soddisfatti, l'accesso viene negato (`ERROR_ACCESS_DENIED`, codice `0x5`). In una DACL non canonica, una ACE `Allow` esplicita precedente può soddisfare integralmente la richiesta prima che una successiva ACE `Deny` venga raggiunta.
+- **macOS ACL:**
+  Integrano i permessi POSIX con un modello conforme a NFSv4, supportando ACE esplicite di allow e deny con controllo dell'ereditarietà.
+
+#### 2.3 Controllo obbligatorio degli accessi (MAC), integrità e controllo dell'esecuzione
+Nel modello MAC, i soggetti e gli oggetti sono etichettati con attributi di sicurezza governati da una policy centralizzata caricata nel kernel. L'utente o il proprietario della risorsa non può derogare a tali vincoli.
+
+- **Type Enforcement (SELinux - Linux, Android):**
+  Ogni processo e risorsa possiede un contesto di sicurezza formattato come `user:role:type[:range]`, dove il campo opzionale `range` rappresenta i livelli o le categorie del modello MLS/MCS. Il perno è il **Type Enforcement**: la policy dichiara formalmente se un dominio (`type` di processo) può compiere una specifica azione su un determinato `type` di risorsa:
+  ```text
+  allow worker_t app_data_t : file { read getattr };
+  ```
+  Anche un processo con UID 0 (`root`) è soggetto alle restrizioni SELinux, purché operi all'interno di un dominio effettivamente confinato e non disponga di autorizzazioni o transizioni che gli consentano di eludere la policy (un dominio `unconfined_t` presenta infatti un profilo di autorità radicalmente differente rispetto a un dominio applicativo ristretto). Su Android, SELinux è attivo obbligatoriamente in modalità *Enforcing*.
+- **MAC basato sui percorsi (AppArmor - Linux):**
+  Definisce le restrizioni associandole ai percorsi canonici del filesystem per specifici eseguibili (es. autorizza `/data/incoming/*` in lettura e `/tmp/*` in lettura/scrittura).
+- **Windows Mandatory Integrity Control (MIC) e UIPI:**
+  - *MIC:* Applica controlli obbligatori nell'access check degli oggetti che supportano le relative etichette, basandosi su una gerarchia di livelli di integrità:
+    ```text
+    Untrusted < Low < Medium < High < System
+    ```
+    I processi confinati (come tab del browser o processi isolati) eseguono a livello *Low*. La politica di isolamento *No-Write-Up* impedisce a un processo a livello Low di aprire in scrittura oggetti a livello Medium o High.
+  - *UIPI (User Interface Privilege Isolation):* Meccanismo correlato ma distinto che limita la trasmissione di messaggi Windows grafici e l'interazione tra processi con livelli di integrità differenti nell'ambiente desktop.
+- **Controllo dell'Integrità del Codice (Linux IMA/EVM, fs-verity, dm-verity e Windows WDAC):**
+  Diverso dal controllo accessi sulle risorse utente:
+  - *Linux:* L'architettura **IMA/EVM** (*Integrity Measurement Architecture / Extended Verification Module*) misura e verifica le firme crittografiche dei binari prima dell'esecuzione; `fs-verity` protegge file in sola lettura da manomissioni; `dm-verity` garantisce a livello di blocchi l'integrità crittografica immutabile delle partizioni di sistema (standard su Android).
+  - *Windows WDAC (Windows Defender Application Control):* Applica policy di integrità del codice che autorizzano o bloccano eseguibili, driver e script supportati sulla base di certificati di firma, hash crittografici, attributi di versione o regole di reputazione.
+- **macOS TCC (Transparency, Consent, and Control):**
+  Sottosistema di protezione della privacy e gestione del consenso utente gestito dal demone `tccd`. Presidia risorse protette dell'utente (cartelle Documenti, Download, Desktop, periferiche multimediali). L'accesso richiede un consenso esplicito o una preautorizzazione tramite profili di gestione centralizzata (MDM / Privacy Preferences Policy Control - PPPC). L'assenza di un'interfaccia interattiva non implica automaticamente il rifiuto se è già attiva una policy amministrativa.
+- **macOS App Sandbox (Seatbelt):**
+  Meccanismo di confinamento del kernel macOS che applica policy a operazioni mediate su filesystem, rete, IPC e servizi di sistema. Non costituisce una semplice lista di syscall, ma un controllo sulle operazioni mediate della piattaforma.
+- **FreeBSD MAC Framework:**
+  Infrastruttura modulare del kernel FreeBSD che consente l'attivazione di policy differenti e componibili, quali Biba (integrità), MLS (confidenzialità multilivello) o isolamento di partizioni (*mac_jail*).
+
+#### 2.4 Privilegi, filtraggio delle syscall e autolimitazione (Capabilities, Seccomp, Landlock)
+I sistemi moderni consentono di ridurre i privilegi operativi e filtrare le operazioni di basso livello a disposizione del processo:
+
+- **Linux Capabilities:**
+  I privilegi storici dell'utente `root` sono suddivisi in oltre 40 capability discrete (es. `CAP_NET_BIND_SERVICE`, `CAP_DAC_OVERRIDE`, `CAP_SYS_ADMIN`). Un processo può eliminare i privilegi non necessari (*capability dropping*). L'attivazione del flag `PR_SET_NO_NEW_PRIVS` tramite `prctl()` impone al kernel di impedire che una successiva chiamata `execve()` attribuisca al processo nuovi privilegi attraverso bit set-user-ID, set-group-ID o file capabilities; **non revoca né riduce le capability già presenti ed effettive** nel set del processo.
+- **Filtraggio delle Syscall con `seccomp-bpf` (Linux):**
+  Consente a un processo di caricare nel kernel un filtro espresso in bytecode BPF (*Berkeley Packet Filter*) per esaminare ogni chiamata di sistema invocata (numero della syscall e argomenti). Se la syscall non appartiene alla whitelist approvata, il kernel può rigettarla con errore (`SECCOMP_RET_ERRNO`), terminare il thread o il processo (`SECCOMP_RET_KILL_PROCESS`) o notificare un supervisore (`SECCOMP_RET_USER_NOTIF`).
+- **Autolimitazione del Filesystem con Landlock LSM (Linux):**
+  Modulo di sicurezza nativo del kernel Linux (disponibile a partire dal kernel 5.13+) che consente a processi ordinari privi di privilegi di **auto-confinarsi a runtime senza richiedere autorizzazioni di root**. Il processo crea un ruleset, dichiara le azioni da interdire e applica le restrizioni al proprio thread e ai futuri discendenti (`landlock_restrict_self`). A differenza di chroot, Landlock non è vulnerabile a evasioni da directory traversal o risalita di percorsi; tentativi di accedere a percorsi non esplicitamente autorizzati restituiscono tipicamente l'errore **`EACCES`**. Dalle versioni ABI più recenti, supporta anche restrizioni sulle porte di rete TCP.
+- **Windows Privileges:**
+  Autorizzazioni speciali assegnate al token di accesso, distinte dai permessi sugli oggetti (es. `SeDebugPrivilege`, `SeBackupPrivilege`). I token possono essere privati di privilegi prima dell'avvio di codice non fidato (*Restricted Token*).
+- **OpenBSD Pledge & Unveil:**
+  - `pledge(promises, execpromises)`: il processo dichiara formalmente al kernel le categorie di chiamate di sistema che intende utilizzare (es. `pledge("stdio rpath", NULL)`). La maggior parte delle operazioni non consentite provoca l'invio immediato di `SIGABRT`.
+  - `unveil(path, permissions)`: limita l'accesso al filesystem ai soli percorsi esplicitamente autorizzati, bloccando l'interazione con il resto dell'albero delle directory.
+
+#### 2.5 Meccanismi di isolamento e contenimento del sistema operativo
+- **Linux Namespaces e cgroups v2:**
+  - *Namespaces (`mnt`, `pid`, `net`, `ipc`, `uts`, `user`):* isolano differenti viste e risorse del sistema operativo tra insiemi diversi di processi.
+  - *Control Groups v2 (cgroups):* contabilizzano e limitano il consumo di risorse fisiche dei gruppi di processi tramite controller dedicati. `cpu.max` limita la quota di tempo CPU utilizzabile nel periodo configurato (non la quantità di CPU fisicamente allocata); `memory.max` definisce il limite massimo di memoria contabilizzata per il cgroup: al suo raggiungimento il kernel tenta il recupero di pagine (*reclaim*) e, se necessario, attiva il meccanismo Out-Of-Memory per il cgroup; `pids.max` limita il numero di processi per prevenire fork bomb.
+- **Windows AppContainer:**
+  Ambiente di isolamento applicativo a basso livello. Per impostazione predefinita dispone di un accesso molto limitato alle risorse dell'utente, ma può ricevere accessi aggiuntivi tramite capability dichiarate, ACL esplicite, broker di sistema o selezione interattiva da parte dell'utente. Le connessioni di rete in uscita e l'accesso al loopback (`127.0.0.1`) dipendono dalle capability di rete concesse (`internetClient`) e da esplicite esenzioni di isolamento della piattaforma (es. policy WFP o configurazioni di esenzione loopback).
+- **FreeBSD Jails & Capsicum:**
+  - *Jails:* Ambienti di isolamento a livello di sistema operativo che partizionano filesystem, processi, sottosistema utente e stack di rete (VNET). Il semplice comando `chroot` in FreeBSD, analogamente a Linux, non costituisce una jail e non fornisce isolamento di sicurezza robusto contro processi privilegiati.
+  - *Capsicum:* Framework di sicurezza che consente a un processo di entrare in *capability mode* (`cap_enter()`). Da quel momento, le normali risoluzioni di percorso rispetto agli spazi dei nomi globali sono vietate dal kernel: il processo può operare esclusivamente su descrittori di file pre-acquisiti o tramite operazioni relative a directory descriptor autorizzati (es. `openat()`).
+- **OpenBSD Routing Domains (`rdomain`):**
+  Meccanismo del kernel OpenBSD che consente di partizionare l'infrastruttura di rete creando tabelle di routing e interfacce completamente separate a livello di kernel, operando congiuntamente con il packet filter `pf` per garantire l'isolamento della rete.
+- **Oltre l'isolamento del solo kernel OS (gVisor e MicroVM):**
+  Quando la superficie di attacco di un kernel condiviso Linux è considerata eccessiva rispetto al modello di minaccia (es. esecuzione di codice arbitrario non fidato generato da agenti o red teaming avversariale), l'architettura di contenimento deve shiftare verso meccanismi di interposizione in user space (gVisor, che intercetta ed emula le syscall) o virtualizzazione hardware (MicroVM Firecracker/KVM con kernel guest dedicato), come formalizzato nell'Appendice ▣.
+
+---
+
+### 3. MODELLI DI AUTORIZZAZIONE DEL RUNTIME DI DESTINAZIONE
+
+Il codice applicativo non viene eseguito nel vuoto: viene interpretato, compilato JIT o eseguito all'interno di un **runtime di destinazione** (es. CPython, Node.js, Deno, Wasmtime, JVM, .NET CLR). È fondamentale classificare i runtime in base alla loro effettiva capacità di imporre confini di autorizzazione.
+
+```text
+               CATEGORIE ARCHITETTURALI DEI RUNTIME
+                                 |
+         +-----------------------+-----------------------+
+         |                       |                       |
+   AUTORITÀ AMBIENTALE      MEDIAZIONE TRAMITE     CAPABILITY PURE
+   (CPython, vanilla Node)      PERMESSI           (WASI)
+   Nessun confine interno:  (Deno, Node.js perm)   Nessuna syscall diretta;
+   eredita interamente      Accesso I/O mediato    solo handle/capability
+   l'autorità dell'OS       da flag o whitelist    esplicitamente concessi
+```
+
+#### 3.1 Tassonomia dei runtime rispetto all'autorità
+I runtime applicativi si dividono in tre categorie architetturali:
+1. **Runtime ad autorità ambientale pura (Unrestricted):** Non forniscono alcuna barriera di sicurezza interna contro codice non fidato.
+2. **Runtime con mediazione tramite permessi (Permission-Mediated):** Intercettano l'accesso alle proprie API standard secondo una whitelist di permessi configurata all'avvio.
+3. **Ambienti e interfacce a capability:** Il codice opera in un ambiente privo di autorità ambientale nativa; ogni interazione richiede un handle o capability esplicita fornita dall'host.
+
+#### 3.2 Runtime ad autorità ambientale pura (Unrestricted)
+- **CPython (Python Standard):**
+  Non implementa un confine di sicurezza affidabile per l'esecuzione di codice Python non fidato nello stesso processo.
+  - Le funzionalità di introspezione della memoria, reflection e navigazione della gerarchia degli oggetti interni dell'interprete possono consentire di recuperare riferimenti a funzionalità escluse o apparentemente nascoste.
+  - Le restrizioni basate esclusivamente sulla manipolazione di `__builtins__`, sull'import system o sulla rimozione di moduli da `sys.modules` **non devono essere considerate misure di isolamento di sicurezza**. Il confinamento deve essere demandato interamente all'host OS o a container.
+- **Node.js convenzionale (senza flag permessi) e Bun:**
+  Qualsiasi pacchetto dipendente eseguito nel processo ha accesso non mediato ai moduli di sistema (`fs`, `child_process`, `net`), ereditando interamente l'autorità dell'utente host.
+- **.NET CLR (Common Language Runtime):**
+  Il .NET CLR gestisce l'esecuzione del codice .NET attraverso servizi quali gestione della memoria, garbage collection, verifica del codice intermedio (CIL), gestione delle eccezioni e interoperabilità con codice nativo. Il runtime non costituisce una sandbox di sicurezza affidabile per codice non attendibile. 
+  - `AssemblyLoadContext` consente di organizzare il caricamento e la risoluzione degli assembly, ma non rappresenta un confine di isolamento o di autorizzazione. Analogamente, la verifica del codice e i controlli del runtime non impediscono a codice gestito di utilizzare API che accedono alle risorse del sistema operativo.
+  - Il vecchio Code Access Security (CAS) non deve essere considerato un meccanismo moderno di confinamento: è stato deprecato e non costituisce una protezione affidabile nelle versioni moderne di .NET.
+  - Per eseguire codice non attendibile, il confinamento deve essere applicato a livello di sistema operativo o mediante un ambiente isolato dedicato, limitando esplicitamente accesso a filesystem, rete, processi, IPC e risorse ereditate. 
+  - Occorre inoltre considerare P/Invoke e altre forme di interoperabilità nativa e codice nativo, che possono ampliare sensibilmente l'autorità effettiva del codice.
+
+#### 3.3 Runtime con mediazione tramite permessi (Deno, Node.js)
+- **Deno:**
+  Adotta un modello basato sul principio del rifiuto predefinito (*Default-Deny*): l'accesso a filesystem, rete, ambiente e processi richiede flag espliciti all'avvio:
+  ```bash
+  deno run --allow-read=/data/input --allow-net=api.internal.corp worker.js
+  ```
+  - *Confine di sicurezza:* Le autorizzazioni sono associate al contesto di esecuzione gestito dal runtime e **non costituiscono un confine di sicurezza tra moduli di codice non fidati che condividono il medesimo contesto**. I worker non costituiscono automaticamente un confine indipendente: ereditano normalmente i permessi del contesto padre e possono ricevere autorizzazioni ulteriormente ristrette (`permissions: "none"` o specifiche), ma non possono superare l'autorità del contesto generatore.
+  - Se il codice generato tenta un'operazione non autorizzata, il runtime blocca la chiamata sollevando un'eccezione di permesso (`PermissionDenied` o `NotCapable`).
+- **Node.js Permission Model:**
+  Introdotto sperimentalmente in Node.js 20, è stato dichiarato stabile a partire dalle versioni 22.13.0 e 23.5.0 (pur mantenendo flag e funzionalità specifiche la cui disponibilità e sintassi dipendono dalla release in uso):
+  ```bash
+  node --permission --allow-fs-read=/tmp --allow-net index.js
+  ```
+  - *Limitazione fondamentale di sicurezza:* La documentazione ufficiale di Node.js specifica che il Permission Model è concepito come una "cintura di sicurezza" (*seatbelt*) per prevenire accessi accidentali a risorse non previste, **non come una sandbox contro codice malevolo o avversariale**.
+  - *Gestione degli Addon Nativi:* Quando `--permission` è attivo, il caricamento di moduli nativi C/C++ compilati è bloccato per impostazione predefinita. Se l'applicazione viene avviata con il flag esplicito `--allow-addons`, il codice nativo autorizzato può compiere operazioni che non transitano attraverso i controlli JavaScript del Permission Model. Tale codice nativo resta comunque vincolato ai permessi, alle credenziali e alle policy di sicurezza del processo host OS.
+  - *Modalità Audit:* La piattaforma contempla inoltre un flag `--permission-audit` che registra le violazioni senza bloccarle; tale modalità non deve essere scambiata per una prova di contenimento attivo.
+
+#### 3.4 Ambienti e interfacce a capability (WASI)
+Lo standard **WASI** (*WebAssembly System Interface*, in particolare nelle specifiche WASI Preview 1 e Preview 2 / Component Model) rappresenta uno dei modelli architetturali più chiaramente orientati alla sicurezza basata su capability:
+- **Assenza di Chiamate Native del Sistema Operativo:** Il modulo guest WebAssembly non invoca direttamente le syscall native dell'host attraverso il consueto ABI del kernel. Tutte le operazioni di interazione con l'esterno transitano attraverso funzioni importate fornite dal runtime host.
+- **Modello a Capability:** Il guest parte senza alcuna autorità ambientale. Per consentire l'accesso a una directory dell'host, l'applicazione runner deve pre-aprire la cartella e passarne l'handle al modulo (la sintassi esatta varia in base al runtime e alla versione, ad esempio `wasmtime run --dir=/host/path::/guest/path module.wasm`). Nessuna autorità di rete o di filesystem esiste senza le corrispondenti interfacce e capability concesse dall'host.
+- **Isolamento della Memoria Lineare:** La memoria lineare WebAssembly è isolata dallo spazio di memoria del processo host secondo il modello della macchina virtuale. Gli accessi fuori limite generano un'interruzione sincrona (*trap*), impedendo al guest di effettuare accessi arbitrari alla memoria dell'host. Tuttavia, **la sicurezza effettiva dipende criticamente dalle funzioni host importate e dal codice nativo dell'embedder**: esporre funzioni host non sicure o concedere capability eccessive annulla il beneficio dell'isolamento lineare.
+
+#### 3.5 Runtime gestiti, modularità e confini di sicurezza (JVM post-JEP 486)
+Nel linguaggio Java e nell'ecosistema JVM moderno, l'architettura di sicurezza ha subito una profonda transizione formale:
+- **Deprecazione e disabilitazione permanente del Security Manager:** JEP 411 ha deprecato il Security Manager per la rimozione a partire da Java 17. Successivamente, **JEP 486 (integrata in JDK 24)** lo ha reso permanentemente non attivabile né installabile a runtime, mantenendo temporaneamente le relative API in forma degradata o disattivata per facilitare la migrazione del codice legacy.
+- **Confini reali su JVM:** JEP 486 dichiara esplicitamente che la piattaforma Java non introduce un sostituto interno per il sandboxing di codice ostile. Il sistema dei moduli **JPMS** (`module-info.java`) e la gerarchia dei *ClassLoader* forniscono forte incapsulamento logico e separazione dei namespace, ma **non costituiscono da soli una sandbox contro codice ostile**. L'accesso a librerie native tramite JNI e la moderna *Foreign Function & Memory (FFM) API* richiede una valutazione separata, potendo ampliare sensibilmente l'autorità del codice eseguito. L'isolamento di codice non fidato deve essere demandato a separazione di processo e controlli dell'host OS.
+
+
+---
+
+### 4. INTERAZIONE TRA LIVELLI E CALCOLO DELL'AUTORITÀ EFFETTIVA
+
+L'autorità reale di un componente non coincide con la singola configurazione del runtime né con i soli permessi del sistema operativo: è il risultato della composizione multilivello dei controlli.
+
+#### 4.1 Il modello di composizione dell'autorità effettiva
+L'insieme delle operazioni concretamente disponibili per un componente software è descritto dal modello operativo:
+
+```text
+AUTORITÀ EFFETTIVA DEL COMPONENTE
+
+Insieme delle operazioni concretamente eseguibili =
+    Operazioni consentite dalle credenziali OS
+    UNION Operazioni consentite dalle capability acquisite
+    UNION Operazioni consentite dai descrittori ereditati
+    UNION Operazioni consentite dalle deleghe esplicite
+
+SUBJECT TO:
+    - Vincoli non aggirabili del kernel e delle policy OS (DAC, MAC, LSM);
+    - Vincoli dei mediatori runtime, per i percorsi effettivamente controllati;
+    - Vincoli applicabili alle singole risorse e interfacce operative.
+```
+
+L'unione delle fonti di autorità non implica un'espansione dei privilegi senza limiti: ogni operazione resta soggetta ai controlli applicabili al percorso di accesso utilizzato. Le restrizioni del runtime sono efficaci soltanto per le operazioni effettivamente mediate e non devono essere confuse con vincoli del kernel.
+
+```text
+       RAPPRESENTAZIONE CONCETTUALE DI UN PERCORSO DI ACCESSO MEDIATO
+       
+  [Codice Applicativo Assistito da LLM]
+                 |
+                 v
+  [Livello 1: Controlli del Runtime] ───> Rifiuta? ───> BLOCCO RUNTIME
+                 | Autorizza
+                 v
+  [Livello 2: Token / Identità OS]   ───> Rifiuta? ───> BLOCCO OS (EACCES / 0x5)
+                 | Autorizza
+                 v
+  [Livello 3: Policy MAC / LSM / TCC]───> Rifiuta? ───> BLOCCO KERNEL MAC
+                 | Autorizza
+                 v
+  ====> OPERAZIONE SULLA RISORSA AUTORIZZATA
+```
+
+*Nota didattica sul flusso:* Il diagramma descrive una composizione logica dei controlli, non una pipeline di enforcement invariabile. Alcune operazioni possono essere autorizzate tramite risorse già acquisite (es. file descriptor aperti), senza ripetere il percorso di autorizzazione originario del percorso. L'ordine effettivo dipende dall'operazione, dall'interfaccia utilizzata, dallo stato delle credenziali e dai meccanismi di sicurezza attivi.
+
+#### 4.2 Asimmetrie operative e scenari di Confused Deputy
+Le discrepanze tra modelli di sicurezza generano vulnerabilità quando un livello assume garanzie che l'altro non fornisce:
+
+- **Scenario A: Bypass del Runtime e Compromissione della Memoria tramite Addon Nativo**
+  Un'applicazione Node.js viene eseguita con `--permission --allow-fs-read=/tmp --allow-addons`. Il codice generato importa un modulo binario compilato nativo, il quale invoca direttamente la chiamata `open("/etc/shadow")`. Il Permission Model di Node.js viene scavalcato perché opera solo sul motore JavaScript. L'operazione potrà comunque essere respinta dai controlli DAC, ACL o MAC dell'host OS se il processo esegue con un utente non privilegiato. Tuttavia, **il modulo nativo condivide l'intero spazio di memoria del processo**: può quindi corrompere le strutture interne di V8, leggere token, chiavi o variabili residenti nella memoria di altri moduli JS ed eludere i controlli applicativi interni.
+- **Scenario B: Confused Deputy e attraversamento di Symlink**
+  Il codice generato da LLM opera in una directory confinata `/app/sandbox` e vi crea un collegamento simbolico:
+  ```bash
+  ln -s /etc/shadow /app/sandbox/report.txt
+  ```
+  La creazione del symlink non conferisce automaticamente l'autorità di leggere il file protetto. La vulnerabilità si manifesta se un secondo processo più privilegiato (il *deputy*, es. un demone di backup o un worker con privilegi elevati) attraversa il percorso `/app/sandbox/report.txt` senza adeguate protezioni sulla risoluzione dei percorsi, ad esempio senza utilizzare `openat2()` con `RESOLVE_BENEATH` (e, quando necessario, `RESOLVE_NO_SYMLINKS`). Il solo flag `O_NOFOLLOW` protegge principalmente dal symlink finale e non costituisce una difesa completa contro symlink intermedi.
+- **Scenario C: Disallineamento TCC in ambienti CI/CD headless**
+  Uno script generato per macOS accede alla cartella `~/Documents`. In un ambiente CI/CD headless eseguito via SSH, l'accesso può fallire se l'identità del processo non dispone di un'autorizzazione TCC preesistente e non è disponibile un meccanismo amministrativo di preautorizzazione (es. profilo MDM). L'assenza di un'interfaccia grafica rende generalmente indisponibile il normale flusso interattivo di consenso, ma non esclude l'esistenza di autorizzazioni predisposte mediante policy amministrative.
+
+#### 4.3 L'ereditarietà delle risorse: file descriptor, variabili d'ambiente e socket
+L'autorità non viaggia solo tramite credenziali esplicite, ma attraverso canali ereditari del sistema operativo:
+
+- **File Descriptor e la semantica fork / exec:**
+  Un file descriptor non rappresenta soltanto un permesso di accesso a un percorso: rappresenta un riferimento già acquisito a un oggetto del kernel. Ciò implica che `chroot()`, cambi di directory o isolamenti del filesystem non revocano i descrittori già aperti.
+  - In seguito a una chiamata `fork()`, tutti i file descriptor aperti dal processo padre sono **duplicati ed ereditati dal processo figlio**, indipendentemente dai flag di chiusura. Chiudere un descrittore nel padre dopo `fork()` non chiude la copia del figlio.
+  - Il flag di creazione `O_CLOEXEC` imposta atomicamente il comportamento close-on-exec evitando race condition in programmi multithread, mentre `FD_CLOEXEC` è il relativo flag modificabile tramite `fcntl()`. Tale flag interviene esclusivamente al momento della successiva chiamata **`execve()`**, provocando la chiusura automatica del descrittore prima che il nuovo programma inizi l'esecuzione.
+  - In Python, il passaggio intenzionale dei descrittori durante la creazione di processi derivati può essere controllato esplicitamente tramite il parametro `pass_fds` del modulo `subprocess`.
+  - Se un supervisore apre un socket o un file riservato e invoca `execve()` senza flag close-on-exec, il processo figlio eredita il descrittore aperto. Il codice può interagire con la risorsa chiamando operazioni di I/O direttamente sul numero di file descriptor ereditato (`os.read(3, 1024)`), anche se il filesystem è confinato o vuoto.
+- **Variabili d'Ambiente e Token Bearer:**
+  Le variabili d'ambiente possono trasportare segreti e credenziali bearer (chiavi API, token cloud, password di database). La loro disponibilità a codice non fidato equivale, quando tali credenziali sono valide e sufficientemente privilegiate, alla delega indiretta dell'autorità associata.
+- **Socket di controllo dell'host:**
+  Rendere accessibile a un container un socket di gestione (come il socket Unix di Docker `/var/run/docker.sock` o named pipe amministrative di Windows) conferisce al codice l'autorità del demone sottostante, consentendo la compromissione immediata dell'host.
+
+---
+
+### 5. MATRICE COMPARATIVA E PRONTUARIO MULTIPIATTAFORMA
+
+La matrice e la guida diagnostica forniscono un riferimento sintetico per l'analisi dei vincoli di sicurezza tra sistemi operativi e runtime.
+
+#### 5.1 Tavola sinottica dei meccanismi di sicurezza e confini effettivi
+
+| Dimensione | Linux | Windows | macOS | Android | FreeBSD | OpenBSD | WASI | Deno | Node.js (`--permission`) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Identificativo Principale** | UID / GID (`FSUID`/`FSGID` per fs) | SID nell'Access Token | UID / GID, audit ID e Code Signing ID | UID applicativo e utente Android | UID / GID numerici | UID / GID numerici | Nessuna identità guest autonoma | Eredita il processo OS | Eredita il processo OS |
+| **Controllo Discrezionale (DAC)** | Permessi POSIX & POSIX ACL | DACL (ordine canonico: Deny esplicito prima di Allow) | Permessi POSIX & ACL stile NFSv4 | Permessi POSIX Linux per UID | Permessi POSIX & ACL stile NFSv4 | Permessi POSIX | Non applicabile come DAC OS | Modello permessi runtime (non DAC OS) | Modello permessi runtime (non DAC OS) |
+| **Controllo Obbligatorio (MAC)** | SELinux (Type Enforcement) o AppArmor | MIC (Integrity Levels) | Seatbelt (App Sandbox) | SELinux for Android (obbligatorio) | MAC Framework (Biba, MLS, LOMAC) | Non presente per default | Non presente come MAC OS | Non presente come MAC OS | Non presente come MAC OS |
+| **Controllo Esecuzione Codice** | IMA/EVM, fs-verity, dm-verity | WDAC (Code Integrity) & AppLocker | Gatekeeper & Hardened Runtime | Firma APK / dm-verity su system | mac_veriexec (opzionale/sperimentale) | Verifica pacchetti via signify (non kernel exec) | Validazione bytecode Wasm nell'host | Integrità moduli via hash (deno.lock) / JSR | Policy dismessa (--experimental-policy deprecata in v22) |
+| **Privacy e Consenso Risorse** | Non centralizzato nativamente | Capability dichiarate e broker UWP | TCC (`tccd`) con profili MDM/PPPC | Permission Framework a runtime | Non centralizzato nativamente | Non centralizzato nativamente | Dipende dalle capability esposte dall'host | Prompt interattivo o flag CLI | Solo flag CLI all'avvio |
+| **Frammentazione Privilegi** | Linux Capabilities (`PR_SET_NO_NEW_PRIVS`) | Windows Privileges (disabilitabili nel Token) | Entitlements vincolati alla firma | Permessi dichiarati nel Manifest | Capsicum (Capability Mode `cap_enter`) | `pledge()` (restrizione syscall) | Funzioni esterne limitate alle importazioni host | Concessione granulare via flag CLI | Concessione granulare via flag CLI |
+| **Isolamento Filesystem** | Mount Namespaces & `pivot_root` | AppContainer isolation folder | App Sandbox container folder | Scoped Storage & Sandbox per-UID | Jails (non semplice chroot) | `unveil()` (limitazione percorsi) | Directory pre-aperte dall'host | Whitelist percorsi (`--allow-read`) | Whitelist percorsi (`--allow-fs-read`) |
+| **Isolamento Rete** | Network Namespaces (es. `--net=none`) | WFP & isolamento AppContainer | Network Entitlements (App Sandbox) | Permesso `INTERNET` nel Manifest | VNET (Stack virtuale dedicato per jail) | rdomain (routing domains kernel) e pf | Nessuna rete senza capability esplicite | Whitelist host (`--allow-net`) | Controllo socket via `--allow-net` (secondo release) |
+| **Quote Risorse** | cgroups v2 (`memory.max`, `cpu.max`) | Job Objects (`SetInformationJobObject`) | Launchd resource limits e QoS | cgroups e LMK (Low Memory Killer) | RCTL / RACCT (`rctl`) | Login limits (`login.conf`) | Metering nel runtime (es. Fuel Wasmtime) | Heap V8 (`--max-old-space-size`); limiti OS necessari | Heap V8 (`--max-old-space-size`); limiti OS necessari |
+| **Confine di Sicurezza Effettivo** | Kernel host | Kernel host | Kernel host | Kernel host | Kernel host | Kernel host | Runtime + Embedder + Kernel Host | Runtime + Kernel Host | Host OS (Runtime è solo seatbelt) |
+
+#### 5.2 Indicazioni diagnostiche tipiche dei rifiuti di sicurezza
+I codici di errore e i segnali restituiti dalle piattaforme non hanno una corrispondenza biunivoca assoluta con un singolo meccanismo, ma forniscono indicazioni diagnostiche per identificare il livello di blocco:
+
+```text
+INDICAZIONI DIAGNOSTICHE DEI RIFIUTI DI SICUREZZA (INDICATIVE, NON UNIVOCHE)
+
+Segnale / Codice Rilevato                 Livello Probabile             Cause e Meccanismi Tipici
+---------------------------------------------------------------------------------------------------------------------------------
+EACCES (Permission Denied)               OS - DAC / Filesystem / LSM   Permessi POSIX (rwx) insufficienti, ACL contraria,
+                                                                       assenza del permesso di ricerca (x) su directory
+                                                                       intermedia del percorso, restrizione Landlock filesystem.
+
+EROFS (Read-Only File System)            OS - Filesystem Mount         Tentativo di scrittura su filesystem montato in sola lettura
+                                                                       (MS_RDONLY) o layer container read-only.
+
+EPERM (Operation Not Permitted)          OS - Privilegi / LSM / TCC    Capability Linux mancante, syscall bloccata da seccomp,
+                                                                       violazione policy TCC su macOS.
+
+SELinux AVC Denial (Log audit.log)       OS - MAC (Linux/Android)      Transizione di dominio non consentita, operazione non
+                                                                       esplicitamente permessa tra contesti di sicurezza.
+
+ERROR_ACCESS_DENIED (Codice Win32 0x5)   OS - Token / DACL (Windows)   ACE di tipo Deny corrispondente, token privo del SID
+                                                                       necessario, violazione No-Write-Up (MIC).
+
+Wasm Trap                                Runtime - WebAssembly         Accesso fuori limite alla memoria lineare, istruzione
+                                                                       unreachable, divisione intera per zero (le divisioni float
+                                                                       producono NaN/Inf senza trap). Esaurimento fuel/gas
+                                                                       dipendente dalla configurazione del runtime.
+
+PermissionDenied / NotCapable            Runtime - Deno                Accesso a risorsa (fs, net, env) non autorizzato tramite
+                                                                       flag CLI o rifiutato al prompt interattivo.
+
+ERR_ACCESS_DENIED                        Runtime - Node.js             Operazione bloccata dal Node.js Permission Model attivo
+                                                                       per mancanza del corrispondente flag --allow-*.
+```
+
+---
+
+### 6. APPLICAZIONE ALL'ASSURANCE DEL CODICE ASSISTITO DA LLM
+
+#### 6.1 Fallacie e assunzioni ambientali tipiche del codice sintetico
+Il codice generato da modelli linguistici omette frequentemente la gestione dei vincoli ambientali del sistema operativo:
+1. **L'ampliamento indiscriminato dei permessi:** Di fronte a un rifiuto di accesso, il modello suggerisce frequentemente di eseguire il codice come amministratore (`root` o `Administrator`) o di impostare permessi aperti (`chmod 777`), eliminando qualsiasi presidio basato su DAC.
+2. **Validazione dei percorsi basata su stringhe e vulnerabilità TOCTOU:** L'LLM tenta di prevenire violazioni di attraversamento delle directory (*directory traversal*) mediante controlli sintattici superficiali (es. `if "../" not in path`), ignorando che la risoluzione a runtime è vulnerabile a symlink, percorsi assoluti, hard link, junction/reparse point in Windows, codifiche alternative e race condition tra il momento del controllo e quello dell'uso (Time-of-Check to Time-of-Use - TOCTOU).
+3. **Assunzione di persistenza locale:** Vengono generate routine che archiviano file temporanei o stati di sessione direttamente nel filesystem locale del processo, assumendo un ambiente monolitico e durevole. In container effimeri con filesystem root montato in sola lettura (*read-only root filesystem*), il codice fallisce non appena tenta la prima scrittura.
+
+#### 6.2 Protocollo operativo per colmare il Competence Gap di Step 14
+
+Prima di approvare o mandare in esecuzione codice assistito da LLM che interagisce con l'ambiente operativo, è necessario applicare il seguente **protocollo operativo a quattro passi**:
+
+| PROTOCOLLO OPERATIVO DI AUDIT DELL'AUTORITÀ |
+| :--- |
+| **PASSO 1: ESTRAZIONE DELL'AUTORITÀ RICHIESTA E DELLE RISORSE PREESISTENTI** |
+| Identificare tutte le risorse esterne invocate dal codice candidato e quelle già accessibili al processo ospitante:<br>• **Risorse già disponibili:** file descriptor ereditati, socket aperti, variabili d'ambiente con token/segreti, handle IPC, socket di gestione host (es. `docker.sock`).<br>• **Risorse invocate dal codice:** accessi al filesystem (`open`, `write`, percorsi), connessioni di rete (socket, porte), processi esterni (`subprocess`, `exec`), chiamate a estensioni native (FFI, native addons). |
+| **PASSO 2: MAPPATURA DELL'AUTORITÀ MINIMA NECESSARIA** |
+| Confrontare le risorse estratte al Passo 1 con la specifica approvata (Step 4 e 6):<br>• L'accesso di rete è indispensabile per il task o è un effetto collaterale non richiesto?<br>• Qual è il sottoalbero minimo del filesystem necessario in lettura e in scrittura?<br>• L'operazione necessita di mutare lo stato persistente o è puramente trasformativa? |
+| **PASSO 3: APPLICAZIONE DEI CONTROLLI A LIVELLO OS E RUNTIME** |
+| Configurare l'ambiente di esecuzione imponendo la minima autorità:<br>• **Runtime:** abilitare solo i flag o le capability strettamente identificati al Passo 2.<br>• **Host OS:** eseguire con utente non privilegiato, filesystem root montato in sola lettura, directory temporanea isolata su filesystem temporaneo dedicato con quote.<br>*NOTA OPERATIVA SU NOEXEC:* il flag `noexec` su un punto di montaggio impedisce l'esecuzione binaria diretta (`execve`), ma non impedisce a un interprete autorizzato (es. Python o Bash) di leggere il file ed eseguirne le istruzioni internamente.<br>• **Traffico di rete in uscita (*network egress*):** disabilitare la rete o forzare default-deny.<br>• **Bonifica ambientale:** revocare variabili d'ambiente non necessarie e impostare `O_CLOEXEC`. |
+| **PASSO 4: VERIFICA EMPIRICA TRAMITE TEST NEGATIVI** |
+| Eseguire test negativi di violazione verificando che le operazioni non autorizzate siano effettivamente impedite, che non si producano effetti collaterali persistenti e che non siano disponibili percorsi alternativi per raggiungere la risorsa.<br><br>Verificare l'assenza di persistenza non autorizzata tra esecuzioni successive (file residui, memorie IPC condivise).<br><br>La sola restituzione di un errore applicativo non costituisce prova sufficiente del contenimento.<br><br>**Se il tentativo non autorizzato ha successo, la barriera è nulla: verdetto NO-GO.** |
+
+#### 6.3 Il principio della non equivalenza tra restrizione nominale e contenimento effettivo
+
+L'insegnamento metodologico fondamentale dell'intera appendice è riassunto nel principio trasversale di assurance:
+
+| IL PRINCIPIO DELLA NON EQUIVALENZA TRA RESTRIZIONE NOMINALE E CONTENIMENTO EFFETTIVO |
+| :--- |
+| La sicurezza del codice non dipende dalla presenza nominale di un meccanismo di controllo o sandboxing, ma dall'impossibilità per il codice non fidato di raggiungere risorse o operazioni al di fuori del perimetro autorizzato, considerando tutte le interfacce, le capability, le credenziali e le risorse già disponibili al processo. |
+
+La tabella seguente illustra la discrepanza tra la restrizione dichiarata e l'autorità residua che il lettore deve obbligatoriamente verificare:
+
+| Restrizione Nominale Dichiarata | Autorità Residua Reale da Verificare |
+| :--- | :--- |
+| **Filesystem confinato / chroot** | File descriptor già aperti ereditati senza flag `O_CLOEXEC` prima dell'isolamento. |
+| **Node.js Permission Model attivo** | Addon nativi compilati C/C++, FFI e corruzione della memoria del processo V8 condiviso. |
+| **Deno Default-Deny attivo** | Permessi concessi all'avvio a livello di contesto ed esposti a tutti i moduli dello stesso thread. |
+| **Container Docker isolato** | Socket Unix amministrativo (`/var/run/docker.sock`) e credenziali cloud passate in environment. |
+| **Directory di lavoro confinata** | Attraversamento di collegamenti simbolici (*symlink*) risolti da processi privilegiati a valle. |
+| **Processo con utente non privilegiato** | Linux Capabilities residue nel bounding set, token impersonati o socket IPC locali aperti. |
+| **Modulo WASI isolato in memoria** | Funzioni host esplicitamente importate e vulnerabilità del runtime o dell'embedder nativo. |
+
+---
+
+### 7. RIFERIMENTI TECNICI E BIBLIOGRAFIA ESSENZIALE
+
+- **Dennis, J. B., & Van Horn, E. C.** (1966). *Programming Semantics for Multiprogrammed Computations*. Communications of the ACM, 9(3), 143–155. (Fondazione teorica del modello formale a capability).
+- **Saltzer, J. H., & Schroeder, M. D.** (1975). *The Protection of Information in Computer Systems*. Proceedings of the IEEE, 63(9), 1278–1308. (Formalizzazione autonoma del *Principle of Least Privilege* e del principio di *Fail-Safe Defaults*).
+- **Linux Kernel Organization.** *Linux Kernel Documentation: Credentials, Capabilities, Namespaces, Control Groups v2, Landlock LSM and seccomp*. kernel.org/doc/html/latest/.
+- **Linux Man-Pages Project.** *openat2(2), seccomp(2), landlock(7), fcntl(2), credentials(7), capabilities(7)*. man7.org/linux/man-pages/.
+- **Microsoft Corporation.** *Order of ACEs in a DACL*, *DACLs and ACEs*, *AppContainer Isolation*, *Windows Integrity Mechanism*. Microsoft Learn Technical Documentation.
+- **Microsoft Corporation.** *Secure coding guidelines for .NET*. learn.microsoft.com/dotnet/standard/security/secure-coding-guidelines.
+- **Microsoft Corporation.** *AssemblyLoadContext Class (.NET 10)*. learn.microsoft.com/dotnet/api/system.runtime.loader.assemblyloadcontext.
+- **Microsoft Corporation.** *Most code access security APIs are obsolete*. learn.microsoft.com/dotnet/core/compatibility/core-libraries/5.0/code-access-security-apis-obsolete.
+- **Node.js Technical Steering Committee.** *Node.js Permission Model Documentation* (API Documentation, releases v22.13.0, v23.5.0, v26.x). nodejs.org/api/permissions.html.
+- **Oracle / OpenJDK Community.** *JEP 411: Deprecate the Security Manager for Removal* (Java 17) e *JEP 486: Permanently Disable the Security Manager* (JDK 24). openjdk.org/jeps/.
+- **Deno Land Inc.** *Deno Runtime Documentation: Security and Permissions*. docs.deno.com/runtime/fundamentals/security/.
+- **W3C & Bytecode Alliance.** *WebAssembly Core Specification* e *WASI (WebAssembly System Interface) Specifications*. wasi.dev / github.com/WebAssembly/WASI.
+- **Bytecode Alliance.** *Wasmtime Documentation: Security and Capability Sandboxing*. docs.wasmtime.dev.
+- **Apple Inc.** *Apple Platform Security: Controlling app access to files (TCC)*, *Privacy Preferences Policy Control (PPPC)*, *App Sandbox Guide*. support.apple.com / developer.apple.com.
+- **Google LLC / Android Open Source Project.** *Android Security: Application Sandbox, Scoped Storage and SELinux for Android*. source.android.com/security.
+- **FreeBSD Foundation.** *FreeBSD Handbook: Security, Jails and Capsicum(4) Capability Mode*. freebsd.org/doc/.
+- **OpenBSD Project.** *OpenBSD Reference Manual: pledge(2), unveil(2) and rdomain(4)*. man.openbsd.org.
 
 ---
 
