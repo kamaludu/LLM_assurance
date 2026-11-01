@@ -119,7 +119,7 @@ html {
 
 body {
   margin: 0 auto;
-  max-width: 36em;
+  max-width: 52em;
   padding: 50px;
   hyphens: auto;
   overflow-wrap: break-word;
@@ -475,175 +475,65 @@ echo "[✓] Creato html_style.css"
 
 # 1.2 Foglio di stile per EPUB3
 cat << 'EOF' > epub.css
-/* ============================================
-   FOGLIO DI STILE EPUB3 PER PANDOC
-   Compatibile con: Apple Books, Kobo, Kindle (KF8/KFX), ADE, ReadEra
-   ============================================ */
-
-/* 1. TIPOGRAFIA & TITOLI */
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 1.4em;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-  break-after: avoid;
-  page-break-after: avoid;
-}
-
-h1, h2 {
-  color: #3b8503;
-}
-
-h5, h6 {
-  font-size: 1em;
-  font-style: italic;
-}
-
-h6 {
-  font-weight: normal;
-}
-
-header {
-  margin-bottom: 2em;
-  text-align: center;
-}
-
-/* 2. PARAGRAFI, CITAZIONI & STRUTTURA */
-p {
-  margin: 0.8em 0;
-  orphans: 2;
-  widows: 2;
-}
-
-blockquote {
-  margin: 1.2em 0 1.2em 1.2em;
-  padding-left: 0.8em;
-  border-left: 3px solid #888888;
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid #888888;
-  margin: 1.5em 0;
-}
-
-ol, ul {
-  padding-left: 1.5em;
-  margin: 0.8em 0;
-}
-
-li > ol, li > ul {
-  margin-top: 0;
-}
-
-/* Indice (TOC) */
-#TOC li {
-  list-style: none;
-}
-
-#TOC ul {
-  padding-left: 1.2em;
-}
-
-#TOC > ul {
-  padding-left: 0;
-}
-
-#TOC a {
-  text-decoration: none;
-}
-
-/* 3. IMMAGINI & MEDIA */
-img, svg {
-  max-width: 100%;
-  height: auto;
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
-/* 4. TABELLE */
-table {
-  margin: 1.2em 0;
-  border-collapse: collapse;
-  width: 100%;
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
-table caption {
-  margin-bottom: 0.5em;
-  font-weight: bold;
-  text-align: left;
-}
-
-th, td {
-  border: 1px solid #777777;
-  padding: 0.3em 0.5em;
-  vertical-align: top;
-}
-
-th {
-  font-weight: bold;
-  border-bottom: 2px solid #333333;
-}
-
-thead {
-  display: table-header-group;
-}
-
-tr {
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
-/* 5. BLOCCHI CODICE & TESTO MONOSPACE */
+/* 5. BLOCCHI CODICE, DIAGRAMMI & TESTO MONOSPACE */
 code {
-  font-family: monospace;
-  font-size: 85%;
-  hyphens: manual;
+  font-family: "Roboto Mono", "Noto Sans Mono", "DejaVu Sans Mono", "Courier New", Courier, monospace;
+  font-size: 0.82em; /* Dimensione calibrata: leggibile, compatta, non microscopica */
+  text-align: left;
+  letter-spacing: 0;
+  word-spacing: 0;
+  hyphens: none;
+  -webkit-hyphens: none;
 }
 
 pre {
+  font-family: "Roboto Mono", "Noto Sans Mono", "DejaVu Sans Mono", "Courier New", Courier, monospace;
+  font-size: 0.82em; /* Permette a circa 60-70 colonne di respirare senza sfasarsi */
+  line-height: 1.3;
   margin: 1em 0;
-  padding: 0.7em 0.9em;
+  padding: 0.6em 0.8em;
   border: 1px solid #888888;
   border-radius: 4px;
+  
+  /* Allineamento rigido e divieto assoluto di ritorni a capo automatici */
+  text-align: left;
+  letter-spacing: 0;
+  word-spacing: 0;
+  white-space: pre !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  hyphens: none;
+  -webkit-hyphens: none;
+
+  /* Disattivazione legature (impedisce che '->' si fonda o alteri il conteggio spazi) */
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
+  tab-size: 4;
+
+  /* Modello di contenimento sicuro per ReadEra */
+  display: block;
+  box-sizing: border-box;
+  max-width: 100%;
   overflow-x: auto;
-  white-space: pre-wrap;
-  break-inside: avoid;
-  page-break-inside: avoid;
 }
 
 pre code {
+  font-size: 1em; /* Eredita lo 0.82em di pre senza rimpicciolimenti a cascata */
   padding: 0;
   border: none;
-  white-space: pre-wrap;
+  white-space: pre !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  letter-spacing: 0;
+  word-spacing: 0;
 }
 
-div.sourceCode {
-  margin: 1em 0;
+/* Specifico per il tag generato da Pandoc per il testo puro */
+pre.text, pre.text code {
+  white-space: pre !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
 }
-
-pre.sourceCode {
-  margin: 0;
-}
-
-/* 6. BOX DI AVVISO (CALLOUT) */
-div.callout {
-  padding: 0.8em 1em;
-  margin: 1.2em 0;
-  border-left: 4px solid #777777;
-  border-radius: 4px;
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
-div.callout.tip { border-left-color: #137333; }
-div.callout.warning { border-left-color: #b06000; }
-div.callout.note { border-left-color: #1a73e8; }
-div.callout.important { border-left-color: #a142f4; }
-div.callout.caution { border-left-color: #c5221f; }
 EOF
 echo "[✓] Creato epub.css"
 
