@@ -580,7 +580,7 @@ Ogni lettore puo' quindi partire dalle sezioni più vicine alle proprie responsa
 
 <a name="parte-1"></a>
 
-**① ⛓ ⛓ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
+**① ⛓ Assurance del Software Assistito da LLM**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 # PARTE I — Fondamenti epistemici e decisionali
 
@@ -4571,26 +4571,26 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
 
 ### Mappa del Capitolo
 
- 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO                              
- 2. Prerequisiti                                                    
- 3. Concetti Fondamentali                                           
- 4. Terminologia Rigorosa                                           
- 5. Teoria Epistemica dell'Assurance: Fatti, Assunzioni e Sconosciuti
- 6. Distinzioni Concettuali Critiche                                
- 7. Tassonomia delle Assunzioni nel Software Assistito da LLM       
- 8. Esempi Tecnici Dettagliati                                      
- 9. Controesempi e Casi di Rottura                                  
-10. Errori Comuni e Anti-pattern Epistemici                         
-11. False Assurance: La Generazione di Certezza Illusoria           
-12. Ruolo, potenzialità e Limiti degli LLM nella Gestione delle Assunzioni
-13. Indipendenza Epistemica delle Evidenze                          
-14. Relazioni di Tracciabilita con gli Altri STEP                   
-15. Casi Limite e Condizioni di Bordo                               
-16. Esercizi e Scenari di Comprensione                              
-17. Soluzioni e Spiegazioni Dettagliate                             
-18. Approfondimento: La Matrice di Rischio Epistemico               
-19. Criteri di Padronanza                                           
-20. Sintesi finale del Capitolo
+ 1. **INTRODUZIONE E OBIETTIVO DEL CAPITOLO** 
+ 2. **Prerequisiti** 
+ 3. **Concetti Fondamentali**                                           
+ 4. **Terminologia Rigorosa**                                           
+ 5. **Teoria Epistemica dell'Assurance: Fatti, Assunzioni e Sconosciuti**
+ 6. **Distinzioni Concettuali Critiche**                                
+ 7. **Tassonomia delle Assunzioni nel Software Assistito da LLM**       
+ 8. **Esempi Tecnici Dettagliati**                                      
+ 9. **Controesempi e Casi di Rottura**                                  
+10. **Errori Comuni e Anti-pattern Epistemici**                         
+11. **False Assurance: La Generazione di Certezza Illusoria**           
+12. **Ruolo, potenzialità e Limiti degli LLM nella Gestione delle Assunzioni**
+13. **Indipendenza Epistemica delle Evidenze**                          
+14. **Relazioni di Tracciabilita con gli Altri STEP**                   
+15. **Casi Limite e Condizioni di Bordo**                               
+16. **Esercizi e Scenari di Comprensione**                              
+17. **Soluzioni e Spiegazioni Dettagliate**                             
+18. **Approfondimento: La Matrice di Rischio Epistemico**               
+19. **Criteri di Padronanza**                                           
+20. **Sintesi finale del Capitolo**
 
 ---
 
@@ -6209,63 +6209,23 @@ Lo **STEP 6: Critical Properties & Invariants** stabilisce il fondamento matemat
 ### Mappa del Capitolo
 
 - **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
-  * Il problema della disconnessione epistemica nel software assistito da LLM
-  * Tracciabilità burocratica vs Tracciabilità epistemica (Grafo di Giustificazione)
-  * Perché il codice generato rapidamente richiede una catena di giustificazione più rigida
 - **2. Prerequisiti**
-  * Collegamenti agli Step 1, 2, 3, 4, 5 e 6
-  * Teoria dei grafi di base: Grafi Aciclici Diretti (DAG), relazioni di dipendenza e raggiungibilità
 - **3. Concetti Fondamentali**
-  * La Catena Canonica di Tracciabilità a dieci nodi
-  * Tracciabilità in Avanti (Forward) e all'Indietro (Backward)
-  * Anomalie topologiche: Codice Orfano, Requisiti Ciechi, Assunzioni Sospese e Test Cavi
-  * Analisi di Impatto e Propagazione dell'Invalidazione
 - **4. Terminologia Rigorosa**
-  * Glossario specialistico bilingue (English — Italiano)
 - **5. Teoria Completa della Tracciabilità Epistemica**
-  * Formalizzazione matematica del Grafo di Giustificazione
-  * Condizioni formali di completezza e validità dei collegamenti
-  * La semantica dei nodi e lo stato epistemico associato
-  * L'algoritmo di propagazione dell'invalidazione del cambio
 - **6. Distinzioni Concettuali Critiche**
-  * Document Linking vs Epistemic Justification
-  * Requirement vs Property vs Oracle vs Evidence
-  * Validation Traceability vs Verification Traceability
-  * Assertion vs Evidence nella catena
 - **7. Esempi Tecnici Dettagliati**
-  * Esempio 1: Modulo di Calcolo Fiscale Transfrontaliero (Catena completa da Objective ad Approval)
-  * Esempio 2: Sistema di Cifratura Chiavi API con Dipendenze Hardware
 - **8. Controesempi e Casi di Rottura**
-  * Controesempio 1: Il Collegamento Burocratico Cavo (The Hollow Link)
-  * Controesempio 2: L'Oracolo Disconnesso dall'Invariante
-  * Controesempio 3: La Modifica Silente del Prompt e la Rottura della Catena
 - **9. Errori Comuni e Anti-Pattern**
-  * Fabbricazione Post-Hoc della Tracciabilità (Retrofitting via LLM)
-  * Diluizione della Tracciabilità (Coarse-Grained Hyperlinking)
-  * Il vicolo cieco dell'Assunzione non tracciata
 - **10. False Assurance nella Tracciabilità Assistita da LLM**
-  * La fallacia della "Matrice Verde al 100%"
-  * Allucinazione e compiacenza sintattica nei link generati da agenti artificiali
 - **11. Ruolo e Limiti degli LLM nella Tracciabilità**
-  * Supporto euristico: parsing semantico, individuazione di artefatti orfani e generazione bozze
-  * Limiti epistemici, di indipendenza e di autorità degli LLM: incapacità di validare la catena e divieto di auto-approvazione
 - **12. Indipendenza delle Evidenze e Tracciabilità**
-  * Disaccoppiamento tra chi genera la catena e chi ne valida la tenuta
-  * Auditabilità di terza parte della catena di giustificazione
 - **13. Relazioni con gli Altri STEP**
-  * Convergenza degli Step 1-6 e preparazione degli Step 8-12
 - **14. Casi Limite e Condizioni di Bordo**
-  * Comportamenti emergenti e non-deterministici in agenti LLM a esecuzione autonoma
-  * Integrazione di librerie black-box e confine di tracciabilità (Assurance Boundary)
 - **15. Esercizi e Scenari di Comprensione**
-  * Scenario A: Audit di conformità su pipeline di fatturazione cloud
-  * Scenario B: Rilevamento di codice orfano e allucinazione di requisiti in un gateway IoT
 - **16. Soluzioni e Spiegazioni Dettagliate**
-  * Analisi topologica, estrazione delle anomalie e assegnazione degli stati decisionali
 - **17. Approfondimento: Algoritmi di Propagazione dell'Invalidazione**
-  * Attraversamento topologico inverso per la Propagazione dell'invalidazione e rivalutazione degli stati di assurance
 - **18. Criteri di Padronanza**
-  * Matrice delle competenze pratiche e osservabili
 - **19. Sintesi finale del Capitolo**
 
 ---
@@ -7031,65 +6991,23 @@ Lo **STEP 7: Traceability** rappresenta la spina dorsale metodologica che impedi
 ### Mappa del Capitolo
 
 - **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
-  * L'asimmetria critica tra velocità di generazione e capacità di verifica
-  * Perché il software assistito da LLM mette in discussione l'adeguatezza della code review tradizionale in alcuni contesti
-  * L'illusione di competenza e il pericolo del *rubber-stamping*
 - **2. Prerequisiti**
-  * Collegamento agli Step precedenti: Problem Definition (Step 1), Risk (Step 2), Authority (Step 3), Properties (Step 6) e Traceability (Step 7)
-  * Fondamenti di psicologia cognitiva dell'automazione (*Automation Bias*) ed epistemologia della testimonianza
 - **3. Concetti Fondamentali**
-  * La Triade dei Gap di Competenza: Comprensione, Verifica, Autorità
-  * L'Asimmetria Generazione-Verifica (*Generation-Verification Asymmetry*)
-  * La Delega Epistemica e l'Uso Ingannevole di Proxy Artificiali
-  * Debito di Competenza (*Competence Debt*)
 - **4. Terminologia Rigorosa**
-  * Glossario specialistico bilingue (English — Italiano)
 - **5. Teoria Completa dei Gap di Competenza**
-  * Formalizzazione della Capacità di Verifica rispetto alla Complessità dell'Artefatto
-  * La dinamica del Rubber-Stamping: analisi del rischio di rubber-stamping e dei falsi positivi decisionali
-  * Topologia dei fallimenti nella catena decisionale `REVIEW -> APPROVAL`
-  * Il principio di proporzionalità della competenza al rischio
 - **6. Distinzioni Concettuali Critiche**
-  * Authority vs Competence
-  * Understanding vs Verification
-  * Independent Verification vs Second Opinion (e revisione multi-LLM)
-  * Confidence vs Evidence
-  * Failure vs Inability to Verify
-  * Correctness vs Plausibility
 - **7. Esempi Tecnici Dettagliati**
-  * Esempio 1: Modulo di Concorrenza Lock-Free generato da LLM (Gap di Comprensione e Verifica)
-  * Esempio 2: Sistema di Validazione Medica approvato sotto pressione operativa (Gap di Autorità)
 - **8. Controesempi e Casi di Rottura**
-  * Controesempio 1: L'Ingegnere Senior che approva codice che non comprende ("La trappola della leggibilità")
-  * Controesempio 2: La Catena Circolare di Delega Epistemica (LLM-as-a-Judge per validare codice LLM)
 - **9. Errori Comuni e Anti-Pattern**
-  * *Plausibility Seduction* (Scambiare l'eleganza stilistica per correttezza logica)
-  * *Authority Abdication* (Abdicazione dell'autorità a favore di pipeline verdi)
-  * *Token Reviewer* (Il revisore formale privo di tempo o strumenti)
 - **10. False Assurance Generata dai Gap di Competenza**
-  * Come l'incompetenza trasforma un'impossibilità di verifica (`UNKNOWN`) in un'approvazione indebita (`PASS`)
-  * La neutralizzazione degli invarianti dello Step 6 a opera di revisioni cieche
 - **11. Ruolo e Limiti degli LLM nella Gestione dei Gap**
-  * Uso euristico: spiegazione del codice, generazione di diagrammi mentali, evidenziazione di pattern insoliti
-  * limiti epistemici e di responsabilità degli LLM: la spiegazione plausibile ma errata (*hallucinated justification*) e l'incapacità dell'LLM di colmare il vuoto di responsabilità umana
 - **12. Indipendenza delle Evidenze e Qualificazione del Valutatore**
-  * Criteri di idoneità epistemica dell'auditor umano
-  * Separazione tra chi subisce la pressione del rilascio e chi possiede l'autorità di veto
 - **13. Relazioni di Tracciabilità con gli Altri STEP**
-  * L'impatto dei gap di competenza sulla tenuta del grafo di tracciabilità (Step 7)
-  * Collegamento allo Step 9 (Specification Validity) e Step 10 (Assurance Level)
 - **14. Casi Limite e Condizioni di Bordo**
-  * Domini a iper-specializzazione dove nessun singolo essere umano domina l'intero stack
-  * Hotfix di emergenza in produzione generati da LLM
 - **15. Esercizi e Scenari di Comprensione**
-  * Scenario A: Audit di una PR per un algoritmo di consenso distribuito
-  * Scenario B: Il comitato etico-clinico di fronte a un classificatore diagnostico black-box
 - **16. Soluzioni e Spiegazioni Dettagliate**
-  * Analisi dei gap, scomposizione delle responsabilità e assegnazione degli stati decisionali
 - **17. Approfondimento: La Matrice delle Competenze di Assurance (ACM)**
-  * Strumento operativo per mappare i requisiti di competenza prima dell'approvazione
 - **18. Criteri di Padronanza**
-  * Competenze pratiche e osservabili acquisite dal lettore
 - **19. Sintesi finale del Capitolo**
 
 ---
@@ -7721,66 +7639,23 @@ Lo **STEP 8: Competence Gaps** dimostra che l'assurance del software non è un p
 ### Mappa del Capitolo
 
 - **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
-  * Il paradosso della verifica perfetta di una specifica errata
-  * Perché gli LLM generano specifiche formalmente plausibili ma semanticamente fallate
-  * Obiettivo didattico: validare la specifica prima di verificare l'implementazione
 - **2. Prerequisiti**
-  * Collegamenti agli Step 1, 2, 4, 5, 6, 7 e 8
-  * Fondamenti essenziali di logica dei predicati, soddisfacibilità (SAT) e teoria dei modelli, introdotti o ripresi nel capitolo secondo necessità
 - **3. Concetti Fondamentali**
-  * Validazione vs Verifica della Specifica
-  * I Sei Pilastri della Validità della Specifica: Consistenza, Completezza, Realizzabilità, Non-Ambiguità, Falsificabilità e Ancoraggio al Dominio
-  * Specifica Soddisfacibile (`Sat(Spec)`) vs Specifica Vacua
-  * Sovra-specifica (*Over-specification*) e Sotto-specifica (*Under-specification*)
 - **4. Terminologia Rigorosa**
-  * Glossario specialistico bilingue (English — Italiano)
 - **5. Teoria Completa della Validità della Specifica**
-  * Formalizzazione matematica della specifica come teoria logica
-  * Condizione di consistenza interna (assenza di contraddizioni)
-  * Condizione di realizzabilità in un ambiente aperto (teoria dei giochi a due giocatori)
-  * Condizione di ancoraggio e adeguatezza rispetto alla Problem Definition
-  * Il protocollo dei sei filtri di validazione
 - **6. Distinzioni Concettuali Critiche**
-  * Validation vs Verification
-  * Objective vs Requirement
-  * Specification vs Implementation
-  * Correctness vs Plausibility
-  * Failure vs Inability to Verify
-  * Risk Reduction vs Risk Elimination
 - **7. Esempi Tecnici Dettagliati**
-  * Esempio 1: Specifica di Regolamento Transazioni con Contraddizione Temporale Nascosta
-  * Esempio 2: Specifica di Gestione Allarmi Critici con Sotto-Specifica dello Spazio di Guasto
 - **8. Controesempi e Casi di Rottura**
-  * Controesempio 1: La Specifica Insoddisfacibile Approvata per Fuga Burocratica
-  * Controesempio 2: La Specifica Vacuamente Soddisfatta (Precondizione falsa)
-  * Controesempio 3: L'Allucinazione di Dominio Normativo generata da LLM
 - **9. Errori Comuni e Anti-Pattern**
-  * *The SRS Illusion* (Scambiare la lunghezza e i diagrammi per completezza semantica)
-  * *Self-Fulfilling Specification* (Scrivere la specifica copiando il comportamento del codice generato)
-  * *The Unbounded Environment Trap* (Omettere i vincoli dell'ambiente operativo)
 - **10. False Assurance nella Validità della Specifica**
-  * Il collasso del grafo di tracciabilità: cento test verdi su requisiti invalidi
-  * La circo-referenzialità generativa: `Prompt -> LLM Spec -> LLM Code -> LLM Test -> PASS`
 - **11. Ruolo e Limiti degli LLM nella Validazione della Specifica**
-  * Contributi euristici: caccia alle contraddizioni tramite prompting avversariale, generazione di scenari limite, stress-testing testuale
-  * Limiti invalicabili: incapacità di ancoraggio fisico al mondo reale, compiacenza stocastica (*sycophancy*), invenzione di standard inesistenti
 - **12. Indipendenza delle Evidenze nella Convalida della Specifica**
-  * Disaccoppiamento tra chi formula la specifica e chi ne certifica la validità
-  * L'intervento obbligatorio dell'esperto di dominio con autorità di firma (Step 3)
 - **13. Relazioni di Tracciabilità con gli Altri STEP**
-  * Come lo Step 9 retroagisce sullo Step 4 e abilita lo Step 10 (Assurance Level) e Step 11 (Oracles)
 - **14. Casi Limite e Condizioni di Bordo**
-  * Specifiche per sistemi stocastici, euristici o agenti autonomi basati su LLM
-  * Specifiche in contesti normativi in evoluzione rapida (*moving targets*)
 - **15. Esercizi e Scenari di Comprensione**
-  * Scenario A: Specifica del Sistema di Guida Autonoma per Movimentazione Merci
-  * Scenario B: Specifica del Gateway di Pagamento per Autenticazione Forte (PSD2)
 - **16. Soluzioni e Spiegazioni Dettagliate**
-  * Analisi logica, rilevamento delle fallacie e assegnazione motivata dello stato decisionale
 - **17. Approfondimento: Metodi Formali Leggeri per la Verifica della Specifica**
-  * Tecniche di Model Checking vincolato e simulazione di scenari su specifiche logiche
 - **18. Criteri di Padronanza**
-  * Matrice delle competenze pratiche e osservabili
 - **19. Sintesi finale del Capitolo**
 
 ---
@@ -15142,49 +15017,19 @@ Lo Step 17 garantisce che il codice generato dall'LLM non venga ammesso alle fas
 ### Mappa del Capitolo
 
 1. **Introduzione e Obiettivo del Capitolo**
-   - Il superamento del test per esempi nell'era dello sviluppo assistito da LLM
-   - Dalla verifica di casi noti alla ricerca sistematica di controesempi
 2. **Profilo delle competenze necessarie**
-   - Competenze dirette non delegabili, competenze assistibili e competenze specialistiche
-   - Riconoscimento del competence gap nel testing generativo
 3. **Prerequisiti**
-   - Raccordo con lo Step 6 (Invarianti), Step 11 (Oracoli) e Step 16 (Testing automatico)
 4. **Terminologia essenziale**
-   - Definizioni bilingui operative (Property, Shrinking, Fuzzing, Oracle, Adversarial Input)
 5. **Concetti fondamentali e teoria completa**
-   - Architettura del Property-Based Testing (PBT) e meccanica dello shrinking
-   - Tassonomia del Fuzzing (Black-box, White-box, Grey-box guidato da copertura)
-   - Adversarial Testing per componenti software e pipeline ibride (Software + LLM)
 6. **Distinzioni concettuali ed epistemiche critiche**
-   - Le sette distinzioni obbligatorie per l'assurance generativa
-   - Il disaccoppiamento tra campione, spazio di input e distribuzione reale
-   - La trappola dell'oracolo tautologico e della spiegazione post-fallimento
 7. **Formalizzazione matematica e logica**
-   - La quantificazione universale della proprietà contro la campionatura finita
-   - La disuguaglianza tra esito PASS e dimostrazione matematica
-   - Formalizzazione in notazione ASCII pura
 8. **Esempi pratici e implementativi**
-   - Caso 1: Verifica di invarianti contabili con Hypothesis (PBT e shrinking)
-   - Caso 2: Fuzzing guidato da copertura su parser binario di rete (Atheris)
-   - Caso 3: Adversarial testing su parser e guardrail di payload JSON generati da LLM
 9. **Controesempi didattici**
-   - Il test con precondizione autodistruttiva (Vacuous Truth tramite `assume()`)
-   - L'oracolo di round-trip tautologico privo di proprietà semantica
 10. **Errori comuni e anti-pattern**
-    - Overfitting dei generatori e distorsione campionaria
-    - Specchiatura dell'implementazione nell'asserzione di test
-    - Amnesia del seme di generazione (*Seed Amnesia*)
 11. **Meccanismi di False Assurance nello sviluppo assistito da LLM**
-    - Il bias della plausibilità condivisa tra modello e codice
-    - L'illusione dell'alto numero di iterazioni senza indipendenza
 12. **Ruolo e limiti degli LLM nello STEP**
-    - Ambiti di delega ammissibili (sintassi degli harness, dizionari di test)
-    - Ambiti di divieto assoluto (definizione autonoma della correttezza, interpretazione causale)
 13. **Indipendenza delle evidenze e architettura degli oracoli**
-    - Oracoli metamorfici, differenziali, strutturali e di inversione
 14. **Assunzioni, Unknown, limiti residui e condizioni di validità**
-    - Classificazione epistemica (FACT, ASSUMPTION, UNKNOWN, RECOMMENDATION)
-    - Condizioni esplicite di validità del verdetto
 15. **Relazioni con gli altri STEP della catena di Assurance**
 16. **Esercizi e scenari di comprensione**
 17. **Soluzioni e spiegazioni dettagliate**
@@ -16077,50 +15922,19 @@ Il Property-Based Testing, il Fuzzing guidato da copertura e il Testing Avversar
 ### Mappa del Capitolo
 
 1. **Introduzione e Obiettivo del Capitolo**
-   - Dal testing automatizzato alla modellazione e simulazione di comportamenti avversariali
-   - La duplice superficie d'attacco: vulnerabilità nel codice assistito e vulnerabilità dell'integrazione LLM
 2. **Profilo delle competenze necessarie**
-   - Competenze che richiedono responsabilità e giudizio umano qualificato, competenze assistibili e competenze specialistiche
-   - Il superamento del bias di benevolenza degli input
 3. **Prerequisiti**
-   - Raccordo con lo Step 2 (Rischio), Step 6 (Invarianti), Step 14 (Contenimento) e Step 18 (PBT & Fuzzing)
 4. **Terminologia essenziale**
-   - Definizioni bilingui operative e disambiguazione dei framework: STRIDE, OWASP Top 10 for LLM, MITRE ATLAS
 5. **Concetti fondamentali e teoria completa**
-   - Il quadro metodologico delle quattro domande (Shostack)
-   - Tracciamento dei flussi di dati (DFD) e individuazione dei confini di fiducia (*Trust Boundaries*)
-   - Applicazione sistematica di STRIDE a componenti deterministici e probabilistici
-   - L'assunzione metodologica dell'Assume Breach e la concatenazione delle minacce (*Exploit Chaining*)
 6. **Distinzioni concettuali ed epistemiche critiche**
-   - Le definizioni atomiche: Threat, Vulnerability, Exploit, Attack, Risk
-   - La disuguaglianza operativa: Threat Model != Vulnerability Scan != Penetration Test != Red Teaming
-   - Assenza di exploit osservato != assenza di vulnerabilità
-   - Sanificazione del prompt vs Contenimento architetturale
 7. **Formalizzazione logico-strutturale**
-   - Rappresentazione relazionale dei confini di fiducia e percorsi d'attacco
-   - Modello di rischio basato su precondizioni, esposizione e impatto senza probabilità arbitrarie
 8. **Esempi pratici e implementativi**
-   - Caso 1: Threat Model architetturale (DFD + STRIDE) di un agente RAG per supporto clienti
-   - Caso 2: Esecuzione di Red Teaming contro un'architettura di elaborazione ordini (Indirect Prompt Injection e Tool Abuse)
 9. **Controesempi didattici**
-   - Il Threat Model "checklist" generato da LLM privo del confine di fiducia primario
-   - Il Red Teaming di facciata basato su dizionari statici di jailbreak generici
 10. **Errori comuni e anti-pattern**
-    - "Prompt Engineering as Security": il prompt come controllo parziale vs controllo esclusivo
-    - "Downstream Blindness" (costrutto didattico): la fiducia ingiustificata nell'output del modello
-    - Confusione tra sicurezza dell'allineamento del modello e sicurezza del sistema integrato
 11. **Meccanismi di False Assurance nello sviluppo assistito da LLM**
-    - Sycophancy vs Errori Correlati (Shared Blind Spots) nelle verifiche di sicurezza condotte da LLM
-    - L'illusione della mitigazione puramente linguistica
 12. **Ruolo e limiti degli LLM nello STEP**
-    - Ambiti di accelerazione e brainstorming ammissibili
-    - Giudizio finale sulla sufficienza della valutazione avversariale (non delegabile)
 13. **Indipendenza delle evidenze nel Red Teaming**
-    - La separazione tra costruttore e attaccante come condizione non sufficiente
-    - Le dieci dimensioni di correlazione e non-indipendenza (dati, assunzioni, oracoli, incentivi)
 14. **Assunzioni, Unknown, limiti residui e condizioni di validità**
-    - Modello epistemico (FACT, ASSUMPTION, HYPOTHESIS, RECOMMENDATION, UNKNOWN)
-    - Semantica formale dello stato RED TEAM PASS e condizioni di blocco NO-GO
 15. **Relazioni con gli altri STEP della catena di Assurance**
 16. **Esercizi e scenari di comprensione**
 17. **Soluzioni e spiegazioni dettagliate**
@@ -16774,55 +16588,19 @@ Il Threat Modeling e il Red Teaming costituiscono il contrappeso razionale all'o
 ### Mappa del Capitolo
 
 1. **Introduzione e Obiettivo del Capitolo**
-   - Dal singolo valutatore all'insieme di modelli: la ricerca di ridondanza analitica
-   - I limiti della ridondanza: quando moltiplicare i modelli non aggiunge informazione
 2. **Profilo delle competenze necessarie**
-   - Competenze che richiedono responsabilità e giudizio umano qualificato, competenze assistibili e competenze specialistiche
-   - Il superamento del bias democratico: consenso statistico != validità oggettiva
 3. **Prerequisiti**
-   - Raccordo con lo Step 3 (Autorità), Step 11 (Oracoli), Step 15 (Sviluppo assistito), Step 17 (SAST) e Step 18 (PBT & Fuzzing)
 4. **Terminologia essenziale**
-   - Definizioni bilingui operative (Multi-Model Audit, Correlated Error, Inter-Model Agreement, Blind Review, Discrepancy Matrix, Consenso Fragile)
-   - Chiarimento metodologico: Multi-Model Audit e N-Version Programming a confronto
 5. **Concetti fondamentali e teoria completa**
-   - Il precedente storico dell'N-Version Programming e lo studio di Knight & Leveson (1986)
-   - Le fonti di correlazione potenziale: dati di pre-training, benchmark, distillazione, architetture e allineamento (RLHF)
-   - Evidenze empiriche recenti sulla correlazione degli errori tra famiglie di modelli
-   - Il disaccordo come possibile segnale diagnostico ad alto valore informativo (e i suoi limiti)
 6. **Distinzioni concettuali ed epistemiche critiche**
-   - La catena delle non-equivalenze: Agreement != Independence != Correctness != Sufficient Evidence
-   - Lo schema causale dell'errore condiviso: Common Assumption -> Common Reasoning -> Common Error
-   - Second opinion != Verifica indipendente
-   - Diversità di fornitore (Vendor Diversity) != Indipendenza epistemica
-   - Consenso a maggioranza != Oracolo di verità
 7. **Formalizzazione logico-matematica**
-   - Probabilità di errore congiunto condizionato vs indipendenza stocastica pura (notazione ASCII)
-   - I quattro livelli di valutazione: Inter-Model Agreement, Ground-Truth Accuracy, Evidence Independence, Assurance Sufficiency
-   - Le tre disuguaglianze vincolanti (High Agreement != High Accuracy / Independence / Assurance)
 8. **Esempi pratici e implementativi**
-   - Caso 1: Harness Python per Blind Multi-Model Audit con pipeline rigorosa (Specifica -> Modelli -> Matrice Discrepanze -> Oracolo Esterno -> Decision Gate, senza AUTO-PASS)
-   - Caso 2: Analisi differenziale di una funzione crittografica vulnerabile approvata per falsa ottimizzazione da tre modelli distinti
 9. **Controesempi didattici**
-   - Il consenso indotto da Priming (passaggio del verdetto del Modello A al Modello B)
-   - Il bias comune di permissività nell'interpretazione di specifiche di protocollo (Postel's Law vs Smuggling)
 10. **Errori comuni e anti-pattern**
-    - Majority Voting Decision Gate (accettare a maggioranza senza giustificazione formale)
-    - Chain-of-Custody Priming (inquinamento del contesto nei revisori)
-    - Vendor Diversity Fallacy (confondere separazione commerciale e diversità epistemica)
-    - Soppressione dell'outlier dissenziente
 11. **Meccanismi di False Assurance nello sviluppo assistito da LLM**
-    - "Multi-Agent Echo Chamber" (costrutto didattico del manuale): la spirale di compiacenza multi-agente
-    - L'illusione burocratica dell'approvazione a più passaggi sequenziali
 12. **Ruolo e limiti degli LLM nello STEP**
-    - Ambiti di supporto ammissibili (ispezione parallela cieca, estrazione meccanica discrepanze)
-    - Cosa non delegare esclusivamente agli LLM senza criteri ed evidenze indipendenti
 13. **Indipendenza delle evidenze nell'audit multi-modello**
-    - Le dieci dimensioni operative di correlazione adottate dal manuale
-    - Condizioni metodologiche per una separazione analitica reale
 14. **Assunzioni, Unknown, limiti residui e condizioni di validità**
-    - Definizione operativa di "Consenso Fragile" vs "Consenso Robusto"
-    - Modello epistemico (FACT, ASSUMPTION, UNKNOWN, etc.)
-    - Gestione dei Decision Gates (PASS, PARTIAL, UNKNOWN, FAIL, NO-GO)
 15. **Relazioni con gli altri STEP della catena di Assurance**
 16. **Esercizi e scenari di comprensione**
 17. **Soluzioni e spiegazioni dettagliate**
@@ -17553,53 +17331,19 @@ L'audit multi-modello rappresenta uno strumento diagnostico di grande valore eur
 ### Mappa del Capitolo
 
 1. **Introduzione e Obiettivo del Capitolo**
-   - Il problema dell'autoverifica: quando la verifica condotta dagli autori del sistema è insufficiente
-   - La rottura dell'autoreferenza nello sviluppo assistito da LLM
-   - Connessione con lo Step 20: aggiungere modelli non equivale a introdurre un verificatore indipendente
 2. **Profilo delle competenze necessarie**
-   - Competenze di sviluppo vs competenze di verifica formale vs autorità di garanzia
-   - Riconoscere e registrare il Competence Gap quando la competenza richiesta eccede quella disponibile
 3. **Prerequisiti**
-   - Raccordo con lo Step 3 (Autorità e Responsabilità), Step 4 (Specifica), Step 11 (Oracoli) e Step 20 (Multi-Model Audit)
 4. **Terminologia essenziale**
-   - Disambiguazione fondamentale: Verification vs Independent Verification vs Audit vs Certification
-   - I cinque concetti cardine dell'indipendenza: Procedurale, Manageriale, Finanziaria, Tecnica ed Epistemica
-   - Standard di riferimento come schemi settoriali: IEEE 1012, DO-178C, ISO 26262
 5. **Concetti fondamentali e teoria completa**
-   - Le dimensioni dell'indipendenza (tassonomia operativa del manuale)
-   - Separazione procedurale/organizzativa != Indipendenza epistemica
-   - Superamento della falsa scala lineare (un soggetto terzo non è automaticamente indipendente)
-   - Il protocollo didattico Clean-Room: verificare la specifica, non l'implementazione
 6. **Distinzioni concettuali ed epistemiche critiche**
-   - Independent Verification vs Second Opinion
-   - Verification vs Validation (inquadramento della formula didattica di Boehm)
-   - Indipendenza richiesta != Indipendenza ottenuta != Indipendenza dimostrata
-   - Spiegazione plausibile != Verifica dimostrata
 7. **Formalizzazione logico-strutturale**
-   - Il modello qualitativo e multidimensionale di allocazione dell'assurance
-   - Valutazione della condizione decisionale: `A_ach < A_req -> NO-GO`
-   - Perché il profilo di indipendenza non è riducibile a uno scalare numerico universale
 8. **Esempi pratici e implementativi**
-   - Caso 1: Verifica Clean-Room con Hypothesis su specifica fiscale/contabile ad alta criticità
-   - Caso 2: Struttura formale di un Independent Verification Report (IVR) per i Decision Gates
 9. **Controesempi didattici**
-   - Il consulente esterno che riutilizza lo stesso prompt dello sviluppatore (Falsa Indipendenza Epistemica)
-   - Il team QA interno subordinato agli obiettivi di consegna del Project Manager (Mancanza di Indipendenza Manageriale e distorsione degli incentivi)
 10. **Errori comuni e anti-pattern**
-    - "Prompt Mirroring": ereditare i vincoli mentali del costruttore
-    - "Specification Borrowing": ricostruire i requisiti leggendo il codice sorgente o le docstring
-    - Confusione tra audit di processo (conformità formale) e verifica di prodotto (correttezza tecnica)
 11. **Meccanismi di False Assurance nello sviluppo assistito da LLM**
-    - La fallacia della "nuova sessione di chat" come presunta garanzia di indipendenza
-    - Delegare all'LLM l'autorità formale di verifica
 12. **Ruolo e limiti degli LLM nello STEP**
-    - Ambiti di supporto ammissibili per il verificatore indipendente
-    - Cosa non delegare esclusivamente agli LLM senza criteri ed evidenze indipendenti
 13. **L'Albero dell'Indipendenza Epistemica**
-    - Le dieci dimensioni operative di correlazione adottate dal manuale
 14. **Assunzioni, Unknown, limiti residui e condizioni di validità**
-    - Modello epistemico (FACT, ASSUMPTION, UNKNOWN, etc.)
-    - Gestione degli stati decisionali al gate (PASS, PARTIAL, UNKNOWN, FAIL, NO-GO)
 15. **Relazioni con gli altri STEP della catena di Assurance**
 16. **Esercizi e scenari di comprensione**
 17. **Soluzioni e spiegazioni dettagliate**
@@ -18241,52 +17985,19 @@ La Verifica Indipendente costituisce il presidio metodologico che impedisce all'
 ### Mappa del Capitolo
 
 1. **Introduzione e Obiettivo del Capitolo**
-   - Dalla rilevazione dell'anomalia all'analisi causale supportata da evidenze
-   - Perché l'accumulo disordinato di fallimenti può compromettere la qualità e la tracciabilità dell'assurance
-   - La Discrepancy Analysis come snodo tra verifica empirica e Decision Gates
 2. **Profilo delle competenze necessarie**
-   - Competenze analitiche e diagnostiche vs esecuzione meccanica dei test
-   - Il gap tipico dell'utente di LLM: l'anti-pattern didattico del "Patch-and-Pray"
 3. **Prerequisiti**
-   - Raccordo con lo Step 4 (Specifica), Step 6 (Invarianti), Step 11 (Oracoli) e Steps 16-21 (Fonti di evidenza)
 4. **Terminologia essenziale**
-   - Definizioni bilingui operative: Anomaly vs Discrepancy, Root Cause Analysis (RCA), Disposition, Symptom, Masking, Regressive Fix
 5. **Concetti fondamentali e teoria completa**
-   - Il ciclo di vita formale della discrepanza (dalla rilevazione alla chiusura giustificata)
-   - La tassonomia operativa del manuale: Origine (Codice, Specifica, Oracolo, Ambiente), Severità e Causalità
-   - La complessità causale sistemica: cause concorrenti, concatenate e contribuenti
-   - Le patologie della riparazione assistita da LLM: allucinazione causale, test-hacking e indebolimento degli oracoli
 6. **Distinzioni concettuali ed epistemiche critiche**
-   - La sequenza metodologica: Osservazione -> Discrepanza -> Ipotesi -> Causa Verificata -> Disposition -> Correzione -> Chiusura
-   - La catena di non-equivalenze: Fail != Bug != Root Cause != Patch != Chiusura Giustificata
-   - Sintomo vs Causa radice; Difetto di codice vs Specifica invalida, incompleta o incoerente
-   - Spiegazione plausibile dell'LLM (Ipotesi) != Diagnosi dimostrata (Fatto)
 7. **Formalizzazione logico-strutturale**
-   - Formalizzazione della discrepanza rispetto a un riferimento giustificato
-   - Lo spazio delle ipotesi causali e la scala epistemica: Plausible(H) != Supported(H) != Verified(H)
-   - Rappresentazione del grafo causale sistemico
 8. **Esempi pratici e implementativi**
-   - Caso 1: Analisi causale di una discrepanza numerica emersa da Property-Based Testing (Python, penalità a scaglioni)
-   - Caso 2: Struttura formale di un Discrepancy Record strutturato per la governance dell'assurance
 9. **Controesempi didattici**
-   - L'allentamento dell'asserzione (Oracle Dilution): silenziare il test per nascondere il difetto
-   - La patch sintattica superficiale che maschera il sintomo e propaga lo stato corrotto a valle
 10. **Errori comuni e anti-pattern**
-    - "Spec-Fitting" (adattare la specifica al comportamento errato del codice)
-    - "LLM Patch-and-Pray" (rigenerazione cieca del codice)
-    - Triage per sfinimento (evitare la confusione tra complessità tecnica e severità d'impatto)
 11. **Meccanismi di False Assurance nello sviluppo assistito da LLM**
-    - L'illusione della spiegazione diagnostica rassicurante
-    - La regressione apparentemente superata: quando il test verde non prova il ripristino della proprietà
 12. **Ruolo e limiti degli LLM nello STEP**
-    - Cosa delegare con profitto (esplorazione dello spazio delle ipotesi, bozze di patch circoscritte)
-    - Cosa non delegare esclusivamente agli LLM (determinazione della causa radice, disposition, chiusura formale)
 13. **Indipendenza delle evidenze nell'analisi delle discrepanze**
-    - Le cinque evidenze del ciclo del difetto: Rilevazione, Diagnosi, Correzione, Regressione, Chiusura
-    - Perché l'indipendenza deve essere proporzionata al rischio lungo l'intera catena
 14. **Assunzioni, Unknown, limiti residui e condizioni di validità**
-    - Modello epistemico applicato alla diagnosi: FACT vs HYPOTHESIS vs ASSUMPTION
-    - Condizioni di disposition e criteri di blocco per i Decision Gates (Step 23)
 15. **Relazioni con gli altri STEP della catena di Assurance**
 16. **Esercizi e scenari di comprensione**
 17. **Soluzioni e spiegazioni dettagliate**
@@ -19982,31 +19693,14 @@ I punti fermi da ricordare sono:
 3. **Prerequisiti**: Il verdetto favorevole del Decision Gate (Step 23), la disponibilità del Review Dossier e la gestione formale delle discrepanze rilevanti (Step 22) secondo le policy di assurance.
 4. **Concetti Fondamentali e Terminologia**: La catena epistemica centrale, le disuguaglianze vincolanti, l'Approvazione Formale, la Responsabilità Epistemica, il Fascicolo di Revisione (*Review Dossier*), il Principio dei Quattro Occhi (*Two-Person Integrity*) e la Capacità di Ispezione Cognitiva.
 5. **Teoria Completa della Revisione Umana di Codice Assistito da LLM**:
-   - Perché i controlli automatizzati sono necessari ma non sufficienti;
-   - La trappola cognitiva della plausibilità superficiale (*Plausibility Trap*);
-   - Il protocollo di ispezione inversa: dall'invariante all'evidenza, dall'evidenza al codice;
-   - La natura dell'atto formale di approvazione: organizzativa, epistemica e, ove applicabile, giuridico-normativa.
-6. **Distinzioni Concettuali ed Epistemiche Critiche**:
-   - Leggere il codice vs Revisionare criticamente il codice;
-   - Comprendere la spiegazione di un LLM vs Comprendere il comportamento a runtime;
-   - Gate PASS vs Prontezza all'approvazione umana;
-   - Approvazione formale vs Dimostrazione della correttezza assoluta;
-   - Delega della produzione vs Delega della responsabilità;
-   - Accordo discorsivo tra modelli vs Verifica empirica indipendente.
+6. **Distinzioni Concettuali ed Epistemiche Critiche**
 7. **Formalizzazione Logico-Epistemica dell'Atto di Approvazione**: Modello qualitativo dell'atto di approvazione in notazione ASCII pura. La catena di distinzioni: `COMPETENCE != AUTHORITY`, `AUTHORITY != INDEPENDENCE`, `INDEPENDENCE != CORRECTNESS`, `APPROVAL != PROOF`. Principio di non-delega della responsabilità decisionale.
 8. **Tracciabilità Verificabile nell'Approvazione**: Collegamento verificabile tra identità del revisore, versione esaminata, evidenze del gate e decisione finale.
-9. **Esempio Pratico e Didattica del Processo**:
-   - Analisi di una Pull Request complessa generata con LLM;
-   - Applicazione del Protocollo di Ispezione Inversa su race conditions e saturazione di memoria;
-   - Schema didattico di un verbale di revisione formale.
-10. **Controesempi Didattici**:
-    - *The Friday Afternoon Rubber-Stamp* (costrutto didattico sull'approvazione per stanchezza);
-    - *The Sycophantic Review Assistant* (costrutto didattico sull'assistente compiacente).
+9. **Esempio Pratico e Didattica del Processo**
+10. **Controesempi Didattici**
 11. **Errori Comuni e Anti-Pattern**: *LGTM Syndrome*, *Diff Drowning*, *Authority Mismatch*, *Blame Shifting* ed *Explanation Satiation* (terminologia didattica del manuale).
 12. **Meccanismi di False Assurance nella Revisione**: L'illusione dell'ordine sintattico (*Fluency Bias*), la delega della comprensione alla sintesi generata e l'appiattimento sull'esito della CI.
-13. **Ruolo e Limiti degli LLM nella Revisione**:
-    - Ambiti di assistenza consentiti (clustering semantico delle modifiche, estrazione delle assunzioni implicite);
-    - Regole di non-delega nel processo didattico (divieto di approvazione autonoma, limiti della diversità dei modelli come surrogato dell'indipendenza).
+13. **Ruolo e Limiti degli LLM nella Revisione**
 14. **Indipendenza del Revisore e Competenza Specifica sulla Proprietà**: Neutralità rispetto alla pressione di consegna, indipendenza dall'autore del prompt e competenza specifica sulla proprietà critica da verificare.
 15. **Assunzioni, Unknown e il Valore del Rifiuto Consapevole**: La sospensione del giudizio come atto di competenza. Dichiarare "Non comprendo questo modulo generato" come virtù di assurance.
 16. **Casi Limite Operativi**: Diff massivi (Richieste di integrazione massive), hotfix di emergenza con controlli compensativi e revisione differita, asimmetria tra esperto di dominio e programmatore di sistema.
@@ -20836,34 +20530,15 @@ L'approvazione dello Step 24 non autorizza la fiducia cieca: autorizza esclusiva
 2. **Profilo delle Competenze Necessarie e Competence Gaps**: Separare la padronanza degli script di automazione della Continuous Delivery dalla competenza di contenimento del raggio d'impatto (*blast radius*) e dall'analisi telemetrica differenziale.
 3. **Prerequisiti e Condizioni di Applicabilità**: Il verdetto favorevole del Decision Gate (Step 23), l'approvazione formale (Step 24) e il principio di proporzionalità nell'adozione di Staging, Canary e Feature Flag.
 4. **Concetti Fondamentali e Catena Epistemica**: La sequenza concettuale dell'esercizio controllato, i criteri di validità dell'osservazione operativa, le sette disuguaglianze dell'in-vivo testing, l'ambiente di Staging, la Canary Release, i Feature Flag e il Blast Radius.
-5. **Teoria Completa dell'Esercizio Controllato**:
-   - Lo *Staging Fidelity Gap* come costrutto didattico e la parità tra ambienti come assunzione da verificare;
-   - Dimensionamento multidimensionale della Canary Release (popolazione, rappresentatività, durata e proprietà sollecitate);
-   - Architettura dei Feature Flag: disaccoppiare deployment da release senza presumere innocuità automatica;
-   - La gestione dello stato condiviso e il problema delle mutazioni dello schema dati.
-6. **Distinzioni Concettuali ed Epistemiche Critiche**:
-   - Deployment vs Rilascio;
-   - Staging test vs Telemetria in-vivo;
-   - Assenza di crash vs Preservazione degli invarianti;
-   - Assenza di anomalie osservate vs Assenza di anomalie reali;
-   - Flag disattivato vs Assenza di effetti collaterali;
-   - Volume di traffico vs Sufficienza epistemica dell'osservazione;
-   - Canary superato vs Dimostrazione di correttezza;
-   - Disponibilità teorica del rollback vs Garanzia operativa di ripristino.
+5. **Teoria Completa dell'Esercizio Controllato**
+6. **Distinzioni Concettuali ed Epistemiche Critiche**
 7. **Formalizzazione Logico-Epistemica del Rilascio Progressivo**: Modello qualitativo del raggio d'impatto e predicato di promozione del Canary.
 8. **Tracciabilità delle Configurazioni di Rilascio**: Collegamento verificabile tra versione del codice, manifesti di configurazione, popolazioni target, finestre temporali e criteri di stop.
-9. **Esempi Pratici e Didattica del Codice per Non Programmatori**:
-   - Implementazione di un router Canary basato su hash deterministico con guardia locale sull'invariante;
-   - Configurazione di Feature Flag resiliente con degradazione controllata (*Fail-Safe Default*);
-   - Spiegazione concettuale passo-passo della logica protettiva.
-10. **Controesempi Didattici**:
-    - *The Silent Canary* (il rollout fittizio su traffico non rappresentativo);
-    - *The Phantom Flag* (il flag che disattiva la diramazione logica ma non impedisce mutazioni ambientali persistenti).
+9. **Esempi Pratici e Didattica del Codice per Non Programmatori**
+10. **Controesempi Didattici**
 11. **Errori Comuni e Anti-Pattern**: *Staging Parity Mirage*, *The Impatient Canary*, *Flag Debt Explosion* e *Lethal Schema Drift* (costrutti didattici del manuale).
 12. **Meccanismi di False Assurance nell'Esercizio Controllato**: Confondere l'esito HTTP 200 con la correttezza semantica, l'illusione statistica del traffico omogeneo e la distinzione `metrica osservata != proprietà critica`.
-13. **Ruolo e Limiti degli LLM in Questo Step**:
-    - Ambiti di supporto (stesura di configurazioni di routing, generazione di script di migrazione retrocompatibili);
-    - Regole di non-delega nel processo di assurance (divieto di decisione autonoma di rollout, divieto di arbitrato sulle anomalie telemetriche).
+13. **Ruolo e Limiti degli LLM in Questo Step**
 14. **Comprensione, Competenza e Delega**: Identificare il confine tra automazione del deployment e comprensione del comportamento del sistema a runtime.
 15. **Indipendenza delle Evidenze**: La telemetria operativa come evidenza empirica complementare e valutazione della sua effettiva indipendenza rispetto ai test pre-rilascio.
 16. **Assunzioni, Unknown e Limiti Operativi**: Variabilità e imprevedibilità del carico reale, gestione dello stato di incertezza durante il rollout e finestre minime di osservazione.
@@ -21708,42 +21383,16 @@ L'ingresso del software assistito da Large Language Models nell'ambiente operati
 1. **Introduzione e Obiettivo del Capitolo**: Perché il monitoraggio convenzionale dell'infrastruttura può non rilevare adeguatamente i fallimenti semantici del software assistito da LLM. Dalla raccolta di telemetria alla deduzione dello stato interno e della tenuta degli invarianti a runtime.
 2. **Profilo delle Competenze Necessarie e Competence Gaps**: Separare la consultazione passiva di cruscotti preconfigurati (*dashboard*) dalla progettazione di sonde semantiche e dall'analisi dell'incertezza operativa.
 3. **Prerequisiti**: Il collegamento con gli Invarianti Critici (Step 6), i Livelli di Assurance (Step 10), i Criteri del Decision Gate (Step 23) e la topologia di rilascio controllato (Step 25).
-4. **Concetti Fondamentali e Terminologia**:
-   - L'origine concettuale dell'osservabilità (dalla teoria del controllo di Kalman all'analogia nell'ingegneria del software);
-   - La tassonomia operativa MELT (Metrics, Events, Logs, Traces);
-   - Le Sonde di Invariante a Runtime (*Runtime Invariant Probes*) come costrutto didattico del manuale;
-   - Contesto strutturato e metadati di tracciabilità (es. *CommitHash, PromptHash*).
-5. **Teoria Completa dell'Osservabilità nel Software Assistito da LLM**:
-   - La modalità di guasto semantico silenzioso (*The Silent Semantic Failure*);
-   - Il Principio delle Sonde di Invariante: rendere osservabili gli aspetti runtime rilevanti;
-   - Utilità e costi dell'alta cardinalità (*High Cardinality*);
-   - Disaccoppiamento architetturale tra logica applicativa generata e strumentazione telemetrica.
-6. **Distinzioni Concettuali ed Epistemiche Critiche**:
-   - Monitoring vs Observability;
-   - Telemetria infrastrutturale vs Telemetria semantica;
-   - Telemetria emessa dal codice vs Osservazione di audit indipendente;
-   - Volume di dati vs Visibilità epistemica;
-   - Observability vs Complete Visibility;
-   - Telemetry vs Evidence of Correctness;
-   - Assenza di allarmi vs Assenza di fallimenti;
-   - Correlazione temporale vs Causalità tracciata.
-7. **Formalizzazione Logico-Epistemica dell'Osservabilità**:
-   - Modello formale didattico derivato per analogia dalla teoria dei sistemi;
-   - Predicato di Osservabilità dell'Invariante;
-   - Analisi di divergenza statistica e comportamentale tra Baseline e Canary.
+4. **Concetti Fondamentali e Terminologia**
+5. **Teoria Completa dell'Osservabilità nel Software Assistito da LLM**
+6. **Distinzioni Concettuali ed Epistemiche Critiche**
+7. **Formalizzazione Logico-Epistemica dell'Osservabilità**
 8. **La Catena della Trasformazione Telemetrica e Tracciabilità**: Dal sistema alla decisione di assurance: `SYSTEM -> INSTRUMENTATION -> TELEMETRY -> OBSERVATION -> INTERPRETATION -> EVIDENCE -> ASSURANCE DECISION`. Tracciabilità bidirezionale dei segnali.
-9. **Esempio Pratico e Didattica del Codice per Non Programmatori**:
-   - Distinzione tra standard OpenTelemetry e costrutti metodologici del manuale;
-   - Implementazione di un middleware di osservabilità semantica con guardia di invariante in Python;
-   - Spiegazione concettuale riga per riga per non programmatori.
-10. **Controesempi Didattici**:
-    - *The Tautological Logger* (L'LLM che genera log che descrivono l'intento anziché il fatto empirico);
-    - *The Drowned Dashboard* (Miliardi di metriche aggregate prive di correlazione semantica).
+9. **Esempio Pratico e Didattica del Codice per Non Programmatori**
+10. **Controesempi Didattici**
 11. **Errori Comuni e Anti-Pattern**: *Dashboard Myopia*, *Self-Masking Instrumentation*, *Cardinality Blindness* e *Post-Hoc Metric Invention* (costrutti didattici del manuale).
 12. **Meccanismi di False Assurance nell'Osservabilità**: L'inganno dei cruscotti verdi, l'uso improprio di medie e percentili (p99/p99.9) e la telemetria non indipendente.
-13. **Ruolo e Limiti degli LLM nell'Osservabilità**:
-    - Ambiti di supporto (estrazione di pattern di log, bozze di query telemetriche);
-    - Limiti di sufficienza, affidabilità, indipendenza e copertura: divieto di arbitrato autonomo e verifica deterministica obbligatoria delle sonde.
+13. **Ruolo e Limiti degli LLM nell'Osservabilità**
 14. **Comprensione, Competenza e Delega**: Cosa l'operatore umano deve comprendere direttamente dai segnali di telemetria e cosa non può essere demandato a sintesi automatizzate.
 15. **Indipendenza delle Evidenze Telemetriche**: Valutazione critica della separazione tra codice generato da LLM e strumenti di misurazione: perché la strumentazione separata non garantisce automaticamente evidenza indipendente.
 16. **Assunzioni, Unknown e Limiti Operativi**: L'effetto sonda (*Probe Effect*), i costi di computazione e i punti ciechi stocastici.
@@ -22729,72 +22378,28 @@ L'osservabilità non è un'attività accessoria da delegare passivamente all'inf
 ### Mappa del capitolo
 
 - **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
-  * Il passaggio dalla telemetria passiva all'attivazione operativa
-  * Il problema del software assistito da LLM in ambiente di produzione
 - **2. Profilo delle competenze necessarie**
-  * Competenze richieste e rischi associati ai gap cognitivi
-  * Formalizzazione del competence gap come stato decisionale
 - **3. Prerequisiti concettuali e tecnici**
-  * Relazione con invarianti, minimo privilegio e osservabilità
 - **4. Concetti fondamentali: dal dato grezzo all'azione umana**
-  * Il cuore epistemico dello STEP: la catena di processo
-  * Perché un allarme non è un'azione
 - **5. Terminologia tecnica e definizioni operative**
-  * Natura convenzionale della terminologia operativa
-  * Definizioni adottate nel manuale
 - **6. Teoria completa: architettura del sistema di allarme e dei runbook**
-  * Disarticolazione della catena: rilevazione, classificazione, notifica, escalation, risposta
-  * Anatomia formale di una regola di allarme robusta
-  * Anatomia del Runbook verificabile a sette dimensioni
 - **7. Distinzioni concettuali ed epistemiche critiche**
-  * Le disuguaglianze assiomatiche dell'assurance operativa
-  * Analisi delle fallacie: segnale, sintomo, incidente e causa
 - **8. Formalizzazione (Modello matematico didattico in ASCII puro)**
-  * Precisione, richiamo e tasso di fall-out degli allarmi
-  * Modello di consumo del budget di errore (Burn Rate multi-finestra)
-  * Modello didattico dell'impatto cumulativo del disservizio
 - **9. Esempi pratici: regole di allarme e runbook verificabili**
-  * Regola di allarme sintomatica multi-finestra (Prometheus/Alertmanager)
-  * Runbook strutturato e verificabile secondo le sette dimensioni
 - **10. Controesempi: il rumore operativo, l'under-alerting e le procedure distruttive**
-  * Allarme rumoroso basato su cause infrastrutturali
-  * Il fallimento silente per assenza di allarmi (Alert Starvation)
-  * Il runbook allucinato con comandi distruttivi irreversibili
 - **11. Errori comuni e anti-pattern nell'ingegneria operativa assistita da LLM**
-  * Tassonomia degli anti-pattern operativi [Costrutti didattici]
 - **12. Meccanismi di False Assurance negli allarmi e nelle procedure**
-  * L'illusione della completezza sintattica
-  * La fallacia della dashboard verde
-  * La fallacia della diagnosi prematura
-  * La consultazione estemporanea di LLM durante l'emergenza
 - **13. Ruolo, compiti idonei e limiti epistemici, operativi e di sufficienza degli LLM**
-  * Perimetro dei compiti idonei vs compiti non delegabili
-  * Limiti epistemici, operativi e di sufficienza
-  * La catena di verifica obbligatoria per Runbook generati da LLM
 - **14. Comprensione, competenza e confini della delega**
-  * Comprensione diretta richiesta, compiti assistibili e verifica indipendente
 - **15. Indipendenza delle evidenze operative**
-  * Il rischio dei failure mode comuni tra sistema e monitoraggio
-  * Verifica dinamica tramite simulazione di guasto (GameDay)
 - **16. Modello epistemico applicato: fatti, assunzioni, raccomandazioni e UNKNOWN**
-  * Classificazione delle asserzioni operative
 - **17. Casi limite ed eccezioni operative**
-  * Tempeste di allarmi e inibizione gerarchica
-  * Guasto dell'infrastruttura di notifica e Dead Man's Snitch
-  * Escalation verso ruoli scoperti e Runbook Rot
-  * Indisponibilità di provider LLM esterni a runtime
 - **18. Relazioni con gli altri STEP della catena di assurance**
-  * Posizionamento sistemico nella sequenza 26 -> 27 -> 28
 - **19. Esercizi pratici e scenari diagnostici**
-  * Tre scenari operativi su regole, runbook e leak di risorse
 - **20. Soluzioni dettagliate e commento epistemico**
-  * Analisi tecnica e decisioni di assurance relative agli scenari
 - **21. Didattica del trasferimento**
-  * Applicazione a pipeline batch, dispositivi IoT e architetture a eventi
 - **22. Criteri oggettivi di padronanza**
-  * Capacità dimostrabili richieste al lettore
 - **23. Sintesi concettuale**
-  * Principi cardine da memorizzare
 
 ---
 
@@ -23641,71 +23246,28 @@ Dispositivo logico distribuito che intercetta le comunicazioni verso una risorsa
 ### Mappa del capitolo
 
 - **1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
-  - Dal rilevamento del guasto al contenimento esecutivo
-  - Perché il software assistito da LLM può richiedere meccanismi di contenimento e recupero proporzionati al rischio
 - **2. Profilo delle competenze necessarie**
-  - Competenze richieste: concorrenza, transazionalità e sistemi distribuiti
-  - Il pericolo del competence gap nell'ingegneria del recupero
 - **3. Prerequisiti concettuali e tecnici**
-  - Collegamenti con invarianti, contenimento, osservabilità e runbook
 - **4. Concetti fondamentali: la gestione attiva della degradazione e del fallimento**
-  - La tassonomia didattica dei tre meccanismi: Rollback, Fallback e Circuit Breaker
-  - Il principio di sopravvivenza del sistema come scelta progettuale
-  - Il nucleo epistemico dello STEP: la catena di contenimento e recupero
 - **5. Terminologia tecnica e definizioni operative**
-  - Definizioni operative adottate nel manuale
 - **6. Teoria completa: tassonomia dei meccanismi di contenimento e ripristino**
-  - 6.1 Rollback: anatomia dell'annullamento e l'asimmetria tra codice e stato persistente
-  - 6.2 Fallback: degradazione controllata, fedeltà semantica e differenze rispetto al fail-safe
-  - 6.3 Circuit Breakers: il modello canonico a tre stati (Closed, Open, Half-Open) e varianti implementative
-  - 6.4 Tracciabilità bidirezionale: dall'invariante critico alla strategia di mitigazione
 - **7. Distinzioni concettuali ed epistemiche critiche**
-  - Le disuguaglianze dell'assurance del ripristino
-  - Annullare il codice vs preservare lo stato: l'assioma `ROLLBACKABILITY != REVERSIBILITY`
 - **8. Formalizzazione (Modello matematico didattico in ASCII puro)**
-  - 8.1 Modello analitico della macchina a stati del Circuit Breaker
-  - 8.2 Modello di disponibilità effettiva con Fallback e valutazione della degradazione delle proprietà
-  - 8.3 Rischio di incoerenza di stato nel Rollback e limiti del pattern Expand/Contract
 - **9. Esempi pratici: architetture resilienti e verificabili**
-  - 9.1 Circuit Breaker applicativo con Fallback euristico trasparente per chiamate a LLM esterno (Python)
-  - 9.2 Strategia di Rollback con migrazione di schema espandibile (Expand/Contract) su database relazionale
 - **10. Controesempi: il falso ripristino e il collasso indotto**
-  - 10.1 Il Rollback del codice che rende illeggibili i dati persistiti (Incompatibilità a ritroso)
-  - 10.2 Il Circuit Breaker mal calibrato: tempesta di richieste concorrenti in Half-Open (Thundering Herd)
-  - 10.3 Il Fallback velenoso (*Poison Fallback*) [Costrutto didattico]: approvazione fittizia di transazioni critiche
 - **11. Errori comuni e anti-pattern nei meccanismi di ripristino assistiti da LLM**
-  - Tassonomia degli anti-pattern operativi [Costrutti didattici]
 - **12. Meccanismi di False Assurance nei meccanismi di recupero**
-  - L'illusione del tasto di rollback universale
-  - La fallacia del circuit breaker protettivo ma cieco
-  - La fallacia della degradazione invisibile
-  - La divergenza operativa: `rollback disponibile != rollback eseguibile sotto pressione`
 - **13. Ruolo, compiti idonei e limiti degli LLM**
-  - Perimetro dei compiti idonei vs compiti che richiedono criteri esterni non delegabili
-  - Le tre categorie di limite: epistemici, operativi e di sufficienza
-  - Catena di verifica obbligatoria per codice di recupero generato da LLM
 - **14. Comprensione, competenza e confini della delega**
-  - Comprensione diretta della transazionalità vs generazione automatizzata
 - **15. Indipendenza delle evidenze: la validazione empirica dei meccanismi di emergenza**
-  - Test dinamico sotto condizioni perturbate: Chaos Engineering e Fault Injection come evidenze circoscritte
 - **16. Modello epistemico applicato: fatti, assunzioni, raccomandazioni e UNKNOWN**
-  - Classificazione delle asserzioni durante la gestione della crisi
 - **17. Casi limite ed eccezioni operative**
-  - Rollback parziale ed effetti collaterali esterni irreversibili (pagamenti, messaggi, terze parti)
-  - Fallimento del meccanismo di fallback stesso (Fallback Recursion)
-  - Partizionamento di rete asimmetrico (Split-Brain del Circuit Breaker)
 - **18. Relazioni con gli altri STEP della catena di assurance**
-  - Il ponte tra Esercizio Controllato (Parte III) ed Evoluzione (Parte IV)
 - **19. Esercizi pratici e scenari diagnostici**
-  - Tre scenari su migrazioni distruttive, fallimenti semantici non intercettati e poison cache medica
 - **20. Soluzioni dettagliate e commento epistemico**
-  - Risoluzione formale e valutazione delle decisioni di assurance
 - **21. Didattica del trasferimento**
-  - Applicazione a sistemi batch, sistemi embedded/IoT e streaming ad eventi
 - **22. Criteri oggettivi di padronanza**
-  - Capacità dimostrabili per attestare la padronanza operativa
 - **23. Sintesi concettuale**
-  - Principi fondamentali e condizioni di validità per l'ingegneria del recupero
 
 ---
 
@@ -24806,29 +24368,29 @@ L'esercizio controllato ha dimostrato che il sistema sa sopravvivere al guasto c
 
 ### Mappa del capitolo
 
-1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
-2. Profilo delle competenze necessarie e gap epistemici
-3. Prerequisiti
-4. Concetti fondamentali e glossario terminologico
-5. Teoria dell'analisi post-deployment: la realtà operativa come fonte di evidenza
-6. Distinzioni concettuali ed epistemiche critiche
-7. Formalizzazione multidimensionale: deviazioni, severità, blast radius e rilevabilità
-8. Metodologia operativa: Blameless Post-Mortem e responsabilità sistemica
-9. Conservazione dell'evidenza: immutabilità, integrità semantica e completezza dell'audit trail
-10. Ruolo, supporto e limiti degli LLM nell'analisi post-deployment
-11. Meccanismi di False Assurance e bias cognitivi post-evento
-12. Esempi tecnici dettagliati
-13. Controesempi e fallimenti di interpretazione
-14. Errori comuni e anti-pattern
-15. Criteri di indipendenza dell'evidenza post-rilascio e correlazione infrastrutturale
-16. Modello epistemico e stati decisionali di Assurance post-evento
-17. Tracciabilità bidirezionale: dall'evento operativo all'aggiornamento dell'assurance case
-18. Esercizi diagnostici e scenari applicativi
-19. Soluzioni dettagliate degli esercizi
-20. Didattica del trasferimento a domini e architetture differenti
-21. Criteri di padronanza operativa ed epistemica
-22. Relazioni sistematiche con gli altri STEP del manuale
-23. Sintesi concettuale
+1. **INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
+2. **Profilo delle competenze necessarie e gap epistemici**
+3. **Prerequisiti**
+4. **Concetti fondamentali e glossario terminologico**
+5. **Teoria dell'analisi post-deployment: la realtà operativa come fonte di evidenza**
+6. **Distinzioni concettuali ed epistemiche critiche**
+7. **Formalizzazione multidimensionale: deviazioni, severità, blast radius e rilevabilità**
+8. **Metodologia operativa: Blameless Post-Mortem e responsabilità sistemica**
+9. **Conservazione dell'evidenza: immutabilità, integrità semantica e completezza dell'audit trail**
+10. **Ruolo, supporto e limiti degli LLM nell'analisi post-deployment**
+11. **Meccanismi di False Assurance e bias cognitivi post-evento**
+12. **Esempi tecnici dettagliati**
+13. **Controesempi e fallimenti di interpretazione**
+14. **Errori comuni e anti-pattern**
+15. **Criteri di indipendenza dell'evidenza post-rilascio e correlazione infrastrutturale**
+16. **Modello epistemico e stati decisionali di Assurance post-evento**
+17. **Tracciabilità bidirezionale: dall'evento operativo all'aggiornamento dell'assurance case**
+18. **Esercizi diagnostici e scenari applicativi**
+19. **Soluzioni dettagliate degli esercizi**
+20. **Didattica del trasferimento a domini e architetture differenti**
+21. **Criteri di padronanza operativa ed epistemica**
+22. **Relazioni sistematiche con gli altri STEP del manuale**
+23. **Sintesi concettuale**
 
 ---
 
@@ -25843,29 +25405,29 @@ Cosa accade se lo STEP 29 viene omesso o condotto superficialmente:
 
 ### Mappa del capitolo
 
-1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
-2. Profilo delle competenze necessarie e gap epistemici
-3. Prerequisiti
-4. Concetti fondamentali e glossario terminologico
-5. Teoria del Risk Register e della Knowledge Base nell'Assurance
-6. Distinzioni concettuali ed epistemiche critiche
-7. Formalizzazione: modellazione parametrica del rischio, efficacia delle mitigazioni e limiti dei modelli
-8. Metodologia operativa: il ciclo vitale del rischio e della conoscenza
-9. Schemi strutturati di Risk Item e Knowledge Entry
-10. Ruolo, supporto e limiti degli LLM nella gestione del rischio e della conoscenza
-11. Meccanismi di False Assurance e bias cognitivi nella catalogazione del rischio
-12. Esempi tecnici dettagliati
-13. Controesempi e fallimenti di governance
-14. Errori comuni e anti-pattern
-15. Criteri di indipendenza e proporzionalità nella validazione delle voci di rischio
-16. Modello epistemico e stati decisionali di Assurance applicati al rischio
-17. Tracciabilità bidirezionale: dall'evidenza empirica al rischio e ai vincoli formali
-18. Esercizi diagnostici e scenari applicativi
-19. Soluzioni dettagliate degli esercizi
-20. Didattica del trasferimento a domini e architetture differenti
-21. Criteri di padronanza operativa ed epistemica
-22. Relazioni sistematiche con gli altri STEP del manuale (Il macro-circuito 29 -> 30 -> 31)
-23. Sintesi concettuale
+1. **INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
+2. **Profilo delle competenze necessarie e gap epistemici**
+3. **Prerequisiti**
+4. **Concetti fondamentali e glossario terminologico**
+5. **Teoria del Risk Register e della Knowledge Base nell'Assurance**
+6. **Distinzioni concettuali ed epistemiche critiche**
+7. **Formalizzazione: modellazione parametrica del rischio, efficacia delle mitigazioni e limiti dei modelli**
+8. **Metodologia operativa: il ciclo vitale del rischio e della conoscenza**
+9. **Schemi strutturati di Risk Item e Knowledge Entry**
+10. **Ruolo, supporto e limiti degli LLM nella gestione del rischio e della conoscenza**
+11. **Meccanismi di False Assurance e bias cognitivi nella catalogazione del rischio**
+12. **Esempi tecnici dettagliati**
+13. **Controesempi e fallimenti di governance**
+14. **Errori comuni e anti-pattern**
+15. **Criteri di indipendenza e proporzionalità nella validazione delle voci di rischio**
+16. **Modello epistemico e stati decisionali di Assurance applicati al rischio**
+17. **Tracciabilità bidirezionale: dall'evidenza empirica al rischio e ai vincoli formali**
+18. **Esercizi diagnostici e scenari applicativi**
+19. **Soluzioni dettagliate degli esercizi**
+20. **Didattica del trasferimento a domini e architetture differenti**
+21. **Criteri di padronanza operativa ed epistemica**
+22. **Relazioni sistematiche con gli altri STEP del manuale (Il macro-circuito 29 -> 30 -> 31)**
+23. **Sintesi concettuale**
 
 ---
 
@@ -27051,29 +26613,29 @@ Il flusso operativo dell'assurance trasforma l'evidenza sul campo in protezione 
 
 ### Mappa del capitolo
 
-1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
-2. Profilo delle competenze necessarie
-3. Prerequisiti concettuali e tecnici
-4. Concetti fondamentali e catena concettuale centrale
-5. Terminologia tecnica essenziale
-6. Teoria completa dell'analisi di impatto
-7. Distinzioni concettuali ed epistemiche critiche
-8. Formalizzazione dell'impatto e del raggio di propagazione
-9. Esempi pratici: modifica apparentemente locale e propagazione semantica
-10. Controesempi: quando una modifica apparentemente sicura può rendere non più applicabile parte dell'assurance
-11. Errori comuni e anti-pattern nell'uso di LLM per i cambiamenti
-12. False assurance: l'illusione della diff contenuta
-13. Ruolo e limiti degli LLM nella Change Impact Analysis
-14. Comprensione, competenza e delega
-15. Indipendenza delle evidenze nell'analisi di impatto
-16. Assunzioni, UNKNOWN e limiti della verifica
-17. Casi limite: modifiche a prompt, configurazioni e dipendenze
-18. Relazioni con gli altri STEP della catena di assurance
-19. Esercizi e scenari di comprensione
-20. Soluzioni e spiegazioni dettagliate
-21. Didattica del trasferimento: applicazione a domini differenti
-22. Criteri di padronanza dello STEP
-23. Sintesi finale
+1. **INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
+2. **Profilo delle competenze necessarie**
+3. **Prerequisiti concettuali e tecnici**
+4. **Concetti fondamentali e catena concettuale centrale**
+5. **Terminologia tecnica essenziale**
+6. **Teoria completa dell'analisi di impatto**
+7. **Distinzioni concettuali ed epistemiche critiche**
+8. **Formalizzazione dell'impatto e del raggio di propagazione**
+9. **Esempi pratici: modifica apparentemente locale e propagazione semantica**
+10. **Controesempi: quando una modifica apparentemente sicura può rendere non più applicabile parte dell'assurance**
+11. **Errori comuni e anti-pattern nell'uso di LLM per i cambiamenti**
+12. **False assurance: l'illusione della diff contenuta**
+13. **Ruolo e limiti degli LLM nella Change Impact Analysis**
+14. **Comprensione, competenza e delega**
+15. **Indipendenza delle evidenze nell'analisi di impatto**
+16. **Assunzioni, UNKNOWN e limiti della verifica**
+17. **Casi limite: modifiche a prompt, configurazioni e dipendenze**
+18. **Relazioni con gli altri STEP della catena di assurance**
+19. **Esercizi e scenari di comprensione**
+20. **Soluzioni e spiegazioni dettagliate**
+21. **Didattica del trasferimento: applicazione a domini differenti**
+22. **Criteri di padronanza dello STEP**
+23. **Sintesi finale**
 
 ---
 
@@ -27902,29 +27464,29 @@ Un'analisi di impatto rigorosa non si accontenta di verificare se il codice modi
 
 ### Mappa del capitolo
 
-1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
-2. Profilo delle competenze necessarie
-3. Prerequisiti concettuali e tecnici
-4. Concetti fondamentali e catena concettuale della Periodic Review
-5. Terminologia tecnica essenziale
-6. Teoria completa della revisione periodica e dell'audit di assurance
-7. Distinzioni concettuali ed epistemiche critiche
-8. Formalizzazione della divergenza di contesto e dell'adeguatezza delle evidenze
-9. Esempi pratici: divergenza contestuale e audit di conformità vs assurance tecnica
-10. Controesempi: quando il sistema non cambia ma il contesto invalida l'evidenza
-11. Errori comuni e anti-pattern nella revisione periodica
-12. False assurance: l'audit cerimoniale e il report compiacente
-13. Ruolo e limiti degli LLM nella revisione periodica e nell'audit
-14. Comprensione, competenza e delega nell'audit
-15. Indipendenza dell'audit e segregazione dei ruoli
-16. Assunzioni, UNKNOWN e limiti della verifica retrospettiva
-17. Casi limite: deprecazione silente, degrado dei dati e obsolescenza normativa
-18. Relazioni con gli altri STEP della catena di assurance
-19. Esercizi e scenari di comprensione
-20. Soluzioni e spiegazioni dettagliate
-21. Didattica del trasferimento: applicazione a domini differenti
-22. Criteri di padronanza dello STEP
-23. Sintesi finale
+1. **INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
+2. **Profilo delle competenze necessarie**
+3. **Prerequisiti concettuali e tecnici**
+4. **Concetti fondamentali e catena concettuale della Periodic Review**
+5. **Terminologia tecnica essenziale**
+6. **Teoria completa della revisione periodica e dell'audit di assurance**
+7. **Distinzioni concettuali ed epistemiche critiche**
+8. **Formalizzazione della divergenza di contesto e dell'adeguatezza delle evidenze**
+9. **Esempi pratici: divergenza contestuale e audit di conformità vs assurance tecnica**
+10. **Controesempi: quando il sistema non cambia ma il contesto invalida l'evidenza**
+11. **Errori comuni e anti-pattern nella revisione periodica**
+12. **False assurance: l'audit cerimoniale e il report compiacente**
+13. **Ruolo e limiti degli LLM nella revisione periodica e nell'audit**
+14. **Comprensione, competenza e delega nell'audit**
+15. **Indipendenza dell'audit e segregazione dei ruoli**
+16. **Assunzioni, UNKNOWN e limiti della verifica retrospettiva**
+17. **Casi limite: deprecazione silente, degrado dei dati e obsolescenza normativa**
+18. **Relazioni con gli altri STEP della catena di assurance**
+19. **Esercizi e scenari di comprensione**
+20. **Soluzioni e spiegazioni dettagliate**
+21. **Didattica del trasferimento: applicazione a domini differenti**
+22. **Criteri di padronanza dello STEP**
+23. **Sintesi finale**
 
 ---
 
@@ -28656,29 +28218,29 @@ L'audit periodico non è un atto burocratico di conformità formale, ma l'eserci
 
 ### Mappa del capitolo
 
-1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
-2. Profilo delle competenze necessarie
-3. Prerequisiti concettuali e tecnici
-4. Concetti fondamentali e catena concettuale della chiusura
-5. Terminologia tecnica essenziale
-6. Teoria completa della chiusura, archiviazione e capitalizzazione
-7. Distinzioni concettuali ed epistemiche critiche
-8. La struttura dell'Assurance Closure Package e la formalizzazione dell'integrità
-9. Esempi pratici: costruzione del manifesto crittografico di chiusura
-10. Controesempi: il progetto chiuso per abbandono e l'amnesia epistemica
-11. Errori comuni e anti-pattern nella chiusura
-12. False assurance: il post-mortem generato dall'LLM e l'autoassoluzione narrativa
-13. Ruolo e limiti degli LLM nella chiusura e nel bilancio delle lezioni
-14. Comprensione, competenza e delega nella chiusura formale
-15. Indipendenza delle evidenze nell'archiviazione e limiti probatori
-16. La Memoria Negativa: assunzioni, UNKNOWN e limiti della conoscenza archiviata
-17. Casi limite: dismissione del sistema, contenzioso post-rilascio e passaggio di consegne
-18. Relazioni con gli altri STEP e chiusura dell'intero ciclo di assurance
-19. Esercizi e scenari di comprensione
-20. Soluzioni e spiegazioni dettagliate
-21. Didattica del trasferimento: applicazione a domini differenti
-22. Criteri di padronanza dello STEP
-23. Sintesi finale
+1. **INTRODUZIONE E OBIETTIVO DEL CAPITOLO**
+2. **Profilo delle competenze necessarie**
+3. **Prerequisiti concettuali e tecnici**
+4. **Concetti fondamentali e catena concettuale della chiusura**
+5. **Terminologia tecnica essenziale**
+6. **Teoria completa della chiusura, archiviazione e capitalizzazione**
+7. **Distinzioni concettuali ed epistemiche critiche**
+8. **La struttura dell'Assurance Closure Package e la formalizzazione dell'integrità**
+9. **Esempi pratici: costruzione del manifesto crittografico di chiusura**
+10. **Controesempi: il progetto chiuso per abbandono e l'amnesia epistemica**
+11. **Errori comuni e anti-pattern nella chiusura**
+12. **False assurance: il post-mortem generato dall'LLM e l'autoassoluzione narrativa**
+13. **Ruolo e limiti degli LLM nella chiusura e nel bilancio delle lezioni**
+14. **Comprensione, competenza e delega nella chiusura formale**
+15. **Indipendenza delle evidenze nell'archiviazione e limiti probatori**
+16. **La Memoria Negativa: assunzioni, UNKNOWN e limiti della conoscenza archiviata**
+17. **Casi limite: dismissione del sistema, contenzioso post-rilascio e passaggio di consegne**
+18. **Relazioni con gli altri STEP e chiusura dell'intero ciclo di assurance**
+19. **Esercizi e scenari di comprensione**
+20. **Soluzioni e spiegazioni dettagliate**
+21. **Didattica del trasferimento: applicazione a domini differenti**
+22. **Criteri di padronanza dello STEP**
+23. **Sintesi finale**
 
 ---
 
@@ -29392,19 +28954,18 @@ I concetti presentati comprendono fenomeni distinti: bias di giudizio, processi 
 
 ### Indice:
 
-1. *Automation Bias*
-2. *Automation Complacency*
-3. *Confirmation Bias*
-4. *Anchoring Effect*
-5. *Il Modello del Cognitive Miser*
-6. *Cognitive Offloading*
-7. *Trust in Automation*
-8. *Overconfidence Effect*
-9. *Illusion of Explanatory Depth*
-10. *Processing Fluency*
-11. *Relazioni tra i concetti*
-
-*Bibliografia essenziale*
+1. **Automation Bias**
+2. **Automation Complacency**
+3. **Confirmation Bias**
+4. **Anchoring Effect**
+5. **Il Modello del Cognitive Miser**
+6. **Cognitive Offloading**
+7. **Trust in Automation**
+8. **Overconfidence Effect**
+9. **Illusion of Explanatory Depth**
+10. **Processing Fluency**
+11. **Relazioni tra i concetti**
+- **Bibliografia essenziale dell'Appendice**
 
 ---
 
@@ -30122,42 +29683,12 @@ La licenza GNU Free Documentation License (GNU FDL) con cui è distribuito il pr
 ### Mappa dell'Appendice
 
   1. **Premesse concettuali e finalità operative**
-     - Raccordo metodologico con gli STEP del manuale
-     - La natura del codice non fidato e l'insufficienza dei controlli verbali
   2. **I cinque assi operativi dell'isolamento (Modello analitico interdipendente)**
-     - Asse 1: Spazio dei Nomi (Visibilità delle entità)
-     - Asse 2: Controllo e Contabilizzazione delle Risorse (Disponibilità)
-     - Asse 3: Filtro e Intercettazione delle Chiamate di Sistema (Superficie di syscall)
-     - Asse 4: Connettività e Isolamento di Rete (Traffico di trasporto)
-     - Asse 5: Autorità su Oggetti ed Entità del Sistema (Riferimenti, LSM e credenziali)
   3. **L'Atlante delle famiglie architetturali di confinamento**
-     - Famiglia A: Confinamento di percorso (`chroot`)
-     - Famiglia B: Isolamento a livello di sistema operativo (`FreeBSD Jails`, `Linux Namespaces/cgroups`)
-     - Famiglia C: Container applicativi OCI (`Docker`, `Podman`)
-     - Famiglia D: Interposizione e kernel in user space (`gVisor`)
-     - Famiglia E: Virtualizzazione hardware (`MicroVM` e `VM tradizionali`)
-     - Famiglia F: Ambienti a memoria lineare e runtime capability (`WebAssembly / WASI`)
   4. **Capability, Object-Capability e autorizzazioni di servizio**
-     - Dal modello basato su identità (ACL) al modello a capability
-     - Proprietà capability-like dei File Descriptor Unix e limiti dell'autorità ambientale residua
-     - Vincoli kernel alla risoluzione dei percorsi (`openat2`)
-     - Distinzione tra Object-Capability e Token di autorizzazione applicativi (Bearer Token / JWT)
   5. **Criteri di selezione e prontuario di consultazione**
-     - Selezione guidata dal modello di minaccia
-     - Matrice comparativa multi-parametro
-     - Albero decisionale condizionale
   6. **Superfici d'attacco, evasioni (Escape) e falsi sensi di sicurezza**
-     - Modalità privilegiata e disattivazione delle difese
-     - Esposizione di socket amministrativi
-     - Precondizioni di abuso dei filesystem pseudo-kernel (`/proc` e `/sys`)
-     - Ambito reale del vincolo `noexec` e mediazione degli interpreti
-     - Effimerità reale contro persistenza latente
   7. **Baseline illustrativa di hardening per runner di codice sintetico su Linux**
-     - Scheda dell'ambiente di riferimento
-     - Configurazione Podman rootless documentata
-     - Gestione del ciclo di vita: watchdog e timeout
-     - Immutabilità del digest crittografico e verifica di filiera
-     - Suite minima di test negativi di conformità
   8. **Prontuario operativo dei termini di confinamento**
 
 ---
@@ -31664,69 +31195,17 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
 ### Indice
 1. **Scopo e convenzioni**
 2. **Simboli e notazioni**
-   - 2.1 Connettivi logici e valori di verità
-   - 2.2 Quantificatori
-   - 2.3 Uguaglianza e confronti
-   - 2.4 Variabili, costanti, funzioni e predicati
-   - 2.5 Parentesi e punteggiatura
-   - 2.6 Simboli di insiemi e relazioni tra insiemi
-   - 2.7 Simboli e sequenze da interpretare con cautela
-   - 2.8 Simboli di inferenza, conseguenza e verifica (metalinguaggio)
 3. **Elementi fondamentali della Logica del Primo Ordine**
-   - 3.1 Dominio di interpretazione
-   - 3.2 Termini
-   - 3.3 Predicati e formule atomiche
-   - 3.4 Formule composte
-   - 3.5 Variabili libere e vincolate
-   - 3.6 Formule aperte e formule chiuse (enunciati / sentences)
 4. **Connettivi logici e valori di verità**
-   - 4.1 Tabella di verità
-   - 4.2 Interpretazione dei connettivi e logica per programmatori
-   - 4.3 Condizioni necessarie, sufficienti e fallacie logiche
 5. **Quantificatori**
-   - 5.1 Quantificatore universale
-   - 5.2 Quantificatore esistenziale
-   - 5.3 Esistenza unica
-   - 5.4 Ambito dei quantificatori
-   - 5.5 La trappola dell'accoppiamento tra quantificatori e connettivi
-   - 5.6 Negazione dei quantificatori
 6. **Parentesi, raggruppamento e precedenza**
-   - 6.1 Uso di parentesi differenti
-   - 6.2 Precedenza degli operatori
 7. **Uguaglianza, definizione e assegnazione**
-   - 7.1 Uguaglianza
-   - 7.2 Definizione
-   - 7.3 Assegnazione
 8. **Proprietà delle formule**
-   - 8.1 Soddisfacibilità
-   - 8.2 Insoddisfacibilità
-   - 8.3 Validità logica
-   - 8.4 Equivalenza logica
 9. **Conseguenza logica e inferenza**
-   - 9.1 Conseguenza logica
-   - 9.2 Differenza tra implicazione e conseguenza logica
-   - 9.3 Conseguenza semantica e dimostrazione sintattica
-   - 9.4 Schemi di inferenza: Modus Ponens e Modus Tollens
 10. **Soddisfacibilità e consistenza delle specifiche**
-    - 10.1 Soddisfacibilità di una formula
-    - 10.2 Soddisfacibilità di un insieme di vincoli
-    - 10.3 Soddisfacibilità, validità e correttezza
-    - 10.4 Consistenza, ipotesi di modellazione e assunzioni contraddittorie
 11. **Equivalenze logiche e negazione dei requisiti**
-    - 11.1 Equivalenze fondamentali
-    - 11.2 Negazione dei requisiti quantificati
-    - 11.3 Falsificazione popperiana, controesempi e limiti del testing
 12. **Formalizzazione delle proprietà del software**
-    - 12.1 Requisiti come formule
-    - 12.2 Invarianti
-    - 12.3 Precondizioni, postcondizioni e relazioni di transizione
-    - 12.4 Condizioni di cornice (frame conditions)
-    - 12.5 Limiti della formalizzazione: verifica vs validazione
 13. **SAT, SMT e verifica automatica**
-    - 13.1 SAT
-    - 13.2 SMT
-    - 13.3 Logica del Primo Ordine e limiti dei solver
-    - 13.4 Interpretazione dei risultati
 14. **Termini e definizioni**
 15. **Esempi di lettura**
 16. **Convenzioni da ricordare**
