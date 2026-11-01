@@ -78,7 +78,7 @@ Principi, Verifica, Evidenze e Governance**
 25. [Staging, Canary & Feature Flags — ambienti di staging, canary release e feature flag](#step-25-staging-canary)
 26. [Observability — osservabilità](#step-26-observability)
 27. [Alerting & Runbooks — allarmi e procedure operative](#step-27-alerting-runbooks)
-28. [Rollback, Fallback & Circuit Breakers](#step-28-rollback-fallback)
+28. [Rollback, Fallback & Circuit Breakers — ripristino, percorsi alternativi e interruttori di circuito](#step-28-rollback-fallback)
 
 **④**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
@@ -4563,7 +4563,7 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
 
 <a name="step-5-assumptions-unknowns"></a>
 
-## CAPITOLO 5 - ASSUMPTIONS & UNKNOWNS (Assunzioni, fatti e conoscenze mancanti)
+## CAPITOLO 5 — Assumptions & Unknowns (Assunzioni, fatti e conoscenze mancanti)
 
 ### Mappa del Capitolo
 
@@ -5443,7 +5443,7 @@ Senza l'esecuzione sistematica e intransigente dello STEP 5, i successivi passi 
 
 <a name="step-6-critical-properties"></a>
 
-## CAPITOLO 6 - CRITICAL PROPERTIES & INVARIANTS (Proprietà critiche e invarianti)
+## CAPITOLO 6 - Critical Properties & Invariants (Proprietà critiche e invarianti)
 
 ### Mappa del Capitolo
 
@@ -6196,7 +6196,7 @@ Lo **STEP 6: Critical Properties & Invariants** stabilisce il fondamento matemat
 
 <a name="step-7-traceability-evidence"></a>
 
-## CAPITOLO 7 - TRACEABILITY (Tracciabilità dalla finalità all'evidenza)
+## CAPITOLO 7 - Traceability (Tracciabilità dalla finalità all'evidenza)
 
 ### Mappa del Capitolo
 
@@ -6976,7 +6976,7 @@ Lo **STEP 7: Traceability** rappresenta la spina dorsale metodologica che impedi
 
 <a name="step-8-competence-gaps"></a>
 
-## CAPITOLO 8 - COMPETENCE Gaps (Gap di comprensione, verifica e autorità)
+## CAPITOLO 8 - Competence Gaps (Gap di comprensione, verifica e autorità)
 
 ### Mappa del Capitolo
 
@@ -7622,7 +7622,7 @@ Lo **STEP 8: Competence Gaps** dimostra che l'assurance del software non è un p
 
 <a name="step-9-specification-validity"></a>
 
-## CAPITOLO 9 - SPECIFICATION VALIDITY (Verifica della validità della specifica)
+## CAPITOLO 9 - Specification Validity (Verifica della validità della specifica)
 
 ### Mappa del Capitolo
 
@@ -13249,7 +13249,7 @@ Lo STEP 15 (LLM-Assisted Implementation) ridefinisce la sintesi del codice come 
 
 <a name="step-16-automated-testing"></a>
 
-## CAPITOLO 16 - Automated Testing (Testing Automatico: Oracoli, Indipendenza e Discriminazione dei Difetti)
+## CAPITOLO 16 — Automated Testing (Testing Automatico: Oracoli, Indipendenza e Discriminazione dei Difetti)
 
 ### Mappa del capitolo
 
@@ -14992,7 +14992,7 @@ Lo Step 17 garantisce che il codice generato dall'LLM non venga ammesso alle fas
 
 <a name="step-18-property-based"></a>
 
-## Capitolo 18 — Property-Based Testing, Fuzzing & Adversarial Testing (Testing basato su proprietà, fuzzing e test avversariali)
+## CAPITOLO 18 — Property-Based Testing, Fuzzing & Adversarial Testing (Testing basato su proprietà, fuzzing e test avversariali)
 
 ### Mappa del Capitolo
 
@@ -15226,7 +15226,7 @@ Per costruire evidenze valide ed evitare illusioni di sicurezza, è obbligatorio
 Il generatore sintetizza dati conformemente a regole formali codificate; lo spazio di input comprende *qualsiasi configurazione binaria o logica* che l'interfaccia possa tecnicamente accettare. Se un generatore sintetizza solo stringhe alfanumeriche ASCII, l'intero spazio dei byte non-ASCII, dei surrogati UTF-16 e dei caratteri di controllo rimane non testato. **Confondere il generatore con lo spazio di input induce la falsa convinzione di aver testato l'interfaccia quando si è testato solo un suo sottoinsieme confortevole.**
 
 #### 2. Campione esplorato != Dominio completo
-Aver eseguito `10.000` o 1.000.000 di test significa aver campionato una frazione infinitesimale dello spazio degli stati di una funzione (che per input complessi ha cardinalità superiore a `2^{64}` o infinita). Il campione non coincide con il dominio.
+Aver eseguito `10.000` o 1.000.000 di test significa aver campionato una frazione infinitesimale dello spazio degli stati di una funzione (che per input complessi ha cardinalità superiore a `2^64` o infinita). Il campione non coincide con il dominio.
 
 #### 3. Distribuzione del generatore != Distribuzione reale
 I generatori sintetici operano tipicamente con distribuzioni uniformi o euristiche centrate sui casi limite standard. Il traffico reale di produzione e gli attacchi avversariali seguono distribuzioni totalmente asimmetriche, code pesanti (*fat tails*) o pattern coordinati. Un componente che supera un PBT con distribuzione uniforme può crollare istantaneamente sotto il carico asimmetrico del mondo reale.
@@ -15895,7 +15895,7 @@ Il Property-Based Testing, il Fuzzing guidato da copertura e il Testing Avversar
 
 <a name="step-19-threat-modeling"></a>
 
-## Capitolo 19 — Threat Modeling & Red Teaming (Modellazione delle minacce e red teaming)
+## CAPITOLO 19 — Threat Modeling & Red Teaming (Modellazione delle minacce e red teaming)
 
 ### Mappa del Capitolo
 
@@ -16559,7 +16559,7 @@ Il Threat Modeling e il Red Teaming costituiscono il contrappeso razionale all'o
 
 <a name="step-20-multi-model"></a>
 
-## Capitolo 20 — Multi-Model Audit (Audit tramite più LLM e limiti dell'accordo tra modelli)
+## CAPITOLO 20 — Multi-Model Audit (Audit tramite più LLM e limiti dell'accordo tra modelli)
 
 ### Mappa del Capitolo
 
@@ -17300,7 +17300,7 @@ L'audit multi-modello rappresenta uno strumento diagnostico di grande valore eur
 
 <a name="step-21-independent-verification"></a>
 
-## Capitolo 21 — Independent Verification (Verifica indipendente)
+## CAPITOLO 21 — Independent Verification (Verifica indipendente)
 
 ### Mappa del Capitolo
 
@@ -17952,7 +17952,7 @@ La Verifica Indipendente costituisce il presidio metodologico che impedisce all'
 
 <a name="step-22-discrepancy-analysis"></a>
 
-## Capitolo 22 — Discrepancy Analysis (Analisi e classificazione delle discrepanze)
+## CAPITOLO 22 — Discrepancy Analysis (Analisi e classificazione delle discrepanze)
 
 ### Mappa del Capitolo
 
@@ -18680,7 +18680,7 @@ L'analisi e la classificazione delle discrepanze costituisce il banco di prova d
 
 <a name="step-23-evidence-decision"></a>
 
-## Capitolo 23 — Evidence-Based Decision Gates (Gate Decisionali Basati sull'Evidenza)
+## CAPITOLO 23 — Evidence-Based Decision Gates (Gate Decisionali Basati sull'Evidenza)
 
 ### Mappa del Capitolo
 
@@ -18862,7 +18862,7 @@ Il gate adotta un modello a sei stati, distinguendo tra stati di verifica dei si
 
 #### 5.3 Regole di Precedenza e Combinazione degli Stati
 
-Quando il gate valuta l'insieme delle proprietà critiche $C = \{c_1, c_2, ..., c_m\}$, il verdetto globale non è una media aritmetica. È regolato da una precedenza categorica e non negoziabile:
+Quando il gate valuta l'insieme delle proprietà critiche `C = {c_1, c_2, ..., c_m}`, il verdetto globale non è una media aritmetica. È regolato da una precedenza categorica e non negoziabile:
 
 ```text
 NO-GO  >  FAIL  >  UNKNOWN  >  PARTIAL  >  PASS
@@ -19585,7 +19585,7 @@ La comprensione effettiva di questo Step non si misura con la capacità di ripet
 5. **Configurare Politiche di Gate Rigorose**: Scrivere o validare configurazioni di gate che specifichino per ciascun claim critico:
    - Metodo di verifica obbligatorio;
    - Soglia quantitativa di copertura;
-   - Livello minimo di indipendenza dell'oracolo ($I(E) \ge MinInd$).
+   - Livello minimo di indipendenza dell'oracolo (`I(E) >= MinInd`).
 6. **Riconoscere e Rigettare gli Anti-Pattern**: Individuare immediatamente casi di *Green Board Fallacy*, *Gate Theater*, *Threshold Tampering* e *Echo Chamber Gate* all'interno di pipeline reali.
 7. **Governare il Protocollo di Override**: Rifiutare scavalchi manuali informali, autorizzando eccezioni operative solo in presenza delle cinque condizioni obbligatorie (autorita' formale, motivazione verbalizzata, confinamento del blast radius, iscrizione del debito nel Registro dei Rischi e piano di rollback).
 
@@ -19624,7 +19624,7 @@ Il Decision Gate Basato sull'Evidenza si colloca nel punto di snodo cruciale tra
 
 #### Relazioni a Monte (Cosa riceve questo Step)
 - **Dallo Step 6 (Proprieta' Critiche)**: Riceve l'elenco degli invarianti non negoziabili da trasformare in claim di gate.
-- **Dallo Step 10 (Assurance Level)**: Riceve i parametri di rigore, la soglia minima di indipendenza probatoria ($MinInd$) e i vincoli quantitativi.
+- **Dallo Step 10 (Assurance Level)**: Riceve i parametri di rigore, la soglia minima di indipendenza probatoria (`MinInd`) e i vincoli quantitativi.
 - **Dagli Step 11 e 21 (Oracoli e Verifica Indipendente)**: Riceve le evidenze sperimentali e le relative attestazioni di disaccoppiamento dalle fonti del generatore.
 - **Dallo Step 22 (Discrepancy Analysis)**: Riceve la matrice delle discrepanze residue e lo stato di consumo del Discrepancy Budget.
 
@@ -19667,7 +19667,7 @@ I punti fermi da ricordare sono:
 
 <a name="step-24-human-review"></a>
 
-## Capitolo 24 — Human Review & Formal Approval (Revisione Umana e Approvazione Formale)
+## CAPITOLO 24 — Human Review & Formal Approval (Revisione Umana e Approvazione Formale)
 
 ### Mappa del Capitolo
 
@@ -20503,7 +20503,7 @@ L'approvazione dello Step 24 non autorizza la fiducia cieca: autorizza esclusiva
 
 <a name="step-25-staging-canary"></a>
 
-## Capitolo 25 — Staging, Canary & Feature Flags (Ambienti di Staging, Canary Release e Feature Flag)
+## CAPITOLO 25 — Staging, Canary & Feature Flags (Ambienti di Staging, Canary Release e Feature Flag)
 
 ### Mappa del Capitolo
 
@@ -21357,7 +21357,7 @@ L'ingresso del software assistito da Large Language Models nell'ambiente operati
 
 <a name="step-26-observability"></a>
 
-## Capitolo 26 — Observability (Osservabilità)
+## CAPITOLO 26 — Observability (Osservabilità)
 
 ### Mappa del Capitolo
 
@@ -21640,7 +21640,7 @@ IsObservable(I, Y, [t_0, t_1]) =
 
 #### 7.2 Analisi di Divergenza Telemetrica Baseline/Canary
 
-Durante una Canary Release (Step 25), l'osservabilità deve quantificare lo scostamento del Canary ($v_{can}$) rispetto alla Baseline ($v_{base}$).
+Durante una Canary Release (Step 25), l'osservabilità deve quantificare lo scostamento del Canary (`v_can`) rispetto alla Baseline (`v_base`).
 
 La scelta della metrica di divergenza Div(v_can, v_base) non è universale, ma **dipende strettamente dalla natura del segnale e della proprietà osservata**:
 - Per tassi di errore discreti: differenza assoluta o relativa dei tassi (Delta_error = Rate_can - Rate_base);
@@ -23469,7 +23469,7 @@ Per comprendere come un Circuit Breaker ben progettato rientri in esercizio senz
 +---------------------------------------------------------------------+
 ```
 
-1. **La Sonda Sentinella Isolata:** Quando scade il tempo di attesa (`T_reset`), il circuito non si apre a tutto il traffico. Ammette una singola richiesta reale alla volta (o un numero piccolissimo e fisso K, es. $K=2$). Tutte le altre centinaia di richieste concorrenti continuano a essere deviate istantaneamente sul Fallback senza toccare la rete.
+1. **La Sonda Sentinella Isolata:** Quando scade il tempo di attesa (`T_reset`), il circuito non si apre a tutto il traffico. Ammette una singola richiesta reale alla volta (o un numero piccolissimo e fisso K, es. `K=2`). Tutte le altre centinaia di richieste concorrenti continuano a essere deviate istantaneamente sul Fallback senza toccare la rete.
 2. **La Desincronizzazione Tramite Jitter:** Se l'applicazione è scalata su 20 container distinti, impostare un tempo fisso identico (es. esattamente 30 secondi) farebbe scattare 20 sonde simultanee nello stesso millisecondo. Il *Jitter* aggiunge una variazione casuale controllata al timer di ciascun nodo (es. tra 30 e 35 secondi), distribuendo i tentativi nel tempo.
 3. **Il Verdetto Asimmetrico:** 
    - Se la sonda sentinella ha successo, l'automa non dichiara vittoria immediata: attende altre $K-1$ conferme consecutive prima di chiudere il circuito (`CLOSED`).
@@ -28888,6 +28888,47 @@ La chiusura, l'archiviazione e la capitalizzazione delle lezioni non costituisco
 2. Preservano la memoria documentata e tracciabile dell'assurance, proteggendo l'organizzazione dall'amnesia tecnologica provocata dalla rapida obsolescenza dei modelli.
 3. Riconoscono con trasparenza ed etica professionale la memoria negativa: ciò che è stato accertato come fatto viene distinto nettamente da ciò che rimane ignoto o non verificabile.
 4. Riaffermano il principio cardine dell'opera: la fiducia nel software non può essere delegata agli algoritmi né fondata sulla plausibilità linguistica, ma deve rimanere un giudizio razionale, fondato su evidenze indipendenti e assunto consapevolmente dall'autorità e dalla responsabilità degli esseri umani.
+
+---
+
+## ⓘ Raccordo di Transizione Metodologica
+### Punto di Controllo Decisionale IV: Dal Ciclo di Vita alla Custodia dell'Assurance
+
+> [!NOTE]
+> **Che cosa abbiamo capitalizzato e come si conclude il percorso operativo**  
+> Con la conclusione dello Step 33 si chiude formalmente la **Parte IV (Evoluzione e mantenimento dell'assurance)** e, con essa, l'intera catena metodologica a 33 passi dell'opera. Abbiamo trasformato gli incidenti sul campo in lezioni non colpevolizzanti (Step 29), istituito la memoria tecnica permanente nel Risk Register e nella Knowledge Base (Step 30), governato l'impatto semantico di ogni cambiamento (Step 31), disinnescato l'obsolescenza da deriva contestuale (Step 32) e sigillato il fascicolo probatorio finale preservando esplicitamente la memoria negativa (Step 33).
+
+#### IL BILANCIO DI ASSURANCE DELLA PARTE IV
+
+| | |
+| :--- | :--- |
+| **1. Gli incidenti e i near-miss sono analizzati senza colpevolizzazione (Blameless)?** | (Step 29) |
+| **2. Le lezioni apprese e i rischi sono registrati in KB e Risk Register strutturati?** | (Step 30) |
+| **3. I vincoli architetturali impediscono la reintroduzione di difetti noti via LLM?** | (Step 30) |
+| **4. Ogni modifica è preceduta dall'analisi del raggio d'impatto (Change Impact Analysis)?** | (Step 31) |
+| **5. Le evidenze pregresse sono riesaminate contro la divergenza contestuale e il model drift?** | (Step 32) |
+| **6. L'audit periodico valuta l'adeguatezza tecnica reale oltre la conformità burocratica?** | (Step 32) |
+| **7. Il fascicolo probatorio (ACP) è sigillato con manifesto crittografico e provenienza?** | (Step 33) |
+| **8. La memoria negativa esplicita ciò che è rimasto non verificato (UNKNOWN)?** | (Step 33) |
+
+#### La Chiusura dell'Opera e l'Accesso alle Appendici
+Il ciclo dell'assurance non è un percorso lineare che termina con l'archiviazione: è una **disciplina ingegneristica permanente**.  
+Attraverso i 33 passi del manuale abbiamo dimostrato che la fiducia nel software assistito da modelli linguistici non può essere estratta dalla plausibilità sintattica del codice, ma deve essere costruita come un edificio deduttivo e verificabile:
+
+```text
+SPECIFICA -> CONFINAMENTO -> VERIFICA INDIPENDENTE -> ESERCIZIO CONTROLLATO -> MEMORIA ISTITUZIONALE
+```
+
+Terminata la sequenza dei capitoli metodologici, il manuale mette a disposizione del lettore la propria **Cassetta degli Attrezzi Specialistica (Appendici)**:
+- L'analisi dei bias cognitivi umani che inducono all'accettazione cieca dell'AI (Appendice ※);
+- La matrice di diversità tecnica e i protocolli per l'audit multi-modello (Appendice ✦);
+- Il catalogo ragionato degli strumenti software di verifica, fuzzing e sicurezza (Appendice ⬡);
+- L'architettura pratica per la costruzione di sandbox ed esecuzione isolata (Appendice ▣);
+- La guida operativa ai modelli di sicurezza dell'host OS e dei runtime (Appendice ♖);
+- I fondamenti formali di teoria dei grafi (Appendice ⊹) e logica del primo ordine (Appendice ⊙);
+- L'uso pratico di Alloy 6 e dei solver SAT come filtro neurosimbolico delle specifiche (Appendice ◈);
+- Il Prompt Master metodologico utilizzato per governare la genesi dell'opera (Appendice ✧);
+- Il Glossario unificato (Appendice ❖) e la Bibliografia essenziale (Appendice ▤).
 
 ---
 
@@ -34880,6 +34921,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Audit Trail (Traccia di Audit)](#audit-trail-traccia-di-audit)
 - [Authority (Autorità Decisionale)](#authority-autorità-decisionale)
 - [Authority Inversion (Inversione dell'Autorità)](#authority-inversion-inversione-dellautorità)
+- [Authority Mismatch (Asimmetria di Autorità)](#authority-mismatch-asimmetria-di-autorità)
 - [Automation Bias (Distorsione da Automazione)](#automation-bias-distorsione-da-automazione)
 - [Automation Complacency (Autocompiacimento da Automazione)](#automation-complacency-autocompiacimento-da-automazione)
 
@@ -34943,6 +34985,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Downstream Blindness](#downstream-blindness)
 
 #### E
+- [Echo Chamber Gate (Il Gate della Camera dell'Eco)](#echo-chamber-gate-il-gate-della-camera-delleco)
 - [Ephemeral Worker](#ephemeral-worker)
 - [Epistemic Laundering (Riciclaggio Epistemico)](#epistemic-laundering-riciclaggio-epistemico)
 - [Epistemic Proxy (Sostituto Epistemico)](#epistemic-proxy-sostituto-epistemico)
@@ -34955,6 +34998,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Evidence Sufficiency (Sufficienza dell'Evidenza)](#evidence-sufficiency-sufficienza-dellevidenza)
 - [Excessive Agency (Eccesso di Delega Agenziale)](#excessive-agency-eccesso-di-delega-agenziale)
 - [Expand/Contract Pattern (Pattern a Espansione e Contrazione)](#expandcontract-pattern-pattern-a-espansione-e-contrazione)
+- [Explanation Satiation (Sazietà da Spiegazione)](#explanation-satiation-sazietà-da-spiegazione)
 - [Exploit](#exploit)
 
 #### F
@@ -35006,6 +35050,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Least Authority (POLA - Principio della Minima Autorità)](#least-authority-pola---principio-della-minima-autorità)
 - [Least Privilege (PoLP - Principio del Minimo Privilegio)](#least-privilege-polp---principio-del-minimo-privilegio)
 - [Lessons Learned (Lezioni Apprese)](#lessons-learned-lezioni-apprese)
+- [Lethal Schema Drift (La Deriva Fatale dello Schema)](#lethal-schema-drift-la-deriva-fatale-dello-schema)
 - [LGTM Syndrome (Looks Good To Me)](#lgtm-syndrome-looks-good-to-me)
 - [Liveness Property (Proprietà di Vivacità)](#liveness-property-proprietà-di-vivacità)
 - [LLM (Large Language Model)](#llm-large-language-model)
@@ -35398,6 +35443,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Situazione operativa patologica in cui l'operatore umano si adegua acriticamente alle raccomandazioni o al codice generato dal modello AI, subordinando il proprio giudizio alla predizione algoritmica e invertendo la gerarchia decisionale.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 3 (Authority & Responsibility), Sezione 4 e Sezione 9.3.*
 
+#### Authority Mismatch (Asimmetria di Autorità)
+**Categoria:** Anti-pattern denominato dal manuale  
+**Definizione:** Condizione organizzativa disfunzionale in cui l'incarico di revisione e approvazione formale viene assegnato a una figura tecnica che, pur possedendo le competenze adeguate, si trova in una posizione gerarchica, contrattuale o professionale di subordinazione rispetto all'autore del codice o ai responsabili dei tempi di consegna. Tale asimmetria mina l'indipendenza decisionale e ostacola l'esercizio effettivo del potere di blocco (veto/REJECTED).  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 24 (Human Review & Formal Approval), Sezione 11.3.*
+
 #### Automation Bias (Distorsione da Automazione)
 **Categoria:** Termine scientifico consolidato (fattori umani)  
 **Definizione:** Tendenza psicologica e cognitiva a favorire acriticamente le indicazioni, le analisi o il codice forniti da sistemi automatizzati o LLM, considerandoli corretti e riducendo l'attenzione analitica anche a fronte di discrepanze evidenti o contraddizioni logiche.  
@@ -35694,6 +35744,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 ### E
 
+#### Echo Chamber Gate (Il Gate della Camera dell'Eco)
+**Categoria:** Anti-pattern denominato dal manuale  
+**Definizione:** Configurazione fallace di un Decision Gate in cui i criteri di ammissibilità sono subordinati al consenso testuale unanime espresso da più modelli linguistici o agenti che valutano reciprocamente i rispettivi output, scambiando la coerenza linguistica interna o il bias statistico condiviso per evidenza empirica indipendente e lasciando transitare difetti logici e allucinazioni verso l'ambiente di esercizio.  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 23 (Evidence-Based Decision Gates), Sezione 10.1 e Sezione 11.4; confronta con Multi-Agent Echo Chamber in Capitolo 20 (Multi-Model Audit), Sezione 11.*
+
 #### Ephemeral Worker
 **Categoria:** Termine tecnico consolidato  
 **Definizione:** Modello di confinamento ed esecuzione basato su processi o container a ciclo di vita atomico e transitorio: l'ambiente viene istanziato per eseguire un singolo task, raccoglie l'output ed è immediatamente distrutto, prevenendo accumuli di memoria, processi orfani o persistenza latente.  
@@ -35752,6 +35807,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine tecnico consolidato  
 **Definizione:** Strategia architetturale di migrazione additiva in più fasi (chiamata anche *Parallel Run*), che consente a una versione software consolidata (Baseline) e a una nuova versione sperimentale (Canary) di coesistere e operare contemporaneamente sullo stesso database senza incompatibilità di schema.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 25 (Staging, Canary & Flags, Sez. 5.4 e 17.2) e applicato alla reversibilità in Capitolo 28 (Rollback, Sez. 5 e 9.2).*
+
+#### Explanation Satiation (Sazietà da Spiegazione)
+**Categoria:** Anti-pattern denominato dal manuale  
+**Definizione:** Errore cognitivo ed epistemico consistente nel ritenere che la capacità di un LLM di spiegare in modo fluido, articolato e convincente la logica del codice da esso generato costituisca prova della sua correttezza o assenza di difetti. Induce nel revisore un falso senso di comprensione che arresta prematuramente la ricerca attiva di omissioni semantiche o condizioni di contesa a runtime.  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 24 (Human Review & Formal Approval), Sezione 11.5 e Sezione 12.*
 
 #### Exploit
 **Categoria:** Termine tecnico di cybersecurity consolidato  
@@ -35982,6 +36042,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine metodologico consolidato  
 **Definizione:** La sintesi concettuale strutturata degli scostamenti tra previsioni teoriche ed evidenze empiriche osservate sul campo, formulata come raccomandazione o ipotesi di miglioramento per aggiornare i requisiti e prevenire l'amnesia organizzativa.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 33 (Closure & Lessons Learned), Sezione 4, Sezione 5 e Sezione 6.4.*
+
+#### Lethal Schema Drift (La Deriva Fatale dello Schema)
+**Categoria:** Anti-pattern denominato dal manuale  
+**Definizione:** Alterazione irreversibile o non retrocompatibile della struttura del database condiviso eseguita contestualmente a un rilascio progressivo (es. Canary Release), tale per cui la versione precedente (Baseline), ancora attiva sulla maggior parte del traffico, fallisce istantaneamente nel momento in cui tenta di leggere o scrivere sui dati modificati, annullando contestualmente qualsiasi efficacia di un eventuale rollback del codice.  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 25 (Staging, Canary & Feature Flags), Sezione 5.4, Sezione 11.4 e Sezione 20.*
 
 #### LGTM Syndrome (Looks Good To Me)
 **Categoria:** Anti-pattern denominato dal manuale (gergo formalizzato)  
