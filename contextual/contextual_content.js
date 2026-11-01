@@ -1,7 +1,7 @@
 /* =========================================================================
  * ASSURANCE DEL SOFTWARE ASSISTITO DA LLM - DIZIONARIO CONTESTUALE
  * Autore:       Cristian Evangelisti
- * File:         contextual_content.js (PARTE 1 DI 3: Lettere A - D)
+ * File:         contextual_content.js
  * Descrizione:  Dataset contestuale per menù interattivi e tooltip di supporto.
  *               Fornisce definizioni, categorie e alias dei concetti di assurance.
  * Licenza:      Doppia licenza (Dual-License):
@@ -1444,6 +1444,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Formulazione di requisiti basata su aggettivi qualitativi non quantificati ('veloce', 'sicuro', 'intuitivo') che impediscono la costruzione di oracoli di verifica deterministici falsificabili.",
     aliases: ["Requisiti Evagativi"]
   },
+  "Happy Path": {
+    title: "Happy Path (Percorso Nominale)",
+    category: "Metodologia di Testing & Requisiti",
+    definition: "Lo scenario di esecuzione ideale e privo di eccezioni in cui tutti gli input sono conformi e il sistema completa l'elaborazione nominale prevista. L'assurance impone di non limitare la verifica a questo percorso (Happy-Path Bias), esplorando sistematicamente stati limite, guasti e anomalie.",
+    aliases: ["Percorso Nominale", "Percorso nominale", "Happy path"]
+  },
   "Happy-Path Monoculture": {
     title: "Happy-Path Monoculture",
     category: "Anti-Pattern di Testing",
@@ -2385,7 +2391,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Priors Statistici del Modello",
     category: "Allineamento AI & Bias",
     definition: "Pattern, convenzioni e assunzioni statisticamente dominanti nel corpus di addestramento dell'LLM (es. float IEEE 754, connessione HTTP affidabile) iniettate tacitamente in assenza di vincoli nel prompt.",
-    aliases: ["Priors del Modello", "priors statistici", "Priors statistici", "Priors", "priors", "prior statistici", "prior", "prior del modello"]
+    aliases: ["Priors del Modello", "Priors statistici", "Priors", "prior statistici", "prior", "prior del modello"]
   },
   "Probe Effect": {
     title: "Probe Effect (Effetto Sonda)",
@@ -2847,7 +2853,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Shrinking (Riduzione Algoritmica del Controesempio)",
     category: "Property-Based Testing",
     definition: "Procedura euristica con cui un framework PBT riduce iterativamente la complessità di un input che ha provocato un fallimento, isolando il controesempio minimo riproducibile.",
-    aliases: ["Riduzione del Controesempio"]
+    aliases: ["Riduzione del Controesempio", "Shrink"]
   },
   "Sign-Off": {
     title: "Sign-Off (Assenso Formale / Firma di Conformità)",
@@ -2913,7 +2919,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Source & Sink (Sorgente e Punto di Arrivo)",
     category: "Taint Analysis",
     definition: "Source è l'ingresso di un dato non fidato dall'esterno; Sink è l'operazione critica (query SQL, comando shell) la cui esecuzione con dati contaminati provoca una vulnerabilità.",
-    aliases: ["Source", "Sink", "Sorgente e Sink"]
+    aliases: ["Source", "Sink", "sink", "Sorgente e Sink"]
   },
   "Spazio degli Stati": {
     title: "Spazio degli Stati (State Space)",
@@ -2992,6 +2998,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Ingegneria della Sicurezza Sistemica",
     definition: "Teoria della sicurezza (Nancy Leveson) in cui gli incidenti originano da azioni di controllo inadeguate generate da discrepanze tra modello mentale e realtà.",
     aliases: ["Systems-Theoretic Accident Model"]
+  },
+  "Starvation": {
+    title: "Starvation (Inedia / Deprivazione di Risorse)",
+    category: "Concorrenza & Sistemi Distribuiti",
+    definition: "Condizione patologica in cui un thread o processo pronto per l'esecuzione (runnable), pur non trovandosi in deadlock, viene indefinitamente privato dell'accesso a una risorsa condivisa (CPU, lock, connessioni DB) a causa di politiche di scheduling sbilanciate o non eque (unfairness).",
+    aliases: ["Inedia", "Deprivazione di Risorse", "Resource Starvation"]
   },
   "State Leakage": {
     title: "State Leakage (Fuga di Stato Asincrono)",
