@@ -1439,6 +1439,8 @@ Al termine dello STEP 1, l'intero artefatto di definizione del problema deve ess
 - **NO-GO**:
   - *Criterio bloccante assoluto*: Si applica quando una o più assunzioni critiche per l'incolumità fisica, la sicurezza patrimoniale o la conformità di legge sono impossibili da monitorare empiricamente, oppure quando il committente rifiuta di perimetrare il problema, lasciando lo scope indefinito a fronte di un potenziale blast radius irreversibile. Nessuna attività a valle è autorizzata.
 
+> *Come verrà formalizzato nello Step 23, mentre PASS, PARTIAL, UNKNOWN e FAIL descrivono lo stato conoscitivo dell'evidenza, NO-GO rappresenta il verdetto bloccante d'azione che arresta categoricamente il rilascio.*  
+
 #### 13.2 Gestione degli UNKNOWN e Condizioni di Invalidazione
 La comparsa di uno stato epistemico UNKNOWN durante lo STEP 1 non rappresenta un difetto del processo analitico, ma una misura di tutela epistemica. 
 Se una proprietà dell'ambiente è classificata come UNKNOWN, si applica la seguente procedura operativa obbligatoria:
@@ -1934,7 +1936,7 @@ La determinazione dell'AL non è un'opinione soggettiva, ma il risultato di una 
 
 #### 5.2 I Livelli di Assurance (*Assurance Levels - AL / AIL*)
 
->Nel presente manuale, **AL** (o **AIL**) è una tassonomia interna utilizzata per classificare il rigore di assurance richiesto; non è presentata come standard normativo universale.
+>Nel presente manuale, **AL** (o **AL**) è una tassonomia interna utilizzata per classificare il rigore di assurance richiesto; non è presentata come standard normativo universale.
 
 Ispirandosi ai framework di sicurezza consolidati per sistemi complessi (IEC 61508 SIL, ISO 26262 ASIL, RTCA DO-178C DAL), definiamo quattro livelli discreti (da AL-0 ad AL-3) calibrati per l'ingegneria del software assistita da intelligenza artificiale:
 
@@ -2060,7 +2062,7 @@ SCHEDA DI CLASSIFICAZIONE DEL RISCHIO: ONCO-SYNTH-STEP2
 - Fisico: Diretto sulla salute fisica del paziente sottoposto al trattamento.
 - Legale: Responsabilità penale per lesioni/omicidio colposo per l'ospedale.
 
-4. DETERMINAZIONE DELL'ASSURANCE INTEGRITY LEVEL (AIL)
+4. DETERMINAZIONE DELL'ASSURANCE LEVEL (AL)
 - Applicazione del Principio di Non-Diluizione:
   Poiché S == CATASTROPHIC e R == IRREVERSIBLE:
   -> CLASSIFICAZIONE ASSEGNATA: AL-3 (MASSIMO RIGORE)
@@ -2109,7 +2111,7 @@ SCHEDA DI CLASSIFICAZIONE DEL RISCHIO: REBATE-BOT-STEP2
 - Finanziario: Limitato per singola transazione a un massimale di 100 EUR. 
   Rischio sistemico di svuotamento fondi confinato da budget globale giornaliero.
 
-4. DETERMINAZIONE DELL'ASSURANCE INTEGRITY LEVEL (AIL)
+4. DETERMINAZIONE DELL'ASSURANCE LEVEL (AL)
 - Poiché S == MODERATE e R == PARTIALLY_REVERSIBLE:
   -> CLASSIFICAZIONE ASSEGNATA: AL-2 (RIGORE MEDIO)
 
@@ -2181,7 +2183,7 @@ Nell'analisi del rischio, declassare l'AL affidandosi unicamente all'intervento 
 ### 9. ERRORI COMUNI E ANTI-PATTERN
 
 #### 9.1 Contrabbando del Rischio (*Risk Smuggling / Risk Downgrading*)
-- **Descrizione**: Pratica metodologica mediante la quale un rischio rilevante viene artificialmente ridotto nella sua rappresentazione, classificazione o perimetrazione, ad esempio ridefinendo in modo improprio il confine del sistema, attribuendo a un singolo componente una responsabilità apparentemente limitata oppure frammentando una funzione critica in sottocomponenti considerati isolatamente. Il risultato è una sottostima del profilo di rischio complessivo e, di conseguenza, l'assegnazione di un livello di assurance (Assurance Integrity Level, AIL) o di requisiti di verifica inferiori a quelli giustificati dal comportamento effettivo del sistema.
+- **Descrizione**: Pratica metodologica mediante la quale un rischio rilevante viene artificialmente ridotto nella sua rappresentazione, classificazione o perimetrazione, ad esempio ridefinendo in modo improprio il confine del sistema, attribuendo a un singolo componente una responsabilità apparentemente limitata oppure frammentando una funzione critica in sottocomponenti considerati isolatamente. Il risultato è una sottostima del profilo di rischio complessivo e, di conseguenza, l'assegnazione di un livello di assurance (Assurance Level, AL) o di requisiti di verifica inferiori a quelli giustificati dal comportamento effettivo del sistema.
 
 > Il fenomeno comprende due casi correlati ma distinti:
 > - **Risk Downgrading**: classificazione del rischio a un livello inferiore rispetto a quello giustificato dalle conseguenze, dall'esposizione e dalle condizioni operative effettive;
@@ -2226,7 +2228,7 @@ L'analisi del rischio nei sistemi che integrano LLM presenta vettori di autoinga
                               v
    +-------------------------------------------------------+
    | AUDITOR: Accetta la spiegazione linguistica           |
-   | Rischio classificato come MITIGATO (AIL declassato)   |
+   | Rischio classificato come MITIGATO (AL declassato)   |
    +-------------------------------------------------------+
                               |
                               v
@@ -2431,21 +2433,21 @@ Se lo STEP 2 stabilisce erroneamente una classificazione AL-1 per un componente 
 
 ### 17. ESERCIZI E SCENARI DI COMPRENSIONE
 
-Si raccomanda al lettore di leggere attentamente ciascuno scenario, formulare per iscritto la propria analisi (identificando Hazards, Severità, Reversibilità, Controllabilità e AIL) e decidere lo stato decisionale (PASS, PARTIAL, UNKNOWN, FAIL, NO-GO) prima di esaminare le soluzioni.
+Si raccomanda al lettore di leggere attentamente ciascuno scenario, formulare per iscritto la propria analisi (identificando Hazards, Severità, Reversibilità, Controllabilità e AL) e decidere lo stato decisionale (PASS, PARTIAL, UNKNOWN, FAIL, NO-GO) prima di esaminare le soluzioni.
 
 #### Esercizio 1: Il Generatore di Script di Manutenzione Database
 Un team di ingegneri integra un LLM all'interno del portale DevOps aziendale. L'LLM riceve istruzioni verbali dagli operatori (es. *"Pulisci i log vecchi e ottimizza gli indici delle tabelle utenti non attive da 2 anni"*) e genera direttamente script SQL complessi che vengono eseguiti automaticamente dal sistema sul database relazionale centrale di produzione alle ore 02:00 di ogni notte.
-Il team ha assegnato al modulo la classe di rischio **AIL 1**, motivando: *"L'LLM è molto preciso, gli abbiamo fornito lo schema formale del database nel prompt e abbiamo eseguito 20 test di prova senza alcun errore."*
+Il team ha assegnato al modulo la classe di rischio **AL 1**, motivando: *"L'LLM è molto preciso, gli abbiamo fornito lo schema formale del database nel prompt e abbiamo eseguito 20 test di prova senza alcun errore."*
 
 *Domande diagnostiche*:
 1. Identifica l'Hazard primario e il massimo Danno nel Mondo (W).
 2. Quali dimensioni del rischio sono state sottostimate o ignorate dal team?
-3. La determinazione di AL-1 è accettabile? Qual è il corretto AIL?
+3. La determinazione di AL-1 è accettabile? Qual è il corretto AL?
 4. Quale stato decisionale deve essere assegnato allo STEP 2?
 
 #### Esercizio 2: Il Dosatore di Insulina Pediatrico con Sistema di Allarme
 Si progetta un'applicazione per smartphone destinata a genitori di bambini diabetici. L'app impiega un LLM multimodale che scatta la foto al piatto consumato dal bambino, stima la quantità di carboidrati e calcola le unità di insulina ad azione rapida che il genitore deve somministrare tramite penna iniettiva.
-Il team assegna lo stato **PASS** con classificazione **AIL 2**, argomentando: *"Il genitore legge il dosaggio sullo schermo e inietta manualmente l'insulina; l'app non inietta nulla direttamente. Inoltre, se l'app si blocca o non risponde, compare un messaggio che invita a contattare il pediatra."*
+Il team assegna lo stato **PASS** con classificazione **AL 2**, argomentando: *"Il genitore legge il dosaggio sullo schermo e inietta manualmente l'insulina; l'app non inietta nulla direttamente. Inoltre, se l'app si blocca o non risponde, compare un messaggio che invita a contattare il pediatra."*
 
 *Domande diagnostiche*:
 1. Smonta la tesi secondo cui la presenza del genitore garantisce elevata controllabilità.
@@ -2896,7 +2898,7 @@ In un'infrastruttura ferroviaria, un team di manutenzione impiega un LLM special
 - *Severità*: Catastrofica (perdita multipla di vite umane).
 - *Reversibilità*: Irreversibile.
 - *Controllabilità Operativa*: Nulla al momento della corsa (i convogli non possono frenare istantaneamente).
-- *Derivazione AIL*: In base al principio di non-diluizione, il profilo impone la classificazione **AL-3**.
+- *Derivazione AL*: In base al principio di non-diluizione, il profilo impone la classificazione **AL-3**.
 
 ##### Scheda di Allocazione dell'Autorità e Governance
 ```text
@@ -2951,7 +2953,7 @@ Un istituto bancario retail adotta un assistente basato su LLM per dialogare con
 - *Severità*: Moderata per singola transazione; Grave in caso di errore sistematico cumulato.
 - *Reversibilità*: Parzialmente reversibile (storni e rinegoziazioni possibili con costi legali).
 - *Controllabilità*: Possibile tramite controlli a campione e monitoraggio aggregate.
-- *Derivazione AIL*: Il profilo di danno patrimoniale e sanzionatorio determina la classe **AIL 2**.
+- *Derivazione AL*: Il profilo di danno patrimoniale e sanzionatorio determina la classe **AL 2**.
 
 ##### Scheda di Allocazione dell'Autorità e Governance
 ```text
@@ -3200,9 +3202,9 @@ L'attribuzione dello stato **NO-GO** non costituisce un semplice rallentamento d
 
 ### 14. RISCHIO, PROPORZIONALITÀ E LIVELLI DI AUTORITÀ
 
-Il rigore delle procedure di governance, il grado di separazione organizzativa e il profilo di competenza richiesto non possono essere applicati uniformemente a qualsiasi software. Essi devono essere rigorosamente commisurati all'Assurance Integrity Level (**AIL**) derivato dall'analisi del rischio (STEP 2).
+Il rigore delle procedure di governance, il grado di separazione organizzativa e il profilo di competenza richiesto non possono essere applicati uniformemente a qualsiasi software. Essi devono essere rigorosamente commisurati all'Assurance Integrity Level (**AL**) derivato dall'analisi del rischio (STEP 2).
 
-> l'**AIL** non determina automaticamente chi ha autorità.  
+> l'**AL** non determina automaticamente chi ha autorità.  
 > La relazione è del tipo:  
 > Rischio → requisiti di assurance → requisiti di competenza/indipendenza → struttura dei ruoli → autorità decisionale → approvazione  
 > e non:  
@@ -3918,7 +3920,7 @@ Operazione: Update_Pumping_Cycle()
 #### 7.2 Scenario B: Specifica del Motore di Idempotenza per Transazioni Finanziarie (Business-Critical - AL-2)
 
 ##### Profilo di Rischio e Contesto Operativo
-Sistema di ricezione pagamenti da gateway API. In caso di partizionamento di rete, il client ritrasmette la richiesta. Un doppio addebito genera perdite finanziarie e sanzioni amministrative (Severità Moderata/Grave, Parzialmente Reversibile -> **AIL 2**).
+Sistema di ricezione pagamenti da gateway API. In caso di partizionamento di rete, il client ritrasmette la richiesta. Un doppio addebito genera perdite finanziarie e sanzioni amministrative (Severità Moderata/Grave, Parzialmente Reversibile -> **AL 2**).
 
 ##### Specifica Dichiarativa Conforme allo STEP 4
 ```text
@@ -4647,6 +4649,8 @@ Ogni enunciato presente in una specifica, in un prompt, in un blocco di codice g
 5.  **UNKNOWN (Sconosciuto / Incognita):** Uno stato di carenza o assenza totale di informazione. Gli sconosciuti si dividono in due sottoclassi critiche:
     *   *Known Unknowns (Incognite note):* Parametri, condizioni o eventi di cui siamo consapevoli di non possedere la misura o la certezza (es. *"Non conosciamo la distribuzione del throughput di rete nei picchi di carico durante il Black Friday"*).
     *   *Unknown Unknowns (Incognite cieche):* Fattori di vulnerabilita, dipendenze nascoste o scenari operativi la cui stessa esistenza e al di fuori della consapevolezza dei progettisti e dei modelli (es. *Un bug silente a livello di microcodice CPU che altera il risultato di un'istruzione vettoriale specifica in rare condizioni termiche*).
+
+> *Come verrà formalizzato nello Step 23, mentre PASS, PARTIAL, UNKNOWN e FAIL descrivono lo stato conoscitivo dell'evidenza, NO-GO rappresenta il verdetto bloccante d'azione che arresta categoricamente il rilascio.*  
 
 #### 3.2 Il Debito Epistemico (Epistemic Debt)
 
@@ -5660,17 +5664,21 @@ Se un predicato soddisfa le condizioni 1 e 2, esso è un invariante induttivo pe
 
 #### 5.4 Triple di Hoare e Contratti Software
 
-A livello di singola procedura o funzione generata da un LLM, la formalizzazione delle proprietà locali adotta il formalismo delle **Triple di Hoare**:
+A livello di singola procedura o funzione generata da un LLM, la formalizzazione delle proprietà locali adotta il formalismo delle **Triple di Hoare** introdotto nello Step 4:
 
 ```text
 {P} C {Q}
 ```
 
-* `P` è la **Precondizione**: il predicato che deve essere vero prima dell'esecuzione del comando `C`.
-* `C` è il **Comando**: il frammento di codice eseguito.
-* `Q` è la **Postcondizione**: il predicato garantito come vero al termine dell'esecuzione di `C`, a patto che `P` fosse soddisfatto e che `C` termini.
+Se la precondizione `P` è violata dal chiamante, l'implementazione `C` non è tenuta a garantire alcun comportamento utile: la tripla risulta vacuamente vera e l'assurance crolla. Per questo, nei sistemi assistiti da LLM, le precondizioni devono essere sempre validate difensivamente all'ingresso delle funzioni.
 
-Se `P` è violato dal chiamante, l'implementazione `C` non è tenuta a garantire alcun comportamento utile: la tripla risulta vacuamente vera e l'assurance crolla. Per questo, nei sistemi assistiti da LLM, le precondizioni devono essere sempre validate difensivamente all'ingresso delle funzioni.
+Nell'ambito delle proprietà critiche di questo Step, la tripla di Hoare viene estesa per modellare la preservazione di un invariante di sistema (`Inv`). Affinché una proprietà sia induttiva, non basta che il comando `C` trasformi `P` in `Q`: deve garantire che se l'invariante era vero prima della transizione, esso rimanga vero nello stato risultante:
+
+```text
+{P AND Inv} C {Q AND Inv}
+```
+
+Se l'implementazione generata dall'LLM soddisfa `Q` ma rompe `Inv`, il contratto locale è formalmente rispettato ma il sistema ha subito una corruzione dello stato globale.
 
 #### 5.5 Proprietà Relazionali e Metamorfiche
 
@@ -9477,6 +9485,8 @@ Le dimensioni analizzate sono:
 9. C (**Incentives / Bias**): Chi sviluppa l'oracolo è organizzativamente incentivato a trovare errori?
 10. R (**Error Correlation**): La probabilita' di guasto comune sui casi limite è statisticamente trascurabile?
 
+> *"Questa matrice definisce il disaccoppiamento tra il componente sotto test e il suo oracolo di verifica. Essa verrà declinata nello Step 19 per le minacce avversariali, nello Step 20 per l'audit multi-modello e nello Step 21 per la governance organizzativa dell'IV&V."*
+
 #### 8.2 I Quattro Livelli di Separazione
 Questo manuale stabilisce una netta gerarchia epistemica tra i livelli di separazione:
 ```text
@@ -10774,12 +10784,13 @@ Questa separazione neutralizza la tendenza degli LLM a mescolare costrutti I/O a
 
 #### 4.3. Design by Contract (Progettazione per Contratto)
 
-Ogni interfaccia di componente deve definire esplicitamente:
-- **Precondizioni (P):** Condizioni che il chiamante deve garantire prima dell'invocazione. Se P è violata, il componente rifiuta l'elaborazione prima di alterare alcuno stato.
-- **Postcondizioni (Q):** Proprietà che il componente garantisce all'uscita, a patto che P fosse soddisfatta.
-- **Invarianti (I):** Proprietà critiche che rimangono costantemente vere prima e dopo qualsiasi transizione valida.
+Mentre nello Step 4 il contratto costituiva la specifica logica del comportamento atteso, nell'Implementation Design il **Design by Contract (DbC)** diventa il meccanismo primario di imposizione architetturale (*Architectural Enforcement*).
 
-Nell'ingegneria assistita da LLM, il contratto deve essere integrato nei costrutti del linguaggio (tipi formali, unioni discriminate, costruttori protetti) e non relegato a semplici commenti in linguaggio naturale.
+Ogni interfaccia di componente traduce i vincoli contrattuali (precondizioni, postcondizioni e invarianti) in barriere concrete:
+- Il chiamante è vincolato a fornire dati che soddisfano la precondizione prima dell'invocazione; se essa è violata, il componente rifiuta l'elaborazione prima di alterare alcuno stato.
+- Il componente garantisce la postcondizione all'uscita e preserva l'invariante critico su ogni transizione valida.
+
+Nell'ingegneria del software assistita da LLM, il contratto non deve essere relegato a semplici commenti in linguaggio naturale: deve essere integrato nei costrutti rigidi del linguaggio (tipi formali, unioni discriminate, costruttori protetti), rendendo impossibile per il codice generato violare le interfacce senza causare un errore a tempo di compilazione o di type-checking.
 
 #### 4.4. Locus of Enforcement (Punto Esclusivo di Presidio)
 
@@ -10891,31 +10902,21 @@ Per valutare criticamente la progettazione dell'implementazione, è necessario d
 
 #### 8.1. Contratti di Modulo Mediante Triple di Hoare
 
-Formalizziamo il comportamento atteso di un modulo o funzione M attraverso la notazione logica di Hoare:
+Nell'Implementation Design, la tripla di Hoare estesa all'invariante di sistema formalizzata nello Step 6:
 
 ```text
-{ P } M { Q }
+{ P AND I } M { Q AND I }
 ```
 
-Sotto la condizione di preservazione dell'invariante critico:
+trova la propria concretizzazione fisica attraverso un **Confine di Validazione (Validation Boundary)** `V`.
+
+La precondizione `P` e l'invariante `I` non vengono affidate alla presunta correttezza del codice generato dall'LLM all'interno del modulo `M`, ma vengono imposte all'ingresso mediante una funzione di parsing tipizzata:
 
 ```text
-Invariant: I
+V: RawInput -> ValidInput(P AND I) or InvalidInputError
 ```
 
-Dove:
-- `P(s)`: Predicato logico di **Precondizione** che definisce lo stato ammissibile `s` prima dell'esecuzione.
-- `Q(s, s')`: Predicato logico di **Postcondizione** che vincola la relazione tra lo stato precedente `s` e il nuovo stato `s'` (dove per convenzione notazionale standard l'apice indica lo stato al tempo successivo, ossia la configurazione della memoria risultante dopo che il comando `M` ha terminato la propria esecuzione).
-- `I(s)`: Predicato di **Invariante Critico** (derivato dallo Step 6), che deve rimanere vero in ogni stato stabile:
-  `P(s) and I(s) -> { M } -> Q(s, s') and I(s')`
-
-L'Implementation Design realizza fisicamente queste condizioni attraverso un **Confine di Validazione (Validation Boundary)** V, formalizzato come una funzione di parsing:
-
-```text
-V: RawInput -> ValidInput(P) or InvalidInputError
-```
-
-Tale che l'accesso alla logica del modulo M sia impossibile senza il superamento preventivo del parsing:
+L'architettura garantisce così che l'accesso alla logica del modulo `M` sia strutturalmente impossibile senza il superamento preventivo del filtro:
 
 ```text
 if V(raw_data) == ValidInput(clean_data) then:
@@ -10923,6 +10924,8 @@ if V(raw_data) == ValidInput(clean_data) then:
 else:
     emit SafeRejection(error_details)
 ```
+
+Questo schema assicura che il modulo `M` (il *Functional Core*) operi esclusivamente su stati validati per costruzione, garantendo la postcondizione `Q` e preservando l'invariante `I` all'uscita senza dipendere da controlli difensivi sparsi nel codice.
 
 > *(Per un esempio pratico di modellazione formale dei vincoli di Separation of Duties (SoD) e prevenzione dell'auto-approvazione, vedi l'appendice: [◈ Alloy e SAT per il Controllo delle Specifiche — Sez. 4](#appendice-alloy)).*
 
@@ -16388,7 +16391,7 @@ La semplice separazione organizzativa tra chi sviluppa il software e chi effettu
 
 L'indipendenza deve essere valutata analizzando se costruttore e attaccante condividono elementi strutturali che ne inficiano l'obiettività.
 
-| LE DIECI DIMENSIONI DI CORRELAZIONE DELL'EVIDENZA |
+| Le Dimensioni di Correlazione Specifiche del Red Teaming \* |
 | :--- |
 | **1. DATI:** Usare gli stessi dataset per addestrare, difendere e attaccare. |
 | **2. ASSUNZIONI:** Dare per scontati gli stessi limiti operativi. |
@@ -16400,6 +16403,8 @@ L'indipendenza deve essere valutata analizzando se costruttore e attaccante cond
 | **8. CRITERI DI SUCCESSO:** Definire la vittoria solo su metriche di comodo. |
 | **9. INCENTIVI:** Avere interesse economico o di carriera a non trovare bug. |
 | **10. INFORMAZIONI PRIVILEGIATE:** Condurre test con assunzioni irrealistiche. |
+
+\* *Adattamento del vettore dello Step 11, sezione 8.1, al contesto avversariale*
 
 Se il Red Team (umano o coadiuvato da IA) limita i propri attacchi unicamente all'elenco di minacce compilato dallo sviluppatore, **l'evidenza prodotta è fortemente correlata**: i percorsi d'attacco omessi dalla progettazione non verranno mai esplorati.
 
@@ -17125,20 +17130,10 @@ Moltiplicare gli agenti linguistici non incrementa la certezza: moltiplica unica
 
 ### 13. Indipendenza delle evidenze nell'audit multi-modello
 
-Nel valutare le risultanze di un Multi-Model Audit, l'indipendenza deve essere esaminata attraverso le **dieci dimensioni operative di correlazione (tassonomia operativa adottata da questo manuale)**:
-
-| LE DIECI DIMENSIONI DI CORRELAZIONE NELL'AUDIT MULTI-MODELLO |
-| :--- |
-| **1. DATI:** Pre-training su collezioni web e repository condivisi. |
-| **2. ASSUNZIONI:** Euristiche comuni di interpretazione dei linguaggi. |
-| **3. THREAT MODEL:** Stessa comprensione superficiale dei rischi tipici. |
-| **4. SPECIFICHE:** Condivisione delle medesime ambiguità lessicali. |
-| **5. TOOL:** Utilizzo degli stessi interpreti o sandbox di esecuzione. |
-| **6. GENERATORI:** Sovrapposizione di sampling e temperature standard. |
-| **7. ORACOLI:** Assenza di verificatori logici esterni disaccoppiati. |
-| **8. CRITERI DI SUCCESSO:** Medesima metrica di conformità linguistica. |
-| **9. INCENTIVI:** Allineamento statistico a non sollevare troppi falsi allarmi o ad assecondare le assunzioni del prompt dell'utente. |
-| **10. INFORMAZIONI PRIVILEGIATE:** Condivisione di output intermedi (inquinamento indotto da Priming). |
+> *Richiamando il vettore di indipendenza formalizzato nello Step 11, nell'audit tra più LLM il rischio di fallimento correlato non si distribuisce uniformemente su tutte le dimensioni, ma si concentra su tre fattori critici:*  
+> 1) Sovrapposizione dei dati di pre-addestramento (Data Origin),  
+> 2) Somiglianza delle architetture e degli incentivi RLHF (Model Family & Incentives),  
+> 3) Condizionamento reciproco da contesto (Prompt Priming).
 
 Un audit multi-modello garantisce una parziale separazione procedurale solo se:
 - I modelli vengono interrogati con istanze isolate e prompt ciechi;
@@ -17795,9 +17790,9 @@ Uno degli errori epistemici più ricorrenti tra chi sviluppa con LLM consiste ne
 
 ### 13. L'Albero dell'Indipendenza Epistemica
 
-Il verificatore deve documentare la propria indipendenza analizzando le **dieci dimensioni operative di correlazione adottate dal manuale**:
+Mentre lo Step 11 definisce l'indipendenza tecnica dell'oracolo matematico/software, lo Step 21 modella l'indipendenza dell'**autorità umana e dell'organizzazione** che conduce l'ispezione. Il verificatore deve quindi documentare e giustificare la propria indipendenza lungo le seguenti dimensioni:
 
-| LE DIECI DIMENSIONI DELL'INDIPENDENZA EPISTEMICA (DIE) |
+| Dimensioni di Indipendenza per la Verifica Indipendente (IV&V) |
 | :--- |
 | **1. ORIGINE DELLA SPECIFICA:** Requisiti tratti dai documenti di business primari, non dal codice sorgente o dalle spiegazioni dell'autore. |
 | **2. MODELLO DI RAGIONAMENTO:** Euristiche analitiche disgiunte da quelle adottate dal team di sviluppo. |
@@ -25092,24 +25087,24 @@ L'evidenza post-deployment non è automaticamente indipendente solo perché prov
 In conformità con il modello epistemico del manuale, ogni asserzione e conclusione formulata durante l'analisi deve essere classificata formalmente per separare i fatti oggettivi dalle congetture.
 
 ```text
-CLASSIFICAZIONE FORMALE DELLE AFFERMAZIONI INVESTIGATIVE
+Esempi di Qualificazione delle Evidenze Forensi Post-Incidente
 
-Stato Epistemico   Criterio di applicazione                                   Esempio pratico
+Stato Epistemico        Esempio pratico
 -------------------------------------------------------------------------------------------------------------------------
-FACT               Dato empirico oggettivo, verificabile e immutabile         "Alle 11:20:04 UTC la CPU del nodo auth-2
-                   estratto da telemetria con catena di custodia integra.     ha raggiunto il 100% per 320 secondi."
+FACT                   "Alle 11:20:04 UTC la CPU del nodo auth-2
+                        ha raggiunto il 100% per 320 secondi."
 
-HYPOTHESIS         Modello esplicativo plausibile che connette due o più      "L'aumento di CPU è stato scatenato da una
-                   fatti, non ancora confermato sperimentalmente.             regex con backtracking esponenziale su email lunghe."
+HYPOTHESIS             "L'aumento di CPU è stato scatenato da una
+                        regex con backtracking esponenziale su email lunghe."
 
-ASSUMPTION         Condizione considerata vera durante la progettazione,      "Si assumeva che il campo email non superasse
-                   rivelatasi falsa o non garantita nell'ambiente reale.      mai i 254 caratteri previsti dallo standard RFC."
+ASSUMPTION             "Si assumeva che il campo email non superasse
+                        mai i 254 caratteri previsti dallo standard RFC."
 
-UNKNOWN            Variabile, stato o intervallo temporale su cui non si      "Non è noto lo stato della memoria alle 11:19 UTC
-                   dispone di evidenze a causa di interruzione telemetrica.    perché l'agent era in fase di riavvio."
+UNKNOWN                "Non è noto lo stato della memoria alle 11:19 UTC
+                        perché l'agent era in fase di riavvio."
 
-RECOMMENDATION     Intervento correttivo proposto, in attesa di formale       "Sostituire la regex con un parser lineare e
-                   analisi di impatto (Change Impact Analysis - STEP 31).     aggiungere un vincolo a monte sulla lunghezza stringa."
+RECOMMENDATION         "Sostituire la regex con un parser lineare e
+                        aggiungere un vincolo a monte sulla lunghezza stringa."
 ```
 
 #### Stati decisionali di Assurance post-evento
@@ -26219,24 +26214,24 @@ Più LLM possono condividere le stesse lacune di addestramento, gli stessi bias 
 Ogni informazione inserita nel Risk Register o nella Knowledge Base deve essere etichettata secondo il modello epistemico del manuale:
 
 ```text
-CLASSIFICAZIONE EPISTEMICA DELLE INFORMAZIONI DI RISCHIO
+Applicazione dello Statuto Epistemico alle Voci del Risk Register
 
-Stato Epistemico   Criterio di applicazione                                   Esempio pratico
+Stato Epistemico        Esempio pratico
 -------------------------------------------------------------------------------------------------------------------------
-FACT               Dato oggettivo misurato o verificato sperimentalmente     "In data 18/09 il connection pool ha raggiunto
-                   mediante esecuzione di test o telemetria di produzione.   la saturazione di 100 connessioni simultanee."
+FACT                   "In data 18/09 il connection pool ha raggiunto
+                        la saturazione di 100 connessioni simultanee."
 
-HYPOTHESIS         Modello causale esplicativo di un pericolo, in attesa     "Si ipotizza che l'aumento di latenza dipenda
-                   di riscontro o confutazione empirica.                     da un ciclo di garbage collection non ottimizzato."
+HYPOTHESIS             "Si ipotizza che l'aumento di latenza dipenda
+                        da un ciclo di garbage collection non ottimizzato."
 
-ASSUMPTION         Condizione assunta come vera per calcolare il rischio,    "Si assume che il fornitore cloud rispetti lo SLA
-                   la cui falsificazione invalida la valutazione.            di latenza di rete inferiore a 10ms nell'area UE."
+ASSUMPTION             "Si assume che il fornitore cloud rispetti lo SLA
+                        di latenza di rete inferiore a 10ms nell'area UE."
 
-UNKNOWN            Variabile, comportamento o dipendenza di cui si ignora    "Non è noto il comportamento del parser JSON
-                   lo spazio di stato in condizioni non nominali.             a fronte di payload superiori a 50MB."
+UNKNOWN                "Non è noto il comportamento del parser JSON
+                        a fronte di payload superiori a 50MB."
 
-RECOMMENDATION     Intervento correttivo proposto da un post-mortem,         "Sostituire la serializzazione standard con
-                   in attesa di analisi di impatto formale (STEP 31).        uno schema binario tipizzato e validato a monte."
+RECOMMENDATION         "Sostituire la serializzazione standard con
+                        uno schema binario tipizzato e validato a monte."
 ```
 
 #### Stati decisionali di Assurance derivati dal Risk Register
