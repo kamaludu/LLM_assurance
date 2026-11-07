@@ -1061,13 +1061,55 @@ Di seguito si riportano le definizioni unificate dei termini specialistici utili
 > [!NOTE]
 > **Come orientare la lettura in base al proprio ruolo**
 >
-> L'Assurance del software assistito da LLM coinvolge competenze diverse: sviluppo, gestione del prodotto, sicurezza, conformita' e controllo.
+> L'Assurance del software assistito da LLM coinvolge competenze diverse: sviluppo, gestione del prodotto, sicurezza, Conformità e controllo.
 >
 > Il manuale deve comunque essere letto come un'unica catena logica: ogni fase si basa sulle evidenze e sulle decisioni delle fasi precedenti.
 >
 > Questa guida non indica quali parti saltare. Indica invece **dove concentrare inizialmente l'attenzione** in base alle proprie responsabilita'.
 
-### 1. Responsabile di Conformita', Legal o Risk
+### Indice della Guida
+
+0. **Premessa per tutti i ruoli**: *cosa si ottiene dalla lettura senza dover memorizzare formule o codice*
+1. **Responsabile di Conformità, Legal o Risk**
+2. **Product Manager, Project Lead o Decision Maker**
+3. **Sviluppatore, Software Architect o DevOps Engineer**
+4. **Security Tester, QA Specialist o Auditor Indipendente**
+
+---
+
+### 0. Premessa per tutti i ruoli: *cosa si ottiene dalla lettura senza dover memorizzare formule o codice*
+
+> [!TIP]
+> **Come leggere questo manuale se non siete specialisti di metodi formali o di sicurezza**
+>
+> Questo testo contiene dimostrazioni, modelli formali, architetture di sistema e codice. 
+> Tuttavia, **una lettura attenta non richiede affatto di memorizzare formule matematiche, comandi di terminale o costrutti logici per risultare pienamente efficace**.
+>
+> Lo scopo primario del manuale non è trasformare ogni lettore in un ingegnere dei sistemi operativi o in un matematico della verifica formale, ma **costruire un modello mentale permanente e consapevole** per chiunque debba commissionare, gestire, sviluppare o autorizzare software assistito da modelli linguistici.
+
+Leggere attentamente quest'opera senza pretese di memorizzazione tecnica produce benefici pratici immediati per qualunque profilo:
+
+1. **Immunità alla seduzione della forma (Fine del "Vibe Coding"):**  
+   Imparerete a non farvi ipnotizzare dall'eleganza stilistica, dalla leggibilità e dalla sicurezza apparente con cui un LLM genera codice e spiegazioni. Acquisirete il riflesso professionale di separare sempre la *plausibilità linguistica* (la forma) dalla *verità logica* (la sostanza).
+
+2. **Riconoscimento della trappola circolare dei test:**  
+   Capirete all'istante perché chiedere allo stesso modello di scrivere il codice e i relativi test generi quasi sempre una pericolosa finzione: il test confermerà l'allucinazione del codice anziché scovarla. Imparerete la regola d'oro dell'assurance: *l'oracolo di controllo non deve mai derivare dalla stessa fonte che ha generato il programma*.
+
+3. **Autodifesa pratica della postazione e dei dati:**  
+   Capirete perché scrivere nel prompt *"per favore non toccare file esterni"* ha valore di sicurezza pari a zero. Imparerete i principi cardine del confinamento e della Minima Autorità: non concedere mai privilegi amministrativi a codice sintetico, isolare le cartelle in sola lettura e non esporre credenziali o token nei file di configurazione.
+
+4. **La bussola per valutare fornitori, consulenti e soluzioni esterne:**  
+   Che dobbiate valutare un fornitore di software, un tool commerciale o una proposta tecnica interna, saprete esattamente quali domande porre per verificare la consistenza reale di una soluzione AI: *"Quali oracoli indipendenti avete usato? Come gestite il blast radius se il modello allucina? Cosa succede ai dati se il servizio va in timeout?"*.
+
+5. **La legittimazione a fermarsi (Il valore dell'UNKNOWN):**  
+   Smetterete di vivere l'incertezza come un difetto personale da risolvere incollando errori a raffica nella chat per tentativi (*Patch-and-Pray*). Imparerete che dichiarare formalmente **`UNKNOWN`** (*"Non comprendo questo modulo e non so come si comporterà sotto carico, quindi non lo rilascio"*) è un atto di maturità, competenza e rigore ingegneristico.
+
+6. **Una mappa topografica per le emergenze future:**  
+   Non ricorderete a memoria ogni algoritmo, ma conserverete una mappa di orientamento del rischio. Quando tra sei mesi affronterete una migrazione delicata di database, saprete dove andare a rileggere il pattern *Expand/Contract*; quando un server rischierà il collasso per troppe richieste concorrenti, saprete esattamente in quale capitolo cercare l'architettura di un *Circuit Breaker*.
+
+---
+
+### 1. Responsabile di Conformità, Legal o Risk
 
 **Domanda principale:**  
 *Su quali evidenze possiamo dimostrare a un'autorita', a un cliente o a un valutatore indipendente che il sistema è controllato, verificato e conforme ai requisiti applicabili?*
@@ -9275,7 +9317,7 @@ Dove i **coefficienti** sono definiti come segue:
 1 - **Severity** (S in {0, 1, 2, 3}):
    - S = 0: Nessun impatto o fastidio cosmetico trascurabile.
    - S = 1: Degrado locale, impatto operativo minore, aggirabile senza perdite.
-   - S = 2: Perdita finanziaria significativa, violazione di conformita' (ad esempio GDPR), perdita parziale di dati.
+   - S = 2: Perdita finanziaria significativa, violazione di Conformità (ad esempio GDPR), perdita parziale di dati.
    - S = 3: Danno all'incolumita' fisica, collasso infrastrutturale critico, sanzione esistenziale per l'organizzazione.
 
 <mark>(S, **E**, A, R, D, C, gamma)</mark>  
@@ -9903,7 +9945,7 @@ Nello sviluppo software, e in particolare in quello assistito da LLM, la validaz
 PROPERTY (Proprieta' critica identificata nello Step 6)
    |
    v
-ORACLE (Meccanismo indipendente che definisce il criterio di conformita')
+ORACLE (Meccanismo indipendente che definisce il criterio di Conformità)
    |
    v
 TEST / CHECK (Esperimento operativo di stimolazione del software)
@@ -9915,7 +9957,7 @@ RESULT (Dato grezzo osservato: output, codice di ritorno, traccia di esecuzione)
 EVIDENCE (Artefatto documentale e riproducibile che attesta l'esito dell'oracolo)
    |
    v
-ASSURANCE DECISION (Giudizio formale di conformita': GO / NO-GO / UNKNOWN)
+ASSURANCE DECISION (Giudizio formale di Conformità: GO / NO-GO / UNKNOWN)
 ```
 
 Questa catena impone due principi non negoziabili:
@@ -10037,7 +10079,7 @@ In letteratura e nell'industria non esiste un'unica classificazione universale d
 
 7. Oracolo di Dominio / Esperto Umano (**Domain / Expert Oracle**)
    - Meccanismo: Revisione e valutazione qualitativa e quantitativa condotta da specialisti umani accreditati e dotati di autorita' decisionale di dominio.
-   - Punti di forza: Indispensabile per giudicare adeguatezza semantica, conformita' etica, comprensibilita' clinica o legale.
+   - Punti di forza: Indispensabile per giudicare adeguatezza semantica, Conformità etica, comprensibilita' clinica o legale.
    - Limiti: Lento, costoso, non scalabile ed esposto a fatica cognitiva e bias umani.
 
 8. Oracolo basato su Fonte Normativa Esterna (**External Authoritative Source Oracle**)
@@ -20950,7 +20992,7 @@ I principi della revisione umana e dell'approvazione formale si applicano trasve
 | :--- |
 | **Artefatto:** Funzione C generata da LLM per il controllo del trim di quota. |
 | **Ruolo del Revisore:** Ispezione del Worst-Case Execution Time (WCET); verifica dell'assenza assoluta di allocazione dinamica di memoria; riscontro della tracciabilita' biunivoca riga per riga tra requisiti di sistema e codice C. |
-| **Modalita' di Approvazione:** Verbale formale firmato digitalmente da un ingegnere certificato, con valore formale ai fini della conformita' tecnica. |
+| **Modalita' di Approvazione:** Verbale formale firmato digitalmente da un ingegnere certificato, con valore formale ai fini della Conformità tecnica. |
 | **SCENARIO DIDATTICO 2: Finanza ad Alta Frequenza (High-Frequency Trading)** |
 | **Artefatto:** Modulo C++ per l'ordinamento e l'instradamento di ordini azionari. |
 | **Ruolo del Revisore:** Caccia attiva a lock contention, cache-miss asimmetrici e condizioni di gara sui socket; verifica che la logica rispetti i vincoli normativi sulla prevenzione di ordini anomali. |
@@ -20958,7 +21000,7 @@ I principi della revisione umana e dell'approvazione formale si applicano trasve
 | **SCENARIO DIDATTICO 3: Piattaforma Sanitaria Cloud (Trattamento Dati Sensibili)** |
 | **Artefatto:** Servizio API TypeScript/Node.js per l'accesso ai referti medici. |
 | **Ruolo del Revisore:** Verifica dell'invariante di controllo accessi (assenza di BOLA/IDOR); riscontro che non siano esposti identificativi non pseudonimizzati nei log diagnostici o nelle risposte JSON. |
-| **Modalita' di Approvazione:** Firma del responsabile di sicurezza applicativa e registrazione nel fascicolo di conformita' prima dell'apertura dello Step 25. |
+| **Modalita' di Approvazione:** Firma del responsabile di sicurezza applicativa e registrazione nel fascicolo di Conformità prima dell'apertura dello Step 25. |
 
 *Nota didattica*: Gli scenari sopra riportati hanno esclusiva finalità illustrativa dei principi di revisione e non costituiscono manuali operativi di conformità per le specifiche normative di settore.
 
@@ -28336,7 +28378,7 @@ L'esecuzione della revisione deve seguire una sequenza metodologica rigorosa e d
    [ RE-VERIFICATION WHERE REQUIRED (Test mirati su golden set) ]
                          |
                          v
-   [ FINDINGS / UNKNOWN (Identificazione non-conformita' e lacune) ]
+   [ FINDINGS / UNKNOWN (Identificazione non-Conformità e lacune) ]
                          |
                          v
    [ UPDATED ASSURANCE STATE (Ricalibrazione dello stato) ]
@@ -28393,9 +28435,9 @@ Uno dei maggiori equivoci della governance è identificare l'audit di conformit�
 - **Audit di conformità (Compliance Audit):** verifica che i processi, la documentazione, le firme di approvazione e i registri soddisfino requisiti normativi o standard procedurali (es. ISO/IEC 25010, SOC 2, direttive interne). È un'ispezione documentale e procedurale.
 - **Assurance tecnica (Technical Assurance):** verifica empirica, logica e matematica che il software preservi i propri invarianti critici, resista a sollecitazioni avversariali reali e mantenga contratti di interfaccia stabili sotto carico reale.
 
-| CONFORMITA' VS ASSURANCE TECNICA |
+| Conformità VS ASSURANCE TECNICA |
 | :--- |
-| **Conformita' Procedurale** (CHECKLIST OK, FIRME PRESENTI)<br>!= **Correttezza Tecnica** (GLI INVARIANTI DEL SOFTWARE TENGONO SOTTO CARICO)<br><br>Un sistema può essere al 100% conforme alle procedure aziendali<br>e tuttavia fallire miseramente a causa di un'allucinazione critica. |
+| **Conformità Procedurale** (CHECKLIST OK, FIRME PRESENTI)<br>!= **Correttezza Tecnica** (GLI INVARIANTI DEL SOFTWARE TENGONO SOTTO CARICO)<br><br>Un sistema può essere al 100% conforme alle procedure aziendali<br>e tuttavia fallire miseramente a causa di un'allucinazione critica. |
 
 Un audit efficace deve integrare entrambi gli aspetti: la conformità documentale è necessaria per la responsabilità giuridica, ma solo l'assurance tecnica garantisce la robustezza dell'esercizio.
 
