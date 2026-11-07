@@ -12800,7 +12800,7 @@ Non tutte le attività relative al contenimento possono essere svolte dal medesi
 | **Esecuzione dei test di violazione del perimetro**<br>(breakout testing) | **Sì**<br>(creazione script avversariali) | Security Tester / QA Engineer |
 
 #### Il divieto di delega epistemica dell'autorità
-La responsabilità di decidere quale sia il massimo livello di danno tollerabile per l'organizzazione non è *mai* delegabile all'LLM. Se l'utente non comprende la differenza tra una policy di rete `Ingress` e una `Egress`, non possiede la competenza per apporre la firma di approvazione sull'invariante di contenimento. In questo caso, l'assurance deve arrestarsi allo stato di **UNKNOWN** o **NO-GO** fino a consultazione di un esperto di dominio.
+La responsabilità di decidere quale sia il massimo livello di danno tollerabile per l'organizzazione non è <mark>**mai**</mark> delegabile all'LLM. Se l'utente non comprende la differenza tra una policy di rete `Ingress` e una `Egress`, non possiede la competenza per apporre la firma di approvazione sull'invariante di contenimento. In questo caso, l'assurance deve arrestarsi allo stato di **UNKNOWN** o **NO-GO** fino a consultazione di un esperto di dominio.
 
 ---
 
@@ -13931,7 +13931,7 @@ Lo STEP 15 (LLM-Assisted Implementation) ridefinisce la sintesi del codice come 
 
 ### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
-Nello **STEP 15 (LLM-Assisted Implementation)** abbiamo stabilito che il codice generato con l'ausilio di un modello linguistico deve essere trattato metodologicamente come un'**implementazione candidata** ($I_{candidate}$), ossia un'ipotesi algoritmica priva di garanzie di correttezza a priori. Nello **STEP 14 (Containment & Least Authority)** abbiamo predisposto i confini di isolamento per limitare il raggio di danno in caso di fallimento catastrofico.
+Nello **STEP 15 (LLM-Assisted Implementation)** abbiamo stabilito che il codice generato con l'ausilio di un modello linguistico deve essere trattato metodologicamente come un'**implementazione candidata** (I_candidate), ossia un'ipotesi algoritmica priva di garanzie di correttezza a priori. Nello **STEP 14 (Containment & Least Authority)** abbiamo predisposto i confini di isolamento per limitare il raggio di danno in caso di fallimento catastrofico.
 
 L'obiettivo dello **STEP 16 (Automated Testing)** è costruire ed eseguire un insieme strutturato di prove automatizzate capaci di produrre **evidenze empiriche oggettive** sul comportamento dell'implementazione candidata rispetto alle specifiche approvate.
 
@@ -20163,7 +20163,7 @@ SIGNATURE: "lead_dev_account_id"
 
 #### Soluzione Scenario 1
 1. **Stato del claim di calcolo fiscale**: **UNKNOWN**.  
-   *Spiegazione*: Nonostante i 120 test superati e il 98% di copertura, l'evidenza non rispetta i vincoli di metodo (manca il PBT) né quelli di indipendenza (test scritti dallo stesso LLM, indice $I(E) \le 0.1$). Mancando l'oracolo tabellare esterno imposto dalla policy, non disponiamo di elementi probatori validi. Superamento dei test non equivale a verifica della proprietà.
+   *Spiegazione*: Nonostante i 120 test superati e il 98% di copertura, l'evidenza non rispetta i vincoli di metodo (manca il PBT) né quelli di indipendenza (test scritti dallo stesso LLM, indice `I(E) <= 0.1`). Mancando l'oracolo tabellare esterno imposto dalla policy, non disponiamo di elementi probatori validi. Superamento dei test non equivale a verifica della proprietà.
 2. **Verdetto globale del Decision Gate**: **UNKNOWN**.  
    *Spiegazione*: Applicando l'algebra decisionale, la presenza di un claim critico in stato `UNKNOWN` trascina l'intero verdetto su `UNKNOWN`. La non-compensazione impedisce al risultato pulito del SAST di compensare il vuoto probatorio sul calcolo fiscale.
 3. **Azione operativa**: **BLOCK**.  
@@ -24291,7 +24291,7 @@ Per comprendere come un Circuit Breaker ben progettato rientri in esercizio senz
 1. **La Sonda Sentinella Isolata:** Quando scade il tempo di attesa (`T_reset`), il circuito non si apre a tutto il traffico. Ammette una singola richiesta reale alla volta (o un numero piccolissimo e fisso K, es. `K=2`). Tutte le altre centinaia di richieste concorrenti continuano a essere deviate istantaneamente sul Fallback senza toccare la rete.
 2. **La Desincronizzazione Tramite Jitter:** Se l'applicazione è scalata su 20 container distinti, impostare un tempo fisso identico (es. esattamente 30 secondi) farebbe scattare 20 sonde simultanee nello stesso millisecondo. Il *Jitter* aggiunge una variazione casuale controllata al timer di ciascun nodo (es. tra 30 e 35 secondi), distribuendo i tentativi nel tempo.
 3. **Il Verdetto Asimmetrico:** 
-   - Se la sonda sentinella ha successo, l'automa non dichiara vittoria immediata: attende altre $K-1$ conferme consecutive prima di chiudere il circuito (`CLOSED`).
+   - Se la sonda sentinella ha successo, l'automa non dichiara vittoria immediata: attende altre `K-1` conferme consecutive prima di chiudere il circuito (`CLOSED`).
    - Se la sonda fallisce o va in timeout, basta **un singolo fallimento** per far scattare istantaneamente il ritorno allo stato `OPEN`, proteggendo il server remoto prima che possa collassare nuovamente.
 
 ---
@@ -30211,7 +30211,7 @@ L'impiego di modelli basati su *Test-Time Reasoning* (o1, DeepSeek-R1) introduce
 - **Strategia di Scalatura Proporzionata:** Riservare i revisori a ragionamento esteso (`MOLTO-ALTA`) ai componenti critici di livello AL-2 e AL-3 (*Assurance Level*, livelli di garanzia del software definiti nello Step 10), impiegando revisori a media diversità ma a bassa latenza (es. modelli densi specializzati) per i controlli intermedi di livello AL-0 e AL-1.
 
 > [!WARNING]
-> **Ragionamento a Inferenza (Test-Time Reasoning) $\neq$ Garanzia di Correttezza Formale**  
+> **Ragionamento a Inferenza (Test-Time Reasoning) `!=` Garanzia di Correttezza Formale**  
 > L'allocazione di compute dinamico durante l'inferenza (come nei modelli o1, o3-mini o DeepSeek-R1) incrementa significativamente la profondità di analisi rispetto alla predizione next-token immediata, ma non costituisce una dimostrazione formale di correttezza.  
 > Un modello reasoning può comunque convergere su conclusioni errate, produrre razionalizzazioni logiche apparentemente coerenti ma fondate su premesse difettose (*reasoning hallucination*) o manifestare deviazioni da iper-focalizzazione (*overthinking*). La diagnosi del revisore reasoning rimane un'ipotesi probabilistica che deve essere corroborata dalle evidenze esecutive dei Livelli 3, 4 e 5.
 
@@ -30730,7 +30730,7 @@ Scripting   Visione,   Specialistico  RAG Personale Automazione
 - **Modelli e componenti software:** Motori di orchestrazione a stati (es. script di automazione Python, strumenti visuali a nodi come *n8n* in istanza self-hosted locale) che richiamano via API locale le istanze di *Ollama* o server *MCP*.
 - **Risorse necessarie:** Scheda grafica o processore capaci di gestire il passaggio sequenziale dei modelli in memoria (modelli caricati ed eseguiti uno alla volta per non saturare la memoria).
 - **Grado di difficoltà operativa:**
-  - *Interfaccia grafica:* Utilizzare piattaforme visuali locali come *n8n* per collegare blocchi predefiniti (es. "Quando un file compare in questa cartella" $\rightarrow$ "Chiama Ollama" $\rightarrow$ "Scrivi il risultato in quest'altra cartella");
+  - *Interfaccia grafica:* Utilizzare piattaforme visuali locali come *n8n* per collegare blocchi predefiniti (es. "Quando un file compare in questa cartella" `->` "Chiama Ollama" `->` "Scrivi il risultato in quest'altra cartella");
   - *Configurazione avanzata:* Scrittura di orchestratori a macchina a stati con librerie come *LangGraph* in ambiente Python per gestire flussi decisionali con cicli di riprova e punti di blocco per autorizzazione umana.
 - **Limiti pratici:** Maggiore è la complessità della catena, più alta è la probabilità che un'anomalia in uno stadio intermedio (es. un JSON malformato o una parola fraintesa nell'audio) si propaghi negli stadi successivi, rendendo indispensabili controlli di convalida tra un passaggio e l'altro.
 
@@ -30877,9 +30877,9 @@ L'inferenza si compone di due fasi con dinamiche fisiche opposte:
 1. **Fase di Lettura e Comprensione della Domanda (*Prefill / Prompt Ingestion*):** È un processo vincolato dalla potenza di calcolo pura (*compute-bound*). I token della richiesta vengono elaborati in parallelo: schede grafiche con molti nuclei di calcolo tensoriale elaborano centinaia di token al secondo;
 2. **Fase di Generazione Parola per Parola (*Autoregressive Decode*):** È un processo rigidamente vincolato dalla larghezza di banda della memoria (*memory-bound*). Per generare ogni singolo token successivo, **l'intero insieme di pesi della rete neurale deve essere riletto integralmente dalla memoria**.
 
-Il limite massimo teorico di velocità generativa in token al secondo ($\text{tok/s}$) per un singolo utente è descritto dal modello semplificato:
+Il limite massimo teorico di velocità generativa in token al secondo (`tok/s`) per un singolo utente è descritto dal modello semplificato:
 
-$$\text{Velocità Asintotica Massima (tok/s)} \approx \frac{\text{Larghezza di Banda di Memoria (GB/s)}}{\text{Dimensione del Modello in Memoria (GB)}} \times \text{MBU}$$
+`Velocità Asintotica Massima (tok/s) ~= (Larghezza di Banda di Memoria (GB/s) / Dimensione del Modello in Memoria (GB)) * MBU`
 
 Dove **MBU (*Model Bandwidth Utilization*)** è l'efficienza effettiva con cui il runtime e i kernel di calcolo riescono a saturare il bus fisico di memoria (tipicamente compresa tra il 50% e il 75% nelle implementazioni reali). Se i kernel di dequantizzazione al volo non sono ottimizzati, il collo di bottiglia può spostarsi dalla memoria alle unità logico-aritmetiche (ALU) della CPU o della GPU, riducendo ulteriormente la velocità.
 
@@ -30915,7 +30915,7 @@ La metrica dei "miliardi di parametri" non è più sufficiente per descrivere le
 #### 6.3 La formula della memoria e l'impatto della KV Cache
 La memoria totale realmente richiesta su scheda video (VRAM) o memoria unificata non coincide con il peso del file su disco:
 
-$$\text{Memoria Totale Richiesta} = \text{Pesi del Modello} + \text{Memoria KV Cache} + \text{Overhead di Runtime}$$
+`Memoria Totale Richiesta = Pesi del Modello + Memoria KV Cache + Overhead di Runtime`
 
 1. **Pesi del Modello:** Spazio fisso occupato dai numeri della rete neurale;
 2. **Memoria KV Cache (*Key-Value Cache*):** È la memoria dinamica in cui il runtime memorizza le matrici di attenzione dei token già elaborati per evitare di ricalcolarli a ogni parola successiva;
@@ -34963,7 +34963,7 @@ check StrictSeparationOfDuties for 6 but exactly 4 User, 2 Payment
    L'Analyzer conferma che la guardia operativa del servizio satura ed esaurisce le proprietà richieste dalla policy di sicurezza entro il perimetro di analisi dichiarato.
 
 > [!NOTE]
-> **Nota metodologica per l'Auditor:** Disaccoppiando la guardia del servizio (`isAuthorizedApproval`) dall'invariante di sistema (`StrictSeparationOfDuties`), la verifica non è più una tautologia ($A \implies A$). Il solver dimostra che l'architettura a stati del workflow garantisce l'invariante di conformità senza comprimere i requisiti ontologici del dominio.
+> **Nota metodologica per l'Auditor:** Disaccoppiando la guardia del servizio (`isAuthorizedApproval`) dall'invariante di sistema (`StrictSeparationOfDuties`), la verifica non è più una tautologia (`A -> A`). Il solver dimostra che l'architettura a stati del workflow garantisce l'invariante di conformità senza comprimere i requisiti ontologici del dominio.
 
 > [!NOTE]
 > **Nota Architetturale: Snapshot Statico vs Tracce Temporali**
