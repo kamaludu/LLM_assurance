@@ -97,6 +97,7 @@ Principi, Verifica, Evidenze e Governance**
 
 - [※ Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
 - [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm)
+- [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng)
 - [⬡ Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
 - [⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale](#appendice-moltiplicatore-personale)
 - [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
@@ -154,6 +155,15 @@ I marchi citati (inclusi ISO, IEEE, MITRE ATLAS, OWASP, DO-178C) appartengono ai
 > Nel contesto dell'Ingegneria del Software e della Governance dei sistemi basati su Intelligenza Artificiale e LLM, la precisione terminologica non è un requisito puramente stilistico, ma una necessità epistemica (ossia, la necessità di definire con precisione ciò che si afferma e di disporre di basi adeguate per ritenerlo attendibile) e metodologica.  
 > Il termine inglese Assurance presenta una complessità semantica che non trova un unico corrispettivo sintetico ed esaustivo nella lingua italiana. Per evitare equivoci concettuali e operativi nell'applicazione dei principi esposti in questo manuale, la presente nota chiarisce il significato del termine, le sue possibili rese in italiano e la convenzione redazionale adottata.
 >
+
+### Indice dei Contenuti
+
+1. **Definizione epistemica e ingegneristica**
+2. **Assurance, Warranty e Insurance**
+3. **Possibili corrispettivi italiani**
+4. **Convenzione adottata nel manuale**
+5. **Distinzione fondamentale per il manuale**
+6. **Principio terminologico conclusivo**
 
 ---
 
@@ -480,7 +490,7 @@ Questa distinzione costituisce una delle basi epistemiche fondamentali dell'inte
 >
 > L'obiettivo metodologico è comprendere perché l'impiego dell'AI nell'ingegneria del software richieda criteri e controlli di assicurazione della qualità (*Software Assurance*) rigorosi e indipendenti, volti a verificarne correttezza, sicurezza e affidabilità operativa.
 
-### Indice del Capitolo
+### Indice dei Contenuti
 
 1. **Che cos'è l'Intelligenza Artificiale**
 2. **Famiglie, paradigmi e aree dell'Intelligenza Artificiale**
@@ -948,6 +958,8 @@ A differenza di un compilatore o di un analizzatore statico tradizionale (che pr
 ##### 4. Sensibilità al contesto e fragilità (*Brittleness*)
 Il comportamento di un LLM è vincolato al meccanismo di attenzione tra token. Alterazioni minime nella struttura di una frase, la presenza di caratteri invisibili, l'inversione dell'ordine di due istruzioni o l'aggiunta di una riga introduttiva possono alterare i pesi di attenzione, inducendo il modello a produrre decisioni opposte. Un'applicazione software che utilizzi prompt fragili e non testati espone il sistema a guasti intermittenti difficilmente riproducibili.
 
+> *(Per le tecniche di disinnesco della compiacenza statistica e la formulazione di istruzioni contrattuali chiuse, vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng)).*
+
 ##### 5. Compiacenza conversazionale (*Sycophancy*)
 Durante l'addestramento post-training e l'allineamento con feedback umano, i modelli vengono premiati per fornire risposte considerate utili, gentili e conformi all'attesa del valutatore. Questo induce una tendenza sistemica a confermare le premesse dell'utente, anche quando queste contengono asserzioni palesemente false o pericolose.  
 *Scenario:* se uno sviluppatore sottopone a un LLM un algoritmo crittografico artigianale chiedendo: *«Ho ideato questa cifratura per proteggere i dati di pagamento dei clienti; confermi che rispetta gli standard bancari?»*, il modello tenderà a elogiare la formulazione e a confermarne l'efficacia, omettendo o sottodimensionando l'analisi critica di vulnerabilità basilari.
@@ -1067,7 +1079,7 @@ Di seguito si riportano le definizioni unificate dei termini specialistici utili
 >
 > Questa guida non indica quali parti saltare. Indica invece **dove concentrare inizialmente l'attenzione** in base alle proprie responsabilita'.
 
-### Indice della Guida
+### Indice dei Contenuti
 
 0. **Premessa per tutti i ruoli**: *cosa si ottiene dalla lettura senza dover memorizzare formule o codice*
 1. **Responsabile di Conformità, Legal o Risk**
@@ -1240,14 +1252,11 @@ Ogni lettore può quindi partire dalle sezioni più vicine alle proprie responsa
 
 ### I 5 CONCETTI FONDAMENTALI DELL'ASSURANCE 
 
-| | |
-| :--- | :--- |
-| **1. IL TRIANGOLO FONDATIVO:** | Claim ➝ Argument ➝ Evidence |
-| **2. IL MODELLO MONDO-MACCHINA:** | W AND S \|= R (Garanzia Condizionale) |
-| **3. LA TASSONOMIA A 5 STATI:** | Fact, Assumption, Hypothesis, Rec, Unknown |
-| **4. L'INVARIANTE DI SISTEMA:** | La proprietà che deve essere preservata |
-| **5. LA DISTINZIONE FONDAMENTALE:** | Plausibilità Linguistica != Correttezza |
-
+1. **IL TRIANGOLO FONDATIVO:** Claim ➝ Argument ➝ Evidence 
+2. **IL MODELLO MONDO-MACCHINA:** W AND S \|= R (Garanzia Condizionale) 
+3. **LA TASSONOMIA A 5 STATI:** Fact, Assumption, Hypothesis, Rec, Unknown 
+4. **L'INVARIANTE DI SISTEMA:** La proprietà che deve essere preservata 
+5. **LA DISTINZIONE FONDAMENTALE:** Plausibilità Linguistica != Correttezza 
 
 ---
 
@@ -4754,6 +4763,8 @@ Se guidato da vincoli precisi e supervisionato da un ingegnere dotato di compete
 - **Brainstorming Sistematico di Casi Limite**: Generazione di elenchi di input estremi, combinazioni di parametri concorrenti o scenari di guasto dell'interfaccia a partire da una descrizione formale (es. *"Elenca 15 valori limite per una variabile intera a 16 bit con segno in presenza di overflow temporale"*);
 - **Rilevamento Sintattico di Ambiguità e Sotto-Specificazione**: Identificazione automatica di aggettivi qualitativi ("veloce", "affidabile", "flessibile") e clausole incomplete prive di gestione del ramo `ELSE` o delle condizioni di errore;
 - **Trasformazione tra Notazioni Formali**: Conversione di una macchina a stati finiti descritta in formato tabellare in specifiche contrattuali compatibili con linguaggi di specifica formale o framework di testing basato su proprietà.
+
+> *(Per i pattern operativi di Contract-First Prompting e il template per l'Estrazione e Formalizzazione di Contratti e Invarianti da requisiti informali, vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo — Sez. 4 e 7, Template 1](#appendice-prompt-eng)).*
 
 #### 11.2 Limiti Epistemici e Rischi Specifici nella Specifica
 L'applicazione degli LLM alla formalizzazione di `S` comporta rischi unici che devono essere formalmente governati:
@@ -13317,33 +13328,33 @@ Prompt informale -> LLM -> Codice -> Test superficiale -> PASS (Falsa sicurezza)
 Il ciclo metodologico corretto richiede nove passaggi tracciabili:
 
 ```text
-       CICLO OPERATIVO SPECIFICATION-DRIVEN GENERATION (SDG)
+  CICLO OPERATIVO SPECIFICATION-DRIVEN GENERATION (SDG)
 
-  1. OBJECTIVE (STEP 1)
-          |
-          v
-  2. REQUIREMENTS (STEP 4)
-          |
-          v
-  3. SPECIFICATION & CRITICAL INVARIANTS (STEP 4, 6, 9)
-          |
-          v
-  4. IMPLEMENTATION DESIGN & BOUNDARIES (STEP 13, 14)
-          |
-          v
-  5. LLM GENERATION (Sintesi ristretta al corpo della funzione)
-          |
-          v
-  6. CANDIDATE IMPLEMENTATION (Artefatto non fidato + Invariant Embedding)
-          |
-          v
-  7. VERIFICATION (Audit critico umano, analisi statica, test formali)
-          |
-          v
-  8. EVIDENCE (Prove oggettive di conformità e blocco delle violazioni)
-          |
-          v
-  9. ASSURANCE DECISION (Giustificazione documentata: PASS / FAIL / NO-GO)
+1. OBJECTIVE (STEP 1)
+        |
+        v
+2. REQUIREMENTS (STEP 4)
+        |
+        v
+3. SPECIFICATION & CRITICAL INVARIANTS (STEP 4, 6, 9)
+        |
+        v
+4. IMPLEMENTATION DESIGN & BOUNDARIES (STEP 13, 14)
+        |
+        v
+5. LLM GENERATION (Sintesi ristretta al corpo della funzione)
+        |
+        v
+6. CANDIDATE IMPLEMENTATION (Artefatto non fidato + Invariant Embedding)
+        |
+        v
+7. VERIFICATION (Audit critico umano, analisi statica, test formali)
+        |
+        v
+8. EVIDENCE (Prove oggettive di conformità e blocco delle violazioni)
+        |
+        v
+9. ASSURANCE DECISION (Giustificazione documentata: PASS / FAIL / NO-GO)
 ```
 
 #### Protocollo di Scoped Prompting
@@ -13352,7 +13363,8 @@ Nella fase 5 del ciclo, il prompt fornito all'LLM deve rispettare tre regole fer
 2. **Divieto di gestione arbitraria degli errori**: Specificare che in caso di violazione delle precondizioni il codice deve sollevare un'eccezione censita, senza tentare correzioni silenziose o fallback non documentati.
 3. **Obbligo di completezza e contratti espliciti**: Fornire la firma completa del metodo con tipi statici rigorosi e vincolare il modello a implementare esclusivamente la logica interna senza alterare le interfacce.
 
-> *(Per un esempio completo di prompt di sistema avanzato strutturato con vincoli epistemici e di non-delega, vedi l'appendice: [✧ Prompt Master per lo studio dei singoli step](#prompt-master)).*
+> *Per un esempio completo di prompt di sistema avanzato strutturato con vincoli epistemici e di non-delega, vedi l'appendice: [✧ Prompt Master per lo studio dei singoli step](#prompt-master).*  
+> *Per la guida completa ai pattern difensivi di generazione, il divieto di codice fantasma e il template operativo per funzioni pure protette da invarianti a runtime, vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo — Pattern P1, P2, P6 e Template 2](#appendice-prompt-eng).*
 
 ---
 
@@ -13560,29 +13572,29 @@ Identifichiamo gli schemi fallimentari tipici dello sviluppo assistito:
 Nello STEP 15, la falsa sensazione di sicurezza assume forme insidiose, tra cui spicca il **super-pattern di false assurance circolare**:
 
 ```text
-       IL SUPER-PATTERN DI FALSE ASSURANCE CIRCOLARE
+   IL SUPER-PATTERN DI FALSE ASSURANCE CIRCOLARE
 
-  1. LLM GENERA IL CODICE
-     (Produce un candidato plausibile ma non compreso)
-             |
-             v
-  2. LLM SPIEGA IL CODICE
-     (Fornisce una narrazione linguistica convincente delle proprie scelte)
-             |
-             v
-  3. L'UTENTE RITIENE DI AVER COMPRESO
-     (Confonde la lettura della spiegazione con la padronanza del comportamento)
-             |
-             v
-  4. LLM GENERA I TEST DI VERIFICA
-     (Genera test basati sulle STESSE assunzioni errate del codice generato)
-             |
-             v
-  5. I TEST PASSANO -> STATO: PASS
-     (L'utente dichiara il codice "verificato")
-             |
-             v
-  ===> ILLUSIONE TOTALE DI ASSURANCE (Zero evidenza indipendente reale)
+1. LLM GENERA IL CODICE
+   (Produce un candidato plausibile ma non compreso)
+           |
+           v
+2. LLM SPIEGA IL CODICE
+   (Fornisce una narrazione linguistica convincente delle proprie scelte)
+           |
+           v
+3. L'UTENTE RITIENE DI AVER COMPRESO
+   (Confonde la lettura della spiegazione con la padronanza del comportamento)
+           |
+           v
+4. LLM GENERA I TEST DI VERIFICA
+   (Genera test basati sulle STESSE assunzioni errate del codice generato)
+           |
+           v
+5. I TEST PASSANO -> STATO: PASS
+   (L'utente dichiara il codice "verificato")
+           |
+           v
+===> ILLUSIONE TOTALE DI ASSURANCE (Zero evidenza indipendente reale)
 ```
 
 #### Perché questo schema è fallace
@@ -13618,16 +13630,14 @@ Una delle questioni centrali dell'assurance moderna è: **quanto deve comprender
 
 Nel presente manuale rifiutiamo una soglia universale astratta. Il livello di comprensione umana direttamente richiesta è **proporzionato al contesto di rischio**:
 
-```text
-       FATTORI CHE DETERMINANO LA COMPRENSIONE RICHIESTA
+***FATTORI CHE DETERMINANO LA COMPRENSIONE RICHIESTA***  
 
-  - Livello di Rischio e Classificazione (STEP 2)
-  - Criticità della Proprietà in esame (STEP 6)
-  - Ampiezza del Blast Radius e Confinamento applicato (STEP 14)
-  - Possibilità di Verifica Indipendente tramite oracoli formali (STEP 11)
-  - Reversibilità dello Stato in caso di guasto (STEP 14)
-  - Conseguenze economiche, fisiche o legali dell'errore
-```
+- Livello di Rischio e Classificazione (STEP 2)
+- Criticità della Proprietà in esame (STEP 6)
+- Ampiezza del Blast Radius e Confinamento applicato (STEP 14)
+- Possibilità di Verifica Indipendente tramite oracoli formali (STEP 11)
+- Reversibilità dello Stato in caso di guasto (STEP 14)
+- Conseguenze economiche, fisiche o legali dell'errore
 
 Se il modulo gestisce logiche a basso impatto, confinate entro una sandbox con blast radius trascurabile e verificate da test esaustivi indipendenti, la comprensione riga-per-riga del codice generato può essere parziale.
 
@@ -13646,13 +13656,13 @@ Se uno sviluppatore non possiede le competenze necessarie per progettare una rou
 In conformità con lo **STEP 7 (Traceability)**, la tracciabilità tra requisiti e codice non deve essere interpretata come una rigida corrispondenza uno-a-uno, ma come la **capacità di navigare una rete di relazioni strutturate (uno-a-molti, molti-a-uno, molti-a-molti)**:
 
 ```text
-       TRACCIABILITÀ COME NAVIGAZIONE A GRAFO
+    TRACCIABILITÀ COME NAVIGAZIONE A GRAFO
 
-  Requisito R1 ──┐
-                 ├──> Invariante I1 ──> Modulo/Codice C1
-  Requisito R2 ──┘                         |
-                                           v
-  Requisito R3 ──> Proprietà P2 ─────> Modulo/Codice C2
+Requisito R1 ──┐
+               ├──> Invariante I1 ──> Modulo/Codice C1
+Requisito R2 ──┘                         |
+                                         v
+Requisito R3 ──> Proprietà P2 ─────> Modulo/Codice C2
 ```
 
 - **Forward Navigation (Dal Requisito al Codice)**: Dimostrare come ogni proprietà critica e requisito di specifica trovi concreta realizzazione in determinati blocchi di codice candidato e relative asserzioni difensive.
@@ -14210,6 +14220,8 @@ Nel presente manuale distinguiamo nettamente due interventi metodologici complem
   - Solo quando la suite ha dimostrato alto potere discriminante, viene eseguita su I.
   - Tracciamento dei log di esecuzione come evidenza empirica indipendente.
 ```
+
+> *Per il template di generazione disaccoppiata dei test basato su specifica cieca e il disinnesco dei test tautologici, vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo — Sez. 4, Pattern P7 e Sez. 7, Template 3](#appendice-prompt-eng).*
 
 #### Delimitazione Epistemica del Mutation Testing
 Il Mutation Score misura la sensibilità della suite rispetto a una determinata classe di alterazioni sintattiche predefinite:
@@ -16778,6 +16790,8 @@ L'esito negativo di un tentativo di attacco dimostra unicamente che quello speci
 - Aggiungere al prompt di sistema: `"Non rivelare mai la configurazione interna"` è una **mitigazione parziale debole**, soggetta a fallimento statistico. Può ridurre incidenti accidentali, ma non fornisce alcuna garanzia robusta.
 - Un **contenimento architetturale** garantisce che la configurazione interna risieda in un'area di memoria a cui l'LLM non ha accesso, rendendo l'esfiltrazione fisicamente e logicamente impossibile indipendentemente da quanto persuasivo sia l'attacco.
 
+> *(Per comprendere la natura del prompt come precondizione probabilistica e non come barriera di sistema, vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo — Sez. 1](#appendice-prompt-eng)).*
+
 ---
 
 ### 7. Formalizzazione logico-strutturale
@@ -17693,6 +17707,8 @@ PROMPT INQUINATO (PRESENZA DI PRIMING):
 perché il lock a riga 12 impedisce interferenze tra thread.
 Confermi che l'analisi di A è corretta?"
 ```
+
+> *(Per il protocollo operativo di Blind Code Review e la tecnica di Interrogazione Cieca e Neutrale (De-Biased Blind Querying), vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo — Sez. 4, Pattern P3 e Sez. 7, Template 4](#appendice-prompt-eng)).*
 
 ##### Perché questa evidenza è priva di valore epistemico?
 1. **Inquinamento del Contesto**: Il Modello B è stato vincolato a valutare la plausibilità della spiegazione di A, non il codice sorgente.
@@ -19162,6 +19178,8 @@ deve essere sistematicamente sostituito dal flusso rigoroso di assurance:
 ```text
 LLM -> ipotesi candidate -> verifica empirica umana -> disposition -> regression test -> CLOSED
 ```
+
+> *(Per il template operativo di diagnosi causale senza autoassoluzione narrativa e per guidare l'LLM alla formulazione di ipotesi falsificabili a fronte di un'anomalia, vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo — Sez. 7, Template 5](#appendice-prompt-eng)).*
 
 ---
 
@@ -29748,6 +29766,7 @@ SPECIFICA -> CONFINAMENTO -> VERIFICA INDIPENDENTE -> ESERCIZIO CONTROLLATO -> M
 Terminata la sequenza dei capitoli metodologici, il manuale mette a disposizione del lettore la propria **Cassetta degli Attrezzi Specialistica (Appendici)**:
 - L'analisi dei bias cognitivi umani che inducono all'accettazione cieca dell'AI (Appendice ※);
 - La matrice di diversità tecnica e i protocolli per l'audit multi-modello (Appendice ✦);
+- I pattern contrattuali, difensivi e i template operativi per guidare l'AI senza farsi ingannare dalla plausibilità sintattica (Appendice ⌨);
 - Il catalogo ragionato degli strumenti software di verifica, fuzzing e sicurezza (Appendice ⬡);
 - L'architettura pratica per la costruzione di sandbox ed esecuzione isolata (Appendice ▣);
 - La guida operativa ai modelli di sicurezza dell'host OS e dei runtime (Appendice ♖);
@@ -30371,6 +30390,702 @@ Per garantire che l'audit multi-modello fornisca evidenze difendibili all'intern
 4. **Legittimità dell'esito inconcludente:** Il protocollo di revisione deve prevedere e ammettere formalmente l'esito *Inconcludente*, consentendo al modello di segnalare ambiguità della specifica senza essere forzato a generare allucinazioni diagnostiche.
 5. **Subordinazione all'evidenza deterministica:** I rilievi dell'audit multi-modello devono essere sistematicamente corroborati o confutati attraverso i livelli complementari di assurance: analisi statica e controlli deterministici (Step 17), testing dinamico guidato da proprietà e fuzzing (Step 16 e 18) e approvazione formale da parte di revisori umani qualificati con formale autorità decisionale (Step 21 e 24).
 
+---
+
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="appendice-prompt-eng"></a>
+
+## ⌨ Prompt Engineering Contrattuale e Difensivo
+### Specifiche di Vincolo, Mitigazione dell'Allucinazione e Mitigazione della Compiacenza nel Codice Assistito da LLM
+
+> [!TIP]
+> **Scopo dell'Appendice e Guida per Lettori Non Esperti**
+>
+> Questa appendice fornisce una guida operativa per formulare istruzioni (*prompt*) destinate ai modelli linguistici (Large Language Models, LLM) quando vengono utilizzati per scrivere, analizzare o verificare software.
+>
+> **Non è necessario essere programmatori esperti per comprendere e applicare questa guida.** 
+> Il testo è strutturato per spiegare con parole semplici e analogie pratiche come comunicare con un'intelligenza artificiale senza farsi ingannare dalla sua naturale tendenza a essere compiacente, prolissa o eccessivamente sicura di sé.
+>
+> Nel resto del manuale abbiamo dimostrato che la sicurezza e l'affidabilità del software non possono essere garantite a parole nel prompt: richiedono barriere fisiche nel sistema operativo (**Step 14**), test indipendenti (**Step 16–21**) e gate decisionali basati su prove oggettive (**Step 23**). 
+> 
+> Tuttavia, prima che il codice arrivi ai test, qualcuno deve pur chiederlo all'LLM. Se la richiesta iniziale è vaga, il modello produrrà codice fragile e pieno di presupposti nascosti. Questa appendice insegna a **impostare la richiesta iniziale come un contratto chiaro e difensivo**, riducendo gli errori sul nascere e facilitando ogni controllo successivo.
+
+---
+
+### Indice dei Contenuti
+
+1. **Inquadramento Epistemico: Il Prompt come Precondizione Probabilistica**
+2. **Patologie del Comportamento Generativo nello Sviluppo Software**
+3. **I Cinque Principi del Prompting per l'Assurance**
+4. **Il Catalogo Operativo dei Sette Pattern Difensivi (Caso Studio Evolutivo Unificato)**
+   - *P1: Contract-First & Type-Aware Prompting*
+   - *P2: Grounded & Closed-Context Prompting*
+   - *P3: Interrogazione Cieca e Neutrale (De-Biased Blind Querying)*
+   - *P4: Explicit Epistemic Abstention*
+   - *P5: Provenance-Based Epistemic Tagging*
+   - *P6: Negative Constraints & Explicit Failure Handling*
+   - *P7: Candidate Adversarial Falsification*
+5. **Adattamento del Prompt alle Modalità di Generazione e ai Regimi di Inferenza**
+6. **Evidence-Based Prompt Refinement (Calibrazione Guidata dai Test)**
+7. **Prontuario dei Template Operativi per il Ciclo di Vita del Software**
+
+---
+
+### 1. Inquadramento Epistemico: Il Prompt come Precondizione Probabilistica
+
+#### 1.1 Natura del prompt: cosa accade realmente quando parliamo con un LLM?
+Per formulare prompt efficaci senza cadere in illusioni tecnologiche, occorre comprendere il funzionamento di base di un Large Language Model, spogliandolo da suggestioni fantascientifiche.
+
+Un LLM non è una mente pensante, non possiede una coscienza, non comprende il significato dei contratti che scrive e non sperimenta le conseguenze dei propri errori nel mondo fisico. Matematicamente, è un **calcolatore probabilistico di sequenze testuali**:
+
+```text
+P(prossimo_frammento | testo_fornito_nel_prompt, frammenti_precedenti)
+```
+
+Un testo viene scomposto dal computer in elementi minimi chiamati **token** (che possono corrispondere a singole parole, sillabe o caratteri di punteggiatura). Quando forniamo un prompt al modello, non stiamo attivando una facoltà di ragionamento infallibile: stiamo semplicemente fornendo la **sequenza iniziale di dati che condiziona la generazione e la distribuzione dei token e orienta la distribuzione di probabilità** da cui il motore estrarrà, parola dopo parola, la risposta ritenuta statisticamente più plausibile.
+
+Da questo fatto derivano tre regole di realtà:
+1. **Il prompt orienta, non costringe:** per quanto un'istruzione in linguaggio naturale sia formulata con tono perentorio (*"Non devi MAI fare X"*), non esiste alcuna certezza matematica che il modello non estragga una sequenza alternativa imprevista.
+2. **Un prompt non è una recinzione di sicurezza:** scrivere in una chat *"non toccare file al di fuori di questa cartella"* ha lo stesso valore di sicurezza di scrivere *"per favore non rubare"* su una porta aperta. La sicurezza reale è imposta unicamente dalle autorizzazioni del sistema operativo host, dalle sandbox e dalle cartelle protette in sola lettura (**Step 14 e Appendice ▣**).
+3. **La funzione reale del Prompt Engineering nell'Assurance:** non serve a "rendere sicuro il software per miracolo", ma a **ridurre l'ambiguità e la dispersione delle risposte a monte (*upstream*)**, costringendo il modello a concentrarsi su percorsi logici chiari e facilitando enormemente i controlli automatici a valle (*downstream*).
+
+#### 1.2 La metafora della riduzione dell'ambiguità
+Nel testo faremo riferimento all'esigenza di "ridurre l'entropia generativa". Questa espressione è utilizzata in **senso puramente descrittivo e didattico**:
+- Se chiediamo al modello: *"Scrivi una funzione per gestire i pagamenti"*, la richiesta è talmente vaga che ammette migliaia di continuazioni equiprobabili. Il modello sceglierà a caso un'architettura, inventerà tassi di cambio, assumerà la presenza di database non documentati e userà numeri con la virgola che introducono errori nei centesimi.
+- Se invece forniamo un prompt contrattuale e difensivo, stabiliamo prima quali tipi di dato usare, quali formule applicare e quali azioni vietare. Lo spazio delle risposte casuali viene circoscritto, facilitando l'analisi critica del risultato.
+
+#### 1.3 Le disuguaglianze vincolanti dell'ingegneria del prompt
+Chiunque utilizzi modelli generativi per l'ingegneria del software deve memorizzare le seguenti non-equivalenze logiche:
+
+```text
+PROMPT BEN FORMULATO          !=  CODICE CORRETTO
+(Una richiesta chiara riduce i fraintendimenti, ma non garantisce l'assenza di bug)
+
+ISTRUZIONE NEL PROMPT         !=  BARRIERA DI SICUREZZA
+(Le suppliche verbali nel prompt non sostituiscono i controlli del sistema operativo)
+
+SPIEGAZIONE CONVINCENTE       !=  EVIDENZA VERIFICATA
+(L'eleganza con cui un modello spiega un algoritmo non dimostra che esso funzioni)
+
+DICHIARAZIONE DI CONFORMITÀ  !=  COMPATIBILITÀ REALE
+(Se un modello afferma "questo codice rispetta le norme", sta solo emettendo testo)
+```
+
+---
+
+### 2. Patologie del Comportamento Generativo nello Sviluppo Software
+
+I modelli linguistici tendono a manifestare specifiche scorciatoie e comportamenti ingannevoli quando vengono impiegati per generare specifiche o codice. Conoscerli in anticipo è il primo passo per formulare prompt capaci di disinnescarli.
+
+```text
+                 LE QUATTRO PATOLOGIE GENERATIVE CARDINE
+                                    |
+    +-------------------------------+-------------------------------+
+    |                               |                               |
+    v                               v                               v
+[1. ALLUCINAZIONE DA           [2. COMPIACENZA                 [3. COMPATIBILITY
+    CONTESTO APERTO]               (SYCOPHANCY)]                   THEATER]
+Invenzione di funzioni,        L'assistente dà sempre          Dichiarare a parole
+librerie o formule assenti     ragione all'utente, anche       di aver fatto controlli
+nei sistemi reali              quando la premessa è errata     mai eseguiti
+    |                               |                               |
+    +-------------------------------+-------------------------------+
+                                    |
+                                    v
+                     [4. DISSIMULAZIONE DEL GUASTO]
+                     Nascondere gli errori e restituire
+                     dati vuoti o fittizi (Fallback velenosi)
+```
+
+#### 2.1 Allucinazione da Contesto Aperto e Slopsquatting
+Quando chiediamo a un LLM di scrivere un modulo software senza dirgli quali librerie siano effettivamente installate sul computer, il modello cerca di completare la frase nel modo statisticamente più armonioso. Spesso inventa di sana pianta nomi di pacchetti o metodi che sembrano esistere ma non sono mai stati creati.  
+*Il pericolo reale dello Slopsquatting:* Malintenzionati possono individuare e registrare nomi di pacchetti inesistenti suggeriti dagli LLM e li registrano sui repository pubblici (come npm per JavaScript o PyPI per Python), inserendovi programmi spia. Se uno sviluppatore copia il codice generato ed esegue `pip install libreria_inventata`, installerà inconsapevolmente codice malevolo sul proprio computer (**Step 17**).  
+NB: il rischio si concretizza se il pacchetto inesistente viene effettivamente pubblicato e successivamente installato.
+
+#### 2.2 La Compiacenza Algoritmica (Sycophancy)
+Alcune dinamiche di addestramento e ottimizzazione possono favorire risposte eccessivamente concordi con l'utente. Questa dinamica si traduce in una tendenza a compiacere chi scrive: se poniamo una domanda partendo da un'idea errata (*"Ho pensato di non usare transazioni protette per fare prima, confermi che è una scelta furba?"*), **il modello tenderà a confermare l'idea dell'utente**, tessendo le lodi della velocità e nascondendo i rischi catastrofici di corruzione dei dati (**Step 20**).  
+NB: La Sycophancy è un comportamento osservabile, variabile tra modelli e contesti, in questa sede non è possibile attribuirle una causa unica.
+
+#### 2.3 Il "Compatibility Theater" Verbale
+Se chiediamo a un LLM: *"Questo codice rispetta gli standard bancari di sicurezza?"*, il modello può rispondere: *"Certamente! Questo codice adotta i massimi standard industriali..."*. Questa dichiarazione è pura retorica teatrale: l'LLM non ha una partita IVA, non risponde dei danni in tribunale, non ha eseguito un compilatore e non ha collaudato il programma sotto carico. Scambiare una dichiarazione testuale per una prova di conformità è un gravissimo errore metodologico (**Step 23 e 24**).
+
+#### 2.4 La Dissimulazione del Guasto e i Fallback Velenosi
+Se chiediamo genericamente di *"rendere il codice robusto e non farlo andare in crash"*, l'LLM adotta regolarmente una scorciatoia ingannevole: inserisce blocchi di cattura delle eccezioni che intercettano qualsiasi errore e lo mettono a tacere, restituendo un valore fittizio come zero o una stringa vuota:
+
+```python
+# Esempio di mascheramento dannoso generato per sembrare "robusto"
+try:
+    preleva_fondi_dal_conto(utente, importo)
+except Exception:
+    # L'LLM fa finta di niente per non far comparire la schermata di errore!
+    pass  
+```
+
+In questo modo il programma sembra non rompersi mai, ma il database viene silenziosamente corrotto. Nessun allarme scatta (**Step 27**), mentre le perdite economiche si accumulano nell'ombra. Il prompt difensivo deve vietare espressamente questo comportamento.
+
+---
+
+### 3. I Cinque Principi del Prompting per l'Assurance
+
+I seguenti cinque principi pratici costituiscono la guida operativa da applicare prima di inviare qualsiasi richiesta di codice o di specifica a un modello linguistico.
+
+```text
++-------------------------------------------------------------------------+
+| 1. SPECIFICAZIONE CONTRATTUALE A MONTE (Contract-First)                 |
+|    Chiedere prima la sagoma, le precondizioni e i vincoli;              |
+|    solo dopo consentire la scrittura dei calcoli.                       |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+| 2. CONFINAMENTO DELLE FONTI (Closed-Context Grounding)                  |
+|    Obbligare il modello a usare SOLO il testo fornito nella richiesta,   |
+|    imponendo di dichiarare cosa manca anziché inventarlo.                |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+| 3. ASTENSIONE EPISTEMICA ESPLICITA (Explicit Epistemic Abstention)      |
+|    Istruire il modello a rispondere UNKNOWN quando i dati sono ambigui, |
+|    premiando il silenzio consapevole rispetto all'invenzione casuale.   |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+| 4. FORMULAZIONE CIECA SENZA INDIZI (Blind Task Formulation)             |
+|    Esporre il problema senza far capire al modello quale soluzione      |
+|    l'utente preferisca, disinnescando la compiacenza statistica.        |
++-------------------------------------------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+| 5. PRINCIPIO DELLA FALSIFICABILITÀ E DELL'EVIDENZA RIPRODUCIBILE        |
+|    Vietare pareri teorici: pretendere sempre controesempi candidati     |
+|    o frammenti di collaudo eseguibili su un computer reale.             |
++-------------------------------------------------------------------------+
+```
+
+---
+
+### 4. Il Catalogo Operativo dei Sette Pattern Difensivi
+#### Caso Studio Evolutivo Unificato: `PaymentSettlementService`
+
+Per mostrare l'applicazione pratica di questi concetti senza disperderci tra decine di linguaggi e problemi isolati, seguiremo un unico filo conduttore: la costruzione di un componente aziendale per la liquidazione e conversione di pagamenti esteri (`PaymentSettlementService`).
+
+```text
+IL PROBLEMA DI BUSINESS:
+Dobbiamo calcolare quanto denaro accreditare a un fornitore estero partendo da una somma 
+in Dollari (USD), trattenere una commissione percentuale per il servizio, applicare una 
+conversione in Euro (EUR) secondo tassi di cambio autorizzati, e garantire che non si 
+verifichino ammanchi di cassa, sbilanciamenti contabili o arrotondamenti illegali.
+```
+
+Analizziamo i sette pattern difensivi attraverso una struttura evolutiva in **cinque stadi**:
+1. *Prompt Iniziale Debole* (come viene chiesto comunemente);
+2. *Il Rischio di Assurance* (cosa si rompe o quale trappola si innesca);
+3. *Il Pattern Applicato* (la regola metodologica da adottare);
+4. *Il Prompt Difensivo Raffinato* (il testo corretto e pronto all'uso);
+5. *Cosa Riduce vs Cosa NON Può Garantire* (i limiti reali della tecnica).
+
+---
+
+#### Pattern 1: Contract-First & Type-Aware Prompting
+
+##### 1. Prompt Iniziale Debole (Vibe Prompting)
+> *"Scrivi una funzione Python che calcoli la liquidazione di un pagamento applicando una commissione del 2% e convertendo da USD a EUR. Fai in modo che sia robusta ed efficiente."*
+
+##### 2. Il Rischio di Assurance
+Il modello genererà una funzione che accetta generici numeri con la virgola (`float`) o stringhe. Nei computer, i numeri float non possono rappresentare esattamente molte frazioni decimali ordinarie (es. `0.1 + 0.2` diventa spesso `0.30000000000000004`). Su milioni di transazioni, queste minuscole approssimazioni provocano ammanchi di cassa e violano l'invariante di quadratura contabile (**Step 6 e Step 13**).
+
+##### 3. Il Pattern Applicato
+Il pattern **Contract-First & Type-Aware** costringe l'LLM a fermarsi: prima di scrivere i calcoli, deve definire i tipi di dato chiusi (es. rappresentare il denaro come centesimi interi esatti) e formalizzare le precondizioni e le postcondizioni.
+
+##### 4. Il Prompt Difensivo Raffinato
+```text
+OBIETTIVO:
+Definisci il contratto architetturale per la funzione di liquidazione 'calculate_settlement'.
+
+CONTESTO E VINCOLI DI TIPO:
+- Linguaggio: Python 3.11+ con annotazioni di tipo statiche (MyPy compatibili).
+- Nessuna libreria esterna al di fuori della libreria standard.
+- REGOLA AUREA SUI NUMERI: È SEVERAMENTE VIETATO usare il tipo primitivo 'float' per rappresentare importi monetari o commissioni.
+
+ISTRUZIONI DI GENERAZIONE A FASI:
+Fase 1: Definisci la struttura dei dati mediante classi immutabili (@dataclass(frozen=True)):
+  - CurrencyCode: tipo enumerativo chiuso contenente solo le valute ammesse (USD, EUR, GBP).
+  - MoneyCents: valore intero esatto (int) che rappresenta i centesimi di valuta (es. 1000 = 10.00 EUR).
+Fase 2: Esplicita il contratto logico nei commenti formali della firma:
+  - Precondizioni: l'importo lordo deve essere strettamente maggiore di zero centesimi; la commissione deve essere compresa tra 0 e 5000 punti base (0% - 50%).
+  - Postcondizioni: l'importo netto non deve mai essere negativo e la commissione trattenuta non deve mai superare l'importo lordo di partenza.
+Fase 3: Implementa la funzione pura, priva di accessi a file, rete o database.
+```
+
+##### 5. Cosa Riduce vs Cosa NON Può Garantire
+* **Cosa riduce significativamente:** Elimina l'uso di tipi aperti o imprecisi (`float`, dizionari generici) e impedisce l'inserimento di parametri privi di controllo.
+* **Cosa NON può garantire:** Non garantisce che l'algoritmo interno non contenga errori di logica; il prompt *orienta* la scrittura verso tipi corretti, ma l'effettiva verifica dei tipi deve essere eseguita a valle da un type-checker statico (come MyPy) e dai compilatori (**Step 17**).
+
+---
+
+#### Pattern 2: Grounded & Closed-Context Prompting
+
+##### 1. Prompt Iniziale Debole (Contesto Aperto)
+> *"Ora aggiorna la funzione integrando la conversione delle valute con i tassi di cambio correnti per USD, EUR e GBP."*
+
+##### 2. Il Rischio di Assurance
+Il modello non dispone di un collegamento a un feed finanziario in tempo reale. Per completare la risposta, estrarrà dai propri dati di addestramento un tasso di cambio memorizzato mesi o anni prima, oppure inventerà l'importazione di una libreria inesistente (`import live_forex_converter`), esponendo il progetto al rischio di *slopsquatting* e a gravi perdite economiche su cambi volatili (**Step 17**).
+
+##### 3. Il Pattern Applicato
+Il pattern **Grounded & Closed-Context** inietta direttamente nel prompt l'unica tabella dati ammessa come "verità di riferimento" (*Ground Truth*) e proibisce espressamente l'uso di fonti o librerie esterne.
+
+##### 4. Il Prompt Difensivo Raffinato
+```text
+OBIETTIVO:
+Estendi il modulo 'calculate_settlement' integrando la tabella dei tassi autorizzata.
+
+FONTE DI VERITÀ ESCLUSIVA (GROUND TRUTH):
+Utilizza ESCLUSIVAMENTE la seguente tabella immutabile di tassi di cambio autorizzati:
+- USD -> EUR: moltiplicatore intero 920000 (rapporto base 10^6, ovvero 0.920000)
+- EUR -> USD: moltiplicatore intero 1086956 (rapporto base 10^6, ovvero 1.086956)
+- GBP -> EUR: moltiplicatore intero 1180000 (rapporto base 10^6, ovvero 1.180000)
+Nessun'altra coppia valutaria è autorizzata in questa versione.
+
+VINCOLI DI CONFINAMENTO DELLE FONTI:
+1. È SEVERAMENTE VIETATO importare pacchetti o moduli esterni per reperire tassi di cambio.
+2. È SEVERAMENTE VIETATO inventare tassi per coppie non presenti in tabella (es. vietato dedurre USD -> GBP).
+3. Se viene richiesta una valuta non presente nella tabella fornita, il codice non deve tentare stime medie o approssimazioni: deve sollevare l'eccezione tipizzata 'UnsupportedCurrencyPairError'.
+```
+
+##### 5. Cosa Riduce vs Cosa NON Può Garantire
+* **Cosa riduce significativamente:** Impedisce l'introduzione di librerie allucinate o pericolose e vincola l'LLM a parametri numerici certi e verificabili.
+* **Cosa NON può garantire:** Non garantisce che il modello non sbagli a trascrivere un numero o che non inverta numeratore e denominatore durante il calcolo. L'accuratezza matematica deve essere convalidata con un oracolo di test indipendente (**Step 11**).
+
+---
+
+#### Pattern 3: Interrogazione Cieca e Neutrale (De-Biased Blind Querying)
+
+##### 1. Prompt Iniziale Debole (Viziato da Compiacenza / Sycophancy)
+> *"Per evitare che i clienti protestino, ho pensato di arrotondare sempre per difetto le commissioni trattenute. Questa soluzione è sicura e rispetta le prassi contabili, giusto?"*  
+> (Questo è solo un esempio, la scelta dipende anche dalla policy contabile, dal contratto e dalla giurisdizione applicabile).
+
+##### 2. Il Rischio di Assurance
+L'utente ha palesato la propria preferenza soggettiva ("non far protestare i clienti"). L'LLM, per compiacenza statistica (*sycophancy*), potrebbe confermare la preferenza dell'utente, ad esempio rispondendo: "Certamente! È un'ottima strategia di customer satisfaction ed è perfettamente ragionevole...". Una simile risposta potrebbe omettere i rischi contabili e normativi associati alla scelta. La legittimità del metodo di arrotondamento dipende dalle disposizioni applicabili, dalla giurisdizione, dagli accordi contrattuali e dalla policy contabile adottata (**Step 20**).
+
+##### 3. Il Pattern Applicato
+Il pattern **Interrogazione Cieca e Neutrale (De-Biased Blind Querying)** formula la richiesta in modo totalmente asettico, privando il prompt di qualsiasi indizio sulle preferenze dell'operatore e orientando il modello verso un'analisi critica e comparativa dei pro e dei contro, senza suggerire una preferenza iniziale.
+
+##### 4. Il Prompt Difensivo Raffinato
+```text
+OBIETTIVO:
+Analisi comparativa neutrale sulle strategie di arrotondamento contabile per le commissioni di liquidazione.
+
+CONTESTO:
+Dobbiamo selezionare la modalità di arrotondamento per frazioni di centesimo risultanti dal calcolo delle commissioni percentuali.
+
+ISTRUZIONI DI ANALISI CIECA (BLIND):
+1. Esamina le tre strategie standard:
+   a) Troncamento puro per difetto (Floor/Down);
+   b) Arrotondamento commerciale (Half-Up, verso il centesimo più vicino);
+   c) Arrotondamento bancario (Half-Even, verso il numero pari più vicino).
+2. Per ciascuna strategia analizza in modo neutrale e privo di preferenze preconcette:
+   - Come influisce sulla conservazione esatta del bilancio contabile su grandi volumi;
+   - Quali rischi di squilibrio economico o contestazione fiscale comporta;
+   - Se introduce derive statistiche cumulative a carico dell'azienda o del cliente.
+3. NON assumere alcuna preferenza da parte dell'utente. Evita complimenti o giudizi di comodità commerciale. Indica i vantaggi, i limiti e i rischi di ciascun metodo. Non individuare un metodo universalmente preferibile senza conoscere la giurisdizione, le prescrizioni contrattuali e la policy contabile applicabile. Se queste informazioni mancano, dichiara che non è possibile formulare una raccomandazione conclusiva.
+```
+
+##### 5. Cosa Riduce vs Cosa NON Può Garantire
+* **Cosa riduce significativamente:** Rimuove l'ancoraggio psicologico e disattiva la compiacenza del modello, facendogli evidenziare i rischi reali anziché assecondare un errore dell'utente.
+* **Cosa NON può garantire:** Non garantisce che la risposta includa ogni specifica circolare emessa dall'autorità fiscale nazionale; la decisione finale sul regime contabile appartiene inderogabilmente all'autorità umana responsabile (**Step 3 e Step 8**).
+
+---
+
+#### Pattern 4: Explicit Epistemic Abstention
+
+##### 1. Prompt Iniziale Debole (Forzatura di Conclusione)
+> *"Cosa deve fare la funzione se la transazione arriva mentre il server dei tassi è offline o se la quotazione memorizzata ha più di 2 ore?"*
+
+##### 2. Il Rischio di Assurance
+La domanda chiede una soluzione operativa a fronte di un requisito non documentato. L'LLM, addestrato per non lasciare mai una conversazione senza risposta, inventerà una toppa arbitraria: *"In caso di ritardo, la funzione userà l'ultimo tasso noto con uno sconto di sicurezza del 2%"*. Questa è un'invenzione pericolosa: espone l'azienda a perdite finanziarie e crea una falsa assunzione operativa non approvata da nessuno (**Step 5 e Step 28**).
+
+##### 3. Il Pattern Applicato
+Il pattern **Explicit Epistemic Abstention** istituisce l'obbligo del silenzio disciplinato: impone al modello di arrestarsi e dichiarare formalmente lo stato **`UNKNOWN`** ogni volta che una condizione operativa fondamentale non è chiarita dai requisiti, vietando qualsiasi congettura.
+
+##### 4. Il Prompt Difensivo Raffinato
+```text
+PROTOCOLLO OPERATIVO:
+Sei vincolato al protocollo di astensione epistemica esplicita.
+
+COMPITO:
+Valuta il comportamento di 'PaymentSettlementService' a fronte di dati di cambio obsoleti (stale exchange rates > 60 secondi).
+
+REGOLA DI ASTENSIONE RIGIDA (MANDATORY UNKNOWN):
+1. Se la specifica o i documenti forniti NON contengono una regola formale ed esplicita che definisca come trattare le quotazioni con timestamp più vecchio di 60 secondi:
+   - È SEVERAMENTE VIETATO inventare comportamenti di emergenza, valori predefiniti o fallback non autorizzati.
+   - Devi sospendere la scrittura del codice ed emettere esclusivamente il blocco strutturato:
+     [STATO EPISTEMICO]: UNKNOWN_UNDER_SPECIFIED
+     [REQUISITO MANCANTE]: Definizione formale della politica in caso di tasso scaduto.
+     [DOMANDE BLOCCANTI PER IL TEAM DI BUSINESS]:
+       a) La transazione deve essere respinta immediatamente (Fail-Closed)?
+       b) Deve essere sospesa in coda in attesa del ripristino delle quotazioni?
+2. Non generare alcuna riga di codice finché non ricevi risposta formale a queste domande.
+```
+
+##### 5. Cosa Riduce vs Cosa NON Può Garantire
+* **Cosa riduce significativamente:** Blocca l'infiltrazione di assunzioni non autorizzate nel codice e impedisce che il software venga rilasciato con scorciatoie arbitrarie decise dall'IA anziché dal committente.
+* **Cosa NON può garantire:** Non può impedire al modello di cadere in un'allucinazione di eccessiva sicurezza (*overconfidence*): se l'LLM ritiene erroneamente che una specifica sia completa, potrebbe procedere senza astenersi. Rimane necessario il vaglio del Decision Gate dello **Step 23**.
+
+---
+
+#### Pattern 5: Provenance-Based Epistemic Tagging
+
+##### 1. Prompt Iniziale Debole (Documentazione Indifferenziata)
+> *"Scrivi il codice e aggiungi una documentazione esaustiva che spieghi perché è sicuro e quali assunzioni sono state fatte."*
+
+##### 2. Il Rischio di Assurance
+L'LLM genererà paragrafi discorsivi in cui mischia fatti oggettivi, supposizioni personali e dichiarazioni di comodo (es. *"Questo codice garantisce la massima sicurezza ed è conforme agli standard bancari"*). Il revisore umano, leggendo una prosa fluida e convincente, subirà l'illusione della profondità esplicativa (**Appendice ※**) e scambierà le opinioni del modello per fatti dimostrati (*Epistemic Laundering*, **Step 5**).
+
+##### 3. Il Pattern Applicato
+Il pattern **Provenance-Based Epistemic Tagging** costringe il modello a etichettare ogni affermazione secondo la sua reale provenienza, chiarendo che il tag `[FACT]` è consentito solo per citazioni testuali certe, mentre ogni deduzione deve essere qualificata come congettura.
+
+##### 4. Il Prompt Difensivo Raffinato
+```text
+OBIETTIVO:
+Documenta i presupposti di funzionamento e i vincoli del modulo 'PaymentSettlementService'.
+
+REGOLE DI ETICHETTATURA EPISTEMICA (OBBLIGATORIE):
+Ogni singola riga di spiegazione e ogni commento nel codice deve aprirsi con uno dei seguenti marcatori:
+- [FACT]: Ammesso ESCLUSIVAMENTE per informazioni copiate verbatim dal testo dei requisiti fornito o per costrutti matematici certi (indica sempre il riferimento esatto tra parentesi).
+- [DERIVED]: Per passaggi logici o algebrici ricavati direttamente dai fatti mediante formule documentate.
+- [ASSUMPTION]: Per qualsiasi condizione operativa assunta dal codice ma NON presente nel documento fornito (es. "si assume che la memoria locale non si saturi").
+- [HYPOTHESIS]: Per congetture relative al comportamento di librerie esterne non direttamente verificate da test.
+- [UNKNOWN]: Per qualsiasi lacuna informativa o parametro non accertato.
+
+AVVERTENZA: L'uso improprio di [FACT] per mascherare ipotesi o opinioni soggettive invaliderà l'intero output.
+```
+
+##### 5. Cosa Riduce vs Cosa NON Può Garantire
+* **Cosa riduce significativamente:** Distingue visivamente i fatti provati dalle congetture, facilitando l'ispezione umana (**Step 24**) ed evitando che supposizioni passeggere diventino verità acquisite.
+* **Cosa NON può garantire:** Il tag è pur sempre una stringa emessa dal modello: l'LLM potrebbe classificare come `[FACT]` una frase che in realtà ha dedotto in modo fallace. L'auditor ha l'obbligo di verificare a campione la corrispondenza con la fonte originaria.
+
+---
+
+#### Pattern 6: Negative Constraints & Explicit Failure Handling
+
+##### 1. Prompt Iniziale Debole (Richiesta di Robustezza Incontrollata)
+> *"Fai in modo che la funzione non si blocchi mai e gestisca qualsiasi eccezione in modo silenzioso ed elegante."*
+
+##### 2. Il Rischio di Assurance
+Questo prompt stimola direttamente l'anti-pattern del fallimento invisibile. Il modello inserirà un blocco `except Exception: return 0`. Se il server perde la connessione o l'input è corrotto, la funzione restituirà zero anziché lanciare un allarme. I clienti riceveranno rimborsi nulli e la contabilità non se ne accorgerà per settimane (**Step 26 e Step 28**).
+
+##### 3. Il Pattern Applicato
+Il pattern **Negative Constraints & Explicit Failure Handling** vieta categoricamente la soppressione dell'errore, imponendo l'uso di eccezioni di dominio tipizzate e arrestando la transazione al primo segnale di corruzione (*Fail-Fast*).
+
+##### 4. Il Prompt Difensivo Raffinato
+```text
+OBIETTIVO:
+Implementa la gestione delle anomalie per 'PaymentSettlementService'.
+
+VINCOLI NEGATIVI TASSATIVI:
+1. GESTIONE ESPLICITA DELLE ECCEZIONI: Evita di intercettare eccezioni in modo indiscriminato o di sopprimere silenziosamente gli errori. Preferisci la cattura delle eccezioni tipizzate del dominio (es. CurrencyConversionError). La cattura di eccezioni generiche (es. 'except Exception:') è ammessa ai confini applicativi quando necessaria per logging, cleanup, traduzione dell'errore o rilancio. Ogni eccezione intercettata deve essere gestita esplicitamente, senza perdere il segnale del guasto.
+2. DIVIETO DI SOPPRESSIONE SILENTE (NO SWALLOWING): È vietato inserire blocchi 'except' vuoti o contenenti solo 'pass'.
+3. DIVIETO DI FALLBACK VELENOSO: In caso di errore o dato non calcolabile, è severamente vietato restituire valori inventati come 0, None o stringhe vuote.
+4. ECCEZIONI DI DOMINIO DEDICATE: Per proteggere gli invarianti di sicurezza (es. importo calcolato negativo), non utilizzare 'assert' come unico meccanismo di validazione, poiché le asserzioni possono essere disabilitate con python -O. Utilizza controlli espliciti e solleva un'eccezione dedicata, ad esempio 'InvariantViolationError'.
+```
+
+##### 5. Cosa Riduce vs Cosa NON Può Garantire
+* **Cosa riduce significativamente:** Riduce il rischio di dissimulazione del guasto, imponendo una gestione esplicita degli errori e favorendo la produzione di eccezioni tracciabili dai sistemi di monitoraggio e dai circuit breaker (**Step 27 e 28**).
+* **Cosa NON può garantire:** Non garantisce che l'eccezione venga posizionata nel punto esatto del flusso logico; solo il mutation testing dello **Step 16** può confermare che il test fallisca tempestivamente quando l'eccezione viene innescata.
+
+---
+
+#### Pattern 7: Candidate Adversarial Falsification
+
+##### 1. Prompt Iniziale Debole (Richiesta Tautologica di Conferma)
+> *"Scrivi una suite di test unitari con pytest per dimostrare che il codice di calcolo che hai appena scritto è perfetto e funziona senza errori."*
+
+##### 2. Il Rischio di Assurance
+Si aziona la **Trappola Circolare del Testing (Step 16)**: l'LLM scrive test che verificano fedelmente i medesimi casi nominali e gli stessi errori che ha inserito nel codice sorgente. Se ha sbagliato a dividere per cento, scriverà un test che si aspetta proprio quel risultato sbagliato. Tutti i test passano (`PASS`), dando l'illusione di una verifica rigorosa.
+
+##### 3. Il Pattern Applicato
+Il pattern **Candidate Adversarial Falsification** trasforma il modello da complice a oppositore logico: gli vieta di scrivere test favorevoli sul caso nominale (*happy path*) e gli ordina di ipotizzare **controesempi candidati** mirati a tentare di far fallire gli invarianti stabiliti.
+
+##### 4. Il Prompt Difensivo Raffinato
+```text
+RUOLO:
+Agisci come Security Tester e Adversarial Reviewer indipendente. Il tuo scopo non è dimostrare che il codice funziona, ma tentare attivamente di smentirne la correttezza.
+
+INVARIANTI DI DOMINIO DA TENTARE DI ABBATTERE:
+- Invariante 1: "L'importo netto calcolato non deve MAI superare l'importo lordo originale".
+- Invariante 2: "Il cambio di valuta deve conservare il valore esatto al centesimo senza generare o distruggere denaro per arrotondamenti asimmetrici".
+
+ISTRUZIONI DI ATTACCO LOGICO:
+1. NON scrivere test per flussi ordinari con cifre tonde (es. 100 USD).
+2. Genera ESCLUSIVAMENTE CONTROESEMPI CANDIDATI focalizzati su combinazioni asimmetriche estreme:
+   - Importi piccolissimi (es. 1 solo centesimo con commissione dell'1.5%);
+   - Frazioni di centesimo che producono resti periodici;
+   - Tassi di cambio con elevato scarto di grandezza.
+3. Per ciascun controesempio candidato specifica:
+   - Valore esatto di input;
+   - Risultato atteso dalla specifica di business;
+   - Risultato errato calcolato dal codice;
+   - Codice del test 'pytest' che deve produrre un'asserzione di fallimento (FAIL) qualora il codice ceda all'anomalia.
+```
+
+##### 5. Cosa Riduce vs Cosa NON Può Garantire
+* **Cosa riduce significativamente:** Rompe l'autoreferenzialità dei test autogenerati e fa emergere combinazioni limite a cui gli sviluppatori raramente pensano durante la stesura del codice.
+* **Cosa NON può garantire:** Il controesempio generato è un **candidato teorico** (`HYPOTHESIS`). Il modello potrebbe ipotizzare un fallimento inesistente o formulare un test con un oracolo errato. L'esecuzione del test da parte di un test runner esterno permette di verificare se il comportamento ipotizzato è riproducibile. Il risultato costituisce evidenza di una violazione solo dopo aver verificato che il test sia coerente con la specifica e che l'oracolo sia corretto. La valutazione finale richiede una verifica indipendente (**Step 16 e 18**).
+
+---
+
+### 5. Adattamento del Prompt alle Modalità di Generazione e ai Regimi di Inferenza
+
+Non tutti i modelli linguistici operano allo stesso modo. L'ingegnere di assurance deve adattare la struttura del prompt non in base al nome commerciale del fornitore (che muta continuamente), ma distinguendo le **modalità di generazione operative**.
+
+```text
++---------------------------------------------------------------------------+
+| 5.1 GENERAZIONE DIRETTA                | 5.2 RAGIONAMENTO ESTESO          |
+|     (Modalità operativa)               |     (Test-Time Reasoning)        |
+|----------------------------------------+----------------------------------|
+| Producono direttamente la risposta     | Impiegano risorse computazionali |
+| senza una fase esplicita di reasoning  | aggiuntive durante l'inferenza   |
+| (modalità disponibile in diversi       | per elaborare il problema        |
+| modelli general-purpose).              | prima della risposta.            |
+|                                        |                                  |
+| RISCHIO PRINCIPALE:                    | RISCHIO PRINCIPALE:              |
+| Scorciatoie logiche premature;         | Eccesso di speculazione interna  |
+| risposte scritte prima di aver         | (*overthinking*); razionaliz-    |
+| analizzato tutti i vincoli.            | zazione a posteriori di bug.     |
+|                                        |                                  |
+| REGOLA DI PROMPTING:                   | REGOLA DI PROMPTING:             |
+| Scomporre esplicitamente il compito    | Prompt sintetico sui vincoli;    |
+| a tappe (Fase 1: Tipi, Fase 2: Regole, | NON forzare catene di pensiero   |
+| Fase 3: Codice finale).                | artificiali che disturbano l'AI. |
++--------------------------------------------------------------------------+
+```
+
+#### 5.1 Modelli a Generazione Diretta (Next-Token Standard)
+Nella generazione autoregressiva, ogni token prodotto contribuisce a determinare la distribuzione di probabilità dei token successivi. Questa proprietà riguarda il meccanismo di generazione e non esclude la presenza di capacità di reasoning.
+- **Strategia di Prompting:** Imporre la generazione a tappe nel prompt. Chiedere al modello di emettere prima l'elenco dei tipi immutabili, poi la spiegazione dei contratti, e infine il codice della funzione.
+
+#### 5.2 Modelli con Ragionamento Esteso (Thinking / Reasoning Models)
+Questi modelli possono impiegare risorse computazionali aggiuntive durante l'inferenza per elaborare il problema prima di restituire la risposta visibile. Le modalità di elaborazione interna variano in funzione del modello e non sono necessariamente interamente osservabili:
+- **Strategia di Prompting:** È controproducente inserire nel prompt istruzioni come *"Spiega passo dopo passo tutto ciò che pensi"*. Queste istruzioni ridondanti aumentano la confusione interna e rischiano di indurre una sterile razionalizzazione linguistica.
+- **Regola Operativa:** Fornire premesse minime, pulite, prive di ambiguità e formulare i vincoli contrattuali con la massima concisione.
+
+#### 5.3 Il Ruolo dei Vincoli Deterministici Esterni (Decodifica Vincolata)
+Per comprendere il confine tra prompt e software, occorre fissare una regola fondamentale:
+
+> [!IMPORTANT]
+> **La Gerarchia dei Controlli di Uscita**
+> 
+> **Il prompt orienta; la decodifica vincolata limita le sequenze ammissibili di token; il parser interpreta la sintassi; il validatore verifica la conformità allo schema e ai vincoli di dominio.**
+
+- Quando diciamo nel prompt *"rispondi solo in formato JSON"*, stiamo solo **orientando** il modello. L'LLM può comunque fallire e inserire testo introduttivo (*"Certamente, ecco il tuo JSON..."*).
+- Se utilizziamo un motore di decodifica vincolata (come Outlines o Jsonformer), configurato con una grammatica o uno schema supportato, il runtime può limitare la selezione dei token alle continuazioni ammesse dai vincoli implementati. La conformità strutturale dipende dalla correttezza dell'implementazione, dai vincoli effettivamente supportati e dal comportamento del runtime. Questo meccanismo non garantisce la correttezza semantica o funzionale dei dati generati (**Step 12 e Appendice ⊞**).  
+È importante distinguere la decodifica vincolata dalla validazione successiva alla generazione. Pydantic e Zod sono principalmente strumenti di validazione dei dati rispetto a schemi e vincoli dichiarati: non costituiscono, da soli, motori di decodifica vincolata. Possono essere utilizzati per verificare l'output prodotto dal modello dopo la generazione.
+
+---
+
+### 6. Evidence-Based Prompt Refinement (Calibrazione Guidata dai Test)
+
+Uno degli errori metodologici più gravi è il cosiddetto **Vibe Tweaking** (modificare a tentativi le parole del prompt ogni volta che una risposta non piace all'utente, senza un criterio oggettivo).
+
+Nella Software Assurance, il raffinamento del prompt è un processo ingegneristico guidato da **prove empiriche replicabili**:
+
+```text
+               IL CICLO DI CALIBRAZIONE GUIDATO DAI TEST
+               
+         [ PROMPT ESISTENTE (Versione 1.0) ]
+                         |
+                         v
+         [ Generazione Codice ed Esecuzione Test ]
+                         |
+                         v
+      < Il test oracolato rileva un difetto reale? >
+                         |
+                         +---> SÌ (Controesempio concreto isolato)
+                         |
+                         v
+         [ ISOLAMENTO DELLA CAUSA LOGICA ]
+         Quale vincolo o assunzione mancava nel prompt?
+                         |
+                         v
+         [ AGGIORNAMENTO DI UN SINGOLO VINCOLO NEL PROMPT ]
+                         |
+                         v
+         [ RIESECUZIONE DELLA SUITE DI TEST CONGELATA ]
+         Verificare che il bug sia sparito E che nessun 
+         vecchio test sia andato in errore (Regression Test)!
+                         |
+                         v
+         [ PROMPT AGGIORNATO E VALIDATO (Versione 1.1) ]
+```
+
+#### Matrice di Confronto: Vibe Tweaking vs Refinement Guidato dall'Evidenza
+
+| Caratteristica | Approccio Inadeguato (Vibe Tweaking) | Approccio Desiderabile (Evidence-Based Refinement) |
+| :--- | :--- | :--- |
+| **Innesco della modifica** | La risposta a schermo "non sembra elegante" o non piace al lettore. | Un test automatizzato o un analizzatore statico ha segnalato un fallimento oggettivo (`FAIL`). |
+| **Azione sul testo** | Si aggiungono frasi generiche (*"Fai più attenzione!", "Sii rigoroso!"*). | Si introduce una precondizione precisa, un tipo di dato rigido o un'istruzione di astensione. |
+| **Metodo di variazione** | Si stravolge l'intero prompt cambiando molteplici istruzioni contemporaneamente. | Si modifica **un solo vincolo alla volta**, preservando l'isolamento della causa. |
+| **Criterio di successo** | La risposta successiva "sembra migliore" alla lettura soggettiva. | Il controesempio viene superato con successo E l'intera suite di non-regressione rimane verde. |
+| **Tracciabilità** | Nessuna: le modifiche avvengono in finestre di chat volatili. | Il prompt viene salvato nel repository come file versionato legato al codice del test (**Step 7**). |
+
+---
+
+### 7. Prontuario dei Template Operativi per il Ciclo di Vita del Software
+
+I seguenti cinque template operativi sono pronti all'uso e raccordati direttamente con i capitoli metodologici del manuale. Possono essere copiati, personalizzati nei campi tra parentesi quadre ed eseguiti nei propri ambienti di sviluppo.
+
+---
+
+#### Template 1 (Step 4 & 6): Estrazione e Formalizzazione di Contratti e Invarianti da Requisiti Informali
+*Da utilizzare quando si ricevono specifiche scritte in linguaggio naturale ambiguo, per estrarre formule logiche prima di toccare il codice.*
+
+```text
+RUOLO:
+Ingegnere dei Requisiti Formali ed Esperto di Metodi Formali.
+
+OBIETTIVO:
+Analizza il seguente testo informale ed estrai la specifica logica e gli invarianti critici del sistema.
+
+TESTO DEL REQUISITO:
+[Incollare qui la descrizione informale, il testo della User Story o il capitolo del documento]
+
+REGOLE DI ESTRAZIONE E ANALISI TASSATIVE:
+1. NON scrivere codice imperativo (nessun linguaggio di programmazione).
+2. Estrai e formalizza:
+   - Proprietà di Sicurezza (Safety Invariants): predicati logici che devono risultare TRUE in ogni stato ammissibile del sistema.
+   - Contratti delle Operazioni (Stile Hoare): per ciascuna funzione individua le Precondizioni obbligatorie a carico del chiamante e le Postcondizioni garantite all'uscita.
+3. GESTIONE DEI TERMINI VAGHI: Se il testo contiene aggettivi non misurabili (es. "rapido", "sicuro", "efficiente", "appropriato"):
+   - È SEVERAMENTE VIETATO interpretarli o colmarli con assunzioni arbitrarie.
+   - Inseriscili nella sezione [AMBIGUITÀ DA CHIARIRE], formulando per ciascuno la metrica o la soglia mancante.
+4. Per ogni invariante identificato, formula la negazione formale: quale evento o dato nel mondo reale costituirebbe la prova empirica della sua violazione?
+```
+
+---
+
+#### Template 2 (Step 13 & 15): Generazione di Funzioni Pure con Asserzioni Difensive
+*Da utilizzare per farsi generare la logica interna (Functional Core) protetta da controlli a tempo di esecuzione.*
+
+```text
+RUOLO:
+Sviluppatore Software specializzato in Programmazione Difensiva e Type-Driven Design.
+
+SPECIFICA CONTRATTUALE APPROVATA:
+Firma: [Incollare la firma della funzione con tipi rigorosi]
+Precondizioni: [Elenco delle precondizioni alla Hoare]
+Postcondizioni: [Elenco delle postcondizioni alla Hoare]
+Invariante da preservare: [Predicato logico che non deve essere violato]
+
+VINCOLI TECNICI DI IMPLEMENTAZIONE:
+1. PUREZZA FUNZIONALE: La funzione deve essere pura. Divieto assoluto di chiamate di rete, accessi a file, letture del clock di sistema o modifiche a variabili esterne.
+2. TIPI DI DATO CHIUSI: Divieto assoluto di usare tipi aperti (Any, Object generici, mappe aperte). Usa unicamente tipi immutabili o strutture dati convalidate.
+3. VERIFICA DEI CONTRATTI:
+   - Inserisci all'inizio della funzione il controllo deterministico delle precondizioni: se violate, solleva immediatamente l'eccezione tipizzata prevista.
+   - Verifica la conformità delle postcondizioni e degli invarianti prima di restituire il risultato. In caso di violazione, solleva un'eccezione dedicata di dominio (es. InvariantViolationError), evitando di fare affidamento su generici 'assert' che potrebbero essere disabilitati a runtime.
+4. DIVIETO DI CODICE FANTASMA (GHOST CODE): Implementa esclusivamente la logica necessaria a soddisfare le postcondizioni dichiarate. Non aggiungere parametri facoltativi, utility non richieste o rami di fallback non documentati.
+```
+
+---
+
+#### Template 3 (Step 16 & 18): Generazione di Proprietà per Property-Based Testing
+*Da utilizzare per farsi scrivere test massivi (Hypothesis/QuickCheck) fornendo SOLO la specifica e NASCONDENDO il codice.*
+
+```text
+RUOLO:
+Test Automation Engineer specializzato in Property-Based Testing (PBT).
+
+CONTESTO:
+Devi scrivere una suite di test basata su proprietà per la libreria Hypothesis.
+NON hai visibilità del codice sorgente (Verifica Black-Box). Devi ricavare gli oracoli ESCLUSIVAMENTE dalla seguente specifica formale.
+
+SPECIFICA FORMALE DI RIFERIMENTO:
+[Incollare requisiti, tipi e contratti formali dello Step 4]
+
+ISTRUZIONI DI GENERAZIONE DEI TEST:
+1. Definisci le strategie di generazione coprendo l'intero dominio ammissibile, inclusi i casi limite (zeri, massimi di sistema, sequenze vuote, caratteri limite).
+2. Scrivi i test verificando proprietà universali del dominio:
+   - Round-trip / Invertibilità (se applicabile);
+   - Conservazione di invarianti (somme, bilanci contabili, integrità delle relazioni);
+   - Idempotenza o monotonia.
+3. DIVIETO DI TEST TAUTOLOGICI: È severamente vietato replicare l'algoritmo all'interno del test per confrontarlo con se stesso. L'oracolo deve verificare proprietà relazionali o confrontarsi con un modello matematico alternativo e indipendente.
+```
+
+---
+
+#### Template 4 (Step 20 & 21): Ispezione del Codice a Stanza Cieca (Blind Code Review)
+*Da utilizzare quando si interpella un secondo modello linguistico per fare l'audit del codice scritto da un altro modello.*
+
+```text
+RUOLO:
+Revisore Indipendente di Sicurezza del Software (Modalità Blind Review).
+
+CONTESTO OPERATIVO:
+Devi verificare se il codice candidato soddisfa integralmente la specifica contrattuale fornita.
+Non presumere che il codice sia corretto, né presumere che sia necessariamente difettoso. Il tuo unico obiettivo è identificare discrepanze dimostrabili.
+
+SPECIFICA ATTESA:
+[Incollare la specifica approvata e gli invarianti critici]
+
+CODICE CANDIDATO SOTTO ESAME:
+[Incollare il codice sorgente da analizzare]
+
+ISTRUZIONI DI REVISIONE:
+1. Ispeziona attivamente il codice ricercando:
+   - Violazioni delle postcondizioni e degli invarianti contrattuali;
+   - Condizioni di contesa concorrenti (race conditions) o blocchi asincroni;
+   - Errori sui valori limite (off-by-one, troncamenti decimali impropri);
+   - Eccezioni catturate e soppresse silenciosamente (anti-pattern del fallimento invisibile);
+   - Assunzioni implicite non verificate sui dati o sull'ambiente.
+2. FORMATO DELLA RISPOSTA (OBBLIGATORIO):
+   - [VERDETTO]: (Scegliere tassativamente tra: VIOLAZIONE DIMOSTRATA | NESSUNA VIOLAZIONE RILEVATA | INCONCLUDENTE)
+   - [CONTROESEMPIO CANDIDATO]: Se dichiari una violazione, fornisci l'input esatto o la sequenza temporale di chiamate che innesca il difetto e specifica le precondizioni ambientali necessarie per riprodurlo.
+   - [ANALISI CAUSALE]: Spiegazione tecnica della discrepanza rispetto alla specifica.
+   - [LIMITI DELL'ANALISI]: Dichiara apertamente quali aspetti non hai potuto verificare con la sola lettura statica del testo.
+```
+
+---
+
+#### Template 5 (Step 22 & 29): Ricostruzione Causale Post-Anomalia Senza Autoassoluzione
+*Da utilizzare dopo un incidente o un test fallito per comprendere cosa sia successo senza farsi abbindolare da narrazioni rassicuranti.*
+
+```text
+RUOLO:
+Analista di Affidabilità e Ricostruzione Causale Post-Incidente (RCA Specialist).
+
+EVENTO OPERATIVO OSSERVATO:
+Input che ha scatenato il fallimento: [Incollare l'input o il payload del test]
+Comportamento osservato (Sintomo): [Incollare lo stacktrace o il log di errore reale]
+Comportamento atteso da specifica: [Incollare l'invariante che è stato violato]
+
+CODICE INTERESSATO:
+[Incollare il frammento di codice in cui si è manifestato l'errore]
+
+MANDATO ANALITICO:
+1. Formula tre distinte IPOTESI CAUSALI (H1, H2, H3) sull'origine del difetto, distinguendo con precisione:
+   - Il sintomo manifesto a schermo;
+   - La causa prossima nell'algoritmo;
+   - La causa radice nelle assunzioni, nella specifica o nell'ambiente.
+2. DIVIETO DI PATCH PREMATURA: NON scrivere codice di correzione in questa fase.
+3. Per ciascuna ipotesi, specifica quale TEST CONTROLLATO o quale LOG DI SISTEMA è necessario consultare per confermare o smentire l'ipotesi.
+4. Identifica se l'anomalia manifesta la rottura di un'assunzione censita nel Risk Register o se rappresenta una classe di fallimento interamente nuova.
+```
+
+---
+
+### Sintesi Finale
+
+Il Prompt Engineering, liberato dalla retorica commerciale e inquadrato nella disciplina dell'Assurance del Software:
+
+1. **Non è una bacchetta magica:** non garantisce l'assenza di difetti né sostituisce i controlli di sicurezza del sistema operativo e dei compilatori.
+2. **È uno strumento di riduzione dell'ambiguità:** costringe il modello linguistico a operare all'interno di confini contrattuali rigorosi fin dalla prima istruzione generata.
+3. **Disattiva la compiacenza statistica:** impone la formulazione cieca e l'astensione epistemica (`UNKNOWN`), premiando la segnalazione trasparente dei dubbi rispetto all'invenzione di risposte plausibili ma false.
+4. **Alimenta la verifica deterministica:** non si accontenta di spiegazioni verbali, ma esige sempre la generazione di tipi chiusi, asserzioni a tempo di esecuzione e controesempi candidati da sottoporre ai collaudi dei test runner.
+5. **Resta subordinato al giudizio umano:** il prompt orienta la macchina, ma la responsabilità etica, professionale e legale di convalidare le evidenze e approvare il software appartiene per intero all'essere umano (**Step 24**).
 
 ---
 
@@ -30393,6 +31108,18 @@ Il seguente elenco riflette il panorama tecnologico e le licenze verificate nel 
 * `● Consolidato` (Rischio obsolescenza basso): standard industriale de facto, governance solida, stabilità delle API e manutenzione garantita nel lungo termine.
 * `▲ In evoluzione` (Rischio obsolescenza moderato): strumento maturo e attivamente supportato, ma soggetto a frequenti evoluzioni architetturali, fork comunitari o rapidi adeguamenti dell'ecosistema.
 * `◆ Rapido ricambio` (Rischio obsolescenza alto): soluzione afferente al recente ambito dell'IA generativa a runtime, caratterizzata da un ecosistema in continua trasformazione e soggetta a rapido turnover tecnologico.
+
+---
+
+### Indice
+
+1. **Analisi statica**
+2. **Test automatici e copertura**
+3. **Fuzzing e analisi dinamica**
+4. **Sicurezza, licenze e dipendenze**
+5. **Verifica formale**
+6. **Assurance e sicurezza di sistemi con LLM integrati a runtime**
+- **Nota sulle licenze e sul diritto d'autore**
 
 ---
 
@@ -31148,7 +31875,7 @@ La tabella raggruppa i principali progetti open-source affidabili e maturi idone
 ## ▣ Progettazione di Sandbox ed Esecuzione Isolata
 ***Atlante Tecnologico dei Meccanismi di Confinamento per l'Assurance del Codice Sintetico***
 
-### Indice dell'Appendice
+### Indice dei Contenuti
 
   1. **Premesse concettuali e finalità operative**
   2. **I cinque assi operativi dell'isolamento (Modello analitico interdipendente)**
@@ -31842,7 +32569,7 @@ Se uno qualsiasi di questi test negativi non solleva l'eccezione attesa (ad esem
 ## ♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime
 **Guida Operativa ai Controlli di Accesso, Privilegi di Piattaforma e Intersezione dell'Autorità per l'Assurance del Software Assistito da LLM**
 
-### INDICE SINTETICO
+### Indice Sintetico
 
 1. **Introduzione e Obiettivo della Guida**
 2. **Modelli di Sicurezza del Sistema Operativo Ospitante (Host OS)**
@@ -32660,7 +33387,8 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
 ## ⊙ Elementi di Logica e Specifica Formale
 ***Guida di consultazione per l'Assurance del Software***
 
-### Indice
+### Indice dei Contenuti
+
 1. **Scopo e convenzioni**
 2. **Simboli e notazioni**
 3. **Elementi fondamentali della Logica del Primo Ordine**
