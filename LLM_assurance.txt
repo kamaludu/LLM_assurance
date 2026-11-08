@@ -54,6 +54,7 @@ Principi, Verifica, Evidenze e Governance**
 10. [Assurance Level — determinazione del livello di assurance necessario](#step-10-assurance-level)
 11. [Independent Evidence & Oracles — evidenze indipendenti e oracle](#step-11-independent-evidence)
 12. [Assumption Verification — verifica delle assunzioni critiche](#step-12-assumption-verification)
+- [ⓘ Punto di Controllo I — Dalla comprensione del problema all'atto costruttivo](#punto-controllo-1)
 
 **②**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
@@ -71,6 +72,7 @@ Principi, Verifica, Evidenze e Governance**
 22. [Discrepancy Analysis — analisi e classificazione delle discrepanze](#step-22-discrepancy-analysis)
 23. [Evidence-Based Decision Gates — gate decisionali basati sull'evidenza](#step-23-evidence-decision)
 24. [Human Review & Formal Approval — revisione umana e approvazione formale](#step-24-human-review)
+- [ⓘ Punto di Controllo II — Dal laboratorio di verifica all'esercizio reale](#punto-controllo-2)
 
 **③**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
@@ -80,6 +82,7 @@ Principi, Verifica, Evidenze e Governance**
 26. [Observability — osservabilità](#step-26-observability)
 27. [Alerting & Runbooks — allarmi e procedure operative](#step-27-alerting-runbooks)
 28. [Rollback, Fallback & Circuit Breakers — ripristino, percorsi alternativi e interruttori di circuito](#step-28-rollback-fallback)
+- [ⓘ Punto di Controllo III — Dalla risposta all'incidente alla memoria istituzionale](#punto-controllo-3)
 
 **④**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
@@ -90,7 +93,8 @@ Principi, Verifica, Evidenze e Governance**
 31. [Change Impact Analysis — analisi dell'impatto delle modifiche](#step-31-change-impact)
 32. [Periodic Review — revisione periodica e audit](#step-32-periodic-review)
 33. [Closure & Lessons Learned — chiusura, archiviazione e lezioni apprese](#step-33-closure-lessons)
-  
+- [ⓘ Punto di Controllo IV — Dal ciclo di vita alla custodia dell'assurance](#punto-controllo-4)
+
 **Ⓐ**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 ### [APPENDICI](#appendici-man)
@@ -1600,7 +1604,7 @@ SPAZIO DELLA SOLUZIONE (Solution Space)
 - **Spazio del Problema**: Definisce la condizione desiderata del mondo reale, i vincoli e le assunzioni, senza imporre vincoli tecnologici prematuri.
 - **Spazio della Soluzione**: Definisce la struttura interna e il comportamento algoritmico della macchina ideata per risolvere il problema.
 
-*Perché confonderli invalida l'assurance*: Se il problema viene definito come: *"Costruire una cache Redis per velocizzare la sincronizzazione del catalogo merci"*, abbiamo imposto una soluzione specifica prima di comprendere il problema. Il problema reale potrebbe essere: *"Evitare che un cliente ordini un articolo già esaurito a magazzino, garantendo che lo stato di stock visualizzato non sia più vecchio di 5 secondi"*. 
+*Perché confonderli invalida l'assurance*: Se il problema viene definito come: *"Costruire una cache Redis (un archivio temporaneo ultra-veloce in memoria RAM) per velocizzare la sincronizzazione del catalogo merci"*, abbiamo imposto una soluzione specifica prima di comprendere il problema. Il problema reale potrebbe essere: *"Evitare che un cliente ordini un articolo già esaurito a magazzino, garantendo che lo stato di stock visualizzato non sia più vecchio di 5 secondi"*. 
 L'introduzione prematura di Redis distorce l'analisi: Redis non garantisce di per sé la consistenza dei dati in caso di partizionamento della rete tra il magazzino e il server web, nascondendo una potenziale violazione del requisito di business.
 
 #### 3.2 Adeguatezza (*Adequacy*) vs Correttezza (*Correctness*)
@@ -5953,7 +5957,7 @@ def monitor_patient_vitals(json_data):
 
 #### Scenario B: Il Servizio di Cache Distribuita con Validazione LLM
 
-Un'infrastruttura di trading ad alta frequenza utilizza un modello LLM all'interno di una pipeline di continuous delivery. L'LLM genera la configurazione e il wrapper client per una cache Redis in-memory destinata a contenere i prezzi bid/ask degli strumenti finanziari.
+Un'infrastruttura di trading ad alta frequenza utilizza un modello LLM all'interno di una pipeline di continuous delivery. L'LLM genera la configurazione e il wrapper client per una cache Redis in-memory (un archivio temporaneo ultra-veloce in memoria RAM) destinata a contenere i prezzi bid/ask degli strumenti finanziari.
 
 ##### Test Report fornito dalla pipeline automatizzata:
 
@@ -6013,7 +6017,7 @@ Il report esibisce un classico caso di successo tautologico:
 
 ##### 3. Evidenza Pretesa per la Validazione
 Per revocare la False Assurance e ammettere il modulo allo step successivo, il processo di assurance deve pretendere:
-1.  **Evidenza Sperimentale di Chaos Testing:** Esecuzione di una suite di test che inietti artificialmente latenza variabile (Jitter) e partizionamento di pacchetti (es. tramite Chaos Mesh o Toxiproxy) durante l'esecuzione concorrente delle operazioni di scrittura/lettura.
+1.  **Evidenza Sperimentale di Chaos Testing:** Esecuzione di una suite di test che inietti artificialmente latenza variabile (Jitter) e partizionamento di pacchetti (es. tramite Chaos Mesh o Toxiproxy, simulatori di guasti che iniettano ritardi di rete controllati) durante l'esecuzione concorrente delle operazioni di scrittura/lettura.
 2.  **Verifica Formale dell'Oracolo di Idempotenza:** Dimostrazione documentata che l'operazione di restore o riallineamento della cache produca il medesimo stato finale indipendentemente dal numero di ritrasmissioni e dall'ordine di arrivo dei messaggi concorrenti.
 
 ---
@@ -11203,9 +11207,14 @@ Verificare le assunzioni critiche significa:
 Solo quando le premesse del sistema sono state verificate o confinate con lo stesso rigore applicato al codice applicativo, possiamo dichiarare che la fiducia nella correttezza del software è fondata su basi ingegneristiche e non su un atto di cieca fede.
 
 ---
+<div class="pagebreak"></div>
 
-## ⓘ Raccordo di Transizione Metodologica
-### Punto di Controllo Decisionale I: Dalla Comprensione del Problema all'Atto Costruttivo
+[Torna all'Indice](#indice-completo)
+
+<a name="punto-controllo-1"></a>
+
+## ⓘ Punto di Controllo Decisionale I: *Dalla Comprensione del Problema all'Atto Costruttivo*
+*Raccordo di Transizione Metodologica*
 
 > [!NOTE]
 > **Che cosa abbiamo acquisito e cosa ci attende nella Parte II**  
@@ -12347,7 +12356,7 @@ Per comprendere e attuare questo STEP, il lettore deve saper distinguere chiaram
 #### Gap tipici del lettore assistito da LLM
 1. **Confusione tra autorizzazione applicativa e autorizzazione di sistema**: Credere che validare un input a livello applicativo (es. tramite un controllo condizionale generato dall'LLM) equivalga a rimuovere l'autorità di accesso a monte (es. permessi del file system o credenziali del database).
 2. **Illusione del prompt come perimetro di sicurezza**: Credere che istruire l'LLM con direttive del tipo *"Non accedere ad altri file oltre a quelli nella cartella /tmp"* costituisca una misura di contenimento.
-3. **Delega cieca della configurazione infrastrutturale**: Chiedere all'LLM di generare un Dockerfile o un manifesto Kubernetes e assumere che i permessi concessi di default siano minimi e corretti.
+3. **Delega cieca della configurazione infrastrutturale**: chiedere all'LLM di generare un Dockerfile o una specifica di orchestrazione (i cosiddetti file manifest con cui si configurano piattaforme come Kubernetes) e assumere che i permessi concessi di default siano minimi e corretti.
 
 Se il lettore non possiede le nozioni operative relative ai modelli di sicurezza del sistema operativo ospitante o ai modelli di autorizzazione del runtime di destinazione, **deve registrare un Competence Gap** e astenersi dal certificare la proprietà di contenimento.
 
@@ -12788,7 +12797,7 @@ Un modello linguistico non può essere il garante del confinamento. Tuttavia, se
 | COSA L'LLM PUÒ FARE | COSA L'LLM NON PUÒ FARE |
 | :--- | :--- |
 | • **Suggerire una lista di syscall comuni** utilizzate da una determinata libreria (bozza per un profilo seccomp). | • **Garantire che la sandbox** non abbia falle di isolamento a runtime. |
-| • **Produrre template di sintassi** per manifesti Kubernetes o ruoli IAM. | • **Verificare se la configurazione reale** del cluster applichi la policy. |
+| • **Produrre template di sintassi** per specifiche di orchestrazione o ruoli IAM. | • **Verificare se la configurazione reale** del cluster applichi la policy. |
 | • **Identificare chiamate di sistema** o funzioni standard che richiedono autorità elevata nel codice esaminato. | • **Fungere da oracle** per la decisione di autorizzazione del sistema. |
 | • **Riconoscere dipendenze ridondanti** che allargano inutilmente il perimetro. | • **Sostituirsi al controllo del kernel** o del motore di autorizzazione. |
 
@@ -12811,7 +12820,19 @@ Non tutte le attività relative al contenimento possono essere svolte dal medesi
 | **Esecuzione dei test di violazione del perimetro**<br>(breakout testing) | **Sì**<br>(creazione script avversariali) | Security Tester / QA Engineer |
 
 #### Il divieto di delega epistemica dell'autorità
-La responsabilità di decidere quale sia il massimo livello di danno tollerabile per l'organizzazione non è <mark>**mai**</mark> delegabile all'LLM. Se l'utente non comprende la differenza tra una policy di rete `Ingress` e una `Egress`, non possiede la competenza per apporre la firma di approvazione sull'invariante di contenimento. In questo caso, l'assurance deve arrestarsi allo stato di **UNKNOWN** o **NO-GO** fino a consultazione di un esperto di dominio.
+La responsabilità di decidere quale sia il massimo livello di danno tollerabile per l'organizzazione non è <mark>**mai**</mark> delegabile all'LLM. Se l'utente non comprende la differenza tra una policy di rete *Ingress* (traffico in entrata) e una *Egress* (traffico in uscita), non possiede la competenza per apporre la firma di approvazione sull'invariante di contenimento. In questo caso, l'assurance deve arrestarsi allo stato di **UNKNOWN** o **NO-GO** fino a consultazione di un esperto di dominio.
+
+> [!TIP]
+> **Chiarimento didattico per non specialisti: la trappola del traffico in uscita (*Egress*)**
+> 
+> Molti sviluppatori ritengono che un container sia sicuro solo perché "nessuno dall'esterno può entrarvi" (*Ingress* bloccato). Tuttavia, nel software assistito da LLM la minaccia primaria è inversa: uno script allucinato o manipolato tramite *Indirect Prompt Injection* tenterà quasi sempre di **uscire verso l'esterno (*Egress*)**, per esfiltrare credenziali private o scaricare librerie malevole da internet. 
+> 
+> Per considerare colmato questo divario di competenza e autorizzare l'invariante di rete, il valutatore deve padroneggiare tre concetti illustrati nel manuale:
+> 1. **Perché isolare l'uscita (*Network Egress Blackholing*):** la disattivazione del gateway di default per codice non fidato (*Cap. 14, Sez. 8, Pattern 3*);
+> 2. **Come disabilitare fisicamente la rete:** l'uso del flag di isolamento totale `--network none` nei container (*Appendice ▣, Asse 4 e Sez. 7*);
+> 3. **Come verificare il blocco empiricamente:** l'esecuzione del test negativo di conformità `test_ipv4_tcp_egress_is_blocked` (*Appendice ▣, Sez. 7.4*), che accerta che ogni tentativo di connessione verso IP esterni fallisca a livello kernel.
+> 
+> *(Per l'inquadramento metodologico su come mappare e gestire i propri limiti tecnici senza procedere a tentativi, vedi il [CAPITOLO 8 — Competence Gaps](#step-8-competence-gaps)).*
 
 ---
 
@@ -20223,7 +20244,7 @@ Il modello dell'Evidence-Based Decision Gate rimane concettualmente invariato in
 
 | CONTESTO 2: Cloud Infrastructure & Policy-as-Code |
 | :--- |
-| **Artefatto generato da LLM:** Template OpenTofu / Terraform per il cluster VPC. |
+| **Artefatto generato da LLM:** Template OpenTofu / Terraform (i file con cui si configurano automaticamente server e reti nel cloud) per il cluster VPC. |
 | **Invariante critico:** Nessun security group deve consentire ingress 0.0.0.0/0 sulle porte amministrative (es. SSH 22, RDP 3389). |
 | **Evidenza ammessa:** Valutazione deterministica del piano di deploy mediante Open Policy Agent (OPA) con policy Rego immutabile. |
 | **Verdetto Gate:** Se la scansione statica rileva una porta aperta mascherata da variabile interpolata dinamicamente, il gate emette FAIL -> Deploy BLOCCATO. |
@@ -21112,8 +21133,14 @@ La capacità dei modelli generativi di produrre codice formalmente plausibile e 
 
 ---
 
-## ⓘ Raccordo di Transizione Metodologica
-### Punto di Controllo Decisionale II: Dal Laboratorio di Verifica all'Esercizio Reale
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="punto-controllo-2"></a>
+
+## ⓘ Punto di Controllo Decisionale II: *Dal Laboratorio di Verifica all'Esercizio Reale*
+*Raccordo di Transizione Metodologica*
 
 > [!NOTE]
 > **Che cosa abbiamo dimostrato finora e perché la produzione richiede una nuova postura**  
@@ -21233,7 +21260,7 @@ La corretta gestione dell'esercizio controllato richiede la convergenza di tre c
 (Orchestrare container e proxy)       (Definire gli invarianti ammessi)       (Distinguere segnale da rumore)
 ```
 
-1. **Competenza di Deployment e Routing**: Capacità di configurare bilanciatori di carico, proxy inversi (es. Envoy, Traefik, NGINX), service mesh o motori di feature flagging per suddividere il traffico in modo deterministico e isolato.
+1. **Competenza di Deployment e Routing**: Capacità di configurare bilanciatori di carico, proxy inversi (es. Envoy, Traefik, NGINX, componenti di smistamento che dividono il traffico di rete), service mesh o motori di feature flagging per suddividere il traffico in modo deterministico e isolato.
 2. **Competenza di Dominio e Rischio**: Comprensione delle conseguenze sistemiche del software. Capacità di stabilire quali popolazioni di utenti o categorie di transazioni possano essere esposte alla versione sperimentale senza violare requisiti normativi, contrattuali o di integrità del dato.
 3. **Competenza Telemetrica Differenziale**: Capacità di confrontare i flussi di telemetria tra la versione stabile preesistente (baseline) e la versione sperimentale (canary), riconoscendo scostamenti statisticamente significativi rispetto agli invarianti di funzionamento.
 
@@ -24906,7 +24933,7 @@ Tuttavia, conformemente al rigore epistemico del manuale, va ribadito che:
 
 | MECCANISMO DA VALIDARE | METODO DI PERTURBAZIONE FORZATA | ORACOLO DI VERIFICA (EVIDENZA) |
 | :--- | :--- | :--- |
-| **Circuit Breaker** | Iniezione del 60% di timeout<br>artificiali su proxy intermedio<br>(es. Toxiproxy o ChaosMesh). | Transizione verificata in OPEN<br>entro 3s; azzeramento chiamate di<br>rete; assenza di socket bloccati. |
+| **Circuit Breaker** | Iniezione del 60% di timeout<br>artificiali su proxy intermedio<br>(es. Toxiproxy o ChaosMesh, simulatori di guasti che iniettano ritardi di rete controllati). | Transizione verificata in OPEN<br>entro 3s; azzeramento chiamate di<br>rete; assenza di socket bloccati. |
 | **Fallback Euristico** | Simulazione di partizione di<br>rete totale verso provider LLM<br>(blocco porta o DNS drop). | Risposta erogata con flag esplicito<br>'degraded: true'; formato valido;<br>latenza inferiore a 50 millisecondi. |
 | **Rollback del Codice** | Esecuzione di 200 transazioni<br>su N+1; abort del deploy;<br>ripristino istantaneo di N. | Rollback eseguito; tutte le 200<br>transazioni restano leggibili e<br>processabili dal codice N. |
 
@@ -25115,8 +25142,14 @@ L'acquisizione della padronanza concettuale ed esecutiva dello STEP 28 si consid
 
 ---
 
-## ⓘ Raccordo di Transizione Metodologica
-### Punto di Controllo Decisionale III: Dalla Risposta all'Incidente alla Memoria Istituzionale
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="punto-controllo-3"></a>
+
+## ⓘ Punto di Controllo Decisionale III: *Dalla Risposta all'Incidente alla Memoria Istituzionale*
+*Raccordo di Transizione Metodologica*
 
 > [!NOTE]
 > **Che cosa abbiamo garantito a runtime e perché la Parte IV chiude l'anello**  
@@ -29735,8 +29768,14 @@ La chiusura, l'archiviazione e la capitalizzazione delle lezioni non costituisco
 
 ---
 
-## ⓘ Raccordo di Transizione Metodologica
-### Punto di Controllo Decisionale IV: Dal Ciclo di Vita alla Custodia dell'Assurance
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="punto-controllo-4"></a>
+
+## ⓘ Punto di Controllo Decisionale IV: *Dal Ciclo di Vita alla Custodia dell'Assurance*
+*Raccordo di Transizione Metodologica*
 
 > [!NOTE]
 > **Che cosa abbiamo capitalizzato e come si conclude il percorso operativo**  
