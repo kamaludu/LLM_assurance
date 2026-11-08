@@ -25,14 +25,15 @@
 
 ---
 
-**⛓ Assurance del Software Assistito da LLM**
-### Indice completo
+**⛓ Assurance del Software Assistito da LLM**  
+## Indice completo
 
 - ⌘ Informazioni sul documento
 - ➠ Nota terminologica
+- ◉ Quadro  Didattico: l'ecosistema dell'AI e la specificità degli LLM
 - ⛶ Guida di Lettura per Ruoli
 
-#### PARTE I — Fondamenti epistemici e decisionali
+### PARTE I — Fondamenti epistemici e decisionali
 
 - ✰ Guida ai 5 concetti fondamentali dell'Assurance
 
@@ -42,17 +43,17 @@
 4. Specification — costruzione e analisi della specifica
 5. Assumptions & Unknowns — assunzioni, fatti e conoscenze mancanti
 6. Critical Properties & Invariants — proprietà critiche e invarianti
-7 . Traceability — tracciabilità dalla finalità all'evidenza
+7. Traceability — tracciabilità dalla finalità all'evidenza
 8. Competence Gaps — gap di comprensione, verifica e autorità
 9. Specification Validity — verifica della validità della specifica
 10. Assurance Level — determinazione del livello di assurance necessario
 11. Independent Evidence & Oracles — evidenze indipendenti e oracle
 12. Assumption Verification — verifica delle assunzioni critiche
 
-#### PARTE II — Implementazione e verifica
+### PARTE II — Implementazione e verifica  
 
 13. Implementation Design — progettazione dell'implementazione
-14. Containment & Least Authority — contenimento e principio del minimo privilegio
+14. Containment & Least Authority — contenimento e minima autorità
 15. LLM-Assisted Implementation — sviluppo assistito da LLM
 16. Automated Testing — testing automatico
 17. Static Analysis, SAST, SCA & Secret Scanning — analisi statica e controlli sulle dipendenze e sui segreti
@@ -64,14 +65,14 @@
 23. Evidence-Based Decision Gates — gate decisionali basati sull'evidenza
 24. Human Review & Formal Approval — revisione umana e approvazione formale
 
-#### PARTE III — Esercizio controllato
+### PARTE III — Esercizio controllato
 
 25. Staging, Canary & Feature Flags — ambienti di staging, canary release e feature flag
 26. Observability — osservabilità
 27. Alerting & Runbooks — allarmi e procedure operative
-28. Rollback, Fallback & Circuit Breakers
+28. Rollback, Fallback & Circuit Breakers — ripristino, percorsi alternativi e interruttori di circuito
 
-#### PARTE IV — Evoluzione e mantenimento dell'assurance
+### PARTE IV — Evoluzione e mantenimento dell'assurance
 
 29. Post-Deployment Analysis — analisi post-deployment e incidenti
 30. Risk Register & Knowledge Base — registro dei rischi e knowledge base
@@ -79,12 +80,15 @@
 32. Periodic Review — revisione periodica e audit
 33. Closure & Lessons Learned — chiusura, archiviazione e lezioni apprese
 
-#### APPENDICI
+### APPENDICI
 
 - ※ Concetti di Psicologia Cognitiva e Fattori Umani
 - ✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit
+- ⌨ Prompt Engineering Contrattuale e Difensivo
 - ⬡ Strumenti per la verifica e l’assurance del software assistito da LLM
+- ⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale
 - ▣ Progettazione di Sandbox ed Esecuzione Isolata
+- ♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime
 - ⊹ Elementi di Teoria dei Grafi
 - ⊙ Elementi di Logica e Specifica Formale
 - ◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM
