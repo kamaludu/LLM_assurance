@@ -60,7 +60,7 @@ Principi, Verifica, Evidenze e Governance**
 ### [PARTE II — Implementazione e verifica](#parte-2)  
 
 13. [Implementation Design — progettazione dell'implementazione](#step-13-implementation-design)
-14. [Containment & Least Authority — contenimento e principio del minimo privilegio](#step-14-containment-least)
+14. [Containment & Least Authority — contenimento e minima autorità](#step-14-containment-least)
 15. [LLM-Assisted Implementation — sviluppo assistito da LLM](#step-15-llm-assisted)
 16. [Automated Testing — testing automatico](#step-16-automated-testing)
 17. [Static Analysis, SAST, SCA & Secret Scanning — analisi statica e controlli sulle dipendenze e sui segreti](#step-17-static-analysis)
@@ -105,7 +105,7 @@ Principi, Verifica, Evidenze e Governance**
 - [⊙ Elementi di Logica e Specifica Formale](#appendice-logica)
 - [◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM](#appendice-alloy)
 - [✧ Prompt Master per lo studio dei singoli step](#prompt-master)
-- [❖ GLOSSARIO](#glossario-manuale)
+- [❖&nbsp;GLOSSARIO](#glossario-manuale)
 - [▤ Bibliografia essenziale](#bibliografia-essenziale-man)
 - [✍ Nota di trasparenza e genesi del testo](#nota-utilizzo-ia)
 - [🄯 GNU Free Documentation License](#gnu-fdl-license)
@@ -1045,7 +1045,7 @@ Di seguito si riportano le definizioni unificate dei termini specialistici utili
 - **Runtime (Ambiente di esecuzione):** Componente software infrastrutturale che alloca le risorse di calcolo (CPU, GPU, memoria), carica i parametri del modello ed esegue i cicli di calcolo tensoriale necessari alla generazione dell'output durante l'inferenza.
 - **VAE (Variational Autoencoders):** Modelli generativi probabilistici composti da un codificatore e un decodificatore che mappano i dati in uno spazio latente vettoriale continuo e regolarizzato, dal quale è possibile campionare e ricostruire nuove istanze plausibili.
 
-> Per altri termini utilizzati in questo Quadro Didattico, vedi il [❖ GLOSSARIO](#glossario-manuale) 
+> Per altri termini utilizzati in questo Quadro Didattico, vedi il [❖&nbsp;GLOSSARIO](#glossario-manuale) 
 
 ---
 
@@ -12518,7 +12518,7 @@ Il codice funzionante (*working code*) si limita a produrre il risultato nominal
 
 ### 7. Formalizzazione dell'autorità e del contenimento
 
-Al fine di garantire rigore metodologico ed evitare la trappola della **falsa precisione** (come l'invenzione di indici numerici o sommatorie arbitrarie del danno), adottiamo una rappresentazione formale insiemistica basata sulle proprietà di sistema in notazione ASCII pura. Questa rappresentazione è un **costrutto concettuale didattico del manuale** volto a strutturare il ragionamento, non una legge fisica universale.
+Al fine di garantire rigore metodologico ed evitare la trappola della **falsa precisione** (come l'invenzione di indici numerici o sommatorie arbitrarie del danno), adottiamo una rappresentazione formale insiemistica basata sulle proprietà di sistema. Questa rappresentazione è un **costrutto concettuale didattico del manuale** volto a strutturare il ragionamento, non una legge fisica universale.
 
 #### 7.1 Definizione dell'Autorità come Insieme di Facoltà
 Sia C un componente o modulo software sviluppato o assistito da un LLM.
@@ -13049,7 +13049,8 @@ Lo STEP 14 (Containment & Least Authority) costituisce la linea difensiva fondam
 
 <a name="step-15-llm-assisted"></a>
 
-## CAPITOLO 15 - LLM-Assisted Implementation (Sviluppo Assistito da LLM: Metodologia, Contratti e Responsabilità Epistemica)
+## CAPITOLO 15 - LLM-Assisted Implementation (Sviluppo Assistito da LLM)
+***Metodologia, Contratti e Responsabilità Epistemica***
 
 ### Indice del Capitolo
 
@@ -13163,32 +13164,32 @@ Da questo fatto epistemico derivano tre implicazioni dirette:
 3. **Allucinazione di API e interfacce**: In assenza di vincoli rigidi sui tipi e sui contratti forniti nel contesto, il modello estrapola funzioni o parametri che "dovrebbero esistere", ma che non hanno corrispondenza nel runtime reale.
 
 ```text
-       LA STRUTTURA A STRATI DELLA GENERAZIONE ASSISTITA
+    LA STRUTTURA A STRATI DELLA GENERAZIONE ASSISTITA
 
-   +-------------------------------------------------------------+
-   | 1. CONTRATTO E INTERFACCIA (Pre, Post, Invarianti, Tipi)    |
-   |    Definito rigorosamente a monte (STEP 4, 6, 13)           |
-   +-------------------------------------------------------------+
-                                 |
-                                 v
-   +-------------------------------------------------------------+
-   | 2. GENERAZIONE CONDICIONATA (LLM)                           |
-   |    L'LLM implementa esclusivamente il corpo della funzione, |
-   |    vincolato dai tipi e dai contratti immutabili forniti    |
-   +-------------------------------------------------------------+
-                                 |
-                                 v
-   +-------------------------------------------------------------+
-   | 3. INVARIANT EMBEDDING (Guardie e Asserzioni nel codice)    |
-   |    Il codice include il controllo a runtime delle post-     |
-   |    condizioni prima di restituire il controllo              |
-   +-------------------------------------------------------------+
-                                 |
-                                 v
-  +--------------------------------------------------------------+
-  | 4. AUDIT CRITICO UMANO (Ispezione del codice e tracciabilità)|
-  |    Verifica che non esista codice fantasma o rami non gestiti|
-  +--------------------------------------------------------------+
++-------------------------------------------------------------+
+| 1. CONTRATTO E INTERFACCIA (Pre, Post, Invarianti, Tipi)    |
+|    Definito rigorosamente a monte (STEP 4, 6, 13)           |
++-------------------------------------------------------------+
+                              |
+                              v
++-------------------------------------------------------------+
+| 2. GENERAZIONE CONDICIONATA (LLM)                           |
+|    L'LLM implementa esclusivamente il corpo della funzione, |
+|    vincolato dai tipi e dai contratti immutabili forniti    |
++-------------------------------------------------------------+
+                              |
+                              v
++-------------------------------------------------------------+
+| 3. INVARIANT EMBEDDING (Guardie e Asserzioni nel codice)    |
+|    Il codice include il controllo a runtime delle post-     |
+|    condizioni prima di restituire il controllo              |
++-------------------------------------------------------------+
+                              |
+                              v
++--------------------------------------------------------------+
+| 4. AUDIT CRITICO UMANO (Ispezione del codice e tracciabilità)|
+|    Verifica che non esista codice fantasma o rami non gestiti|
++--------------------------------------------------------------+
 ```
 
 ---
@@ -13241,7 +13242,7 @@ Un'implementazione può aderire alla lettera alla specifica approvata, ma fallir
 
 ### 7. Formalizzazione dell'implementazione assistita
 
-Formalizziamo il processo di implementazione assistita come costrutto concettuale didattico del manuale in notazione ASCII pura.
+Formalizziamo il processo di implementazione assistita come costrutto concettuale didattico del manuale.
 
 #### 7.1 La Produzione dell'Implementazione Candidata
 Siano:
@@ -14142,7 +14143,7 @@ Chiedere a un modello linguistico di generare test per il codice non equivale a 
 
 ### 7. Formalizzazione del testing automatizzato
 
-Formalizziamo il processo di testing automatizzato per l'assurance come costrutto concettuale didattico in notazione ASCII pura.
+Formalizziamo il processo di testing automatizzato per l'assurance come costrutto concettuale didattico.
 
 #### 7.1 Componenti del Sistema di Prova
 Siano:
@@ -14959,7 +14960,7 @@ Per evitare conclusioni non giustificate sulla sicurezza del sistema, è necessa
 
 ### 8. Formalizzazione logico-matematica
 
-Presentiamo la formalizzazione in notazione ASCII pura del flusso informativo, dei parametri di classificazione e delle relazioni di accuratezza.
+Presentiamo la formalizzazione del flusso informativo, dei parametri di classificazione e delle relazioni di accuratezza.
 
 #### 8.1. Modello di Flusso del Taint e Astrazione
 
@@ -17457,7 +17458,7 @@ Acquistare servizi da fornitori commerciali differenti realizza una separazione 
 
 ### 7. Formalizzazione logico-matematica
 
-Formalizziamo la relazione tra accordo, indipendenza e correttezza in notazione ASCII pura.
+Formalizziamo la relazione tra accordo, indipendenza e correttezza.
 
 #### 7.1 Probabilità di Errore Congiunto Reale
 Siano M_1 e M_2 due modelli che analizzano il codice C rispetto alla proprietà P.
@@ -18212,7 +18213,7 @@ Predisporre un processo formalmente separato non dimostra automaticamente che l'
 
 Nel formalizzare l'indipendenza dell'evidenza, è metodologicamente scorretto ricorrere a pseudo-formule scalari che quantificano l'indipendenza con numeri decimali arbitrari (es. *"Indipendenza = 0.85"*). L'indipendenza è una **proprietà qualitativa, strutturale e multidimensionale**.
 
-Adottiamo il modello logico di allocazione dell'assurance del manuale, espresso in notazione ASCII pura.
+Adottiamo il modello logico di allocazione dell'assurance del manuale.
 
 #### 7.1 Il Modello di Allocazione dell'Assurance
 Definiamo:
@@ -18900,7 +18901,7 @@ La spiegazione prodotta da un modello interrogato su un errore appartiene sempre
 
 ### 7. Formalizzazione logico-strutturale
 
-Formalizziamo la meccanica della discrepanza e della diagnosi in notazione ASCII pura.
+Formalizziamo la meccanica della discrepanza e della diagnosi.
 
 #### 7.1 La Discrepanza come Divergenza Relazionale
 Sia `x in D` un input appartenente al dominio del sistema.
@@ -20321,7 +20322,7 @@ I punti fermi da ricordare sono:
 4. **Concetti Fondamentali e Terminologia**: La catena epistemica centrale, le disuguaglianze vincolanti, l'Approvazione Formale, la Responsabilità Epistemica, il Fascicolo di Revisione (*Review Dossier*), il Principio dei Quattro Occhi (*Two-Person Integrity*) e la Capacità di Ispezione Cognitiva.
 5. **Teoria Completa della Revisione Umana di Codice Assistito da LLM**:
 6. **Distinzioni Concettuali ed Epistemiche Critiche**
-7. **Formalizzazione Logico-Epistemica dell'Atto di Approvazione**: Modello qualitativo dell'atto di approvazione in notazione ASCII pura. La catena di distinzioni: `COMPETENCE != AUTHORITY`, `AUTHORITY != INDEPENDENCE`, `INDEPENDENCE != CORRECTNESS`, `APPROVAL != PROOF`. Principio di non-delega della responsabilità decisionale.
+7. **Formalizzazione Logico-Epistemica dell'Atto di Approvazione**: Modello qualitativo dell'atto di approvazione. La catena di distinzioni: `COMPETENCE != AUTHORITY`, `AUTHORITY != INDEPENDENCE`, `INDEPENDENCE != CORRECTNESS`, `APPROVAL != PROOF`. Principio di non-delega della responsabilità decisionale.
 8. **Tracciabilità Verificabile nell'Approvazione**: Collegamento verificabile tra identità del revisore, versione esaminata, evidenze del gate e decisione finale.
 9. **Esempio Pratico e Didattica del Processo**
 10. **Controesempi Didattici**
@@ -20560,7 +20561,7 @@ La mancata comprensione delle seguenti distinzioni degrada la revisione umana a 
 
 ### 7. Formalizzazione Logico-Epistemica dell'Atto di Approvazione
 
-L'approvazione umana può essere descritta attraverso un modello decisionale formale in notazione ASCII pura.
+L'approvazione umana può essere descritta attraverso un modello decisionale formale.
 
 #### 7.1 La Catena delle Distinzioni Fondamentali
 
@@ -23167,7 +23168,7 @@ L'osservabilità non è un'attività accessoria da delegare passivamente all'inf
 - **5. Terminologia tecnica e definizioni operative**
 - **6. Teoria completa: architettura del sistema di allarme e dei runbook**
 - **7. Distinzioni concettuali ed epistemiche critiche**
-- **8. Formalizzazione (Modello matematico didattico in ASCII puro)**
+- **8. Formalizzazione (Modello matematico didattico)**
 - **9. Esempi pratici: regole di allarme e runbook verificabili**
 - **10. Controesempi: il rumore operativo, l'under-alerting e le procedure distruttive**
 - **11. Errori comuni e anti-pattern nell'ingegneria operativa assistita da LLM**
@@ -23380,7 +23381,7 @@ Un'asserzione del tipo: *"Il sistema è sano perché non ci sono allarmi attivi"
 
 ---
 
-### 8. Formalizzazione (Modello matematico didattico in ASCII puro)
+### 8. Formalizzazione (Modello matematico didattico)
 
 Le formalizzazioni presentate di seguito costituiscono **un modello didattico del manuale** sviluppato per rendere confrontabili e misurabili l'efficacia dei sistemi di rilevazione e l'impatto dei disservizi. Non devono essere interpretate come leggi fisiche universali, ma come strumenti analitici vincolati alle definizioni operative del capitolo.
 
@@ -23455,7 +23456,7 @@ Interpretazione analitica del modello:
 TempoAlConsumoTotale = P / BurnRate(w)
 ```
 
-Esempio di calcolo in ASCII puro:
+Esempio di calcolo:
 Se P = 720 ore e `BurnRate = 14.4`:
 
 ```text
@@ -24038,7 +24039,7 @@ Dispositivo logico distribuito che intercetta le comunicazioni verso una risorsa
 - **5. Terminologia tecnica e definizioni operative**
 - **6. Teoria completa: tassonomia dei meccanismi di contenimento e ripristino**
 - **7. Distinzioni concettuali ed epistemiche critiche**
-- **8. Formalizzazione (Modello matematico didattico in ASCII puro)**
+- **8. Formalizzazione (Modello matematico didattico)**
 - **9. Esempi pratici: architetture resilienti e verificabili**
 - **10. Controesempi: il falso ripristino e il collasso indotto**
 - **11. Errori comuni e anti-pattern nei meccanismi di ripristino assistiti da LLM**
@@ -24314,7 +24315,7 @@ L'ingegneria del recupero richiede il superamento delle illusioni cognitive in c
 
 ---
 
-### 8. Formalizzazione (Modello matematico didattico in ASCII puro)
+### 8. Formalizzazione (Modello matematico didattico)
 
 Le formalizzazioni illustrate in questo paragrafo costituiscono **un modello didattico del manuale** sviluppato per rendere quantificabili la dinamica del contenimento e il rischio operativo. Non rappresentano leggi fisiche universali, ma modelli analitici vincolati alle ipotesi dichiarate.
 
@@ -31828,7 +31829,7 @@ Se uno qualsiasi di questi test negativi non solleva l'eccezione attesa (ad esem
 - **Trap (Eccezione di Runtime / Interruzione)**:
   Interruzione sincrona sollevata dal microprocessore o dal runtime di esecuzione a fronte di un'istruzione illecita (ad esempio accesso a memoria non allocata, divisione per zero o tentativo di eseguire un'istruzione privilegiata), che trasferisce immediatamente il controllo al gestore di sicurezza del sistema.
 
-> Per altri termini utilizzati in questa Appendice, vedi il [❖ GLOSSARIO](#glossario-manuale) 
+> Per altri termini utilizzati in questa Appendice, vedi il [❖&nbsp;GLOSSARIO](#glossario-manuale) 
 
 ---
 
@@ -33640,7 +33641,7 @@ La verifica automatica fornisce quindi evidenza rispetto al modello formalizzato
 - **Variabile libera** — Variabile la cui occorrenza non è vincolata da un quantificatore.
 - **Variabile vincolata** — Variabile la cui occorrenza ricade nell'ambito di un quantificatore corrispondente.
 
-> Per altri termini utilizzati in questa Appendice, vedi il [❖ GLOSSARIO](#glossario-manuale) 
+> Per altri termini utilizzati in questa Appendice, vedi il [❖&nbsp;GLOSSARIO](#glossario-manuale) 
 
 ---
 
@@ -35215,7 +35216,7 @@ FASE 5: TRACCIABILITÀ E TRASFERIMENTO VERSO LA CI/CD
 - **Join Relazionale (`.`):** Operatore di composizione che concatena due relazioni combinando le tuple in cui il membro destro della prima corrisponde al membro sinistro della seconda.
 - **Kodkod:** Il motore relazionale di Alloy sviluppato da Emina Torlak e Daniel Jackson. Compila predicati relazionali del primo ordine con chiusura transitiva in formule proposizionali booleane con riduzione di simmetrie.
 
-> Per altri termini utilizzati in questa Appendice, vedi il [❖ GLOSSARIO](#glossario-manuale) 
+> Per altri termini utilizzati in questa Appendice, vedi il [❖&nbsp;GLOSSARIO](#glossario-manuale) 
 
 ---
 
