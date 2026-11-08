@@ -26,81 +26,81 @@
 ---
 
 **⛓ Assurance del Software Assistito da LLM**  
-## **Indice completo**<!-- @style: size=20px; color=#3b8503 -->
+## Indice completo
 
-- [⌘ Informazioni sul documento](#assurance-intro)
-- [➠ Nota terminologica](#nota-terminologica)
-- [◉ Quadro  Didattico: l'ecosistema dell'AI e la specificità degli LLM](#quadro-didattico)
-- [⛶ Guida di Lettura per Ruoli](#guida-per-ruoli)
+- ⌘ Informazioni sul documento
+- ➠ Nota terminologica
+- ◉ Quadro  Didattico: l'ecosistema dell'AI e la specificità degli LLM
+- ⛶ Guida di Lettura per Ruoli
 
-###  [PARTE I — Fondamenti epistemici e decisionali](#parte-1)
+### PARTE I — Fondamenti epistemici e decisionali
 
-- [✰ Guida ai 5 concetti fondamentali dell'Assurance](#guida-ai-5-concetti)
+- ✰ Guida ai 5 concetti fondamentali dell'Assurance
 
-1. [Problem Definition — definizione rigorosa del problema e dell'obiettivo](#step-1-problem-definition)
-2. [Risk Classification — classificazione e analisi del rischio](#step-2-risk-classification)
-3. [Authority & Responsibility — autorità, responsabilità e competenza decisionale](#step-3-authority-responsibility)
-4. [Specification — costruzione e analisi della specifica](#step-4-specification-costruzione)
-5. [Assumptions & Unknowns — assunzioni, fatti e conoscenze mancanti](#step-5-assumptions-unknowns)
-6. [Critical Properties & Invariants — proprietà critiche e invarianti](#step-6-critical-properties)
-7. [Traceability — tracciabilità dalla finalità all'evidenza](#step-7-traceability-evidence)
-8. [Competence Gaps — gap di comprensione, verifica e autorità](#step-8-competence-gaps)
-9. [Specification Validity — verifica della validità della specifica](#step-9-specification-validity)
-10. [Assurance Level — determinazione del livello di assurance necessario](#step-10-assurance-level)
-11. [Independent Evidence & Oracles — evidenze indipendenti e oracle](#step-11-independent-evidence)
-12. [Assumption Verification — verifica delle assunzioni critiche](#step-12-assumption-verification)
-- [ⓘ Punto di Controllo I — Dalla comprensione del problema all'atto costruttivo](#punto-controllo-1)
+1. Problem Definition — definizione rigorosa del problema e dell'obiettivo
+2. Risk Classification — classificazione e analisi del rischio
+3. Authority & Responsibility — autorità, responsabilità e competenza decisionale
+4. Specification — costruzione e analisi della specifica
+5. Assumptions & Unknowns — assunzioni, fatti e conoscenze mancanti
+6. Critical Properties & Invariants — proprietà critiche e invarianti
+7. Traceability — tracciabilità dalla finalità all'evidenza
+8. Competence Gaps — gap di comprensione, verifica e autorità
+9. Specification Validity — verifica della validità della specifica
+10. Assurance Level — determinazione del livello di assurance necessario
+11. Independent Evidence & Oracles — evidenze indipendenti e oracle
+12. Assumption Verification — verifica delle assunzioni critiche
+- ⓘ Punto di Controllo I — Dalla comprensione del problema all'atto costruttivo
 
-### [PARTE II — Implementazione e verifica](#parte-2)  
+### PARTE II — Implementazione e verifica  
 
-13. [Implementation Design — progettazione dell'implementazione](#step-13-implementation-design)
-14. [Containment & Least Authority — contenimento e minima autorità](#step-14-containment-least)
-15. [LLM-Assisted Implementation — sviluppo assistito da LLM](#step-15-llm-assisted)
-16. [Automated Testing — testing automatico](#step-16-automated-testing)
-17. [Static Analysis, SAST, SCA & Secret Scanning — analisi statica e controlli sulle dipendenze e sui segreti](#step-17-static-analysis)
-18. [Property-Based Testing, Fuzzing & Adversarial Testing — testing basato su proprietà, fuzzing e test avversariali](#step-18-property-based)
-19. [Threat Modeling & Red Teaming — modellazione delle minacce e red teaming](#step-19-threat-modeling)
-20. [Multi-Model Audit — audit tramite più LLM e limiti dell'accordo tra modelli](#step-20-multi-model)
-21. [Independent Verification — verifica indipendente](#step-21-independent-verification)
-22. [Discrepancy Analysis — analisi e classificazione delle discrepanze](#step-22-discrepancy-analysis)
-23. [Evidence-Based Decision Gates — gate decisionali basati sull'evidenza](#step-23-evidence-decision)
-24. [Human Review & Formal Approval — revisione umana e approvazione formale](#step-24-human-review)
-- [ⓘ Punto di Controllo II — Dal laboratorio di verifica all'esercizio reale](#punto-controllo-2)
+13. Implementation Design — progettazione dell'implementazione
+14. Containment & Least Authority — contenimento e minima autorità
+15. LLM-Assisted Implementation — sviluppo assistito da LLM
+16. Automated Testing — testing automatico
+17. Static Analysis, SAST, SCA & Secret Scanning — analisi statica e controlli sulle dipendenze e sui segreti
+18. Property-Based Testing, Fuzzing & Adversarial Testing — testing basato su proprietà, fuzzing e test avversariali
+19. Threat Modeling & Red Teaming — modellazione delle minacce e red teaming
+20. Multi-Model Audit — audit tramite più LLM e limiti dell'accordo tra modelli
+21. Independent Verification — verifica indipendente
+22. Discrepancy Analysis — analisi e classificazione delle discrepanze
+23. Evidence-Based Decision Gates — gate decisionali basati sull'evidenza
+24. Human Review & Formal Approval — revisione umana e approvazione formale
+- ⓘ Punto di Controllo II — Dal laboratorio di verifica all'esercizio reale
 
-### [PARTE III — Esercizio controllato](#parte-3)
+### PARTE III — Esercizio controllato
 
-25. [Staging, Canary & Feature Flags — ambienti di staging, canary release e feature flag](#step-25-staging-canary)
-26. [Observability — osservabilità](#step-26-observability)
-27. [Alerting & Runbooks — allarmi e procedure operative](#step-27-alerting-runbooks)
-28. [Rollback, Fallback & Circuit Breakers — ripristino, percorsi alternativi e interruttori di circuito](#step-28-rollback-fallback)
-- [ⓘ Punto di Controllo III — Dalla risposta all'incidente alla memoria istituzionale](#punto-controllo-3)
+25. Staging, Canary & Feature Flags — ambienti di staging, canary release e feature flag
+26. Observability — osservabilità
+27. Alerting & Runbooks — allarmi e procedure operative
+28. Rollback, Fallback & Circuit Breakers — ripristino, percorsi alternativi e interruttori di circuito
+- ⓘ Punto di Controllo III — Dalla risposta all'incidente alla memoria istituzionale
 
-### [PARTE IV — Evoluzione e mantenimento dell'assurance](#parte-4)
+### PARTE IV — Evoluzione e mantenimento dell'assurance
 
-29. [Post-Deployment Analysis — analisi post-deployment e incidenti](#step-29-post-deployment)
-30. [Risk Register & Knowledge Base — registro dei rischi e knowledge base](#step-30-risk-register)
-31. [Change Impact Analysis — analisi dell'impatto delle modifiche](#step-31-change-impact)
-32. [Periodic Review — revisione periodica e audit](#step-32-periodic-review)
-33. [Closure & Lessons Learned — chiusura, archiviazione e lezioni apprese](#step-33-closure-lessons)
-- [ⓘ Punto di Controllo IV — Dal ciclo di vita alla custodia dell'assurance](#punto-controllo-4)
+29. Post-Deployment Analysis — analisi post-deployment e incidenti
+30. Risk Register & Knowledge Base — registro dei rischi e knowledge base
+31. Change Impact Analysis — analisi dell'impatto delle modifiche
+32. Periodic Review — revisione periodica e audit
+33. Closure & Lessons Learned — chiusura, archiviazione e lezioni apprese
+- ⓘ Punto di Controllo IV — Dal ciclo di vita alla custodia dell'assurance
 
-### [APPENDICI](#appendici-man)
+### APPENDICI
 
-- [※ Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
-- [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm)
-- [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng)
-- [⬡ Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
-- [⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale](#appendice-moltiplicatore-personale)
-- [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
-- [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)
-- [⊹ Elementi di Teoria dei Grafi](#appendice-grafi)
-- [⊙ Elementi di Logica e Specifica Formale](#appendice-logica)
-- [◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM](#appendice-alloy)
-- [✧ Prompt Master per lo studio dei singoli step](#prompt-master)
-- [❖&nbsp;GLOSSARIO](#glossario-manuale)
-- [▤ Bibliografia essenziale](#bibliografia-essenziale-man)
-- [✍ Nota di trasparenza e genesi del testo](#nota-utilizzo-ia)
-- [🄯 GNU Free Documentation License](#gnu-fdl-license)
+- ※ Concetti di Psicologia Cognitiva e Fattori Umani
+- ✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit
+- ⌨ Prompt Engineering Contrattuale e Difensivo
+- ⬡ Strumenti per la verifica e l’assurance del software assistito da LLM
+- ⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale
+- ▣ Progettazione di Sandbox ed Esecuzione Isolata
+- ♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime
+- ⊹ Elementi di Teoria dei Grafi
+- ⊙ Elementi di Logica e Specifica Formale
+- ◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM
+- ✧ Prompt Master per lo studio dei singoli step
+- ❖ GLOSSARIO
+- ▤ Bibliografia essenziale
+- ✍ Nota di trasparenza e genesi del testo
+- 🄯 GNU Free Documentation License
 
 </details>
 
