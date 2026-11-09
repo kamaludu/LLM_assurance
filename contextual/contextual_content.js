@@ -1368,6 +1368,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Allestimento di un'infrastruttura di controllo visivamente complessa i cui controlli sono privi di effettivo potere bloccante (es. flag continue-on-error o test non vincolanti).",
     aliases: ["Finzione del Gate"]
   },
+  "Generazione autoregressiva": {
+    title: "Generazione autoregressiva (Autoregressive Generation)",
+    category: "Fondamenti AI & Modelli Linguistici",
+    definition: "Modalità di generazione sequenziale in cui un modello linguistico produce l'output emettendo un token alla volta. A ogni iterazione, il modello determina la distribuzione di probabilità del token successivo, condizionata dall'input originario e dai token già generati. Questo meccanismo modella le dipendenze contestuali tra i token, ma non garantisce la correttezza logica globale del contenuto prodotto.",
+    aliases: ["Autoregressive Generation", "Generazione sequenziale di token", "Predizione del token successivo"]
+  },
   "Ghost Code": {
     title: "Ghost Code (Codice Fantasma)",
     category: "Qualità del Codice & LLM",
@@ -1664,6 +1670,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Obiettivo formale assegnato a una specifica proprietà critica che deve essere garantita con un livello prefissato di rigore probatorio e confidenza.",
     aliases: ["Bersaglio del Livello di Integrità"]
   },
+  "Interleaving temporali": {
+    title: "Interleaving temporali (Alternanze di Esecuzione Concorrente)",
+    category: "Concorrenza & Sistemi Distribuiti",
+    definition: "Le diverse possibili sequenze con cui le operazioni di più thread o processi concorrenti si alternano durante l'esecuzione. Ogni flusso di esecuzione mantiene i propri vincoli di ordinamento, mentre le operazioni appartenenti a flussi diversi possono intercalarsi secondo le decisioni dello scheduler, i meccanismi di sincronizzazione e gli altri vincoli del sistema. Alcune sequenze possono violare gli invarianti del programma, provocando race condition, deadlock o altri comportamenti errati.",
+    aliases: ["Interleaving", "Intercalamento temporale", "Interleaving concorrente", "Thread interleaving"]
+  },
   "Invalidation Propagation": {
     title: "Invalidation Propagation (Propagazione dell'Invalidazione)",
     category: "Tracciabilità dell'Assurance",
@@ -1843,6 +1855,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Architettura del Software",
     definition: "Il singolo punto architetturale a cui è delegata in via esclusiva la responsabilità di far rispettare un invariante critico, impedendone la frammentazione nel codice.",
     aliases: ["Punto di Presidio"]
+  },
+  "Logic flaws": {
+    title: "Logic Flaws (Errori Logici / Difetti Semantici)",
+    category: "Verifica & Testing del Software",
+    definition: "Difetti nella logica di un programma o di un algoritmo, causati da assunzioni errate, condizioni decisionali non corrette o combinazioni improprie di istruzioni. Il programma può compilare ed essere eseguito senza errori tecnici evidenti, producendo tuttavia risultati errati, comportamenti imprevisti o violazioni degli invarianti richiesti.",
+    aliases: ["Errori logici", "Difetti semantici", "Bug logici", "Semantic defects"]
   },
 
   // =========================================================================
@@ -2106,6 +2124,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Ingegneria dei Sistemi & Telemetria",
     definition: "La proprietà che consente di dedurre lo stato interno del software e il rispetto degli invarianti basandosi unicamente sui dati telemetrici emessi verso l'esterno.",
     aliases: ["Osservabilità"]
+  },
+  "Off-by-one errors": {
+    title: "Off-by-One Error (Errore di Una Unità)",
+    category: "Verifica & Testing del Software",
+    definition: "Sottoclasse di errore logico in cui un conteggio, un indice o un limite di intervallo risulta errato di una singola unità. Si verifica tipicamente per un'errata gestione dei confini di un intervallo, ad esempio confondendo una condizione di confronto stretta (<) con una non stretta (<=), oppure includendo o escludendo erroneamente un elemento. Le tecniche di Boundary Value Analysis possono aiutare a individuare questa tipologia di errore.",
+    aliases: ["Errore di una unità", "Off-by-one", "OBOE", "Boundary discrepancy"]
   },
   "Ontologia": {
     title: "Ontologia (Modello Ontologico)",
@@ -2410,6 +2434,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Metodologia di Verifica",
     definition: "Dimensione dell'indipendenza in cui le procedure operative, i piani di prova e i flussi di lavoro di verifica sono formalmente disgiunti da quelli di sviluppo.",
     aliases: ["Indipendenza Procedurale"]
+  },
+  "Processo autoregressivo": {
+    title: "Processo autoregressivo (Autoregressive Process)",
+    category: "Fondamenti AI & Statistica",
+    definition: "Processo in cui ogni nuovo valore o stato dipende, in tutto o in parte, dai valori o dagli stati precedenti della stessa sequenza. In statistica, il termine identifica una classe di modelli in cui un'osservazione viene descritta in funzione di osservazioni precedenti. Nei modelli linguistici (LLM), la generazione autoregressiva costituisce un'applicazione di questo principio alla produzione di sequenze discrete di token.",
+    aliases: ["Autoregressive Process", "Autoregressione"]
   },
   "Prompt": {
     title: "Prompt / System Prompt",
@@ -2903,6 +2933,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Attacco alla filiera software consistente nel registrare su repository pubblici (PyPI, npm) nomi di pacchetti inesistenti generati frequentemente per allucinazione da LLM, associandovi malware.",
     aliases: ["Package Slopsquatting"]
   },
+  "Socket": {
+    title: "Socket (Punto di Comunicazione / Endpoint)",
+    category: "Reti & Architettura di Sistema",
+    definition: "Endpoint software utilizzato da un processo per inviare e ricevere dati attraverso un'interfaccia di comunicazione. Può consentire lo scambio di informazioni tra processi su macchine diverse, tramite protocolli di rete come TCP e UDP, oppure tra processi sulla stessa macchina, ad esempio mediante Unix domain socket. Nei sistemi POSIX, un socket è rappresentato da un descrittore di file.",
+    aliases: ["Network Socket", "Unix Domain Socket", "Endpoint di comunicazione", "Socket IPC"]
+  },
   "Soundness": {
     title: "Soundness (Correttezza Teorica nell'Analisi Statica)",
     category: "Analisi di Programma",
@@ -3158,6 +3194,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     category: "Metodologia di Testing",
     definition: "Termine ombrello che designa qualsiasi simulacro software impiegato nei test per sostituire un componente reale: lo Stub risponde passivamente con dati fissi; il Mock registra e spia le interazioni ricevute; il Fake è un'implementazione funzionante ma semplificata (es. database in memoria RAM).",
     aliases: ["Test Doubles", "Mock", "Stub", "Fake"]
+  },
+   "Thread": {
+    title: "Thread (Flusso di Esecuzione Concorrente)",
+    category: "Sistemi Operativi & Concorrenza",
+    definition: "Flusso di esecuzione di un programma, costituito da una sequenza di istruzioni e dal relativo stato operativo. Più thread possono appartenere allo stesso processo ed essere eseguiti in modo concorrente, condividendo lo spazio di memoria e le risorse del processo, ma mantenendo ciascuno il proprio stato di esecuzione. La condivisione di dati senza adeguati meccanismi di sincronizzazione può provocare race condition e corruzione dei dati.",
+    aliases: ["Thread di esecuzione", "Flusso concorrente", "Worker thread"]
   },
   "Threat": {
     title: "Threat (Minaccia)",
