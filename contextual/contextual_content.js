@@ -1674,7 +1674,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     title: "Interleaving temporali (Alternanze di Esecuzione Concorrente)",
     category: "Concorrenza & Sistemi Distribuiti",
     definition: "Le diverse possibili sequenze con cui le operazioni di più thread o processi concorrenti si alternano durante l'esecuzione. Ogni flusso di esecuzione mantiene i propri vincoli di ordinamento, mentre le operazioni appartenenti a flussi diversi possono intercalarsi secondo le decisioni dello scheduler, i meccanismi di sincronizzazione e gli altri vincoli del sistema. Alcune sequenze possono violare gli invarianti del programma, provocando race condition, deadlock o altri comportamenti errati.",
-    aliases: ["Interleaving", "Intercalamento temporale", "Interleaving concorrente", "Thread interleaving"]
+    aliases: ["Interleaving", "Interleaving temporale", "Intercalamento temporale", "Interleaving concorrente", "Thread interleaving"]
   },
   "Invalidation Propagation": {
     title: "Invalidation Propagation (Propagazione dell'Invalidazione)",
