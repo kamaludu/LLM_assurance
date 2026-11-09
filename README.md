@@ -117,7 +117,7 @@
 ---
 
 <details>
-<summary> 🌍 <b>Translations & International Readers: 🇮🇹 🇬🇧 🇫🇷 🇩🇪 🇪🇸 🇵🇹 🇨🇳 <br> (Click to expand / Clicca per espandere)</b></summary>
+<summary> 🌍 <b>Translations & International Readers: 🇮🇹 🇬🇧 🇫🇷 🇩🇪 🇪🇸 🇵🇹 🇨🇳 🇯🇵 <br> (Click to expand / Clicca per espandere)</b></summary>
 
 ---
 
@@ -155,6 +155,11 @@
 **大语言模型辅助软件保障手册**  
 - **使用机器翻译即时阅读：** 建议从 [Releases](https://github.com/kamaludu/LLM_assurance/releases/latest) 页面下载 **`.html`** 文件，并在浏览器（Chrome、Edge、Safari）中打开，使用浏览器内置的网页自动翻译功能。
 - **正式翻译：** 如果希望制作本手册的翻译版本，应直接使用 Markdown 源文件 `.md`。翻译版本被视为衍生作品，必须遵守 **GNU FDL v1.3**（第 8 节）的许可条款。
+
+**🇯🇵 日本語：**  
+**LLM支援ソフトウェア保証マニュアル**  
+- **自動翻訳による即時閲覧：** [Releases](../../releases/latest) セクションから **`.html`** ファイルをダウンロードし、ブラウザー（Chrome、Edge、Safari）で開いて、ブラウザーに標準搭載されているページの自動翻訳機能を利用することを推奨します。
+- **正式な翻訳：** 本マニュアルの翻訳版を作成する場合は、ソースファイル **`.md`** を使用してください。翻訳版は二次的著作物とみなされ、**GNU FDL v1.3**（第8節）の規定に従う必要があります。
 
 </details>
 
