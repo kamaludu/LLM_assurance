@@ -3017,6 +3017,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Ritenere che un documento di requisiti lungo, impaginato bene e ricco di tabelle generato da LLM sia garanzia di validità semantica e completezza.",
     aliases: ["The SRS Illusion", "Illusione del Documento Ricco"]
   },
+  "Stack tecnologico": {
+    title: "Stack tecnologico (Technology Stack)",
+    category: "Architettura del Software & Sistemi",
+    definition: "Insieme organizzato e stratificato di tecnologie, linguaggi di programmazione, runtime, framework, librerie, database e strumenti infrastrutturali utilizzati per sviluppare, eseguire e mantenere un sistema software. Nel contesto dell'assurance, lo stack delimita l'albero delle dipendenze, la superficie d'attacco e i confini di isolamento (runtime vs sistema operativo); l'impiego di stack disaccoppiati e indipendenti è inoltre fondamentale per prevenire errori correlati tra il codice sotto esame e i relativi oracoli di verifica.",
+    aliases: ["Technology Stack", "Tech Stack", "Stack software", "Piattaforma tecnologica"]
+  },
   "Staging Environment": {
     title: "Staging Environment (Ambiente di Staging)",
     category: "Esercizio Controllato",
