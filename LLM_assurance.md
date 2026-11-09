@@ -110,7 +110,7 @@ Principi, Verifica, Evidenze e Governance**
 - [⊙ Elementi di Logica e Specifica Formale](#appendice-logica)
 - [◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM](#appendice-alloy)
 - [✧ Prompt Master per lo studio dei singoli step](#prompt-master)
-- [❖&nbsp;GLOSSARIO](#glossario-manuale)
+- [❖ GLOSSARIO](#glossario-manuale)
 - [▤ Bibliografia essenziale](#bibliografia-essenziale-man)
 - [✍ Nota di trasparenza e genesi del testo](#nota-utilizzo-ia)
 - [🄯 GNU Free Documentation License](#gnu-fdl-license)
@@ -13721,7 +13721,7 @@ L'implementazione assistita presenta forti criticità in determinati ambiti oper
 
 #### 1. Concorrenza, parallelismo e sincronizzazione di stato
 I modelli linguistici falliscono regolarmente nella sintesi di algoritmi concorrenti complessi (gestione di lock distribuiti, memoria transazionale, canali asincroni).
-- **Causa**: La natura statistica sequenziale dei modelli è inadeguata a modellare l'interleaving temporale non deterministico dei thread.
+- **Causa**: Gli LLM presentano limitazioni strutturali nel ragionamento sulla concorrenza perché la generazione autoregressiva e il ragionamento probabilistico non garantiscono una rappresentazione completa dello spazio degli stati, degli interleaving temporali e delle relazioni di ordinamento imposte dai memory model. In assenza di strumenti di esecuzione simbolica, model checking e verifica formale, possono generare algoritmi apparentemente corretti ma non corretti in tutte le esecuzioni ammesse.
 - **Regola di Assurance**: **Nessun codice concorrente generato da LLM può essere approvato senza un'esplicita dimostrazione di thread-safety e un audit umano specialistico.**
 
 #### 2. Logica crittografica e algoritmi a tempo costante
@@ -30488,7 +30488,7 @@ Un testo viene scomposto dal computer in elementi minimi chiamati **token** (che
 
 Da questo fatto derivano tre regole di realtà:
 1. **Il prompt orienta, non costringe:** per quanto un'istruzione in linguaggio naturale sia formulata con tono perentorio (*"Non devi MAI fare X"*), non esiste alcuna certezza matematica che il modello non estragga una sequenza alternativa imprevista.
-2. **Un prompt non è una recinzione di sicurezza:** scrivere in una chat *"non toccare file al di fuori di questa cartella"* ha lo stesso valore di sicurezza di scrivere *"per favore non rubare"* su una porta aperta. La sicurezza reale è imposta unicamente dalle autorizzazioni del sistema operativo host, dalle sandbox e dalle cartelle protette in sola lettura (**Step 14 e Appendice ▣**).
+2. **Un prompt non è una recinzione di sicurezza:** scrivere in una chat *"non toccare file al di fuori di questa cartella"* ha lo stesso valore di sicurezza di scrivere *"per favore non rubare"* su una porta aperta. La sicurezza reale è imposta unicamente dalle autorizzazioni del sistema operativo host, dalle sandbox e dalle cartelle protette in sola lettura (vedi: *Capitolo 14* e *▣&nbsp;Progettazione di Sandbox ed Esecuzione Isolata*).
 3. **La funzione reale del Prompt Engineering nell'Assurance:** non serve a "rendere sicuro il software per miracolo", ma a **ridurre l'ambiguità e la dispersione delle risposte a monte (*upstream*)**, costringendo il modello a concentrarsi su percorsi logici chiari e facilitando enormemente i controlli automatici a valle (*downstream*).
 
 #### 1.2 La metafora della riduzione dell'ambiguità
@@ -30499,19 +30499,16 @@ Nel testo faremo riferimento all'esigenza di "ridurre l'entropia generativa". Qu
 #### 1.3 Le disuguaglianze vincolanti dell'ingegneria del prompt
 Chiunque utilizzi modelli generativi per l'ingegneria del software deve memorizzare le seguenti non-equivalenze logiche:
 
-```text
-PROMPT BEN FORMULATO          !=  CODICE CORRETTO
-(Una richiesta chiara riduce i fraintendimenti, ma non garantisce l'assenza di bug)
-
-ISTRUZIONE NEL PROMPT         !=  BARRIERA DI SICUREZZA
-(Le suppliche verbali nel prompt non sostituiscono i controlli del sistema operativo)
-
-SPIEGAZIONE CONVINCENTE       !=  EVIDENZA VERIFICATA
-(L'eleganza con cui un modello spiega un algoritmo non dimostra che esso funzioni)
-
-DICHIARAZIONE DI CONFORMITÀ  !=  COMPATIBILITÀ REALE
-(Se un modello afferma "questo codice rispetta le norme", sta solo emettendo testo)
-```
+| *Non-equivalenze logiche:* |
+| :--- |
+| **PROMPT BEN FORMULATO != CODICE CORRETTO** |
+| (Una richiesta chiara riduce i fraintendimenti, ma non garantisce l'assenza di bug) |
+| **ISTRUZIONE NEL PROMPT != BARRIERA DI SICUREZZA** |
+| (Le suppliche verbali nel prompt non sostituiscono i controlli del sistema operativo) |
+| **SPIEGAZIONE CONVINCENTE != EVIDENZA VERIFICATA** |
+| (L'eleganza con cui un modello spiega un algoritmo non dimostra che esso funzioni) |
+| **DICHIARAZIONE DI CONFORMITÀ != COMPATIBILITÀ REALE** |
+| (Se un modello afferma "questo codice rispetta le norme", sta solo emettendo testo) |
 
 ---
 
@@ -30541,7 +30538,7 @@ nei sistemi reali              quando la premessa è errata     mai eseguiti
 
 #### 2.1 Allucinazione da Contesto Aperto e Slopsquatting
 Quando chiediamo a un LLM di scrivere un modulo software senza dirgli quali librerie siano effettivamente installate sul computer, il modello cerca di completare la frase nel modo statisticamente più armonioso. Spesso inventa di sana pianta nomi di pacchetti o metodi che sembrano esistere ma non sono mai stati creati.  
-*Il pericolo reale dello Slopsquatting:* Malintenzionati possono individuare e registrare nomi di pacchetti inesistenti suggeriti dagli LLM e li registrano sui repository pubblici (come npm per JavaScript o PyPI per Python), inserendovi programmi spia. Se uno sviluppatore copia il codice generato ed esegue `pip install libreria_inventata`, installerà inconsapevolmente codice malevolo sul proprio computer (**Step 17**).  
+*Il pericolo reale dello Slopsquatting:* Malintenzionati possono individuare e registrare <mark>nomi di pacchetti inesistenti suggeriti dagli LLM e li registrano sui repository pubblici (come npm per JavaScript o PyPI per Python), inserendovi programmi spia</mark>. Se uno sviluppatore copia il codice generato ed esegue `pip install libreria_inventata`, installerà inconsapevolmente codice malevolo sul proprio computer (**Step 17**).  
 NB: il rischio si concretizza se il pacchetto inesistente viene effettivamente pubblicato e successivamente installato.
 
 #### 2.2 La Compiacenza Algoritmica (Sycophancy)
@@ -30552,7 +30549,7 @@ NB: La Sycophancy è un comportamento osservabile, variabile tra modelli e conte
 Se chiediamo a un LLM: *"Questo codice rispetta gli standard bancari di sicurezza?"*, il modello può rispondere: *"Certamente! Questo codice adotta i massimi standard industriali..."*. Questa dichiarazione è pura retorica teatrale: l'LLM non ha una partita IVA, non risponde dei danni in tribunale, non ha eseguito un compilatore e non ha collaudato il programma sotto carico. Scambiare una dichiarazione testuale per una prova di conformità è un gravissimo errore metodologico (**Step 23 e 24**).
 
 #### 2.4 La Dissimulazione del Guasto e i Fallback Velenosi
-Se chiediamo genericamente di *"rendere il codice robusto e non farlo andare in crash"*, l'LLM adotta regolarmente una scorciatoia ingannevole: inserisce blocchi di cattura delle eccezioni che intercettano qualsiasi errore e lo mettono a tacere, restituendo un valore fittizio come zero o una stringa vuota:
+Se chiediamo genericamente di *"rendere il codice robusto e non farlo andare in crash"*, l'LLM adotta regolarmente una scorciatoia ingannevole: <mark>inserisce blocchi di cattura delle eccezioni che intercettano qualsiasi errore e lo mettono a tacere</mark>, restituendo un valore fittizio come zero o una stringa vuota:
 
 ```python
 # Esempio di mascheramento dannoso generato per sembrare "robusto"
@@ -30572,39 +30569,39 @@ In questo modo il programma sembra non rompersi mai, ma il database viene silenz
 I seguenti cinque principi pratici costituiscono la guida operativa da applicare prima di inviare qualsiasi richiesta di codice o di specifica a un modello linguistico.
 
 ```text
-+-------------------------------------------------------------------------+
-| 1. SPECIFICAZIONE CONTRATTUALE A MONTE (Contract-First)                 |
-|    Chiedere prima la sagoma, le precondizioni e i vincoli;              |
-|    solo dopo consentire la scrittura dei calcoli.                       |
-+-------------------------------------------------------------------------+
++------------------------------------------------------------------------+
+| 1. SPECIFICAZIONE CONTRATTUALE A MONTE (Contract-First)                |
+|    Chiedere prima la sagoma, le precondizioni e i vincoli;             |
+|    solo dopo consentire la scrittura dei calcoli.                      |
++------------------------------------------------------------------------+
                                     |
                                     v
-+-------------------------------------------------------------------------+
-| 2. CONFINAMENTO DELLE FONTI (Closed-Context Grounding)                  |
-|    Obbligare il modello a usare SOLO il testo fornito nella richiesta,   |
-|    imponendo di dichiarare cosa manca anziché inventarlo.                |
-+-------------------------------------------------------------------------+
++------------------------------------------------------------------------+
+| 2. CONFINAMENTO DELLE FONTI (Closed-Context Grounding)                 |
+|    Obbligare il modello a usare SOLO il testo fornito nella richiesta, |
+|    imponendo di dichiarare cosa manca anziché inventarlo.              |
++------------------------------------------------------------------------+
                                     |
                                     v
-+-------------------------------------------------------------------------+
-| 3. ASTENSIONE EPISTEMICA ESPLICITA (Explicit Epistemic Abstention)      |
-|    Istruire il modello a rispondere UNKNOWN quando i dati sono ambigui, |
-|    premiando il silenzio consapevole rispetto all'invenzione casuale.   |
-+-------------------------------------------------------------------------+
++------------------------------------------------------------------------+
+| 3. ASTENSIONE EPISTEMICA ESPLICITA (Explicit Epistemic Abstention)     |
+|    Istruire il modello a rispondere UNKNOWN quando i dati sono ambigui,|
+|    premiando il silenzio consapevole rispetto all'invenzione casuale.  |
++------------------------------------------------------------------------+
                                     |
                                     v
-+-------------------------------------------------------------------------+
-| 4. FORMULAZIONE CIECA SENZA INDIZI (Blind Task Formulation)             |
-|    Esporre il problema senza far capire al modello quale soluzione      |
-|    l'utente preferisca, disinnescando la compiacenza statistica.        |
-+-------------------------------------------------------------------------+
++------------------------------------------------------------------------+
+| 4. FORMULAZIONE CIECA SENZA INDIZI (Blind Task Formulation)            |
+|    Esporre il problema senza far capire al modello quale soluzione     |
+|    l'utente preferisca, disinnescando la compiacenza statistica.       |
++------------------------------------------------------------------------+
                                     |
                                     v
-+-------------------------------------------------------------------------+
-| 5. PRINCIPIO DELLA FALSIFICABILITÀ E DELL'EVIDENZA RIPRODUCIBILE        |
-|    Vietare pareri teorici: pretendere sempre controesempi candidati     |
-|    o frammenti di collaudo eseguibili su un computer reale.             |
-+-------------------------------------------------------------------------+
++------------------------------------------------------------------------+
+| 5. PRINCIPIO DELLA FALSIFICABILITÀ E DELL'EVIDENZA RIPRODUCIBILE       |
+|    Vietare pareri teorici: pretendere sempre controesempi candidati    |
+|    o frammenti di collaudo eseguibili su un computer reale.            |
++------------------------------------------------------------------------+
 ```
 
 ---
@@ -30614,13 +30611,8 @@ I seguenti cinque principi pratici costituiscono la guida operativa da applicare
 
 Per mostrare l'applicazione pratica di questi concetti senza disperderci tra decine di linguaggi e problemi isolati, seguiremo un unico filo conduttore: la costruzione di un componente aziendale per la liquidazione e conversione di pagamenti esteri (`PaymentSettlementService`).
 
-```text
-IL PROBLEMA DI BUSINESS:
-Dobbiamo calcolare quanto denaro accreditare a un fornitore estero partendo da una somma 
-in Dollari (USD), trattenere una commissione percentuale per il servizio, applicare una 
-conversione in Euro (EUR) secondo tassi di cambio autorizzati, e garantire che non si 
-verifichino ammanchi di cassa, sbilanciamenti contabili o arrotondamenti illegali.
-```
+*IL PROBLEMA DI BUSINESS:*  
+*Dobbiamo calcolare quanto denaro accreditare a un fornitore estero partendo da una somma in Dollari (USD), trattenere una commissione percentuale per il servizio, applicare una conversione in Euro (EUR) secondo tassi di cambio autorizzati, e garantire che non si verifichino ammanchi di cassa, sbilanciamenti contabili o arrotondamenti illegali.*  
 
 Analizziamo i sette pattern difensivi attraverso una struttura evolutiva in **cinque stadi**:
 1. *Prompt Iniziale Debole* (come viene chiesto comunemente);
@@ -30883,27 +30875,12 @@ ISTRUZIONI DI ATTACCO LOGICO:
 
 Non tutti i modelli linguistici operano allo stesso modo. L'ingegnere di assurance deve adattare la struttura del prompt non in base al nome commerciale del fornitore (che muta continuamente), ma distinguendo le **modalità di generazione operative**.
 
-```text
-+---------------------------------------------------------------------------+
-| 5.1 GENERAZIONE DIRETTA                | 5.2 RAGIONAMENTO ESTESO          |
-|     (Modalità operativa)               |     (Test-Time Reasoning)        |
-|----------------------------------------+----------------------------------|
-| Producono direttamente la risposta     | Impiegano risorse computazionali |
-| senza una fase esplicita di reasoning  | aggiuntive durante l'inferenza   |
-| (modalità disponibile in diversi       | per elaborare il problema        |
-| modelli general-purpose).              | prima della risposta.            |
-|                                        |                                  |
-| RISCHIO PRINCIPALE:                    | RISCHIO PRINCIPALE:              |
-| Scorciatoie logiche premature;         | Eccesso di speculazione interna  |
-| risposte scritte prima di aver         | (*overthinking*); razionaliz-    |
-| analizzato tutti i vincoli.            | zazione a posteriori di bug.     |
-|                                        |                                  |
-| REGOLA DI PROMPTING:                   | REGOLA DI PROMPTING:             |
-| Scomporre esplicitamente il compito    | Prompt sintetico sui vincoli;    |
-| a tappe (Fase 1: Tipi, Fase 2: Regole, | NON forzare catene di pensiero   |
-| Fase 3: Codice finale).                | artificiali che disturbano l'AI. |
-+--------------------------------------------------------------------------+
-```
+| 5.1 GENERAZIONE DIRETTA<br>*(Modalità operativa)* | 5.2 RAGIONAMENTO ESTESO<br>*(Test-Time Reasoning)* |
+| :--- | :--- |
+| Producono direttamente la risposta senza una fase esplicita di reasoning (modalità disponibile in diversi modelli general-purpose). | Impiegano risorse computazionali aggiuntive durante l'inferenza per elaborare il problema prima della risposta. |
+| **RISCHIO PRINCIPALE:**<br>Scorciatoie logiche premature; risposte scritte prima di aver analizzato tutti i vincoli. | **RISCHIO PRINCIPALE:**<br>Eccesso di speculazione interna (*overthinking*); razionalizzazione a posteriori di bug. |
+| **REGOLA DI PROMPTING:**<br>Scomporre esplicitamente il compito a tappe (Fase 1: Tipi, Fase 2: Regole, Fase 3: Codice finale). | **REGOLA DI PROMPTING:**<br>Prompt sintetico sui vincoli; NON forzare catene di pensiero artificiali che disturbano l'AI. |
+
 
 #### 5.1 Modelli a Generazione Diretta (Next-Token Standard)
 Nella generazione autoregressiva, ogni token prodotto contribuisce a determinare la distribuzione di probabilità dei token successivi. Questa proprietà riguarda il meccanismo di generazione e non esclude la presenza di capacità di reasoning.
@@ -30923,7 +30900,7 @@ Per comprendere il confine tra prompt e software, occorre fissare una regola fon
 > **Il prompt orienta; la decodifica vincolata limita le sequenze ammissibili di token; il parser interpreta la sintassi; il validatore verifica la conformità allo schema e ai vincoli di dominio.**
 
 - Quando diciamo nel prompt *"rispondi solo in formato JSON"*, stiamo solo **orientando** il modello. L'LLM può comunque fallire e inserire testo introduttivo (*"Certamente, ecco il tuo JSON..."*).
-- Se utilizziamo un motore di decodifica vincolata (come Outlines o Jsonformer), configurato con una grammatica o uno schema supportato, il runtime può limitare la selezione dei token alle continuazioni ammesse dai vincoli implementati. La conformità strutturale dipende dalla correttezza dell'implementazione, dai vincoli effettivamente supportati e dal comportamento del runtime. Questo meccanismo non garantisce la correttezza semantica o funzionale dei dati generati (**Step 12 e Appendice ⊞**).  
+- Se utilizziamo un motore di decodifica vincolata (come Outlines o Jsonformer), configurato con una grammatica o uno schema supportato, il runtime può limitare la selezione dei token alle continuazioni ammesse dai vincoli implementati. La conformità strutturale dipende dalla correttezza dell'implementazione, dai vincoli effettivamente supportati e dal comportamento del runtime. Questo meccanismo non garantisce la correttezza semantica o funzionale dei dati generati (vedi: *Capitolo 12* e *⊞&nbsp;Architettura di un Ecosistema AI Locale*).  
 È importante distinguere la decodifica vincolata dalla validazione successiva alla generazione. Pydantic e Zod sono principalmente strumenti di validazione dei dati rispetto a schemi e vincoli dichiarati: non costituiscono, da soli, motori di decodifica vincolata. Possono essere utilizzati per verificare l'output prodotto dal modello dopo la generazione.
 
 ---
@@ -30935,32 +30912,32 @@ Uno degli errori metodologici più gravi è il cosiddetto **Vibe Tweaking** (mod
 Nella Software Assurance, il raffinamento del prompt è un processo ingegneristico guidato da **prove empiriche replicabili**:
 
 ```text
-               IL CICLO DI CALIBRAZIONE GUIDATO DAI TEST
+ IL CICLO DI CALIBRAZIONE GUIDATO DAI TEST
                
-         [ PROMPT ESISTENTE (Versione 1.0) ]
-                         |
-                         v
-         [ Generazione Codice ed Esecuzione Test ]
-                         |
-                         v
-      < Il test oracolato rileva un difetto reale? >
-                         |
-                         +---> SÌ (Controesempio concreto isolato)
-                         |
-                         v
-         [ ISOLAMENTO DELLA CAUSA LOGICA ]
-         Quale vincolo o assunzione mancava nel prompt?
-                         |
-                         v
-         [ AGGIORNAMENTO DI UN SINGOLO VINCOLO NEL PROMPT ]
-                         |
-                         v
-         [ RIESECUZIONE DELLA SUITE DI TEST CONGELATA ]
-         Verificare che il bug sia sparito E che nessun 
-         vecchio test sia andato in errore (Regression Test)!
-                         |
-                         v
-         [ PROMPT AGGIORNATO E VALIDATO (Versione 1.1) ]
+   [ PROMPT ESISTENTE (Versione 1.0) ]
+                   |
+                   v
+   [ Generazione Codice ed Esecuzione Test ]
+                   |
+                   v
+< Il test oracolato rileva un difetto reale? >
+                   |
+                   +---> SÌ (Controesempio concreto isolato)
+                   |
+                   v
+   [ ISOLAMENTO DELLA CAUSA LOGICA ]
+   Quale vincolo o assunzione mancava nel prompt?
+                   |
+                   v
+   [ AGGIORNAMENTO DI UN SINGOLO VINCOLO NEL PROMPT ]
+                   |
+                   v
+   [ RIESECUZIONE DELLA SUITE DI TEST CONGELATA ]
+   Verificare che il bug sia sparito E che nessun 
+   vecchio test sia andato in errore (Regression Test)!
+                   |
+                   v
+   [ PROMPT AGGIORNATO E VALIDATO (Versione 1.1) ]
 ```
 
 #### Matrice di Confronto: Vibe Tweaking vs Refinement Guidato dall'Evidenza
@@ -37252,6 +37229,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 #### G
 - [GameDay (Esercitazione Operativa di Guasto)](#gameday-esercitazione-operativa-di-guasto)
 - [Gate Theater (La Finzione del Gate)](#gate-theater-la-finzione-del-gate)
+- [Generazione autoregressiva (e Processo autoregressivo)](#generazione-autoregressiva-e-processo-autoregressivo)
 - [Ghost Code (Codice Fantasma)](#ghost-code-codice-fantasma)
 - [Golden Calibration Set](#golden-calibration-set)
 - [Green Board Fallacy (La Fallacia della Bacheca Verde)](#green-board-fallacy-la-fallacia-della-bacheca-verde)
@@ -37274,6 +37252,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Indirect Prompt Injection (Iniezione Indiretta di Prompt)](#indirect-prompt-injection-iniezione-indiretta-di-prompt)
 - [Inherent Risk (Rischio Inerente)](#inherent-risk-rischio-inerente)
 - [Insurance (Copertura Assicurativa)](#insurance-copertura-assicurativa)
+- [Interleaving temporali (Alternanze di esecuzione concorrente)](#interleaving-temporali-alternanze-di-esecuzione-concorrente)
 - [Invariant (Invariante di Sistema / Invariante Critico)](#invariant-invariante-di-sistema--invariante-critico)
 
 #### K
@@ -37291,6 +37270,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [LLM-as-a-Judge](#llm-as-a-judge)
 - [LLM-Assisted Implementation (Sviluppo Assistito da LLM)](#llm-assisted-implementation-sviluppo-assistito-da-llm)
 - [Locus of Enforcement (Punto Esclusivo di Presidio)](#locus-of-enforcement-punto-esclusivo-di-presidio)
+- [Logic Flaws (Errori Logici / Difetti Semantici)](#logic-flaws-errori-logici--difetti-semantici)
 
 #### M
 - [MCP (Model Context Protocol)](#mcp-model-context-protocol)
@@ -37319,6 +37299,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 #### O
 - [Objective (Obiettivo di Sistema)](#objective-obiettivo-di-sistema)
 - [Observability (Osservabilità)](#observability-osservabilità)
+- [Off-by-One Error (Errore di Una Unità)](#off-by-one-error-errore-di-una-unità)
 - [Open-weight (Modello a pesi aperti)](#open-weight-modello-a-pesi-aperti)
 - [Oracle (Oracolo di Test)](#oracle-oracolo-di-test)
 - [Oracle Correctness (Correttezza dell'Oracolo)](#oracle-correctness-correttezza-delloracolo)
@@ -37397,6 +37378,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Slopsquatting](#slopsquatting)
 - [Small Scope Hypothesis (Ipotesi del piccolo ambito)](#small-scope-hypothesis-ipotesi-del-piccolo-ambito)
 - [SMT (Satisfiability Modulo Theories - Soddisfacibilità modulo teorie)](#smt-satisfiability-modulo-theories---soddisfacibilità-modulo-teorie)
+- [Socket](#socket)
 - [Solver (Risolvitore)](#solver-risolvitore)
 - [Soundness (Correttezza formale)](#soundness-correttezza-formale)
 - [Source & Sink (Sorgente e punto di arrivo / Sink del flusso dati)](#source--sink-sorgente-e-punto-di-arrivo--sink-del-flusso-dati)
@@ -37406,6 +37388,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Specification Validity (Validità della Specifica)](#specification-validity-validità-della-specifica)
 - [Specification Verification (Verifica della Specifica)](#specification-verification-verifica-della-specifica)
 - [Spec-Fitting](#spec-fitting)
+- [Stack Tecnologico (Technology Stack)](#stack-tecnologico-technology-stack)
 - [Staging Environment (Ambiente di Staging)](#staging-environment-ambiente-di-staging)
 - [Staging Fidelity Gap](#staging-fidelity-gap)
 - [Starvation (Inedia / Deprivazione di Risorse)](#starvation-inedia--deprivazione-di-risorse)  
@@ -37418,6 +37401,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Tautological Oracle / Tautological Test](#tautological-oracle--tautological-test)
 - [Telemetry (Telemetria di Sistema)](#telemetry-telemetria-di-sistema)
 - [Terna di Hoare (Hoare Triple)](#terna-di-hoare-hoare-triple)
+- [Thread (Flusso di esecuzione concorrente)](#thread-flusso-di-esecuzione-concorrente)
 - [Threat (Minaccia)](#threat-minaccia)
 - [Threat Modeling (Modellazione delle Minacce)](#threat-modeling-modellazione-delle-minacce)
 - [Threshold Tampering (Manipolazione delle Soglie)](#threshold-tampering-manipolazione-delle-soglie)
@@ -38151,6 +38135,15 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Allestimento di un'infrastruttura di controllo e gating visivamente complessa e ricca di dashboard formali, le cui regole interne sono tuttavia prive di effettivo potere bloccante (es. flag di prosecuzione automatica su errore o soglie permissive prive di controllo semantico).  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 23 (Evidence-Based Decision Gates), Sezione 11.2.*
 
+#### Generazione autoregressiva (e Processo autoregressivo)
+**Categoria:** Termine scientifico consolidato (Machine Learning / Statistica)  
+**Definizione:** Processo in cui ogni nuovo valore o risultato viene determinato sulla base dei valori precedenti. Nei modelli linguistici (LLM), la generazione autoregressiva è la modalità con cui il modello produce una sequenza di token uno alla volta, calcolando a ogni iterazione la distribuzione di probabilità del token successivo, condizionata dal contesto disponibile (prompt e token già generati). Il processo prosegue fino al raggiungimento di una condizione di arresto, come la generazione del token di fine sequenza (`<EOS>`) o il raggiungimento del limite massimo di generazione.  
+***Precisazione:*** 
+- *Processo autoregressivo*: categoria generale, con significati specifici in diversi ambiti scientifici.
+- *Generazione autoregressiva*: applicazione del principio autoregressivo alla generazione sequenziale di token negli LLM.  
+
+*<u>Approfondimento nel manuale</u>: vedi Quadro Didattico (Sez. 4.1) e Capitolo 15 (LLM-Assisted Implementation, Sez. 5).*
+
 #### Ghost Code (Codice Fantasma)
 **Categoria:** Costrutto didattico introdotto dal manuale  
 **Definizione:** Porzioni di codice sorgente, rami decisionali, costrutti difensivi opachi o dipendenze presenti nel codice generato dall'LLM che non derivano da alcun requisito della specifica né da vincoli architetturali approvati, introdotti per completamento statistico arbitrario del modello.  
@@ -38253,6 +38246,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Contratto finanziario o attuariale mediante il quale determinate conseguenze economiche derivanti dal concretizzarsi di un rischio vengono trasferite a un assicuratore terzo; non coincide con l'Assurance (giustificazione razionale della confidenza tecnica) né con la Warranty (garanzia contrattuale di conformità del prodotto).  
 *<u>Approfondimento nel manuale</u>: vedi Nota Terminologica iniziale (Sezione 2).*
 
+#### Interleaving temporali (Alternanze di esecuzione concorrente)
+**Categoria:** Termine tecnico consolidato (teoria della concorrenza)  
+**Definizione:** L'insieme delle possibili sequenze con cui le istruzioni elementari eseguite da thread o processi concorrenti si alternano nel tempo durante l'accesso a risorse o memoria condivisa. Poiché l'ordine relativo di avanzamento dei singoli thread dipende dallo scheduling del sistema operativo e dai ritardi fisici di calcolo, differenti intercalamenti temporali possono produrre stati finali divergenti, innescando race condition, deadlock o starvation se non regolati da primitive di sincronizzazione atomica.  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 4 (Sez. 14.2), Capitolo 15 (Sez. 17), Capitolo 16 (Sez. 10.1) e Capitolo 18 (Sez. 14).*
+
 #### Invariant (Invariante di Sistema / Invariante Critico)
 **Categoria:** Termine matematico e logico consolidato  
 **Definizione:** Proprietà logica o relazione matematica che deve essere preservata come vera attraverso tutte le operazioni, transizioni e mutazioni di stato lecite del sistema software (`forall s in ReachableStates: Invariant(s) == TRUE`).  
@@ -38329,6 +38327,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Costrutto operativo e architetturale consolidato nel manuale  
 **Definizione:** Il punto architetturale non ambiguo, circoscritto e chiaramente identificato a cui è delegata in via esclusiva la responsabilità di presidiare un invariante critico, impedendo che i controlli siano dispersi o duplicati in modo non verificabile nell'applicazione.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 13 (Implementation Design), Sezione 4.4 e Sezione 5.*
+
+#### Logic Flaws (Errori Logici / Difetti Semantici)
+**Categoria:** Termine tecnico consolidato  
+**Definizione:** Difetti intrinseci nella struttura logica, algoritmica o decisionale di un software, derivanti da condizioni booleane mal concepite, assunzioni di dominio fallaci o errate relazioni tra istruzioni. A differenza degli errori di sintassi o dei crash bloccanti a runtime, un programma affetto da logic flaw compila correttamente ed esegue senza sollevare eccezioni tecniche immediate (*working code*), producendo tuttavia risultati semanticamente errati, corruzione di dati o violazione di invarianti critici di business.  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 1 (Sez. 1.1 e 3.2), Capitolo 13 (Sez. 6), Capitolo 15 (Sez. 6) e Capitolo 16 (Sez. 2 e 4).*
 
 ---
 
@@ -38457,6 +38460,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine tecnico e di teoria dei sistemi consolidato  
 **Definizione:** La proprietà architetturale che consente di dedurre lo stato logico interno del software e il rispetto degli invarianti basandosi esclusivamente sui dati telemetrici (metriche, log, tracce) emessi verso l'esterno, superando il monitoraggio puramente infrastrutturale.  
 *<u>Approfondimento nel manuale</u>: trattata estesamente in Capitolo 26 (Observability).*
+
+#### Off-by-One Error (Errore di Una Unità)
+**Categoria:** Termine tecnico consolidato  
+**Definizione:** Sottoclasse specifica di errore logico che si manifesta quando un calcolo numerico, un conteggio di elementi, un ciclo iterativo o un limite di confine risulta errato esattamente di una singola unità. Scaturisce tipicamente dalla confusione tra disuguaglianza stretta e non stretta (`<` rispetto a `<=`), dall'indicizzazione delle strutture dati che inizia da zero (zero-based indexing) anziché da uno, o dall'errata inclusione/esclusione degli estremi di un intervallo, potendo innescare sia fallimenti funzionali sia vulnerabilità di buffer overflow.  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 16 (Automated Testing, Sez. 2), Capitolo 24 (Human Review, Sez. 10.2) e Capitolo 31 (Change Impact Analysis, Sez. 7).*
 
 #### Open-weight (Modello a pesi aperti)
 **Categoria:** Termine tecnico e d'uso professionale consolidato  
@@ -38830,6 +38838,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Problema decisionale della soddisfacibilità di formule logiche rispetto a una o più teorie formali interpretate, quali aritmetica, uguaglianza e funzioni non interpretate, array e bit-vector. Un SMT solver determina se esiste un'interpretazione delle variabili e delle funzioni che soddisfi simultaneamente i vincoli della formula e gli assiomi delle teorie coinvolte.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 4 (Specification, Sez. 5.3), Capitolo 9 (Specification Validity, Sez. 17), Capitolo 11 (Independent Evidence & Oracles, Sez. 11.2), Appendice ⊙ Elementi di Logica e Specifica Formale (Sez. 13.2) e Appendice ◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM (Sez. 0.3).*
 
+#### Socket
+**Categoria:** Termine tecnico consolidato (reti e sistemi operativi)  
+**Definizione:** Interfaccia software e punto terminale (endpoint) gestito dal sistema operativo che consente a due processi di scambiare flussi di dati bidirezionali, sia attraverso una rete (socket di rete IP/TCP/UDP) sia localmente all'interno della stessa macchina (Unix domain socket). Nel modello POSIX è rappresentato da un descrittore di file (*file descriptor*); nell'assurance del software confinato, l'autorità di creare o legare (*bind*) socket determina l'isolamento di rete (Asse 4) o il rischio di esfiltrazione dati verso l'esterno.  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 14 (Containment & Least Authority, Sez. 3 e 4), Appendice ▣ (Sez. 2 e 6.2) e Appendice ♖ (Sez. 4.3).*
+
 #### Solver (Risolvitore)
 **Categoria:** Termine tecnico consolidato
 **Definizione:** Strumento software che applica algoritmi automatici per risolvere problemi formali, determinando, in funzione della logica e del dominio supportati, la soddisfacibilità di formule, l'esistenza di controesempi o altre proprietà matematiche. Può produrre un modello soddisfacente (SAT/model) oppure certificare l'insoddisfacibilità (UNSAT), nei limiti delle capacità e delle garanzie dell'implementazione.  
@@ -38874,6 +38887,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Anti-pattern denominato dal manuale  
 **Definizione:** Anti-pattern consistente nel modificare a posteriori il testo dei requisiti o le asserzioni di test per farli coincidere con il comportamento difettoso esibito dal codice generato da LLM, mascherando una regressione funzionale.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 22 (Discrepancy Analysis), Sezione 10.*
+
+#### Stack Tecnologico (Technology Stack)
+**Categoria:** Termine tecnico consolidato (architettura del software)  
+**Definizione:** L'insieme strutturato e stratificato delle tecnologie, linguaggi di programmazione, runtime di esecuzione, framework, librerie, database e componenti infrastrutturali impiegati per sviluppare, eseguire e manutenere un'applicazione o un sistema software. Ciascun elemento opera a un livello specifico (dall'interfaccia utente fino al kernel e all'hardware). Nel quadro della software assurance, lo stack tecnologico non descrive soltanto l'ambiente operativo necessario al funzionamento, ma delimita la superficie d'attacco, l'albero delle dipendenze e i confini di confino architetturale; inoltre, l'adozione di stack tecnologici eterogenei e disaccoppiati costituisce un requisito fondamentale per garantire l'indipendenza epistemica degli oracoli di verifica ed evitare guasti correlati.  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 6 (Critical Properties & Invariants, Sez. 12), Capitolo 14 (Containment & Least Authority, Sez. 4), Capitolo 15 (LLM-Assisted Implementation, Sez. 21), Capitolo 21 (Independent Verification, Sez. 4.2) e Appendice ♖.*
 
 #### Staging Environment (Ambiente di Staging)
 **Categoria:** Termine tecnico consolidato  
@@ -38930,6 +38948,11 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Modello logico-matematico formale consolidato  
 **Definizione:** Costrutto fondativo della logica assiomatica dei programmi espresso nella forma `{ P } C { Q }`, dove P è la precondizione, C è il comando e Q è la postcondizione garantita al termine, costituente la base per il Design by Contract.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 4 (Specification, Sez. 2.2), Capitolo 6 (Sez. 5.4) e Capitolo 13 (Implementation Design, Sez. 8.1).*
+
+#### Thread (Flusso di esecuzione concorrente)
+**Categoria:** Termine tecnico consolidato (sistemi operativi)  
+**Definizione:** La più piccola unità di esecuzione pianificabile dal kernel del sistema operativo all'interno di un processo. Mentre il processo rappresenta l'ambiente isolato proprietario delle risorse (spazio di indirizzamento di memoria, descrittori di file), più thread appartenenti allo stesso processo condividono la medesima memoria e le stesse variabili, mantenendo unicamente un proprio stack di chiamate e un registro di esecuzione. Questa condivisione rende i thread computazionalmente leggeri ma vulnerabili a corruzioni di memoria concorrente in assenza di sincronizzazione.  
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 6 (Sez. 3.4 e Box Starvation), Capitolo 13 (Sez. 4.2), Capitolo 14 (Sez. 2) e Appendice ▣ (Sez. 2).*
 
 #### Threat (Minaccia)
 **Categoria:** Termine tecnico di cybersecurity consolidato  
