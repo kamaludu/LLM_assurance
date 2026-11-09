@@ -3135,6 +3135,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Tecnica che etichetta i dati in ingresso da sorgenti esterne come contaminati, tracciandone la propagazione lungo il grafo per verificare che raggiungano i sink solo attraverso sanitizzatori.",
     aliases: ["Analisi del Taint", "Taint Tracking"]
   },
+  "Tassonomia": {
+    title: "Tassonomia",
+    category: "Architettura del Software",
+    definition: "Sistema di classificazione che organizza concetti ed elementi in categorie e sottocategorie secondo criteri definiti, facilitandone la distinzione, la comprensione e l'analisi coerente.",
+    aliases: ["tassonomia", "tassonomico", "tassonomica", "tassonomici", "tassonomiche", "tassonomicamente"]
+  },
   "Tautological Logger": {
     title: "The Tautological Logger (Il Logger Tautologico)",
     category: "Anti-Pattern Telemetrico",
@@ -3252,7 +3258,7 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
   "Topologia": {
     title: "Topologia (Topologia dei Sistemi)",
     category: "Architettura del Software",
-    definition: "Studio della struttura di connessione, dei confini, delle traiettorie di dipendenza e delle relazioni reticolari o spaziali tra i componenti e i flussi di dati di un sistema.",
+    definition: "Descrizione di come sono organizzati e collegati tra loro i componenti di un sistema e di come comunicano e dipendono gli uni dagli altri. Permette di comprendere il funzionamento complessivo del sistema e individuare i possibili percorsi attraverso cui possono propagarsi errori, guasti o vulnerabilità.",
     aliases: ["topologia", "topologico", "topologica", "topologici", "topologiche", "topologicamente"]
   },
   "Traceability": {
