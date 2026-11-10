@@ -3017,6 +3017,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Ritenere che un documento di requisiti lungo, impaginato bene e ricco di tabelle generato da LLM sia garanzia di validità semantica e completezza.",
     aliases: ["The SRS Illusion", "Illusione del Documento Ricco"]
   },
+  "Stack Memory": {
+    title: "Call Stack / Stack Memory / Stack Trace",
+    category: "Memoria Organizzativa",
+    definition: "Il Call Stack è la struttura che registra le chiamate alle funzioni e le relative informazioni di esecuzione; la Stack Memory è l'area di memoria utilizzata per memorizzare tali informazioni, come parametri, variabili locali e indirizzi di ritorno. Lo Stack Trace è la rappresentazione della sequenza delle chiamate effettuate, utilizzata per diagnosticare errori. Scritture oltre i limiti dei buffer allocati nello stack possono causare vulnerabilità denominate Stack-based Buffer Overflow.",
+    aliases: ["Call Stack", "Stack Memory", "Stack Trace", "Stack-based", "Buffer Overflow"]
+  },
   "Stack tecnologico": {
     title: "Stack tecnologico (Technology Stack)",
     category: "Architettura del Software & Sistemi",
