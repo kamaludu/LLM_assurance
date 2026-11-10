@@ -13963,7 +13963,7 @@ Lo STEP 15 (LLM-Assisted Implementation) ridefinisce la sintesi del codice come 
 
 ### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
 
-Nello **STEP 15 (LLM-Assisted Implementation)** abbiamo stabilito che il codice generato con l'ausilio di un modello linguistico deve essere trattato metodologicamente come un'**implementazione candidata** (I_candidate), ossia un'ipotesi algoritmica priva di garanzie di correttezza a priori. Nello **STEP 14 (Containment & Least Authority)** abbiamo predisposto i confini di isolamento per limitare il raggio di danno in caso di fallimento catastrofico.
+Nello **STEP 15 (LLM-Assisted Implementation)** abbiamo stabilito che il codice generato con l'ausilio di un modello linguistico deve essere trattato metodologicamente come un'**implementazione candidata** (`I_candidate`), ossia un'ipotesi algoritmica priva di garanzie di correttezza a priori. Nello **STEP 14 (Containment & Least Authority)** abbiamo predisposto i confini di isolamento per limitare il raggio di danno in caso di fallimento catastrofico.
 
 L'obiettivo dello **STEP 16 (Automated Testing)** è costruire ed eseguire un insieme strutturato di prove automatizzate capaci di produrre **evidenze empiriche oggettive** sul comportamento dell'implementazione candidata rispetto alle specifiche approvate.
 
@@ -14065,37 +14065,37 @@ La difficoltà fondamentale del testing non risiede nell'esecuzione del programm
 Nel contesto assistito da LLM, il problema dell'oracolo degenera frequentemente in quello che in questo manuale definiamo come costrutto didattico della **Trappola Circolare**:
 
 ```text
-       LA TRAPPOLA CIRCOLARE DEL TESTING (COSTRUTTO DIDATTICO)
+LA TRAPPOLA CIRCOLARE DEL TESTING (COSTRUTTO DIDATTICO)
 
-        +------------------------------------------------------+
-        | SPECIFICA FORMALE / INTENTO UTENTE                  |
-        +------------------------------------------------------+
-                                   |
-                                   v
-        +------------------------------------------------------+
-        | STEP 15: LLM genera Implementazione Candidata (I)    |
-        | [Contiene assunzione errata o off-by-one non notato] |
-        +------------------------------------------------------+
-                                   |
-                                   v  (L'utente passa il codice all'LLM)
-        +------------------------------------------------------+
-        | Prompt: "Genera unit test completi per questo codice" |
-        +------------------------------------------------------+
-                                   |
-                                   v
-        +------------------------------------------------------+
-        | LLM sintetizza Test Suite (T)                        |
-        | - L'oracolo deriva direttamente dall'output di I     |
-        | - Assert: compute(5) == 42 [proprio l'output errato] |
-        +------------------------------------------------------+
-                                   |
-                                   v
-        +------------------------------------------------------+
-        | ESECUZIONE DELLA SUITE:                              |
-        | pytest run: 12 passed, 0 failed in 0.04s             |
-        | Coverage: 100%                                       |
-        | Esito: PASS (FALSA ASSURANCE TOTALE)                 |
-        +------------------------------------------------------+
++------------------------------------------------------+
+| SPECIFICA FORMALE / INTENTO UTENTE                   |
++------------------------------------------------------+
+                           |
+                           v
++------------------------------------------------------+
+| STEP 15: LLM genera Implementazione Candidata (I)    |
+| [Contiene assunzione errata o off-by-one non notato] |
++------------------------------------------------------+
+                           |
+                           v  (L'utente passa il codice all'LLM)
++------------------------------------------------------+
+| Prompt: "Genera unit test completi per questo codice"|
++------------------------------------------------------+
+                           |
+                           v
++------------------------------------------------------+
+| LLM sintetizza Test Suite (T)                        |
+| - L'oracolo deriva direttamente dall'output di I     |
+| - Assert: compute(5) == 42 [proprio l'output errato] |
++------------------------------------------------------+
+                           |
+                           v
++------------------------------------------------------+
+| ESECUZIONE DELLA SUITE:                              |
+| pytest run: 12 passed, 0 failed in 0.04s             |
+| Coverage: 100%                                       |
+| Esito: PASS (FALSA ASSURANCE TOTALE)                 |
++------------------------------------------------------+
 ```
 
 #### Collegamento epistemico con lo STEP 11 (Independent Evidence & Oracles)
