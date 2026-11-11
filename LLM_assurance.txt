@@ -1096,7 +1096,7 @@ Di seguito si riportano le definizioni unificate dei termini specialistici utili
 ### 0. Premessa per tutti i ruoli: *cosa si ottiene dalla lettura senza dover memorizzare formule o codice*
 
 > [!TIP]
-> **Come leggere questo manuale se non siete specialisti di metodi formali o di sicurezza**
+> **⌕ Come leggere questo manuale se non siete specialisti di metodi formali o di sicurezza**
 >
 > Questo testo contiene dimostrazioni, modelli formali, architetture di sistema e codice. 
 > Tuttavia, **una lettura attenta non richiede affatto di memorizzare formule matematiche, comandi di terminale o costrutti logici per risultare pienamente efficace**.
@@ -1246,7 +1246,7 @@ Ogni lettore può quindi partire dalle sezioni più vicine alle proprie responsa
 ### La cassetta degli attrezzi concettuale per comprendere la Parte I
 
 > [!TIP]
-> **Leggere questa guida prima di entrare nei dettagli dello Step 1**
+> **⌕ Leggere questa guida prima di entrare nei dettagli dello Step 1**
 >
 > L'Assurance del software assistito da modelli linguistici richiede di distinguere con precisione cio' che viene affermato, cio' che lo sostiene, cio' che si assume vero e cio' che è effettivamente dimostrato.
 >
@@ -1556,7 +1556,7 @@ Dove:
 - `|=` (*Soddisfacimento semantico* / *Entailment logico*): Se le assunzioni `W` sono vere e la specifica della macchina `S` è implementata correttamente, allora i requisiti `R` nel mondo reale risultano logicamente soddisfatti.
 
 > [!TIP]
-> **In parole povere: il modello Mondo-Macchina spiegato con un passaggio a livello**
+> **☼ In parole povere: il modello Mondo-Macchina spiegato con un passaggio a livello**
 >
 > Per capire questa formula senza farsi spaventare dai simboli matematici, pensiamo a un passaggio a livello ferroviario:
 >
@@ -1717,6 +1717,18 @@ Dove:
    ```text
    For all a_i in W_assumptions: exists inv_j in Invalidation_Conditions such that (inv_j -> NOT a_i)
    ```
+
+> [!TIP]
+> **☼ In parole povere: le "spie di allarme" sulle cose che diamo per scontate**
+> 
+> La formula matematica sopra riportata (For all a_i ... exists inv_j ...) esprime una regola di prudenza che applichiamo ogni giorno: **non dare mai per scontata una cosa fragile senza predisporre una spia che ti avverta se viene meno**.
+> 
+> Pensiamo a una caldaia a gas in casa:
+> 1. **L'Assunzione (a_i):** Diamo per scontato che nella canna fumaria ci sia tiraggio e che i fumi escano all'esterno.
+> 2. **Il Pericolo:** Il circuito elettronico che accende la fiamma non può "vedere" se un nido di uccelli ha bloccato il tubo. Se continua a bruciare gas dando per scontato che il camino sia libero, riempirà la casa di gas velenoso.
+> 3. **La Spia Sentinella (inv_j):** La legge impone di montare un sensore di pressione nel tubo. Se la pressione dell'aria scende (si verifica l'evento inv_j), significa con certezza che il camino è ostruito (NOT a_i). La caldaia chiude all'istante la valvola del gas e si blocca in sicurezza.
+> 
+> Nel software scritto con l'aiuto dell'intelligenza artificiale vale la stessa regola: un programma generato da un modello linguistico è pieno di presupposti impliciti (dà per scontato che internet risponda sempre, che i file siano integri, che nessuno inserisca lettere dove servono numeri). La formula impone che per ogni cosa data per scontata (a_i) debba esistere un controllo automatico di guardia (inv_j) capace di far scattare il freno prima che il presupposto crolli all'improvviso.  
 
 > *(Per la distinzione formale tra conseguenza semantica `|=` e derivabilità sintattica `|-`, vedi l'appendice: [⊙ Elementi di Logica e Specifica Formale — Sez. 2.8 e 9](#appendice-logica))*
 
@@ -9402,7 +9414,7 @@ Proprieta' della formulazione:
 - Se S > 0, l'indice cresce moltiplicativamente con l'aumento dell'esposizione, dell'autonomia, della non reversibilita' e della mancanza di contenimento.
 
 > [!TIP]
-> **In parole povere: perché questa formula non fa la solita moltiplicazione "Probabilità x Danno"?**
+> **☼ In parole povere: perché questa formula non fa la solita moltiplicazione "Probabilità x Danno"?**
 >
 > Nei corsi aziendali sulla sicurezza viene spesso insegnata una formula semplicistica:  
 > `Rischio = Probabilità x Danno`  
@@ -10239,6 +10251,21 @@ La probabilita' di errore congiunto diventa:
 
 Deduzione logica:
 Se il coefficiente di accoppiamento rho è prossimo a 1, la suite di test ha un'efficacia probatoria nulla. Nessun rischio è stato ridotto, a prescindere dal numero di test eseguiti.
+
+> [!TIP]
+> **☼ In parole povere: il parametro rho (ρ) e la trappola dei due periti che hanno studiato sullo stesso libro sbagliato**
+> 
+> La formula matematica sopra descritta dimostra una regola ben nota in ambito peritale e giuridico: **due testimoni che si sono messi d'accordo prima di entrare in aula non valgono il doppio di un testimone solo; valgono zero.**
+> 
+> Immaginiamo di dover verificare un calcolo fiscale complesso generato da un modello di intelligenza artificiale:
+> 
+> - **Caso A: Indipendenza reale (rho = 0)**  
+>   Facciamo fare il calcolo al software. Poi prendiamo le tabelle ufficiali stampate dall'Agenzia delle Entrate e facciamo eseguire lo stesso conteggio a un commercialista umano indipendente. Se entrambi arrivano allo stesso identico centesimo, la nostra fiducia è solidissima: i due percorsi non avevano nulla in comune e la probabilità che abbiano commesso lo stesso errore nello stesso punto è quasi inesistente.
+> 
+> - **Caso B: Accoppiamento circolare (rho tende a 1)**  
+>   Facciamo scrivere il codice all'intelligenza artificiale. Poi, nella stessa chat, diciamo allo stesso modello: *"Ora scrivi 50 test per verificare che il codice che hai appena scritto sia giusto"*. Il modello scriverà controlli che danno per buona la stessa formula (magari sbagliata) che ha appena inventato. Tutti i 50 test risulteranno superati con successo, ma l'errore non verrà mai scoperto.
+> 
+> Il parametro **rho (ρ)** misura proprio questo "grado di parentela" o dipendenza tra chi fa il lavoro e chi lo controlla. Se rho è vicino a 1, fare 10 test o 10.000 test è solo una recita: chi controlla ha gli stessi difetti di chi ha commesso lo sbaglio.  
 
 ---
 
@@ -12888,7 +12915,7 @@ Non tutte le attività relative al contenimento possono essere svolte dal medesi
 La responsabilità di decidere quale sia il massimo livello di danno tollerabile per l'organizzazione non è <mark>**mai**</mark> delegabile all'LLM. Se l'utente non comprende la differenza tra una policy di rete *Ingress* (traffico in entrata) e una *Egress* (traffico in uscita), non possiede la competenza per apporre la firma di approvazione sull'invariante di contenimento. In questo caso, l'assurance deve arrestarsi allo stato di **UNKNOWN** o **NO-GO** fino a consultazione di un esperto di dominio.
 
 > [!TIP]
-> **Chiarimento didattico per non specialisti: la trappola del traffico in uscita (*Egress*)**
+> **⌕ Chiarimento didattico per non specialisti: la trappola del traffico in uscita (*Egress*)**
 > 
 > Molti sviluppatori ritengono che un container sia sicuro solo perché "nessuno dall'esterno può entrarvi" (*Ingress* bloccato). Tuttavia, nel software assistito da LLM la minaccia primaria è inversa: uno script allucinato o manipolato tramite *Indirect Prompt Injection* tenterà quasi sempre di **uscire verso l'esterno (*Egress*)**, per esfiltrare credenziali private o scaricare librerie malevole da internet. 
 > 
@@ -14886,7 +14913,7 @@ Per comprendere il funzionamento, la portata e i limiti degli strumenti dello St
    - *Oracolo*: firme note di formati di token di fornitori terzi e soglie di entropia.
 
 > [!TIP]
-> **Demistificazione delle Sigle Fondamentali per Non Esperti: SBOM, CVE e Taint Analysis**
+> **☼ Demistificazione delle Sigle Fondamentali per Non Esperti: SBOM, CVE e Taint Analysis**
 >
 > Per comprendere i controlli di sicurezza senza perdersi nel gergo degli addetti ai lavori, analizziamo i tre concetti cardine di questo capitolo, spiegando cosa significano lettera per lettera e come funzionano nella realtà materiale:  
 >
@@ -15414,6 +15441,28 @@ La delegazione della produzione del codice o della sua scansione non esonera l'o
 | **Inventario Dipendenze (SCA)** | Tool SCA specializzato (es. Trivy, Snyk, Dependabot) | Database di advisory indipendenti (NVD, OSV) | File SBOM formalizzato (CycloneDX/SPDX) con riscontro crittografico | **NO**. Non è ammesso fidarsi dell'elenco dipendenze dichiarato a memoria dall'LLM. |
 | **Controllo Esposizione Segreti** | Scanner di repository (es. Gitleaks, Trufflehog) | Pipeline di integrazione su albero e cronologia Git completa | Report di scansione con hash dei commit verificati; log di rotazione per segreti compromessi | **NO**. L'assenza di chiavi esposte richiede scansione della cronologia, non mera ispezione dell'ultimo commit. |
 
+> [!IMPORTANT]
+> **⌕ Scheda di Verifica delle Evidenze: Come valutare sicurezza, librerie e credenziali senza aprire il terminale**
+> 
+> Per chiunque debba commissionare, valutare, revisionare o approvare un software (che si tratti di un rilascio interno o di una fornitura esterna), non è necessario saper digitare comandi da sistemista su un terminale informatico.
+> È però indispensabile **pretendere evidenze documentate e verificabili** che rispondano con chiarezza a queste quattro domande fondamentali:
+> 
+> 1. **La distinta base degli ingredienti (SCA e SBOM):**  
+>    *«È disponibile la distinta base completa del software (in gergo tecnico SBOM, ovvero la lista di tutti i pezzi di codice preesistenti presi da internet e incorporati nel programma), con la prova che nessuno di essi ha difetti gravi o richiami di fabbrica già noti a livello internazionale (le cosiddette vulnerabilità CVE)?»*
+> 
+> 2. **L'assenza di librerie allucinate o fasulle (Anti-Slopsquatting):**  
+>    *«È stato accertato che tutti i componenti suggeriti dall'intelligenza artificiale esistono davvero sugli archivi ufficiali da tempo e non sono pacchetti inventati dal modello e poi registrati da malintenzionati per diffondere codice dannoso?»*
+> 
+> 3. **La separazione e pulizia dei dati esterni (Analisi SAST del flusso dati):**  
+>    *«I report dimostrano che i dati inseriti dagli utenti o da sistemi esterni non possono arrivare direttamente a toccare i comandi del database o del sistema operativo senza essere stati prima controllati e depurati?»*  
+>    *(Regola di attenzione: verificare che nel codice non siano state inserite istruzioni per 'spegnere gli allarmi' di sicurezza o nascondere gli avvisi).*
+> 
+> 4. **Nessuna password o chiave riservata archiviata nei file (Secret Scanning):**  
+>    *«È stata scansionata l'intera cronologia passata dei salvataggi del programma, accertando che nessuno sviluppatore abbia incollato password, token di accesso o chiavi crittografiche nei file di configurazione?»*
+> 
+> **Il criterio di blocco (NO-GO):**  
+> Se chi ha realizzato il software risponde che *"non serve controllare perché il codice è stato scritto dall'AI e sembra a posto"*, oppure che *"gli strumenti di analisi danno allarmi ma l'AI ci ha assicurato che sono falsi allarmi"*, **il componente non deve essere approvato per l'uso operativo**. In assenza di report prodotti da strumenti oggettivi e indipendenti, la responsabilità per eventuali violazioni o disservizi ricadrà interamente su chi autorizza il rilascio.  
+
 ---
 
 ### 15. Indipendenza delle evidenze e riduzione della correlazione
@@ -15905,7 +15954,7 @@ Definiamo i concetti cardine in modalità bilingue rigorosa:
 Nel testing convenzionale, l'ingegnere progetta l'input e ne calcola l'esito. Nel PBT, l'ingegnere progetta il **generatore** e formalizza l'**invariante**. La generazione dei casi puntuali è demandata al motore computazionale.
 
 > [!TIP]
-> **Demistificazione del PBT: la centrifuga per valigie e la ricerca del difetto minimo**
+> **☼ Demistificazione del PBT: la centrifuga per valigie e la ricerca del difetto minimo**
 >
 > * **Cosa significa la sigla PBT:**  
 >   Sta per **Property-Based Testing**, che in italiano si traduce come **«Collaudo Basato su Proprietà»**.
@@ -18296,7 +18345,7 @@ IL FALSO DISACCOPPIAMENTO:
 ```
 
 > [!TIP]
-> **Esempio di contrasto pratico: indipendenza contrattuale vs dipendenza epistemica**  
+> **☼ Esempio di contrasto pratico: indipendenza contrattuale vs dipendenza epistemica**  
 > Si consideri il seguente scenario aziendale reale per comprendere come le dimensioni dell'indipendenza possano divergere:
 > 
 > | Dimensione dell'Indipendenza | Situazione Reale nel Progetto | Valutazione di Assurance |
@@ -19802,6 +19851,22 @@ ADMIT = (D_inv == TRUE) AND
 ```
 
 Se `ADMIT == FALSE`, la transizione è bloccata. La causa del blocco viene verbalizzata identificando esattamente quale dimensione del vettore ha fallito il criterio.
+
+> [!IMPORTANT]
+> **⌕ Criteri Pratici di Accettazione e Governance: Come tradurre il Decision Gate in regole vincolanti**
+> 
+> Per chiunque debba stabilire le regole di accettazione di un rilascio, definire i traguardi di un progetto o concordare accordi di consegna, il Decision Gate (il cancello decisionale) non è una formula astratta: è il **criterio oggettivo che stabilisce quando un lavoro è completato in sicurezza e quando deve essere fermato**.
+> 
+> Per proteggere il sistema da software generato in fretta e collaudato male, ogni procedura di accettazione o accordo operativo dovrebbe poggiare su queste **tre regole non negoziabili**:
+> 
+> 1. **Divieto dell'auto-collaudo circolare:**  
+>    Nessuna funzionalità realizzata con l'ausilio di intelligenza artificiale può considerarsi verificata se i test di prova sono stati generati dallo stesso modello linguistico senza un metodo di controllo indipendente e separato. La semplice esibizione di test automatici prodotti dallo stesso generatore del codice non costituisce prova valida di correttezza.
+> 
+> 2. **Principio di non-compensazione (la sicurezza non è una media a punti):**  
+>    L'approvazione del software richiede che ogni singola proprietà critica (sicurezza, protezione dei dati, correttezza dei calcoli) sia verificata con esito positivo (PASS). L'eccellenza o la grande quantità di test superati su funzioni ordinarie o secondarie non può mai compensare il dubbio (UNKNOWN) o il fallimento (FAIL) su una funzione critica.
+> 
+> 3. **Regole rigide per lo sblocco in deroga (Anti-Override):**  
+>    Non è consentito disattivare manualmente gli allarmi di sicurezza per far avanzare il software a tutti i costi. Qualsiasi decisione eccezionale di sblocco in presenza di dubbi deve richiedere una motivazione scritta formale, la firma di chi se ne assume la responsabilità e l'isolamento del programma su un gruppo ristretto e protetto di prova.  
 
 ---
 
@@ -21549,7 +21614,7 @@ Un Feature Flag è architetturalmente sicuro solo se:
 - Viene associato a una scadenza temporale esplicita (*Time-to-Retire*) per evitarne l'accumulo nel codice.
 
 > [!TIP]
-> **In parole povere: Feature Flag e Canary Release spiegati con la tubatura dell'acqua e la sala ristorante**
+> **☼ In parole povere: Feature Flag e Canary Release spiegati con la tubatura dell'acqua e la sala ristorante**
 >
 > Due termini ricorrono continuamente quando si deve mettere in esercizio un software generato da intelligenza artificiale:
 >
@@ -21638,7 +21703,7 @@ Dove:
 - `IrreversibilityScore` esprime la difficolta' di annullare gli effetti sui dati in caso di guasto (`0.0` sola lettura, `1.0` scritture irreversibili su database).
 
 > [!TIP]
-> **Come interpretare la formula BR(t) senza perdersi nell'algebra**  
+> **☼ Come interpretare la formula BR(t) senza perdersi nell'algebra**  
 > La formula del Blast Radius non serve a calcolare astratti punteggi accademici con la calcolatrice; serve a impedire un errore tipico del rilascio: *credere che una percentuale di traffico bassa equivalga automaticamente a un rischio basso*.  
 > 
 > Esaminiamo i tre addendi che compongono il calcolo:
@@ -23515,7 +23580,7 @@ Una regola di allarme verificabile è composta da sette parametri formali obblig
 7. **Criterio di De-attivazione (*Clear Condition*)**: Regola che stabilisce quando la condizione anomala si considera estinta (eventualmente dotata di isteresi di valore per evitare oscillazioni attorno alla soglia).
 
 > [!TIP]
-> **Che cos'è l'isteresi e come previene l'oscillazione degli allarmi (Flapping)?**  
+> **☼ Che cos'è l'isteresi e come previene l'oscillazione degli allarmi (Flapping)?**  
 > Per visualizzare l'isteresi senza perdersi nella teoria del controllo, si pensi al termostato del riscaldamento di una casa:
 > - Se il termostato fosse privo di isteresi e impostato a 20.0 gradi, accenderebbe la caldaia non appena la temperatura scende a 19.99 gradi e la spegnerebbe appena risale a 20.01 gradi. Il risultato sarebbe un continuo e dannoso attacca-stacca ogni dieci secondi (*flapping*).
 > - Il termostato reale adotta un'**isteresi di valore**: accende il riscaldamento solo se la temperatura scende sotto i 19.5 gradi, e non lo spegne fino a quando non ha raggiunto stabilmente i 20.5 gradi.
@@ -23671,6 +23736,23 @@ Si definisce l'impatto complessivo I accumulato da una sequenza di M incidenti o
 ```text
 I = sum(k=1 to M, TrafficVolume_k * ErrorRate_k * (MTTD_k + MTTR_k))
 ```
+
+> [!TIP]
+> **☼ L'equazione del danno operativo spiegata in modo intuitivo: perché il ritardo nell'allarme pesa più del guasto stesso**
+> 
+> La formula matematica sopra riportata svela una dinamica fondamentale dell'affidabilità: **l'impatto reale di un incidente software non dipende solo da quanti errori si verificano, ma dal tempo totale in cui il problema resta attivo prima che qualcuno lo blocchi**.
+> 
+> Esaminiamo i tre elementi moltiplicati tra loro:
+> 1. **Intensità del problema (TrafficVolume * ErrorRate):** È l'entità del disservizio al secondo. Se un sistema riceve 100 richieste al secondo e l'algoritmo difettoso ne sbaglia il 10%, si verificano 10 fallimenti al secondo.
+> 2. **Tempo di rilevamento (MTTD):** Quanti minuti passano prima che il sistema di allarme segnali l'anomalia all'operatore?
+> 3. **Tempo di intervento e ripristino (MTTR):** Quanti minuti impiega l'operatore a capire cosa fare, aprire la procedura operativa corretta (il Runbook) e fermare il danno?
+> 
+> **L'effetto moltiplicatore del tempo:**  
+> Se il sistema di allarme è cieco, mal calibrato o genera troppi falsi allarmi che vengono ignorati, la notifica arriverà tardi, ad esempio dopo 60 minuti (MTTD = 60). Se poi la procedura di emergenza è scritta male, confusa o contiene istruzioni inventate dall'intelligenza artificiale, l'operatore impiegherà altri 60 minuti per capire come intervenire (MTTR = 60).  
+> Il risultato è un tempo totale di 120 minuti di disservizio continuativo (72.000 operazioni compromesse).  
+> 
+> Se invece sono attivi allarmi precisi che avvisano in 2 minuti (MTTD = 2) e una procedura operativa verificata che consente di applicare una soluzione sicura in 3 minuti (MTTR = 3), il tempo totale si riduce a 5 minuti (3.000 operazioni impattate).  
+> **A parità di difetto nel codice, disporre di allarmi tempestivi e di procedure operative collaudate riduce l'impatto complessivo del disservizio di oltre il 95%.**  
 
 Dove:
 - `TrafficVolume_k`: Flusso medio di richieste per secondo durante l'incidente k.
@@ -28731,7 +28813,7 @@ Dove `alpha_i >= 0` è il coefficiente di vulnerabilità dell'evidenza alle muta
 - Un'evidenza basata sul tasso di allucinazione di un LLM consumato via API remota ha un `alpha_i` elevato (altamente volatile).
 
 > [!TIP]
-> **Come si comporta la curva esponenziale `1 - exp(-alpha * D)`?**  
+> **⌕ Come si comporta la curva esponenziale `1 - exp(-alpha * D)`?**  
 > Senza dover risolvere calcoli analitici, la formula descrive una curva di progressivo esaurimento della fiducia:
 > - **All'inizio (`D = 0`):** il contesto operativo è identico al giorno del rilascio; la probabilità che le vecchie prove siano inadeguate è pari a zero (la fiducia è intatta).
 > - **Man mano che la divergenza cresce (`D > 0`):** l'ambiente muta (nuove librerie, aggiornamenti opachi dei modelli AI, nuovi vettori di attacco). La curva sale rapidamente verso il valore `1.0` (100% di probabilità che le vecchie prove non descrivano più la realtà).
