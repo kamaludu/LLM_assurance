@@ -31777,23 +31777,26 @@ Il Prompt Engineering, liberato dalla retorica commerciale e inquadrato nella di
 
 ## ⬡ Strumenti per la verifica e l’assurance del software assistito da LLM
 
-Gli strumenti elencati di seguito supportano attività di analisi statica, test automatici, misurazione della copertura, analisi dinamica, verifica della sicurezza, verifica formale e valutazione di sistemi che integrano modelli linguistici a runtime. Sono organizzati per area funzionale; il loro ambito di applicazione dipende dal linguaggio, dall'architettura del sistema e dalla configurazione adottata.
+Gli strumenti elencati di seguito supportano attività di analisi statica, test automatici, misurazione della copertura, analisi dinamica, verifica della sicurezza, verifica formale e valutazione di sistemi che integrano modelli linguistici a runtime. Sono organizzati per area funzionale; il loro ambito di applicazione dipende dal linguaggio, dall'architettura del sistema e dalla configurazione adottata. I rimandi tra parentesi (es. *Capitolo 9*) indicano il capitolo di riferimento del manuale.
 
 ### Nota cronologica ed evoluzione degli strumenti
 
-Il seguente elenco riflette il panorama tecnologico e le licenze verificate nel 2026. Sebbene i principi di assurance descritti rimangano stabili nel tempo, i singoli progetti software possono subire variazioni di manutenzione, fork o aggiornamenti dei termini di licenza. Per le versioni correnti e l'elenco integrato dalla comunità, fare riferimento ai repository e alla documentazione ufficiale dei rispettivi progetti.
+Il seguente elenco riflette il panorama tecnologico, le versioni (ove indicate) e le licenze verificate a novembre 2026. Sebbene i principi di assurance descritti rimangano stabili nel tempo, i singoli progetti software possono subire variazioni di manutenzione, acquisizioni, fork o aggiornamenti dei termini di licenza. Per le versioni correnti e l'elenco aggiornato dalla comunità, fare riferimento ai repository e alla documentazione ufficiale dei rispettivi progetti.
 
 ### Legenda stabilità e rischio obsolescenza
 
-&nbsp; ◕ &nbsp;: ***Consolidato*** (Rischio obsolescenza basso): standard industriale de facto, governance solida, stabilità delle API e manutenzione garantita nel lungo termine.
+I livelli seguenti rappresentano una classificazione editoriale qualitativa e non costituiscono indicatori ufficiali dei rispettivi progetti.
 
-&nbsp; ◑ &nbsp;: ***In evoluzione*** (Rischio obsolescenza moderato): strumento maturo e attivamente supportato, ma soggetto a frequenti evoluzioni architetturali, fork comunitari o rapidi adeguamenti dell'ecosistema.
+ ◕ : ***Consolidato** (Rischio obsolescenza basso):* riferimento consolidato nel proprio ambito, governance consolidata, stabilità delle API e manutenzione continuativa documentata.
 
-&nbsp; ◔ &nbsp;: ***Rapido ricambio*** (Rischio obsolescenza alto): soluzione afferente al recente ambito dell'IA generativa a runtime, caratterizzata da un ecosistema in continua trasformazione e soggetta a rapido turnover tecnologico.
+ ◑ : ***In evoluzione** (Rischio obsolescenza moderato):* strumento maturo e attivamente supportato, ma soggetto a frequenti evoluzioni architetturali, fork comunitari o rapidi adeguamenti dell'ecosistema.
+
+ ◔ : ***Rapido ricambio** (Rischio obsolescenza alto):* soluzione afferente al recente ambito dell'IA generativa a runtime, caratterizzata da un ecosistema in continua trasformazione e soggetta a rapido turnover tecnologico.
 
 ### Indice
 
 1. **Analisi statica**
+   - **1.1 Parsing sintattico, AST ed estrazione delle interfacce API**
 2. **Test automatici e copertura**
 3. **Fuzzing e analisi dinamica**
 4. **Sicurezza, licenze e dipendenze**
@@ -31805,18 +31808,19 @@ Il seguente elenco riflette il panorama tecnologico e le licenze verificate nel 
 
 ### 1. Analisi statica
 
-L'analisi statica esamina il codice sorgente o il bytecode senza mandarlo in esecuzione. Nello sviluppo assistito da modelli linguistici costituisce la prima linea di difesa per intercettare preventivamente difetti tipici dell'inferenza generativa: allucinazioni sintattiche, invocazione di metodi o attributi inesistenti, firme errate, incoerenze di tipo e introduzione di pattern deprecati o insicuri, prima ancora della compilazione o dell'esecuzione dei test.
+L'analisi statica esamina il codice sorgente o il bytecode senza mandarlo in esecuzione. Nello sviluppo assistito da modelli linguistici costituisce la prima linea di difesa per individuare errori sintattici, riferimenti non risolti, firme errate, incoerenze di tipo e pattern deprecati o insicuri rilevabili dagli strumenti (inclusi difetti frequenti nel codice generato da modelli linguistici) — prima dell'esecuzione dei test, spesso già prima o contestualmente alla compilazione.
 
 | Software | Funzione principale | Linguaggi / ambito | Licenza |
 |---|---|---|---|
-| [ShellCheck](https://www.shellcheck.net/) &nbsp;◕ | Individua errori di sintassi, insidie e problemi di robustezza negli script shell. | Bash, sh, shell POSIX | GPL-3.0-or-later |
-| [Opengrep](https://opengrep.dev/) &nbsp;​◑ | Rileva pattern di codice insicuri, vulnerabilità e violazioni di policy architetturali (fork comunitario aperto di Semgrep). | Multi-linguaggio (C, C++, Go, Java, JS/TS, Python, Rust, ecc.) | LGPL-2.1-only |
-| [Cppcheck](https://cppcheck.sourceforge.io/) &nbsp;◕ | Analisi statica focalizzata su comportamenti indefiniti, memory leak e difetti logici. | C, C++ | GPL-3.0-or-later |
-| [ESLint](https://eslint.org/) &nbsp;◕ | Rileva problemi qualitativi, incoerenze sintattiche e difetti logici nel codice web/backend. | JavaScript, TypeScript | MIT |
-| [Ruff](https://docs.astral.sh/ruff/) &nbsp;​◑ | Linter e formatter ad altissime prestazioni; integra nativamente anche le regole di sicurezza di Bandit (set `S`). | Python | MIT |
-| [Mypy](https://mypy-lang.org/) &nbsp;◕ | Type checking statico rigoroso; intercetta firme errate, attributi allucinati e tipi incoerenti. | Python | MIT |
-| [Hadolint](https://github.com/hadolint/hadolint) &nbsp;​◑ | Linter per Dockerfile; garantisce il rispetto delle best practice e valida i comandi shell interni. | Dockerfile, Container | GPL-3.0-or-later |
-| [Error Prone](https://errorprone.info/) &nbsp;◕ | Analisi statica integrata direttamente nel compilatore `javac`; intercetta bug semantici e pattern fallaci a compile-time. | Java | Apache-2.0 |
+| [ShellCheck](https://www.shellcheck.net/) ◕ | Individua errori di sintassi, insidie e problemi di robustezza negli script shell. | Bash, sh, shell POSIX | GPL-3.0-or-later |
+| [Opengrep](https://opengrep.dev/) ◑ | Rileva pattern di codice insicuri, vulnerabilità e violazioni di policy architetturali (fork comunitario del motore Semgrep). *Nota: il motore è software libero, mentre il repository storico `opengrep-rules` (archiviato nel novembre 2025) ereditava la `Commons Clause v1.0`.* | Multi-linguaggio (C, C++, Go, Java, JS/TS, Python, Rust, ecc.) | LGPL-2.1-or-later *(motore; non confondere con le regole `opengrep-rules`)* |
+| [Cppcheck](https://cppcheck.sourceforge.io/) ◕ | Analisi statica focalizzata su comportamenti indefiniti, memory leak e difetti logici. | C, C++ | GPL-3.0-or-later |
+| [ESLint](https://eslint.org/) ◕ | Rileva problemi qualitativi, incoerenze sintattiche e difetti logici nel codice web/backend *(per TypeScript richiede componenti di integrazione come `typescript-eslint`)*. | JavaScript, TypeScript *(via plugin)* | MIT |
+| [Ruff](https://docs.astral.sh/ruff/) ◑ | Linter e formatter ad altissime prestazioni; integra parte delle regole di sicurezza di Bandit (set `S`, dove solo `S102`, `S110` e `S112` sono attive di default e le altre vanno abilitate). *Nota: accordo di acquisizione di Astral da parte di OpenAI annunciato nel marzo 2026.* | Python | MIT |
+| [Bandit](https://bandit.readthedocs.io/) ◕ | Analizzatore statico basato su AST dedicato ai pattern di sicurezza Python (complementare a Ruff `S` per un insieme più ampio di controlli di sicurezza out-of-the-box). | Python | Apache-2.0 |
+| [Mypy](https://mypy-lang.org/) ◕ | Type checking statico rigoroso; intercetta firme errate, attributi inesistenti e tipi incoerenti. | Python | MIT *(alcune porzioni sotto PSF-2.0)* |
+| [Hadolint](https://github.com/hadolint/hadolint) ◑ | Linter per Dockerfile; verifica il rispetto delle best practice e applica ShellCheck agli snippet shell estratti dalle istruzioni del Dockerfile. | Dockerfile, Container | GPL-3.0-only |
+| [Error Prone](https://errorprone.info/) ◕ | Plugin di analisi statica per `javac`; intercetta bug semantici e pattern fallaci a compile-time. | Java | Apache-2.0 |
 
 ### 1.1 Parsing sintattico, AST ed estrazione delle interfacce API
 
@@ -31832,27 +31836,26 @@ Nell'assurance del software assistito da LLM, questi strumenti possono essere ut
 
 #### Strumenti per parsing e analisi delle strutture del codice
 
-| Strumento | Linguaggio/i | Funzione e impiego nell'assurance | Versione verificata | Licenza verificata |
+| Software | Funzione e impiego nell'assurance | Linguaggi / ambito | Versione verificata | Licenza |
 |---|---|---|---|---|
-| [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) ​◑ | Multiplo, tramite grammatiche dedicate | Parser generator e libreria di parsing incrementale; costruisce alberi sintattici concreti (CST). | | MIT (progetto principale; verificare separatamente la licenza di ogni grammatica) |
-| [ANTLR](https://www.antlr.org/) ◕ | Multiplo, tramite grammatiche | Generatore di parser a partire da grammatiche formali; utile per definire parser ed estrattori personalizzati. | | BSD-3-Clause |
-| [Griffe](https://mkdocstrings.github.io/griffe/) ​◑ | Python | Analizza le API Python e raccoglie informazioni su moduli, classi, funzioni, attributi e firme. | | |
-| [ast](https://docs.python.org/3/library/ast.html) ◕ | Python | Modulo della libreria standard per generare e ispezionare l'AST Python; utile per sviluppare estrattori personalizzati. | Incluso nella versione di Python utilizzata | Incluso nella licenza di Python |
-| [TypeScript Compiler API](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API) ◕ | TypeScript, JavaScript | API del compilatore TypeScript per analizzare AST, simboli e informazioni sui tipi. | | Apache-2.0 |
-| [JavaParser](https://javaparser.org/) ​◑ | Java | Analizza il codice Java e genera un AST; può essere esteso con funzionalità di risoluzione dei simboli. | | LGPL-3.0 e Apache-2.0 |
-| [Clang](https://clang.llvm.org/) ◕ | C, C++ | Front-end del compilatore LLVM; offre parsing e informazioni semantiche attraverso le proprie API. | | Apache-2.0 WITH LLVM-exception |
-| [Roslyn](https://github.com/dotnet/roslyn) ◕ | C#, Visual Basic | Piattaforma di compilazione .NET con API per sintassi, simboli e informazioni semantiche. | | MIT |
-| [go/parser](https://pkg.go.dev/go/parser) ◕ | Go | Parser della libreria standard Go; genera strutture AST utilizzabili per individuare dichiarazioni e firme. | Incluso nella versione di Go utilizzata | Incluso nella licenza di Go |
-| [rust-analyzer](https://rust-analyzer.github.io/) ​◑ | Rust | Strumento di analisi del codice Rust; fornisce informazioni sintattiche e semantiche, tra cui simboli e tipi. | | Apache-2.0 e MIT |
-| [PHP-Parser](https://github.com/nikic/PHP-Parser) ◕ | PHP | Parser PHP che genera un AST e consente di analizzare dichiarazioni e strutture del linguaggio. | | BSD-3-Clause |
-| [Prism](https://github.com/ruby/prism) ◕ | Ruby | Parser Ruby che espone la struttura sintattica del codice; utilizzabile per estrarre dichiarazioni e costruire strumenti di analisi. | | |
-| [Kotlin Compiler](https://github.com/JetBrains/kotlin) ◕ | Kotlin | Componenti del compilatore utilizzabili per analizzare codice Kotlin e ottenere informazioni sintattiche e semantiche. | | Apache-2.0 |
-| [Dart Analyzer](https://github.com/dart-lang/sdk/tree/main/pkg/analyzer) ◕ | Dart | Analizzatore del linguaggio Dart; fornisce strutture sintattiche, risoluzione dei riferimenti e informazioni semantiche. | | BSD-3-Clause |
-| [SwiftSyntax](https://github.com/swiftlang/swift-syntax) ​◑ | Swift | Libreria per rappresentare e manipolare la sintassi Swift; utile per l'ispezione strutturale e l'estrazione delle dichiarazioni. | | Apache-2.0 |
-| [mvdan/sh](https://github.com/mvdan/sh) ​◑ | Bash, POSIX shell e altri dialetti supportati | Parser shell con AST; adatto all'analisi strutturale e all'estrazione di elementi dai sorgenti shell. | | BSD-3-Clause |
-| [tree-sitter-bash](https://github.com/tree-sitter/tree-sitter-bash) ​◑ | Bash | Grammatica Tree-sitter specifica per Bash; permette di analizzare i sorgenti Bash attraverso l'infrastruttura Tree-sitter. | | MIT |
+| [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) ◑ | Parser generator e libreria di parsing incrementale; costruisce alberi sintattici concreti (CST). | Multiplo, tramite grammatiche dedicate *(es. `tree-sitter-bash`, `tree-sitter-python`, ecc.)* | `0.27.2` | MIT *(progetto principale; verificare separatamente la licenza di ogni grammatica)* |
+| [ANTLR](https://www.antlr.org/) ◕ | Generatore di parser a partire da grammatiche formali; utile per definire parser ed estrattori personalizzati. | Multiplo, tramite grammatiche | `4.13.2` | BSD-3-Clause |
+| [Griffe](https://mkdocstrings.github.io/griffe/) ◑ | Analizza le API Python e raccoglie informazioni su moduli, classi, funzioni, attributi e firme. | Python | `2.4.1` | ISC |
+| [ast](https://docs.python.org/3/library/ast.html) ◕ | Modulo della libreria standard per generare e ispezionare l'AST Python; utile per sviluppare estrattori personalizzati. | Python | Incluso nella versione di Python utilizzata | Incluso nella licenza di Python |
+| [TypeScript Compiler API](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API) ◕ | API del compilatore TypeScript per analizzare AST, simboli e informazioni sui tipi. | TypeScript, JavaScript | `6.0.3` *(API classica; la v7.0.2 nativa in Go è priva di API stabile, mentre `7.1 Beta` di ottobre 2026 introduce la nuova API programmatica)* | Apache-2.0 |
+| [JavaParser](https://javaparser.org/) ◑ | Analizza il codice Java e genera un AST; richiede il modulo aggiuntivo `javaparser-symbol-solver-core` per la risoluzione di simboli e tipi. | Java | `3.28.2` | LGPL-3.0-or-later OR Apache-2.0 |
+| [Clang](https://clang.llvm.org/) ◕ | Front-end del compilatore LLVM; offre parsing e informazioni semantiche attraverso le proprie API. | C, C++ | `23.1.5` | Apache-2.0 WITH LLVM-exception |
+| [Roslyn](https://github.com/dotnet/roslyn) ◕ | Piattaforma di compilazione .NET con API per sintassi, simboli e informazioni semantiche. | C#, Visual Basic | `5.12.0` *(pacchetti NuGet, es. `Microsoft.CodeAnalysis.CSharp`; allineato a VS 2026)* | MIT |
+| [go/parser](https://pkg.go.dev/go/parser) ◕ | Parser della libreria standard Go; genera strutture AST utilizzabili per individuare dichiarazioni e firme. | Go | Incluso nella versione di Go utilizzata | Incluso nella licenza di Go |
+| [rust-analyzer](https://rust-analyzer.github.io/) ◑ | Strumento di analisi del codice Rust; fornisce informazioni sintattiche e semantiche, tra cui simboli e tipi. | Rust | `2026-11-09` (`v0.3.3113`) | MIT OR Apache-2.0 |
+| [PHP-Parser](https://github.com/nikic/PHP-Parser) ◕ | Parser PHP che genera un AST e consente di analizzare dichiarazioni e strutture del linguaggio. | PHP | `5.9.0` | BSD-3-Clause |
+| [Prism](https://github.com/ruby/prism) ◕ | Parser Ruby che espone la struttura sintattica del codice; utilizzabile per estrarre dichiarazioni e costruire strumenti di analisi. | Ruby | `2.1.0` | MIT |
+| [Kotlin Compiler](https://github.com/JetBrains/kotlin) ◕ | Componenti del compilatore utilizzabili per analizzare codice Kotlin e ottenere informazioni sintattiche e semantiche. | Kotlin | `2.4.21` | Apache-2.0 |
+| [Dart Analyzer](https://github.com/dart-lang/sdk/tree/main/pkg/analyzer) ◕ | Analizzatore del linguaggio Dart; fornisce strutture sintattiche, risoluzione dei riferimenti e informazioni semantiche. | Dart | `14.7.0` *(pacchetto `analyzer`; Dart SDK `3.14`)* | BSD-3-Clause |
+| [SwiftSyntax](https://github.com/swiftlang/swift-syntax) ◑ | Libreria per rappresentare e manipolare la sintassi Swift; utile per l'ispezione strutturale e l'estrazione delle dichiarazioni. | Swift | `604.0.0` | Apache-2.0 |
+| [mvdan/sh](https://github.com/mvdan/sh) ◑ | Parser shell con AST; adatto all'analisi strutturale e all'estrazione di elementi dai sorgenti shell. | Bash, POSIX shell e altri dialetti supportati | `v3.14.1` | BSD-3-Clause |
 
-Le versioni riportate identificano release o tag ufficiali individuati durante la verifica. Le celle lasciate vuote indicano che il dato non è stato inserito perché non sufficientemente verificato. Per gli strumenti che dipendono da grammatiche, runtime o componenti separati, la licenza del progetto principale non deve essere automaticamente attribuita a tali componenti.
+Le versioni riportate identificano release o tag ufficiali individuati a novembre 2026. Per gli strumenti che dipendono da grammatiche, runtime o componenti separati, la licenza del progetto principale non deve essere automaticamente attribuita a tali componenti.
 
 #### Impiego nell'estrazione delle interfacce pubbliche
 
@@ -31884,84 +31887,91 @@ Per un impiego affidabile nell'assurance è quindi opportuno:
 
 Gli strumenti elencati non sono tutti equivalenti: Tree-sitter e ANTLR sono infrastrutture di parsing, mentre strumenti come Roslyn, Clang, TypeScript Compiler API e rust-analyzer offrono anche funzionalità di analisi semantica. La scelta deve quindi dipendere dal linguaggio, dal livello di precisione richiesto e dalle informazioni che si intende esporre.
 
-L'estrazione automatica delle interfacce può ridurre la quantità di codice condivisa con un LLM e rendere più ripetibile la verifica delle API, ma non sostituisce una revisione delle regole di selezione né una validazione di sicurezza dell'artefatto prodotto.
+L'estrazione automatica delle interfacce riduce la superficie di codice condivisa con un LLM e rende ripetibile la verifica delle API, ma non sostituisce la revisione delle regole di selezione né la validazione di sicurezza dell'artefatto prodotto.
 
 ---
 
 ### 2. Test automatici e copertura
 
-Questa categoria raccoglie framework per l'automazione dei test e la valutazione quantitativa e qualitativa della suite di verifica. Poiché gli LLM tendono a generare test superficiali o tautologici (asserzioni deboli, test fittizi privi di valore di verifica effettivo o mock eccessivi), tecniche avanzate come il mutation testing (*Stryker*, *mutmut*), il testing basato su proprietà (*Hypothesis*) e il branch coverage consentono di misurare se la suite di test riesca davvero a respingere allucinazioni e difetti logici.
+Questa categoria raccoglie framework per l'automazione dei test e la valutazione quantitativa e qualitativa della suite di verifica. Poiché gli LLM tendono a generare test superficiali o tautologici (asserzioni deboli, test fittizi privi di valore di verifica effettivo o mock eccessivi), tecniche avanzate offrono evidenze complementari sull'efficacia della verifica: il mutation testing (*Stryker*, *mutmut*) misura la capacità di rilevare modifiche artificiali al codice, il testing basato su proprietà (*Hypothesis*) controlla invarianti su ampi insiemi di input generati e il branch coverage verifica quali rami condizionali siano stati effettivamente eseguiti.
 
 | Software | Funzione principale | Linguaggi / ambito | Licenza |
 |---|---|---|---|
-| [Bats-core](https://github.com/bats-core/bats-core) &nbsp;​◑ | Framework per automatizzare i test di conformità e regressione degli script shell. | Bash | MIT |
-| [pytest](https://pytest.org/) &nbsp;◕ | Framework versatile per test unitari, funzionali e parametrici. | Python | MIT |
-| [Coverage.py](https://coverage.readthedocs.io/) &nbsp;◕ | Misura l'esecuzione e la copertura di rami condizionali (branch coverage) nei test. | Python | Apache-2.0 |
-| [GoogleTest](https://github.com/google/googletest) &nbsp;◕ | Framework per la definizione e l'esecuzione di test unitari e mocking rigoroso. | C++ | BSD-3-Clause |
-| [Playwright](https://playwright.dev/) &nbsp;​◑ | Automatizza test end-to-end simulando l'interazione utente tramite browser headless. | Applicazioni web | Apache-2.0 |
-| [kcov](https://github.com/SimonKagstrom/kcov) &nbsp;​◑ | Misura la copertura del codice senza ricompilazione; standard per test shell eseguiti con Bats. | Bash, binari ELF compilati (C, C++, Rust) | GPL-2.0 |
-| [Stryker Mutator](https://stryker-mutator.io/) &nbsp;​◑ | Mutation testing; valida l'efficacia dei test smascherando asserzioni deboli o simulate. | JavaScript, TypeScript, C#, Scala | Apache-2.0 |
-| [mutmut](https://github.com/boxed/mutmut) &nbsp;​◑ | Mutation testing per Python; verifica il potere discriminante della suite di test mutando il codice sorgente (*Step 16*). | Python | BSD-3-Clause |
-| [Hypothesis](https://hypothesis.readthedocs.io/) &nbsp;◕ | Genera casi di test basati su proprietà (PBT) con shrinking automatico dei controesempi (*Step 18*). | Python | MPL-2.0 |
+| [Bats-core](https://github.com/bats-core/bats-core) ◑ | Framework per automatizzare i test di conformità e regressione degli script shell. | Bash | MIT |
+| [pytest](https://pytest.org/) ◕ | Framework versatile per test unitari, funzionali e parametrici. | Python | MIT |
+| [Coverage.py](https://coverage.readthedocs.io/) ◕ | Misura la copertura del codice; di default rileva le righe eseguite, mentre la copertura dei rami condizionali (branch coverage) va attivata esplicitamente (`--branch` o `branch = true`). | Python | Apache-2.0 |
+| [GoogleTest](https://github.com/google/googletest) ◕ | Framework per la definizione e l'esecuzione di test unitari e mocking rigoroso. | C++ | BSD-3-Clause |
+| [Playwright](https://playwright.dev/) ◑ | Automatizza test end-to-end simulando l'interazione utente tramite browser headless. | Applicazioni web | Apache-2.0 |
+| [kcov](https://github.com/SimonKagstrom/kcov) ◑ | Misura la copertura del codice senza ricompilazione; utilizzabile per misurare la copertura degli script Bash durante test automatizzati, anche con Bats-core. | Bash, binari ELF compilati (C, C++, Rust) | GPL-2.0-only *(librerie JS integrate: `handlebars.js` e `jquery` MIT; `tablesorter` GPL-2.0-only OR MIT)* |
+| [Stryker Mutator](https://stryker-mutator.io/) ◑ | Mutation testing; valida l'efficacia dei test smascherando asserzioni deboli o simulate. | JavaScript, TypeScript, C#, Scala | Apache-2.0 |
+| [mutmut](https://github.com/boxed/mutmut) ◑ | Mutation testing per Python; verifica il potere discriminante della suite di test mutando il codice sorgente (*Capitolo 16*). | Python | BSD-3-Clause |
+| [Hypothesis](https://hypothesis.readthedocs.io/) ◕ | Genera casi di test basati su proprietà (PBT) con shrinking automatico dei controesempi (*Capitolo 18*). | Python | MPL-2.0 |
 
 ---
 
 ### 3. Fuzzing e analisi dinamica
 
-L'analisi dinamica e il fuzzing sollecitano l'applicazione durante l'esecuzione con flussi di input casuali, mutazionali o strutturati per massimizzare la copertura dei percorsi. Questi strumenti sono essenziali per far emergere vulnerabilità a basso livello, comportamenti indefiniti, corruzioni della memoria (buffer overflow, use-after-free) e race condition asincrone che sfuggono sia all'ispezione statica sia ai prompt dell'LLM.
+L'analisi dinamica e il fuzzing sollecitano l'applicazione durante l'esecuzione con strategie differenti (input mutazionali, generati da grammatiche o schemi, oppure guidati dalla copertura) per esplorare nuovi percorsi e incrementare la copertura raggiunta. Questi strumenti sono essenziali per far emergere vulnerabilità a basso livello, comportamenti indefiniti, corruzioni della memoria (buffer overflow, use-after-free), data race e anomalie di sincronizzazione nei programmi concorrenti che sfuggono all'ispezione statica.
 
 | Software | Funzione principale | Linguaggi / ambito | Licenza |
 |---|---|---|---|
-| [AFL++](https://aflplus.plus/) &nbsp;​◑ | Standard industriale per coverage-guided fuzzing ad alte prestazioni; rileva crash e anomalie a basso livello. | C, C++ e binari nativi compatibili | AGPL-3.0-or-later; moduli ausiliari Apache-2.0 |
-| [Atheris](https://github.com/google/atheris) &nbsp;​◑ | Fuzzing coverage-guided per individuare eccezioni non gestite e difetti logici nel codice Python e binding nativi (*Step 18*). | Python (inclusi binding C/C++) | Apache-2.0 |
-| [Compiler Sanitizers (ASan, TSan, UBSan)](https://github.com/google/sanitizers) &nbsp;◕ | Strumentazione del compilatore per intercettare violazioni di memoria (ASan), corse critiche concorrenti (TSan) e comportamenti indefiniti (UBSan). | C, C++ (GCC/Clang) | Termini toolchain (LLVM/GCC runtime) |
+| [AFL++](https://aflplus.plus/) ◑ | Standard industriale per coverage-guided fuzzing ad alte prestazioni; rileva crash e anomalie a basso livello. | C, C++ e binari nativi compatibili | AGPL-3.0-or-later (`afl-fuzz`); alcuni file sotto Apache-2.0 e componenti di terze parti |
+| [Atheris](https://github.com/google/atheris) ◑ | Fuzzing coverage-guided per individuare eccezioni non gestite e difetti logici nel codice Python e binding nativi (*Capitolo 18*). | Python *(3.11–3.14)* e binding C/C++ | Apache-2.0 |
+| [Schemathesis](https://schemathesis.io/) ◑ | Fuzzing e test basati su proprietà guidati da schemi API per rilevare errori di validazione, crash e risposte non conformi nei servizi web. | OpenAPI, GraphQL, gRPC | MIT |
+| [Compiler Sanitizers (ASan, TSan, UBSan)](https://github.com/llvm/llvm-project/tree/main/compiler-rt) ◕ | Strumentazione del compilatore per intercettare sui percorsi eseguiti violazioni di memoria (ASan), data race e anomalie di sincronizzazione (TSan) e comportamenti indefiniti (UBSan); sviluppati in LLVM (`compiler-rt`) e GCC *(il repository storico `google/sanitizers` è archiviato)*. | C, C++ (Clang/GCC) | LLVM `compiler-rt`: Apache-2.0 WITH LLVM-exception; GCC `libsanitizer`: GPL-3.0-or-later con GCC Runtime Library Exception 3.1 |
 
 ---
 
 ### 4. Sicurezza, licenze e dipendenze
 
-Gli strumenti di questa sezione catalogano i componenti software di terze parti, verificano l'assenza di falle note (CVE) e controllano la conformità legale. Nello sviluppo assistito da LLM svolgono un ruolo critico nel contrastare la **package hallucination** (o *slopsquatting*), ossia la tendenza dei modelli a importare dipendenze inesistenti che possono essere registrate maliziosamente da aggressori sui registri pubblici, oltre a prevenire il leakage di segreti o la violazione di licenze copiate dai dati di addestramento.
+Gli strumenti di questa sezione catalogano i componenti software di terze parti, verificano l'assenza di falle note (CVE), controllano la conformità legale e attestano la provenienza degli artefatti. Nello sviluppo assistito da LLM svolgono un ruolo critico nel contrastare la **package hallucination** (o *slopsquatting*), ossia la tendenza dei modelli a importare dipendenze inesistenti che possono essere registrate maliziosamente da aggressori sui registri pubblici, oltre a individuare segreti esposti, dipendenze note, licenze dichiarate e avvisi di copyright nei componenti e nei sorgenti presenti nel repository.
 
 | Software | Funzione principale | Linguaggi / ambito | Licenza |
 |---|---|---|---|
-| [Trivy](https://trivy.dev/) &nbsp;​◑ | Scansiona vulnerabilità note (CVE), dipendenze, immagini container e configurazioni IaC. | Repository, container, filesystem | Apache-2.0 |
-| [OSV-Scanner](https://github.com/google/osv-scanner) &nbsp;​◑ | Verifica le dipendenze interrogando il database aperto OSV per identificare falle note. | Ecosistemi supportati (npm, PyPI, Go, Cargo, NuGet) | Apache-2.0 |
-| [Syft](https://github.com/anchore/syft) &nbsp;​◑ | Genera la distinta base del software (SBOM) per catalogare e verificare le librerie introdotte. | File system, immagini container | Apache-2.0 |
-| [ScanCode Toolkit](https://github.com/aboutcode-org/scancode-toolkit) &nbsp;​◑ | Identifica licenze, copyright e porzioni di codice clonate per prevenire rischi di proprietà intellettuale. | Repository e codice sorgente | Apache-2.0 |
-| [Gitleaks](https://github.com/gitleaks/gitleaks) &nbsp;​◑ | Rileva credenziali, token crittografici e chiavi API esposti nei file sorgente e nella cronologia Git (*Step 17*). | Repository Git e file locali | MIT |
-| [ZAP (Zed Attack Proxy)](https://www.zaproxy.org/) &nbsp;◕ | Esegue scansioni dinamiche di sicurezza (DAST) per rilevare vulnerabilità in web app e API. | Applicazioni web e API HTTP/REST | Apache-2.0 |
+| [Trivy](https://trivy.dev/) ◑ | Scansiona vulnerabilità note (CVE), dipendenze, immagini container e configurazioni IaC. | Repository, container, filesystem | Apache-2.0 |
+| [OSV-Scanner](https://github.com/google/osv-scanner) ◑ | Verifica le dipendenze interrogando il database aperto OSV per identificare falle note. | Ecosistemi supportati (tra cui npm, PyPI, Go, Cargo, NuGet) | Apache-2.0 |
+| [Syft](https://github.com/anchore/syft) ◑ | Genera la distinta base del software (SBOM) per catalogare e verificare le librerie introdotte. | File system, immagini container | Apache-2.0 |
+| [ScanCode Toolkit](https://github.com/aboutcode-org/scancode-toolkit) ◑ | Identifica licenze, copyright e porzioni di codice clonate per prevenire rischi di proprietà intellettuale. | Repository e codice sorgente | Apache-2.0 *(codice)*; CC-BY-4.0 *(dataset di riferimento)* |
+| [Gitleaks](https://github.com/gitleaks/gitleaks) ◑ | Rileva credenziali, token crittografici e chiavi API esposti nei file sorgente e nella cronologia Git (*Capitolo 17*). *Nota: la CLI è libera (`MIT`), mentre l'eventuale GitHub Action separata (`gitleaks-action`, dalla v2) adotta una licenza proprietaria (EULA) che richiede una chiave `GITLEAKS_LICENSE` (ottenibile gratuitamente tramite registrazione per singole/limitate configurazioni, o con piani superiori) per gli account Organization e non per gli account personali.* | Repository Git e file locali | MIT |
+| [Sigstore Cosign](https://docs.sigstore.dev/cosign/signing/overview/) ◑ | Firma e verifica crittografica di immagini container, SBOM, artefatti CI/CD e relative attestazioni, incluse quelle che documentano la provenienza. | Container, artefatti OCI, binari | Apache-2.0 |
+| [ZAP (Zed Attack Proxy)](https://www.zaproxy.org/) ◕ | Esegue scansioni dinamiche di sicurezza (DAST) per rilevare vulnerabilità in web app e API. | Applicazioni web e API HTTP/REST | Apache-2.0 |
 
 ---
 
 ### 5. Verifica formale
 
-La verifica formale applica metodi matematici, dimostratori di teoremi e risolutori di vincoli per garantire che un programma soddisfi rigorosamente determinate specifiche logiche o invarianti di sicurezza. Fornisce certezze matematiche assolute laddove l'euristica probabilistica e generativa dei modelli linguistici non può offrire alcuna garanzia formale di correttezza.
+La verifica formale applica metodi matematici, dimostratori di teoremi e risolutori di vincoli per verificare che un modello o un programma soddisfi determinate specifiche logiche o invarianti di sicurezza. Offre garanzie rigorose laddove l'euristica probabilistica dei modelli linguistici non può fornirne alcuna; tali garanzie restano tuttavia subordinate alla correttezza della specifica formale rispetto ai requisiti reali (rischio di *specification gap*) e, negli strumenti di *bounded model checking*, ai limiti di profondità o di stato configurati.
 
 | Software | Funzione principale | Linguaggi / ambito | Licenza |
 |---|---|---|---|
-| [Alloy Analyzer](https://alloytools.org/) &nbsp;◕ | Modellazione relazionale del primo ordine e bounded model checking per validare la consistenza delle specifiche (*Step 9*). | Specifiche formali, logica relazionale | MIT |
-| [TLA+ Tools (TLC)](https://lamport.azurewebsites.net/tla/tla.html) &nbsp;◕ | Specifica formale temporale e model checker per verificare invarianti di safety e liveness concorrenti (*Step 6, 13*). | Algoritmi distribuiti, protocolli concorrenti | MIT |
-| [Z3](https://github.com/Z3Prover/z3) &nbsp;◕ | Risolutore SMT per soddisfacibilità di vincoli e ricerca di controesempi a proprietà formali (*Step 4, 9*). | Formule logico-matematiche, SMT-LIB | MIT |
-| [cvc5](https://cvc5.github.io/) &nbsp;​◑ | Risolutore automatico di formule SMT e dimostratore di teoremi per verifiche logico-aritmetiche. | Logica, aritmetica, SMT-LIB | BSD-3-Clause |
-| [CBMC](https://www.cprover.org/cbmc/) &nbsp;◕ | Bounded Model Checker per la verifica formale di asserzioni, overflow e puntatori a runtime. | C, C++ | BSD-4-Clause |
-| [Frama-C](https://frama-c.com/) &nbsp;◕ | Piattaforma modulare per l'analisi statica e la deduzione formale di proprietà del codice. | C | Nucleo LGPL-2.1-or-later; plug-in variabili |
+| [Alloy Analyzer](https://alloytools.org/) ◕ | Modellazione relazionale del primo ordine e bounded model checking per validare la consistenza delle specifiche entro uno scope finito (*Capitolo 9*). | Specifiche formali, logica relazionale | Apache-2.0 |
+| [TLA+ Tools (TLC)](https://foundation.tlapl.us/) ◕ | Specifica formale temporale e model checker su spazi di stati finiti per verificare invarianti di safety e liveness concorrenti (*Capitolo 6, 13*). | Algoritmi distribuiti, protocolli concorrenti | MIT |
+| [Z3](https://github.com/Z3Prover/z3) ◕ | Risolutore SMT (non verificatore autonomo di programmi completi) per soddisfacibilità di vincoli logici generati da strumenti di analisi o dall'utente (*Capitolo 4, 9*). | Formule logico-matematiche, SMT-LIB | MIT |
+| [cvc5](https://cvc5.github.io/) ◑ | Risolutore automatico di formule SMT (non verificatore autonomo di programmi completi) e dimostratore per vincoli logico-aritmetici. | Logica, aritmetica, SMT-LIB | BSD-3-Clause *(GPL-3.0 se compilato con dipendenze opzionali GPL, ad esempio CLN, CoCoA, GLPK o Normaliz)* |
+| [CBMC](https://www.cprover.org/cbmc/) ◕ | Bounded Model Checker per la verifica formale di asserzioni, overflow e puntatori entro limiti di svolgimento dei cicli configurati. | C, C++ | BSD-4-Clause |
+| [Frama-C](https://frama-c.com/) ◕ | Piattaforma modulare per l'analisi statica e la deduzione formale di proprietà del codice. | C | Nucleo LGPL-2.1-only; plug-in con licenze variabili |
+| [Dafny](https://dafny.org/) ◕ | Linguaggio *verification-aware* con precondizioni, postcondizioni e invarianti verificati staticamente tramite SMT e compilazione multi-target *(con diversi livelli di maturità tra i backend supportati)*. | Dafny (compila verso C#, Java, Go, Python, JS) | MIT *(componente `Coco` con termini di terze parti)* |
+| [Kani](https://model-checking.github.io/kani/) ◑ | Model checker *bit-precise* (basato su CBMC) per verificare codice `unsafe`, assenza di *panic* e contratti funzionali rispetto ai *proof harness*, al modello e ai limiti di verifica configurati. | Rust | Apache-2.0 OR MIT |
+| [Lean 4](https://lean-lang.org/) ◑ | Dimostratore interattivo di teoremi e linguaggio funzionale per formalizzazioni e dimostrazioni matematiche verificabili dal kernel. | Specifiche formali e codice Lean | Apache-2.0 |
 
 ---
 
 ### 6. Assurance e sicurezza di sistemi con LLM integrati a runtime
 
-Questa categoria include strumenti specializzati nell'ispezione, nel red-teaming, nella generazione vincolata e nella protezione a runtime delle applicazioni che impiegano modelli linguistici operativi (agenti, pipeline RAG, assistenti interattivi). Consentono di vincolare la decodifica dei token, testare e mitigare attacchi avversari (jailbreak, prompt injection) e prevenire la fuga di informazioni riservate o dati personali (PII).
+Questa categoria include strumenti specializzati nell'ispezione, nel red-teaming, nella generazione vincolata e nella protezione a runtime delle applicazioni che impiegano modelli linguistici operativi (agenti, pipeline RAG, assistenti interattivi). Consentono di vincolare la decodifica dei token, testare e mitigare attacchi avversari (jailbreak, prompt injection) e rilevare, filtrare o contribuire a ridurre il rischio di esposizione di informazioni riservate o dati personali (PII), in base alle regole e ai modelli configurati.
 
-> *(Per la progettazione, il dimensionamento hardware e la configurazione integrata dei runtime di inferenza locali — quali Ollama, vLLM, database vettoriali Qdrant e server MCP — su cui innestare questi strumenti di controllo e guardrail, si veda l'appendice complementare: [⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale](#appendice-moltiplicatore-personale))*
+> *(Per la progettazione, il dimensionamento hardware e la configurazione integrata dei runtime di inferenza locali — quali Ollama, vLLM, database vettoriali Qdrant e server MCP — su cui innestare questi strumenti di controllo e guardrail, si veda l'appendice complementare:* [⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale](#appendice-moltiplicatore-personale)*)*
 
 | Software | Funzione principale | Linguaggi / ambito | Licenza |
 |---|---|---|---|
-| [Outlines](https://github.com/dottxt-ai/outlines) &nbsp;​◑ | Vincola la generazione a runtime tramite grammatiche formali e schemi JSON deterministici (*Step 12, 18*). | Modelli LLM, Python | Apache-2.0 |
-| [garak](https://garak.ai/) &nbsp;◔ | Scanner dinamico di vulnerabilità per LLM: simula attacchi adversarial, prompt injection e data leakage (*Step 19*). | Modelli LLM, endpoint REST, pipeline AI | Apache-2.0 |
-| [promptfoo](https://www.promptfoo.dev/) &nbsp;◔ | Framework di test e red-teaming in pipeline CI/CD per valutare prompt, agenti e regressioni qualitative. | Applicazioni LLM, agenti, Node.js/Python | MIT |
-| [Ragas](https://ragas.io/) &nbsp;◔ | Valuta l'affidabilità di pipeline RAG, quantificando allucinazioni, fedeltà ai dati e accuratezza del recupero. | Sistemi RAG, Python | Apache-2.0 |
-| [NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) &nbsp;◔ | Definisce regole e guardrail a runtime per impedire derive tematiche, jailbreak e risposte insicure. | Applicazioni conversazionali, Python | Apache-2.0 |
-| [Presidio](https://data-privacy-stack.github.io/presidio/) &nbsp;◔ | Identifica e anonimizza dati personali (PII) nei flussi di testo prima dell'invio ai modelli o dello storage. | Dati testuali e immagini, Python / REST | MIT |
+| [Outlines](https://github.com/dottxt-ai/outlines) ◑ | Vincola la generazione a runtime tramite grammatiche formali e schemi JSON deterministici per garantire la conformità strutturale dell'output, non la correttezza semantica dei valori (*Capitolo 12, 18*). | Modelli LLM, Python | Apache-2.0 |
+| [garak](https://garak.ai/) ◔ | Scanner dinamico di vulnerabilità per LLM: simula attacchi adversarial, prompt injection e data leakage (*Capitolo 19*). | Modelli LLM, endpoint REST, pipeline AI | Apache-2.0 |
+| [promptfoo](https://www.promptfoo.dev/) ◔ | Framework di test e red-teaming in pipeline CI/CD per valutare prompt, agenti e regressioni qualitative. *Nota: accordo di acquisizione da parte di OpenAI annunciato il 9 marzo 2026.* | Applicazioni LLM, agenti, Node.js/Python | MIT |
+| [Ragas](https://ragas.io/) ◔ | Valuta l'affidabilità di pipeline RAG, quantificando allucinazioni, fedeltà ai dati e accuratezza del recupero (diverse metriche usano approcci *LLM-as-a-judge*, di natura non deterministica). | Sistemi RAG, Python | Apache-2.0 |
+| [NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) ◔ | Definisce regole e controlli a runtime per mitigare derive tematiche, tentativi di jailbreak e risposte insicure. | Applicazioni conversazionali, Python | Apache-2.0 |
+| [Presidio](https://data-privacy-stack.github.io/presidio/) ◑ | Identifica e anonimizza dati personali (PII) nei flussi di testo prima dell'invio ai modelli o dello storage; l'elaborazione delle immagini richiede componenti dedicati basati su OCR (`presidio-image-redactor`). | Testo *(nativo)* e immagini *(via OCR)*, Python / REST | MIT |
+| [PyRIT](https://github.com/microsoft/PyRIT) ◔ | Framework per campagne di red-teaming adattive multi-turn e multimodali contro LLM e agenti. | Modelli LLM, agenti, API (Python) | MIT |
+| [Inspect AI](https://inspect.aisi.org.uk/) ◔ | Framework dell'UK AI Security Institute per valutazioni riproducibili e *sandboxed* di LLM, tool-use, server MCP e agenti. | Modelli LLM, agenti, MCP (Python) | MIT |
 
 > Vedi anche: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
 
@@ -31969,11 +31979,11 @@ Questa categoria include strumenti specializzati nell'ispezione, nel red-teaming
 
 ### Nota sulle licenze e sul diritto d'autore
 
-Le licenze riportate identificano i termini generali di distribuzione del software indicato; non costituiscono una verifica legale esaustiva di ogni specifica versione, dipendenza secondaria o componente ausiliario. Prima di adottare uno strumento in ambienti operativi o distribuirne copie, è opportuno consultare il relativo file di licenza e gli avvisi di copyright presenti nei rispettivi repository ufficiali.
+Le licenze riportate hanno finalità esclusivamente informative e non costituiscono consulenza legale né una verifica esaustiva di versioni, dipendenze o componenti ausiliari. Prima di adottare o ridistribuire qualsiasi strumento, fare sempre riferimento ai file di licenza e agli avvisi di copyright presenti nei rispettivi repository ufficiali.
 
-La menzione dei software, il collegamento agli URL ufficiali e le relative descrizioni funzionali sono frutto di autonoma redazione e costituiscono uso puramente informativo e descrittivo (*nominative fair use*). Nessun marchio, logo o testo protetto di terzi viene riprodotto al di fuori delle facoltà consentite dalla legge sul diritto d'autore.
+Le descrizioni funzionali e i collegamenti agli URL ufficiali sono frutto di autonoma redazione a scopo puramente informativo e didattico. I nomi dei progetti e degli eventuali marchi citati appartengono ai rispettivi titolari e sono utilizzati unicamente per identificare gli strumenti trattati, senza implicare alcuna affiliazione, sponsorizzazione o approvazione; nel presente manuale non vengono riprodotti loghi né contenuti protetti di terzi.
 
-La licenza GNU Free Documentation License (GNU FDL) con cui è distribuito il presente manuale disciplina unicamente il testo dell'opera documentale e non altera, estende né pregiudica le licenze autonome con cui sono distribuiti i singoli strumenti software catalogati.
+La licenza GNU Free Documentation License (GNU FDL), versione 1.3 o successiva, con cui è distribuito il presente manuale disciplina unicamente il testo dell'opera documentale e non altera, estende né pregiudica le licenze autonome dei singoli software catalogati.
 
 ---
 
