@@ -35,15 +35,11 @@ Principi, Verifica, Evidenze e Governance**
 
 ---
 
-**Ⓘ**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
-
 ### [PREMESSE](#premesse-manuale)
 
 - [➠ Nota terminologica](#nota-terminologica)
 - [◉ Quadro  Didattico: l'ecosistema dell'AI e la specificità degli LLM](#quadro-didattico)
 - [⛶ Guida di Lettura per Ruoli](#guida-per-ruoli)
-
-**①**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 ### [PARTE I — Fondamenti epistemici e decisionali](#parte-1)
 
@@ -63,8 +59,6 @@ Principi, Verifica, Evidenze e Governance**
 12. [Assumption Verification — verifica delle assunzioni critiche](#step-12-assumption-verification)
 - [ⓘ Punto di Controllo I — Dalla comprensione del problema all'atto costruttivo](#punto-controllo-1)
 
-**②**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
-
 ### [PARTE II — Implementazione e verifica](#parte-2)  
 
 13. [Implementation Design — progettazione dell'implementazione](#step-13-implementation-design)
@@ -81,8 +75,6 @@ Principi, Verifica, Evidenze e Governance**
 24. [Human Review & Formal Approval — revisione umana e approvazione formale](#step-24-human-review)
 - [ⓘ Punto di Controllo II — Dal laboratorio di verifica all'esercizio reale](#punto-controllo-2)
 
-**③**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
-
 ### [PARTE III — Esercizio controllato](#parte-3)
 
 25. [Staging, Canary & Feature Flags — ambienti di staging, canary release e feature flag](#step-25-staging-canary)
@@ -90,8 +82,6 @@ Principi, Verifica, Evidenze e Governance**
 27. [Alerting & Runbooks — allarmi e procedure operative](#step-27-alerting-runbooks)
 28. [Rollback, Fallback & Circuit Breakers — ripristino, percorsi alternativi e interruttori di circuito](#step-28-rollback-fallback)
 - [ⓘ Punto di Controllo III — Dalla risposta all'incidente alla memoria istituzionale](#punto-controllo-3)
-
-**④**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 ### [PARTE IV — Evoluzione e mantenimento dell'assurance](#parte-4)
 
@@ -101,8 +91,6 @@ Principi, Verifica, Evidenze e Governance**
 32. [Periodic Review — revisione periodica e audit](#step-32-periodic-review)
 33. [Closure & Lessons Learned — chiusura, archiviazione e lezioni apprese](#step-33-closure-lessons)
 - [ⓘ Punto di Controllo IV — Dal ciclo di vita alla custodia dell'assurance](#punto-controllo-4)
-
-**Ⓐ**<!-- @style: size=20px; color=#3b8503; background=#ffce3b -->
 
 ### [APPENDICI](#appendici-man)
 
@@ -155,6 +143,7 @@ NOTE SUI MARCHI:
 I marchi citati (inclusi ISO, IEEE, MITRE ATLAS, OWASP, DO-178C) appartengono ai rispettivi proprietari e sono impiegati esclusivamente per finalità didattiche e di identificazione scientifica.
 
 ---
+
 <div class="pagebreak"></div>
 
 <a name="premesse-manuale"></a>
@@ -3522,6 +3511,20 @@ Nel contesto di questo manuale viene introdotto il modello operativo **ARCI-V**,
 | **VERIFIED (V)** | Autorità di verifica indipendente che convalida le evidenze raccolte prima che l'Accountable possa apporre la firma di approvazione finale. |
 
 Un LLM può essere impiegato come strumento a supporto del **Responsible (R)** o come fonte informativa euristica per il **Consulted (C)**. Non può in nessun caso ricoprire il ruolo di **Accountable (A)** né di **Verified (V)**.
+
+> [!NOTE]
+> **⌕ Chiarimento didattico per non specialisti: come applicare la separazione dei ruoli se operi da solo o in un piccolo team**
+>
+> Leggendo la matrice ARCI-V e il principio della segregazione dei ruoli, chi lavora come sviluppatore singolo, ricercatore o in una startup di due persone potrebbe obiettare: *«Questo schema è pensato per grandi aziende con uffici di conformità separati. Se lavoro da solo, come posso separare chi scrive il codice da chi lo verifica?»*.
+>
+> L'assurance non è un organigramma burocratico: è una **disciplina epistemica per evitare l'autoinganno**. Un professionista singolo o un piccolo team può realizzare una separazione autentica applicando quattro regole pratiche:
+>
+> 1. **Separazione temporale della revisione:** Non revisionare mai il codice nell'istante esatto in cui l'LLM lo ha generato (quando l'entusiasmo della soluzione rapida azzera il senso critico). Fai passare del tempo ed esamina il codice a mente fredda applicando l'*Ispezione Inversa* (Step 24).
+> 2. **Delega della verifica a strumenti deterministici duri:** Se non hai un collega auditor, compensa affidando il ruolo di verificatore `[V]` a strumenti matematici che non hanno sentimenti: attiva il type-checking più rigido (`mypy --strict`, `tsc --strict`), imponi il linter di sicurezza, ed esegui test basati su proprietà (*Property-Based Testing*, Step 18) su migliaia di input casuali.
+> 3. **Protocollo Clean-Room a doppio modello:** Usa un modello di intelligenza artificiale per scrivere la bozza di codice, ma usa una sessione separata e cieca con un modello concorrente (Step 16 e Step 20) fornendogli *solo la specifica* per generare test ostili mirati a rompere la funzione.
+> 4. **Trasparenza dell'Accountability:** Nel commit o nel fascicolo finale scrivi esplicitamente: *"Rilasciato da singolo operatore: proprietà verificate tramite suite automatizzata indipendente; assunzioni non verificate confinate con sandbox e feature flag"*.
+>
+> Separare i ruoli quando si è soli significa **non fidarsi della propria prima impressione**, costringendo la propria soluzione candidata a superare ostacoli oggettivi prima di considerarla accettabile.
 
 #### 5.3 Il Principio di Competenza Dimostrabile
 La competenza epistemica non coincide automaticamente con l'anzianità aziendale, con il job title o con la semplice familiarità con uno strumento software. Essa deve essere provata mediante elementi osservabili:
@@ -7819,6 +7822,22 @@ sotto condizioni limite"  provare che non fallirà" ma non posso bloccarlo"
    Si manifesta quando l'ingegnere possiede sia la comprensione sia l'evidenza del malfunzionamento o dell'incertezza, ma la struttura organizzativa, la pressione sui tempi di rilascio (*time-to-market*) o la gerarchia aziendale gli negano il potere reale di imporre lo stato bloccante di **NO-GO**.
 
 > Sui Gap di Verifica e di Autorità derivante dall'ignoranza dei controlli di sistema, vedi: [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)
+
+> [!TIP]
+> **☼ In parole semplici: i tre modi di fallire davanti a un ponte (Comprensione, Verifica, Autorità)**
+>
+> Per comprendere perché non basti "essere bravi sviluppatori" per garantire la sicurezza del software assistito da AI, immaginiamo la perizia di collaudo su un grande ponte sospeso:
+>
+> 1. **Il Gap di Comprensione (Non capire cosa c'è sotto):**  
+>    Sei l'ispettore incaricato di firmare il collaudo, ma non conosci la scienza delle costruzioni: guardi i calcoli strutturali stampati dall'ingegnere (o generati da un LLM), vedi che le equazioni sono ordinate e che l'asfalto è liscio, e presumi che il ponte reggerà. Hai scambiato l'eleganza della forma per solidità della sostanza.
+>
+> 2. **Il Gap di Verifica (Capire il pericolo ma non avere gli attrezzi):**  
+>    Sei un ingegnere strutturista eccellente e sai perfettamente che sotto certe raffiche di vento i tiranti d'acciaio possono entrare in risonanza e spezzarsi. Tuttavia, ti mandano a fare il sopralluogo a mani nude, senza un apparecchio a ultrasuoni per scansionare l'interno dei cavi: capisci dove il ponte potrebbe cedere, ma non hai gli strumenti indipendenti per dimostrare se oggi stia già cedendo.
+>
+> 3. **Il Gap di Autorità (Vedere la crepa ma non poter fermare il traffico):**  
+>    Hai la competenza per vedere la fessura nel pilastro e possiedi il laser per misurare che si allarga di un millimetro all'ora. Ma il sindaco e l'assessore ti intimano che il ponte deve essere inaugurato entro stasera per non perdere i fondi europei: hai l'evidenza scientifica del disastro imminente, ma sei privo del potere organizzativo e gerarchico di abbassare la sbarra.
+>
+> Nel software assistito da intelligenza artificiale accade lo stesso ogni giorno: **se manca la comprensione, l'umano approva codice cieco; se manca la verifica, non sa come testarlo; se manca l'autorità di blocco (NO-GO), le pressioni di consegna travolgono qualsiasi prudenza.**
 
 #### 3.2 L'Asimmetria Generazione-Verifica (Generation-Verification Asymmetry)
 
@@ -20070,6 +20089,21 @@ Dalla combinazione degli stati scaturiscono quattro azioni operative:
 
 (*) L'azione di ammissione condizionata sotto `PARTIAL` impone l'attivazione di vincoli di confinamento nello Step 25 (es. sandboxing, canary deployment con traffico minimo, feature flagging disattivato di default).
 
+> [!TIP]
+> **⚲ Focus di lettura per non programmatori e DevOps: come implementare i verdetti HOLD ed ESCALATE nei sistemi CI/CD reali**
+>
+> Chiunque abbia familiarità con piattaforme di automazione come GitHub Actions, GitLab CI o Jenkins potrebbe notare un'apparente discrepanza:  
+> *I computer e i terminali conoscono solo esiti binari: codice di uscita `0` (Successo / Verde) oppure diverso da zero (Fallimento / Rosso). Come si traducono fisicamente in una pipeline le decisioni a più vie come `HOLD` o `ESCALATE`?*
+>
+> Nella pratica ingegneristica, le quattro azioni del Decision Gate vengono mappate sui meccanismi moderni di orchestrazione senza mai confondere l'incertezza con il via libera:
+>
+> - **`ADMIT` (Esito PASS):** La pipeline esce con `exit code 0`. L'artefatto software viene promosso automaticamente e il workflow prosegue al passaggio di deployment successivo.
+> - **`BLOCK` (Esito FAIL o UNKNOWN non recuperabile):** La pipeline si arresta bruscamente con `exit code 1` (Rosso). La Pull Request viene bloccata e la promozione del codice è fisicamente interdetta.
+> - **`HOLD` (Esito PARTIAL):** La pipeline **non fallisce, ma entra in pausa attiva** sfruttando le *Environment Protection Rules* (le regole di protezione degli ambienti native di GitHub/GitLab). Il job crea una richiesta di approvazione manuale obbligatoria: l'avanzamento verso lo staging o il canary rimane congelato finché un operatore autorizzato non valida i controlli compensativi.
+> - **`ESCALATE` (Esito NO-GO):** La pipeline esce con un codice di errore bloccante specifico (`exit code 2`), invia istantaneamente un segnale tramite webhook ai canali di Incident Response (es. PagerDuty/Slack), apre un'anomalia di sicurezza ad alta priorità nel tracker e impone il blocco crittografico della release.
+>
+> **La regola d'oro per i sistemisti:** Non configurare mai la pipeline con direttive permissive (come `continue-on-error: true` o `|| true`) per gestire stati dubbi. Se il gate esprime `UNKNOWN`, il processo deve fermarsi: nel dubbio probatorio, la pipeline deve trattare l'incertezza con la stessa severità di un errore.
+
 ---
 
 ### 6. Distinzioni Concettuali ed Epistemiche Critiche
@@ -23069,7 +23103,7 @@ def is_integer(value: Any) -> bool:
 
 def invariant_probe(
     invariant_id: str,
-    result_validator: Callable[[Any], bool],
+    result_validator: Callable[[Any, Any], bool],  # Riceve (input_originale, risultato)
     input_extractor: Callable[
         [inspect.BoundArguments],
         Tuple[Any, Dict[str, Any]]
@@ -23294,25 +23328,24 @@ def extract_reimbursement_input(
 
 
 def validate_reimbursement_result(
+    original_input: Any,
     result: Any,
 ) -> bool:
-
     """
     Invariante del rimborso:
-
-    - Importo espresso in centesimi interi.
-    - Importo compreso tra 0 e 500000 centesimi.
-    - Se l'importo originale è positivo,
-      il rimborso deve essere positivo.
-
-    Il controllo sull'input originale viene gestito
-    separatamente nella funzione di estrazione.
+    - Entrambi i valori devono essere espressi in centesimi interi (is_integer).
+    - Il rimborso calcolato deve essere compreso tra 0 e 500.000 centesimi (5.000,00 EUR).
+    - Invariante di coerenza semantica: se lo scontrino originale era strettamente
+      positivo (> 0), il rimborso riconosciuto NON può essere azzerato a 0.
     """
+    if not (is_integer(result) and 0 <= result <= 500000):
+        return False
 
-    return (
-        is_integer(result)
-        and 0 < result <= 500000
-    )
+    # Se la spesa originale era reale (> 0), azzerare il rimborso viola l'invariante di servizio
+    if is_integer(original_input) and original_input > 0 and result <= 0:
+        return False
+
+    return True
 
 
 # ============================================================
