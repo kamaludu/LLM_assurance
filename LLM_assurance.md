@@ -27,9 +27,9 @@
 **⛓ Assurance del Software Assistito da LLM  
 Principi, Verifica, Evidenze e Governance**
 
-<a name="indice-completo"></a>
+<a name="indice-generale"></a>
 
-## **Indice completo**<!-- @style: size=20px; color=#3b8503 -->
+## **Indice generale**<!-- @style: size=20px; color=#3b8503 -->
 
 - [ Informazioni sul documento](#assurance-intro)
 
@@ -120,7 +120,7 @@ Principi, Verifica, Evidenze e Governance**
 
 <a name="assurance-intro"></a>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 ## Informazioni sul documento
 
@@ -157,7 +157,7 @@ I marchi citati (inclusi ISO, IEEE, MITRE ATLAS, OWASP, DO-178C) appartengono ai
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="nota-terminologica"></a>
 
@@ -486,7 +486,7 @@ Questa distinzione costituisce una delle basi epistemiche fondamentali dell'inte
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="quadro-didattico"></a>
 
@@ -1089,7 +1089,7 @@ Di seguito si riportano le definizioni unificate dei termini specialistici utili
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="guida-per-ruoli"></a>
 
@@ -1118,7 +1118,7 @@ Di seguito si riportano le definizioni unificate dei termini specialistici utili
 ### 0. Premessa per tutti i ruoli: *cosa si ottiene dalla lettura senza dover memorizzare formule o codice*
 
 > [!TIP]
-> **⌕ Come leggere questo manuale se non siete specialisti di metodi formali o di sicurezza**
+> **⚓︎ Come leggere questo manuale se non siete specialisti di metodi formali o di sicurezza**
 >
 > Questo testo contiene dimostrazioni, modelli formali, architetture di sistema e codice. 
 > Tuttavia, **una lettura attenta non richiede affatto di memorizzare formule matematiche, comandi di terminale o costrutti logici per risultare pienamente efficace**.
@@ -1268,7 +1268,7 @@ Ogni lettore può quindi partire dalle sezioni più vicine alle proprie responsa
 
 ---
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="guida-ai-5-concetti"></a>
 
@@ -1279,7 +1279,7 @@ Ogni lettore può quindi partire dalle sezioni più vicine alle proprie responsa
 ### La cassetta degli attrezzi concettuale per comprendere la Parte I
 
 > [!TIP]
-> **⌕ Leggere questa guida prima di entrare nei dettagli dello Step 1**
+> **⚓︎ Leggere questa guida prima di entrare nei dettagli dello Step 1**
 >
 > L'Assurance del software assistito da modelli linguistici richiede di distinguere con precisione cio' che viene affermato, cio' che lo sostiene, cio' che si assume vero e cio' che è effettivamente dimostrato.
 >
@@ -1496,7 +1496,7 @@ Questi concetti non sono cinque argomenti separati. Costituiscono la base concet
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-1-problem-definition"></a>
 
@@ -2409,7 +2409,7 @@ I cinque principi inderogabili dello STEP 1:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-2-risk-classification"></a>
 
@@ -3279,7 +3279,7 @@ I principi cardine dello STEP 2:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-3-authority-responsibility"></a>
 
@@ -3521,7 +3521,7 @@ Nel contesto di questo manuale viene introdotto il modello operativo **ARCI-V**,
 Un LLM può essere impiegato come strumento a supporto del **Responsible (R)** o come fonte informativa euristica per il **Consulted (C)**. Non può in nessun caso ricoprire il ruolo di **Accountable (A)** né di **Verified (V)**.
 
 > [!NOTE]
-> **⌕ Chiarimento didattico per non specialisti: come applicare la separazione dei ruoli se operi da solo o in un piccolo team**
+> **⚓︎ Chiarimento didattico per non specialisti: come applicare la separazione dei ruoli se operi da solo o in un piccolo team**
 >
 > Leggendo la matrice ARCI-V e il principio della segregazione dei ruoli, chi lavora come sviluppatore singolo, ricercatore o in una startup di due persone potrebbe obiettare: *«Questo schema è pensato per grandi aziende con uffici di conformità separati. Se lavoro da solo, come posso separare chi scrive il codice da chi lo verifica?»*.
 >
@@ -4206,7 +4206,7 @@ I cinque principi inderogabili di governance per l'assurance del software assist
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-4-specification-costruzione"></a>
 
@@ -5299,7 +5299,7 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-5-assumptions-unknowns"></a>
 
@@ -6185,7 +6185,7 @@ Senza l'esecuzione sistematica e intransigente dello STEP 5, i successivi passi 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-6-critical-properties"></a>
 
@@ -6959,7 +6959,7 @@ Lo **STEP 6: Critical Properties & Invariants** stabilisce il fondamento matemat
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-7-traceability-evidence"></a>
 
@@ -7743,7 +7743,7 @@ Lo **STEP 7: Traceability** rappresenta la spina dorsale metodologica che impedi
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-8-competence-gaps"></a>
 
@@ -8038,7 +8038,7 @@ public:
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori (coda `LockFreeQueue` in C++):**  
+> **⌕ Focus di lettura per non programmatori (coda `LockFreeQueue` in C++):**  
 > Questa struttura dati è una "cassetta della posta" ad altissima velocità in cui un programma deposita messaggi (`push`) e un altro li ritira (`pop`) senza usare lucchetti di attesa (`mutex`). Il difetto nascosto sta nella parola `std::memory_order_relaxed`: autorizza il processore moderno (specialmente su architetture come **ARM64**, più permissive dei PC **x86** con ordinamento rigoroso **TSO**) a riordinare le operazioni interne per andare più veloce. Risultato: il ricevitore può vedere il segnale di "nuovo messaggio arrivato" prima che i dati del messaggio siano stati effettivamente scritti, leggendo numeri spazzatura. Strumenti specialistici come **ThreadSanitizer** e **GenMC** servono proprio a scovare queste corse invisibili.
 
 ##### Manifestazione del Gap di Comprensione:
@@ -8419,7 +8419,7 @@ Lo **STEP 8: Competence Gaps** dimostra che l'assurance del software non è un p
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-9-specification-validity"></a>
 
@@ -9240,7 +9240,7 @@ Lo **STEP 9: Specification Validity** rappresenta l'atto di verifica preventiva 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-10-assurance-level"></a>
 
@@ -10019,7 +10019,7 @@ Chi ignora questo STEP opera alla cieca: scambia la sintassi gradevole per corre
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-11-independent-evidence"></a>
 
@@ -10731,7 +10731,7 @@ Solo quando un'evidenza ha superato il vaglio di un oracolo autenticamente indip
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-12-assumption-verification"></a>
 
@@ -11395,7 +11395,7 @@ Solo quando le premesse del sistema sono state verificate o confinate con lo ste
 ---
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="punto-controllo-1"></a>
 
@@ -11445,7 +11445,7 @@ Non si scrive codice per vedere se funziona; si progetta la struttura affinché 
 
 ---
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-13-implementation-design"></a>
 
@@ -12008,7 +12008,7 @@ class AccountLedgerCore:
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori (`AccountLedgerCore`):**  
+> **⌕ Focus di lettura per non programmatori (`AccountLedgerCore`):**  
 > Questo codice non serve a imparare la sintassi Python, ma a vedere tre idee architetturali messe in pratica:
 > 1. **Scatole sigillate e controllate (`@dataclass(frozen=True)` e `__post_init__`):** tipi come `Money` (centesimi interi) e `DiscountRate` (centesimi di percentuale, detti *basis points*) controllano i propri limiti nell'istante in cui nascono e poi non possono più essere modificati (`frozen=True`). È impossibile creare uno sconto negativo o superiore al 30%.
 > 2. **Esiti tipizzati invece di un generico "Falso" (`Union` / `LedgerResult`):** la funzione restituisce un modulo compilato con il motivo esatto dell'esito (es. *Fondi insufficienti*, *Transazione duplicata*, *Sconto oltre il tetto*, *Approvato*).
@@ -12414,7 +12414,7 @@ def calculate_shipping_cost(weight: Weight, destination: Destination) -> Money:
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Nel codice sopra, la destinazione è spezzata in due schede distinte (`DomesticDestination` e `InternationalDestination`). Il codice doganale di 6 caratteri (`isalnum()`, cioè sole lettere e cifre) esiste e viene controllato **obbligatoriamente** dentro la scheda internazionale: diventa così strutturalmente impossibile passare alla funzione di tariffazione una spedizione estera priva di codice doganale.
+> **⌕ Focus di lettura per non programmatori:** Nel codice sopra, la destinazione è spezzata in due schede distinte (`DomesticDestination` e `InternationalDestination`). Il codice doganale di 6 caratteri (`isalnum()`, cioè sole lettere e cifre) esiste e viene controllato **obbligatoriamente** dentro la scheda internazionale: diventa così strutturalmente impossibile passare alla funzione di tariffazione una spedizione estera priva di codice doganale.
 
 Grazie a questo design, l'invariante di validità dei dati è garantito **prima** dell'ingresso nel nucleo decisionale. L'LLM incaricato di implementare il calcolo tariffario nello Step 15 non potrà sbagliare la gestione dei casi nulli o invalidi, poiché tali stati sono divenuti irrappresentabili nel sistema di tipi.
 
@@ -12476,7 +12476,7 @@ L'Implementation Design costituisce la **diga di protezione ingegneristica** con
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-14-containment-least"></a>
 
@@ -13050,7 +13050,7 @@ Non tutte le attività relative al contenimento possono essere svolte dal medesi
 La responsabilità di decidere quale sia il massimo livello di danno tollerabile per l'organizzazione non è <mark>**mai**</mark> delegabile all'LLM. Se l'utente non comprende la differenza tra una policy di rete *Ingress* (traffico in entrata) e una *Egress* (traffico in uscita), non possiede la competenza per apporre la firma di approvazione sull'invariante di contenimento. In questo caso, l'assurance deve arrestarsi allo stato di **UNKNOWN** o **NO-GO** fino a consultazione di un esperto di dominio.
 
 > [!TIP]
-> **⌕ Chiarimento didattico per non specialisti: la trappola del traffico in uscita (*Egress*)**
+> **⚓︎ Chiarimento didattico per non specialisti: la trappola del traffico in uscita (*Egress*)**
 > 
 > Molti sviluppatori ritengono che un container sia sicuro solo perché "nessuno dall'esterno può entrarvi" (*Ingress* bloccato). Tuttavia, nel software assistito da LLM la minaccia primaria è inversa: uno script allucinato o manipolato tramite *Indirect Prompt Injection* tenterà quasi sempre di **uscire verso l'esterno (*Egress*)**, per esfiltrare credenziali private o scaricare librerie malevole da internet. 
 > 
@@ -13304,7 +13304,7 @@ Lo STEP 14 (Containment & Least Authority) costituisce la linea difensiva fondam
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-15-llm-assisted"></a>
 
@@ -13387,7 +13387,7 @@ Per padroneggiare questo STEP, il lettore deve aver acquisito i seguenti concett
 3. **Semantica del flusso di controllo ed eccezioni**: Come i linguaggi gestiscono gli stati di errore, l'unwinding dello stack, i fallimenti parziali e il ripristino delle risorse (costrutti try/catch/finally o tipi di ritorno `Result/Either`).
 
 > [!NOTE]
-> **⌕ Decodifica rapida per non programmatori (Tipi, Stack Unwinding e `Result/Either`):**  
+> **⚓︎ Decodifica rapida per non programmatori (Tipi, Stack Unwinding e `Result/Either`):**  
 > - **Tipi algebrici e `Result/Either`:** invece di restituire un numero grezzo o far saltare il programma con un crash imprevisto, la funzione restituisce una busta chiusa che può contenere solo due cose chiare: `[OK: risultato]` oppure `[ERRORE: motivo esatto]`.  
 > - **Unwinding dello stack:** quando scatta un errore imprevisto in profondità nel codice, il programma risale all'indietro lungo tutte le funzioni che erano state chiamate fino a quel momento chiudendole una dopo l'altra; se non ripulisce bene le risorse lungo il ritorno (file aperti, connessioni, lock), lascia danni dietro di sé.
 
@@ -13635,7 +13635,7 @@ Analizziamo due casi didattici concreti che illustrano la differenza tra generaz
 ##### Fase A: Definizione del Contratto (Fornita come vincolo immutabile)
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:**  
+> **⌕ Focus di lettura per non programmatori:**  
 > Non concentrarti sulla sintassi del linguaggio. Osserva unicamente come le due classi `CustomerTier` e `DiscountCalculator` definiscano una "scatola chiusa": il codice fissa la costante invalicabile `MAX_DISCOUNT_RATIO = Decimal("0.30")` e prescrive nei commenti del contratto che nessun valore restituito possa mai eccedere il 30% del totale del carrello. Questa è la gabbia logica che l'LLM non ha la facoltà di modificare.
 
 ```python
@@ -13666,7 +13666,7 @@ class DiscountCalculator:
 L'LLM riceve il contratto e implementa esclusivamente la logica, integrando le guardie di sicurezza prima del ritorno:
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:**  
+> **⌕ Focus di lettura per non programmatori:**  
 > Osserva la struttura a tre blocchi dell'implementazione:  
 > 1. Il blocco iniziale (`1`) respinge subito i dati non conformi prima di fare qualsiasi calcolo.  
 > 2. Il blocco centrale (`2`) esegue l'algoritmo suggerito dall'LLM.  
@@ -13759,7 +13759,7 @@ def parse_session_token(raw_token: str) -> SessionToken:
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** La funzione riceve una stringa composta da tre parti separate da due punti (`UTENTE:ORARIO:FIRMA`), la taglia in tre pezzi (`split(":")`) e controlla rigidamente forma e lunghezza di ciascun pezzo prima di accettarla (`re.fullmatch` verifica caratteri alfanumerici da 3 a 32 per l'utente, 64 caratteri esadecimali per la firma, e un orario `Unix epoch`, cioè i secondi trascorsi dal 1970, successivo a una soglia minima). Se un solo pezzo non combacia, respinge tutto con un errore preciso (`TokenParsingError`).
+> **⌕ Focus di lettura per non programmatori:** La funzione riceve una stringa composta da tre parti separate da due punti (`UTENTE:ORARIO:FIRMA`), la taglia in tre pezzi (`split(":")`) e controlla rigidamente forma e lunghezza di ciascun pezzo prima di accettarla (`re.fullmatch` verifica caratteri alfanumerici da 3 a 32 per l'utente, 64 caratteri esadecimali per la firma, e un orario `Unix epoch`, cioè i secondi trascorsi dal 1970, successivo a una soglia minima). Se un solo pezzo non combacia, respinge tutto con un errore preciso (`TokenParsingError`).
 
 ##### Valutazione di Assurance
 - Le possibili eccezioni interne di conversione (`int()`) sono incapsulate e rimappate su un'eccezione precisa di dominio (`TokenParsingError`).
@@ -13976,7 +13976,7 @@ Nei linguaggi come C e C++, il codice generato presenta elevata probabilità di 
 - **Regola di Assurance**: L'uso di LLM per linguaggi a memoria non gestita è consentito solo se vincolato a standard di sicurezza formali (es. MISRA-C) e accoppiato all'uso obbligatorio di analizzatori statici avanzati a monte.
 
 > [!NOTE]
-> **⌕ Che cosa sono `Use-After-Free`, `dangling pointer` e `MISRA-C`?**  
+> **⚓︎ Che cosa sono `Use-After-Free`, `dangling pointer` e `MISRA-C`?**  
 > Nei linguaggi in cui il programmatore gestisce a mano la memoria (C/C++), liberare una zona di memoria lasciando però attivo un riferimento verso di essa crea un "puntatore orfano" (**dangling pointer**). Continuare a leggere o scrivere lì (**Use-After-Free**) è come usare ancora la chiave di una stanza d'albergo dopo il check-out, modificando i bagagli del nuovo ospite: può causare crash o falle di sicurezza critiche. **MISRA-C** è un catalogo di regole rigide (nato nell'automotive) che vieta i costrutti più pericolosi del C.
 
 ---
@@ -14130,7 +14130,7 @@ def deduplicate_records_strict(
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Invece di buttare via in silenzio i record malformati, la funzione restituisce esplicitamente due liste separate (`Tuple[List[...], List[...]]`): nella prima raccoglie i record validi unici, nella seconda elenca tutti gli scarti indicando l'indice e il motivo preciso (*campo `id` mancante* oppure *duplicato*).
+> **⌕ Focus di lettura per non programmatori:** Invece di buttare via in silenzio i record malformati, la funzione restituisce esplicitamente due liste separate (`Tuple[List[...], List[...]]`): nella prima raccoglie i record validi unici, nella seconda elenca tutti gli scarti indicando l'indice e il motivo preciso (*campo `id` mancante* oppure *duplicato*).
 
 ---
 
@@ -14176,7 +14176,7 @@ Lo STEP 15 (LLM-Assisted Implementation) ridefinisce la sintesi del codice come 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-16-automated-testing"></a>
 
@@ -14697,7 +14697,7 @@ AssertionError: Atteso 12.00, ottenuto 10.00. Frazione non conteggiata.
 Lo stato dell'assurance è formalmente **FAIL**. Il difetto dell'implementazione dello STEP 15 è stato intercettato prima del deployment.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Nel codice di `shipping.py`, l'istruzione `int(excess_weight)` tronca via i decimali (trasforma `0.8` in `0` invece di arrotondare per eccesso alla frazione intera successiva con `math.ceil`), facendo così sparire il sovrapprezzo su peso frazionario. Il test indipendente usa `quantize` (arrotondamento esatto a due decimali) per verificare `5.1 kg` (atteso `12.00`), mentre `pytest.raises(ValueError)` controlla che i valori impossibili (`0.0` o `-2.5`) vengano rifiutati con un errore esplicito.
+> **⌕ Focus di lettura per non programmatori:** Nel codice di `shipping.py`, l'istruzione `int(excess_weight)` tronca via i decimali (trasforma `0.8` in `0` invece di arrotondare per eccesso alla frazione intera successiva con `math.ceil`), facendo così sparire il sovrapprezzo su peso frazionario. Il test indipendente usa `quantize` (arrotondamento esatto a due decimali) per verificare `5.1 kg` (atteso `12.00`), mentre `pytest.raises(ValueError)` controlla che i valori impossibili (`0.0` o `-2.5`) vengano rifiutati con un errore esplicito.
 
 ---
 
@@ -14729,7 +14729,7 @@ def test_filesystem_containment_boundary():
 Se questo test non solleva `PermissionError` (ossia se il file viene scritto con successo), significa che lo STEP 14 ha fallito la rimozione dell'autorità ambientale. Questo test funge da oracolo architetturale negativo.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Questo breve test tenta deliberatamente un'azione proibita: scrivere un file di prova dentro una cartella protetta di sistema (`/etc`). Il test viene considerato superato (`PASS`) solo se il sistema operativo interviene bloccando il tentativo con un errore di permesso negato (`PermissionError`).
+> **⌕ Focus di lettura per non programmatori:** Questo breve test tenta deliberatamente un'azione proibita: scrivere un file di prova dentro una cartella protetta di sistema (`/etc`). Il test viene considerato superato (`PASS`) solo se il sistema operativo interviene bloccando il tentativo con un errore di permesso negato (`PermissionError`).
 
 ---
 
@@ -14762,7 +14762,7 @@ def test_create_order_complete_mock():
 - **Fallimento epistemico**: Si scambia l'asserzione sul comportamento del mock per evidenza di funzionamento dell'integrazione del software.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** `MagicMock` è un controfigura fittizia programmata dentro il test per rispondere sempre `SAVED`. L'istruzione `assert_called_once()` controlla soltanto che il programma abbia finto di chiamare quel fantoccio una volta: un database reale non viene mai toccato.
+> **⌕ Focus di lettura per non programmatori:** `MagicMock` è un controfigura fittizia programmata dentro il test per rispondere sempre `SAVED`. L'istruzione `assert_called_once()` controlla soltanto che il programma abbia finto di chiamare quel fantoccio una volta: un database reale non viene mai toccato.
 
 #### Controesempio 2: L'Asserzione Vacua (Assertion-Free Test)
 Frammento generato da LLM per "raggiungere il 100% di copertura":
@@ -15061,7 +15061,7 @@ Lo STEP 16 (Automated Testing) trasforma la verifica del codice da atto di fede 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-17-static-analysis"></a>
 
@@ -15570,7 +15570,7 @@ void parse_packet_header(const char *network_data) {
 - **Lezione Epistemica**: La correttezza formale rilevata da un linter garantisce esclusivamente che il codice soddisfi le regole di grammatica e le convenzioni superficiali del linguaggio. Non fornisce alcuna prova di confidenza circa la resilienza a fallimenti di memoria o attacchi mirati.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Il codice C prepara una scatola fissa da 128 caratteri (`local_header[128]`), ma la funzione `strcpy` vi riversa dentro i dati provenienti dalla rete senza controllarne prima la lunghezza. Se arrivano più di 127 caratteri, i dati in eccesso traboccano nelle caselle di memoria vicine, corrompendo altre variabili o il controllo del programma (*Buffer Overflow*).
+> **⌕ Focus di lettura per non programmatori:** Il codice C prepara una scatola fissa da 128 caratteri (`local_header[128]`), ma la funzione `strcpy` vi riversa dentro i dati provenienti dalla rete senza controllarne prima la lunghezza. Se arrivano più di 127 caratteri, i dati in eccesso traboccano nelle caselle di memoria vicine, corrompendo altre variabili o il controllo del programma (*Buffer Overflow*).
 
 #### Controesempio 2: Taint Analysis aggirata da memorizzazione indiretta
 
@@ -15598,7 +15598,7 @@ def run_backup(user_input_dir):
 - **Lezione Epistemica**: L'assenza di allarmi da parte di uno strumento non dimostra l'assenza della vulnerabilità; attesta unicamente che la complessità dell'indirezione eccede la capacità di tracciamento dell'astrazione implementata dallo scanner.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Invece di passare subito l'input dell'utente al comando di sistema, il codice lo mette prima in una scatola intermedia (`storage["target"]`) e poi lo ripesca per incollarlo dentro una riga di terminale (`shell=True`). Se l'utente scrive un punto e virgola seguito da un comando (`; rm -rf / ;`), il terminale esegue il comando distruttivo, mentre uno scanner semplice perde la traccia del passaggio intermedio nella scatola.
+> **⌕ Focus di lettura per non programmatori:** Invece di passare subito l'input dell'utente al comando di sistema, il codice lo mette prima in una scatola intermedia (`storage["target"]`) e poi lo ripesca per incollarlo dentro una riga di terminale (`shell=True`). Se l'utente scrive un punto e virgola seguito da un comando (`; rm -rf / ;`), il terminale esegue il comando distruttivo, mentre uno scanner semplice perde la traccia del passaggio intermedio nella scatola.
 
 ---
 
@@ -15724,7 +15724,7 @@ La delegazione della produzione del codice o della sua scansione non esonera l'o
 | **Controllo Esposizione Segreti** | Scanner di repository (es. Gitleaks, Trufflehog) | Pipeline di integrazione su albero e cronologia Git completa | Report di scansione con hash dei commit verificati; log di rotazione per segreti compromessi | **NO**. L'assenza di chiavi esposte richiede scansione della cronologia, non mera ispezione dell'ultimo commit. |
 
 > [!IMPORTANT]
-> **⌕ Scheda di Verifica delle Evidenze: Come valutare sicurezza, librerie e credenziali senza aprire il terminale**
+> **⚓︎ Scheda di Verifica delle Evidenze: Come valutare sicurezza, librerie e credenziali senza aprire il terminale**
 > 
 > Per chiunque debba commissionare, valutare, revisionare o approvare un software (che si tratti di un rilascio interno o di una fornitura esterna), non è necessario saper digitare comandi da sistemista su un terminale informatico.
 > È però indispensabile **pretendere evidenze documentate e verificabili** che rispondano con chiarezza a queste quattro domande fondamentali:
@@ -15852,7 +15852,7 @@ def route_action(action_name, payload):
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Invece di scrivere un elenco esplicito delle azioni permesse, il codice costruisce al volo il nome dell'operazione da eseguire incollando `"handle_"` al testo arrivato dall'esterno (`globals().get(...)`). Poiché il nome si forma solo mentre il programma gira, gli strumenti di analisi statica non possono sapere in anticipo quali funzioni interne potranno essere chiamate.
+> **⌕ Focus di lettura per non programmatori:** Invece di scrivere un elenco esplicito delle azioni permesse, il codice costruisce al volo il nome dell'operazione da eseguire incollando `"handle_"` al testo arrivato dall'esterno (`globals().get(...)`). Poiché il nome si forma solo mentre il programma gira, gli strumenti di analisi statica non possono sapere in anticipo quali funzioni interne potranno essere chiamate.
 
 - **Comportamento dello Strumento**: Lo scanner SAST non può prevedere quali funzioni saranno invocate, interrompendo il tracciamento del flusso dei dati (perdita di soundness inter-procedurale).
 - **Trattamento di Assurance**: L'impiego di costrutti di metaprogrammazione dinamica su percorsi che trattano input esterni è classificato come **Rischio Architetturale**. Se il codice è stato generato da un LLM, deve essere rifiutato con richiesta di refactoring verso costrutti staticamente determinabili (es. dizionari espliciti di mappatura con chiavi costanti). Se l'indirezione è indispensabile per ragioni di architettura, il cammino viene marcato come **UNKNOWN** e richiede verifica obbligatoria nello Step 18.
@@ -16050,7 +16050,7 @@ Lo sviluppatore dichiara completato con successo lo Step 17 (**PASS**).
   3. Qualora l'aggiornamento introduca rotture incompatibili non risolvibili nell'immediato, documentare formalmente una deroga temporanea (con mitigazioni perimetrali attestate allo Step 14) e pianificare il refactoring, impedendo che l'avviso venga silenziato o dimenticato.
 
 > [!NOTE]
-> **⌕ Che cosa significa *Reachability Analysis* sul *Call Graph*?** Il *Call Graph* è la mappa stradale di tutte le chiamate tra funzioni del programma; la *Reachability Analysis* verifica se esista almeno un percorso percorribile dagli ingressi dell'applicazione fino alla funzione difettosa della libreria esterna (`StringSubstitutor`). Senza questa mappa verificata, dichiarare che il bug "non è toccato" resta una semplice supposizione.
+> **⚓︎ Che cosa significa *Reachability Analysis* sul *Call Graph*?** Il *Call Graph* è la mappa stradale di tutte le chiamate tra funzioni del programma; la *Reachability Analysis* verifica se esista almeno un percorso percorribile dagli ingressi dell'applicazione fino alla funzione difettosa della libreria esterna (`StringSubstitutor`). Senza questa mappa verificata, dichiarare che il bug "non è toccato" resta una semplice supposizione.
 
 ---
 
@@ -16121,7 +16121,7 @@ Lo Step 17 garantisce che il codice generato dall'LLM non venga ammesso alle fas
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-18-property-based"></a>
 
@@ -16579,7 +16579,7 @@ Quota risultante: Decimal('-0.01')  <--- VIOLAZIONE CRITICA
 Nessun test basato su esempi standard avrebbe ipotizzato `total=0.05` e `parts=7`. Il test basato su proprietà ha stanato il difetto algoritmico in millisecondi.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** L'etichetta `@given(...)` ordina al programma di collaudo di inventare centinaia di importi e divisori casuali e controllare tre regole matematiche elementari (somma uguale al totale, nessuna quota negativa, scarto massimo di 1 centesimo). Provando `0.05` diviso `7`, la funzione arrotonda ciascuna delle 7 quote a `0.01` (`0.07` totali) e poi toglie l'eccesso (`-0.02`) dall'ultima quota, trasformandola illegalmente in un numero negativo (`-0.01`).
+> **⌕ Focus di lettura per non programmatori:** L'etichetta `@given(...)` ordina al programma di collaudo di inventare centinaia di importi e divisori casuali e controllare tre regole matematiche elementari (somma uguale al totale, nessuna quota negativa, scarto massimo di 1 centesimo). Provando `0.05` diviso `7`, la funzione arrotonda ciascuna delle 7 quote a `0.01` (`0.07` totali) e poi toglie l'eccesso (`-0.02`) dall'ultima quota, trasformandola illegalmente in un numero negativo (`-0.01`).
 
 ---
 
@@ -16658,7 +16658,7 @@ RuntimeError: Violazione del contratto d'interfaccia: UnicodeDecodeError: 'utf-8
 Il fuzzer ha forzato il superamento dei controlli sui primi tre byte e ha individuato il byte non conforme `0xff` che manda in crash il decodificatore.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Un parser di rete legge i pacchetti di dati byte per byte come una busta: il primo byte (`0xAA`) è il sigillo di riconoscimento, i due successivi dichiarano quanto è lungo il messaggio, e il byte `0x01` annuncia che segue un testo leggibile (UTF-8). Il fuzzer ha generato da solo una busta valida nei primi byte, ma ha infilato dentro un byte illegale (`0xff`) che non corrisponde a nessun carattere di testo, facendo andare in crash il programma (`UnicodeDecodeError`) invece di fargli emettere un rifiuto controllato (`ValueError`).
+> **⌕ Focus di lettura per non programmatori:** Un parser di rete legge i pacchetti di dati byte per byte come una busta: il primo byte (`0xAA`) è il sigillo di riconoscimento, i due successivi dichiarano quanto è lungo il messaggio, e il byte `0x01` annuncia che segue un testo leggibile (UTF-8). Il fuzzer ha generato da solo una busta valida nei primi byte, ma ha infilato dentro un byte illegale (`0xff`) che non corrisponde a nessun carattere di testo, facendo andare in crash il programma (`UnicodeDecodeError`) invece di fargli emettere un rifiuto controllato (`ValueError`).
 
 > Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
 
@@ -16730,7 +16730,7 @@ L'esecuzione mostra il fallimento immediato per il caso `params: "job_id=42"` co
 Il codice assumeva implicitamente che il tipo JSON generato dall'LLM fosse conforme al modello mentale del programmatore.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori (*Type Confusion*):** Il programma si aspettava che il campo `params` fosse una scheda strutturata con dentro etichette (es. `{"job_id": "42"}`), ma un payload anomalo vi ha inserito una semplice frase testuale (`"job_id=42"`). Quando il programma chiede alla frase di cercare l'etichetta `.get(...)`, l'operazione è priva di senso su una stringa e il programma va in crash (`AttributeError`).
+> **⌕ Focus di lettura per non programmatori (*Type Confusion*):** Il programma si aspettava che il campo `params` fosse una scheda strutturata con dentro etichette (es. `{"job_id": "42"}`), ma un payload anomalo vi ha inserito una semplice frase testuale (`"job_id=42"`). Quando il programma chiede alla frase di cercare l'etichetta `.get(...)`, l'operazione è priva di senso su una stringa e il programma va in crash (`AttributeError`).
 
 ---
 
@@ -16762,7 +16762,7 @@ Hypothesis scarterà il 99.9% dei campioni. Quando il test termina con esito **P
 **Il PASS è vacuamente vero: il sistema ha verificato un'affermazione su un insieme di test vuoto.**
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** L'istruzione `assume(...)` scarta a posteriori tutti i dati casuali che non rispettano una condizione rarissima (avere più di 10 numeri tutti identici estratti a sorte). Poiché quasi nessun sorteggio supera quel filtro, il test termina con successo avendo provato quasi zero casi reali.
+> **⌕ Focus di lettura per non programmatori:** L'istruzione `assume(...)` scarta a posteriori tutti i dati casuali che non rispettano una condizione rarissima (avere più di 10 numeri tutti identici estratti a sorte). Poiché quasi nessun sorteggio supera quel filtro, il test termina con successo avendo provato quasi zero casi reali.
 
 *Correzione*: Costruire i dati per costruzione logica, non per scarto a posteriori:
 ```python
@@ -17034,7 +17034,7 @@ similarity(top_1(R), Query) >= similarity(top_1(search(Query, Corpus')), Query)
 Se l'inserimento di un documento completamente irrilevante incrementa il ranking dei primi risultati, l'algoritmo di similarità manifesta una discrepanza logica indipendente dalla complessità dell'embedding.
 
 > [!NOTE]
-> **⌕ Che cosa indicano `RAG`, `embedding` e `similarity(top_1(R), Query)`?**  
+> **⚓︎ Che cosa indicano `RAG`, `embedding` e `similarity(top_1(R), Query)`?**  
 > Un sistema **RAG** recupera i documenti più pertinenti prima di rispondere, confrontando le "coordinate concettuali" (**embedding**) della domanda e dei testi (per l'analogia della mappa GPS, vedi [Quadro Didattico](#quadro-didattico) e [Appendice ⊞, Sez. 5.2](#appendice-moltiplicatore-personale)). La formula verifica una regola elementare di buon senso: aggiungere all'archivio un documento del tutto estraneo non deve mai far salire fittiziamente la pertinenza del miglior risultato trovato in precedenza.
 
 ---
@@ -17063,7 +17063,7 @@ Il Property-Based Testing, il Fuzzing guidato da copertura e il Testing Avversar
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-19-threat-modeling"></a>
 
@@ -17509,7 +17509,7 @@ pytest test_red_team_orders.py
 Il test fallisce (*Red Team Success*), fornendo l'**evidenza empirica oggettiva** che la catena di fiducia manca di un verificatore di autorizzazione tra la decisione del modello e l'attuatore bancario.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Il codice `OrderSystem` simula un assistente che legge fatture in testo. Un fornitore malevolo nasconde nel documento un'istruzione segreta mascherata dentro un commento invisibile (`<!-- ... -->`) per ordinare un bonifico di 15.000 euro verso il proprio conto. Il test simula l'attacco su un finto sistema bancario (`Mock`) e dimostra che, mancando un controllo deterministico sul ruolo utente prima del pagamento, il bonifico non autorizzato viene davvero invocato.
+> **⌕ Focus di lettura per non programmatori:** Il codice `OrderSystem` simula un assistente che legge fatture in testo. Un fornitore malevolo nasconde nel documento un'istruzione segreta mascherata dentro un commento invisibile (`<!-- ... -->`) per ordinare un bonifico di 15.000 euro verso il proprio conto. Il test simula l'attacco su un finto sistema bancario (`Mock`) e dimostra che, mancando un controllo deterministico sul ruolo utente prima del pagamento, il bonifico non autorizzato viene davvero invocato.
 
 > *(Per gli strumenti dedicati all'assurance e sicurezza di sistemi con LLM a runtime come garak, promptfoo e NeMo Guardrails, vedi l'appendice: [⬡ Strumenti per la verifica e l’assurance — Sez. 6](#appendice-sw))*
 
@@ -17751,7 +17751,7 @@ Il Threat Modeling e il Red Teaming costituiscono il contrappeso razionale all'o
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-20-multi-model"></a>
 
@@ -18191,7 +18191,7 @@ if __name__ == "__main__":
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Questo script mostra come far analizzare un programma a tre modelli diversi in "stanze separate" (`execute_blind_query`) affinché nessuno sappia cosa hanno risposto gli altri. La funzione sotto esame (`compute`) moltiplica due numeri e poi forza il risultato in uno spazio troppo stretto a 32 bit (`ctypes.c_int32`), tagliando silenziosamente i numeri grandi. Due modelli su tre non si accorgono del troncamento e dicono `PASS`; un solo modello segnala `FAIL`. La funzione finale `evaluate_decision_gate` non usa la maggioranza "2 contro 1", ma rileva il disaccordo e blocca l'approvazione su `UNKNOWN` chiedendo l'esame di un umano.
+> **⌕ Focus di lettura per non programmatori:** Questo script mostra come far analizzare un programma a tre modelli diversi in "stanze separate" (`execute_blind_query`) affinché nessuno sappia cosa hanno risposto gli altri. La funzione sotto esame (`compute`) moltiplica due numeri e poi forza il risultato in uno spazio troppo stretto a 32 bit (`ctypes.c_int32`), tagliando silenziosamente i numeri grandi. Due modelli su tre non si accorgono del troncamento e dicono `PASS`; un solo modello segnala `FAIL`. La funzione finale `evaluate_decision_gate` non usa la maggioranza "2 contro 1", ma rileva il disaccordo e blocca l'approvazione su `UNKNOWN` chiedendo l'esame di un umano.
 
 > *(Per la matrice completa 11 × 11 di diversità tecnica e il template operativo di Blind Review Prompting, vedi l'appendice: [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm))*
 
@@ -18270,7 +18270,7 @@ I due modelli convergono sulla fallacia del principio di robustezza di Postel (*
 L'accordo dei modelli deriva dalla condivisione dello stesso modello culturale di tolleranza sintattica presente nei manuali di programmazione generici.
 
 > [!NOTE]
-> **⌕ Che cos'è l'`HTTP Request Smuggling`?** Quando un primo server di frontiera (*proxy*) e un server interno interpretano in modo leggermente diverso gli spazi o le intestazioni di una richiesta web, un attaccante può "contrabbandare" dentro una prima richiesta innocua una seconda richiesta nascosta per aggirare i controlli di sicurezza.
+> **⚓︎ Che cos'è l'`HTTP Request Smuggling`?** Quando un primo server di frontiera (*proxy*) e un server interno interpretano in modo leggermente diverso gli spazi o le intestazioni di una richiesta web, un attaccante può "contrabbandare" dentro una prima richiesta innocua una seconda richiesta nascosta per aggirare i controlli di sicurezza.
 
 ---
 
@@ -18496,7 +18496,7 @@ L'audit multi-modello rappresenta uno strumento diagnostico di grande valore eur
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-21-independent-verification"></a>
 
@@ -18867,7 +18867,7 @@ pytest test_cleanroom_verification.py
 L'oracolo indipendente intercetta un fallimento per `days = 184`: il codice dello sviluppatore conteneva la condizione `if days >= 184: rate = 0.20` generata erroneamente dall'LLM. Lo sviluppatore non se ne era accorto perché i suoi test unitari verificavano solo campioni a 90 e 200 giorni, condividendo lo stesso angolo cieco.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Senza aver visto il codice del programma fiscale, il verificatore traduce due regole di legge in test automatici (`@given`): 1) la trattenuta fiscale non deve mai superare l'importo lordo; 2) oltre i 183 giorni lavorati in UE l'aliquota è fissa al 15%. Lanciando il test con combinazioni automatiche, lo strumento si accorge subito che al giorno `184` il codice calcolava `20.00` invece di `15.00`.
+> **⌕ Focus di lettura per non programmatori:** Senza aver visto il codice del programma fiscale, il verificatore traduce due regole di legge in test automatici (`@given`): 1) la trattenuta fiscale non deve mai superare l'importo lordo; 2) oltre i 183 giorni lavorati in UE l'aliquota è fissa al 15%. Lanciando il test con combinazioni automatiche, lo strumento si accorge subito che al giorno `184` il codice calcolava `20.00` invece di `15.00`.
 
 ---
 
@@ -19151,7 +19151,7 @@ La Verifica Indipendente costituisce il presidio metodologico che impedisce all'
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-22-discrepancy-analysis"></a>
 
@@ -19553,7 +19553,7 @@ VIOLAZIONE GRAVE DELL'INVARIANTE DI MONOTONIA.
 5. **Verifica**: Creazione di un test di regressione atomico sulla transizione 30 -> 31 e riesecuzione di 50.000 iterazioni PBT.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Il codice generato calcola correttamente la penale dei primi 30 giorni (`15.00`), ma dal giorno 31 salta nel ramo `else` e calcola la quota solo sui giorni eccedenti (`31 - 30 = 1`), dimenticando di sommare la base già maturata. Il test di *monotonia* controlla semplicemente una regola di buon senso: più giorni passano, più la penale deve restare uguale o salire, mai scendere da 15 euro a 1 euro.
+> **⌕ Focus di lettura per non programmatori:** Il codice generato calcola correttamente la penale dei primi 30 giorni (`15.00`), ma dal giorno 31 salta nel ramo `else` e calcola la quota solo sui giorni eccedenti (`31 - 30 = 1`), dimenticando di sommare la base già maturata. Il test di *monotonia* controlla semplicemente una regola di buon senso: più giorni passano, più la penale deve restare uguale o salire, mai scendere da 15 euro a 1 euro.
 
 ---
 
@@ -19612,7 +19612,7 @@ Il manuale adotta il seguente formato strutturato per la tracciabilità delle an
 ```
 
 > [!NOTE]
-> **⌕ Come leggere questa scheda JSON (per non tecnici):** Non è codice da eseguire, ma una cartella clinica strutturata del difetto, divisa in cinque parti leggibili: come è stato scoperto e quanto è grave (`classification`), il caso preciso che lo ha fatto fallire (`discrepancy_details`), quali ipotesi di causa sono state smentite o provate (`causal_analysis`), la decisione presa (`disposition`) e la prova che la riparazione ha superato i test (`verification_of_fix`).
+> **⚓︎ Come leggere questa scheda JSON (per non tecnici):** Non è codice da eseguire, ma una cartella clinica strutturata del difetto, divisa in cinque parti leggibili: come è stato scoperto e quanto è grave (`classification`), il caso preciso che lo ha fatto fallire (`discrepancy_details`), quali ipotesi di causa sono state smentite o provate (`causal_analysis`), la decisione presa (`disposition`) e la prova che la riparazione ha superato i test (`verification_of_fix`).
 
 ---
 
@@ -19891,7 +19891,7 @@ L'analisi e la classificazione delle discrepanze costituisce il banco di prova d
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-23-evidence-decision"></a>
 
@@ -20114,7 +20114,7 @@ Dalla combinazione degli stati scaturiscono quattro azioni operative:
 (*) L'azione di ammissione condizionata sotto `PARTIAL` impone l'attivazione di vincoli di confinamento nello Step 25 (es. sandboxing, canary deployment con traffico minimo, feature flagging disattivato di default).
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori e DevOps: come implementare i verdetti HOLD ed ESCALATE nei sistemi CI/CD reali**
+> **⌕ Focus di lettura per non programmatori e DevOps: come implementare i verdetti HOLD ed ESCALATE nei sistemi CI/CD reali**
 >
 > Chiunque abbia familiarità con piattaforme di automazione come GitHub Actions, GitLab CI o Jenkins potrebbe notare un'apparente discrepanza:  
 > *I computer e i terminali conoscono solo esiti binari: codice di uscita `0` (Successo / Verde) oppure diverso da zero (Fallimento / Rosso). Come si traducono fisicamente in una pipeline le decisioni a più vie come `HOLD` o `ESCALATE`?*
@@ -20226,7 +20226,7 @@ ADMIT = (D_inv == TRUE) AND
 Se `ADMIT == FALSE`, la transizione è bloccata. La causa del blocco viene verbalizzata identificando esattamente quale dimensione del vettore ha fallito il criterio.
 
 > [!IMPORTANT]
-> **⌕ Criteri Pratici di Accettazione e Governance: Come tradurre il Decision Gate in regole vincolanti**
+> **⚓︎ Criteri Pratici di Accettazione e Governance: Come tradurre il Decision Gate in regole vincolanti**
 > 
 > Per chiunque debba stabilire le regole di accettazione di un rilascio, definire i traguardi di un progetto o concordare accordi di consegna, il Decision Gate (il cancello decisionale) non è una formula astratta: è il **criterio oggettivo che stabilisce quando un lavoro è completato in sicurezza e quando deve essere fermato**.
 > 
@@ -20911,7 +20911,7 @@ I punti fermi da ricordare sono:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-24-human-review"></a>
 
@@ -21361,7 +21361,7 @@ Il revisore qualificato sulla specifica proprietà critica (sistemi concorrenti 
    Il revisore esamina i test che avevano ottenuto `PASS`. Scopre che il test generato dall'LLM verificava la funzione richiamandola 5 volte in sequenza all'interno di un ciclo `for` sincrono monothread. Il test verificava la logica interna del codice errato, ma ignorava l'invariante di concorrenza reale.
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori (`rate_limiter.py`):** Lo script conta i tentativi di password sbagliati salvandoli in una tabella provvisoria (`FAILED_LOGIN_TRACKER`) nella memoria interna del singolo programma. Anche senza conoscere i dettagli Python (`Dict`, `Tuple`), emergono tre fragilità pratiche: 1) senza un turno d'accesso esclusivo (*lock*), più richieste simultanee aggirano il contatore; 2) se qualcuno prova milioni di nomi inventati, la tabella cresce fino a esaurire tutta la memoria RAM (*Out-Of-Memory*); 3) se in produzione ci sono più server paralleli, ciascuno tiene il proprio quaderno separato e un attaccante può continuare a provare sugli altri server invece che su un archivio centrale condiviso (*Redis*).
+> **⌕ Focus di lettura per non programmatori (`rate_limiter.py`):** Lo script conta i tentativi di password sbagliati salvandoli in una tabella provvisoria (`FAILED_LOGIN_TRACKER`) nella memoria interna del singolo programma. Anche senza conoscere i dettagli Python (`Dict`, `Tuple`), emergono tre fragilità pratiche: 1) senza un turno d'accesso esclusivo (*lock*), più richieste simultanee aggirano il contatore; 2) se qualcuno prova milioni di nomi inventati, la tabella cresce fino a esaurire tutta la memoria RAM (*Out-Of-Memory*); 3) se in produzione ci sono più server paralleli, ciascuno tiene il proprio quaderno separato e un attaccante può continuare a provare sugli altri server invece che su un archivio centrale condiviso (*Redis*).
 
 #### 9.4 Schema Didattico del Verbale di Revisione Formale
 
@@ -21716,7 +21716,7 @@ La capacità dei modelli generativi di produrre codice formalmente plausibile e 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="punto-controllo-2"></a>
 
@@ -21770,7 +21770,7 @@ L'approvazione dello Step 24 non autorizza la fiducia cieca: autorizza esclusiva
 
 ---
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-25-staging-canary"></a>
 
@@ -22644,7 +22644,7 @@ L'ingresso del software assistito da Large Language Models nell'ambiente operati
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-26-observability"></a>
 
@@ -23816,7 +23816,7 @@ L'osservabilità non è un'attività accessoria da delegare passivamente all'inf
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-27-alerting-runbooks"></a>
 
@@ -24215,7 +24215,7 @@ groups:
 - **Tracciabile**: Contiene il riferimento diretto e immutabile al runbook associato (`RB-ORD-500.md`).
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori (regola YAML/PromQL):** Questa configurazione chiede al sistema di monitoraggio di calcolare la percentuale di errori gravi del server (`status=~"5.."`) sul totale delle richieste in due finestre parallele (ultimi 5 minuti e ultimi 30 minuti). Se in entrambe le finestre gli errori superano il `2%` (`> 0.02`) e la situazione dura ininterrottamente per almeno 2 minuti (`for: 2m`), scatta la chiamata al reperibile allegando il link esatto al Runbook (`RB-ORD-500.md`).
+> **⌕ Focus di lettura per non programmatori (regola YAML/PromQL):** Questa configurazione chiede al sistema di monitoraggio di calcolare la percentuale di errori gravi del server (`status=~"5.."`) sul totale delle richieste in due finestre parallele (ultimi 5 minuti e ultimi 30 minuti). Se in entrambe le finestre gli errori superano il `2%` (`> 0.02`) e la situazione dura ininterrottamente per almeno 2 minuti (`for: 2m`), scatta la chiamata al reperibile allegando il link esatto al Runbook (`RB-ORD-500.md`).
 
 #### 9.2 Esempio di Runbook verificabile a sette dimensioni
 
@@ -24289,7 +24289,7 @@ curl -s -o /dev/null -w "%{http_code}\n" https://orders.internal.corp/health/rea
 ````
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori (comandi del Runbook):** Non occorre conoscere i comandi da terminale per verificare che la procedura rispetti le sette dimensioni: i comandi `kubectl get`, `kubectl logs` e `nc -z` (Sezione 4) sono azioni di sola lettura (guardano lo stato dei contenitori, leggono i registri di errore e verificano se il database risponde sulla porta di rete senza modificare nulla); invece `kubectl rollout restart` (riavvio ordinato a turno) e `curl ... flags` (attivazione del percorso di emergenza) nella Sezione 5 sono le sole manovre di modifica controllata.
+> **⌕ Focus di lettura per non programmatori (comandi del Runbook):** Non occorre conoscere i comandi da terminale per verificare che la procedura rispetti le sette dimensioni: i comandi `kubectl get`, `kubectl logs` e `nc -z` (Sezione 4) sono azioni di sola lettura (guardano lo stato dei contenitori, leggono i registri di errore e verificano se il database risponde sulla porta di rete senza modificare nulla); invece `kubectl rollout restart` (riavvio ordinato a turno) e `curl ... flags` (attivazione del percorso di emergenza) nella Sezione 5 sono le sole manovre di modifica controllata.
 
 ---
 
@@ -24662,7 +24662,7 @@ Poiché il worker elabora i file prelevandoli da una coda asincrona (e non espon
 1. **Origine della cecità dell'alerting**: L'allarme `Http5xxRate` non può scattare perché il worker non è un server HTTP ma un consumatore asincrono di code. L'allarme `ProcessCrash` non può scattare perché il processo non è terminato: il processo rimane vivo, allocato in memoria e attivo per il sistema operativo, ma in uno stato di deadlock operativo incapace di acquisire nuovi socket.
 
 > [!NOTE]
-> **⌕ Che cosa significa `EMFILE: too many open files`?** Il sistema operativo assegna a ogni programma un tetto massimo di file e canali di rete apribili insieme (i *file descriptor*). Se un errore impedisce al programma di chiudere questi canali al termine di ogni lavoro, i "gettoni" disponibili si esauriscono: il programma resta acceso senza andare in crash, ma non riesce più ad aprire nulla per lavorare.
+> **⚓︎ Che cosa significa `EMFILE: too many open files`?** Il sistema operativo assegna a ogni programma un tetto massimo di file e canali di rete apribili insieme (i *file descriptor*). Se un errore impedisce al programma di chiudere questi canali al termine di ogni lavoro, i "gettoni" disponibili si esauriscono: il programma resta acceso senza andare in crash, ma non riesce più ad aprire nulla per lavorare.
 
 2. **Violazione assiomatica**: Violazione diretta del principio **`NO ALERT != NO FAILURE`** e dell'anti-pattern **Alert Starvation by Omission**. Il sistema si trova in uno stato di fallimento totale dell'elaborazione documentale, mentre la console telemetrica indica assenza di allarmi.
 3. **Allarme e telemetria corretti**:
@@ -24716,7 +24716,7 @@ L'acquisizione della piena padronanza concettuale, metodologica ed epistemica de
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-28-rollback-fallback"></a>
 
@@ -25454,7 +25454,7 @@ kubectl rollout undo deployment/payment-service
 - Il team ha scambiato il ripristino del container per il recupero del servizio: la procedura ha reso l'intero archivio illeggibile al vecchio codice, amplificando il disservizio e costringendo a un blocco totale per bonificare il database.
 
 > [!NOTE]
-> **⌕ Che cos'è un `ORM` e perché va in errore?** Un *ORM* è il traduttore automatico tra gli oggetti usati nel programma e le righe salvate nelle tabelle del database. Se la vecchia versione del programma si aspetta di leggere testi (`"PENDING"`) e trova i numeri scritti dalla versione nuova (`1`), il traduttore si blocca su ogni singola operazione di lettura (`DeserializationError`).
+> **⚓︎ Che cos'è un `ORM` e perché va in errore?** Un *ORM* è il traduttore automatico tra gli oggetti usati nel programma e le righe salvate nelle tabelle del database. Se la vecchia versione del programma si aspetta di leggere testi (`"PENDING"`) e trova i numeri scritti dalla versione nuova (`1`), il traduttore si blocca su ogni singola operazione di lettura (`DeserializationError`).
 
 #### 10.2 Il Circuit Breaker mal calibrato: tempesta di richieste concorrenti in Half-Open
 
@@ -25813,7 +25813,7 @@ L'acquisizione della padronanza concettuale ed esecutiva dello STEP 28 si consid
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="punto-controllo-3"></a>
 
@@ -25867,7 +25867,7 @@ L'esercizio controllato ha dimostrato che il sistema sa sopravvivere al guasto c
 
 ---
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-29-post-deployment"></a>
 
@@ -26474,7 +26474,7 @@ class WalletService:
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori (`WalletService`):** La funzione apre una transazione sul database e mette un lucchetto esclusivo sulla riga del conto (`SELECT ... FOR UPDATE`). Il difetto introdotto dall'LLM è che, *prima* di rilasciare il lucchetto e chiudere la transazione, chiama via rete un servizio antifrode esterno (`_check_fraud_service`) aspettando fino a 10 secondi: se quel servizio rallenta, tutte le 100 linee di collegamento al database restano impegnate ad aspettare (`idle in transaction`), bloccando l'intera applicazione.
+> **⌕ Focus di lettura per non programmatori (`WalletService`):** La funzione apre una transazione sul database e mette un lucchetto esclusivo sulla riga del conto (`SELECT ... FOR UPDATE`). Il difetto introdotto dall'LLM è che, *prima* di rilasciare il lucchetto e chiudere la transazione, chiama via rete un servizio antifrode esterno (`_check_fraud_service`) aspettando fino a 10 secondi: se quel servizio rallenta, tutte le 100 linee di collegamento al database restano impegnate ad aspettare (`idle in transaction`), bloccando l'intera applicazione.
 
 ##### L'evento operativo
 Durante un picco di transazioni alle 09:30 UTC:
@@ -26578,7 +26578,7 @@ Un'analisi condotta tramite profiling con `pprof` e analisi dei parametri di run
 L'LLM ha proposto una narrazione plausibile legata ai pattern più frequenti del linguaggio Go presenti nel suo dataset, ma totalmente disconnessa dall'architettura reale del processo (CGo e heap non gestito).
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Il programma Go usava al suo interno una libreria scritta in linguaggio C (*cgo*) per comprimere i file (`zstd`). La memoria allocata da quel componente esterno (`cgo` / heap non gestito) sfugge al controllo automatico del ripulitore di memoria di Go (`runtime.GC()`): ecco perché le ottimizzazioni proposte dall'LLM su Go (`sync.Pool`) non liberavano memoria reale, mentre un'analisi diretta del profilo di memoria (`pprof`) ha mostrato subito dov'era l'accumulo.
+> **⌕ Focus di lettura per non programmatori:** Il programma Go usava al suo interno una libreria scritta in linguaggio C (*cgo*) per comprimere i file (`zstd`). La memoria allocata da quel componente esterno (`cgo` / heap non gestito) sfugge al controllo automatico del ripulitore di memoria di Go (`runtime.GC()`): ecco perché le ottimizzazioni proposte dall'LLM su Go (`sync.Pool`) non liberavano memoria reale, mentre un'analisi diretta del profilo di memoria (`pprof`) ha mostrato subito dov'era l'accumulo.
 
 ---
 
@@ -26911,7 +26911,7 @@ Cosa accade se lo STEP 29 viene omesso o condotto superficialmente:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-30-risk-register"></a>
 
@@ -27628,7 +27628,7 @@ risk_item:
 ```
 
 > [!NOTE]
-> **⌕ Che cosa indica il passaggio da `O(N * M)` a `O(N log M)`?** Indica quanto cresce il tempo di calcolo all'aumentare dei dati: con `O(N * M)` ogni prodotto del carrello viene confrontato con tutte le regole di sconto (500 righe per 100 regole = 50.000 operazioni lente per una sola richiesta); gli *alberi di intervallo* indicizzano invece le regole in ordine gerarchico riducendo drasticamente i confronti necessari ed evitando il blocco del server.
+> **⚓︎ Che cosa indica il passaggio da `O(N * M)` a `O(N log M)`?** Indica quanto cresce il tempo di calcolo all'aumentare dei dati: con `O(N * M)` ogni prodotto del carrello viene confrontato con tutte le regole di sconto (500 righe per 100 regole = 50.000 operazioni lente per una sola richiesta); gli *alberi di intervallo* indicizzano invece le regole in ordine gerarchico riducendo drasticamente i confronti necessari ed evitando il blocco del server.
 
 ---
 
@@ -27683,7 +27683,7 @@ knowledge_entry:
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori (*Dual-Write* vs *Outbox*):** Nel modello vietato, il programma spedisce subito un avviso su Kafka *prima* di aver confermato la scrittura nella cassaforte del database (`commit`): se l'altro programma legge l'avviso un millisecondo prima che il salvataggio si chiuda (o se la scrittura fallisce), agisce su un dato inesistente. Nel modello conforme (*Transactional Outbox*), l'avviso viene annotato in una tabella di uscita dentro la stessa identica transazione del database, così può partire solo dopo la conferma definitiva.
+> **⌕ Focus di lettura per non programmatori (*Dual-Write* vs *Outbox*):** Nel modello vietato, il programma spedisce subito un avviso su Kafka *prima* di aver confermato la scrittura nella cassaforte del database (`commit`): se l'altro programma legge l'avviso un millisecondo prima che il salvataggio si chiuda (o se la scrittura fallisce), agisce su un dato inesistente. Nel modello conforme (*Transactional Outbox*), l'avviso viene annotato in una tabella di uscita dentro la stessa identica transazione del database, così può partire solo dopo la conferma definitiva.
 
 ---
 
@@ -27987,7 +27987,7 @@ knowledge_entry:
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Un *generatore asincrono* restituisce i risultati uno alla volta (`yield`) sospendendosi tra un dato e l'altro. Se chi legge si ferma a metà per un errore, il generatore può restare congelato senza eseguire subito il blocco finale di chiusura (`finally`), lasciando aperta la connessione al database fino a esaurire tutto il gruppo disponibile. Incapsularlo in un `asynccontextmanager` (`async with`) funziona invece come una porta a chiusura automatica che restituisce la connessione nell'istante esatto in cui si esce dal blocco.
+> **⌕ Focus di lettura per non programmatori:** Un *generatore asincrono* restituisce i risultati uno alla volta (`yield`) sospendendosi tra un dato e l'altro. Se chi legge si ferma a metà per un errore, il generatore può restare congelato senza eseguire subito il blocco finale di chiusura (`finally`), lasciando aperta la connessione al database fino a esaurire tutto il gruppo disponibile. Incapsularlo in un `asynccontextmanager` (`async with`) funziona invece come una porta a chiusura automatica che restituisce la connessione nell'istante esatto in cui si esce dal blocco.
 
 ---
 
@@ -28125,7 +28125,7 @@ Il flusso operativo dell'assurance trasforma l'evidenza sul campo in protezione 
 ---
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-31-change-impact"></a>
 
@@ -28980,7 +28980,7 @@ Un'analisi di impatto rigorosa non si accontenta di verificare se il codice modi
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-32-periodic-review"></a>
 
@@ -29276,7 +29276,7 @@ Dove `alpha_i >= 0` è il coefficiente di vulnerabilità dell'evidenza alle muta
 - Un'evidenza basata sul tasso di allucinazione di un LLM consumato via API remota ha un `alpha_i` elevato (altamente volatile).
 
 > [!TIP]
-> **⌕ Come si comporta la curva esponenziale `1 - exp(-alpha * D)`?**  
+> **⚓︎ Come si comporta la curva esponenziale `1 - exp(-alpha * D)`?**  
 > Senza dover risolvere calcoli analitici, la formula descrive una curva di progressivo esaurimento della fiducia:
 > - **All'inizio (`D = 0`):** il contesto operativo è identico al giorno del rilascio; la probabilità che le vecchie prove siano inadeguate è pari a zero (la fiducia è intatta).
 > - **Man mano che la divergenza cresce (`D > 0`):** l'ambiente muta (nuove librerie, aggiornamenti opachi dei modelli AI, nuovi vettori di attacco). La curva sale rapidamente verso il valore `1.0` (100% di probabilità che le vecchie prove non descrivano più la realtà).
@@ -29350,7 +29350,7 @@ def audit_clinical_drift(client, golden_cases: List[Dict]) -> Dict[str, Decimal]
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Questo breve programma di audit prende 400 cartelle cliniche storiche già diagnosticate da medici umani (`golden_cases`), chiede al sistema attuale di riassumerle e controlla automaticamente quante volte nella risposta mancano i sintomi di allarme rosso obbligatori (`mandatory_red_flags`), calcolando così la percentuale di omissioni critiche.  
+> **⌕ Focus di lettura per non programmatori:** Questo breve programma di audit prende 400 cartelle cliniche storiche già diagnosticate da medici umani (`golden_cases`), chiede al sistema attuale di riassumerle e controlla automaticamente quante volte nella risposta mancano i sintomi di allarme rosso obbligatori (`mandatory_red_flags`), calcolando così la percentuale di omissioni critiche.  
 
 #### I Risultati del Benchmarking Empirico
 
@@ -29742,7 +29742,7 @@ L'audit periodico non è un atto burocratico di conformità formale, ma l'eserci
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="step-33-closure-lessons"></a>
 
@@ -30104,7 +30104,7 @@ if __name__ == "__main__":
 ```
 
 > [!TIP]
-> **⚲ Focus di lettura per non programmatori:** Questo script non verifica la qualità dei contenuti, ma crea un sigillo di non-manomissione: legge uno dopo l'altro i 15 documenti del fascicolo finale (a blocchi binari fissi per gestire anche file grandi), calcola l'impronta crittografica SHA-256 di ciascuno e poi fonde le 15 impronte in un unico sigillo finale (`root_assurance_hash`). Se anni dopo qualcuno modifica anche una sola virgola di un file archiviato, l'impronta ricalcolata non combacerà più.
+> **⌕ Focus di lettura per non programmatori:** Questo script non verifica la qualità dei contenuti, ma crea un sigillo di non-manomissione: legge uno dopo l'altro i 15 documenti del fascicolo finale (a blocchi binari fissi per gestire anche file grandi), calcola l'impronta crittografica SHA-256 di ciascuno e poi fonde le 15 impronte in un unico sigillo finale (`root_assurance_hash`). Se anni dopo qualcuno modifica anche una sola virgola di un file archiviato, l'impronta ricalcolata non combacerà più.
 
 #### 9.2 Il manifesto JSON di chiusura
 
@@ -30468,7 +30468,7 @@ La chiusura, l'archiviazione e la capitalizzazione delle lezioni non costituisco
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="punto-controllo-4"></a>
 
@@ -30526,7 +30526,7 @@ Terminata la sequenza dei capitoli metodologici, il manuale mette a disposizione
 
 ---
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-psico"></a>
 
@@ -30727,7 +30727,7 @@ La compresenza empirica di questi fenomeni non costituisce una tautologia né pr
 
 ---
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-diversita-llm"></a>
 
@@ -31136,7 +31136,7 @@ Per garantire che l'audit multi-modello fornisca evidenze difendibili all'intern
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-prompt-eng"></a>
 
@@ -32574,7 +32574,7 @@ Nella stesura di valutazioni di sicurezza o audit occorre distinguere tra standa
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-ispezione-codice"></a>
 
@@ -32582,7 +32582,7 @@ Nella stesura di valutazioni di sicurezza o audit occorre distinguere tra standa
 
 **Python · JavaScript / Node.js · Bash · PowerShell**
 
-### Indice dell' appendice 
+### Indice 
 
 - **Introduzione**
 1. Il **Modello Mentale Unico**: Tutta la Programmazione in 3 Passaggi
@@ -32728,7 +32728,7 @@ In 60 secondi, anche su un file di 500 righe, la ricerca testuale (Ctrl+F su Win
 | **J. Segnaposto e codice finto** | `TODO`, `FIXME`, `placeholder`, `mock`, `stub`, `dummy`, `fake` | È lavoro incompleto o simulato lasciato dall'LLM al posto della logica reale? Il codice restituisce un «sì» fisso (`return True`, `return true`) o usa dati inventati? Controlla anche eventuali controlli disattivati con `#` o `//` davanti |
 
 > *(Famiglia F: vedi lo **Step 17 (Secret Scanning)**.  
-> Famiglia G: vedi lo **Step 14 (Least Authority)** e l'**Appendice ♖ (Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime)** per comprendere i vincoli del kernel.)*
+> Famiglia G: vedi lo **Step 14 (Least Authority)** e l'Appendice **[♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)** per comprendere i vincoli del kernel.*
 
 Bash ha anche l'idioma `|| true` («se il comando fallisce, fingi di niente»): va cercato insieme a `2>/dev/null`.
 
@@ -33193,7 +33193,7 @@ Ctrl+F su questo script: `SilentlyContinue` zero occorrenze, `Invoke-Expression`
 
 **Regola di esito.** Una domanda senza risposta documentata è un UNKNOWN. Un UNKNOWN su un Sink è un NO-GO *per rischio non verificato*; un difetto accertato è un NO-GO *per difetto*. Entrambi bloccano il via libera, ma si sbloccano in modi diversi: il primo con una prova, il secondo con una correzione (e poi con una nuova ispezione). Il via libera non si dà per sfinimento né per fiducia nel tono dell'LLM: si dà solo quando ogni domanda ha una risposta che si può mostrare a un terzo, riga per riga.
 
-> *(Vedi: principio di **Falsificazione Popperiana (Appendice ⊙ - Elementi di Logica, sez. 11.3)**.)*
+> *Vedi il principio di **Falsificazione Popperiana** ([⊙ Elementi di Logica e Specifica Formale](#appendice-logica), sez. 11.3).*
 
 #### Il verbale d'ispezione
 
@@ -33227,7 +33227,7 @@ Nella colonna Esito si distinguono i due NO-GO: «difetto» (accertato dalla let
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-sw"></a>
 
@@ -33445,7 +33445,7 @@ La licenza GNU Free Documentation License (GNU FDL), versione 1.3 o successiva, 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-moltiplicatore-personale"></a>
 
@@ -34098,7 +34098,7 @@ La tabella raggruppa i principali progetti open-source affidabili e maturi idone
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-sandbox"></a>
 
@@ -34798,7 +34798,7 @@ Se uno qualsiasi di questi test negativi non solleva l'eccezione attesa (ad esem
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-os"></a>
 
@@ -35231,7 +35231,7 @@ La tabella seguente illustra la discrepanza tra la restrizione dichiarata e l'au
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-grafi"></a>
 
@@ -35627,7 +35627,7 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-logica"></a>
 
@@ -36769,7 +36769,7 @@ Il risultato non dimostra, da solo, che il sistema software reale violi il requi
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="appendice-alloy"></a>
 
@@ -38260,7 +38260,7 @@ Tutti i marchi registrati, i nomi di linguaggi e i prodotti software terzi richi
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="prompt-master"></a>
 
@@ -39298,7 +39298,7 @@ La regola fondamentale è:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="glossario-manuale"></a>
 
@@ -41349,7 +41349,7 @@ Nel contesto dell'assurance, consente di identificare le relazioni di dipendenza
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="bibliografia-essenziale-man"></a>
 
@@ -41772,7 +41772,7 @@ La bibliografia può quindi essere letta secondo quattro livelli: **fonti scient
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="nota-utilizzo-ia"></a>
 
@@ -41795,7 +41795,7 @@ Prendetelo quindi per quello che è: una mappa di studio molto approfondita, una
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-completo)
+[Torna all'Indice](#indice-generale)
 
 <a name="gnu-fdl-license"></a>
 
