@@ -1149,6 +1149,11 @@ Leggere attentamente quest'opera senza pretese di memorizzazione tecnica produce
 > **Come affrontare i blocchi di codice e le formule lungo la lettura**  
 > Quando incontri un blocco di codice o una formula formale privi di traduzione riga per riga, non fermarti sulla sintassi del linguaggio di programmazione: concentrati sui diagrammi ASCII, sulle distinzioni concettuali e sugli esiti dei controlli di gate. La sintassi serve agli specialisti per riprodurre gli esempi; il ragionamento di assurance resta sempre espresso in lingua naturale.
 
+> [!TIP]
+> **Per chi non sa programmare ma deve verificare o approvare il codice**, consulta l'appendice pratica:  
+> **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**.  
+> Ti insegnerà il *Modello Mentale Unico in 3 Passaggi (Source ➔ Trasformazione ➔ Sink)*, la caccia alle parole-ancora con Ctrl+F e il metodo per individuare a occhio nudo le trappole più comuni dell'AI (botole che nascondono errori, chiamate di rete senza limiti di tempo, calcoli con virgola mobile e cancellazioni non protette) in Python, JavaScript, Bash e PowerShell.
+
 ---
 
 ### 1. Responsabile di Conformità, Legal o Risk
@@ -1161,6 +1166,7 @@ Leggere attentamente quest'opera senza pretese di memorizzazione tecnica produce
 - **Parte I - Fondamenti:** definizione precisa del problema, classificazione del rischio, ampiezza degli effetti di un possibile incidente e responsabilita' umana.
 - **Parte II - Verifica:** indipendenza delle verifiche, criteri per autorizzare o bloccare una fase e responsabilita' delle approvazioni.
 - **Parte IV - Governance nel tempo:** gestione degli incidenti, registro dei rischi, verifiche periodiche, aggiornamento rispetto ai cambiamenti normativi e conservazione delle evidenze.
+- **Appendici Operative:** [❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice) per verificare visivamente i contratti software, i perimetri di accesso e la tenuta delle guardie senza dover imparare la sintassi dei linguaggi.
 
 **Come leggere gli esempi tecnici:**  
 Non è necessario conoscere in dettaglio il codice Python o C++ presente nel manuale. Concentratevi su cio' che l'esempio dimostra: **quale requisito viene tradotto in una regola verificabile e quali evidenze ne dimostrano il rispetto**.
@@ -1177,6 +1183,7 @@ Non è necessario conoscere in dettaglio il codice Python o C++ presente nel man
 - **Parte I - Fondamenti:** proprietà critiche, limiti delle competenze disponibili e determinazione del livello di Assurance necessario.
 - **Parte II - Costruzione:** architetture verificabili, sviluppo assistito da LLM e verifica indipendente delle soluzioni generate.
 - **Parte III - Esercizio:** rilascio progressivo, controllo dell'impatto delle modifiche, rollback e meccanismi per limitare rapidamente un problema.
+- **Appendici Operative:** [❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice) per condurre revisioni a campione su script e automazioni prodotte dai team con LLM prima di autorizzarne il rilascio.
 
 **Principio da tenere presente:**  
 L'intensita' delle verifiche deve essere proporzionata alle conseguenze di un possibile errore. Un componente che può incidere su denaro, dati riservati o sicurezza fisica richiede evidenze più solide di un componente a basso impatto.
@@ -7857,6 +7864,12 @@ Il *rubber-stamping* è l'atto di approvare formalmente un artefatto tecnico (ap
 
 > *(Sull'effetto della fluidità di elaborazione e l'illusione della profondità esplicativa, vedi l'appendice: [※ Concetti di Psicologia Cognitiva e Fattori Umani — Sez. 9 e 10](#appendice-psico))*
 
+> [!TIP]
+> **Come colmare il divario di ispezione se non sei uno sviluppatore**  
+> Per evitare che l'incapacità di programmare si trasformi in approvazione passiva (*rubber-stamping*), l'analista può applicare il protocollo di decodifica visiva illustrato nell'appendice:  
+> **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**.  
+> La guida fornisce la «Stele di Rosetta» comparativa a 4 linguaggi e la checklist di falsificazione in 5 domande per individuare a vista botole che nascondono errori, concatenazioni non sicure e assunzioni di rete ottimistiche.
+
 #### 3.4 La Delega Epistemica Fallace (Epistemic Proxy)
 
 Per sfuggire alla fatica cognitiva imposta dall'asimmetria generazione-verifica, molti team adottano una scorciatoia fallace: delegare la verifica a un secondo modello linguistico (pattern *LLM-as-a-Judge* o *Multi-Agent Review*).  
@@ -11618,6 +11631,11 @@ Questa separazione neutralizza la tendenza degli LLM a mescolare costrutti I/O a
 > **Applicazione pratica dell'architettura disaccoppiata (Compound AI Systems)**  
 > La concreta traduzione di questo schema in un'infrastruttura reale — in cui l'LLM funge da coordinatore di regia e i moduli specialistici o deterministici agiscono come bracci operativi protetti tramite Model Context Protocol (MCP) — è formalizzata ed esemplificata operativamente nell'appendice: [⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale — Sezioni 1.3 e 4](#appendice-moltiplicatore-personale).
 
+> [!NOTE]
+> **Il modello 'Source ➔ Trasformazione Pura ➔ Sink' per non programmatori**  
+> La separazione architetturale tra *Functional Core* e *Imperative Shell* trova la sua declinazione pratica per i revisori non tecnici nella Sezione 1 dell'appendice:  
+> **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**, dove l'intero flusso del software viene ricondotto ai tre momenti fondamentali: da dove entra il dato (*Source*), come viene elaborato in memoria senza effetti collaterali (*Trasformazione pura*), e dove impatta il mondo esterno (*Sink*).
+
 #### 4.3. Design by Contract (Progettazione per Contratto)
 
 Mentre nello Step 4 il contratto costituiva la specifica logica del comportamento atteso, nell'Implementation Design il **Design by Contract (DbC)** diventa il meccanismo primario di imposizione architetturale (*Architectural Enforcement*).
@@ -13804,6 +13822,11 @@ Identifichiamo gli schemi fallimentari tipici dello sviluppo assistito:
 | **Ghost Code Acceptance** | Conservare nel codice funzioni, import e parametri generati dal modello che non derivano da alcun requisito. |
 | **Circular LLM Debugging** | Chiedere allo stesso LLM di correggere un bug nel proprio codice senza isolare prima l'invariante violato. |
 | **Blind Type Casting** | Forzare cast arbitrari (`as any`, `ignore[type]`) per zittire il linter su suggerimento dell'LLM. |
+
+> [!TIP]
+> **Riconoscere i Red Flag del codice generato da LLM a colpo d'occhio**  
+> Per identificare visivamente le trappole tipiche introdotte dai modelli linguistici (botole che silenziano le eccezioni con `except: pass`, concatenazioni esposte a iniezione, assunzioni di rete senza timeout, controlli non atomici e fallback velenosi) consulta la Sezione 4 dell'appendice:  
+> **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**.
 
 ---
 
@@ -21114,6 +21137,11 @@ Domande di controllo:
 Il revisore analizza le discrepanze minori annotate nello Step 22 e valuta se le assunzioni 
 di tollerabilità reggano nell'ambiente operativo di destinazione.
 ```
+
+> [!IMPORTANT]
+> **Prontuario operativo di Ispezione Inversa a 4 linguaggi**  
+> L'applicazione pratica dell'Ispezione Inversa (*Uscita ➔ Punti di Impatto ➔ Guardie ➔ Calcolo*) su codice reale in Python, JavaScript/Node.js, Bash e PowerShell — corredata da quattro laboratori d'ispezione guidata a doppia colonna e dal template del verbale di rifiuto/ammissione — è consultabile nell'appendice:  
+> **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**.
 
 #### 5.4 Natura dell'Atto Formale di Approvazione
 
@@ -30476,6 +30504,7 @@ Terminata la sequenza dei capitoli metodologici, il manuale mette a disposizione
 - L'analisi dei bias cognitivi umani che inducono all'accettazione cieca dell'AI (Appendice: [※ Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico));
 - La matrice di diversità tecnica e i protocolli per l'audit multi-modello (Appendice: [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm));
 - I pattern contrattuali, difensivi e i template operativi per guidare l'AI senza farsi ingannare dalla plausibilità sintattica (Appendice: [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng));
+- La guida pratica di decodifica visiva, red flag e ispezione inversa a 4 linguaggi per non programmatori (Appendice: [❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice));
 - Il catalogo ragionato degli strumenti software di verifica, fuzzing e sicurezza (Appendice: [⬡ Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw));
 - L'architettura operativa di un ecosistema AI locale privato su workstation o server personale (Appendice: [⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale](#appendice-moltiplicatore-personale));
 - L'architettura pratica per la costruzione di sandbox ed esecuzione isolata (Appendice: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox));
@@ -32549,7 +32578,7 @@ Nella stesura di valutazioni di sicurezza o audit occorre distinguere tra standa
 
 <a name="appendice-ispezione-codice"></a>
 
-## ​❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori
+## ❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori
 
 **Python · JavaScript / Node.js · Bash · PowerShell**
 
@@ -32603,6 +32632,8 @@ Pensa a una cucina. Gli ingredienti arrivano dal fornitore (Source), lo chef li 
 > [!TIP]
 > **Perché «tutta» la programmazione in tre passaggi?** Perché il modello serve a ispezionare, non a spiegare come si programma. I programmi reali hanno anche cicli, funzioni, oggetti, attività concorrenti, e nessuno li ridurrebbe a tre mosse. Ma per chi ispeziona ogni riga si riconduce a una domanda: da dove viene questo dato, che cosa ne faccio, dove va a finire? Una riga che non riesci a collocare in nessuno dei tre passaggi non è fuori dal modello: è UNKNOWN.
 
+> Vedi il **Modello Mondo-Macchina di Jackson & Zave, Capitoli 1 e 4**: la *Source* e il *Sink* sono i punti di contatto con il Mondo reale, mentre la *Trasformazione pura* è la Macchina.
+
 #### Il Protocollo di Ispezione Inversa
 
 Chi legge dall'alto in basso, come un racconto, si lascia trascinare dalla narrazione plausibile delle prime righe. Si legge dunque **al contrario**, in quattro passaggi:
@@ -32626,7 +32657,8 @@ def archivia(nome_file, contenuto):
 *Uscita*: restituisce `True` oppure solleva un'eccezione: accettabile. *Sink*: `open(..., "w")` scrive un file, e il percorso è costruito incollando due testi con `+`. *Guardie*: l'unico controllo verifica che il nome non sia vuoto; nessuno impedisce un nome come `../etc/qualcosa`, che esce dalla cartella prevista. *Calcolo*: non c'è. L'ispezione ha già prodotto un allarme senza richiedere di capire una sola parola di Python.
 
 > [!TIP]
-> Per ogni riga, l'esito ammesso è uno di tre. **CHIARO**: so spiegare con parole mie che cosa fa e perché è sicura. **UNKNOWN**: non so. **NO-GO**, in due varianti che non vanno confuse: *per difetto accertato* (ho trovato l'errore: si risolve correggendo) oppure *per rischio non verificato* (una riga che tocca il mondo esterno è rimasta UNKNOWN: si risolve con una prova). Il primo è un fatto, il secondo una mancanza di prove; entrambi bloccano il via libera. Dichiarare «non capisco questa riga, quindi non la approvo» non è ignoranza: è rigore ingegneristico. Ciò che non si comprende non si firma.
+> Per ogni riga, l'esito ammesso è uno di tre. **CHIARO**: so spiegare con parole mie che cosa fa e perché è sicura. **UNKNOWN**: non so. **NO-GO**, in due varianti che non vanno confuse: *per difetto accertato* (ho trovato l'errore: si risolve correggendo) oppure *per rischio non verificato* (una riga che tocca il mondo esterno è rimasta UNKNOWN: si risolve con una prova). Il primo è un fatto, il secondo una mancanza di prove; entrambi bloccano il via libera. Dichiarare «non capisco questa riga, quindi non la approvo» non è ignoranza: è rigore ingegneristico. Ciò che non si comprende non si firma.  
+> Vedi la **Tassonomia Epistemica a 5 Stati** dello Step 5 e il valore di **`UNKNOWN` come virtù di assurance** (Step 1, Step 8, Step 24).
 
 ---
 
@@ -32670,7 +32702,8 @@ Un **commento** è una parte di testo che il computer salta del tutto durante l'
 **Come leggere questa tabella.** Non devi capire ogni cella, e non devi ricordare la sintassi. Leggi **per riga**: ogni riga è un'idea sola, scritta in quattro modi. Il testo in `carattere a spaziatura fissa` è come l'idea appare nel codice; il testo normale spiega perché conta. Le espressioni «senza avviso», «in silenzio», «scarta» segnalano le trappole: sono le celle più importanti. Le tre fasce (INGRESSO, TRASFORMAZIONE, PUNTO DI IMPATTO) richiamano la triade della Sezione 1: se in una fascia non sai da dove cominciare, parti dall'ultima, quella che tocca il mondo.
 
 > [!WARNING]
-> **Il denaro non si calcola con numeri «con la virgola» binari.** Un `float` (numero in virgola mobile: approssimazione binaria dei decimali) non può rappresentare esattamente 0,10. Su una fattura l'errore è invisibile; su centomila fatture è un ammanco. Quando in un calcolo monetario compare `float`, `double`, `Number` o `[double]`, l'esito minimo è UNKNOWN.
+> **Il denaro non si calcola con numeri «con la virgola» binari.** Un `float` (numero in virgola mobile: approssimazione binaria dei decimali) non può rappresentare esattamente 0,10. Su una fattura l'errore è invisibile; su centomila fatture è un ammanco. Quando in un calcolo monetario compare `float`, `double`, `Number` o `[double]`, l'esito minimo è UNKNOWN.  
+> Vedi il **Capitolo 1 (Problem Definition - Box informativo IEEE 754)** e lo **Step 13 (Type-Driven Design)**.
 
 > [!WARNING]
 > **Un ciclo moltiplica il rischio, e un `while` senza freno non si ferma mai.** Quando vedi un comando di rete, database o cancellazione (un Sink) *dentro* un ciclo, il danno o il costo non avviene una volta sola, ma a ogni giro. Cerca sempre un limite massimo di giri o di elementi e chiedi che cosa accade se il ciclo lavora su un milione di righe o su una risposta esterna infinita.
@@ -32693,6 +32726,9 @@ In 60 secondi, anche su un file di 500 righe, la ricerca testuale (Ctrl+F su Win
 | **H. Dipendenze** | `import`, `from ... import`, `require(`, `source`, `Import-Module` | Ogni nome è codice di altri che nessuno ha letto: esiste davvero, è quello giusto, chi lo ha scelto? |
 | **I. Accessi** | `auth`, `login`, `session`, `role`, `admin`, `permission`, `Authorization`, `cors` | Prima di eseguire l'azione, il codice verifica *chi* chiama (autenticazione) e *se può* farlo su quel dato (autorizzazione)? Oppure ogni chiamante riceve lo stesso trattamento? |
 | **J. Segnaposto e codice finto** | `TODO`, `FIXME`, `placeholder`, `mock`, `stub`, `dummy`, `fake` | È lavoro incompleto o simulato lasciato dall'LLM al posto della logica reale? Il codice restituisce un «sì» fisso (`return True`, `return true`) o usa dati inventati? Controlla anche eventuali controlli disattivati con `#` o `//` davanti |
+
+> *(Famiglia F: vedi lo **Step 17 (Secret Scanning)**.  
+> Famiglia G: vedi lo **Step 14 (Least Authority)** e l'**Appendice ♖ (Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime)** per comprendere i vincoli del kernel.)*
 
 Bash ha anche l'idioma `|| true` («se il comando fallisce, fingi di niente»): va cercato insieme a `2>/dev/null`.
 
@@ -32878,6 +32914,8 @@ if [ ! -e "$FILE" ]; then echo "$DATI" > "$FILE"; fi
 
 **Correzione di principio.** Controllo e azione devono essere **un'unica operazione indivisibile**: una transazione (gruppo di operazioni che riescono o falliscono insieme), un aggiornamento condizionato direttamente nel database, un blocco (*lock*) sul file. Cerca ogni `if` seguito, qualche riga dopo, da un'azione che dipende da esso.
 
+> *(Vedi: **Step 6 (Critical Properties & Invariants - Box didattico sulla concorrenza)**)*
+
 #### 4.5 La Precondizione Debole
 
 **Rischio reale.** Il codice assume che i dati arrivino sempre puliti, presenti, positivi, del tipo giusto. La realtà manda liste vuote, numeri negativi, testo al posto di numeri, variabili non impostate. **Come appare:** nessuna riga di controllo prima del primo uso del dato.
@@ -32978,6 +33016,8 @@ CODICE>>>
 ```
 
 **Come leggere le risposte.** Riconcilia sempre la tabella con la Sezione 3: se il Prompt 2 elenca 5 righe di rete e la ricerca testuale ne trova 7, l'LLM ne ha omesse due. Le **omissioni** sono il guasto tipico di questo metodo. Controlla a caso almeno tre righe citate: il numero corrisponde? il testo è identico?
+
+> *Come interrogare un modello senza inquinarlo con premesse suggestive? Vedi: **Step 20 (Multi-Model Audit)** e [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng) - Template 4 (Blind Code Review).*
 
 > [!TIP]
 > Esegui lo stesso prompt due volte, o su due modelli diversi, e confronta. Ogni differenza tra le risposte è un punto UNKNOWN: va risolto leggendo la riga, non scegliendo la versione che ti convince di più.
@@ -33153,6 +33193,8 @@ Ctrl+F su questo script: `SilentlyContinue` zero occorrenze, `Invoke-Expression`
 
 **Regola di esito.** Una domanda senza risposta documentata è un UNKNOWN. Un UNKNOWN su un Sink è un NO-GO *per rischio non verificato*; un difetto accertato è un NO-GO *per difetto*. Entrambi bloccano il via libera, ma si sbloccano in modi diversi: il primo con una prova, il secondo con una correzione (e poi con una nuova ispezione). Il via libera non si dà per sfinimento né per fiducia nel tono dell'LLM: si dà solo quando ogni domanda ha una risposta che si può mostrare a un terzo, riga per riga.
 
+> *(Vedi: principio di **Falsificazione Popperiana (Appendice ⊙ - Elementi di Logica, sez. 11.3)**.)*
+
 #### Il verbale d'ispezione
 
 Il verbale è il prodotto finale dell'ispezione: una riga per ogni NO-GO e per ogni UNKNOWN; i CHIARO si possono raggruppare.
@@ -33178,6 +33220,8 @@ Nella colonna Esito si distinguono i due NO-GO: «difetto» (accertato dalla let
 
 > [!WARNING]
 > «Non capisco questa riga, quindi non la approvo» è la frase più professionale che un ispettore possa pronunciare. Chi la pronuncia non rallenta il progetto: lo protegge da un difetto che nessuno avrebbe visto.
+
+> *Vedi: Capitolo 22 (Discrepancy Analysis).*
 
 ---
 
