@@ -25,12 +25,17 @@
 
 ---
 
-**⛓ Assurance del Software Assistito da LLM**  
-## Indice completo
+**⛓ Assurance del Software Assistito da LLM  
+Principi, Verifica, Evidenze e Governance**
 
-- ⌘ Informazioni sul documento
+## **Indice generale**
+
+- Informazioni sul documento  
+  
+### PREMESSE
+
 - ➠ Nota terminologica
-- ◉ Quadro  Didattico: l'ecosistema dell'AI e la specificità degli LLM
+- ◉ Quadro Didattico: l'ecosistema dell'AI e la specificità degli LLM
 - ⛶ Guida di Lettura per Ruoli
 
 ### PARTE I — Fondamenti epistemici e decisionali
@@ -51,7 +56,7 @@
 12. Assumption Verification — verifica delle assunzioni critiche
 - ⓘ Punto di Controllo I — Dalla comprensione del problema all'atto costruttivo
 
-### PARTE II — Implementazione e verifica  
+### PARTE II — Implementazione e verifica
 
 13. Implementation Design — progettazione dell'implementazione
 14. Containment & Least Authority — contenimento e minima autorità
@@ -89,6 +94,7 @@
 - ※ Concetti di Psicologia Cognitiva e Fattori Umani
 - ✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit
 - ⌨ Prompt Engineering Contrattuale e Difensivo
+- ❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori
 - ⬡ Strumenti per la verifica e l’assurance del software assistito da LLM
 - ⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale
 - ▣ Progettazione di Sandbox ed Esecuzione Isolata
@@ -99,8 +105,10 @@
 - ✧ Prompt Master per lo studio dei singoli step
 - ❖ GLOSSARIO
 - ▤ Bibliografia essenziale
-- ✍ Nota di trasparenza e genesi del testo
-- 🄯 GNU Free Documentation License
+
+&nbsp;
+- Nota di trasparenza e genesi del testo  
+- GNU Free Documentation License
 
 </details>
 
