@@ -97,6 +97,7 @@ Principi, Verifica, Evidenze e Governance**
 - [※ Concetti di Psicologia Cognitiva e Fattori Umani](#appendice-psico)
 - [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm)
 - [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng)
+- [❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)
 - [⬡ Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
 - [⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale](#appendice-moltiplicatore-personale)
 - [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
@@ -32539,6 +32540,644 @@ Nella stesura di valutazioni di sicurezza o audit occorre distinguere tra standa
 - **Greshake, K., Abdelnabi, S., Mishra, S., Endres, C., Holz, T., & Fritz, M. (2023):** *Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection* (AISec / ACM) — formalizzazione dell'Indirect Prompt Injection e dell'inversione dei confini di fiducia tramite dati esterni [4.1.1, 4.1.2].
 - **Wei, A., Haghtalab, N., & Steinhardt, J. (2023):** *Jailbroken: How Does LLM Safety Training Fail?* (NeurIPS) — analisi delle modalità di fallimento dell'allineamento tramite *competing objectives* e *mismatched generalization* [4.3.1, 4.3.7].
 - **Wallace, E., Xiao, K., Leike, R., Weng, L., Heidecke, J., & Beutel, A. (2024):** *The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions* — studio sui meccanismi di addestramento alla gerarchia delle istruzioni e sui relativi limiti probabilistici [4.2.1].
+
+---
+
+<div class="pagebreak"></div>
+
+[Torna all'Indice](#indice-completo)
+
+<a name="appendice-ispezione-codice"></a>
+
+## ​❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori
+
+**Python · JavaScript / Node.js · Bash · PowerShell**
+
+### Indice dell' appendice 
+
+- **Introduzione**
+1. Il **Modello Mentale Unico**: Tutta la Programmazione in 3 Passaggi
+2. La «**Stele di Rosetta**» Comparativa a 4 Colonne
+3. La «**Caccia alle Parole-Ancora**»: Leggere con Ctrl+F
+4. I **6 Grandi «Red Flag» dell'AI** nei 4 Linguaggi
+5. **L'LLM come «Evidenziatore Meccanico»** (Non come Giudice)
+6. Tre **Laboratori di Ispezione Guidata** a Doppia Colonna, più un Laboratorio di Controllo
+7. La **Checklist di Falsificazione Mentale** in 5 Domande
+
+---
+
+### Introduzione — L'Ispezione Visiva del Codice come Atto di Autodifesa
+
+Chi valida software generato da un LLM (Large Language Model: il sistema di intelligenza artificiale che produce testo e codice) vive un paradosso. Il codice arriva quasi sempre con una spiegazione fluida, ordinata, rassicurante. Ma quella spiegazione nasce dallo stesso meccanismo che ha scritto il codice: un generatore di ciò che è *plausibile*. Quando l'LLM scrive «questa funzione gestisce tutti gli errori», non riferisce ciò che il codice *fa*: produce la frase che, in quel contesto, suona più credibile. **Non ci si può fidare della spiegazione dell'LLM per validare il codice dell'LLM**: sarebbe come far certificare un ponte al suo costruttore, sulla base del suo opuscolo commerciale.
+
+Tre principi del manuale reggono l'intera appendice:
+
+- **Plausibilità ≠ Correttezza.** Commenti eleganti e nomi chiari non provano nulla: un codice dall'aspetto impeccabile può essere logicamente disastroso.
+- **Funzionante ≠ Verificato.** Un codice che «gira» sul caso facile, senza schermate rosse, non è per questo sicuro.
+- **Presunzione di non-idoneità.** Il codice generato da LLM è *non fidato a priori* fino a prova contraria. L'onere della prova sta sul codice, non sul revisore.
+
+**Costruire la casa e ispezionarla sono mestieri diversi.** Il programmatore sa gettare i pilastri. L'ispettore edilizio non sa (e non deve sapere) gettarne uno: sa dove guardare per vedere se è crepato, se il ferro è scoperto, se manca un muro portante. Questa appendice forma ispettori, non muratori. Non insegna a scrivere codice: insegna a leggerlo dall'esterno.
+
+**Il codice ha una sagoma.** Prima ancora di capire la sintassi (la grammatica del linguaggio), l'occhio allenato riconosce la forma dei difetti: un blocco di gestione degli errori che si chiude vuoto; un testo costruito incollando pezzi con il segno `+`; una chiamata verso internet senza alcun limite di attesa; una funzione che usa i dati ricevuti senza un solo controllo all'ingresso. Sono difetti visibili a occhio nudo, in qualunque linguaggio.
+
+> [!WARNING]
+> L'ispezione visiva serve a trovare i motivi per **non** approvare un codice. Un codice che la supera non è «verificato»: è soltanto «non ancora respinto». La verifica vera richiede esecuzione, test e prove indipendenti, trattati nel resto del manuale.
+
+Ogni termine tecnico è spiegato in linguaggio semplice alla sua prima comparsa.  
+**Perimetro d'uso.** Questa guida dà il massimo su singoli script e funzioni brevi (automazioni, piccoli servizi, utilità). Su software complessi divisi in molti file incontrerai presto righe che rimandano altrove: non devi forzare la lettura né ricostruire l'intero sistema, ma fermarti e passare la mano. Anche tracciare il confine di ciò che non è verificabile da solo è ispezione.
+
+---
+
+### 1. Il Modello Mentale Unico: Tutta la Programmazione in 3 Passaggi
+
+Python, JavaScript, Bash e PowerShell hanno grammatiche diversissime, ma ai fini dell'ispezione ogni script può essere letto come se facesse soltanto tre cose (è un modello di lettura, non una teoria della programmazione):
+
+| Passaggio | Nome | Che cos'è | Esempi concreti |
+|---|---|---|---|
+| 1 | **Sorgente** (*Source*) | Da dove entra il dato | Argomenti ricevuti, testo digitato da un utente, file letto, risposta di un servizio di rete, variabile d'ambiente (impostazione esterna del computer) |
+| 2 | **Trasformazione pura** | Calcoli e rielaborazioni in memoria temporanea | Somme, confronti, ricomposizione di testo. Se il programma si ferma qui, fuori non è cambiato nulla |
+| 3 | **Punto di Impatto** (*Sink*) | Dove il programma tocca il mondo esterno | Scrivere o cancellare file, comandi SQL (il linguaggio con cui si interrogano i database), richieste di rete, comandi lanciati sul computer |
+
+Pensa a una cucina. Gli ingredienti arrivano dal fornitore (Source), lo chef li taglia e li mescola sul tagliere (Trasformazione), il piatto esce in sala (Sink). Un errore di taglio si corregge sul tagliere; un piatto avvelenato, una volta in sala, non si richiama. Per questo il Sink è il luogo dove il rischio diventa danno: ogni riga che lo raggiunge produce un **side-effect** (effetto collaterale: un cambiamento fuori dal programma, che non si annulla ritirando il risultato).
+
+> [!TIP]
+> **Perché «tutta» la programmazione in tre passaggi?** Perché il modello serve a ispezionare, non a spiegare come si programma. I programmi reali hanno anche cicli, funzioni, oggetti, attività concorrenti, e nessuno li ridurrebbe a tre mosse. Ma per chi ispeziona ogni riga si riconduce a una domanda: da dove viene questo dato, che cosa ne faccio, dove va a finire? Una riga che non riesci a collocare in nessuno dei tre passaggi non è fuori dal modello: è UNKNOWN.
+
+#### Il Protocollo di Ispezione Inversa
+
+Chi legge dall'alto in basso, come un racconto, si lascia trascinare dalla narrazione plausibile delle prime righe. Si legge dunque **al contrario**, in quattro passaggi:
+
+1. **Uscita.** Che cosa restituisce il codice (`return`, `res.json`, `echo`, `Write-Output`) e che cosa fa quando qualcosa va storto? Il guasto può prendere la forma di un'**eccezione** (segnale d'allarme interno che interrompe l'esecuzione) oppure di un valore «di ripiego». Domanda chiave: chi riceve il risultato può distinguere un successo da un fallimento?
+2. **Punti di Impatto.** Quali righe toccano file, rete, database, comandi? Vanno sottolineate e numerate.
+3. **Guardie.** Che cosa controlla il codice *prima* di arrivare a quei punti: dato presente? numerico? positivo? dentro il perimetro consentito? Le guardie sono le porte blindate all'ingresso. Una guardia assente è un difetto, anche se nessuna riga lo mostra. Fai attenzione a un inganno frequente: scrivere una funzione (`def`, `function`) prepara solo la ricetta, non la esegue. Una funzione di controllo presente nel file ma mai richiamata *prima* del Sink (o chiamata solo dopo) non protegge nulla.
+4. **Calcolo interno.** Solo alla fine, e solo se i passaggi 1–3 non hanno già prodotto un NO-GO, si guarda la matematica.
+
+Un esempio minimo (Python):
+
+```python
+def archivia(nome_file, contenuto):
+    if not nome_file:
+        raise ValueError("nome mancante")
+    with open("/archivio/" + nome_file, "w") as f:
+        f.write(contenuto)
+    return True
+```
+
+*Uscita*: restituisce `True` oppure solleva un'eccezione: accettabile. *Sink*: `open(..., "w")` scrive un file, e il percorso è costruito incollando due testi con `+`. *Guardie*: l'unico controllo verifica che il nome non sia vuoto; nessuno impedisce un nome come `../etc/qualcosa`, che esce dalla cartella prevista. *Calcolo*: non c'è. L'ispezione ha già prodotto un allarme senza richiedere di capire una sola parola di Python.
+
+> [!TIP]
+> Per ogni riga, l'esito ammesso è uno di tre. **CHIARO**: so spiegare con parole mie che cosa fa e perché è sicura. **UNKNOWN**: non so. **NO-GO**, in due varianti che non vanno confuse: *per difetto accertato* (ho trovato l'errore: si risolve correggendo) oppure *per rischio non verificato* (una riga che tocca il mondo esterno è rimasta UNKNOWN: si risolve con una prova). Il primo è un fatto, il secondo una mancanza di prove; entrambi bloccano il via libera. Dichiarare «non capisco questa riga, quindi non la approvo» non è ignoranza: è rigore ingegneristico. Ciò che non si comprende non si firma.
+
+---
+
+### 2. La «Stele di Rosetta» Comparativa a 4 Colonne
+
+**Come riconoscere il linguaggio a colpo d'occhio.**  
+- **Python:** righe che finiscono con `:` e blocchi rientrati, niente graffe.  
+- **JavaScript:** graffe `{ }`, parole `const`, `let`, `await`, `=>`.  
+- **Bash:** parole di chiusura come `fi`, `done`, `esac`, e `$` davanti ai nomi delle variabili.  
+- **PowerShell:** nomi composti da verbo e sostantivo (`Get-Item`, `Remove-Item`), variabili con `$` e operatori col trattino (`-eq`).
+
+**E se incontri TypeScript (file `.ts`)?**  
+Ha la stessa sagoma di JavaScript (graffe `{ }`, `const`, `await`, `=>`), con in più le etichette sul tipo dei dati (come `prezzo: number` o `nome: string`). Leggilo come JavaScript, facendo però attenzione a due trappole tipiche. La prima sono le parole `any`, `as any` o commenti come `@ts-ignore`, che funzionano da botole e spengono quei controlli. La seconda è fidarsi troppo delle etichette: i tipi di TypeScript controllano il codice *prima* che venga eseguito, ma non verificano da soli i dati reali che arrivano dall'esterno (moduli web, file, risposte di rete). Servono comunque le guardie.
+
+**Come riconoscere ciò che il computer ignora (i commenti).**  
+Un **commento** è una parte di testo che il computer salta del tutto durante l'esecuzione, come se non esistesse. Ricordalo per due motivi: una frase rassicurante scritta in un commento non prova nulla e non esegue alcun controllo, mentre una riga di sicurezza con il simbolo di commento davanti (per esempio `# verifica_permessi()`) è una guardia **spenta**, anche se continui a leggerla sullo schermo. Fuori dalle virgolette del testo (come in `"https://..."`), i simboli cambiano da un linguaggio all'altro:
+- **Python:** tutto ciò che segue `#` fino a fine riga; inoltre i blocchi descrittivi isolati tra `"""..."""` (spesso all'inizio di file o funzioni).
+- **JavaScript:** tutto ciò che segue `//` fino a fine riga, oppure tutto ciò che è racchiuso tra `/*` e `*/` su una o più righe.
+- **Bash:** tutto ciò che segue `#` fino a fine riga (unica eccezione: la prima riga `#!/bin/bash`, che indica quale interprete usare).
+- **PowerShell:** tutto ciò che segue `#` fino a fine riga, oppure tutto ciò che è racchiuso tra `<#` e `#>` su più righe.
+
+*La stessa idea si scrive in quattro modi.* La seguente tabella mette i costrutti fondamentali uno accanto all'altro, così da riconoscere lo stesso difetto sotto grammatiche diverse. Le righe sono raggruppate secondo la triade della Sezione 1: ciò che entra, ciò che si trasforma in memoria, ciò che tocca il mondo.
+
+| Costrutto | Python | JavaScript / Node.js | Bash (POSIX Shell) | PowerShell |
+|---|---|---|---|---|
+| **① INGRESSO (Source)**: ciò che entra, dati e codice altrui | | | | |
+| **Funzione e argomenti** (blocco di istruzioni con un nome, che riceve dati dall'esterno; definirla non la esegue finché non viene richiamata) | `def totale(prezzo, qta):` Il corpo è rientrato (indentato) | `function totale(prezzo, qta) {` oppure `const totale = (prezzo, qta) => {` Corpo tra graffe | `totale() {` Gli argomenti non hanno nome: sono `$1`, `$2`… | `function Totale { param($Prezzo, $Qta)` I parametri possono avere tipo e vincoli |
+| **Valore assente o vuoto** (il «niente»: quando un dato manca) | `None`. Anche `""` e `0` contano come «falsi» in un `if`: `if not x` non distingue lo zero dall'assenza | `null` e `undefined` sono due «niente» diversi. `dato \|\| 10` scarta anche uno `0` legittimo | Il «niente» non esiste: senza `set -u`, una variabile non impostata vale testo vuoto. `${VAR:-0}` la sostituisce in silenzio | `$null`. Anche `""` e `0` sono «falsi» in `if ($x)`, quindi il controllo non distingue assenza e zero |
+| **Conversione di tipo** (*casting*: forzare un dato da un tipo all'altro, ad esempio da testo a numero) | `int("abc")` solleva un errore; `int(3.7)` dà `3`, scartando i decimali senza avviso | Conversioni *implicite*: `"5" * 2` dà `10`, `"5" + 2` dà `"52"`. `Number("abc")` dà `NaN`; `parseInt("12abc")` dà `12` | Tutto è testo. Dentro `$(( ))` una parola non numerica può valere 0 senza errore | `[int]"abc"` solleva un errore; `[int]3.7` dà `4`: arrotonda (sui casi a metà, al numero pari: `[int]2.5` dà `2`) invece di scartare i decimali come fa Python. Decide il termine di sinistra: `"5" + 2` dà `"52"`, `2 + "5"` dà `7` |
+| **Importazione di librerie** (insiemi di funzioni scritte da altri, che il programma incorpora) | `import requests`, `from x import y` | `require("express")`, `import ... from "..."` | `source file`, e programmi esterni (`curl`, `jq`) che si presume installati | `Import-Module X`, e `. .\script.ps1` (carica un altro script) |
+| **② TRASFORMAZIONE e flusso di controllo** (in memoria) | | | | |
+| **Numeri e denaro** | `float` è impreciso: `0.1 + 0.2` dà `0.30000000000000004`. Sicuro: `Decimal("0.10")` | Ogni numero è un `Number` binario: `0.1 + 0.2 !== 0.3`. Sicuro: interi in centesimi | Solo interi: `$((10/3))` dà `3`, il resto sparisce senza avviso. I decimali passano da programmi esterni che trattano testo | `1.5` è un `[double]` (binario, impreciso). Sicuro: `[decimal]` o suffisso `d`, come `0.10d` |
+| **Condizioni** (`if / else`: «se… altrimenti…», il programma sceglie una strada) | `if x > 0:` poi `elif`, `else:` | `if (x > 0) { } else { }`. Attenzione: `==` converte i tipi prima di confrontare (`"5" == 5` è vero), `===` no | `if [ "$x" -gt 0 ]; then … fi` Spazi e virgolette sono obbligatori: se mancano, il test cambia significato o si rompe. Si chiude con `fi` | `if ($x -gt 0) { } else { }` Operatori col trattino: `-gt` (maggiore), `-eq` (uguale), `-lt` (minore) |
+| **Cicli e ripetizioni** (eseguire le stesse istruzioni per ogni elemento o finché vale una condizione) | `for x in lista:` e `while condizione:`. Attenzione a `while True:`: senza un'uscita sicura (`break`, `return`) gira all'infinito | `for (const x of lista) { }`, `lista.forEach(...)`, `while (...) { }`. Un ciclo senza uscita sicura o con chiamate esterne non limitate può bloccare o saturare il servizio | `for f in ...; do ... done` e `while ...; do ... done`. Se dentro il ciclo mancano le virgolette su `"$f"`, un nome con spazi spezza il comando | `foreach ($x in $lista) { }`, `while (...) { }`, o a catena con `| ForEach-Object { }`. Ripetizioni su file o rete vanno protette con limiti e gestione degli errori |
+| **Cattura degli errori** (la «botola») | `try:` … `except Exception:` | `try { }` `catch (e) { }` | Non esiste `try`: si legge l'esito `$?` o si usa `set -e`, che riduce gli errori ignorati ma ha eccezioni (non scatta, per esempio, dentro la condizione di un `if` o in catene con `&&` e `\|\|`). Botole tipiche: `2>/dev/null`, `\|\| true` | `try { } catch { }`, ma gli errori «non terminanti» sfuggono se manca `-ErrorAction Stop`. Botola: `SilentlyContinue` |
+| **Concatenazione pericolosa** (qui si annidano le iniezioni) | `"... '" + nome + "'"` oppure `f"... {nome}"` | `"..." + nome` oppure *template literal* (testo con dati incorporati) con `${nome}` | `"... $input"`, percorsi senza virgolette, `eval "... $x"` | `"... $nome"` passato a `Invoke-Expression` |
+| **③ PUNTO DI IMPATTO (Sink)**: ciò che tocca il mondo | | | | |
+| **Lettura e scrittura di file** (dati che restano sul disco; sovrascrivere o cancellare di norma non ha «annulla») | `open("f", "w")` azzera il file esistente, `"a"` aggiunge in coda. Cancellare: `os.remove`, `shutil.rmtree` (intera cartella) | `fs.writeFile` sostituisce il contenuto, `fs.appendFile` aggiunge. Cancellare: `fs.rm(..., { recursive: true })` | `>` sovrascrive in silenzio, `>>` aggiunge in coda. Cancellare: `rm`, `rm -rf` | `Set-Content` e `Out-File` sostituiscono, `Add-Content` aggiunge. Cancellare: `Remove-Item -Recurse -Force` |
+| **Comandi di sistema** (lanciati sul computer ospite) | `subprocess.run([...])`, `os.system("...")` | `child_process.exec("...")`, `execSync` | Il comando *è* il linguaggio. Varianti pericolose: `eval`, `bash -c`, backtick, `$(...)` | `& comando`, `Start-Process`, `Invoke-Expression` (alias `iex`) |
+
+**Come leggere questa tabella.** Non devi capire ogni cella, e non devi ricordare la sintassi. Leggi **per riga**: ogni riga è un'idea sola, scritta in quattro modi. Il testo in `carattere a spaziatura fissa` è come l'idea appare nel codice; il testo normale spiega perché conta. Le espressioni «senza avviso», «in silenzio», «scarta» segnalano le trappole: sono le celle più importanti. Le tre fasce (INGRESSO, TRASFORMAZIONE, PUNTO DI IMPATTO) richiamano la triade della Sezione 1: se in una fascia non sai da dove cominciare, parti dall'ultima, quella che tocca il mondo.
+
+> [!WARNING]
+> **Il denaro non si calcola con numeri «con la virgola» binari.** Un `float` (numero in virgola mobile: approssimazione binaria dei decimali) non può rappresentare esattamente 0,10. Su una fattura l'errore è invisibile; su centomila fatture è un ammanco. Quando in un calcolo monetario compare `float`, `double`, `Number` o `[double]`, l'esito minimo è UNKNOWN.
+
+> [!WARNING]
+> **Un ciclo moltiplica il rischio, e un `while` senza freno non si ferma mai.** Quando vedi un comando di rete, database o cancellazione (un Sink) *dentro* un ciclo, il danno o il costo non avviene una volta sola, ma a ogni giro. Cerca sempre un limite massimo di giri o di elementi e chiedi che cosa accade se il ciclo lavora su un milione di righe o su una risposta esterna infinita.
+
+---
+
+### 3. La «Caccia alle Parole-Ancora»: Leggere con Ctrl+F
+
+In 60 secondi, anche su un file di 500 righe, la ricerca testuale (Ctrl+F su Windows e Linux, Cmd+F su Mac) localizza i punti dove si annidano i guasti. Non si cerca di *capire*, ma di *localizzare*. Ogni occorrenza non è un verdetto: è una **domanda da porre**.
+
+| Famiglia | Parole-ancora da cercare | Domanda da porre a ogni occorrenza |
+|---|---|---|
+| **A. Botole** (nascondono i guasti) | Python: `except`, `pass`. JavaScript: `catch`, `.catch(`. Bash: `2>/dev/null`, `set +e`. PowerShell: `SilentlyContinue`, `-ErrorAction` | Che cosa c'è dentro? Il guasto viene registrato, segnalato o ri-lanciato, oppure sparisce e il programma prosegue come se nulla fosse? |
+| **B. Rete senza freni** | `http`, `https`, `fetch`, `request`, `requests.`, `curl`, `Invoke-WebRequest`, `Invoke-RestMethod`, `axios` | Vicino a ogni chiamata c'è un limite di attesa (`timeout`, `--max-time`, `-TimeoutSec`, `AbortSignal`)? Si controlla l'esito prima di usare la risposta? |
+| **C. Porte aperte** | `eval`, `exec`, `system`, `Invoke-Expression`, `iex`, `bash -c`, `sh -c`, `shell=True`, `child_process` | Dentro il comando c'è un dato proveniente dall'esterno, incollato con `+`, `${}`, `$`? Chi ne garantisce il contenuto? |
+| **D. Trappole numeriche** | `float`, `double`, `Number(`, `parseFloat`, `[double]`, `round(` | Il numero rappresenta denaro, quantità contabili, percentuali fiscali? Allora serve un tipo esatto (`Decimal`, `[decimal]`, interi in centesimi) |
+| **E. Distruzione** | `rm`, `-rf`, `Remove-Item`, `-Force`, `-Recurse`, `DROP`, `TRUNCATE`, `DELETE`, `UPDATE`, `unlink` | Qual è il perimetro? Il percorso è controllato (o, in SQL, esiste un filtro `WHERE` preciso)? Esiste un backup *verificato* prima di modificare o cancellare? |
+| **F. Segreti e dati sensibili** | `password`, `passwd`, `token`, `api_key`, `secret`, `Bearer`; e ciò che va a `print`, `console.log`, `echo`, `Write-Host`, `logging` | C'è una credenziale scritta nel codice (*hard-coded*: incisa nel testo del programma, leggibile da chiunque lo apra)? Un segreto o un dato personale finisce in un registro (*log*) o in una richiesta di rete? |
+| **G. «Scarica ed esegui» e privilegi** | `curl ... \| sh`, `wget ... \| bash`, `Invoke-Expression` (`iex`) applicato a un download, `sudo`, `chmod 777`, `Set-ExecutionPolicy`, `-Verb RunAs` | Il codice esegue qualcosa che ha appena scaricato, senza che nessuno lo abbia letto? Chiede privilegi di amministratore o apre i permessi a tutti? Perché ne ha bisogno? |
+| **H. Dipendenze** | `import`, `from ... import`, `require(`, `source`, `Import-Module` | Ogni nome è codice di altri che nessuno ha letto: esiste davvero, è quello giusto, chi lo ha scelto? |
+| **I. Accessi** | `auth`, `login`, `session`, `role`, `admin`, `permission`, `Authorization`, `cors` | Prima di eseguire l'azione, il codice verifica *chi* chiama (autenticazione) e *se può* farlo su quel dato (autorizzazione)? Oppure ogni chiamante riceve lo stesso trattamento? |
+| **J. Segnaposto e codice finto** | `TODO`, `FIXME`, `placeholder`, `mock`, `stub`, `dummy`, `fake` | È lavoro incompleto o simulato lasciato dall'LLM al posto della logica reale? Il codice restituisce un «sì» fisso (`return True`, `return true`) o usa dati inventati? Controlla anche eventuali controlli disattivati con `#` o `//` davanti |
+
+Bash ha anche l'idioma `|| true` («se il comando fallisce, fingi di niente»): va cercato insieme a `2>/dev/null`.
+
+> [!WARNING]
+> **Un nome di libreria che nessuno ha verificato è UNKNOWN.** Un LLM può importare pacchetti che non esistono o che somigliano a quelli reali. Prima di approvare uno script, per ogni `import`, `require`, `source`, `Import-Module` chiedi: esiste davvero? è quello giusto? chi lo ha scelto e da dove proviene? Oltre all'esistenza contano tre cose. La **versione**: è fissata a un numero preciso (come `nome==1.2.3`, o un file di blocco come `package-lock.json`) oppure è «l'ultima disponibile», che domani può essere diversa da quella che hai ispezionato? La **fonte**: viene dal registro pubblico ufficiale del linguaggio o da un indirizzo insolito, da una copia scaricata a mano? L'**integrità**: esistono impronte (*hash*) che garantiscono che il pacchetto sia quello atteso? Se non si vedono nel codice, sono UNKNOWN da chiudere con chi gestisce il progetto.
+
+**Il protocollo dei 60 secondi:**
+
+1. Apri il file e cerca una famiglia alla volta.
+2. Per ogni occorrenza annota il numero di riga e una parola: «botola», «rete», «comando», «denaro», «cancella».
+3. Cerca anche ciò che **dovrebbe esserci e manca**: se `http` compare quattro volte e `timeout` zero volte, quel silenzio è il segnale più forte dell'intera scansione.
+4. Contrassegna ogni occorrenza con CHIARO, UNKNOWN o NO-GO, secondo la Sezione 1.
+5. Il risultato è una lista di righe da interrogare, non un giudizio.
+
+> [!TIP]
+> Attiva l'opzione «parola intera» del campo di ricerca: `sh` da solo compare in decine di parole innocue (*should*, *hash*). Attiva anche «maiuscole/minuscole» quando cerchi parole di PowerShell.
+
+> [!WARNING]
+> La ricerca testuale è uno **screening**, non una prova. Un comando può essere costruito a pezzi o richiamato con un nome diverso, e una parola trovata non è necessariamente un difetto. Il suo valore è dirti *dove guardare per primo*.
+
+#### Approfondimenti: che cosa rispondere quando la ricerca trova qualcosa
+
+Quattro famiglie meritano qualche riga in più, perché la domanda da porre non basta da sola: serve sapere che cosa conta come buona risposta.
+
+**Backup: tre livelli (famiglia E).** «Abbiamo fatto il backup» può voler dire tre cose molto diverse. *Creato*: il file esiste. *Verificato*: è integro e completo (ad esempio si confronta la sua impronta digitale, o *checksum*, con quella dell'originale, oppure lo si apre e si contano i contenuti). *Ripristinabile*: qualcuno ha provato davvero a rimetterlo al suo posto, in un ambiente di prova, e i dati sono tornati utilizzabili. Un codice che prima di una cancellazione si ferma al livello 1 non ha un backup: ha un'ipotesi. Chiedi sempre a quale livello si ferma lo script e quando è stato eseguito l'ultimo ripristino di prova.
+
+**Comandi SQL e file `.sql` (famiglia E).** Quando trovi istruzioni per un database (dentro uno script o in un file `.sql`), leggi prima il verbo iniziale: **`SELECT`** legge, **`INSERT`** aggiunge, **`UPDATE`** modifica, mentre **`DELETE`**, **`TRUNCATE`** e **`DROP`** cancellano righe o intere tabelle. Il guasto più grave e frequente è un `DELETE` o un `UPDATE` **senza la clausola `WHERE`** (il filtro che dice *quali* righe toccare): senza `WHERE`, il comando modifica o cancella **l'intera tabella** in un colpo solo. Prima di approvare uno script che altera dati esistenti, verifica tre cose: che ogni `UPDATE` e `DELETE` abbia un `WHERE` chiaro (meglio se provato prima con un `SELECT` equivalente per vedere quante righe colpisce), che le modifiche siano racchiuse in una **transazione** (`BEGIN` ... `COMMIT`, o `START TRANSACTION`, che annulla tutto se qualcosa fallisce a metà) e che esista un backup verificato.
+
+**Segreti: dove vive una credenziale (famiglia F).** Esistono tre luoghi, in ordine crescente di sicurezza. (1) *Scritta nel codice* (*hard-coded*): è il caso peggiore, perché finisce in ogni copia, archivio e anteprima del programma; è un NO-GO per difetto. (2) *Variabile d'ambiente* (impostazione esterna al programma, letta all'avvio): meglio, ma resta visibile ad altri processi e talvolta nei registri di diagnostica; accettabile se si sa chi la imposta e il codice non la stampa. (3) *Sistema dedicato di gestione dei segreti* (*secret manager*: una cassaforte con accessi tracciati e sostituzione periodica delle chiavi): nulla da obiettare sul punto, ma resta da controllare che il segreto non venga poi scritto in un registro. Un segreto finito anche una sola volta in un archivio di codice condiviso va considerato compromesso, anche se cancellato subito dopo.
+
+**Privilegio minimo (famiglia G).** Il codice deve avere solo i permessi che servono al suo compito: un backup deve poter leggere una cartella e scrivere in un'altra, non essere amministratore del computer. Domande: con quale utente gira? Perché servono quei permessi? Parole-ancora: `sudo`, `root`, `Administrator`, `-Verb RunAs`, `chmod 777`, `0777`. Un permesso in eccesso è un difetto anche se oggi non succede nulla: moltiplica il danno di ogni altro difetto del codice.
+
+**Accessi: chi può chiedere? (famiglia I).** Sono due controlli distinti, e un LLM tende a scriverne al massimo uno. *Autenticazione*: «chi sei?», cioè il sistema verifica l'identità di chi chiama. *Autorizzazione*: «ti è permesso?», cioè verifica che quella persona possa compiere *quell'azione su quel dato*. Il caso tipico è un servizio che riceve un identificativo (ad esempio `/fatture/123`) e restituisce il documento senza controllare che appartenga a chi lo chiede: l'utente è identificato, ma legge le fatture altrui. Parole-ancora: `auth`, `login`, `session`, `role`, `admin`, `permission`, `Authorization`, `cors`. Se in un punto d'ingresso raggiungibile dall'esterno non compare nessuna di queste parole, la risposta alla domanda «chi può chiamarlo?» è, fino a prova contraria, «chiunque». Se i controlli stanno altrove nel programma e non si vedono in questo frammento, la riga è UNKNOWN.
+
+---
+
+### 4. I 6 Grandi «Red Flag» dell'AI nei 4 Linguaggi
+
+Ciascuno dei sei difetti seguenti si presenta con una sagoma riconoscibile. Per ognuno trovi il rischio reale, l'aspetto visivo e la correzione di principio.
+
+#### 4.1 La Botola che Maschera il Guasto
+
+**Rischio reale.** Per non mostrare la «schermata rossa» (lo **stacktrace**: l'elenco delle chiamate che hanno portato al guasto), il codice inghiotte l'errore. Il sistema prosegue con uno stato sbagliato e nessuno viene avvisato. **Come appare:** `except`, `catch`, `2>/dev/null`, `SilentlyContinue` seguiti da niente, o da un semplice `pass`.
+
+```python
+# DIFETTO
+try:
+    salva_fattura(f)
+except Exception:
+    pass
+
+# CORRETTO
+try:
+    salva_fattura(f)
+except OSError as errore:
+    log.error("Salvataggio fallito: %s", errore)
+    raise
+```
+
+```javascript
+// DIFETTO
+try { await salvaFattura(f); } catch (e) {}
+
+// CORRETTO
+try { await salvaFattura(f); } catch (e) { console.error(e); throw e; }
+```
+
+```bash
+# DIFETTO
+cp fattura.pdf /archivio/ 2>/dev/null || true
+
+# CORRETTO
+set -euo pipefail
+cp fattura.pdf /archivio/ || { echo "Copia fallita" >&2; exit 1; }
+```
+
+```powershell
+# DIFETTO
+Copy-Item .\fattura.pdf D:\Archivio -ErrorAction SilentlyContinue
+
+# CORRETTO
+try { Copy-Item .\fattura.pdf D:\Archivio -ErrorAction Stop }
+catch { Write-Error $_; throw }
+```
+
+**Correzione di principio.** Intercettare solo errori *nominati e previsti*, registrarli, e poi segnalarli o ri-lanciarli. In Bash, `set -euo pipefail` riduce gli errori ignorati: in molti casi ferma lo script davanti a un comando fallito, a una variabile non definita e a un guasto dentro una pipeline (catena di comandi collegati da `|`). **Non è una garanzia.** `set -e` ha eccezioni importanti: non scatta, per esempio, nella condizione di un `if`, nelle liste con `&&` e `||`, o dentro comandi richiamati in certi contesti. Non sostituisce il controllo esplicito dell'esito dei comandi critici, che resta compito del codice.
+
+#### 4.2 L'Iniezione Cieca di Stringhe
+
+**Rischio reale.** Il testo scritto da un utente viene incollato dentro un'istruzione e **diventa parte dell'istruzione**. È un modulo in cui il cliente, nel campo «Nome», scrive ordini aggiuntivi che l'impiegato esegue. **Come appare:** `+`, `f"..."`, `${...}`, `"... $variabile"` dentro comandi SQL o comandi di terminale.
+
+```python
+# DIFETTO (SQL)
+cur.execute("SELECT * FROM clienti WHERE nome = '" + nome + "'")
+# CORRETTO (parametro separato: il dato resta dato)
+cur.execute("SELECT * FROM clienti WHERE nome = ?", (nome,))
+```
+
+```javascript
+// DIFETTO
+db.query(`SELECT * FROM clienti WHERE nome = '${nome}'`);
+// CORRETTO
+db.query("SELECT * FROM clienti WHERE nome = $1", [nome]);
+```
+
+```bash
+# DIFETTO
+bash -c "ping -c 1 $HOST"
+# CORRETTO (dopo aver validato $HOST contro un elenco di caratteri ammessi)
+ping -c 1 -- "$HOST"
+```
+
+```powershell
+# DIFETTO
+Invoke-Expression "ping $Server"
+# CORRETTO
+Test-Connection -ComputerName $Server -Count 1
+```
+
+**Correzione di principio.** Mai costruire un comando incollando testo esterno: si usano interrogazioni *parametrizzate* (il simbolo segnaposto varia col driver: `?`, `$1`, `%s`), liste di argomenti separati, e la validazione dell'ingresso contro ciò che è ammesso.
+
+> [!WARNING]
+> **Il perimetro dei percorsi.** Un nome di file o di cartella che arriva dall'esterno può contenere `..` (risalita di cartella) o barre che escono dalla zona prevista: è il **path traversal** («attraversamento dei percorsi»). Controllare il *testo* del nome aiuta, ma non basta: un **collegamento simbolico** (*symlink*: un segnaposto che sembra una cartella ma rimanda altrove; su Windows, una *giunzione*) dentro la cartella consentita può puntare fuori. Tre domande per ogni lettura o cancellazione:
+> 1. Il nome è validato contro un elenco di caratteri ammessi, e non solo ripulito da `..`?
+> 2. Il percorso finale viene *risolto* (trasformato nel percorso reale sul disco) e confrontato con la cartella base prima dell'uso? Parole-ancora: `resolve` in Python, `fs.realpath` in Node, `realpath` in Bash. In PowerShell si cerca il controllo dell'attributo `ReparsePoint`, che segnala i collegamenti.
+> 3. Prima di una cancellazione ricorsiva, il codice evita di seguire i collegamenti?
+>
+> Se la risposta non si vede nel codice, la riga è UNKNOWN.
+
+#### 4.3 L'Assunzione Ottimistica di Rete
+
+**Rischio reale.** Si dà per scontato che il servizio esterno risponda, subito e bene. Se non lo fa, il programma resta in attesa senza limite, oppure usa come buona una risposta d'errore. **Come appare:** una chiamata senza `timeout` (**timeout**: tempo massimo di attesa) e senza alcun controllo dell'esito.
+
+```python
+# DIFETTO
+dati = requests.get(url).json()
+# CORRETTO
+r = requests.get(url, timeout=5)
+r.raise_for_status()
+dati = r.json()
+```
+
+```javascript
+// DIFETTO
+const r = await fetch(url); const dati = await r.json();
+// CORRETTO
+const r = await fetch(url, { signal: AbortSignal.timeout(5000) });
+if (!r.ok) throw new Error("Servizio esterno in errore: " + r.status);
+const dati = await r.json();
+```
+
+```bash
+# DIFETTO
+curl -s "$URL" | jq .tasso
+# CORRETTO
+curl --fail --silent --show-error --max-time 5 "$URL"
+```
+
+```powershell
+# DIFETTO
+$r = Invoke-RestMethod $url
+# CORRETTO
+$r = Invoke-RestMethod $url -TimeoutSec 5 -ErrorAction Stop
+```
+
+**Correzione di principio.** Ogni chiamata che esce dal processo (rete, database, comando esterno) ha un limite di attesa dichiarato, un controllo dell'esito e un comportamento definito per il fallimento. La regola vale sia per le chiamate che bloccano il programma finché non rispondono (*sincrone*), sia per quelle in cui il programma prosegue e attende la risposta con `await` (*asincrone*): l'`await` non introduce alcun limite da sé. Non vale per i calcoli puramente in memoria; vale invece per i file su dischi di rete o condivisi, che si comportano come una chiamata esterna. In Python, `requests` non applica alcun limite di attesa se non lo si scrive.
+
+#### 4.4 Il Controllo Disgiunto e la Falsa Sicurezza (Race Condition)
+
+**Rischio reale.** Si legge un valore a riga 2 e ci si fida che a riga 10 sia ancora vero. Nel frattempo il mondo può essere cambiato. Il difetto di fondo è il **controllo non atomico** (*atomico*: indivisibile): controllo e azione sono due operazioni separate, e tra l'una e l'altra c'è una finestra. Quando nello stesso momento lavorano altri processi o altre richieste, come in un servizio web, il difetto diventa una **race condition** («condizione di corsa»: due operazioni concorrenti che si pestano i piedi). Equivale a controllare il saldo alla cassa, andare al banco e scoprire che qualcuno l'ha speso. **Come appare:** un `if` che controlla, poi altre righe, poi l'azione che dà per buono il controllo.
+
+```python
+# DIFETTO
+if saldo(conto) >= importo:      # riga 2: controllo
+    registra_ordine(...)         # altre operazioni, passa del tempo
+    preleva(conto, importo)      # riga 10: uso
+```
+
+```bash
+# DIFETTO
+if [ ! -e "$FILE" ]; then echo "$DATI" > "$FILE"; fi
+```
+
+**Correzione di principio.** Controllo e azione devono essere **un'unica operazione indivisibile**: una transazione (gruppo di operazioni che riescono o falliscono insieme), un aggiornamento condizionato direttamente nel database, un blocco (*lock*) sul file. Cerca ogni `if` seguito, qualche riga dopo, da un'azione che dipende da esso.
+
+#### 4.5 La Precondizione Debole
+
+**Rischio reale.** Il codice assume che i dati arrivino sempre puliti, presenti, positivi, del tipo giusto. La realtà manda liste vuote, numeri negativi, testo al posto di numeri, variabili non impostate. **Come appare:** nessuna riga di controllo prima del primo uso del dato.
+
+```python
+# DIFETTO: con una lista vuota, divisione per zero
+def media(valori):
+    return sum(valori) / len(valori)
+```
+
+```bash
+# DIFETTO: se DIR è vuota, il percorso diventa /*
+rm -rf "$DIR"/*
+# CORRETTO: ferma lo script se la variabile è vuota
+rm -rf "${DIR:?variabile non impostata}"/*
+```
+
+```powershell
+# CORRETTO: i vincoli sono dichiarati all'ingresso
+param(
+    [Parameter(Mandatory)][ValidateRange(1,1000)][int]$Quantita
+)
+```
+
+**Correzione di principio.** Le **guardie** vanno all'inizio e dicono esplicitamente: non vuoto, del tipo atteso, nel campo di valori ammesso, altrimenti errore chiaro.
+
+#### 4.6 Il Fallback Velenoso
+
+**Rischio reale.** Pur di non mostrare un errore, il codice restituisce uno zero, una stringa vuota, un valore «neutro». Ma `0` è anche un valore legittimo: chi lo riceve non distingue il guasto dal dato vero, e il database a valle si **corrompe in silenzio**. **Come appare:** `return 0`, `|| 0`, `.get("chiave", 0)`, `${VAR:-0}`.
+
+```python
+# DIFETTO
+return sconti.get(codice, 0)
+```
+
+```javascript
+// DIFETTO
+return dati.prezzo || 0;
+```
+
+```bash
+# DIFETTO
+PREZZO=${PREZZO:-0}
+```
+
+> [!TIP]
+> Un valore predefinito è accettabile solo se è una **decisione di business dichiarata** («un codice sconto sconosciuto vale 0%, e lo registriamo»). Se nessuno saprebbe dirti *chi* ha deciso quel valore e *dove* lo si legge, è un fallback velenoso.
+
+**Correzione di principio.** Fallire in modo rumoroso: sollevare un errore, oppure restituire un esito che distingua esplicitamente «valore assente» da «valore zero».
+
+---
+
+### 5. L'LLM come «Evidenziatore Meccanico» (Non come Giudice)
+
+Chiedere all'LLM «questo codice va bene?» è l'errore più comune. La risposta tende a essere rassicurante e plausibile: «Sì, con qualche piccolo miglioramento». Non è una verifica, è una cortesia. Usa invece l'LLM come uno **strumento di radiografia**: gli chiedi di *estrarre* fatti dal codice, in formato tabellare, con i numeri di riga, che tu potrai controllare con l'occhio e con la ricerca testuale. **L'LLM propone l'evidenza, l'ispettore decide.**
+
+Le regole d'ingaggio valgono per ogni prompt: nessun giudizio di qualità; ogni affermazione cita il numero di riga; dove non sa deve scrivere UNKNOWN; nessuna correzione proposta. Incolla il codice con i numeri di riga dell'editor, oppure chiedi di numerarlo da 1 senza alterarlo e ricontrolla a campione.
+
+**Prompt 1 — Estrazione del Flusso Dati**
+
+```text
+Agisci come evidenziatore meccanico, non come revisore. Non giudicare la qualità
+e non proporre correzioni. Per il codice tra i delimitatori produci una tabella
+con una riga per ogni dato che entra:
+| N. | Sorgente (nome e riga) | Trasformazioni subite (righe, in ordine) | Destinazione finale (riga e tipo: file, rete, database, comando, risposta al chiamante) | Controlli applicati prima dell'uso (riga, oppure NESSUNO) |
+Regole: cita sempre i numeri di riga. Non descrivere che cosa il codice "intende"
+fare, ma solo che cosa fa. Se un passaggio non è deducibile dal codice scrivi UNKNOWN.
+<<<CODICE
+(incolla qui il codice da esaminare)
+CODICE>>>
+```
+
+**Prompt 2 — Censimento dei Punti di Rottura**
+
+```text
+Agisci come evidenziatore meccanico. Elenca SOLO le righe che: (a) leggono, scrivono
+o cancellano file; (b) fanno richieste di rete; (c) eseguono comandi di sistema;
+(d) interrogano o modificano un database. Non elencare nient'altro e non commentare.
+Una riga di tabella per elemento:
+| N. riga | Testo esatto della riga | Categoria (a/b/c/d) | Dato usato e sua provenienza | Limite di attesa dichiarato (sì/no/UNKNOWN) | Valore composto per concatenazione di testo (sì/no) |
+In coda, scrivi il totale delle righe per categoria.
+<<<CODICE
+(incolla qui il codice da esaminare)
+CODICE>>>
+```
+
+**Prompt 3 — Verifica delle Eccezioni**
+
+```text
+Agisci come evidenziatore meccanico. Per ogni risorsa esterna usata dal codice
+(file, rete, database, comando) considera questi guasti: non raggiungibile, lenta,
+risposta vuota, risposta malformata, permesso negato. Per ciascun caso scrivi:
+| Risorsa (riga) | Guasto | Righe attraversate dall'esecuzione | Valore restituito al chiamante | Che cosa viene comunque scritto o modificato | Il guasto viene segnalato (errore, registro, codice d'uscita) o è silenzioso? | Il chiamante può distinguere questo esito da un successo? (sì/no) |
+Se il percorso non è determinabile dal codice, scrivi UNKNOWN. Non proporre correzioni.
+<<<CODICE
+(incolla qui il codice da esaminare)
+CODICE>>>
+```
+
+**Come leggere le risposte.** Riconcilia sempre la tabella con la Sezione 3: se il Prompt 2 elenca 5 righe di rete e la ricerca testuale ne trova 7, l'LLM ne ha omesse due. Le **omissioni** sono il guasto tipico di questo metodo. Controlla a caso almeno tre righe citate: il numero corrisponde? il testo è identico?
+
+> [!TIP]
+> Esegui lo stesso prompt due volte, o su due modelli diversi, e confronta. Ogni differenza tra le risposte è un punto UNKNOWN: va risolto leggendo la riga, non scegliendo la versione che ti convince di più.
+
+> [!WARNING]
+> La radiografia dell'LLM è **a sua volta non verificata**. Serve a guidare il tuo occhio, non a sostituirlo. Se per approvare una riga dipendi da ciò che l'LLM dice di essa, quella riga è UNKNOWN.
+
+---
+
+### 6. Tre Laboratori di Ispezione Guidata a Doppia Colonna, più un Laboratorio di Controllo
+
+In ciascun laboratorio il codice è presentato per intero (così si vede la sagoma) e poi riga per riga, con a destra il dialogo interiore dell'ispettore. Applica il Protocollo Inverso: uscita, Sink, guardie, calcolo. I primi tre laboratori contengono difetti tipici; il quarto è un codice di controllo, scritto con cura, per calibrare il giudizio.
+
+#### Laboratorio 1 — Python: calcolo di tariffe e sconti
+
+```python
+def calcola_totale(prezzo, quantita, codice_sconto):
+    """Calcola il totale scontato in modo sicuro e robusto."""
+    try:
+        totale = prezzo * quantita
+        sconti = {"WELCOME": 0.10, "VIP": 0.25}
+        percentuale = sconti.get(codice_sconto, 0)
+        totale = totale - totale * percentuale
+        return round(totale, 2)
+    except Exception:
+        return 0
+```
+
+| Codice | Dialogo interiore dell'ispettore |
+|---|---|
+| `def calcola_totale(prezzo, quantita, codice_sconto):` | Tre ingressi (Source). Nessun tipo dichiarato: `prezzo` può essere numero, testo o vuoto. Il nome promette un «totale», non un importo valido. |
+| `"""...in modo sicuro e robusto."""` | **ALLARME.** Un aggettivo non è una prova. Il commento descrive un'intenzione, non un comportamento. Lo ignoro e verifico le righe. |
+| `try:` | Tutto il corpo sta dentro una botola. Qualsiasi guasto delle righe seguenti atterrerà in fondo: vado a vedere dove. |
+| `totale = prezzo * quantita` | Nessuna guardia. Se `prezzo` arriva come testo da un modulo web (`"10"`), in Python `"10" * 3` non dà errore: dà `"101010"`. Con `quantita` negativa il totale è negativo: un rimborso involontario. |
+| `sconti = {"WELCOME": 0.10, "VIP": 0.25}` e `.get(codice_sconto, 0)` | Percentuali in `float`, inadatte al denaro. Un codice sconosciuto vale 0 in silenzio: nessun avviso a chi ha sbagliato a digitarlo. |
+| `totale = totale - totale * percentuale` | Moltiplicazione di `float` su denaro: errori di frazioni di centesimo. Nessun controllo che la percentuale sia ≤ 1. |
+| `return round(totale, 2)` | **Uscita 1.** `round` su `float` può sorprendere: `round(2.675, 2)` dà `2.67`, non `2.68`. Comportamento da provare con valori reali, finché non lo si prova: UNKNOWN. |
+| `except Exception:` | **ALLARME ROSSO.** `Exception` è la rete a maglie larghe: cattura ogni guasto, anche gli errori di programmazione. Nessun nome dell'errore, nessun registro, nessuna segnalazione. |
+| `return 0` | **ALLARME ROSSO: Fallback Velenoso.** Il guasto diventa un totale legittimo: zero euro. Il prezzo arrivato come testo (riga 4) produce proprio questo: ordine evaso, nessun incasso, nessuna traccia. |
+
+> [!WARNING]
+> **Verdetto: NO-GO per difetto accertato.** Il codice non ha Sink visibili, ma il suo risultato alimenterà fatturazione e contabilità. Domande da girare a chi l'ha scritto: quali tipi di dato entrano? Che cosa fa il chiamante se riceve 0? Dove viene registrato un guasto? Correzione di principio: tipo `Decimal` per il denaro, validazione all'ingresso con errore esplicito, eccezioni specifiche mai inghiottite.
+
+#### Laboratorio 2 — Bash: manutenzione e backup
+
+```bash
+#!/bin/bash
+# Manutenzione sicura: backup del cliente e pulizia dei file temporanei
+BASE=/var/app
+CLIENTE=$1
+cd $BASE/$CLIENTE
+tar czf /backup/$CLIENTE.tar.gz . 2>/dev/null
+rm -rf $BASE/$CLIENTE/tmp/*
+find $BASE/$CLIENTE/logs -mtime +30 -exec rm {} \;
+echo "Backup completato con successo"
+```
+
+| Codice | Dialogo interiore dell'ispettore |
+|---|---|
+| `#!/bin/bash` | Dichiara l'interprete. Manca `set -euo pipefail` (la modalità che in molti casi ferma lo script al primo comando fallito, senza essere una garanzia): senza, gli errori non interrompono nulla e lo script prosegue comunque. |
+| `# Manutenzione sicura...` | Ancora un aggettivo. Lo ignoro. |
+| `BASE=/var/app` | Perimetro dichiarato: tutto deve restare qui sotto. Ogni riga che ne esce è un'infrazione. |
+| `CLIENTE=$1` | Source: il primo argomento, cioè **testo libero**. Nessun controllo: vuoto? con spazi? con `..` (risalita di cartella)? |
+| `cd $BASE/$CLIENTE` | Concatenazione senza virgolette. Con `acme corp` la shell vede due parole (**word splitting**: spezzatura al primo spazio) e `cd` fallisce; senza `set -e` lo script *continua*, restando dov'era. Con `..` nel nome il perimetro è violato. |
+| `tar czf /backup/$CLIENTE.tar.gz . 2>/dev/null` | Sink: scrive un archivio. `2>/dev/null` getta nel cestino ogni messaggio d'errore: disco pieno, archivio parziale, nessuno lo saprà. Se `cd` è fallita, archivia la cartella sbagliata. |
+| `rm -rf $BASE/$CLIENTE/tmp/*` | **ALLARME ROSSO.** Sink distruttivo, senza virgolette, **eseguito comunque** anche se il backup è fallito. Con `acme corp` diventa `rm -rf /var/app/acme corp/tmp/*`: la shell lo spezza in due argomenti, `/var/app/acme` e `corp/tmp/*`. Il primo è **un'altra cartella**: se esiste un cliente chiamato `acme`, viene cancellata per intero. Il secondo, di norma inesistente, passa senza avviso grazie a `-f`. A pagare non è chi ha sbagliato a scrivere il nome, ma un cliente diverso. `-rf` elimina conferme ed errori. |
+| `find ... -mtime +30 -exec rm {} \;` | Sink distruttivo: cancella ogni elemento più vecchio di 30 giorni, senza anteprima, senza limitarsi ai file di log (nessun filtro sul tipo), con lo stesso percorso non protetto. |
+| `echo "Backup completato con successo"` | **Uscita.** Messaggio *incondizionato*: appare anche se tutto è fallito. Chi legge i registri vede «successo» e si addormenta: un falso positivo con la forma di una prova. |
+
+> [!WARNING]
+> **Verdetto: NO-GO per difetto accertato.** Tre Sink su tre senza guardie, cancellazione prima della verifica del backup, esito sempre positivo. Domande: chi garantisce il formato di `$1`? L'archivio è stato controllato (esiste, non è vuoto) *prima* del `rm`? Correzione di principio: `set -euo pipefail` (utile ma non sufficiente: servono anche controlli espliciti), virgolette ovunque, nome validato contro caratteri ammessi, percorso verificato dentro `BASE`, cancellazione solo dopo backup verificato, messaggio finale solo se tutto è riuscito.
+
+> [!TIP]
+> In PowerShell lo stesso difetto ha questo aspetto: `Remove-Item -Recurse -Force "$Base\$Cliente\tmp\*" -ErrorAction SilentlyContinue`. Cambia la grammatica, non la sagoma: concatenazione, cancellazione forzata, errori zittiti.
+
+#### Laboratorio 3 — JavaScript / Node.js: endpoint di conversione valuta
+
+```javascript
+const express = require("express");
+const app = express();
+app.use(express.json());
+
+app.post("/api/converti", async (req, res) => {
+  const importo = req.body.importo;
+  const valuta = req.body.valuta;
+  const risposta = await fetch("https://api.cambi.example/rate?to=" + valuta);
+  const dati = await risposta.json();
+  const totale = importo * dati.tasso;
+  res.json({ totale: totale, valuta: valuta });
+});
+
+app.listen(3000);
+```
+
+| Codice | Dialogo interiore dell'ispettore |
+|---|---|
+| `const express = require("express");` | Importa una libreria pronta per creare servizi web. Source e Sink passano da qui. |
+| `app.use(express.json());` | Interpreta il **payload** (il «carico» di dati di una richiesta) come JSON (formato testuale per scambiare dati tra programmi). Interpreta, non controlla *che cosa* c'è dentro. |
+| `app.post("/api/converti", async (req, res) => {` | Un **endpoint** (indirizzo di rete a cui il servizio risponde) raggiungibile da chiunque. `async` significa che la funzione può attendere risposte esterne: ogni `await` è un punto di possibile guasto, e in tutta la funzione **non c'è alcun `try`**. |
+| `const importo = req.body.importo;` e `const valuta = req.body.valuta;` | Source: dati scritti dall'esterno. Nessun controllo di tipo: numero? testo? assente? Un `importo` mancante vale `undefined`; uno scritto come `"abc"` resta testo. |
+| `await fetch("https://api.cambi.example/rate?to=" + valuta)` | **TRIPLO ALLARME.** (a) Sink di rete. (b) Concatenazione: `valuta` entra nell'indirizzo così com'è, e chi scrive `EUR&amount=0` altera la richiesta (iniezione di parametri). (c) Nessun timeout dichiarato: l'attesa massima dipende da valori predefiniti che il codice non mostra, quindi UNKNOWN. |
+| `await risposta.json();` | Non si controlla `risposta.ok` (lo stato della risposta: 200 significa ok, 500 guasto del servizio). Un errore HTTP **non fa fallire `fetch`** da solo: solo il controllo di `risposta.ok` lo rivela. L'interpretazione del JSON, invece, può fallire, e senza `try/catch` l'errore risale al framework (la libreria che gestisce le richieste). Che cosa accada dipende dalla versione di Express e dalla configurazione: la richiesta può restare appesa, il processo può fermarsi, oppure l'errore può essere gestito in modo generico. Quale dei tre casi si verifichi qui: UNKNOWN. |
+| `const totale = importo * dati.tasso;` | Calcolo monetario con numeri binari (`float`). Se `importo` non è numerico o `dati.tasso` manca, il risultato è `NaN` (*Not a Number*: «non-numero»). Nessuna guardia. |
+| `res.json({ totale: totale, valuta: valuta });` | **Uscita.** In JSON, `NaN` diventa `null`: il chiamante riceve `{"totale":null}` con esito apparentemente positivo. Inoltre `valuta`, non validata, viene rimandata indietro. |
+| `app.listen(3000);` | Il servizio si mette in ascolto. Nessuna autenticazione e nessun limite di richieste *visibili in questo frammento*: se esistano altrove è UNKNOWN. |
+
+> [!WARNING]
+> **Verdetto: NO-GO per difetto accertato.** Source senza validazione, Sink di rete con testo concatenato, nessun timeout, nessuna gestione dell'esito, un fallimento che si trasforma in `null` apparentemente valido. Correzione di principio: validare tipo e intervallo di `importo`, ammettere solo valute da un elenco, comporre l'indirizzo in modo sicuro, impostare un timeout, controllare `risposta.ok`, racchiudere tutto in `try/catch` e rispondere con un errore esplicito.
+
+#### Laboratorio 4 — PowerShell: lo script di controllo
+
+I primi tre laboratori sono difettosi per costruzione. Se l'ispettore impara solo a respingere, finisce per respingere tutto, e un ispettore che respinge tutto non serve a nessuno. Questo script fa lo stesso lavoro del Laboratorio 2 (backup e pulizia) ed è scritto con cura: serve a riconoscere che aspetto ha un codice che regge.
+
+```powershell
+param(
+    [Parameter(Mandatory)]
+    [ValidatePattern('^[A-Za-z0-9_-]+$')]
+    [string]$Cliente
+)
+
+$ErrorActionPreference = 'Stop'
+$Base = 'D:\App'
+$Cartella = Join-Path $Base $Cliente
+$Archivio = "D:\Backup\$Cliente-$(Get-Date -Format yyyyMMdd).zip"
+
+if (-not (Test-Path -LiteralPath $Cartella -PathType Container)) {
+    throw "Cartella cliente non trovata: $Cartella"
+}
+
+Compress-Archive -LiteralPath $Cartella -DestinationPath $Archivio
+if ((Get-Item -LiteralPath $Archivio).Length -eq 0) {
+    throw "Archivio vuoto: nessuna cancellazione eseguita"
+}
+
+Get-ChildItem -LiteralPath (Join-Path $Cartella 'tmp') -File |
+    Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-30) } |
+    Remove-Item
+
+Write-Output "Backup e pulizia completati: $Archivio"
+```
+
+| Codice | Dialogo interiore dell'ispettore |
+|---|---|
+| `[Parameter(Mandatory)]` e `[ValidatePattern('^[A-Za-z0-9_-]+$')]` | Source **con guardia**. Il parametro è obbligatorio e il nome ammette solo lettere, cifre, trattino e trattino basso: niente spazi, niente `..`, niente barre. È la guardia che al Laboratorio 2 mancava. |
+| `$ErrorActionPreference = 'Stop'` | La botola è chiusa a monte: ogni errore interrompe lo script. Ctrl+F di `SilentlyContinue`: zero occorrenze. |
+| `$Base = 'D:\App'` e `$Cartella = Join-Path $Base $Cliente` | Perimetro dichiarato e percorso composto con la funzione apposita. Unito alla regola sul nome, il percorso non può uscire da `$Base` *per via del testo* (niente `..`, niente barre). Non è una garanzia sul disco: un collegamento simbolico o una giunzione dentro `D:\App` può puntare altrove. **UNKNOWN**: vedi il riquadro «Il perimetro dei percorsi» nel §4.2. |
+| `$Archivio = "D:\Backup\$Cliente-$(Get-Date -Format yyyyMMdd).zip"` | Concatenazione, ma **allarme spento**: il pezzo variabile è già validato e il testo non finisce in un comando interpretato (nessun `Invoke-Expression`). Una concatenazione non è sempre un difetto: contano chi ha scritto il pezzo e dove va a finire. |
+| `if (-not (Test-Path ...)) { throw ... }` | Guardia sull'esistenza della cartella. Se manca, errore esplicito con un messaggio leggibile (`throw`: solleva un'eccezione). Il fallimento è rumoroso. |
+| `Compress-Archive -LiteralPath $Cartella -DestinationPath $Archivio` | Sink 1: scrive l'archivio. Nessun `-Force`: se esiste già un file con quel nome lo script dovrebbe fermarsi invece di sovrascrivere. **UNKNOWN**: è il comportamento atteso del comando, da provare. |
+| `if ((Get-Item -LiteralPath $Archivio).Length -eq 0) { throw ... }` | **Controllo minimo** prima di distruggere: senza un archivio non vuoto non si cancella nulla. Ma il backup qui è *creato*, non *verificato* e tanto meno *ripristinabile* (i tre livelli sono nella Sezione 3, «Approfondimenti»). **UNKNOWN residuo**: «non vuoto» non significa «completo» né «apribile». |
+| `Get-ChildItem ... -File` e `Where-Object { ... AddDays(-30) }` | Selezione scritta nel codice, non lasciata a un asterisco: solo file (`-File`), solo nella sottocartella `tmp`, solo se più vecchi di 30 giorni. |
+| `Remove-Item` | **Sink distruttivo, ma presidiato.** Nessun `-Recurse` né `-Force`: non scende nelle cartelle e non scavalca i file protetti. Ci si arriva solo dopo tutte le guardie. Manca l'anteprima: esiste `-WhatIf`, l'interruttore che mostra che cosa *farebbe* senza farlo. |
+| `Write-Output "Backup e pulizia completati: $Archivio"` | **Uscita.** Il messaggio arriva solo se nessuna riga precedente ha lanciato un errore. A differenza del Laboratorio 2, qui il «successo» è un'informazione vera. |
+
+Ctrl+F su questo script: `SilentlyContinue` zero occorrenze, `Invoke-Expression` zero, `Remove-Item` una, protetta da guardie. Un'occorrenza è una domanda, non un'accusa.
+
+> [!TIP]
+> **Verdetto: nessun difetto accertato, ma NO-GO provvisorio per rischio non verificato.** Restano tre UNKNOWN, tutti su Sink: l'archivio è completo e apribile? che cosa fa `Compress-Archive` se il file esiste già? un collegamento simbolico può portare fuori da `D:\App`? Per la regola della Sezione 7, un UNKNOWN su un Sink blocca il via libera finché non si chiude *con una prova*: eseguire su una cartella cliente di prova, aprire l'archivio e provare un ripristino, controllare i collegamenti nel percorso, usare `-WhatIf` sulla cancellazione. Chiusi i tre UNKNOWN, GO. La differenza dal Laboratorio 2 non è l'assenza di domande, ma il fatto che qui ogni domanda ha una risposta a portata di mano.
+
+---
+
+### 7. La Checklist di Falsificazione Mentale in 5 Domande
+
+*Falsificare* significa cercare attivamente il modo in cui il codice si rompe, invece di cercare conferme che funzioni. Cinque domande, da porre a se stessi, all'LLM o al programmatore **prima** del via libera a qualsiasi script:
+
+| # | Domanda | Che cosa cercare | Difetti coperti |
+|---|---|---|---|
+| 1 | **Che cosa entra, da chi, e chi ha il diritto di chiamare?** Che cosa succede se il dato è vuoto, negativo, enorme, testuale o ostile? | Guardie all'ingresso su presenza, tipo, intervallo; controlli su identità e permessi (famiglia I) | Precondizione Debole, Iniezione, accessi |
+| 2 | **Che cosa tocca il mondo esterno, e come è costruito il comando?** | Ogni Sink elencato; comandi composti con `+`, `${}`, `$`; perimetro delle cancellazioni | Iniezione Cieca |
+| 3 | **Se la risorsa esterna tarda, fallisce o cambia nel frattempo, che cosa succede?** | Timeout, controllo dell'esito, operazioni indivisibili tra controllo e uso | Assunzione di Rete, Race Condition |
+| 4 | **Quando qualcosa va storto, qualcuno lo viene a sapere? E che cosa trova chi sta a valle?** | Botole, valori di ripiego, messaggi di successo incondizionati | Botola, Fallback Velenoso |
+| 5 | **Esiste una riga che non so spiegare con parole mie?** | Qualsiasi riga UNKNOWN, specie se vicina a un Sink | Tutti |
+
+**Regola di esito.** Una domanda senza risposta documentata è un UNKNOWN. Un UNKNOWN su un Sink è un NO-GO *per rischio non verificato*; un difetto accertato è un NO-GO *per difetto*. Entrambi bloccano il via libera, ma si sbloccano in modi diversi: il primo con una prova, il secondo con una correzione (e poi con una nuova ispezione). Il via libera non si dà per sfinimento né per fiducia nel tono dell'LLM: si dà solo quando ogni domanda ha una risposta che si può mostrare a un terzo, riga per riga.
+
+#### Il verbale d'ispezione
+
+Il verbale è il prodotto finale dell'ispezione: una riga per ogni NO-GO e per ogni UNKNOWN; i CHIARO si possono raggruppare.
+
+| N. | Riga | Domanda | Che cosa ho osservato | Come lo so | Esito |
+|---|---|---|---|---|---|
+| 1 | 7 (Lab. 2) | 2: Sink | `rm -rf` su un percorso senza virgolette né controllo del perimetro | Lettura della riga; ricerca di `rm` | NO-GO (difetto) |
+| 2 | 9–10 (Lab. 1) | 4: guasto silenzioso | `except Exception:` seguito da `return 0` | Lettura delle righe; nessun registro (*log*) nel file | NO-GO (difetto) |
+| 3 | 23 (Lab. 4) | 2: Sink | `Remove-Item` dopo un controllo minimo dell'archivio; ripristino mai provato | Lettura della riga; nessuna prova di ripristino agli atti | NO-GO (non verificato) |
+| 4 | 16 (Lab. 4) | 5: riga che non so spiegare | Comportamento di `Compress-Archive` se l'archivio esiste già | Lettura; il comportamento non è visibile nel codice | UNKNOWN |
+
+Nella colonna Esito si distinguono i due NO-GO: «difetto» (accertato dalla lettura) e «non verificato» (manca una prova). La colonna «Come lo so» è la più importante: un esito senza il modo in cui lo si è stabilito non è verificabile da un terzo. In testa al verbale vanno l'identificativo e la data della versione ispezionata: vale per *quel* testo, non per un altro. In coda, ciò che **non** è stato ispezionato (librerie importate, file di configurazione, servizi esterni) e chi firma.
+
+#### Dopo un NO-GO
+
+- **Comunica con domande, non con ordini.** «Riga 7: che cosa accade se `$CLIENTE` contiene uno spazio?» obbliga a rispondere con un'evidenza; «correggi la riga 7» invita a una rassicurazione.
+- **Una versione corretta è un codice nuovo.** Si ispeziona da capo, non solo nelle righe modificate, e ha un nuovo verbale. Un LLM che «sistema» una botola può aprirne un'altra, per esempio sostituendo `pass` con `return 0`: la botola diventa un Fallback Velenoso.
+- **Gli UNKNOWN si chiudono con una prova, non con una frase.** Un'esecuzione su dati di prova, un test, l'apertura dell'archivio, a cura di chi sa farli. «Fidati, funziona» non chiude nulla.
+- **Sappi quando passare la mano.** Se dopo la correzione restano NO-GO su un Sink, o se il codice supera ciò che puoi leggere con rigore, serve un programmatore con test indipendenti. Non è una sconfitta: è l'esito previsto del metodo.
+
+> [!TIP]
+> Stampa la tabella delle cinque domande e tienila accanto al codice. Riporta le risposte nel verbale, con numero di riga: un'ispezione senza traccia scritta non è un'ispezione, è un'impressione.
+
+> [!WARNING]
+> «Non capisco questa riga, quindi non la approvo» è la frase più professionale che un ispettore possa pronunciare. Chi la pronuncia non rallenta il progetto: lo protegge da un difetto che nessuno avrebbe visto.
 
 ---
 
