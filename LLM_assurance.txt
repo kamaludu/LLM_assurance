@@ -155,8 +155,6 @@ I marchi citati (inclusi ISO, IEEE, MITRE ATLAS, OWASP, DO-178C) appartengono ai
 
 ---
 
-<div class="pagebreak"></div>
-
 [Torna all'Indice](#indice-generale)
 
 <a name="nota-terminologica"></a>
@@ -164,7 +162,7 @@ I marchi citati (inclusi ISO, IEEE, MITRE ATLAS, OWASP, DO-178C) appartengono ai
 ## ➠ Nota Terminologica: ASSURANCE
 
 > [!NOTE]
-> Il concetto e la traduzione di **Assurance**  
+> ✎ Il concetto e la traduzione di **Assurance**  
 > Nel contesto dell'Ingegneria del Software e della Governance dei sistemi basati su Intelligenza Artificiale e LLM, la precisione terminologica non è un requisito puramente stilistico, ma una necessità epistemica (ossia, la necessità di definire con precisione ciò che si afferma e di disporre di basi adeguate per ritenerlo attendibile) e metodologica.  
 > Il termine inglese Assurance presenta una complessità semantica che non trova un unico corrispettivo sintetico ed esaustivo nella lingua italiana. Per evitare equivoci concettuali e operativi nell'applicazione dei principi esposti in questo manuale, la presente nota chiarisce il significato del termine, le sue possibili rese in italiano e la convenzione redazionale adottata.
 >
@@ -493,7 +491,7 @@ Questa distinzione costituisce una delle basi epistemiche fondamentali dell'inte
 ## ◉ Quadro Didattico: l'ecosistema dell'AI e la specificità degli LLM
 
 > [!TIP]
-> **Scopo di questo Quadro preliminare**
+> ☞ **Scopo di questo Quadro preliminare**
 >
 > Prima di affrontare i fondamenti e i metodi della Software Assurance, è indispensabile comprendere quali tecnologie compongono l'ecosistema dell'Intelligenza Artificiale e quali principi ne governano il funzionamento.
 >
@@ -874,7 +872,7 @@ Ambienti Sandbox         | Tracciamento di Audit e Log Completi
 ```
 
 > [!NOTE]
-> **Nota di lettura sull'ordine di trattazione**  
+> ✎ **Nota di lettura sull'ordine di trattazione**  
 > Mentre il diagramma architetturale soprastante illustra il flusso operativo dei dati e dei comandi **dall'alto verso il basso (top-down)**, la trattazione analitica che segue procede **dal componente fondamentale ai livelli superiori di coordinamento (bottom-up)**, rispecchiando la gerarchia costruttiva del software.
 
 #### 1. Modello AI (AI Model)
@@ -949,7 +947,7 @@ Il campionamento è controllato da iperparametri quali la **temperatura**:
 - **Temperatura zero:** impone al sistema di selezionare teoricamente sempre il token a probabilità massima (*greedy decoding*). Si noti tuttavia che, a causa di ottimizzazioni hardware parallele e variazioni nelle operazioni in virgola mobile delle GPU, anche una temperatura pari a zero non offre garanzia assoluta di perfetta riproducibilità numerica su infrastrutture distribuite.
 
 > [!NOTE]
-> **Che cosa sono `greedy decoding` e `softmax`?**  
+> ✎ **Che cosa sono `greedy decoding` e `softmax`?**  
 > Quando l'LLM deve scegliere la parola successiva, trasforma i punteggi grezzi di tutto il vocabolario in percentuali di probabilità che sommano al 100% (funzione **softmax**). Il **greedy decoding** (temperatura zero) consiste nello scegliere meccanicamente sempre e solo la parola che ha ottenuto la probabilità più alta, escludendo alternative meno probabili.
 
 Questo meccanismo probabilistico conferisce agli LLM eccellenti capacità di interpolazione stilistica, conversione strutturata di dati e generazione sintattica di codice sorgente, ma genera una discrepanza fondamentale per l'ingegneria del software:  
@@ -1001,7 +999,7 @@ Tuttavia, disporre di una finestra molto ampia (centinaia di migliaia di token) 
 L'analisi dell'ecosistema AI e dei limiti intrinseci degli LLM consente di formalizzare il principio metodologico fondamentale per chi deve sviluppare, manutenere e certificare sistemi software:
 
 > [!IMPORTANT]
-> **Principio di indipendenza delle evidenze di Assurance**
+> ⚑ **Principio di indipendenza delle evidenze di Assurance**
 >
 > Un manufatto digitale (codice sorgente, specifica, test case, piano di configurazione) generato da un modello linguistico o probabilistico **non costituisce in alcun caso prova formale della propria correttezza o sicurezza**.
 >
@@ -1043,7 +1041,7 @@ STRATIFICAZIONE DEI LIVELLI DI CONTROLLO DI ASSURANCE
 ```
 
 > [!NOTE]
-> **Proporzionalità e Livelli di Assurance (AL-0 .. AL-3)**  
+> ✎ **Proporzionalità e Livelli di Assurance (AL-0 .. AL-3)**  
 > L'intensità, la profondità e l'indipendenza di questa stratificazione di controlli non sono uniformi per qualsiasi software: esse sono proporzionate alla gravità del danno potenziale nel mondo reale e al raggio d'impatto (*blast radius*) dell'applicazione. Come formalizzato nello **Step 2 (Risk Classification)** e nello **Step 10 (Assurance Level)**, il manuale adotta quattro livelli discreti di rigore probatorio (da AL-0 per script a basso impatto fino ad AL-3 per componenti safety-critical o finanziari), stabilendo per ciascuno quali evidenze siano obbligatorie e quali verifiche non possano mai essere delegate a modelli probabilistici.
 
 La tabella seguente riassume la gerarchia degli strumenti di verifica da affiancare obbligatoriamente alle componenti AI:
@@ -1097,7 +1095,7 @@ Di seguito si riportano le definizioni unificate dei termini specialistici utili
 ## ⛶ Guida di Lettura per Ruoli
 
 > [!NOTE]
-> **Come orientare la lettura in base al proprio ruolo**
+> ✎ **Come orientare la lettura in base al proprio ruolo**
 >
 > L'Assurance del software assistito da LLM coinvolge competenze diverse: sviluppo, gestione del prodotto, sicurezza, Conformità e controllo.
 >
@@ -1146,11 +1144,11 @@ Leggere attentamente quest'opera senza pretese di memorizzazione tecnica produce
    Non ricorderete a memoria ogni algoritmo, ma conserverete una mappa di orientamento del rischio. Quando tra sei mesi affronterete una migrazione delicata di database, saprete dove andare a rileggere il pattern *Expand/Contract*; quando un server rischierà il collasso per troppe richieste concorrenti, saprete esattamente in quale capitolo cercare l'architettura di un *Circuit Breaker*.
 
 > [!NOTE]
-> **Come affrontare i blocchi di codice e le formule lungo la lettura**  
+> ✎ **Come affrontare i blocchi di codice e le formule lungo la lettura**  
 > Quando incontri un blocco di codice o una formula formale privi di traduzione riga per riga, non fermarti sulla sintassi del linguaggio di programmazione: concentrati sui diagrammi ASCII, sulle distinzioni concettuali e sugli esiti dei controlli di gate. La sintassi serve agli specialisti per riprodurre gli esempi; il ragionamento di assurance resta sempre espresso in lingua naturale.
 
 > [!TIP]
-> **Per chi non sa programmare ma deve verificare o approvare il codice**, consulta l'appendice pratica:  
+> ☞ **Per chi non sa programmare ma deve verificare o approvare il codice**, consulta l'appendice pratica:  
 > **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**.  
 > Ti insegnerà il *Modello Mentale Unico in 3 Passaggi (Source ➔ Trasformazione ➔ Sink)*, la caccia alle parole-ancora con Ctrl+F e il metodo per individuare a occhio nudo le trappole più comuni dell'AI (botole che nascondono errori, chiamate di rete senza limiti di tempo, calcoli con virgola mobile e cancellazioni non protette) in Python, JavaScript, Bash e PowerShell.
 
@@ -1535,7 +1533,7 @@ Nel ciclo di vita dell'ingegneria del software assistita da modelli linguistici 
 Questo STEP affronta una vulnerabilità sistemica primaria: l'incapacità di stabilire con precisione logica e ontologica quale stato del mondo reale debba essere modificato, monitorato o garantito per mezzo del software, separando in modo netto ciò che appartiene all'ambiente esterno da ciò che appartiene alla macchina.
 
 > [!TIP]  
-> **Ontologia:** Modello formale che definisce le categorie, le entità e le relazioni logiche esistenti in un determinato dominio di conoscenza.  
+> ☞ **Ontologia:** Modello formale che definisce le categorie, le entità e le relazioni logiche esistenti in un determinato dominio di conoscenza.  
 >  
 
 La maggioranza dei fallimenti catastrofici nei sistemi software complessi non ha origine da bug sintattici o violazioni di memoria (gestibili tramite linguaggi moderni o strumenti di analisi statica), ma da *misallineamenti semantici primari*: il software esegue in maniera formalmente ineccepibile un compito che non corrisponde alle reali necessità del dominio operativo, oppure assume condizioni ambientali che si rivelano false sul campo. Quando si integrano gli LLM nel flusso di sviluppo, questo rischio aumenta di ordini di grandezza.
@@ -1617,7 +1615,7 @@ In termini pratici di ingegneria dei sistemi, questa formula stabilisce una nett
 Questa distinzione demolisce l'alibi diffuso per cui *"il software ha funzionato perfettamente, è l'utente o il sensore che ha sbagliato"*. L'Assurance del software impone di progettare la specifica tenendo conto delle fragilità e dei limiti del mondo circostante, evitando di scaricare su assunzioni ambientali fragili la sicurezza dell'intero sistema.
 
 > [!NOTE]
-> **Comprensione intuitiva del simbolo |= (Entailment / Soddisfacimento Logico)**  
+> ✎ **Comprensione intuitiva del simbolo |= (Entailment / Soddisfacimento Logico)**  
 > Il simbolo |= esprime una garanzia logica e matematica stringente: stabilisce che non esiste alcuno scenario operativo concepibile in cui le premesse a sinistra siano vere e la conclusione a destra risulti falsa. In termini pratici: se il mondo reale si comporta come previsto dalle nostre assunzioni (W) e la macchina fa esattamente ciò che impone la specifica (S), è logicamente impossibile che il requisito (R) venga violato. Se nel mondo reale si verifica un danno (R fallisce), significa con certezza matematica che la macchina aveva un difetto logico rispetto alla specifica (S era violata) oppure che una delle assunzioni sul mondo esterno era errata (W non descriveva la realtà).
 
 Se le assunzioni sul Mondo W_assunto sono false, incomplete o non verificate rispetto alla realtà operativa (W_reale non soddisfa W_assunto), l'applicabilita' pratica della garanzia decade: anche se la specifica della Macchina è priva di bug (M |= S) e la deduzione teorica è formalmente valida (W_assunto AND S |= R), la macchina operante nell'ambiente reale provochera' la violazione dei requisiti (W_reale AND S non garantisce R). Lo STEP 1 si colloca precisamente nell'esplicitazione e perimetrazione di W e R.
@@ -1836,7 +1834,7 @@ La tabella seguente evidenzia le confusioni concettuali più gravi nello STEP 1 
 - *Errore di Assurance*: Formulare il problema affidandosi al rilevamento in contesti a impatto catastrofico e irreversibile. Se un algoritmo di dosaggio farmacologico rileva di aver iniettato una dose dieci volte superiore al consentito, la rilevazione è inutile: il paziente ha già subito il danno. Il problema deve imporre la prevenzione architetturale (limite fisico alla capacità del serbatoio della siringa automatica).
 
 > [!TIP]  
-> **Topologia:** Studio della struttura di connessione, dei confini e delle relazioni reticolari o spaziali tra i componenti di un sistema.  
+> ☞ **Topologia:** Studio della struttura di connessione, dei confini e delle relazioni reticolari o spaziali tra i componenti di un sistema.  
 >  
 
 #### 6.6 Risk Reduction vs Risk Elimination
@@ -1964,7 +1962,7 @@ SCHEDA DI DEFINIZIONE DEL PROBLEMA: RECON-ENGINE-002
 ```
 
 > [!TIP]
-> **Perché la virgola mobile standard (float/double) è vietata nei calcoli contabili e finanziari?**  
+> ☞ **Perché la virgola mobile standard (float/double) è vietata nei calcoli contabili e finanziari?**  
 > I microprocessori rappresentano i numeri decimali mediante lo standard binario IEEE 754. In base due, molte frazioni decimali comunissime nel commercio (come `0.1` o `0.01`) diventano numeri periodici infiniti, impossibili da memorizzare esattamente in una quantità finita di bit (32 o 64 bit). Eseguire operazioni con float introduce minuscole approssimazioni invisibili ad occhio nudo (ad esempio, l'operazione `0.1 + 0.2` in molti linguaggi produce `0.30000000000000004`). Nei sistemi finanziari o critici, questi scarti microscopici si accumulano a ogni transazione, provocando ammanchi di cassa, sbilanciamenti contabili e sanzioni regolatorie. La buona ingegneria impone perciò l'uso esclusivo di numeri interi esatti (es. memorizzare 10 euro come 1000 centesimi interi) o tipi decimali a precisione fissa arbitraria.
 
 ---
@@ -2506,7 +2504,7 @@ Questo paradigma presuppone che i componenti falliscano per usura, attrito, fati
 3. **Sistematicità del Guasto**: Se un LLM cade in un'allucinazione su una specifica classe di problemi semantici, continuerà a fallire ogni volta che quel contesto semantico si ripresenterà, rendendo priva di senso l'assunzione di guasto "stocastico e indipendente".
 
 > [!TIP]  
-> **Stocastico:** Processo o comportamento regolato dal caso o basato su variabili probabilistiche, in opposizione a un sistema puramente deterministico.  
+> ☞ **Stocastico:** Processo o comportamento regolato dal caso o basato su variabili probabilistiche, in opposizione a un sistema puramente deterministico.  
 >  
 
 Nel software assistito da LLM, **la probabilità del difetto logico non è un'evidenza affidabile**. L'analisi del rischio deve fondarsi primariamente sulla *severità del pericolo*, sulla *controllabilità dell'evento* e sul *raggio d'impatto massimo teorico*.
@@ -2958,7 +2956,7 @@ Chiedere a un modello linguistico di analizzare o classificare il rischio associ
 Gli LLM sono privi di ontologia causale e di percezione delle conseguenze nel Mondo reale. 
 
 > [!CAUTION]  
-> Quando un LLM dichiara: *"Questa azione è priva di rischi"*, non sta eseguendo un'analisi di sicurezza sistemica: sta semplicemente calcolando che la sequenza di parole "questa azione è priva di rischi" possiede una probabilità statistica elevata in quel contesto verbale.  
+> **⊗** Quando un LLM dichiara: *"Questa azione è priva di rischi"*, non sta eseguendo un'analisi di sicurezza sistemica: sta semplicemente calcolando che la sequenza di parole "questa azione è priva di rischi" possiede una probabilità statistica elevata in quel contesto verbale.  
 >
 
 #### 10.2 Allucinazione di Mitigazioni Sintattiche
@@ -2969,7 +2967,7 @@ Un anti-pattern pervasivo consiste nell'inserire clausole protettive all'interno
 Questo è un errore logico: un vincolo sintattico in linguaggio naturale non garantisce alcuna proprietà di sicurezza deterministica. 
 
 > [!CAUTION]  
-> Il modello può eludere il vincolo in qualunque momento per effetto di un jailbreak indiretto, di un contesto lungo o di un'interpretazione semantica divergente.  
+> **⊗** Il modello può eludere il vincolo in qualunque momento per effetto di un jailbreak indiretto, di un contesto lungo o di un'interpretazione semantica divergente.  
 > 
 
 #### 10.3 Fallimento Correlato tra Agente Operativo e Agente Valutatore
@@ -3030,7 +3028,7 @@ Al termine dell'analisi del rischio, il revisore di assurance deve assegnare uno
 | **UNKNOWN** | Mancanza di evidenze oggettive sulla severità del danno nel Mondo o sull'efficacia delle barriere di controllo umane. Lo STEP è sospeso in attesa di indagine empirica. |
 | **FAIL** | Identificazione di un errore concettuale nell'analisi (es. uso di probabilità numeriche soggettive per mascherare un pericolo catastrofico, o mancata inclusione di pericoli evidenti). |
 | **NOT APPLICABLE** | Il componente è un puro esercizio teorico disconnesso da qualsiasi effetto reale o operativo (rarissimo nell'assurance). |
-| **NO-GO** | **STATO BLOCCANTE ASSOLUTO:**<br>Si manifesta quando:<br>1. Il raggio d'impatto (Blast Radius) è non delimitabile.<br>2. Il sistema genera pericoli irreversibili (AL-3) che non sono mitigabili mediante guardrail deterministici indipendenti.<br>3. Si pretende di utilizzare un LLM in autonomia decisionale senza barriere in un contesto mission-critical o safety-critical.<br>**TUTTE LE ATTIVITÀ A VALLE DEVONO ESSERE ARRESTATE.** |
+| **NO-GO** | **STATO BLOCCANTE ASSOLUTO:**<br />Si manifesta quando:<br />1. Il raggio d'impatto (Blast Radius) è non delimitabile.<br />2. Il sistema genera pericoli irreversibili (AL-3) che non sono mitigabili mediante guardrail deterministici indipendenti.<br />3. Si pretende di utilizzare un LLM in autonomia decisionale senza barriere in un contesto mission-critical o safety-critical.<br />**TUTTE LE ATTIVITÀ A VALLE DEVONO ESSERE ARRESTATE.** |
 
 #### 13.2 Condizioni di NO-GO Bloccante
 L'assegnazione di uno stato **NO-GO** non è un fallimento del processo di analisi, ma la sua massima espressione di efficacia: impedisce a un'organizzazione di intraprendere lo sviluppo di un sistema il cui profilo di rischio è strutturalmente incontrollabile.
@@ -3066,7 +3064,7 @@ AL-0   [========] 15% Rigore
 ```
 
 > [!NOTE]
-> **Guida alla lettura per non specialisti: i requisiti di verifica per AL-3**  
+> ✎ **Guida alla lettura per non specialisti: i requisiti di verifica per AL-3**  
 > Vengono utilizzati termini e strumenti propri della massima disciplina ingegneristica (come *TLA+*, *Coq*, *Model Checking* o la metrica di copertura avionica *MC/DC*). Il lettore non deve allarmarsi né presumere che per applicare il presente manuale sia necessario saper dimostrare teoremi matematici in Coq. Questi strumenti sono citati per rendere esplicito il livello qualitativo richiesto: mentre ai livelli AL-0 e AL-1 ci si accontenta di testare empiricamente che il software non vada in crash nei casi d'uso frequenti, al livello AL-3 (safety-critical) la gravità del danno potenziale esige che l'assenza di stati invalidi sia provata matematicamente su modelli formali indipendenti dal codice scritto. I concetti chiave di questo rigore (invarianti logiche, oracoli indipendenti, test basati su proprietà) saranno introdotti gradualmente e spiegati nei capitoli della Parte II.
 
 #### 14.2 Graduazione dell'Assurance Effort
@@ -3129,7 +3127,7 @@ Se lo STEP 2 stabilisce erroneamente una classificazione AL-1 per un componente 
 5. **Vincolo Architetturale Emergente**: La presenza di molteplici agenti che si controllano a vicenda non costituisce indipendenza epistemica (condividono vulnerabilità e dinamiche di consenso degenerativo). È obbligatorio un *Air-Gap architetturale*: il deployment in produzione NON deve essere un tool accessibile all'Agente E; deve richiedere una firma crittografica generata da una pipeline CI/CD deterministica esterna e autorizzata da una review umana indipendente.
 
 > [!NOTE]
-> **Chiarimento terminologico: Air-Gap e HSM**  
+> ✎ **Chiarimento terminologico: Air-Gap e HSM**  
 > - **Air-Gap architetturale:** Principio di sicurezza mutuato dalle reti fisiche isolate (dove un computer non è collegato ad alcun cavo di rete per impedire intrusioni). Nel software assistito da AI, indica una separazione logica o infrastrutturale invalicabile che impedisce a un modello o agente probabilistico di invocare direttamente comandi di modifica sul mondo reale senza l'intermediazione obbligatoria di una pipeline deterministica controllata.
 > - **HSM (Hardware Security Module):** Dispositivo hardware dedicato e blindato (una vera e propria "cassaforte elettronica") progettato per custodire chiavi crittografiche ed eseguire operazioni di firma digitale senza che la chiave privata possa mai essere estratta o visualizzata in chiaro da software esterni, prevenendo accessi non autorizzati anche in caso di compromissione del sistema operativo host.
 
@@ -3559,11 +3557,11 @@ La seguente matrice analizza le diverse combinazioni e le relative criticità di
 
 | AUTORITÀ | COMPETENZA | INDIPENDENZA | STATO DI GOVERNANCE |
 | :--- | :--- | :--- | :--- |
-| **SI** | **SI** | **SI** | **CANDIDATO IDONEO ALL'APPROVAZIONE**<br>Condizione corretta per il sign-off. |
-| **SI** | **NO** | **SI** | **AUTORITÀ SENZA COMPETENZA**<br>Rischio elevato di rubber-stamping. |
-| **NO** | **SI** | **SI** | **COMPETENTE SENZA MANDATO**<br>Può verificare, non può approvare. |
-| **SI** | **SI** | **NO** | **CONFLITTO DI INTERESSI**<br>Valutazione viziata da incentivi. |
-| **NO** | **NO** | **SI** | **INCOMPETENTE NON QUALIFICATO**<br>Ruolo non applicabile al gate. |
+| **SI** | **SI** | **SI** | **CANDIDATO IDONEO ALL'APPROVAZIONE**<br />Condizione corretta per il sign-off. |
+| **SI** | **NO** | **SI** | **AUTORITÀ SENZA COMPETENZA**<br />Rischio elevato di rubber-stamping. |
+| **NO** | **SI** | **SI** | **COMPETENTE SENZA MANDATO**<br />Può verificare, non può approvare. |
+| **SI** | **SI** | **NO** | **CONFLITTO DI INTERESSI**<br />Valutazione viziata da incentivi. |
+| **NO** | **NO** | **SI** | **INCOMPETENTE NON QUALIFICATO**<br />Ruolo non applicabile al gate. |
 
 ---
 
@@ -3863,7 +3861,7 @@ La governance dell'assurance impone barriere non negoziabili, determinate dalla 
 | :--- | :--- |
 | **Limite Epistemico** | L'LLM opera su correlazioni di token statistici. Non possiede percezione ontologica del Mondo (W), non ha cognizione delle conseguenze fisiche o economiche delle proprie asserzioni e non teme sanzioni deontologiche. |
 | **Limite di Autorità** | Un LLM non è un soggetto di diritto: non può essere intestatario di credenziali di firma legale, non può assumere il ruolo di Accountable [A] né di Verifier [V], e non ha titolo per concedere deroghe di sicurezza. |
-| **Usi Non Accettabili** | 1. Impiego dell'LLM come oracolo di conformità autonoma.<br>2. Autocertificazione della sicurezza di prompt/codice.<br>3. Rilascio in produzione basato su approvazione AI.<br>4. Delega all'LLM della stima di completezza dei test. |
+| **Usi Non Accettabili** | 1. Impiego dell'LLM come oracolo di conformità autonoma.<br />2. Autocertificazione della sicurezza di prompt/codice.<br />3. Rilascio in produzione basato su approvazione AI.<br />4. Delega all'LLM della stima di completezza dei test. |
 
 In presenza di un profilo di rischio mission-critical o safety-critical (AL-3), qualsiasi architettura che consenta a un LLM di agire come gatekeeper deliberativo senza supervisione umana indipendente e deterministica costituisce una violazione metodologica grave, che invalida l'intero impianto di assurance.
 
@@ -3921,7 +3919,7 @@ Al completamento della fase di allocazione dell'autorità e governance, il comit
 | **UNKNOWN** | Permangono incertezze documentali sulle qualifiche professionali effettive dei firmatari, oppure la traccia di sign-off presenta lacune temporali o manomissioni nei registri. Il gate è sospeso. |
 | **FAIL** | Identificazione di gravi irregolarità di governance: un autore ha approvato le proprie evidenze; un verificatore opera in palese conflitto di interessi; l'oracolo di conformità è privo di base. |
 | **NOT APPLICABLE** | Il componente è un esercizio teorico o un ambiente di simulazione sandbox privo di qualsiasi interazione con dati o sistemi reali. |
-| **NO-GO** | **STATO BLOCCANTE ASSOLUTO:**<br>1. Nessun soggetto umano accetta formalmente il ruolo di Accountable per il sistema o per il rilascio.<br>2. L'autorità di approvazione finale è stata delegata a un LLM in un contesto a rischio non trascurabile.<br>3. Le condizioni operative escludono strutturalmente il Meaningful Human Control per scenari critici.<br>**OGNI ATTIVITÀ DI DEPLOYMENT O ESERCIZIO DEVE ESSERE INTERROTTA.** |
+| **NO-GO** | **STATO BLOCCANTE ASSOLUTO:**<br />1. Nessun soggetto umano accetta formalmente il ruolo di Accountable per il sistema o per il rilascio.<br />2. L'autorità di approvazione finale è stata delegata a un LLM in un contesto a rischio non trascurabile.<br />3. Le condizioni operative escludono strutturalmente il Meaningful Human Control per scenari critici.<br />**OGNI ATTIVITÀ DI DEPLOYMENT O ESERCIZIO DEVE ESSERE INTERROTTA.** |
 
 #### 13.2 Condizioni di NO-GO Bloccante
 L'attribuzione dello stato **NO-GO** non costituisce un semplice rallentamento del processo di sviluppo, ma una misura di arresto cautelativo: certifica che l'organizzazione non possiede la legittimità decisionale o le condizioni minime di controllo per esercire il sistema senza esporre il Mondo esterno a rischi incontrollati.
@@ -4199,7 +4197,7 @@ I cinque principi inderogabili di governance per l'assurance del software assist
 5. **Rigore Proporzionato al Rischio**: L'autorità richiesta, la segregazione dei ruoli e l'indipendenza delle evidenze devono crescere monotonicamente al crescere dell'AL, garantendo che i sistemi a più elevato potenziale distruttivo siano presidiati dai massimi livelli di rigore organizzativo ed epistemico.
 
 > [!TIP]  
-> **Monotonico:** Proprietà di una funzione o operazione che preserva l'ordinamento, crescendo o decrescendo in modo costante senza inversioni di tendenza.  
+> ☞ **Monotonico:** Proprietà di una funzione o operazione che preserva l'ordinamento, crescendo o decrescendo in modo costante senza inversioni di tendenza.  
 >  
 
 ---
@@ -4248,7 +4246,7 @@ Lo **STEP 4 — Specification** affronta il problema della formalizzazione del c
 Nello sviluppo convenzionale, la specifica viene frequentemente confusa con una descrizione testuale informale dei desideri dell'utente. Nell'ingegneria del software assistita da LLM, questa confusione genera fallimenti sistemici primari.
 
 > [!CAUTION]  
-> I modelli linguistici sono generatori probabilistici addestrati a massimizzare la plausibilità superficiale del testo. Se alimentati con specifiche espresse in linguaggio naturale ambiguo, gli LLM non segnalano l'indeterminatezza: la compensano iniettando assunzioni arbitrarie non dichiarate.  
+> **⊗** I modelli linguistici sono generatori probabilistici addestrati a massimizzare la plausibilità superficiale del testo. Se alimentati con specifiche espresse in linguaggio naturale ambiguo, gli LLM non segnalano l'indeterminatezza: la compensano iniettando assunzioni arbitrarie non dichiarate.  
 >  
 
 > *(Sulla distinzione architetturale tra modello matematico isolato, runtime di esecuzione, agenti e orchestratori di sistema, si veda il [◉ Quadro Didattico — Sezione 3](#quadro-didattico))*
@@ -4322,7 +4320,7 @@ Il comportamento di qualsiasi modulo o funzione è definito mediante la terna:
   ```
 
 > [!NOTE]
-> **Comprensione intuitiva della Terna di Hoare e del Contratto Software**  
+> ✎ **Comprensione intuitiva della Terna di Hoare e del Contratto Software**  
 > Per visualizzare la terna `{ Pre } C { Post }` senza farsi intimidire dalla notazione formale, si pensi a una comune compravendita immobiliare:
 > 1. **La Precondizione (`Pre`) è l'obbligo a carico dell'acquirente:** ad esempio "aver depositato il denaro sul conto corrente prima della firma". Se l'acquirente non rispetta questo patto (`Pre == FALSE`), il notaio non ha alcun obbligo di stipulare l'atto.
 > 2. **Il Comando (`C`) è l'azione tecnica:** la sequenza di istruzioni informatiche o clausole legali eseguita dal programma.
@@ -4346,7 +4344,7 @@ Ogni clausola di una specifica appartiene formalmente a una di due categorie:
   - *Esempio*: "Ogni messaggio in coda viene elaborato entro un tempo finito."
 
 > [!TIP]
-> **Perché la distinzione tra Safety e Liveness è determinante per i test?**  
+> ☞ **Perché la distinzione tra Safety e Liveness è determinante per i test?**  
 > Questa suddivisione logica non è una sottigliezza teorica, ma detta le modalità con cui possiamo collaudare il software:
 > - **Le violazioni di Safety sono facili da accertare empiricamente:** poiché impongono che "nulla di male accada mai", basta registrare un singolo istante temporale in cui la regola viene infranta (ad esempio, un fotogramma in cui il braccio robotico supera la velocità di sicurezza) per fermare il test ed esibire la prova inconfutabile del guasto. L'errore si manifesta in una sequenza finita e circoscritta.
 > - **Le violazioni di Liveness sono impossibili da smentire con un test a tempo indefinito:** poiché impongono che "qualcosa di buono prima o poi accada", per quanto a lungo si osservi un messaggio fermo in coda senza risposta (1 minuto, 1 ora, 1 giorno), non si può mai essere logicamente certi se il sistema sia definitivamente bloccato (deadlock) oppure se avrebbe risposto un millisecondo dopo la fine del nostro test. Per verificare la Liveness nei sistemi reali, siamo perciò obbligati a trasformare la proprietà in un vincolo temporizzato esplicito (*Bounded Liveness*): "il messaggio deve ricevere risposta entro e non oltre 2000 millisecondi". In questo modo, lo scadere del timer riconduce il fallimento a una violazione di Safety finita e osservabile.
@@ -4428,7 +4426,7 @@ Nel documento di specifica, ogni proposizione deve essere esplicitamente etichet
 - **Operational specification — Specifica operativa**: Formulazione che descrive *come* calcolare il risultato attraverso una macchina a stati o un algoritmo sequenziale astratto.
 
 > [!TIP]  
-> **Asintotico:** Analisi del comportamento di un algoritmo o di una funzione al tendere della dimensione dell'input o del carico all'infinito.
+> ☞ **Asintotico:** Analisi del comportamento di un algoritmo o di una funzione al tendere della dimensione dell'input o del carico all'infinito.
 >  
 
 > *(Per un elenco alfabetico dei termini utilizzati nel manuale, vedi: [❖&nbsp;GLOSSARIO](#glossario-manuale))*
@@ -4481,7 +4479,7 @@ Dove:
   ```
 
 > [!NOTE]
-> **Decodifica visiva della tupla S: la metafora dell'album fotografico**  
+> ✎ **Decodifica visiva della tupla S: la metafora dell'album fotografico**  
 > Per visualizzare concretamente questi simboli matematici senza smarrirsi:
 > - Si immagini lo spazio `Sigma` (la lettera greca Sigma maiuscola) come l'**album di tutte le fotografie possibili** della memoria interna del computer: ogni fotografia mostra il valore esatto delle variabili, dei registri e delle code in un determinato istante.
 > - `Init` indica quali tra queste fotografie rappresentano un sistema appena acceso e pronto all'uso.
@@ -4837,7 +4835,7 @@ Il modello valuta se stesso: genera oracoli che verificano fedelmente i propri b
 L'impiego di modelli linguistici nella costruzione e nell'analisi della specifica software richiede una comprensione rigorosa delle loro potenzialità euristiche e dei loro limiti strutturali. 
 
 > [!CAUTION]  
-> Un LLM non è un dimostratore automatico di teoremi né un oracolo ontologico del Mondo reale; è uno strumento probabilistico di trasformazione testuale e simbolica.  
+> **⊗** Un LLM non è un dimostratore automatico di teoremi né un oracolo ontologico del Mondo reale; è uno strumento probabilistico di trasformazione testuale e simbolica.  
 >  
 
 #### 11.1 Capacità Euristiche dell'LLM (Cosa l'LLM Può Fare)
@@ -5029,7 +5027,7 @@ Al termine dell'analisi della specifica, viene emesso un verdetto formale di gat
 | **UNKNOWN** | Presenza di elementi UNKNOWN all'interfaccia (es. intervalli di ingresso non caratterizzati, comportamenti hardware indefiniti). Il passaggio alla codifica è bloccato fino a chiarimento. |
 | **FAIL** | Identificazione di una contraddizione logica interna (inconsistenza) o dimostrazione che la specifica viola un invariante di safety. Riprogettazione obbligatoria. |
 | **NOT APPLICABLE** | Modulo di puro calcolo matematico privo di interfaccia o stato (estremamente raro). |
-| **NO-GO** | **STATO BLOCCANTE ASSOLUTO:**<br>1. La specifica ammette esplicitamente stati di pericolo catastrofico non contenuti (violazione di invarianti critici di livello AL-3).<br>2. La specifica è tautologicamente derivata dal codice difettoso.<br>3. Il fornitore rifiuta di formalizzare i contratti di interfaccia.<br>**VIETATA QUALSIASI ATTIVITÀ DI IMPLEMENTAZIONE O RILASCIO.** |
+| **NO-GO** | **STATO BLOCCANTE ASSOLUTO:**<br />1. La specifica ammette esplicitamente stati di pericolo catastrofico non contenuti (violazione di invarianti critici di livello AL-3).<br />2. La specifica è tautologicamente derivata dal codice difettoso.<br />3. Il fornitore rifiuta di formalizzare i contratti di interfaccia.<br />**VIETATA QUALSIASI ATTIVITÀ DI IMPLEMENTAZIONE O RILASCIO.** |
 
 ---
 
@@ -5075,7 +5073,7 @@ Contratto di Interfaccia del Guardrail:
 > Nei sistemi in cui più computer o flussi lavorano insieme, l'ordine con cui arrivano i messaggi sulla rete può mescolarsi in migliaia di sequenze diverse (**interleaving di rete**). La **Logica Temporale (LTL)** permette di scrivere regole che valgono lungo il tempo: ad esempio, *Mutual Exclusion* impone che in nessun istante due nodi usino la stessa risorsa contemporaneamente, mentre `EVENTUALLY` impone che prima o poi ogni richiesta in attesa riceva risposta. Strumenti come **TLA+** simulano automaticamente tutte queste possibili mescolanze prima che si scriva il codice.
 
 > [!TIP]  
-> **Race condition:** Anomalia di concorrenza in cui il risultato di un'operazione informatica dipende dall'ordine o dalla tempistica imprevedibile di esecuzione di thread o processi paralleli.  
+> ☞ **Race condition:** Anomalia di concorrenza in cui il risultato di un'operazione informatica dipende dall'ordine o dalla tempistica imprevedibile di esecuzione di thread o processi paralleli.  
 >  
 
 ---
@@ -5450,7 +5448,7 @@ Quando la premessa e falsa, l'implicazione `FALSE -> P` e formalmente vera secon
 > *Se un'assunzione su cui poggia il codice o il test cade, lo stato di verita della proprietà del software `P` torna a essere un UNKNOWN, e l'intera evidenza `E` (compresi cento test con esito positivo) diventa completamente inutile ai fini dell'assurance reale.*
 
 > [!NOTE]
-> **Chiarimento logico: perché "da una premessa falsa segue qualsiasi cosa" (Ex Falso Quodlibet)**  
+> ✎ **Chiarimento logico: perché "da una premessa falsa segue qualsiasi cosa" (Ex Falso Quodlibet)**  
 > Nella logica classica, l'enunciato condizionale `A -> B` (letto "se A allora B") è considerato formalmente VERO ogni volta che la premessa A è FALSA, indipendentemente dal valore di verità di B. 
 > Per comprendere questa regola apparentemente paradossale, si pensi a una promessa quotidiana: *"Se piove, prendo l'ombrello"*. In quale caso possiamo accusare chi ha parlato di aver mentito? Solo nel caso in cui piova effettivamente e la persona non prenda l'ombrello (`VERO -> FALSO = FALSO`). Ma se non piove affatto (`A = FALSO`), la promessa non è stata infranta: la frase rimane tecnicamente non violata (quindi formalmente VERA), sia che la persona decida di portare l'ombrello, sia che lo lasci a casa.
 > 
@@ -5729,11 +5727,11 @@ Nel valutare software sviluppato con il supporto di LLM, si riscontrano pattern 
 
 | ANTI-PATTERN | DESCRIZIONE E MECCANISMO DI ERRORE |
 | :--- | :--- |
-| **Epistemic Laundering**<br>*(Riciclaggio Epistemico)* | Un'ipotesi debole o inventata da un LLM viene inserita in un commento di codice, poi recepita nella doc, e infine considerata un fatto assodato senza alcuna verifica. |
-| **Fallacy of Omission**<br>*(Fallacia dell'Omissione)* | Trattare l'assenza di eccezioni o warning come prova provata che non esistano casi limite non gestiti. |
-| **Consensus as Truth**<br>*(Consenso come Verità)* | Interrogare tre diversi LLM (es. GPT-4, Claude, Gemini); se tutti concordano sulla stessa assunzione errata, considerarla oggettivamente vera. |
-| **Unbounded Assurance Scope**<br>*(Perimetro di Assurance Illimitato)* | Non specificare i limiti operativi dell'assunzione, estendendola tacitamente ad ambienti per cui non è mai stata pensata. |
-| **Post-Hoc Rationalization**<br>*(Razionalizzazione a posteriori)* | Quando il codice LLM si rompe, aggiungere un'assunzione ad-hoc per giustificare l'output anziché correggere il design. |
+| **Epistemic Laundering**<br />*(Riciclaggio Epistemico)* | Un'ipotesi debole o inventata da un LLM viene inserita in un commento di codice, poi recepita nella doc, e infine considerata un fatto assodato senza alcuna verifica. |
+| **Fallacy of Omission**<br />*(Fallacia dell'Omissione)* | Trattare l'assenza di eccezioni o warning come prova provata che non esistano casi limite non gestiti. |
+| **Consensus as Truth**<br />*(Consenso come Verità)* | Interrogare tre diversi LLM (es. GPT-4, Claude, Gemini); se tutti concordano sulla stessa assunzione errata, considerarla oggettivamente vera. |
+| **Unbounded Assurance Scope**<br />*(Perimetro di Assurance Illimitato)* | Non specificare i limiti operativi dell'assunzione, estendendola tacitamente ad ambienti per cui non è mai stata pensata. |
+| **Post-Hoc Rationalization**<br />*(Razionalizzazione a posteriori)* | Quando il codice LLM si rompe, aggiungere un'assunzione ad-hoc per giustificare l'output anziché correggere il design. |
 
 #### Approfondimento: Epistemic Laundering (Il Riciclaggio Epistemico)
 
@@ -5823,7 +5821,7 @@ Questo approccio offre una separazione procedurale, ma **non garantisce in alcun
 
 Un processo di software assurance maturo non rifiuta gli LLM, ma ne definisce formalmente le capacità e i confini operativi invalicabili.
 
-| COSA UN LLM PUÒ FARE<br>*(Supporto Euristico e Diagnostico)* | COSA UN LLM NON PUÒ FARE<br>*(Assurance e Garanzia Epistemica)* |
+| COSA UN LLM PUÒ FARE<br />*(Supporto Euristico e Diagnostico)* | COSA UN LLM NON PUÒ FARE<br />*(Assurance e Garanzia Epistemica)* |
 | :--- | :--- |
 | Brainstorming di assunzioni nascoste tramite sollecitazione avversariale esplicita. | Dimostrare empiricamente che un'assunzione ambientale sia vera nel mondo fisico. |
 | Identificazione di discrepanze logiche evidenti tra sezioni diverse della documentazione. | Certificare la completezza esaustiva di tutti gli sconosciuti (*Unknowns*) di un sistema reale. |
@@ -5835,7 +5833,7 @@ Un processo di software assurance maturo non rifiuta gli LLM, ma ne definisce fo
 Gli LLM possono essere utilizzati come potenti strumenti di audit epistemico solo se sollecitati con una postura avversariale. Un prompt conformista fallisce; un prompt di falsificazione attiva porta alla luce assunzioni silenti.
 
 > [!TIP]
-> **Raccordo con il Prompting Contrattuale**  
+> ☞ **Raccordo con il Prompting Contrattuale**  
 > Per la formalizzazione vincolante dei limiti di conoscenza nel prompt e per l'etichettatura del grado di certezza dei dati (distinguendo `[FACT]` da congetture `[ASSUMPTION]`), vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo — Sez. 4](#appendice-prompt-eng), **Pattern P4 (Explicit Epistemic Abstention)** e il **Pattern P5 (Provenance-Based Epistemic Tagging)**.
 
 ##### Modello di Prompting Euristico per lo STEP 5:
@@ -6280,7 +6278,7 @@ Un **Invariante** è una proposizione logica che deve rimanere costantemente ver
   *Esempio:* "La somma totale dei token circolanti in un'architettura decentralizzata deve essere costante, salvo eventi autorizzati di minting o burning."
 
 > [!TIP]  
-> **Minting:** Processo di creazione, conio o emissione di nuove unità digitali o token all'interno di un sistema.  
+> ☞ **Minting:** Processo di creazione, conio o emissione di nuove unità digitali o token all'interno di un sistema.  
 > **Burning:** Processo di distruzione o rimozione permanente di unità digitali o token dalla circolazione per ridurne la disponibilità complessiva.  
 >  
 
@@ -6395,7 +6393,7 @@ Un predicato `I` è un **Invariante Induttivo** se soddisfa tre condizioni rigor
 Se un predicato soddisfa le condizioni 1 e 2, esso è un invariante induttivo per Reach(S); se soddisfa inoltre la condizione 3, esso costituisce la prova formale che la proprietà critica Phi non può essere violata in alcuno stato raggiungibile del sistema.
 
 > [!NOTE]
-> **Comprensione intuitiva dell'Invariante Induttivo: la metafora della catena di domino**  
+> ✎ **Comprensione intuitiva dell'Invariante Induttivo: la metafora della catena di domino**  
 > Calcolare tutti gli stati raggiungibili di un programma complesso è praticamente impossibile (possono essere miliardi o infiniti). L'induzione matematica risolve questo problema con un'astrazione elegantissima:
 > 1. **La Base dell'Induzione dimostra che la prima tessera del domino cade:** verifichiamo che all'accensione del sistema (`s_0`) la proprietà di sicurezza sia rigorosamente rispettata.
 > 2. **Il Passo Induttivo dimostra che la distanza tra una tessera qualsiasi e la successiva è corretta:** assumiamo come ipotesi che la proprietà valga in un generico stato `s`, e dimostriamo che *qualunque sia la singola istruzione o transizione eseguita*, il nuovo stato risultante `s'` continuerà a rispettare la proprietà.
@@ -6455,7 +6453,7 @@ Le principali classi di proprietà relazionali sono:
   *Fondamentale per: strutture dati CRDT (Conflict-free Replicated Data Types), repliche concorrenti.*
 
 > [!TIP]  
-> **Proprietà metamorfica:** Una regola che definisce come l'output di un sistema deve cambiare (o rimanere invariato) quando il suo input viene modificato con una trasformazione controllata. Anziché verificare se una singola risposta è "giusta" o "sbagliata", verifica la coerenza tra più risposte di fronte a piccole variazioni del prompt (es. se parafrasando la domanda, la sostanza della risposta non cambia).  
+> ☞ **Proprietà metamorfica:** Una regola che definisce come l'output di un sistema deve cambiare (o rimanere invariato) quando il suo input viene modificato con una trasformazione controllata. Anziché verificare se una singola risposta è "giusta" o "sbagliata", verifica la coerenza tra più risposte di fronte a piccole variazioni del prompt (es. se parafrasando la domanda, la sostanza della risposta non cambia).  
 >  
 
 ---
@@ -6697,34 +6695,34 @@ La suite di test registra un trionfale `PASS` (100% dei test superati), ma la pr
 La generazione combinata di software e proprietà da parte di LLM produce un pattern di falsa sicurezza estremamente insidioso:
 
 ```text
-          SPECIFICA AMBIGUA
-                  |
-                  v
-  +-------------------------------+
-  |  LLM GENERATORE DI CODICE     |
-  +-------------------------------+
-                  |
-                  +---------------------------------+
-                  |                                 |
-                  v                                 v
-     +-------------------------+       +-------------------------+
-     |  Codice Implementativo  |       |  Invarianti e Proprietà |
-     |  (Include bug silente)  |       |  (Formulazione debole o |
-     +-------------------------+       |   adattata al bug)      |
-                  |                    +-------------------------+
-                   \                                 /
-                    \                               /
-                     v                             v
-                +---------------------------------------+
-                |      ESECUZIONE ORATIVE DEI TEST      |
-                |               ESITO: PASS             |
-                +---------------------------------------+
-                                  |
-                                  v
-                   FALSA ASSURANCE CATASTROFICA:
-               Il modello ha adattato la proprietà
-               al proprio modo errato di risolvere
-               il problema.
+        SPECIFICA AMBIGUA
+                |
+                v
++-------------------------------+
+|  LLM GENERATORE DI CODICE     |
++-------------------------------+
+             |
+             +------------------------------+
+             |                              |
+             v                              v
++-------------------------+    +-------------------------+
+|  Codice Implementativo  |    |  Invarianti e Proprietà |
+|  (Include bug silente)  |    |  (Formulazione debole o |
++-------------------------+    |   adattata al bug)      |
+             |                 +-------------------------+
+              \                              /
+               \                            /
+                v                          v
+       +---------------------------------------+
+       |    ESECUZIONE ITERATIVA DEI TEST      |
+       |               ESITO: PASS             |
+       +---------------------------------------+
+                          |
+                          v
+           FALSA ASSURANCE CATASTROFICA:
+       Il modello ha adattato la proprietà
+       al proprio modo errato di risolvere
+       il problema.
 ```
 
 Per sventare la False Assurance:
@@ -6809,7 +6807,7 @@ Nei sistemi distribuiti geograficamente distribuiti (CAP Theorem), pretendere la
   2. Un **Invariante di Bounded Staleness (Safety):** *"Nessuna replica può servire dati più vecchi di Delta_T secondi rispetto all'ultimo aggiornamento registrato"*.
 
 > [!TIP]  
-> **CAP Theorem:** il Teorema di CAP (o Teorema di Brewer) stabilisce che un sistema di memorizzazione dati distribuito può garantire contemporaneamente al massimo due delle seguenti tre proprietà:  
+> ☞ **CAP Theorem:** il Teorema di CAP (o Teorema di Brewer) stabilisce che un sistema di memorizzazione dati distribuito può garantire contemporaneamente al massimo due delle seguenti tre proprietà:  
 > C - Consistenza (Consistency / Linearizzabilità): Ogni lettura restituisce l'ultima scrittura effettuata, o genera un errore. In pratica, tutti i nodi del sistema vedono esattamente gli stessi dati nello stesso identico momento, come se fosse un database singolo.  
 > A - Disponibilità (Availability): Ogni richiesta ricevuta da un nodo non in errore deve restituire una risposta non errata (senza la garanzia che contenga la scrittura più recente).  
 > ​P - Tolleranza alle partizioni (Partition Tolerance): Il sistema continua a funzionare nonostante la perdita o il ritardo (interruzione temporanea o permanente) di messaggi di rete tra i nodi.  
@@ -7139,7 +7137,7 @@ G = (V, E)
 ```
 
 > [!NOTE]
-> **Che cos'è un DAG e perché l'assenza di cicli è un requisito epistemico non negoziabile?**  
+> ✎ **Che cos'è un DAG e perché l'assenza di cicli è un requisito epistemico non negoziabile?**  
 > Un Grafo Aciclico Diretto (DAG) è una rete di nodi collegati da frecce orientate che scorrono in una direzione precisa senza mai formare un anello chiuso o un cerchio. 
 > Nel nostro modello di tracciabilità, ogni freccia orientata `(u, v)` significa: *"L'elemento v esiste ed è giustificato sulla base dell'elemento u"*. 
 > Se il grafo contenesse anche un solo ciclo (ad esempio: l'Obiettivo A giustifica il Requisito B, che giustifica il Test C, che a sua volta giustifica l'Obiettivo A), ci troveremmo di fronte a una **fallacia di petizione di principio (giustificazione circolare)**: una catena di affermazioni che si dichiarano corrette a vicenda senza alcun punto di ancoraggio con il mondo reale esterno. L'aciclicità garantisce che la giustificazione discenda sempre in modo lineare e non autoreferenziale dalle finalità reali del committente fino alle evidenze empiriche verificabili.
@@ -7865,7 +7863,7 @@ Il *rubber-stamping* è l'atto di approvare formalmente un artefatto tecnico (ap
 > *(Sull'effetto della fluidità di elaborazione e l'illusione della profondità esplicativa, vedi l'appendice: [※ Concetti di Psicologia Cognitiva e Fattori Umani — Sez. 9 e 10](#appendice-psico))*
 
 > [!TIP]
-> **Come colmare il divario di ispezione se non sei uno sviluppatore**  
+> ☞ **Come colmare il divario di ispezione se non sei uno sviluppatore**  
 > Per evitare che l'incapacità di programmare si trasformi in approvazione passiva (*rubber-stamping*), l'analista può applicare il protocollo di decodifica visiva illustrato nell'appendice:  
 > **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**.  
 > La guida fornisce la «Stele di Rosetta» comparativa a 4 linguaggi e la checklist di falsificazione in 5 domande per individuare a vista botole che nascondono errori, concatenazioni non sicure e assunzioni di rete ottimistiche.
@@ -8121,7 +8119,7 @@ Il Principal Engineer esegue la review:
 L'ingegnere approva la PR (`LGTM - Looks Good To Me`).
 
 > [!NOTE]
-> **Che cosa fa il codice sopra (`HMAC-SHA256` e `PEP-8`)?**  
+> ✎ **Che cosa fa il codice sopra (`HMAC-SHA256` e `PEP-8`)?**  
 > Un **HMAC-SHA256** è un sigillo crittografico usato per verificare che un lasciapassare digitale (*token*) non sia stato falsificato. Il codice rispetta perfettamente le regole estetiche di scrittura del Python (**PEP-8**), ma commette un errore fatale al momento di controllare il sigillo (`signature == expected_sig`): confronta i caratteri uno alla volta e si ferma subito al primo carattere sbagliato, permettendo a un attaccante di capire dove ha sbagliato misurando i microsecondi di attesa della risposta (*Timing Attack*).
 
 ##### L'errore di valutazione tecnica:
@@ -8801,9 +8799,9 @@ La specifica appare chiara, lineare e priva di ambiguità sintattiche. Tuttavia,
 | P > P_max, Operatore assente | REQ-ALARM-01 | Luce intermittente |
 | P > P_max, Operatore preme ACK | REQ-ALARM-02 | Luce fissa |
 | P < P_max | REQ-ALARM-03 | Allarme spento |
-| **COND. OMESSA 1:**<br>Il sensore di pressione cade (disconnesso o output nullo) | NON SPECIFICATO | **SCONOSCIUTO**<br>(Probabile crash) |
-| **COND. OMESSA 2:**<br>P > P_max ma la console primaria è offline | NON SPECIFICATO | **SCONOSCIUTO**<br>(Manca fallback) |
-| **COND. OMESSA 3:**<br>L'operatore preme ACK ma P continua a salire oltre soglia di rottura P_burst | NON SPECIFICATO | **SCONOSCIUTO**<br>(Rischio esplosione senza allarme sonoro) |
+| **COND. OMESSA 1:**<br />Il sensore di pressione cade (disconnesso o output nullo) | NON SPECIFICATO | **SCONOSCIUTO**<br />(Probabile crash) |
+| **COND. OMESSA 2:**<br />P > P_max ma la console primaria è offline | NON SPECIFICATO | **SCONOSCIUTO**<br />(Manca fallback) |
+| **COND. OMESSA 3:**<br />L'operatore preme ACK ma P continua a salire oltre soglia di rottura P_burst | NON SPECIFICATO | **SCONOSCIUTO**<br />(Rischio esplosione senza allarme sonoro) |
 
 ##### Diagnosi dello Step 9:
 La specifica descrive esclusivamente il percorso nominale (*Happy Path*). Omette i fallimenti dell'infrastruttura (rottura sensore, caduta display) e la dinamica dei guasti fisici progressivi.  
@@ -9575,10 +9573,10 @@ Per tradurre la classificazione numerica in vincoli ingegneristici concreti per 
 
 | Livello | Denominazione e Profilo di Rischio | Vincolo sull'Uso del Codice Generato da LLM | Tipo di Oracolo di Verifica Obbligatorio | Requisiti di Pipeline e Gate (Step 23-24) |
 | :--- | :--- | :--- | :--- | :--- |
-| **AL-0** | **Triviale / Sperimentale**<br>Nessun danno esterno credibile; reversibilità immediata; blast radius zero. | **Uso libero.** Codice e test sintetizzabili direttamente da prompt informali senza vincoli formali. | Plausibilità empirica locale; ammessi oracoli euristici informali generati dallo stesso modello. | Esecuzione locale standard. Nessuna barriera bloccante vincolante richiesta. |
-| **AL-1** | **Basso Impatto / Standard**<br>Disservizi operativi minori e circoscritti; danni economici trascurabili e recuperabili. | **Ammesso con supervisione.** L'LLM può coadiuvare implementazione e generazione dei test di unità. | Oracoli eseguiti determininisticamente in CI su runtime reale; vietate asserzioni tautologiche vuote. | Pipeline CI automatica bloccante; Statement coverage documentata; peer review interna. |
-| **AL-2** | **Rischioso / Business-Critical**<br>Perdite finanziarie rilevanti, violazioni legali (es. GDPR), de-sincronizzazione dati persistenti. | **Vincolato da contratti rigidi (SDG).** L'LLM genera solo il corpo interno di funzioni pure isolate (*Step 13*). | **Separazione metodologica obbligatoria.** Oracoli basati su proprietà (PBT) ed esecuzione differenziale. | Branch coverage documentata; SAST con tolleranza zero; revisione umana esperta di dominio obbligatoria. |
-| **AL-3** | **Massimo Rigore / Safety-Critical**<br>Incolumità fisica, collasso infrastrutturale sistemico, perdite contabili irreversibili. | **Uso diretto interdetto.** Ammesso solo come bozza esplorativa sottoposta a dimostrazione matematica. | **Indipendenza epistemica totale.** Oracoli formali matematici terzi (Step 11); model checking; verifica Clean-Room. | Copertura MC/DC; Fuzzing avversariale esaustivo; divieto assoluto di override; approvazione a doppia firma (*TPI*). |
+| **AL-0** | **Triviale / Sperimentale**<br />Nessun danno esterno credibile; reversibilità immediata; blast radius zero. | **Uso libero.** Codice e test sintetizzabili direttamente da prompt informali senza vincoli formali. | Plausibilità empirica locale; ammessi oracoli euristici informali generati dallo stesso modello. | Esecuzione locale standard. Nessuna barriera bloccante vincolante richiesta. |
+| **AL-1** | **Basso Impatto / Standard**<br />Disservizi operativi minori e circoscritti; danni economici trascurabili e recuperabili. | **Ammesso con supervisione.** L'LLM può coadiuvare implementazione e generazione dei test di unità. | Oracoli eseguiti determininisticamente in CI su runtime reale; vietate asserzioni tautologiche vuote. | Pipeline CI automatica bloccante; Statement coverage documentata; peer review interna. |
+| **AL-2** | **Rischioso / Business-Critical**<br />Perdite finanziarie rilevanti, violazioni legali (es. GDPR), de-sincronizzazione dati persistenti. | **Vincolato da contratti rigidi (SDG).** L'LLM genera solo il corpo interno di funzioni pure isolate (*Step 13*). | **Separazione metodologica obbligatoria.** Oracoli basati su proprietà (PBT) ed esecuzione differenziale. | Branch coverage documentata; SAST con tolleranza zero; revisione umana esperta di dominio obbligatoria. |
+| **AL-3** | **Massimo Rigore / Safety-Critical**<br />Incolumità fisica, collasso infrastrutturale sistemico, perdite contabili irreversibili. | **Uso diretto interdetto.** Ammesso solo come bozza esplorativa sottoposta a dimostrazione matematica. | **Indipendenza epistemica totale.** Oracoli formali matematici terzi (Step 11); model checking; verifica Clean-Room. | Copertura MC/DC; Fuzzing avversariale esaustivo; divieto assoluto di override; approvazione a doppia firma (*TPI*). |
 
 #### 7.5 Profilo di Evidenza e Controlli Richiesti (Controls(AL))
 L'allocazione dell'Assurance Level non produce una cifra fine a se stessa, ma seleziona tassativamente il pacchetto di evidenze che deve essere soddisfatto:
@@ -9611,7 +9609,7 @@ Controls(AL-3) = {
 ```
 
 > [!NOTE]
-> **Che cosa significa copertura `MC/DC`?**  
+> ✎ **Che cosa significa copertura `MC/DC`?**  
 > La metrica **MC/DC** (*Modified Condition/Decision Coverage*), standard nell'industria avionica, non si accontenta di verificare che ogni riga o bivio `if` sia stato percorso. Impone di dimostrare tramite prove mirate che *ciascuna singola sottocondizione* di una regola complessa (ad esempio `A`, `B` e `C` dentro `SE (A E B) O C`) è capace, cambiandola da sola, di ribaltare l'esito finale dell'intera decisione.
 
 #### 7.6 La Regola Decisionale del Gate di Rilascio
@@ -10420,7 +10418,7 @@ Se il coefficiente di accoppiamento rho è prossimo a 1, la suite di test ha un'
 * **Valutazione:** L'oracolo è autosufficiente, matematicamente rigoroso e privo di dipendenze dall'LLM. Se l'LLM commette errori di allineamento di byte o padding nello stream binario, la proprietà fallisce all'istante.
 
 > [!TIP]  
-> **Isomorfismo:** Corrispondenza strutturale biunivoca che preserva le relazioni e le proprietà logiche tra due strutture o insiemi differenti.  
+> ☞ **Isomorfismo:** Corrispondenza strutturale biunivoca che preserva le relazioni e le proprietà logiche tra due strutture o insiemi differenti.  
 >  
 
 ---
@@ -10558,8 +10556,8 @@ Per determinare se un'evidenza sia valida per il livello di assurance stabilito 
 | LIVELLO DI SEPARAZIONE | DESCRIZIONE | VALORE DI INDIPENDENZA |
 | :--- | :--- | :--- |
 | **LIVELLO 1: Separazione Fisica** | File diversi, repository diversi, macchine diverse. | **NULLO** |
-| **LIVELLO 2: Separazione Procedurale** | Processi di CI diversi, sviluppatore A scrive il codice, sviluppatore B scrive i test (ma leggendo il codice di A). | **BASSO**<br>(contaminazione cognitiva) |
-| **LIVELLO 3: Separazione Metodologica**<br>(Black-Box / Double-Blind) | L'oracolo è ricavato dalla specifica formale PRIMA che il codice sia implementato. Il tester ignora l'implementazione. | **MEDIO-ALTO** |
+| **LIVELLO 2: Separazione Procedurale** | Processi di CI diversi, sviluppatore A scrive il codice, sviluppatore B scrive i test (ma leggendo il codice di A). | **BASSO**<br />(contaminazione cognitiva) |
+| **LIVELLO 3: Separazione Metodologica**<br />(Black-Box / Double-Blind) | L'oracolo è ricavato dalla specifica formale PRIMA che il codice sia implementato. Il tester ignora l'implementazione. | **MEDIO-ALTO** |
 | **LIVELLO 4: Indipendenza Epistemica Totale** | Specifica formale matematica, linguaggi di paradigma diverso, oracoli differenziali eseguiti su stack isolati, proof assistants o modelli con dataset e architetture disaccoppiate. | **MASSIMO** |
 
 #### Mappatura con gli Assurance Level dello STEP 10:
@@ -11011,10 +11009,10 @@ Nello sviluppo assistito da LLM, le assunzioni critiche si distribuiscono su qua
 
 | TASSONOMIA DELLE ASSUNZIONI CRITICHE |
 | :--- |
-| **1. ASSUNZIONI SULL'AMBIENTE DI ESECUZIONE E RUNTIME**<br>• Concorrenza e Thread Safety (assenza di race condition non gestite)<br>• Modello di memoria (assenza di OOM, garbage collection non bloccante)<br>• Semantica del File System (scritture atomiche, locking POSIX) |
-| **2. ASSUNZIONI SUI DATI E SUGLI INPUT**<br>• Codifica dei caratteri (UTF-8 valido, assenza di caratteri nulli)<br>• Distribuzione e cardinalita' (assenza di array con 10^7 elementi)<br>• Validita' temporale (orologi sincronizzati, assenza di skew) |
-| **3. ASSUNZIONI SULLE DIPENDENZE ESTERNE E SULLA RETE**<br>• Latenza e disponibilita' (timeout infiniti, rete affidabile)<br>• Idempotenza delle API (la ripetizione della chiamata non duplica)<br>• Stabilita' contrattuale (assenza di breaking change non annunciate) |
-| **4. ASSUNZIONI INTRINSECHE ALL'LLM (Se il modello è parte del runtime)**<br>• Determinismo dell'output (`temperature=0` garantisce stabilita')<br>• Fedelta' contestuale (la context window non perde vincoli critici)<br>• Assenza di injection (i dati in input non sovrascrivono il system) |
+| **1. ASSUNZIONI SULL'AMBIENTE DI ESECUZIONE E RUNTIME**<br />• Concorrenza e Thread Safety (assenza di race condition non gestite)<br />• Modello di memoria (assenza di OOM, garbage collection non bloccante)<br />• Semantica del File System (scritture atomiche, locking POSIX) |
+| **2. ASSUNZIONI SUI DATI E SUGLI INPUT**<br />• Codifica dei caratteri (UTF-8 valido, assenza di caratteri nulli)<br />• Distribuzione e cardinalita' (assenza di array con 10^7 elementi)<br />• Validita' temporale (orologi sincronizzati, assenza di skew) |
+| **3. ASSUNZIONI SULLE DIPENDENZE ESTERNE E SULLA RETE**<br />• Latenza e disponibilita' (timeout infiniti, rete affidabile)<br />• Idempotenza delle API (la ripetizione della chiamata non duplica)<br />• Stabilita' contrattuale (assenza di breaking change non annunciate) |
+| **4. ASSUNZIONI INTRINSECHE ALL'LLM (Se il modello è parte del runtime)**<br />• Determinismo dell'output (`temperature=0` garantisce stabilita')<br />• Fedelta' contestuale (la context window non perde vincoli critici)<br />• Assenza di injection (i dati in input non sovrascrivono il system) |
 
 ---
 
@@ -11024,7 +11022,7 @@ Di fronte a ogni assunzione critica identificata nello STEP 5 ed esplicitata nel
 
 | LE TRE STRATEGIE DI TRATTAMENTO |
 | :--- |
-| **1. VERIFY** (Verificare l'assunzione con evidenza appropriata)<br>**2. ELIMINATE** (Rimuovere la dipendenza dall'assunzione mediante design)<br>**3. CONTAIN / ACCEPT** (Mantenere, limitare l'effetto e gestire il rischio) |
+| **1. VERIFY** (Verificare l'assunzione con evidenza appropriata)<br />**2. ELIMINATE** (Rimuovere la dipendenza dall'assunzione mediante design)<br />**3. CONTAIN / ACCEPT** (Mantenere, limitare l'effetto e gestire il rischio) |
 
 #### 9.1 Strategia 1: VERIFY (Verifica formale o empirica)
 - **Definizione:** Mantenere l'assunzione nel sistema, ma raccogliere evidenze oggettive, indipendenti e riproducibili che ne dimostrino la validità nel contesto operativo reale prima della messa in esercizio.
@@ -11403,7 +11401,7 @@ Solo quando le premesse del sistema sono state verificate o confinate con lo ste
 *Raccordo di Transizione Metodologica*
 
 > [!NOTE]
-> **Che cosa abbiamo acquisito e cosa ci attende nella Parte II**  
+> ✎ **Che cosa abbiamo acquisito e cosa ci attende nella Parte II**  
 > Con la conclusione dello Step 12 si chiude formalmente la **Parte I (Fondamenti epistemici e decisionali)**. Prima di passare alla scrittura del software, l'ingegnere dell'assurance deve fermarsi e verificare di aver consolidato le fondamenta probatorie dell'iniziativa.
 
 #### IL BILANCIO DI ASSURANCE DELLA PARTE I
@@ -11594,7 +11592,7 @@ Uno dei pattern architetturali cardine per circoscrivere il codice assistito da 
    - A parità di input produce tassativamente lo stesso output. Qui risiede la logica di dominio e il presidio primario degli invarianti critici.
 
 > [!NOTE]
-> **Chiarimento concettuale: che cos'è un "effetto collaterale" (side effect) in informatica?**  
+> ✎ **Chiarimento concettuale: che cos'è un "effetto collaterale" (side effect) in informatica?**  
 > Nel linguaggio comune o medico, "effetto collaterale" denota una conseguenza spiacevole o imprevista. In informatica il termine ha un significato puramente descrittivo: un effetto collaterale è **qualsiasi interazione con l'ambiente esterno che legge o modifica lo stato del mondo al di fuori della funzione stessa**. 
 > - Modificare il valore di una variabile globale, scrivere una riga su un file, inviare un pacchetto di rete, interrogare un database o persino chiedere l'ora corrente al processore sono tutti *effetti collaterali*.
 > - Una **funzione pura**, invece, si comporta esattamente come una formula matematica (es. `f(x) = x * 2`): dipende esclusivamente dagli argomenti ricevuti tra le parentesi e comunica al mondo unicamente attraverso il valore restituito, senza lasciare alcuna traccia nell'hardware.
@@ -11628,11 +11626,11 @@ Uno dei pattern architetturali cardine per circoscrivere il codice assistito da 
 Questa separazione neutralizza la tendenza degli LLM a mescolare costrutti I/O arbitrari all'interno della logica di calcolo, rendendo immediata l'applicazione del Property-Based Testing (*Step 18*) e degli oracoli formali (*Step 11*).
 
 > [!TIP]
-> **Applicazione pratica dell'architettura disaccoppiata (Compound AI Systems)**  
+> ☞ **Applicazione pratica dell'architettura disaccoppiata (Compound AI Systems)**  
 > La concreta traduzione di questo schema in un'infrastruttura reale — in cui l'LLM funge da coordinatore di regia e i moduli specialistici o deterministici agiscono come bracci operativi protetti tramite Model Context Protocol (MCP) — è formalizzata ed esemplificata operativamente nell'appendice: [⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale — Sezioni 1.3 e 4](#appendice-moltiplicatore-personale).
 
 > [!NOTE]
-> **Il modello 'Source ➔ Trasformazione Pura ➔ Sink' per non programmatori**  
+> ✎ **Il modello 'Source ➔ Trasformazione Pura ➔ Sink' per non programmatori**  
 > La separazione architetturale tra *Functional Core* e *Imperative Shell* trova la sua declinazione pratica per i revisori non tecnici nella Sezione 1 dell'appendice:  
 > **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**, dove l'intero flusso del software viene ricondotto ai tre momenti fondamentali: da dove entra il dato (*Source*), come viene elaborato in memoria senza effetti collaterali (*Trasformazione pura*), e dove impatta il mondo esterno (*Sink*).
 
@@ -11663,7 +11661,7 @@ Se un invariante critico viene controllato parzialmente in tre punti diversi (es
 Se il sistema richiede un indirizzo email, un codice identificativo o un importo monetario positivo, tali entità non devono essere modellate internamente come generiche `string` o `float`. Vengono modellate come tipi dedicati (`EmailAddress`, `PositiveMoney`) il cui costruttore impedisce l'istanziazione di valori non conformi. In questo modo, l'LLM incaricato di generare il codice interno (*Step 15*) non dovrà gestire o duplicare controlli difensivi sparsi, poiché gli stati invalidi sono irrappresentabili per costruzione.
 
 > [!TIP]
-> **L'analogia della presa sagomata: come i tipi impediscono i difetti logici**  
+> ☞ **L'analogia della presa sagomata: come i tipi impediscono i difetti logici**  
 > Per visualizzare la differenza tra *validare* e *modellare con i tipi*, si confronti un cartello di avvertimento con una presa industriale sagomata:
 > - **L'approccio debole (Validazione diffusa):** accettiamo dati generici aperti (es. stringhe o numeri qualunque) e inseriamo decine di controlli `if` sparsi nel codice sperando che ogni modulo si ricordi di controllare se il numero sia positivo o se la stringa sia un'email valida. È come lasciare un cavo elettrico scoperto ad alto voltaggio e appendere un cartello con scritto *"Attenzione: inserire solo spine adatte"*. Se l'LLM dimentica un singolo `if` in una funzione secondaria, il sistema accetterà dati corrotti.
 > - **L'approccio forte (Type-Driven Design):** creiamo un tipo dedicato (es. `PositiveMoney`) il cui costruttore esegue il controllo una volta per tutte all'ingresso del sistema (*Parse*). Se il dato è valido, viene incapsulato in un oggetto blindato che non può più essere alterato; se non è valido, l'oggetto non viene neppure creato. È l'equivalente di una presa elettrica con una sagoma fisica incompatibile: una spina errata non può fisicamente entrare. All'interno del nucleo applicativo, le funzioni accettano solo oggetti `PositiveMoney`: la possibilità che il valore sia negativo è resa fisicamente e matematicamente impossibile a monte.
@@ -12168,10 +12166,10 @@ Il lettore deve mappare con rigore il proprio livello di comprensione rispetto a
 
 | MATRICE DI DELEGA NELL'IMPLEMENTATION DESIGN |
 | :--- |
-| **COSA IL LETTORE DEVE COMPRENDERE DIRETTAMENTE:**<br>• Perché il sistema è stato separato in quei moduli specifici.<br>• Quale specifico modulo è l'unico responsabile di ciascun invariante.<br>• In che modo ciascuna proprietà critica può essere verificata senza ricorrere ad ambienti esterni complessi o mock. |
-| **COSA PUÒ ESSERE ASSISTITO DA LLM:**<br>• La stesura della sintassi del sistema di tipi (es. TypedDict, dataclass, trait, interface).<br>• La traduzione del testo del contratto in asserzioni formali. |
-| **COSA RICHIEDE COMPETENZA SPECIALISTICA ESTERNA:**<br>• La validazione di modelli di concorrenza, lock-free data structures o protocolli crittografici.<br>• La conformità dell'architettura a requisiti normativi stringenti (es. separazione fisica dei dati personali secondo GDPR). |
-| **COSA COSTITUISCE UN GAP BLOCCANTE (STATO: NO-GO):**<br>• Il lettore non sa spiegare cosa accade a un invariante nel caso in cui un componente di I/O fallisca a metà dell'esecuzione.<br>• Il lettore fa affidamento su una spiegazione testuale dell'LLM che asserisce che l'architettura è "sicura", senza evidenza strutturale. |
+| **COSA IL LETTORE DEVE COMPRENDERE DIRETTAMENTE:**<br />• Perché il sistema è stato separato in quei moduli specifici.<br />• Quale specifico modulo è l'unico responsabile di ciascun invariante.<br />• In che modo ciascuna proprietà critica può essere verificata senza ricorrere ad ambienti esterni complessi o mock. |
+| **COSA PUÒ ESSERE ASSISTITO DA LLM:**<br />• La stesura della sintassi del sistema di tipi (es. TypedDict, dataclass, trait, interface).<br />• La traduzione del testo del contratto in asserzioni formali. |
+| **COSA RICHIEDE COMPETENZA SPECIALISTICA ESTERNA:**<br />• La validazione di modelli di concorrenza, lock-free data structures o protocolli crittografici.<br />• La conformità dell'architettura a requisiti normativi stringenti (es. separazione fisica dei dati personali secondo GDPR). |
+| **COSA COSTITUISCE UN GAP BLOCCANTE (STATO: NO-GO):**<br />• Il lettore non sa spiegare cosa accade a un invariante nel caso in cui un componente di I/O fallisca a metà dell'esecuzione.<br />• Il lettore fa affidamento su una spiegazione testuale dell'LLM che asserisce che l'architettura è "sicura", senza evidenza strutturale. |
 
 ---
 
@@ -12525,8 +12523,8 @@ L'obiettivo dello **STEP 14 (Containment & Least Authority)** non è correggere 
 
 | MODELLO MENTALE DELLO STEP 14 |
 | :--- |
-| **Postulato di sicurezza:**<br>"Il codice generato o modificato con l'assistenza di un LLM deve essere trattato a livello architetturale come codice potenzialmente difettoso, avversariale o instabile." |
-| **Obiettivo di assurance:**<br>"Garantire che, anche nel peggior scenario di fallimento logico, allucinazione o compromissione del codice, il danno massimo arrecabile all'integrità, riservatezza e disponibilità del sistema sia rigidamente circoscritto e limitato per costruzione." |
+| **Postulato di sicurezza:**<br />"Il codice generato o modificato con l'assistenza di un LLM deve essere trattato a livello architetturale come codice potenzialmente difettoso, avversariale o instabile." |
+| **Obiettivo di assurance:**<br />"Garantire che, anche nel peggior scenario di fallimento logico, allucinazione o compromissione del codice, il danno massimo arrecabile all'integrità, riservatezza e disponibilità del sistema sia rigidamente circoscritto e limitato per costruzione." |
 
 Questo capitolo insegna a concepire la sicurezza e l'affidabilità non come una proprietà emergente dalla "bontà" dell'algoritmo o dalla fiducia nel suggerimento del modello, ma come una proprietà intrinseca dell'ambiente architetturale di esecuzione, basata sull'applicazione sistematica del **Principle of Least Authority (POLA)** e su barriere di confinamento non aggirabili.
 
@@ -12575,7 +12573,7 @@ Per assimilare i contenuti di questo capitolo, sono necessari i seguenti presupp
 1. **Modello di esecuzione dei processi**: Comprensione della gerarchia utente/kernel, identificatori di sicurezza (UID/GID), descrittori di file, socket e chiamate di sistema (*syscall*).
 
 > [!NOTE]
-> **Inquadramento sistemistico per non specialisti: la mediazione obbligatoria del Kernel**  
+> ✎ **Inquadramento sistemistico per non specialisti: la mediazione obbligatoria del Kernel**  
 > Per comprendere come si confina il codice generato da un LLM, occorre visualizzare l'architettura fondamentale del sistema operativo:
 > - **La separazione tra Spazio Utente e Spazio Kernel:** Il codice delle nostre applicazioni gira in un'area a poteri limitati (*User Space*). Un programma non può accedere direttamente all'hardware: non può azionare autonomamente i circuiti del disco fisso, né inviare impulsi elettrici alla scheda di rete.
 > - **La Chiamata di Sistema (Syscall):** Ogni volta che il software ha bisogno di toccare il mondo fisico reale (leggere un file, allocare memoria, aprire una connessione di rete), è costretto a fermarsi e bussare al controllore supremo del computer (il *Kernel*) attraverso una richiesta standardizzata chiamata *chiamata di sistema* (syscall).
@@ -12646,8 +12644,8 @@ Uno dei fraintendimenti più diffusi nell'uso di LLM è credere che confinare un
 | PRINCIPIO FONDAMENTALE DI ASSURANCE |
 | :--- |
 | **CONTENIMENTO != PREVENZIONE DI OGNI FALLIMENTO** |
-| **Il contenimento NON impedisce al codice di:**<br>• sbagliare un calcolo logico;<br>• entrare in un loop o generare un'eccezione;<br>• scrivere dati semanticamente errati nell'area a esso assegnata. |
-| **Il contenimento AGISCE SULLA PROPAGAZIONE:**<br>**CONTENIMENTO**<br>&nbsp;&nbsp;&nbsp;&nbsp;➔ **RIDUZIONE DEL BLAST RADIUS**<br>&nbsp;&nbsp;&nbsp;&nbsp;➔ **LIMITAZIONE DELLA PROPAGAZIONE DELLE CONSEGUENZE**<br>&nbsp;&nbsp;&nbsp;&nbsp;➔ **MAGGIORE REVERSIBILITÀ E RECUPERABILITÀ DELLO STATO** |
+| **Il contenimento NON impedisce al codice di:**<br />• sbagliare un calcolo logico;<br />• entrare in un loop o generare un'eccezione;<br />• scrivere dati semanticamente errati nell'area a esso assegnata. |
+| **Il contenimento AGISCE SULLA PROPAGAZIONE:**<br />**CONTENIMENTO**<br />&nbsp;&nbsp;&nbsp;&nbsp;➔ **RIDUZIONE DEL BLAST RADIUS**<br />&nbsp;&nbsp;&nbsp;&nbsp;➔ **LIMITAZIONE DELLA PROPAGAZIONE DELLE CONSEGUENZE**<br />&nbsp;&nbsp;&nbsp;&nbsp;➔ **MAGGIORE REVERSIBILITÀ E RECUPERABILITÀ DELLO STATO** |
 
 Questo legame è diretto con lo **STEP 2 (Risk Classification)** e lo **STEP 10 (Assurance Level)**: se un componente assistito da LLM ha un'alta probabilità di errore o un alto livello di incertezza epistemica, non possiamo abbassare arbitrariamente tale incertezza solo sperando che l'LLM abbia scritto bene il codice. Possiamo invece declassare la criticità dell'impatto di sistema riducendo deterministicamente il Blast Radius tramite il contenimento. Se il fallimento non può propagarsi, le conseguenze rimangono circoscritte e lo stato resta reversibile o riparabile.
 
@@ -12808,7 +12806,7 @@ BlastRadius(Failure(Containment(C))) <= { asset in Assets |
 3. **Dimostra unicamente** quali capacità operative esistono, quali sono necessarie, quali possono e devono essere rimosse, e quale perimetro di danno residuo rimane associato al componente nel caso in cui devii totalmente dal comportamento atteso.
 
 > [!IMPORTANT]
-> **Scheda di Controllo per il Valutatore Non Tecnico (Come verificare il confinamento senza aprire il terminale)**
+> ⚑ **Scheda di Controllo per il Valutatore Non Tecnico (Come verificare il confinamento senza aprire il terminale)**
 >
 > Se sei un dirigente, un responsabile compliance, un avvocato o un committente che deve approvare o acquistare un software assistito da AI, non devi imparare a memoria i comandi del terminale Linux. 
 > Devi pretendere da chi ha sviluppato il software risposte chiare a queste tre domande in italiano:
@@ -13040,11 +13038,11 @@ Non tutte le attività relative al contenimento possono essere svolte dal medesi
 
 | ATTIVITÀ DELLO STEP 14 | DELEGABILE AD LLM? | PROFILO DI COMPETENZA MINIMO RICHIESTO |
 | :--- | :--- | :--- |
-| **Identificazione delle risorse necessarie alla specifica** | **Parzialmente**<br>(come bozza) | Sviluppatore / Utente istruito |
+| **Identificazione delle risorse necessarie alla specifica** | **Parzialmente**<br />(come bozza) | Sviluppatore / Utente istruito |
 | **Definizione del perimetro di Blast Radius accettabile** | **NO** | Progettista software / System Architect |
-| **Scrittura delle regole di policy**<br>(AppArmor, IAM, Seccomp, RBAC) | **Sì**<br>(generazione sintattica) | Sviluppatore con basi di sicurezza / DevOps |
-| **Validazione ed enforcement effettivo delle policy nel kernel** | **NO**<br>(richiede tooling) | Ingegnere di sicurezza / Sysadmin |
-| **Esecuzione dei test di violazione del perimetro**<br>(breakout testing) | **Sì**<br>(creazione script avversariali) | Security Tester / QA Engineer |
+| **Scrittura delle regole di policy**<br />(AppArmor, IAM, Seccomp, RBAC) | **Sì**<br />(generazione sintattica) | Sviluppatore con basi di sicurezza / DevOps |
+| **Validazione ed enforcement effettivo delle policy nel kernel** | **NO**<br />(richiede tooling) | Ingegnere di sicurezza / Sysadmin |
+| **Esecuzione dei test di violazione del perimetro**<br />(breakout testing) | **Sì**<br />(creazione script avversariali) | Security Tester / QA Engineer |
 
 #### Il divieto di delega epistemica dell'autorità
 La responsabilità di decidere quale sia il massimo livello di danno tollerabile per l'organizzazione non è <mark>**mai**</mark> delegabile all'LLM. Se l'utente non comprende la differenza tra una policy di rete *Ingress* (traffico in entrata) e una *Egress* (traffico in uscita), non possiede la competenza per apporre la firma di approvazione sull'invariante di contenimento. In questo caso, l'assurance deve arrestarsi allo stato di **UNKNOWN** o **NO-GO** fino a consultazione di un esperto di dominio.
@@ -13267,10 +13265,10 @@ Il principio di Minima Autorità e i meccanismi di contenimento mantengono la me
 
 | DOMINIO | AUTORITÀ AMBIENTALE TIPICA (ERRATA) | MECCANISMO DI CONFINAMENTO STEP 14 | STATO CONFINATO OBIETTIVO |
 | :--- | :--- | :--- | :--- |
-| **Microservizi Cloud-Native**<br>(Kubernetes) | Servizio gira come utente standard con accesso a tutte le rotte di cluster. | NetworkPolicy Kubernetes restrittive,<br>PodSecurityAdmission "restricted". | Nessun traffico internet uscente,<br>root filesystem read-only. |
-| **Mobile Apps**<br>(Android / iOS) | Richiesta globale di accesso al filesystem del dispositivo per leggere un'immagine. | Storage Access Framework (SAF) o Photo Picker atomico. | Concessione solo dell'handle al file selezionato dall'utente. |
+| **Microservizi Cloud-Native**<br />(Kubernetes) | Servizio gira come utente standard con accesso a tutte le rotte di cluster. | NetworkPolicy Kubernetes restrittive,<br />PodSecurityAdmission "restricted". | Nessun traffico internet uscente,<br />root filesystem read-only. |
+| **Mobile Apps**<br />(Android / iOS) | Richiesta globale di accesso al filesystem del dispositivo per leggere un'immagine. | Storage Access Framework (SAF) o Photo Picker atomico. | Concessione solo dell'handle al file selezionato dall'utente. |
 | **Database Automation** | Script di migrazione eseguito con utente `'postgres'` / `'sa'` permanente. | Transazione DDL isolata con utente con permessi mirati su singolo schema. | Connessione chiusa a migrazione finita, nessuna visibilità sui dati utente. |
-| **WebAssembly**<br>(WASM Edge) | Esecuzione di codice nativo con accesso illimitato alla `libc` di sistema. | Modello WASI (WebAssembly System Interface) basato su pure capability. | Nessun accesso a socket o disco a meno di iniezione esplicita dell'host. |
+| **WebAssembly**<br />(WASM Edge) | Esecuzione di codice nativo con accesso illimitato alla `libc` di sistema. | Modello WASI (WebAssembly System Interface) basato su pure capability. | Nessun accesso a socket o disco a meno di iniezione esplicita dell'host. |
 
 In ciascun dominio, la domanda fondamentale di assurance rimane immutata:
 > *"Se il codice generato dall'LLM eseguisse l'operazione peggiore possibile concepita dal suo generatore, la struttura del sistema impedirebbe deterministicamente la propagazione del danno?"*
@@ -13347,9 +13345,9 @@ Nel software assistito da modelli linguistici di grandi dimensioni (LLM), questa
 
 | MODELLO MENTALE DELLO STEP 15 |
 | :--- |
-| **Condizione iniziale:**<br>"Disponiamo di un'architettura (STEP 13) e di confini rigidi di confinamento e minima autorità (STEP 14)." |
-| **Problema:**<br>"Come utilizzare un LLM per produrre codice sorgente senza che la plausibilità linguistica del testo generato si sostituisca alla giustificazione della sua correttezza?" |
-| **Obiettivo di assurance:**<br>"Definire un metodo rigoroso di generazione guidata da contratti e invarianti che consenta di tracciare, comprendere e vincolare ogni elemento del codice generato, trattando l'output del modello unicamente come un'implementazione candidata da verificare, stabilendo con precisione ciò che è compreso, ciò che è assunto e ciò che rimane UNKNOWN prima delle verifiche automatizzate." |
+| **Condizione iniziale:**<br />"Disponiamo di un'architettura (STEP 13) e di confini rigidi di confinamento e minima autorità (STEP 14)." |
+| **Problema:**<br />"Come utilizzare un LLM per produrre codice sorgente senza che la plausibilità linguistica del testo generato si sostituisca alla giustificazione della sua correttezza?" |
+| **Obiettivo di assurance:**<br />"Definire un metodo rigoroso di generazione guidata da contratti e invarianti che consenta di tracciare, comprendere e vincolare ogni elemento del codice generato, trattando l'output del modello unicamente come un'implementazione candidata da verificare, stabilendo con precisione ciò che è compreso, ciò che è assunto e ciò che rimane UNKNOWN prima delle verifiche automatizzate." |
 
 Lo scopo dello STEP 15 non è insegnare a ottenere rapidamente codice eseguibile attraverso prove ed errori non strutturati (*vibe coding*), ma insegnare a **governare la generazione del codice come processo di trasformazione controllata**, garantendo che ogni riga prodotta mantenga un legame dimostrabile con la specifica e non introduca assunzioni silenziose o comportamenti non tracciati.
 
@@ -13824,7 +13822,7 @@ Identifichiamo gli schemi fallimentari tipici dello sviluppo assistito:
 | **Blind Type Casting** | Forzare cast arbitrari (`as any`, `ignore[type]`) per zittire il linter su suggerimento dell'LLM. |
 
 > [!TIP]
-> **Riconoscere i Red Flag del codice generato da LLM a colpo d'occhio**  
+> ☞ **Riconoscere i Red Flag del codice generato da LLM a colpo d'occhio**  
 > Per identificare visivamente le trappole tipiche introdotte dai modelli linguistici (botole che silenziano le eccezioni con `except: pass`, concatenazioni esposte a iniezione, assunzioni di rete senza timeout, controlli non atomici e fallback velenosi) consulta la Sezione 4 dell'appendice:  
 > **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**.
 
@@ -14140,9 +14138,9 @@ Il metodo della generazione guidata da contratti e dell'incorporazione degli inv
 
 | DOMINIO | RISCHIO TIPICO DELLA GENERAZIONE LLM | CONTRATTO / VINCOLO A MONTE NEL PROMPT | INVARIANTE A RUNTIME EMBEDDED NEL CODICE |
 | :--- | :--- | :--- | :--- |
-| **API Web Backend**<br>(FastAPI/Node) | Iniezione SQL tramite concatenazione di stringhe non tipizzate. | Schema Pydantic / DTO immutabile con tipi statici forti. | Validazione schema stretta con rigetto HTTP 422 immediato. |
-| **Sistemi Embedded**<br>(C / Rust) | Buffer overflow o allocazione dinamica non deterministica. | Limiti dimensionali statici; divieto di usare `malloc` / heap. | Asserzioni statiche o controlli bounds espliciti pre-write. |
-| **Pipeline ETL**<br>(Data Analytics) | Coercizione silente di dati con perdita di precisione (NaN). | Schema di tabella rigido; tipi Decimal e non-nullabili. | Asserzione post-load sul conteggio righe e checksum numerico. |
+| **API Web Backend**<br />(FastAPI/Node) | Iniezione SQL tramite concatenazione di stringhe non tipizzate. | Schema Pydantic / DTO immutabile con tipi statici forti. | Validazione schema stretta con rigetto HTTP 422 immediato. |
+| **Sistemi Embedded**<br />(C / Rust) | Buffer overflow o allocazione dinamica non deterministica. | Limiti dimensionali statici; divieto di usare `malloc` / heap. | Asserzioni statiche o controlli bounds espliciti pre-write. |
+| **Pipeline ETL**<br />(Data Analytics) | Coercizione silente di dati con perdita di precisione (NaN). | Schema di tabella rigido; tipi Decimal e non-nullabili. | Asserzione post-load sul conteggio righe e checksum numerico. |
 
 In qualsiasi contesto tecnologico, la domanda di assurance da porsi rimane invariata:
 > *"Se l'algoritmo generato dall'LLM violasse le aspettative della specifica nel modo più subdolo possibile, quale riga di codice impedirebbe a quello stato corrotto di uscire dal modulo?"*
@@ -14239,8 +14237,8 @@ L'automazione del testing assistita da LLM non richiede semplicemente la capacit
 | Competenza | Descrizione operativa |
 | :--- | :--- |
 | **Definizione di oracoli** | Formulare condizioni di accettazione indipendenti dal modo in cui la funzione è stata implementata. |
-| **Analisi dei valori limite** <br>(Boundary Value Analysis) | Individuare punti di discontinuità, off-by-one, domini vuoti, overflow e casi estremi di specifica. |
-| **Fault Injection /** <br>**Mutation Testing** | Introdurre mutazioni deliberate nel codice per verificare che i test falliscano tempestivamente. |
+| **Analisi dei valori limite** <br />(Boundary Value Analysis) | Individuare punti di discontinuità, off-by-one, domini vuoti, overflow e casi estremi di specifica. |
+| **Fault Injection /** <br />**Mutation Testing** | Introdurre mutazioni deliberate nel codice per verificare che i test falliscano tempestivamente. |
 | **Riconoscimento di bias circolare** | Rilevare assunzioni condivise tra codice e suite di test generate dallo stesso contesto LLM. |
 
 
@@ -14264,7 +14262,7 @@ Il lettore deve possedere la padronanza dei seguenti concetti fondamentali:
    - Differenza tra *Stub* (fornisce risposte preconfezionate a chiamate esterne), *Mock* (registra e verifica le interazioni ricevute), e *Fake* (implementazione funzionante ma semplificata, es. database in memoria). L'abuso dei mock conduce al testing delle interazioni anziché del comportamento reale.
 
 > [!NOTE]
-> **Chiarimento pratico: come non confondere i tipi di doppi di test (*Test Doubles*)**  
+> ✎ **Chiarimento pratico: come non confondere i tipi di doppi di test (*Test Doubles*)**  
 > Nella prassi comune molti sviluppatori usano la parola "mock" per indicare qualsiasi finto componente. Per l'assurance del software, tuttavia, la distinzione concettuale è sostanziale:
 > - **Stub:** È un semplice risponditore automatico inerte. Riceve una chiamata e restituisce un dato fisso precalcolato (es. restituisce sempre `{"saldo": 100}`), senza alcuna logica interna.
 > - **Mock:** È una vera e propria "spia" o registratore programmato. Non si limita a restituire dati, ma memorizza quante volte è stato chiamato, con quali parametri esatti e in quale sequenza, facendo fallire il test se il codice non ha chiamato esattamente quel metodo. *Attenzione per l'assurance:* verificare solo che un mock sia stato chiamato non dimostra che il calcolo reale sia corretto.
@@ -14295,7 +14293,7 @@ Definiamo con precisione i termini tecnici impiegati nello STEP 16:
   ```
 
 > [!NOTE]
-> **Che cos'è un "Mutante Equivalente" e perché viene sottratto dalla formula?**  
+> ✎ **Che cos'è un "Mutante Equivalente" e perché viene sottratto dalla formula?**  
 > Quando uno strumento di mutation testing altera casualmente il codice sorgente per verificare la sensibilità dei test, può generare una modifica che cambia la sintassi senza alterare minimamente il comportamento logico del programma. Ad esempio, trasformare l'istruzione `x = a * 2` in `x = a + a`, oppure semplificare un controllo numerico che per vincoli a monte restituisce sempre lo stesso esito booleano. 
 > Questo tipo di alterazione prende il nome di **Mutante Equivalente**: il codice mutato è matematicamente indistinguibile dal codice originale. Di conseguenza, nessun test automatizzato (per quanto rigoroso o esaustivo) potrà mai fallire su di esso ("ucciderlo"). Se lasciassimo i mutanti equivalenti nel calcolo, il punteggio massimo teorico della suite non potrebbe mai raggiungere il 100%, penalizzando ingiustamente la valutazione dei test. La formula li sottrae perciò dal totale per misurare l'efficacia della suite solo sui mutanti che introducono difetti reali e distinguibili.
 
@@ -14706,7 +14704,7 @@ Lo stato dell'assurance è formalmente **FAIL**. Il difetto dell'implementazione
 - **Obiettivo**: Il test deve simulare un'istruzione malevola o difettosa e accertare che il sistema operativo o l'architettura di confino sollevi un'eccezione di protezione.
 
 > [!TIP]  
-> Per la suite completa di test negativi di conformità e la configurazione del runner effimero, si veda la Sezione 7 dell'appendice: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox).
+> ☞ Per la suite completa di test negativi di conformità e la configurazione del runner effimero, si veda la Sezione 7 dell'appendice: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox).
     
 ```python
 # test_containment.py
@@ -14786,11 +14784,11 @@ Identifichiamo gli schemi fallimentari tipici del testing automatizzato nel cont
 
 | Anti-Pattern | Manifestazione |
 | :--- | :--- |
-| **The Epistemic Mirror** <br>(Lo specchio epistemico) | Generare i test fornendo all'LLM sia la specifica che il codice generato, producendo test che confermano i bug. |
-| **Coverage Gaming** <br>(Manipolazione della copertura) | Scrivere asserzioni minime o vacue al solo scopo di soddisfare una soglia percentuale di riga (es. 80%). |
-| **Happy-Path Monoculture** <br>(Monocultura del caso ideale) | Generare esclusivamente test su input ben formati, omettendo casi negativi, limiti, null e condizioni di errore. |
-| **Unkilled Mutants Ignorance** <br>(Indifferenza ai mutanti) | Non verificare la qualità della suite tramite mutation testing, accettando test insensibili alle modifiche logiche. |
-| **Flakiness Tolerance** <br>(Tolleranza all'intermittenza) | Eseguire nuovamente i test falliti finché non passano, nascondendo race conditions o dipendenze temporali. |
+| **The Epistemic Mirror** <br />(Lo specchio epistemico) | Generare i test fornendo all'LLM sia la specifica che il codice generato, producendo test che confermano i bug. |
+| **Coverage Gaming** <br />(Manipolazione della copertura) | Scrivere asserzioni minime o vacue al solo scopo di soddisfare una soglia percentuale di riga (es. 80%). |
+| **Happy-Path Monoculture** <br />(Monocultura del caso ideale) | Generare esclusivamente test su input ben formati, omettendo casi negativi, limiti, null e condizioni di errore. |
+| **Unkilled Mutants Ignorance** <br />(Indifferenza ai mutanti) | Non verificare la qualità della suite tramite mutation testing, accettando test insensibili alle modifiche logiche. |
+| **Flakiness Tolerance** <br />(Tolleranza all'intermittenza) | Eseguire nuovamente i test falliti finché non passano, nascondendo race conditions o dipendenze temporali. |
 
 
 ---
@@ -14875,9 +14873,9 @@ In conformità con lo **STEP 8 (Competence Gaps)**, stabiliamo due principi di d
 
 | Attività dello STEP 16 | Delegabile ad LLM? | Profilo di competenza minimo richiesto |
 | :--- | :--- | :--- |
-| **Identificazione dei confini e delle classi di equivalenza** | Parzialmente <br>(bozza esplorativa) | Sviluppatore con basi di analisi dei requisiti |
+| **Identificazione dei confini e delle classi di equivalenza** | Parzialmente <br />(bozza esplorativa) | Sviluppatore con basi di analisi dei requisiti |
 | **Definizione della logica dell'oracolo di business** | NO | Ingegnere di dominio / Quality Architect |
-| **Scrittura sintattica delle funzioni di test (`test_*`)** | SÌ <br>(Generazione disaccoppiata) | Sviluppatore / Assistente tecnico |
+| **Scrittura sintattica delle funzioni di test (`test_*`)** | SÌ <br />(Generazione disaccoppiata) | Sviluppatore / Assistente tecnico |
 | **Valutazione del Mutation Score e analisi dei mutanti sopravvissuti** | NO | Quality Assurance Lead / Senior Engineer |
 | **Decisione finale di accettazione dell'evidenza di test** | NO | Responsabile di Assurance / Tech Lead |
 
@@ -15023,8 +15021,8 @@ Il principio dell'oracolo disaccoppiato e della discriminazione dei difetti si a
 
 | Dominio | Implementazione Candidata (STEP 15) | Oracolo di Test Disaccoppiato | Verifica di Discriminazione |
 | :--- | :--- | :--- | :--- |
-| **Sistemi Web** <br>(API Backend) | Endpoint REST che valida e salva ordini di acquisto. | Oracolo da schema OpenAPI; assert su transazione DB reale. | Iniezione di mutanti sui codici HTTP di ritorno (400 vs 500). |
-| **Driver Embedded** <br>(Microcontrollori / IoT) | Routine di lettura da sensore I2C con calcolo del checksum. | Oracolo fisico su valori di registro conformi al datasheet. | Simulazione di bit flippati nel buffer per verificare scarto. |
+| **Sistemi Web** <br />(API Backend) | Endpoint REST che valida e salva ordini di acquisto. | Oracolo da schema OpenAPI; assert su transazione DB reale. | Iniezione di mutanti sui codici HTTP di ritorno (400 vs 500). |
+| **Driver Embedded** <br />(Microcontrollori / IoT) | Routine di lettura da sensore I2C con calcolo del checksum. | Oracolo fisico su valori di registro conformi al datasheet. | Simulazione di bit flippati nel buffer per verificare scarto. |
 | **Finanza / Assicurazioni** | Algoritmo di calcolo del premio di polizza vita con franchigia. | Confronto con foglio di calcolo certificato attuariale esterno. | Variazione arbitraria di un'aliquota: se il test passa -> FAIL. |
 
 
@@ -15317,7 +15315,7 @@ Di conseguenza, gli analizzatori statici adottano compromessi architetturali bas
 - **Completeness (Completezza empirica rispetto agli allarmi)**: l'analizzatore sotto-approssima gli stati raggiungibili, segnalando un difetto solo quando è in grado di dimostrare matematicamente o empiricamente un cammino di violazione. Il prezzo è la presenza di **falsi negativi**: vulnerabilità reali non vengono intercettate se il flusso dati è troppo complesso.
 
 > [!NOTE]
-> **Ponte concettuale per non specialisti: la metafora giudiziaria di Soundness e Completeness**  
+> ✎ **Ponte concettuale per non specialisti: la metafora giudiziaria di Soundness e Completeness**  
 > Nel linguaggio ordinario le parole "sano/corretto" (*sound*) e "completo" (*complete*) sembrano sinonimi di perfezione. Nella verifica automatica del software, a causa del Teorema di Rice, assumono un significato tecnico opposto e confliggente:
 > - **L'Analizzatore Sound (Approccio Allarmista/Conservativo):** Ragiona come un tribunale che antepone la sicurezza pubblica a ogni costo: *"Nessun colpevole deve sfuggire, a costo di arrestare anche cittadini innocenti"*. Non tollera alcun falso negativo (`FN = 0`). Se rileva un flusso di dati minimamente dubbio che non riesce a verificare con certezza, dichiara l'allarme. È l'approccio obbligatorio nei sistemi critici per la vita umana (avionica, apparati medici), dove il costo di un allarme falso è solo tempo di revisione, mentre il costo di un errore sfuggito è catastrofico.
 > - **L'Analizzatore Complete (Approccio Pragmatico/Minimalista):** Ragiona come un tribunale che tutela la presunzione di innocenza: *"Condanno solo quando ho la prova schiacciante e inconfutabile, a costo di far fuggire qualche criminale furbo"*. Non tollera falsi positivi (`FP = 0`). Se un cammino di attacco è troppo complicato per essere dimostrato matematicamente, preferisce tacere. È l'approccio tipico dei linter commerciali leggeri, progettati per non infastidire gli sviluppatori con falsi allarmi, accettando però il rischio che vulnerabilità complesse passino inosservate.
@@ -15782,10 +15780,10 @@ Ogni processo di verifica statica poggia su un reticolo di assunzioni operative.
 
 | MODELLO DELLE ASSUNZIONI STATISTICHE |
 | :--- |
-| **ASSUNZIONE 1 (Copertura del Perimetro):**<br>Si assume che tutti gli artefatti eseguiti in produzione siano inclusi nell'albero dei file analizzati (nessun caricamento dinamico non tracciato). |
-| **ASSUNZIONE 2 (Correttezza del Modello di Taint):**<br>Si assume che i nodi etichettati come Sanitizer neutralizzino realmente la totalità delle sequenze malevole nel contesto di esecuzione a runtime. |
-| **ASSUNZIONE 3 (Completezza delle Fonti di Vulnerabilità):**<br>Si assume che i database CVE/NVD/OSV riflettano fedelmente i difetti storicamente noti dei componenti di terze parti censiti. |
-| **ASSUNZIONE 4 (Isomorfismo Configurazione-Ambiente):**<br>Si assume che le variabili e i parametri scansionati corrispondano esattamente a quelli caricati a runtime nel sistema di destinazione. |
+| **ASSUNZIONE 1 (Copertura del Perimetro):**<br />Si assume che tutti gli artefatti eseguiti in produzione siano inclusi nell'albero dei file analizzati (nessun caricamento dinamico non tracciato). |
+| **ASSUNZIONE 2 (Correttezza del Modello di Taint):**<br />Si assume che i nodi etichettati come Sanitizer neutralizzino realmente la totalità delle sequenze malevole nel contesto di esecuzione a runtime. |
+| **ASSUNZIONE 3 (Completezza delle Fonti di Vulnerabilità):**<br />Si assume che i database CVE/NVD/OSV riflettano fedelmente i difetti storicamente noti dei componenti di terze parti censiti. |
+| **ASSUNZIONE 4 (Isomorfismo Configurazione-Ambiente):**<br />Si assume che le variabili e i parametri scansionati corrispondano esattamente a quelli caricati a runtime nel sistema di destinazione. |
 
 Se una sola di queste assunzioni decade, il valore dell'evidenza degrada. Ad esempio, se il codice dell'applicazione carica a runtime un modulo tramite un percorso generato dinamicamente (violazione dell'Assunzione 1), l'analisi SAST su quel flusso non è né sound né complete: lo stato di conformità rispetto a quella proprietà diventa **UNKNOWN**.
 
@@ -16076,9 +16074,9 @@ I concetti fondamentali formalizzati nello Step 17 mantengono la loro validità 
 
 | APPLICAZIONE CROSS-DOMINIO DELLO STEP 17 |
 | :--- |
-| **DOMINIO: Infrastructure as Code (IaC) (Terraform, CloudFormation, Ansible)**<br>• **Linting:** convalida sintassi HCL/YAML e formattazione canonica.<br>• **SAST per IaC:** verifica conformità a policy di sicurezza (es. divieto di apertura porte `'0.0.0.0/0'`, obbligo di crittografia per dischi S3 ed EBS).<br>• **SCA:** verifica di moduli Terraform e ruoli scaricati da registry esterni.<br>• **Secret Scanning:** rilevazione di credenziali cloud cablate nei file `.tf`. |
-| **DOMINIO: Sistemi Embedded e Firmware (C / C++ / Rust)**<br>• **Linting:** rispetto degli standard di sicurezza formali (es. MISRA-C).<br>• **SAST:** rilevazione statica di puntatori pendenti (dangling pointers), overflow dell'allocazione stack e violazioni di ownership (Rust borrow).<br>• **SCA:** inventario e tracciamento di librerie C di terze parti (spesso prive di manifest centralizzati e incluse come codice "vendorato").<br>• **Secret Scanning:** ricerca di chiavi private per Secure Boot cablate nel SW. |
-| **DOMINIO: Data Science e Machine Learning Pipelines (Python / Jupyter)**<br>• **Linting:** conformità PEP-8, verifica dell'ordine di esecuzione delle celle.<br>• **SAST:** individuazione di deserializzazioni arbitrarie (`pickle.loads`), vettori di esecuzione arbitraria e scritture insicure in storage condivisi.<br>• **SCA:** rilevazione di attacchi di Package Hallucination e dipendenze PyPI anomale (particolarmente frequenti nella generazione di script dati).<br>• **Secret Scanning:** intercettazione di token di accesso a database analitici o chiavi S3 inserite manualmente nei notebook di sperimentazione. |
+| **DOMINIO: Infrastructure as Code (IaC) (Terraform, CloudFormation, Ansible)**<br />• **Linting:** convalida sintassi HCL/YAML e formattazione canonica.<br />• **SAST per IaC:** verifica conformità a policy di sicurezza (es. divieto di apertura porte `'0.0.0.0/0'`, obbligo di crittografia per dischi S3 ed EBS).<br />• **SCA:** verifica di moduli Terraform e ruoli scaricati da registry esterni.<br />• **Secret Scanning:** rilevazione di credenziali cloud cablate nei file `.tf`. |
+| **DOMINIO: Sistemi Embedded e Firmware (C / C++ / Rust)**<br />• **Linting:** rispetto degli standard di sicurezza formali (es. MISRA-C).<br />• **SAST:** rilevazione statica di puntatori pendenti (dangling pointers), overflow dell'allocazione stack e violazioni di ownership (Rust borrow).<br />• **SCA:** inventario e tracciamento di librerie C di terze parti (spesso prive di manifest centralizzati e incluse come codice "vendorato").<br />• **Secret Scanning:** ricerca di chiavi private per Secure Boot cablate nel SW. |
+| **DOMINIO: Data Science e Machine Learning Pipelines (Python / Jupyter)**<br />• **Linting:** conformità PEP-8, verifica dell'ordine di esecuzione delle celle.<br />• **SAST:** individuazione di deserializzazioni arbitrarie (`pickle.loads`), vettori di esecuzione arbitraria e scritture insicure in storage condivisi.<br />• **SCA:** rilevazione di attacchi di Package Hallucination e dipendenze PyPI anomale (particolarmente frequenti nella generazione di script dati).<br />• **Secret Scanning:** intercettazione di token di accesso a database analitici o chiavi S3 inserite manualmente nei notebook di sperimentazione. |
 
 In ciascuno di questi contesti, la costante metodologica rimane immutata: **la verifica statica opera a riposo su astrazioni deterministiche e non dipende dall'esecuzione dinamica del software né dalla fiducia verbale attribuita al generatore del codice**.
 
@@ -16111,11 +16109,11 @@ Lo Step 17 garantisce che il codice generato dall'LLM non venga ammesso alle fas
 
 | FASE DELLA CATENA STATICA | CONTROLLI E MECCANISMI DI ASSURANCE |
 | :--- | :--- |
-| **1. Linting & Type Checking** | • Verifica la coerenza grammaticale, stilistica e dei tipi sull'AST.<br>• **Esito:** conformità locale del codice sorgente di prima parte. |
-| **2. SAST & Taint Flow Modeling** | • Modella i cammini orientati tra Source esterne e Sink critici.<br>• Rifiuta sanitizzatori cosmetici; richiede barriere architetturali.<br>• Gestisce il compromesso teorico tra Soundness e Completeness. |
-| **3. Software Composition Analysis (SCA) & SBOM** | • Mappa l'albero completo delle dipendenze dirette e transitive.<br>• Neutralizza Package Hallucination e Slopsquatting verificando i metadati storici sui registri prima di concedere l'autorizzazione.<br>• Incrocia l'inventario con i database di advisory (CVE / CVSS / EPSS). |
-| **4. Secret Scanning & Storia Forense VCS** | • Rileva credenziali esposte tramite pattern matching ed entropia.<br>• Scansiona l'intero archivio degli oggetti Git, non solo il branch vivo.<br>• Impone la regola deontologica: **CREDENZIALE COMMITTATA = COMPROMESSA**. |
-| **5. Indipendenza Epistemica ed Evidenze** | • Gli oracoli di sicurezza devono essere disaccoppiati e terzi rispetto all'LLM che ha generato il codice, riducendo l'errore correlato.<br>• Un report pulito attesta **UNKNOWN** per le proprietà non modellate; non certifica la perfezione ontologica dell'applicazione. |
+| **1. Linting & Type Checking** | • Verifica la coerenza grammaticale, stilistica e dei tipi sull'AST.<br />• **Esito:** conformità locale del codice sorgente di prima parte. |
+| **2. SAST & Taint Flow Modeling** | • Modella i cammini orientati tra Source esterne e Sink critici.<br />• Rifiuta sanitizzatori cosmetici; richiede barriere architetturali.<br />• Gestisce il compromesso teorico tra Soundness e Completeness. |
+| **3. Software Composition Analysis (SCA) & SBOM** | • Mappa l'albero completo delle dipendenze dirette e transitive.<br />• Neutralizza Package Hallucination e Slopsquatting verificando i metadati storici sui registri prima di concedere l'autorizzazione.<br />• Incrocia l'inventario con i database di advisory (CVE / CVSS / EPSS). |
+| **4. Secret Scanning & Storia Forense VCS** | • Rileva credenziali esposte tramite pattern matching ed entropia.<br />• Scansiona l'intero archivio degli oggetti Git, non solo il branch vivo.<br />• Impone la regola deontologica: **CREDENZIALE COMMITTATA = COMPROMESSA**. |
+| **5. Indipendenza Epistemica ed Evidenze** | • Gli oracoli di sicurezza devono essere disaccoppiati e terzi rispetto all'LLM che ha generato il codice, riducendo l'errore correlato.<br />• Un report pulito attesta **UNKNOWN** per le proprietà non modellate; non certifica la perfezione ontologica dell'applicazione. |
 
 ---
 
@@ -16198,9 +16196,9 @@ L'applicazione rigorosa di questo STEP richiede di separare chiaramente le compe
 
 | MATRICE DELLE COMPETENZE DELLO STEP 18 |
 | :--- |
-| **Competenze Dirette Necessarie (Non Delegabili a LLM):**<br>• Capacità di formulare invarianti logiche e matematiche indipendenti dal codice scritto (Step 6).<br>• Capacità di distinguere un oracolo semantico da una tautologia.<br>• Comprensione dei limiti di completezza di una campagna di test.<br>• Capacità di dichiarare UNKNOWN o NO-GO a fronte di oracoli deboli. |
-| **Competenze Assistibili da LLM:**<br>• Scrittura dell'impalcatura sintattica (*harness*) per i framework (es. definizioni di strategie Hypothesis, setup di Atheris).<br>• Suggerimento di proprietà algebriche standard (es. idempotenza).<br>• Generazione di dizionari di fuzzing e corpus di partenza. |
-| **Competenze Specialistiche (Richiedono Intervento Esterno se assenti):**<br>• Analisi causale di crash a basso livello (ASan, UB, memory safety).<br>• Progettazione di oracoli per algoritmi a complessità non invertibile.<br>• Adversarial analysis avanzata su modelli linguistici (jailbreak, iniezioni indirette con impatto su interpreti a valle). |
+| **Competenze Dirette Necessarie (Non Delegabili a LLM):**<br />• Capacità di formulare invarianti logiche e matematiche indipendenti dal codice scritto (Step 6).<br />• Capacità di distinguere un oracolo semantico da una tautologia.<br />• Comprensione dei limiti di completezza di una campagna di test.<br />• Capacità di dichiarare UNKNOWN o NO-GO a fronte di oracoli deboli. |
+| **Competenze Assistibili da LLM:**<br />• Scrittura dell'impalcatura sintattica (*harness*) per i framework (es. definizioni di strategie Hypothesis, setup di Atheris).<br />• Suggerimento di proprietà algebriche standard (es. idempotenza).<br />• Generazione di dizionari di fuzzing e corpus di partenza. |
+| **Competenze Specialistiche (Richiedono Intervento Esterno se assenti):**<br />• Analisi causale di crash a basso livello (ASan, UB, memory safety).<br />• Progettazione di oracoli per algoritmi a complessità non invertibile.<br />• Adversarial analysis avanzata su modelli linguistici (jailbreak, iniezioni indirette con impatto su interpreti a valle). |
 
 #### Il Gap di Competenza Tipico
 Chi utilizza correntemente LLM per programmare si trova spesso in questa condizione: **comprende a grandi linee cosa fa il codice se l'LLM lo spiega, ma fatica a formalizzare che cosa il sistema deve garantire a prescindere dall'algoritmo impiegato**.
@@ -16808,10 +16806,10 @@ Proprietà omessa: forall s in SENSITIVE_STRINGS: s NOT in mask_pii(raw_text)
 
 | ANTI-PATTERN NEL TESTING AVVERSARIALE E PBT |
 | :--- |
-| **1. Generatori Addomesticati (Domesticated Generators)**<br>Scrivere generatori che producono solo dati "ben educati" (es. escludere deliberatamente caratteri Unicode di controllo, interi negativi, o zeri per evitare di far fallire il codice). |
-| **2. Crash-As-Correctness Fallacy**<br>Assumere che, poiché un fuzzer non ha prodotto crash in 48 ore, l'applicazione sia priva di bug funzionali (confusione tra assenza di `SIGSEGV` e correttezza semantica del calcolo). |
-| **3. Code-Mirroring Oracle**<br>Scrivere l'oracolo del test copiando e incollando le righe di codice dall'implementazione generata dall'LLM direttamente dentro l'asserzione. |
-| **4. Amnesia del Seme (Seed Amnesia)**<br>Eseguire sessioni di fuzzing o PBT in pipeline CI senza loggare il valore del random seed o senza archiviare gli input di crash, rendendo il fallimento impossibile da riprodurre deterministicamente. |
+| **1. Generatori Addomesticati (Domesticated Generators)**<br />Scrivere generatori che producono solo dati "ben educati" (es. escludere deliberatamente caratteri Unicode di controllo, interi negativi, o zeri per evitare di far fallire il codice). |
+| **2. Crash-As-Correctness Fallacy**<br />Assumere che, poiché un fuzzer non ha prodotto crash in 48 ore, l'applicazione sia priva di bug funzionali (confusione tra assenza di `SIGSEGV` e correttezza semantica del calcolo). |
+| **3. Code-Mirroring Oracle**<br />Scrivere l'oracolo del test copiando e incollando le righe di codice dall'implementazione generata dall'LLM direttamente dentro l'asserzione. |
+| **4. Amnesia del Seme (Seed Amnesia)**<br />Eseguire sessioni di fuzzing o PBT in pipeline CI senza loggare il valore del random seed o senza archiviare gli input di crash, rendendo il fallimento impossibile da riprodurre deterministicamente. |
 
 ---
 
@@ -16852,15 +16850,15 @@ L'indipendenza epistemica non si misura dal numero di test eseguiti, ma dalla **
 
 | COSA DELEGARE AGLI LLM NELLO STEP 18 |
 | :--- |
-| **1. Scrittura della Sintassi dei Generatori:**<br>Implementare tecnicamente strategie complesse di generazione degli input mediante librerie e framework per il testing automatico (es. Hypothesis, Atheris, fast-check o QuickCheck). |
-| **2. Brainstorming di Invarianti di Confine:**<br>Chiedere: "Quali sono le relazioni algebriche tipiche di una coda con priorità (es. ordine di estrazione, size)?" |
-| **3. Costruzione di Dizionari di Fuzzing:**<br>Generare liste di parole chiave, header HTTP o byte magici per accelerare la convergenza dei fuzzer. |
+| **1. Scrittura della Sintassi dei Generatori:**<br />Implementare tecnicamente strategie complesse di generazione degli input mediante librerie e framework per il testing automatico (es. Hypothesis, Atheris, fast-check o QuickCheck). |
+| **2. Brainstorming di Invarianti di Confine:**<br />Chiedere: "Quali sono le relazioni algebriche tipiche di una coda con priorità (es. ordine di estrazione, size)?" |
+| **3. Costruzione di Dizionari di Fuzzing:**<br />Generare liste di parole chiave, header HTTP o byte magici per accelerare la convergenza dei fuzzer. |
 
 | COSA NON DEVE ESSERE DELEGATO AGLI LLM |
 | :--- |
-| **1. La Decisione di Correttezza dell'Invariante:**<br>L'approvazione formale che una determinata proprietà costituisca il comportamento accettabile del sistema. |
-| **2. La Valutazione della Sufficienza dell'Evidenza:**<br>Un LLM non può dichiarare se 5000 iterazioni siano sufficienti per il profilo di rischio del sistema. |
-| **3. L'Analisi Causale Non Verificata di un Controesempio:**<br>Non fidarsi della spiegazione testuale del crash fornita dall'LLM senza verifica riproducibile sul codice. |
+| **1. La Decisione di Correttezza dell'Invariante:**<br />L'approvazione formale che una determinata proprietà costituisca il comportamento accettabile del sistema. |
+| **2. La Valutazione della Sufficienza dell'Evidenza:**<br />Un LLM non può dichiarare se 5000 iterazioni siano sufficienti per il profilo di rischio del sistema. |
+| **3. L'Analisi Causale Non Verificata di un Controesempio:**<br />Non fidarsi della spiegazione testuale del crash fornita dall'LLM senza verifica riproducibile sul codice. |
 
 ---
 
@@ -17131,9 +17129,9 @@ Condurre un'analisi di minaccia e interpretare una campagna di Red Teaming richi
 
 | MATRICE DELLE COMPETENZE DELLO STEP 19 |
 | :--- |
-| **Competenze che richiedono responsabilità e giudizio umano qualificato:**<br>• Identificazione del valore reale degli asset aziendali e di sistema.<br>• Tracciamento vincolante dei confini di fiducia (Trust Boundaries).<br>• Determinazione dell'appetito di rischio e accettazione del residuo.<br>• Giudizio finale sulla sufficienza della valutazione avversariale. |
-| **Competenze Assistibili da LLM:**<br>• Bozza preliminare di Data Flow Diagram (DFD) in formato tabellare.<br>• Brainstorming iniziale di scenari d'attacco basati su tassonomie note.<br>• Generazione di varianti sintattiche di payload di test.<br>• Sintesi documentale dei registri delle minacce. |
-| **Competenze Specialistiche (Richiedono supporto esterno se assenti):**<br>• Offensive Security applicata ed exploit chaining non convenzionale.<br>• Analisi formale di protocolli crittografici e di autorizzazione.<br>• Progettazione di test avversariali su agenti multi-step complessi.<br>• Verifica delle garanzie di isolamento a livello hypervisor/container. |
+| **Competenze che richiedono responsabilità e giudizio umano qualificato:**<br />• Identificazione del valore reale degli asset aziendali e di sistema.<br />• Tracciamento vincolante dei confini di fiducia (Trust Boundaries).<br />• Determinazione dell'appetito di rischio e accettazione del residuo.<br />• Giudizio finale sulla sufficienza della valutazione avversariale. |
+| **Competenze Assistibili da LLM:**<br />• Bozza preliminare di Data Flow Diagram (DFD) in formato tabellare.<br />• Brainstorming iniziale di scenari d'attacco basati su tassonomie note.<br />• Generazione di varianti sintattiche di payload di test.<br />• Sintesi documentale dei registri delle minacce. |
+| **Competenze Specialistiche (Richiedono supporto esterno se assenti):**<br />• Offensive Security applicata ed exploit chaining non convenzionale.<br />• Analisi formale di protocolli crittografici e di autorizzazione.<br />• Progettazione di test avversariali su agenti multi-step complessi.<br />• Verifica delle garanzie di isolamento a livello hypervisor/container. |
 
 #### Il Gap Tipico: Il Bias di Benevolenza
 Lo sviluppatore che impiega modelli linguistici tende spontaneamente a operare sotto l'assunzione di cooperazione: assume che l'utente fornisca dati conformi allo scopo e che i documenti recuperati dall'esterno contengano solo informazioni neutrali.
@@ -17170,7 +17168,7 @@ Per garantire uniformità concettuale, definiamo i termini chiave e distinguiamo
   - *Elevation of Privilege* (Elevazione dei privilegi) -> Viola l'Autorizzazione  
 
 > [!TIP]
-> **Come si applica STRIDE nell'assurance: le domande guida per ciascun confine**  
+> ☞ **Come si applica STRIDE nell'assurance: le domande guida per ciascun confine**  
 > Per non ridurre STRIDE a una checklist burocratica, lo si utilizzi come uno strumento di interrogazione avversariale su ogni flusso di dati che attraversa un confine:
 > 
 > | Lettera | Categoria di Minaccia | Domanda Epistemica dell'Auditor | Proprietà Critica Difesa |
@@ -17203,10 +17201,10 @@ Adottiamo come struttura didattica di riferimento il modello consolidato formali
 
 | LE QUATTRO DOMANDE DEL THREAT MODELING (SHOSTACK) |
 | :--- |
-| **1. Che cosa stiamo costruendo?**<br>→ Mappatura del sistema tramite Data Flow Diagram (DFD).<br>→ Identificazione degli attori, archivi, processi e flussi. |
-| **2. Che cosa può andare storto?**<br>→ Applicazione di STRIDE a ciascun nodo e flusso.<br>→ Interrogazione tramite OWASP Top 10 for LLM e MITRE ATLAS. |
-| **3. Che cosa faremo a riguardo?**<br>→ Applicazione di mitigazioni deterministiche e contenimento architetturale (Step 14). |
-| **4. Abbiamo fatto un buon lavoro?**<br>→ Verifica empirica delle difese tramite Red Teaming.<br>→ Analisi dei percorsi scoperti e revisione delle assunzioni. |
+| **1. Che cosa stiamo costruendo?**<br />→ Mappatura del sistema tramite Data Flow Diagram (DFD).<br />→ Identificazione degli attori, archivi, processi e flussi. |
+| **2. Che cosa può andare storto?**<br />→ Applicazione di STRIDE a ciascun nodo e flusso.<br />→ Interrogazione tramite OWASP Top 10 for LLM e MITRE ATLAS. |
+| **3. Che cosa faremo a riguardo?**<br />→ Applicazione di mitigazioni deterministiche e contenimento architetturale (Step 14). |
+| **4. Abbiamo fatto un buon lavoro?**<br />→ Verifica empirica delle difese tramite Red Teaming.<br />→ Analisi dei percorsi scoperti e revisione delle assunzioni. |
 
 #### 5.2 Mappatura dei Confini di Fiducia (Trust Boundaries)
 Il principio cardine del Threat Modeling consiste nel tracciare i confini in cui l'attendibilità dei dati muta radicalmente. 
@@ -17544,10 +17542,10 @@ Il superamento di una suite statica di jailbreak generici crea un'illusione di s
 
 | ANTI-PATTERN NEL THREAT MODELING E RED TEAMING |
 | :--- |
-| **1. "Prompt Engineering as Security"**<br>Considerare l'istruzione: "Non rivelare mai la chiave segreta" come un controllo di sicurezza primario. Il prompt è un layer euristico di difesa in profondità, mai una barriera affidabile per vincoli critici. |
-| **2. "Downstream Blindness" (Costrutto Didattico del Manuale)**<br>Progettare i componenti software a valle dell'LLM assumendo che i dati restituiti dal modello siano sintatticamente e semanticamente affidabili solo perché originati da un'infrastruttura interna. |
-| **3. Confondere Allineamento del Modello con Sicurezza del Sistema**<br>Assumere che un modello classificato come "safe" dai benchmark pubblici protegga l'applicazione da vulnerabilità logiche, violazioni di accesso ai dati (IDOR) o chiamate a funzioni non autorizzate. |
-| **4. Penetration Testing Senza Scopo (Scope Castrato)**<br>Vietare al team di test di inviare allegati reali o di simulare input provenienti da terze parti per paura di alterare i dati di staging. |
+| **1. "Prompt Engineering as Security"**<br />Considerare l'istruzione: "Non rivelare mai la chiave segreta" come un controllo di sicurezza primario. Il prompt è un layer euristico di difesa in profondità, mai una barriera affidabile per vincoli critici. |
+| **2. "Downstream Blindness" (Costrutto Didattico del Manuale)**<br />Progettare i componenti software a valle dell'LLM assumendo che i dati restituiti dal modello siano sintatticamente e semanticamente affidabili solo perché originati da un'infrastruttura interna. |
+| **3. Confondere Allineamento del Modello con Sicurezza del Sistema**<br />Assumere che un modello classificato come "safe" dai benchmark pubblici protegga l'applicazione da vulnerabilità logiche, violazioni di accesso ai dati (IDOR) o chiamate a funzioni non autorizzate. |
+| **4. Penetration Testing Senza Scopo (Scope Castrato)**<br />Vietare al team di test di inviare allegati reali o di simulare input provenienti da terze parti per paura di alterare i dati di staging. |
 
 > Vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
 
@@ -17559,8 +17557,8 @@ Quando si utilizzano LLM per supportare le attività di sicurezza, operano due f
 
 | DISTORSIONE EPISTEMICA: SYCOPHANCY VS ERRORI CORRELATI |
 | :--- |
-| **1. SYCOPHANCY (Compiacenza Conversazionale):**<br>Il modello adatta le risposte per assecondare le aspettative percepite dell'utente. Se lo sviluppatore chiede: "Ho protetto questo endpoint con un prompt di validazione, ritieni che sia sicuro?", l'LLM tende a rispondere positivamente, minimizzando i rischi e lodando l'approccio. |
-| **2. CORRELATED ERRORS / SHARED BLIND SPOTS (Punti Ciechi Condivisi):**<br>Quando un LLM B viene impiegato per fare l'audit del codice o del threat model generato da un LLM A, entrambi attingono alla medesima matrice probabilistica di addestramento. Se entrambi ritengono standard una gestione superficiale delle sessioni, il modello revisore confermerà come valido il codice vulnerabile generato dal primo modello. |
+| **1. SYCOPHANCY (Compiacenza Conversazionale):**<br />Il modello adatta le risposte per assecondare le aspettative percepite dell'utente. Se lo sviluppatore chiede: "Ho protetto questo endpoint con un prompt di validazione, ritieni che sia sicuro?", l'LLM tende a rispondere positivamente, minimizzando i rischi e lodando l'approccio. |
+| **2. CORRELATED ERRORS / SHARED BLIND SPOTS (Punti Ciechi Condivisi):**<br />Quando un LLM B viene impiegato per fare l'audit del codice o del threat model generato da un LLM A, entrambi attingono alla medesima matrice probabilistica di addestramento. Se entrambi ritengono standard una gestione superficiale delle sessioni, il modello revisore confermerà come valido il codice vulnerabile generato dal primo modello. |
 
 L'accordo tra più prompt o tra più modelli non costituisce evidenza indipendente di sicurezza: riflette la condivisione dello stesso bias distribuito.
 
@@ -17570,15 +17568,15 @@ L'accordo tra più prompt o tra più modelli non costituisce evidenza indipenden
 
 | COSA PUÒ FARE UN LLM NELLO STEP 19 |
 | :--- |
-| **1. Brainstorming Guidato:**<br>Identificare minacce standard a partire da un DFD ben specificato dall'umano. |
-| **2. Variazione Sintattica dei Test (Fuzzing di Prompt):**<br>Riformulare, tradurre in altre lingue o offuscare payload noti per verificare la tenuta di filtri linguistici. |
-| **3. Generazione di Template di Documentazione:**<br>Creare tabelle STRIDE e schemi di registrazione del rischio strutturati. |
+| **1. Brainstorming Guidato:**<br />Identificare minacce standard a partire da un DFD ben specificato dall'umano. |
+| **2. Variazione Sintattica dei Test (Fuzzing di Prompt):**<br />Riformulare, tradurre in altre lingue o offuscare payload noti per verificare la tenuta di filtri linguistici. |
+| **3. Generazione di Template di Documentazione:**<br />Creare tabelle STRIDE e schemi di registrazione del rischio strutturati. |
 
 | COSA NON DEVE ESSERE DELEGATO AGLI LLM |
 | :--- |
-| **1. Il Giudizio Finale sulla Sufficienza della Valutazione:**<br>Un LLM non possiede i requisiti giuridici e operativi per dichiarare che il perimetro testato sia sufficiente. |
-| **2. La Definizione dell'Appetito di Rischio:**<br>Stabilire quale impatto aziendale sia tollerabile o inaccettabile è una decisione di governance umana pura. |
-| **3. L'Accettazione del Rischio Residuo:**<br>La firma formale di conformità e la decisione di rilascio non possono essere trasferite a un processo algoritmico. |
+| **1. Il Giudizio Finale sulla Sufficienza della Valutazione:**<br />Un LLM non possiede i requisiti giuridici e operativi per dichiarare che il perimetro testato sia sufficiente. |
+| **2. La Definizione dell'Appetito di Rischio:**<br />Stabilire quale impatto aziendale sia tollerabile o inaccettabile è una decisione di governance umana pura. |
+| **3. L'Accettazione del Rischio Residuo:**<br />La firma formale di conformità e la decisione di rilascio non possono essere trasferite a un processo algoritmico. |
 
 ---
 
@@ -17807,9 +17805,9 @@ Governare un audit multi-modello richiede la chiara distinzione tra elaborazione
 
 | MATRICE DELLE COMPETENZE DELLO STEP 20 |
 | :--- |
-| **Competenze che richiedono responsabilità e giudizio umano qualificato:**<br>• Risoluzione e triage delle discrepanze emerse tra i modelli.<br>• Giudizio sulla significatività tecnica di un consenso unanime.<br>• Validazione del codice rispetto alle fonti primarie di verità.<br>• Imposizione del blocco (NO-GO) di fronte a consensi non dimostrati. |
-| **Competenze Assistibili da LLM:**<br>• Esecuzione parallela di analisi del codice con prompt ciechi.<br>• Estrazione e raggruppamento automatico delle discrepanze testuali.<br>• Suggerimento di interpretazioni difensive o costrutti alternativi. |
-| **Competenze Specialistiche (Richiedono supporto esterno se assenti):**<br>• Analisi causale di vulnerabilità zero-day assenti nei dati noti.<br>• Arbitrato formale su proprietà di concorrenza complessa o memoria.<br>• Dimostrazione formale tramite model checker o prover interattivi. |
+| **Competenze che richiedono responsabilità e giudizio umano qualificato:**<br />• Risoluzione e triage delle discrepanze emerse tra i modelli.<br />• Giudizio sulla significatività tecnica di un consenso unanime.<br />• Validazione del codice rispetto alle fonti primarie di verità.<br />• Imposizione del blocco (NO-GO) di fronte a consensi non dimostrati. |
+| **Competenze Assistibili da LLM:**<br />• Esecuzione parallela di analisi del codice con prompt ciechi.<br />• Estrazione e raggruppamento automatico delle discrepanze testuali.<br />• Suggerimento di interpretazioni difensive o costrutti alternativi. |
+| **Competenze Specialistiche (Richiedono supporto esterno se assenti):**<br />• Analisi causale di vulnerabilità zero-day assenti nei dati noti.<br />• Arbitrato formale su proprietà di concorrenza complessa o memoria.<br />• Dimostrazione formale tramite model checker o prover interattivi. |
 
 #### Il Gap Tipico: La Falsa Democrazia degli Algoritmi
 L'errore cognitivo più frequente consiste nel trattare l'insieme dei modelli come una giuria democratica: se due modelli valutano il codice come corretto e uno segnala un bug, l'utente non competente conclude che la maggioranza "ha ragione" e scarta il giudizio dissenziente considerandolo un'allucinazione.
@@ -17886,7 +17884,7 @@ IL MECCANISMO DELL'ACCORDO CORRELATO:
 ```
 
 > [!NOTE]
-> **Perché Knight & Leveson spiega il comportamento degli LLM moderni?**  
+> ✎ **Perché Knight & Leveson spiega il comportamento degli LLM moderni?**  
 > Gli LLM non sono intelligenze aliene dotate di percorsi di ragionamento indipendenti o disgiunti dall'esperienza umana: sono compressori statistici dell'intero patrimonio di codice e documentazione scritto proprio da programmatori umani (GitHub, StackOverflow, forum tecnici, manuali).
 > Se quarant'anni fa 27 ingegneri umani qualificati, lavorando in stanze separate e per aziende diverse, sono caduti esattamente nelle stesse trappole logiche di fronte a requisiti complessi, gli LLM odierni hanno ereditato e cristallizzato nei loro pesi probabilistici le medesime scorciatoie mentali. Quando due o tre modelli diversi concordano su una soluzione, non stiamo assistendo a una convalida matematica tra pari indipendenti: stiamo osservando più modelli che attingono alla medesima convenzione statistica dominante sul web. Se quella convenzione contiene un difetto concettuale, tutti i modelli lo ripeteranno all'unisono con assoluta sicurezza.
 
@@ -17897,10 +17895,10 @@ La credenza che modelli distribuiti da provider commerciali concorrenti siano in
 
 | FONTI POTENZIALI DI ERRORE CORRELATO TRA DIVERSI LLM |
 | :--- |
-| **1. Dati di Pre-training Sovrapposti:**<br>La grande maggioranza degli LLM include Common Crawl, i repository pubblici di GitHub, StackOverflow, Wikipedia e collezioni arXiv. L'errore presente in tali sorgenti viene appreso da tutti i modelli. |
-| **2. Contaminazione dei Benchmark Pubblici:**<br>Tutti i modelli vengono ottimizzati per eccellere sugli stessi test standard (HumanEval, MBPP, GSM8k). Questo forza un allineamento delle euristiche di risoluzione sui medesimi pattern. |
-| **3. Distillazione Incrociata:**<br>Molti modelli open-weight o commerciali minori vengono addestrati o rifiniti (fine-tuned) utilizzando output generati da modelli di classe superiore, ereditandone i medesimi punti ciechi epistemici. |
-| **4. Metodologie di Allineamento Simili (RLHF / DPO):**<br>I modelli vengono addestrati con feedback umano su linee guida sovrapposte (priorità alla plausibilità, alla concisione e alla cortesia), inducendo analoghe tendenze alla compiacenza (Sycophancy). |
+| **1. Dati di Pre-training Sovrapposti:**<br />La grande maggioranza degli LLM include Common Crawl, i repository pubblici di GitHub, StackOverflow, Wikipedia e collezioni arXiv. L'errore presente in tali sorgenti viene appreso da tutti i modelli. |
+| **2. Contaminazione dei Benchmark Pubblici:**<br />Tutti i modelli vengono ottimizzati per eccellere sugli stessi test standard (HumanEval, MBPP, GSM8k). Questo forza un allineamento delle euristiche di risoluzione sui medesimi pattern. |
+| **3. Distillazione Incrociata:**<br />Molti modelli open-weight o commerciali minori vengono addestrati o rifiniti (fine-tuned) utilizzando output generati da modelli di classe superiore, ereditandone i medesimi punti ciechi epistemici. |
+| **4. Metodologie di Allineamento Simili (RLHF / DPO):**<br />I modelli vengono addestrati con feedback umano su linee guida sovrapposte (priorità alla plausibilità, alla concisione e alla cortesia), inducendo analoghe tendenze alla compiacenza (Sycophancy). |
 
 È necessario operare distinguendo rigorosamente sul piano epistemico:
 ```text
@@ -18026,10 +18024,10 @@ Per evitare confusioni concettuali nei report di audit, è obbligatorio discrimi
 
 | I QUATTRO LIVELLI DI VALUTAZIONE DELL'AUDIT MULTI-MODELLO |
 | :--- |
-| **1. INTER-MODEL AGREEMENT:**<br>Misura quantitativa o qualitativa di concordanza tra i verdetti dei modelli a fronte dello stesso input. |
-| **2. GROUND-TRUTH ACCURACY:**<br>Misura della corrispondenza reale tra il giudizio emesso e il comportamento effettivo del software rispetto alla specifica valida. |
-| **3. EVIDENCE INDEPENDENCE:**<br>Grado di separazione sostanziale tra le fonti di evidenza rispetto ai fattori di errore e alle assunzioni note. |
-| **4. ASSURANCE SUFFICIENCY:**<br>Valutazione di governance che stabilisce se l'insieme complessivo delle evidenze raccolte è adeguato per autorizzare la decisione. |
+| **1. INTER-MODEL AGREEMENT:**<br />Misura quantitativa o qualitativa di concordanza tra i verdetti dei modelli a fronte dello stesso input. |
+| **2. GROUND-TRUTH ACCURACY:**<br />Misura della corrispondenza reale tra il giudizio emesso e il comportamento effettivo del software rispetto alla specifica valida. |
+| **3. EVIDENCE INDEPENDENCE:**<br />Grado di separazione sostanziale tra le fonti di evidenza rispetto ai fattori di errore e alle assunzioni note. |
+| **4. ASSURANCE SUFFICIENCY:**<br />Valutazione di governance che stabilisce se l'insieme complessivo delle evidenze raccolte è adeguato per autorizzare la decisione. |
 
 Da cui derivano le tre disuguaglianze vincolanti per il Decision Gate:
 ```text
@@ -18278,10 +18276,10 @@ L'accordo dei modelli deriva dalla condivisione dello stesso modello culturale d
 
 | ANTI-PATTERN NEL MULTI-MODEL AUDIT |
 | :--- |
-| **1. Majority Voting Decision Gate (La Regola della Maggioranza)**<br>Rilasciare il software perché "almeno 2 modelli su 3 dicono PASS". In sicurezza, una sola segnalazione valida di vulnerabilità prevale su cento approvazioni cieche. Ammissibile solo se giustificato formalmente per un dominio specifico con oracolo di validazione. |
-| **2. Chain-of-Custody Priming**<br>Passare l'output di un modello all'altro durante la catena di verifica senza garantire l'isolamento cieco. |
-| **3. Vendor Diversity Fallacy**<br>Assumere che provider commerciali differenti garantiscano dataset di addestramento disgiunti e assenza di errore correlato. |
-| **4. Discarding the Outlier (Soppressione del Disaccordo)**<br>Scartare l'unico modello che emette FAIL considerandolo un'anomalia statistica, senza verificare analiticamente la sua argomentazione. |
+| **1. Majority Voting Decision Gate (La Regola della Maggioranza)**<br />Rilasciare il software perché "almeno 2 modelli su 3 dicono PASS". In sicurezza, una sola segnalazione valida di vulnerabilità prevale su cento approvazioni cieche. Ammissibile solo se giustificato formalmente per un dominio specifico con oracolo di validazione. |
+| **2. Chain-of-Custody Priming**<br />Passare l'output di un modello all'altro durante la catena di verifica senza garantire l'isolamento cieco. |
+| **3. Vendor Diversity Fallacy**<br />Assumere che provider commerciali differenti garantiscano dataset di addestramento disgiunti e assenza di errore correlato. |
+| **4. Discarding the Outlier (Soppressione del Disaccordo)**<br />Scartare l'unico modello che emette FAIL considerandolo un'anomalia statistica, senza verificare analiticamente la sua argomentazione. |
 
 ---
 
@@ -18321,15 +18319,15 @@ Moltiplicare gli agenti linguistici non incrementa la certezza: moltiplica unica
 
 | COSA PUÒ FARE UN LLM NELLO STEP 20 |
 | :--- |
-| **1. Fornire Prospettive Euristiche Parallele:**<br>Ispezionare il codice secondo angolazioni diverse (es. un modello focalizzato su concurrency, uno su SAST). |
-| **2. Analisi Sintattica ed Estrazione Discrepanze:**<br>Identificare automaticamente discrepanze terminologiche e di verdetto all'interno di report strutturati. |
-| **3. Individuazione di Anti-pattern Noti:**<br>Segnalare violazioni di convenzioni idiomatiche standard o costrutti deprecati documentati nel corpus. |
+| **1. Fornire Prospettive Euristiche Parallele:**<br />Ispezionare il codice secondo angolazioni diverse (es. un modello focalizzato su concurrency, uno su SAST). |
+| **2. Analisi Sintattica ed Estrazione Discrepanze:**<br />Identificare automaticamente discrepanze terminologiche e di verdetto all'interno di report strutturati. |
+| **3. Individuazione di Anti-pattern Noti:**<br />Segnalare violazioni di convenzioni idiomatiche standard o costrutti deprecati documentati nel corpus. |
 
 | COSA NON DEVE ESSERE DELEGATO ESCLUSIVAMENTE AGLI LLM SENZA CRITERI ED EVIDENZE INDIPENDENTI |
 | :--- |
-| **1. La Risoluzione dei Disaccordi (Arbitrato):**<br>Non interrogare un terzo LLM per decidere chi ha ragione tra due LLM dissenzienti. Il disaccordo impone l'intervento umano o la verifica contro una specifica. |
-| **2. L'Attestazione di Assenza di Vulnerabilità:**<br>Il consenso unanime non equivale a dimostrazione formale di correttezza o sicurezza. |
-| **3. L'Autorizzazione al Decision Gate:**<br>La responsabilità della firma per il deployment spetta esclusivamente a un'autorità umana qualificata. |
+| **1. La Risoluzione dei Disaccordi (Arbitrato):**<br />Non interrogare un terzo LLM per decidere chi ha ragione tra due LLM dissenzienti. Il disaccordo impone l'intervento umano o la verifica contro una specifica. |
+| **2. L'Attestazione di Assenza di Vulnerabilità:**<br />Il consenso unanime non equivale a dimostrazione formale di correttezza o sicurezza. |
+| **3. L'Autorizzazione al Decision Gate:**<br />La responsabilità della firma per il deployment spetta esclusivamente a un'autorità umana qualificata. |
 
 ---
 
@@ -18585,9 +18583,9 @@ Condurre o commissionare una verifica indipendente richiede una chiara ripartizi
 
 | MATRICE DELLE COMPETENZE DELLO STEP 21 |
 | :--- |
-| **Competenze che richiedono responsabilità e giudizio umano qualificato:**<br>• Determinazione del livello di indipendenza richiesto dal rischio.<br>• Riconoscere e registrare il Competence Gap quando la competenza richiesta eccede quella disponibile nel team.<br>• Valutazione critica e arbitrato sulle discrepanze dell'IVR.<br>• Assunzione della responsabilità formale al gate decisionale. |
-| **Competenze Assistibili da LLM:**<br>• Scrittura di harness di test indipendenti basati su specifiche pure.<br>• Tracciamento incrociato tra requisiti testuali e codice di prova.<br>• Generazione di matrici di confronto tra oracoli e comportamenti. |
-| **Competenze Specialistiche (Richiedono verificatore accreditato/esperto):**<br>• Verifica formale di protocolli crittografici e di consenso.<br>• Valutazione di conformità a standard regolatori (safety-critical).<br>• Audit matematico su modelli di concorrenza complessi o memory-safety. |
+| **Competenze che richiedono responsabilità e giudizio umano qualificato:**<br />• Determinazione del livello di indipendenza richiesto dal rischio.<br />• Riconoscere e registrare il Competence Gap quando la competenza richiesta eccede quella disponibile nel team.<br />• Valutazione critica e arbitrato sulle discrepanze dell'IVR.<br />• Assunzione della responsabilità formale al gate decisionale. |
+| **Competenze Assistibili da LLM:**<br />• Scrittura di harness di test indipendenti basati su specifiche pure.<br />• Tracciamento incrociato tra requisiti testuali e codice di prova.<br />• Generazione di matrici di confronto tra oracoli e comportamenti. |
+| **Competenze Specialistiche (Richiedono verificatore accreditato/esperto):**<br />• Verifica formale di protocolli crittografici e di consenso.<br />• Valutazione di conformità a standard regolatori (safety-critical).<br />• Audit matematico su modelli di concorrenza complessi o memory-safety. |
 
 #### Il Riconoscimento del Competence Gap
 L'utilizzatore di LLM con competenze di programmazione incomplete incontra spesso un limite invalicabile: **non sa cosa non sa**.
@@ -18944,10 +18942,10 @@ In questo scenario non c'è necessariamente una dipendenza finanziaria (il budge
 
 | ANTI-PATTERN NELLA VERIFICA INDIPENDENTE |
 | :--- |
-| **1. Prompt Mirroring**<br>Il verificatore adotta i medesimi prompt, contesti e formulazioni usati dal team di sviluppo, duplicando i punti ciechi originali. |
-| **2. Specification Borrowing (Prestito di Specifica)**<br>Il verificatore deduce i requisiti leggendo il codice sorgente o le docstring prodotte dall'autore, anziché attingere alle fonti primarie. |
-| **3. Process Audit as Product Verification**<br>Assumere che, poiché sono state rispettate le scadenze, i verbali sono firmati e la documentazione è completa (conformità di processo), l'algoritmo sia necessariamente corretto (qualità di prodotto). |
-| **4. Compromissione dell'indipendenza di giudizio**<br>Il verificatore si fa spiegare il funzionamento dall'autore prima di iniziare l'analisi, assorbendone inconsapevolmente le giustificazioni. |
+| **1. Prompt Mirroring**<br />Il verificatore adotta i medesimi prompt, contesti e formulazioni usati dal team di sviluppo, duplicando i punti ciechi originali. |
+| **2. Specification Borrowing (Prestito di Specifica)**<br />Il verificatore deduce i requisiti leggendo il codice sorgente o le docstring prodotte dall'autore, anziché attingere alle fonti primarie. |
+| **3. Process Audit as Product Verification**<br />Assumere che, poiché sono state rispettate le scadenze, i verbali sono firmati e la documentazione è completa (conformità di processo), l'algoritmo sia necessariamente corretto (qualità di prodotto). |
+| **4. Compromissione dell'indipendenza di giudizio**<br />Il verificatore si fa spiegare il funzionamento dall'autore prima di iniziare l'analisi, assorbendone inconsapevolmente le giustificazioni. |
 
 ---
 
@@ -18984,15 +18982,15 @@ Uno degli errori epistemici più ricorrenti tra chi sviluppa con LLM consiste ne
 
 | COSA PUÒ FARE UN LLM NELLO STEP 21 |
 | :--- |
-| **1. Supporto a Stanza Cieca per il Verificatore:**<br>Ricevendo unicamente il testo della specifica formale, assistere il verificatore nella generazione di test PBT ed edge cases matematici disaccoppiati dal codice reale. |
-| **2. Ispezione Meccanica della Tracciabilità:**<br>Mappare la copertura incrociata tra requisiti normativi e casi di prova predisposti nel piano di verifica. |
-| **3. Comparazione di Output su Oracoli Formali:**<br>Confrontare i risultati del sistema rispetto a una tabella di valori attesi calcolata da un oracolo puro. |
+| **1. Supporto a Stanza Cieca per il Verificatore:**<br />Ricevendo unicamente il testo della specifica formale, assistere il verificatore nella generazione di test PBT ed edge cases matematici disaccoppiati dal codice reale. |
+| **2. Ispezione Meccanica della Tracciabilità:**<br />Mappare la copertura incrociata tra requisiti normativi e casi di prova predisposti nel piano di verifica. |
+| **3. Comparazione di Output su Oracoli Formali:**<br />Confrontare i risultati del sistema rispetto a una tabella di valori attesi calcolata da un oracolo puro. |
 
 | COSA NON DEVE ESSERE DELEGATO ESCLUSIVAMENTE AGLI LLM SENZA CRITERI ED EVIDENZE INDIPENDENTI |
 | :--- |
-| **1. La Determinazione Autonoma della Sufficienza:**<br>Nessun LLM possiede la competenza per decidere se l'evidenza raccolta sia sufficiente per il rilascio. |
-| **2. L'Attestazione di Indipendenza:**<br>Un modello non può certificare l'assenza di bias o conflitti d'interesse nel processo di verifica. |
-| **3. La Risoluzione Giuridica o Etica di Ambiguità:**<br>L'interpretazione delle clausole di legge o dei vincoli di sicurezza esige autorità e responsabilità umana pura. |
+| **1. La Determinazione Autonoma della Sufficienza:**<br />Nessun LLM possiede la competenza per decidere se l'evidenza raccolta sia sufficiente per il rilascio. |
+| **2. L'Attestazione di Indipendenza:**<br />Un modello non può certificare l'assenza di bias o conflitti d'interesse nel processo di verifica. |
+| **3. La Risoluzione Giuridica o Etica di Ambiguità:**<br />L'interpretazione delle clausole di legge o dei vincoli di sicurezza esige autorità e responsabilità umana pura. |
 
 ---
 
@@ -19237,9 +19235,9 @@ L'analisi delle discrepanze richiede competenze investigative e diagnostiche ben
 
 | MATRICE DELLE COMPETENZE DELLO STEP 22 |
 | :--- |
-| **Competenze che richiedono responsabilità e giudizio umano qualificato:**<br>• Localizzazione dell'origine: stabilire se sia errato il codice, la specifica, l'oracolo di test o l'ambiente di runtime.<br>• Valutazione della severità e dell'impatto reale sul profilo di rischio.<br>• Approvazione della strategia formale di risoluzione (Disposition).<br>• Decisione motivata di accettazione del rischio (Accept Risk / As-Is). |
-| **Competenze Assistibili da LLM:**<br>• Esplorazione dello spazio delle ipotesi causali a partire dai log.<br>• Generazione di test di regressione atomici sul controesempio.<br>• Bozza della documentazione del Discrepancy Record.<br>• Suggerimento di patch candidate circoscritte da sottoporre a test. |
-| **Competenze Specialistiche (Richiedono supporto di esperti se assenti):**<br>• Analisi forense di violazioni di memoria (Memory corruption, UAF).<br>• Diagnosi di anomalie di concorrenza distribuita e modelli di memoria.<br>• Valutazione dell'impatto normativo e legale di difetti di specifica. |
+| **Competenze che richiedono responsabilità e giudizio umano qualificato:**<br />• Localizzazione dell'origine: stabilire se sia errato il codice, la specifica, l'oracolo di test o l'ambiente di runtime.<br />• Valutazione della severità e dell'impatto reale sul profilo di rischio.<br />• Approvazione della strategia formale di risoluzione (Disposition).<br />• Decisione motivata di accettazione del rischio (Accept Risk / As-Is). |
+| **Competenze Assistibili da LLM:**<br />• Esplorazione dello spazio delle ipotesi causali a partire dai log.<br />• Generazione di test di regressione atomici sul controesempio.<br />• Bozza della documentazione del Discrepancy Record.<br />• Suggerimento di patch candidate circoscritte da sottoporre a test. |
+| **Competenze Specialistiche (Richiedono supporto di esperti se assenti):**<br />• Analisi forense di violazioni di memoria (Memory corruption, UAF).<br />• Diagnosi di anomalie di concorrenza distribuita e modelli di memoria.<br />• Valutazione dell'impatto normativo e legale di difetti di specifica. |
 
 #### Il Gap Tipico: L'Anti-pattern del "Patch-and-Pray"
 L'utilizzatore di LLM con competenze di programmazione incomplete tende a operare per tentativi (*Patch-and-Pray*): richiede continue rigenerazioni del codice finché i test non smettono di fallire.
@@ -19359,7 +19357,7 @@ Adottiamo una classificazione operativa tridimensionale per strutturare l'indagi
 ```
 
 > [!NOTE]
-> **Comprensione intuitiva dei 4 livelli di causalità: la metafora della spia dell'olio**  
+> ✎ **Comprensione intuitiva dei 4 livelli di causalità: la metafora della spia dell'olio**  
 > Per non cadere nell'anti-pattern del *Patch-and-Pray* (applicare toppe veloci suggerite dall'LLM al primo messaggio di errore), si analizzi la catena causale attraverso un'analogia meccanica:
 > 1. **Il Sintomo (Manifestazione esterna):** Si accende la spia rossa dell'olio sul cruscotto dell'automobile mentre siamo in autostrada.
 > 2. **La Causa Prossima (Il punto di rottura immediato):** Il sensore rileva che la pressione dell'olio nel motore è scesa a zero bar.
@@ -19662,10 +19660,10 @@ La stringa vuota indicava in realtà che la banca terza aveva addebitato una com
 
 | ANTI-PATTERN NELLA DISCREPANCY ANALYSIS |
 | :--- |
-| **1. Spec-Fitting (Piegare la Specifica al Bug)**<br>Modificare il testo dei requisiti per allinearlo al comportamento errato esibito dal codice generato da LLM, dichiarando a posteriori: "In fondo questo comportamento è accettabile". |
-| **2. LLM Patch-and-Pray**<br>Inviare ciclicamente lo stacktrace all'LLM chiedendo correzioni alla cieca finché il test non diventa casualmente verde. |
-| **3. Triage per Sfinimento (Discrepancy Fatigue)**<br>Declassare arbitrariamente discrepanze complesse a "minori" o "falsi allarmi" solo perché la diagnosi richiede tempo ed energie, confondendo la complessità tecnica con la criticità d'impatto. |
-| **4. Regressione Dimenticata**<br>Applicare una patch al codice senza registrare un test di regressione atomico e immutabile che preservi la prova del controesempio. |
+| **1. Spec-Fitting (Piegare la Specifica al Bug)**<br />Modificare il testo dei requisiti per allinearlo al comportamento errato esibito dal codice generato da LLM, dichiarando a posteriori: "In fondo questo comportamento è accettabile". |
+| **2. LLM Patch-and-Pray**<br />Inviare ciclicamente lo stacktrace all'LLM chiedendo correzioni alla cieca finché il test non diventa casualmente verde. |
+| **3. Triage per Sfinimento (Discrepancy Fatigue)**<br />Declassare arbitrariamente discrepanze complesse a "minori" o "falsi allarmi" solo perché la diagnosi richiede tempo ed energie, confondendo la complessità tecnica con la criticità d'impatto. |
+| **4. Regressione Dimenticata**<br />Applicare una patch al codice senza registrare un test di regressione atomico e immutabile che preservi la prova del controesempio. |
 
 ---
 
@@ -19708,15 +19706,15 @@ Non dimostra affatto che la proprietà sia stata ripristinata né che altre part
 
 | COSA PUÒ FARE UN LLM NELLO STEP 22 |
 | :--- |
-| **1. Esplorazione dello Spazio delle Ipotesi:**<br>Dato un log di fallimento, proporre molteplici ipotesi causali alternative da sottoporre a verifica empirica. |
-| **2. Scrittura del Test di Regressione:**<br>Convertire un controesempio scaturito da fuzzing o PBT in un test unitario atomico deterministico. |
-| **3. Bozza di Patch Isolata:**<br>Proporre correzioni sintattiche circoscritte basate su una causa radice precedentemente verificata dall'umano. |
+| **1. Esplorazione dello Spazio delle Ipotesi:**<br />Dato un log di fallimento, proporre molteplici ipotesi causali alternative da sottoporre a verifica empirica. |
+| **2. Scrittura del Test di Regressione:**<br />Convertire un controesempio scaturito da fuzzing o PBT in un test unitario atomico deterministico. |
+| **3. Bozza di Patch Isolata:**<br />Proporre correzioni sintattiche circoscritte basate su una causa radice precedentemente verificata dall'umano. |
 
 | COSA NON DEVE ESSERE DELEGATO ESCLUSIVAMENTE AGLI LLM SENZA CRITERI ED EVIDENZE INDIPENDENTI |
 | :--- |
-| **1. La Determinazione Autonoma della Causa Radice:**<br>Un LLM non può stabilire quale ipotesi sia vera senza una verifica empirica riproducibile. |
-| **2. La Delibera di Disposition:**<br>La decisione di correggere il codice, alterare la specifica o accettare il rischio spetta alla governance. |
-| **3. La Chiusura del Discrepancy Record:**<br>Nessun record di anomalia può essere archiviato come "risolto" su mera dichiarazione testuale di un modello. |
+| **1. La Determinazione Autonoma della Causa Radice:**<br />Un LLM non può stabilire quale ipotesi sia vera senza una verifica empirica riproducibile. |
+| **2. La Delibera di Disposition:**<br />La decisione di correggere il codice, alterare la specifica o accettare il rischio spetta alla governance. |
+| **3. La Chiusura del Discrepancy Record:**<br />Nessun record di anomalia può essere archiviato come "risolto" su mera dichiarazione testuale di un modello. |
 
 Il flusso di falsa assurance:
 ```text
@@ -19737,11 +19735,11 @@ Nell'esaminare e chiudere un'anomalia, l'indipendenza non riguarda solo la stesu
 
 | LE CINQUE EVIDENZE DI INDIPENDENZA NEL CICLO DEL DIFETTO |
 | :--- |
-| **1. EVIDENZA DI RILEVAZIONE:**<br>Chi o cosa ha fatto emergere l'anomalia (test, fuzzer, audit). |
-| **2. EVIDENZA DI DIAGNOSI:**<br>Chi o cosa ha formulato e verificato sperimentalmente l'ipotesi. |
-| **3. EVIDENZA DELLA CORREZIONE:**<br>Chi o cosa ha progettato e implementato la modifica. |
-| **4. EVIDENZA DI REGRESSIONE:**<br>Chi o cosa ha accertato che la proprietà sia intatta senza danni. |
-| **5. EVIDENZA DI CHIUSURA:**<br>L'autorità qualificata che autorizza formalmente la disposition. |
+| **1. EVIDENZA DI RILEVAZIONE:**<br />Chi o cosa ha fatto emergere l'anomalia (test, fuzzer, audit). |
+| **2. EVIDENZA DI DIAGNOSI:**<br />Chi o cosa ha formulato e verificato sperimentalmente l'ipotesi. |
+| **3. EVIDENZA DELLA CORREZIONE:**<br />Chi o cosa ha progettato e implementato la modifica. |
+| **4. EVIDENZA DI REGRESSIONE:**<br />Chi o cosa ha accertato che la proprietà sia intatta senza danni. |
+| **5. EVIDENZA DI CHIUSURA:**<br />L'autorità qualificata che autorizza formalmente la disposition. |
 
 Se un unico attore (la stessa persona o la medesima sessione di chat di un LLM) genera il codice, scrive il test, interpreta il fallimento, propone la causa, applica la patch, modifica il test e dichiara la chiusura, **l'indipendenza epistemica è nulla**.
 L'indipendenza deve essere proporzionata al rischio (Step 2): nei sistemi a medio e alto rischio, la diagnosi causale e la verifica di regressione devono coinvolgere revisori o verificatori disaccoppiati (Step 21).
@@ -19970,7 +19968,7 @@ L'utilizzatore di LLM spesso sopperisce alla propria parziale competenza di prog
 
 | COMPETENCE GAP TIPICO |
 | :--- |
-| **L'utente osserva che la pipeline termina con successo (segno verde), ma non sa:**<br>**1.** Se il gate abbia interrogato un oracolo indipendente o una tautologia;<br>**2.** Se una proprietà critica sia priva di evidenza (stato UNKNOWN);<br>**3.** Se una configurazione permissiva (es. `continue-on-error: true`) abbia nascosto un fallimento bloccante. |
+| **L'utente osserva che la pipeline termina con successo (segno verde), ma non sa:**<br />**1.** Se il gate abbia interrogato un oracolo indipendente o una tautologia;<br />**2.** Se una proprietà critica sia priva di evidenza (stato UNKNOWN);<br />**3.** Se una configurazione permissiva (es. `continue-on-error: true`) abbia nascosto un fallimento bloccante. |
 
 Riconoscere questo gap è parte integrante dell'assurance: se l'utente non è in grado di decifrare la qualità epistemica delle evidenze aggregate da un gate, non può emettere un'approvazione formale. In tal caso, il processo deve sospendere la transizione in uno stato di attesa (`HOLD`) o rimandare a una revisione specialistica (`ESCALATE`).
 
@@ -20136,11 +20134,11 @@ Per evitare errori interpretativi sistematici, il valutatore del gate deve padro
 
 | Concetto Ingenuo o Confuso | Concetto Rigoroso di Assurance |
 | :--- | :--- |
-| **Test passing**<br>Lo script di prova non segnala errori sul set di dati eseguito. | **Property verified**<br>È stata acquisita evidenza indipendente che la proprietà specificata è valida per l'intero dominio di input dichiarato. |
-| **Pipeline green**<br>L'infrastruttura di automazione ha terminato i job previsti. | **Evidence sufficient**<br>Il corpo di evidenze raccolto è metodologicamente adeguato a giustificare razionalmente la fiducia. |
-| **High model confidence**<br>L'LLM dichiara con assertività di aver implementato il codice bene. | **Empirical evidence**<br>I dati sperimentali e deterministici provano il comportamento reale del software in esecuzione. |
-| **UNKNOWN interpretato come assenso**<br>"Non ci sono evidenze di errore, quindi possiamo procedere." | **UNKNOWN interpretato come blocco**<br>"Non abbiamo evidenza sufficiente, quindi non possiamo autorizzare la transizione." |
-| **Reviewer LLM approva la modifica**<br>Un secondo prompt riceve 'Approvato senza riserve' da un modello. | **Independent evidence verified**<br>L'oracolo di controllo attinge a una fonte di verità distinta e disaccoppiata dal generatore. |
+| **Test passing**<br />Lo script di prova non segnala errori sul set di dati eseguito. | **Property verified**<br />È stata acquisita evidenza indipendente che la proprietà specificata è valida per l'intero dominio di input dichiarato. |
+| **Pipeline green**<br />L'infrastruttura di automazione ha terminato i job previsti. | **Evidence sufficient**<br />Il corpo di evidenze raccolto è metodologicamente adeguato a giustificare razionalmente la fiducia. |
+| **High model confidence**<br />L'LLM dichiara con assertività di aver implementato il codice bene. | **Empirical evidence**<br />I dati sperimentali e deterministici provano il comportamento reale del software in esecuzione. |
+| **UNKNOWN interpretato come assenso**<br />"Non ci sono evidenze di errore, quindi possiamo procedere." | **UNKNOWN interpretato come blocco**<br />"Non abbiamo evidenza sufficiente, quindi non possiamo autorizzare la transizione." |
+| **Reviewer LLM approva la modifica**<br />Un secondo prompt riceve 'Approvato senza riserve' da un modello. | **Independent evidence verified**<br />L'oracolo di controllo attinge a una fonte di verità distinta e disaccoppiata dal generatore. |
 
 ---
 
@@ -20184,7 +20182,7 @@ A_ach(E, I(E)) >= A_req(R)
 >
 
 > [!NOTE]
-> **Perché la sicurezza non è una media matematica: l'analogia dell'aeroplano**  
+> ✎ **Perché la sicurezza non è una media matematica: l'analogia dell'aeroplano**  
 > Molti manager e sviluppatori abituati alle metriche scolastiche o aziendali faticano ad accettare questo principio: *"Abbiamo 99 test su 100 che passano con successo (il 99%!), perché blocchi il rilascio per un solo controllo fallito o incerto?"*.
 > 
 > La risposta risiede nella natura non-compensativa dei sistemi critici. Si immagini di dover salire su un aereo di linea commerciale prima del decollo:
@@ -21139,7 +21137,7 @@ di tollerabilità reggano nell'ambiente operativo di destinazione.
 ```
 
 > [!IMPORTANT]
-> **Prontuario operativo di Ispezione Inversa a 4 linguaggi**  
+> ⚑ **Prontuario operativo di Ispezione Inversa a 4 linguaggi**  
 > L'applicazione pratica dell'Ispezione Inversa (*Uscita ➔ Punti di Impatto ➔ Guardie ➔ Calcolo*) su codice reale in Python, JavaScript/Node.js, Bash e PowerShell — corredata da quattro laboratori d'ispezione guidata a doppia colonna e dal template del verbale di rifiuto/ammissione — è consultabile nell'appendice:  
 > **[❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)**.
 
@@ -21158,12 +21156,12 @@ La mancata comprensione delle seguenti distinzioni degrada la revisione umana a 
 
 | Concetto Ingenuo o Confuso | Concetto Rigoroso di Assurance |
 | :--- | :--- |
-| **Leggere il codice**<br>Scorrere il testo verificando che la sintassi e i commenti sembrino sensati. | **Revisionare criticamente il codice**<br>Simulare mentalmente l'esecuzione su casi limite, sollecitando attivamente le condizioni di rottura degli invarianti. |
-| **Comprendere la spiegazione dell'LLM**<br>Seguire la narrativa lineare e persuasiva prodotta dal modello sul proprio operato. | **Comprendere il comportamento a runtime**<br>Prevedere le interazioni concrete del software con thread, memoria, risorse di rete e guasti parziali. |
-| **Decision Gate PASS**<br>L'infrastruttura di automazione ha terminato i job con esito positivo. | **Prontezza all'approvazione umana**<br>Il revisore dichiara di aver compreso il componente e ritiene giustificata l'assunzione del rischio residuo. |
-| **Approvazione formale**<br>Dichiarazione vincolante di adeguatezza epistemica e accettazione del rischio. | **Dimostrazione della correttezza assoluta**<br>Garanzia matematica infallibile che il software sia privo di difetti (condizione non raggiungibile empiricamente). |
-| **Delega della produzione**<br>Impiegare l'LLM per generare una bozza di codice o di test. | **Delega della responsabilità**<br>Pretendere che l'LLM risponda delle conseguenze o dei malfunzionamenti del sistema in esercizio. |
-| **Accordo discorsivo tra modelli**<br>Interrogare un secondo LLM che dichiara "il codice è corretto". | **Verifica empirica indipendente**<br>Dimostrazione deterministica di conformità a fronte di un oracolo disaccoppiato dal generatore. |
+| **Leggere il codice**<br />Scorrere il testo verificando che la sintassi e i commenti sembrino sensati. | **Revisionare criticamente il codice**<br />Simulare mentalmente l'esecuzione su casi limite, sollecitando attivamente le condizioni di rottura degli invarianti. |
+| **Comprendere la spiegazione dell'LLM**<br />Seguire la narrativa lineare e persuasiva prodotta dal modello sul proprio operato. | **Comprendere il comportamento a runtime**<br />Prevedere le interazioni concrete del software con thread, memoria, risorse di rete e guasti parziali. |
+| **Decision Gate PASS**<br />L'infrastruttura di automazione ha terminato i job con esito positivo. | **Prontezza all'approvazione umana**<br />Il revisore dichiara di aver compreso il componente e ritiene giustificata l'assunzione del rischio residuo. |
+| **Approvazione formale**<br />Dichiarazione vincolante di adeguatezza epistemica e accettazione del rischio. | **Dimostrazione della correttezza assoluta**<br />Garanzia matematica infallibile che il software sia privo di difetti (condizione non raggiungibile empiricamente). |
+| **Delega della produzione**<br />Impiegare l'LLM per generare una bozza di codice o di test. | **Delega della responsabilità**<br />Pretendere che l'LLM risponda delle conseguenze o dei malfunzionamenti del sistema in esercizio. |
+| **Accordo discorsivo tra modelli**<br />Interrogare un secondo LLM che dichiara "il codice è corretto". | **Verifica empirica indipendente**<br />Dimostrazione deterministica di conformità a fronte di un oracolo disaccoppiato dal generatore. |
 
 ---
 
@@ -21724,7 +21722,7 @@ La capacità dei modelli generativi di produrre codice formalmente plausibile e 
 *Raccordo di Transizione Metodologica*
 
 > [!NOTE]
-> **Che cosa abbiamo dimostrato finora e perché la produzione richiede una nuova postura**  
+> ✎ **Che cosa abbiamo dimostrato finora e perché la produzione richiede una nuova postura**  
 > Con la firma formale dello Step 24 si conclude la **Parte II (Implementazione e verifica)**. Il componente software ha superato la gabbia architetturale (Step 13-14), la codifica vincolata da contratti (Step 15), la caccia ai difetti tramite test indipendenti, analisi statica, fuzzing avversariale, audit multi-modello (Step 16-21), la risoluzione delle discrepanze (Step 22) e il vaglio del gate deterministico (Step 23).
 
 #### IL BILANCIO DI ASSURANCE DELLA PARTE II
@@ -22042,7 +22040,7 @@ Se il codice generato dall'LLM richiede modifiche distruttive allo schema (es. r
 ```
 
 > [!TIP]
-> **Come si risolve il problema? Il pattern a tre tempi Expand/Contract (Espansione e Contrazione)**  
+> ☞ **Come si risolve il problema? Il pattern a tre tempi Expand/Contract (Espansione e Contrazione)**  
 > Quando il codice generato da un LLM richiede di modificare una tabella di database condivisa (ad esempio trasformare il campo `nome_completo` in due campi separati `nome` e `cognome`), non si deve mai eseguire una migrazione distruttiva immediata. Si applica invece una strategia additiva in tre tempi:
 > 1. **Fase 1: Espansione (Expand):** Aggiungiamo al database le nuove colonne `nome` e `cognome`, ma *lasciamo intatta* la vecchia colonna `nome_completo`. La nuova versione del codice (Canary) inizia a scrivere su entrambe le colonne, mentre la versione vecchia (Baseline) continua a leggere e scrivere solo su quella vecchia senza accorgersi di nulla. Nessuno fallisce.
 > 2. **Fase 2: Transizione e Allineamento:** Con un programma di utilità asincrono in background copiamo i dati storici dal vecchio campo ai nuovi. Portiamo gradualmente il Canary dal 5% al 100% del traffico. Se qualcosa va storto, il rollback è indolore perché la vecchia colonna esiste ancora ed è aggiornata.
@@ -22058,14 +22056,14 @@ Confondere questi concetti genera una falsa percezione di controllo durante la f
 
 | Concetto Ingenuo o Confuso | Concetto Rigoroso di Assurance | Conseguenza della Confusione |
 | :--- | :--- | :--- |
-| **Deployment**<br>(Installare i binari sui server) | **Release (Rilascio)**<br>(Esporre il comportamento al traffico reale) | Rilasciare una funzionalità a utenti reali durante un'operazione considerata puramente tecnica. |
-| **Staging test superato**<br>(Verifica positiva su dati sintetici) | **Telemetria in-vivo**<br>(Osservazione empirica sotto carico reale) | Ritenere che il superamento dello staging autorizzi un rilascio globale immediato. |
-| **Assenza di crash (No HTTP 500)**<br>(Il processo non si interrompe) | **Preservazione degli invarianti**<br>(I dati elaborati rispettano la specifica) | Considerare sano un Canary che restituisce HTTP 200 ma genera calcoli contabili errati nel payload. |
-| **Assenza di anomalie osservate**<br>(Nessun allarme scattato finora) | **Assenza di anomalie reali**<br>(Dimostrazione di correttezza del codice) | Scambiare una finestra di osservazione troppo breve per una prova di perfetta stabilità. |
-| **Flag disattivato (OFF)**<br>(La condizione `if (flag)` non è percorsa) | **Assenza di effetti collaterali**<br>(Il sistema è totalmente inalterato) | Ignorare blocchi di lock a database o sottoscrizioni a code avvenute al bootstrap del modulo. |
-| **Alto volume di traffico**<br>(Milioni di richieste transitate) | **Sufficienza epistemica**<br>(Campionamento delle partizioni critiche) | Considerare validato un algoritmo di calcolo valute perché ha processato milioni di richieste nella sola valuta base. |
-| **Canary superato con successo**<br>(Nessuna deviazione telemetrica rilevata) | **Dimostrazione di correttezza**<br>(Assenza verificata di difetti) | Trattare il superamento del canary come una garanzia di immunità da bug su scenari futuri non ancora verificatisi. |
-| **Disponibilità del comando di rollback**<br>(Esiste uno script o pulsante di revoca) | **Garanzia operativa di ripristino**<br>(Il sistema può tornare indietro senza danni) | Scoprire in emergenza che i dati alterati dalla versione nuova non sono leggibili dalla versione precedente. |
+| **Deployment**<br />(Installare i binari sui server) | **Release (Rilascio)**<br />(Esporre il comportamento al traffico reale) | Rilasciare una funzionalità a utenti reali durante un'operazione considerata puramente tecnica. |
+| **Staging test superato**<br />(Verifica positiva su dati sintetici) | **Telemetria in-vivo**<br />(Osservazione empirica sotto carico reale) | Ritenere che il superamento dello staging autorizzi un rilascio globale immediato. |
+| **Assenza di crash (No HTTP 500)**<br />(Il processo non si interrompe) | **Preservazione degli invarianti**<br />(I dati elaborati rispettano la specifica) | Considerare sano un Canary che restituisce HTTP 200 ma genera calcoli contabili errati nel payload. |
+| **Assenza di anomalie osservate**<br />(Nessun allarme scattato finora) | **Assenza di anomalie reali**<br />(Dimostrazione di correttezza del codice) | Scambiare una finestra di osservazione troppo breve per una prova di perfetta stabilità. |
+| **Flag disattivato (OFF)**<br />(La condizione `if (flag)` non è percorsa) | **Assenza di effetti collaterali**<br />(Il sistema è totalmente inalterato) | Ignorare blocchi di lock a database o sottoscrizioni a code avvenute al bootstrap del modulo. |
+| **Alto volume di traffico**<br />(Milioni di richieste transitate) | **Sufficienza epistemica**<br />(Campionamento delle partizioni critiche) | Considerare validato un algoritmo di calcolo valute perché ha processato milioni di richieste nella sola valuta base. |
+| **Canary superato con successo**<br />(Nessuna deviazione telemetrica rilevata) | **Dimostrazione di correttezza**<br />(Assenza verificata di difetti) | Trattare il superamento del canary come una garanzia di immunità da bug su scenari futuri non ancora verificatisi. |
+| **Disponibilità del comando di rollback**<br />(Esiste uno script o pulsante di revoca) | **Garanzia operativa di ripristino**<br />(Il sistema può tornare indietro senza danni) | Scoprire in emergenza che i dati alterati dalla versione nuova non sono leggibili dalla versione precedente. |
 
 ---
 
@@ -22128,7 +22126,7 @@ CanaryAdvance(v_can, v_base, W_obs, Delta_tol) =
 ```
 
 > [!NOTE]
-> **Che cos'è la latenza p99 e perché non va confusa con una percentuale di successo?**  
+> ✎ **Che cos'è la latenza p99 e perché non va confusa con una percentuale di successo?**  
 > Nelle formule di promozione del Canary compare la metrica `Latency_p99`. Chi non ha familiarità con l'ingegneria dei sistemi distribuiti commette spesso l'errore di pensare che "p99" indichi che "il 99% delle risposte è andato a buon fine".
 > Il termine indica invece il **99-esimo percentile dei tempi di risposta**:
 > - Se prendiamo 100 richieste arrivate al Canary e le ordiniamo dalla più veloce alla più lenta, la latenza p99 è il tempo impiegato dalla 99-esima richiesta (la seconda peggiore dell'intero gruppo). Misura il tempo di attesa subito dall'1% degli utenti più sfortunati.
@@ -22606,9 +22604,9 @@ I principi di confinamento del raggio d'impatto e rilascio progressivo mantengon
 
 | ESERCIZIO CONTROLLATO: SCENARI APPLICATIVI |
 | :--- |
-| **CONTESTO 1: Firmware Embedded e Dispositivi Medici (IoT / Automotive)**<br>**Staging Equivalente:** Banco Hardware-in-the-Loop (HIL) con iniezione di rumore e segnali di bus CAN realistici.<br>**Canary Equivalente:** Distribuzione Over-The-Air (OTA) scaglionata per coorti (veicoli interni, poi 1% regionale con rollback A/B).<br>**Feature Flag Equivalente:** Parametri di configurazione in EEPROM protetta, disattivabili da remoto o watch-dog hardware. |
-| **CONTESTO 2: Grandi Piattaforme Cloud Multi-Tenant (Enterprise SaaS)**<br>**Staging Equivalente:** Ambiente 'Pre-Prod' popolato con dati sintetici modellati sulle distribuzioni di carico reali.<br>**Canary Equivalente:** Tenant-based Routing isolato per i clienti del programma 'Preview'.<br>**Feature Flag Equivalente:** Flag contestuali gerarchici valutati tramite engine deterministici dedicati. |
-| **CONTESTO 3: Pipeline di Elaborazione Dati (Big Data / ETL)**<br>**Staging Equivalente:** Riesecuzione di un segmento temporale storico con confronto tramite oracolo differenziale.<br>**Canary Equivalente:** Shadow Pipeline (Dual-Run) su storage isolato senza alimentare i report di produzione.<br>**Feature Flag Equivalente:** Puntatore dinamico nei metadati del catalogo dati subordinato al pareggio contabile. |
+| **CONTESTO 1: Firmware Embedded e Dispositivi Medici (IoT / Automotive)**<br />**Staging Equivalente:** Banco Hardware-in-the-Loop (HIL) con iniezione di rumore e segnali di bus CAN realistici.<br />**Canary Equivalente:** Distribuzione Over-The-Air (OTA) scaglionata per coorti (veicoli interni, poi 1% regionale con rollback A/B).<br />**Feature Flag Equivalente:** Parametri di configurazione in EEPROM protetta, disattivabili da remoto o watch-dog hardware. |
+| **CONTESTO 2: Grandi Piattaforme Cloud Multi-Tenant (Enterprise SaaS)**<br />**Staging Equivalente:** Ambiente 'Pre-Prod' popolato con dati sintetici modellati sulle distribuzioni di carico reali.<br />**Canary Equivalente:** Tenant-based Routing isolato per i clienti del programma 'Preview'.<br />**Feature Flag Equivalente:** Flag contestuali gerarchici valutati tramite engine deterministici dedicati. |
+| **CONTESTO 3: Pipeline di Elaborazione Dati (Big Data / ETL)**<br />**Staging Equivalente:** Riesecuzione di un segmento temporale storico con confronto tramite oracolo differenziale.<br />**Canary Equivalente:** Shadow Pipeline (Dual-Run) su storage isolato senza alimentare i report di produzione.<br />**Feature Flag Equivalente:** Puntatore dinamico nei metadati del catalogo dati subordinato al pareggio contabile. |
 
 ---
 
@@ -22727,7 +22725,7 @@ L'utilizzatore di LLM incorre frequentemente in un errore di prospettiva:
 
 | COMPETENCE GAP TIPICO NELLO STEP 26 |
 | :--- |
-| L'operatore genera un modulo con l'LLM e fa scrivere allo stesso LLM le istruzioni di logging. Consulta poi una dashboard preconfigurata e presume che:<br>**1.** Se i grafici di latenza e CPU sono regolari, il codice sia privo di difetti;<br>**2.** I log generati dal modello riportino fedelmente lo stato empirico reale;<br>**3.** I contatori aggregati (es. 99.9% di successi) dimostrino che nessun utente stia subendo alterazioni o corruzioni di dati. |
+| L'operatore genera un modulo con l'LLM e fa scrivere allo stesso LLM le istruzioni di logging. Consulta poi una dashboard preconfigurata e presume che:<br />**1.** Se i grafici di latenza e CPU sono regolari, il codice sia privo di difetti;<br />**2.** I log generati dal modello riportino fedelmente lo stato empirico reale;<br />**3.** I contatori aggregati (es. 99.9% di successi) dimostrino che nessun utente stia subendo alterazioni o corruzioni di dati. |
 
 Riconoscere questo divario è essenziale: un cruscotto visivamente rassicurante focalizzato unicamente su grandezze di sistema (CPU, memoria, codici di protocollo di rete) fornisce **zero informazioni** sulla correttezza della logica generata da un LLM. L'operatore deve acquisire la competenza necessaria per progettare e pretendere telemetria orientata agli invarianti di dominio.
 
@@ -22841,7 +22839,7 @@ La telemetria ad alta cardinalità consente di arricchire metriche e tracce con 
 - **Costi e Limiti**: L'alta cardinalità comporta costi computazionali, di memoria e di indicizzazione su disco molto elevati. **Un'alta cardinalità non equivale automaticamente a una migliore osservabilità**: se i dati raccolti non sono indicizzati correttamente o non rispondono a domande diagnostiche chiare, generano unicamente debito finanziario e sovraccarico infrastrutturale.
 
 > [!NOTE]
-> **Che cos'è la cardinalità nei dati telemetrici?**  
+> ✎ **Che cos'è la cardinalità nei dati telemetrici?**  
 > In matematica e nei database, la *cardinalità* indica semplicemente il **numero di valori unici e distinti** che una determinata etichetta informativa può assumere:
 > - **Bassa cardinalità:** un'etichetta come `metodo_http` può assumere solo una manciata di valori fissi (`GET`, `POST`, `PUT`, `DELETE`). Memorizzarla costa pochissima memoria e aggregarla nei grafici è immediato.
 > - **Media cardinalità:** un'etichetta come `codice_paese` ha circa duecento valori possibili (`IT`, `FR`, `DE`, `US`...).
@@ -22895,14 +22893,14 @@ Per evitare trappole di interpretazione durante l'esercizio operativo, il valuta
 
 | Concetto Ingenuo o Confuso | Concetto Rigoroso di Assurance | Conseguenza Epistemica della Confusione |
 | :--- | :--- | :--- |
-| **Monitoring (Monitoraggio)**<br>Verifica se indicatori noti superano soglie statiche predefinite (es. CPU > 80%). | **Observability (Osservabilità)**<br>Capacità di interrogare il sistema per comprendere e spiegare stati anomali imprevisti. | Incapacità di diagnosticare guasti complessi generati da comportamenti stocastici degli LLM. |
-| **Telemetria Infrastrutturale**<br>Misura lo stato dell'hardware e della rete (RAM, I/O, codici TCP/HTTP). | **Telemetria Semantica**<br>Misura la correttezza del significato del dato rispetto alla specifica di dominio. | Considerare sano un sistema finanziario che calcola tassi a zero perché il server risponde HTTP 200. |
-| **Telemetria Emessa dal Codice**<br>Istruzioni di logging scritte dall'LLM all'interno del modulo. | **Sonda di Audit Indipendente**<br>Meccanismo di intercettazione perimetrale disaccoppiato dall'algoritmo. | Accettare log rassicuranti ma falsi generati dalla stessa allucinazione del modello. |
-| **Volume di Dati (Data Volume)**<br>Terabyte di log e metriche grezze scaricati su disco ogni giorno. | **Visibilità Epistemica**<br>Presenza di segnali specifici capaci di confermare o smentire un claim critico. | Annegare nel rumore dei log senza disporre di prove verificabili sul comportamento reale. |
-| **Observability**<br>Inferire lo stato interno attraverso uscite misurabili. | **Complete Visibility**<br>Presunzione di conoscere in tempo reale ogni singolo stato dell'intero sistema. | Dimenticare che qualsiasi sistema di osservabilità presenta fisiologici punti ciechi. |
-| **Telemetry**<br>Emissione e trasporto di segnali di runtime. | **Evidence of Correctness**<br>Giustificazione razionale sufficiente per considerare valido il sistema. | Scambiare la presenza di metriche per una prova empirica di correttezza funzionale. |
-| **Assenza di Allarmi (No Alert)**<br>Nessuna soglia di violazione è scattata nelle dashboard. | **Assenza di Fallimenti (No Failure)**<br>Dimostrazione che il software non sta producendo errori. | Ignorare corruzioni silenziose dei dati protratte per settimane a causa di sonde mal calibrate. |
-| **Correlazione Temporale**<br>Due metriche mostrano uno scostamento nello stesso secondo. | **Causalità Tracciata**<br>Dimostrazione della propagazione causale dell'evento tramite identificatori unici. | Attribuire il problema al modulo sbagliato durante l'analisi di un incidente operativo. |
+| **Monitoring (Monitoraggio)**<br />Verifica se indicatori noti superano soglie statiche predefinite (es. CPU > 80%). | **Observability (Osservabilità)**<br />Capacità di interrogare il sistema per comprendere e spiegare stati anomali imprevisti. | Incapacità di diagnosticare guasti complessi generati da comportamenti stocastici degli LLM. |
+| **Telemetria Infrastrutturale**<br />Misura lo stato dell'hardware e della rete (RAM, I/O, codici TCP/HTTP). | **Telemetria Semantica**<br />Misura la correttezza del significato del dato rispetto alla specifica di dominio. | Considerare sano un sistema finanziario che calcola tassi a zero perché il server risponde HTTP 200. |
+| **Telemetria Emessa dal Codice**<br />Istruzioni di logging scritte dall'LLM all'interno del modulo. | **Sonda di Audit Indipendente**<br />Meccanismo di intercettazione perimetrale disaccoppiato dall'algoritmo. | Accettare log rassicuranti ma falsi generati dalla stessa allucinazione del modello. |
+| **Volume di Dati (Data Volume)**<br />Terabyte di log e metriche grezze scaricati su disco ogni giorno. | **Visibilità Epistemica**<br />Presenza di segnali specifici capaci di confermare o smentire un claim critico. | Annegare nel rumore dei log senza disporre di prove verificabili sul comportamento reale. |
+| **Observability**<br />Inferire lo stato interno attraverso uscite misurabili. | **Complete Visibility**<br />Presunzione di conoscere in tempo reale ogni singolo stato dell'intero sistema. | Dimenticare che qualsiasi sistema di osservabilità presenta fisiologici punti ciechi. |
+| **Telemetry**<br />Emissione e trasporto di segnali di runtime. | **Evidence of Correctness**<br />Giustificazione razionale sufficiente per considerare valido il sistema. | Scambiare la presenza di metriche per una prova empirica di correttezza funzionale. |
+| **Assenza di Allarmi (No Alert)**<br />Nessuna soglia di violazione è scattata nelle dashboard. | **Assenza di Fallimenti (No Failure)**<br />Dimostrazione che il software non sta producendo errori. | Ignorare corruzioni silenziose dei dati protratte per settimane a causa di sonde mal calibrate. |
+| **Correlazione Temporale**<br />Due metriche mostrano uno scostamento nello stesso secondo. | **Causalità Tracciata**<br />Dimostrazione della propagazione causale dell'evento tramite identificatori unici. | Attribuire il problema al modulo sbagliato durante l'analisi di un incidente operativo. |
 
 ---
 
@@ -22939,7 +22937,7 @@ La scelta della metrica di divergenza Div(v_can, v_base) non è universale, ma *
 - Per distribuzioni di valori continui (es. importi calcolati): test di divergenza statistica non parametrica (es. test di Kolmogorov-Smirnov o distanza di Wasserstein tra i campioni).
 
 > [!NOTE]
-> **Che cosa significano e a cosa servono i test di Kolmogorov-Smirnov e la distanza di Wasserstein?**  
+> ✎ **Che cosa significano e a cosa servono i test di Kolmogorov-Smirnov e la distanza di Wasserstein?**  
 > Quando un modulo assistito da LLM calcola numeri continui (es. stima dei prezzi, sconti o tempi di consegna), confrontare solo la media aritmetica tra Baseline e Canary è pericoloso: una nuova versione potrebbe raddoppiare i prezzi per meta' dei clienti e dimezzarli per l'altra meta', mantenendo la media generale identica ma introducendo un disservizio gravissimo.
 > I test citati servono a confrontare la **forma complessiva di due istogrammi o curve di frequenza**:
 > - **Test di Kolmogorov-Smirnov:** Misura la massima distanza verticale tra le due curve cumulative. Risponde alla domanda: *"C'e' un punto specifico lungo la scala dei valori in cui il comportamento del Canary devia significativamente dalla versione storica consolidata?"*.
@@ -23602,7 +23600,7 @@ Nel modello di assurance di questo manuale vigono le seguenti regole di non-dele
 
 | LIMITI DI NON-DELEGA NELL'OSSERVABILITÀ |
 | :--- |
-| **1.** Nessun LLM deve fungere da unico oracolo di rilevamento a runtime per stabilire se una transazione attiva violi un'invariante critica. (Il rilevamento a runtime esige verifiche deterministiche a latenza prevedibile).<br>**2.** Nessun LLM deve possedere l'autorita' di sopprimere o silenziare avvisi telemetrici classificandoli autonomamente come 'falsi allarmi'.<br>**3.** La progettazione delle sonde semantiche può essere assistita da un LLM, ma la sonda risultante deve essere verificata deterministicamente da un umano.<br>**4.** L'accordo tra due LLM sulle cause di un'anomalia telemetrica costituisce un segnale diagnostico esplorativo, non una prova causale accertata. |
+| **1.** Nessun LLM deve fungere da unico oracolo di rilevamento a runtime per stabilire se una transazione attiva violi un'invariante critica. (Il rilevamento a runtime esige verifiche deterministiche a latenza prevedibile).<br />**2.** Nessun LLM deve possedere l'autorita' di sopprimere o silenziare avvisi telemetrici classificandoli autonomamente come 'falsi allarmi'.<br />**3.** La progettazione delle sonde semantiche può essere assistita da un LLM, ma la sonda risultante deve essere verificata deterministicamente da un umano.<br />**4.** L'accordo tra due LLM sulle cause di un'anomalia telemetrica costituisce un segnale diagnostico esplorativo, non una prova causale accertata. |
 
 ---
 
@@ -23612,7 +23610,7 @@ L'operatore di assurance non può limitarsi a guardare grafici senza comprendern
 
 | COMPRENSIONE DIRETTA OBBLIGATORIA |
 | :--- |
-| **L'operatore DEVE comprendere direttamente e saper spiegare:**<br>**1.** Quale specifica proprietà logica o fisica rappresenta ciascuna metrica;<br>**2.** Quale invariante dello Step 6 è presidiato da ciascuna sonda telemetrica;<br>**3.** Perche' la media statistica può mascherare allucinazioni nella coda p99;<br>**4.** Come isolare tramite TraceID il contesto esatto dell'input anomalo.<br><br>Non è ammesso delegare la diagnosi a una sintesi discorsiva di un LLM. |
+| **L'operatore DEVE comprendere direttamente e saper spiegare:**<br />**1.** Quale specifica proprietà logica o fisica rappresenta ciascuna metrica;<br />**2.** Quale invariante dello Step 6 è presidiato da ciascuna sonda telemetrica;<br />**3.** Perche' la media statistica può mascherare allucinazioni nella coda p99;<br />**4.** Come isolare tramite TraceID il contesto esatto dell'input anomalo.<br /><br />Non è ammesso delegare la diagnosi a una sintesi discorsiva di un LLM. |
 
 Se un operatore osserva una deviazione su un cruscotto e non sa spiegare quale invariante di business sia sotto stress, quell'operatore **non possiede la competenza per governare l'esercizio controllato**. In caso di incidente, la mancata comprensione impedirà qualsiasi decisione tempestiva di rollback (Step 28).
 
@@ -23781,9 +23779,9 @@ I principi dell'osservabilità semantica si applicano trasversalmente a moltepli
 
 | Contesti e Osservabilità Semantica |
 | :--- |
-| **CONTESTO 1: Firmware Embedded e Dispositivi Medici (Automotive / Safety-Critical)**<br>- **Invariante Critico:** L'attuatore della valvola di infusione non deve mai erogare più di 5 ml di farmaco al minuto.<br>- **Monitoraggio Tradizionale Inadeguato:** 'La scheda elettronica è accesa'.<br>- **Osservabilità Semantica di Assurance:** Un sensore tachimetrico indipendente misura i giri fisici del motore ed emette sul bus CAN la metrica reale `measured_flow_ml_min`. Se il flusso differisce dal comando dell'algoritmo generato dall'LLM, la sonda esogena produce un allarme immediato. |
-| **CONTESTO 2: Grandi Piattaforme Cloud e Sistemi Finanziari (FinTech)**<br>- **Invariante Critico:** Conservazione del bilancio contabile (Somma Dare = Avere).<br>- **Monitoraggio Tradizionale Inadeguato:** 'Latenza API 25 ms, CPU al 40%'.<br>- **Osservabilità Semantica di Assurance:** Sonda OTel esogena che intercetta il payload JSON delle scritture di riconciliazione ed emette la metrica ad alta cardinalità `balance_discrepancy_cents`. Se > 0, viene registrato un evento di audit corredato di TraceID per isolare la transazione. |
-| **CONTESTO 3: Pipeline Dati e Generazione Documentale Giuridica (LegalTech)**<br>- **Invariante Critico:** Nessun contratto generato da LLM deve omettere le clausole obbligatorie di tutela previste dalla normativa vigente.<br>- **Monitoraggio Tradizionale Inadeguato:** 'File PDF generato con successo su disco'.<br>- **Osservabilità Semantica di Assurance:** Un analizzatore sintattico deterministico valuta l'albero del documento prima della firma ed emette l'evento strutturato `clause_compliance = MISSING_MANDATORY_CLAUSE` con l'ID della bozza. |
+| **CONTESTO 1: Firmware Embedded e Dispositivi Medici (Automotive / Safety-Critical)**<br />- **Invariante Critico:** L'attuatore della valvola di infusione non deve mai erogare più di 5 ml di farmaco al minuto.<br />- **Monitoraggio Tradizionale Inadeguato:** 'La scheda elettronica è accesa'.<br />- **Osservabilità Semantica di Assurance:** Un sensore tachimetrico indipendente misura i giri fisici del motore ed emette sul bus CAN la metrica reale `measured_flow_ml_min`. Se il flusso differisce dal comando dell'algoritmo generato dall'LLM, la sonda esogena produce un allarme immediato. |
+| **CONTESTO 2: Grandi Piattaforme Cloud e Sistemi Finanziari (FinTech)**<br />- **Invariante Critico:** Conservazione del bilancio contabile (Somma Dare = Avere).<br />- **Monitoraggio Tradizionale Inadeguato:** 'Latenza API 25 ms, CPU al 40%'.<br />- **Osservabilità Semantica di Assurance:** Sonda OTel esogena che intercetta il payload JSON delle scritture di riconciliazione ed emette la metrica ad alta cardinalità `balance_discrepancy_cents`. Se > 0, viene registrato un evento di audit corredato di TraceID per isolare la transazione. |
+| **CONTESTO 3: Pipeline Dati e Generazione Documentale Giuridica (LegalTech)**<br />- **Invariante Critico:** Nessun contratto generato da LLM deve omettere le clausole obbligatorie di tutela previste dalla normativa vigente.<br />- **Monitoraggio Tradizionale Inadeguato:** 'File PDF generato con successo su disco'.<br />- **Osservabilità Semantica di Assurance:** Un analizzatore sintattico deterministico valuta l'albero del documento prima della firma ed emette l'evento strutturato `clause_compliance = MISSING_MANDATORY_CLAUSE` con l'ID della bozza. |
 
 ---
 
@@ -23869,10 +23867,10 @@ L'ingegneria dell'alerting e la stesura di procedure di emergenza richiedono un 
 
 | COMPETENZA RICHIESTA | RISCHIO DA GAP COGNITIVO |
 | :--- | :--- |
-| Definizione statistica degli SLI<br>e calcolo del Burn Rate | Scelta di soglie arbitrarie;<br>allarmi statici rumorosi<br>(es. CPU > 80%) o cecità totale. |
-| Comprensione dell'architettura e<br>delle dipendenze di sistema<br>(reti, database, storage) | Redazione di runbook che tentano<br>mitigazioni su componenti errati<br>o aggravano il partizionamento. |
-| Amministrazione dei sistemi e<br>sicurezza del minimo privilegio<br>(permessi IAM, mutazioni di stato) | Esecuzione di comandi distruttivi<br>non reversibili scambiati per<br>manovre diagnostiche innocue. |
-| Analisi delle code e percentili<br>(p95, p99 vs medie aritmetiche) | Valutazione dell'affidabilità su<br>medie, mascherando interruzioni<br>che colpiscono quote di utenti. |
+| Definizione statistica degli SLI<br />e calcolo del Burn Rate | Scelta di soglie arbitrarie;<br />allarmi statici rumorosi<br />(es. CPU > 80%) o cecità totale. |
+| Comprensione dell'architettura e<br />delle dipendenze di sistema<br />(reti, database, storage) | Redazione di runbook che tentano<br />mitigazioni su componenti errati<br />o aggravano il partizionamento. |
+| Amministrazione dei sistemi e<br />sicurezza del minimo privilegio<br />(permessi IAM, mutazioni di stato) | Esecuzione di comandi distruttivi<br />non reversibili scambiati per<br />manovre diagnostiche innocue. |
+| Analisi delle code e percentili<br />(p95, p99 vs medie aritmetiche) | Valutazione dell'affidabilità su<br />medie, mascherando interruzioni<br />che colpiscono quote di utenti. |
 
 Quando chi sviluppa o manutiene il sistema non possiede le competenze necessarie per valutare se un comando di shell suggerito da un LLM sia sicuro e idempotente, **questo gap costituisce un rischio di assurance bloccante (NO-GO)**. In tali condizioni, la procedura non può essere approvata per l'esercizio in produzione senza la revisione vincolante di uno specialista di infrastruttura.
 
@@ -24022,17 +24020,17 @@ La comprensione dell'esercizio controllato richiede l'interiorizzazione di una s
 
 | DISUGUAGLIANZA EPISTEMICA | ERRORE OPERATIVO DERIVATO DALLA CONFUSIONE |
 | :--- | :--- |
-| **NO ALERT != NO FAILURE** | Assumere che il sistema funzioni solo perché la dashboard<br>non suona (fallimento silente, probe rotte, metriche cieche). |
-| **ALERT != FAILURE** | Assumere che ogni allarme sia una reale rottura di servizio<br>(falsi allarmi, rumore di fondo, soglie statistiche errate). |
-| **ALERT != ANOMALY** | Confondere una deviazione statistica temporanea con una reale<br>violazione di un invariante contrattuale del software. |
-| **ALERT != INCIDENT** | Trattare ogni notifica come emergenza bloccante, o scambiare<br>un allarme informativo per un disservizio conclamato. |
-| **INCIDENT != ROOT CAUSE** | Scambiare la manifestazione esteriore dell'evento per<br>l'origine sistemica profonda del guasto. |
-| **ALERT != ROOT CAUSE** | Credere che l'allarme indichi il componente da riparare,<br>anziché limitarsi a indicare il sintomo della rottura. |
-| **ALERT != PROOF OF FAILURE** | Considerare la notifica una prova inconfutabile, senza<br>verificare se la regola stessa sia corrotta o disallineata. |
-| **RUNBOOK != GUARANTEED RECOVERY** | Credere che disporre di una procedura scritta garantisca la<br>risoluzione del guasto, trascurando divergenze contestuali. |
-| **AUTOMATED ACTION != CORRECT ACTION** | Delegare il ripristino a script o LLM assumendo che qualsiasi<br>mutazione che azzera l'allarme sia corretta e sicura. |
-| **MANY ALERTS != HIGH ASSURANCE** | Credere che avere 200 regole di allarme aumenti la sicurezza<br>del sistema (genera invece cecità per Alert Fatigue). |
-| **FEW ALERTS != LOW RISK** | Credere che un sistema con 2 soli allarmi sia poco rischioso<br>(nasconde invece Alert Starvation e mancata osservabilità). |
+| **NO ALERT != NO FAILURE** | Assumere che il sistema funzioni solo perché la dashboard<br />non suona (fallimento silente, probe rotte, metriche cieche). |
+| **ALERT != FAILURE** | Assumere che ogni allarme sia una reale rottura di servizio<br />(falsi allarmi, rumore di fondo, soglie statistiche errate). |
+| **ALERT != ANOMALY** | Confondere una deviazione statistica temporanea con una reale<br />violazione di un invariante contrattuale del software. |
+| **ALERT != INCIDENT** | Trattare ogni notifica come emergenza bloccante, o scambiare<br />un allarme informativo per un disservizio conclamato. |
+| **INCIDENT != ROOT CAUSE** | Scambiare la manifestazione esteriore dell'evento per<br />l'origine sistemica profonda del guasto. |
+| **ALERT != ROOT CAUSE** | Credere che l'allarme indichi il componente da riparare,<br />anziché limitarsi a indicare il sintomo della rottura. |
+| **ALERT != PROOF OF FAILURE** | Considerare la notifica una prova inconfutabile, senza<br />verificare se la regola stessa sia corrotta o disallineata. |
+| **RUNBOOK != GUARANTEED RECOVERY** | Credere che disporre di una procedura scritta garantisca la<br />risoluzione del guasto, trascurando divergenze contestuali. |
+| **AUTOMATED ACTION != CORRECT ACTION** | Delegare il ripristino a script o LLM assumendo che qualsiasi<br />mutazione che azzera l'allarme sia corretta e sicura. |
+| **MANY ALERTS != HIGH ASSURANCE** | Credere che avere 200 regole di allarme aumenti la sicurezza<br />del sistema (genera invece cecità per Alert Fatigue). |
+| **FEW ALERTS != LOW RISK** | Credere che un sistema con 2 soli allarmi sia poco rischioso<br />(nasconde invece Alert Starvation e mancata osservabilità). |
 
 #### 7.1 L'asimmetria epistemica fondamentale: `NO ALERT != NO FAILURE`
 L'assenza di un allarme attivo in un dato istante t non costituisce evidenza che il sistema sia privo di guasti. Può significare che:
@@ -24370,13 +24368,13 @@ Nell'analisi dei sistemi di alerting e runbook generati o modificati tramite LLM
 
 | ANTI-PATTERN [Costrutto didattico] | MANIFESTAZIONE TECNICA ED IMPATTO SULL'ASSURANCE |
 | :--- | :--- |
-| **Alert Carpet Bombing** | Generazione massiva e non supervisionata di decine di regole<br>di allarme sintattiche per ogni metrica esposta; produce un<br>volume di rumore ingestibile che distrugge l'azionabilità. |
-| **Alert Starvation by Omission** | Assenza totale di regole di allarme per le violazioni<br>semantiche o per i flussi asincroni interni (code, batch);<br>il sistema fallisce nell'assoluto silenzio telemetrico. |
-| **The Hallucinated CLI** | Runbook contenenti comandi di sistema con opzioni o flag non<br>esistenti, deprecati o incompatibili con le versioni reali. |
-| **Missing Read-Only Boundary** | Runbook che mescolano istruzioni di verifica diagnostica con<br>manovre che mutano lo stato del sistema senza barriere. |
-| **Circular Runbook Dependency** | Procedure operative ospitate su infrastrutture la cui<br>disponibilità dipende direttamente dal sistema monitorato. |
-| **Blind Resolution Assumption** | Runbook che si concludono con un comando di riavvio, privi<br>di qualsiasi verifica telemetrica sul ripristino effettivo. |
-| **Static Threshold Drift** | Regole impostate su soglie costanti fisse che non tengono<br>conto della stagionalità naturale o della scalatura del carico. |
+| **Alert Carpet Bombing** | Generazione massiva e non supervisionata di decine di regole<br />di allarme sintattiche per ogni metrica esposta; produce un<br />volume di rumore ingestibile che distrugge l'azionabilità. |
+| **Alert Starvation by Omission** | Assenza totale di regole di allarme per le violazioni<br />semantiche o per i flussi asincroni interni (code, batch);<br />il sistema fallisce nell'assoluto silenzio telemetrico. |
+| **The Hallucinated CLI** | Runbook contenenti comandi di sistema con opzioni o flag non<br />esistenti, deprecati o incompatibili con le versioni reali. |
+| **Missing Read-Only Boundary** | Runbook che mescolano istruzioni di verifica diagnostica con<br />manovre che mutano lo stato del sistema senza barriere. |
+| **Circular Runbook Dependency** | Procedure operative ospitate su infrastrutture la cui<br />disponibilità dipende direttamente dal sistema monitorato. |
+| **Blind Resolution Assumption** | Runbook che si concludono con un comando di riavvio, privi<br />di qualsiasi verifica telemetrica sul ripristino effettivo. |
+| **Static Threshold Drift** | Regole impostate su soglie costanti fisse che non tengono<br />conto della stagionalità naturale o della scalatura del carico. |
 
 ---
 
@@ -24410,10 +24408,10 @@ L'integrazione degli LLM nello STEP 27 è legittima e proficua solo se delimitat
 
 | COMPITI IDONEI PER UN LLM | COMPITI NON DELEGABILI ALL'LLM |
 | :--- | :--- |
-| Redazione della bozza iniziale di una regola di<br>allarme a partire da una metrica formalizzata. | Determinazione del valore numerico delle soglie<br>di rischio e degli obiettivi di servizio (SLO). |
-| Uniformazione linguistica e formattazione di<br>runbook secondo i template formali aziendali. | Validazione dell'idempotenza e della sicurezza<br>di comandi che comportano mutazioni di stato. |
-| Sintesi di report di incidenti pregressi per<br>proporre integrazioni a procedure esistenti. | Decisione formale sull'assegnazione dei livelli<br>di severità che attivano la reperibilità (page). |
-| Suggerimento di checklist per la pianificazione<br>di scenari di guasto da simulare in GameDay. | Autorizzazione all'impiego operativo di un<br>runbook per l'ambiente di produzione. |
+| Redazione della bozza iniziale di una regola di<br />allarme a partire da una metrica formalizzata. | Determinazione del valore numerico delle soglie<br />di rischio e degli obiettivi di servizio (SLO). |
+| Uniformazione linguistica e formattazione di<br />runbook secondo i template formali aziendali. | Validazione dell'idempotenza e della sicurezza<br />di comandi che comportano mutazioni di stato. |
+| Sintesi di report di incidenti pregressi per<br />proporre integrazioni a procedure esistenti. | Decisione formale sull'assegnazione dei livelli<br />di severità che attivano la reperibilità (page). |
+| Suggerimento di checklist per la pianificazione<br />di scenari di guasto da simulare in GameDay. | Autorizzazione all'impiego operativo di un<br />runbook per l'ambiente di produzione. |
 
 #### 13.1 I tre limiti invalicabili dell'LLM
 1. **Limiti Epistemici**: Il modello linguistico non conosce e non può verificare lo stato reale dell'infrastruttura, la topologia di rete effettivamente deployata o le clausole contrattuali di responsabilità legale con gli utenti. Le sue deduzioni derivano dalla plausibilità probabilistica del testo, non dall'osservazione empirica del sistema.
@@ -24489,11 +24487,11 @@ Durante la definizione e l'esecuzione delle procedure operative, ogni asserzione
 
 | CATEGORIA | ESEMPIO DI DICHIARAZIONE OPERATIVA |
 | :--- | :--- |
-| **FACT** | "L'allarme `PaymentDropCritical` è scattato alle 14:02:11 UTC registrando un<br>tasso di errore del 3.5% su 8.000 richieste campionate negli ultimi 5 minuti." |
-| **ASSUMPTION** | "Si assume che il bilanciatore di carico devii automaticamente il traffico dai<br>pod riavviati entro 10 secondi dall'invio del segnale SIGTERM." |
-| **HYPOTHESIS** | "L'incremento degli errori 504 è verosimilmente causato da un blocco di rete<br>sull'integrazione del servizio esterno di autenticazione." |
-| **RECOMMENDATION** | "Si raccomanda di non eseguire riavvii massivi contemporanei su oltre il 20%<br>dei worker per non saturare la ripartenza a freddo della JVM." |
-| **UNKNOWN** | "Non è noto se il nodo secondario del database sia allineato con l'ultimo<br>log di replica o se presenti un ritardo di replica superiore a 30 secondi." |
+| **FACT** | "L'allarme `PaymentDropCritical` è scattato alle 14:02:11 UTC registrando un<br />tasso di errore del 3.5% su 8.000 richieste campionate negli ultimi 5 minuti." |
+| **ASSUMPTION** | "Si assume che il bilanciatore di carico devii automaticamente il traffico dai<br />pod riavviati entro 10 secondi dall'invio del segnale SIGTERM." |
+| **HYPOTHESIS** | "L'incremento degli errori 504 è verosimilmente causato da un blocco di rete<br />sull'integrazione del servizio esterno di autenticazione." |
+| **RECOMMENDATION** | "Si raccomanda di non eseguire riavvii massivi contemporanei su oltre il 20%<br />dei worker per non saturare la ripartenza a freddo della JVM." |
+| **UNKNOWN** | "Non è noto se il nodo secondario del database sia allineato con l'ultimo<br />log di replica o se presenti un ritardo di replica superiore a 30 secondi." |
 
 Riconoscere uno stato **UNKNOWN** durante un incidente è un atto di rigore critico fondamentale: impedisce all'operatore di avviare manovre di failover verso un database secondario senza aver prima verificato se i dati siano integri o se l'operazione comporti una perdita massiva di transazioni.
 
@@ -24677,9 +24675,9 @@ I concetti formalizzati per le applicazioni HTTP si applicano in modo rigoroso a
 
 | DOMINIO | VIOLAZIONE SINTOMATICA (ALLARME) | AZIONE DI RUNBOOK VERIFICATA |
 | :--- | :--- | :--- |
-| Calcolo Batch<br>Finanziario<br>(Big Data / Spark) | Tempo stimato di completamento<br>eccede la finestra di cutoff<br>normativo (es. ore 06:00 UTC). | 1. Triage: verifica stato lock.<br>2. Attivazione partizionamento<br>su cluster ausiliario di riserva. |
-| Dispositivi Embedded<br>e Gateway Edge<br>(IoT Industriale) | Mancata ricezione dell'heartbeat<br>telemetrico da oltre il 10% dei<br>dispositivi in un'area logica. | 1. Triage: verifica celle radio.<br>2. Invio segnale di riavvio al<br>modem secondario via bus hardware. |
-| Architetture ad<br>Eventi Disaccoppiati<br>(EDA / Stream Proc.) | Crescita continua del Consumer<br>Lag su topic Kafka critico per<br>oltre 10 minuti continui. | 1. Isolamento del record tossico<br>(Dead Letter Queue routing).<br>2. Rilascio offset bloccato. |
+| Calcolo Batch<br />Finanziario<br />(Big Data / Spark) | Tempo stimato di completamento<br />eccede la finestra di cutoff<br />normativo (es. ore 06:00 UTC). | 1. Triage: verifica stato lock.<br />2. Attivazione partizionamento<br />su cluster ausiliario di riserva. |
+| Dispositivi Embedded<br />e Gateway Edge<br />(IoT Industriale) | Mancata ricezione dell'heartbeat<br />telemetrico da oltre il 10% dei<br />dispositivi in un'area logica. | 1. Triage: verifica celle radio.<br />2. Invio segnale di riavvio al<br />modem secondario via bus hardware. |
+| Architetture ad<br />Eventi Disaccoppiati<br />(EDA / Stream Proc.) | Crescita continua del Consumer<br />Lag su topic Kafka critico per<br />oltre 10 minuti continui. | 1. Isolamento del record tossico<br />(Dead Letter Queue routing).<br />2. Rilascio offset bloccato. |
 
 #### Il trasferimento su Architetture ad Eventi (Kafka)
 In un'architettura streaming non vi sono codici HTTP 500. L'invariante critico stabilisce che ogni evento pubblicato deve essere consumato entro un intervallo `T_max`.
@@ -24782,10 +24780,10 @@ Progettare ed eseguire manovre di contenimento e ripristino richiede competenze 
 
 | COMPETENZA RICHIESTA | RISCHIO DA GAP COGNITIVO |
 | :--- | :--- |
-| Progettazione di database<br>e compatibilità dello schema<br>(Pattern Expand/Contract) | Rollback del codice che rende<br>il database illeggibile o genera<br>corruzione irreversibile dei dati. |
-| Teoria della concorrenza e<br>dinamica dei sistemi distribuiti<br>(timeout, backoff, jitter) | Circuit breaker che innescano<br>tempeste di richieste al reset<br>o esauriscono i thread del pool. |
-| Analisi della semantica di<br>dominio e fedeltà dei dati<br>(Graceful degradation vs silence) | Fallback che restituiscono valori<br>fittizi, violando invarianti di<br>sicurezza o requisiti legali. |
-| Idempotenza delle mutazioni<br>e consistenza transazionale | Meccanismi di ripristino che, se<br>rieseguiti, duplicano transazioni<br>o lasciano record orfani. |
+| Progettazione di database<br />e compatibilità dello schema<br />(Pattern Expand/Contract) | Rollback del codice che rende<br />il database illeggibile o genera<br />corruzione irreversibile dei dati. |
+| Teoria della concorrenza e<br />dinamica dei sistemi distribuiti<br />(timeout, backoff, jitter) | Circuit breaker che innescano<br />tempeste di richieste al reset<br />o esauriscono i thread del pool. |
+| Analisi della semantica di<br />dominio e fedeltà dei dati<br />(Graceful degradation vs silence) | Fallback che restituiscono valori<br />fittizi, violando invarianti di<br />sicurezza o requisiti legali. |
+| Idempotenza delle mutazioni<br />e consistenza transazionale | Meccanismi di ripristino che, se<br />rieseguiti, duplicano transazioni<br />o lasciano record orfani. |
 
 Quando il lettore non possiede le competenze sistemistiche per valutare se uno script di rollback o una procedura di failover sia idempotente e sicura, **tale gap deve essere esplicitamente formalizzato come uno stato bloccante di NO-GO**. In queste circostanze, l'autonomia operativa in ambiente di produzione non è concessa: è obbligatorio sottoporre la strategia alla revisione vincolante di un ingegnere di dominio o di un amministratore di database.
 
@@ -24926,10 +24924,10 @@ La validità di un fallback deve essere giudicata in base alla sua **Fedeltà Se
 
 | STRATEGIA DI FALLBACK | MECCANISMO OPERATIVO | COMPROMESSO SULLE PROPRIETÀ |
 | :--- | :--- | :--- |
-| Valore Statico<br>Sicuro (Safe Default) | Restituisce un dato cablato,<br>certificato a priori. | Sacrifica la precisione specifica<br>per preservare la continuità. |
-| Cache Temporale<br>(Stale-While-Error) | Restituisce l'ultimo dato noto<br>memorizzato localmente. | Sacrifica la freschezza del dato;<br>introduce tolleranza al disallineo. |
-| Euristica Alternativa<br>(Degraded Algorithmic) | Invoca un algoritmo locale<br>rule-based invece di un LLM. | Sacrifica la profondità semantica;<br>garantisce determinismo di formato. |
-| Accodamento Asincrono<br>(Outbox Buffering) | Serializza la richiesta su coda<br>per elaborazione differita. | Sacrifica la sincronicità;<br>garantisce l'assenza di perdita. |
+| Valore Statico<br />Sicuro (Safe Default) | Restituisce un dato cablato,<br />certificato a priori. | Sacrifica la precisione specifica<br />per preservare la continuità. |
+| Cache Temporale<br />(Stale-While-Error) | Restituisce l'ultimo dato noto<br />memorizzato localmente. | Sacrifica la freschezza del dato;<br />introduce tolleranza al disallineo. |
+| Euristica Alternativa<br />(Degraded Algorithmic) | Invoca un algoritmo locale<br />rule-based invece di un LLM. | Sacrifica la profondità semantica;<br />garantisce determinismo di formato. |
+| Accodamento Asincrono<br />(Outbox Buffering) | Serializza la richiesta su coda<br />per elaborazione differita. | Sacrifica la sincronicità;<br />garantisce l'assenza di perdita. |
 
 ##### Obbligo di marcatura epistemica della risposta degradata
 Qualsiasi payload generato da un ramo di fallback deve includere metadati strutturati che ne dichiarino la natura all'utilizzatore:
@@ -25004,15 +25002,15 @@ L'ingegneria del recupero richiede il superamento delle illusioni cognitive in c
 
 | DISUGUAGLIANZA EPISTEMICA | ERRORE OPERATIVO DERIVATO DALLA CONFUSIONE |
 | :--- | :--- |
-| **ROLLBACK != RECUPERO GARANTITO** | Assumere che ritirare il binario cancelli automaticamente<br>l'impatto o ripristini i dati corrotti nel frattempo. |
-| **FALLBACK != CORRETTEZZA** | Considerare l'output di ripiego come se fosse l'elaborazione<br>nominale completa prevista dalla specifica. |
-| **CIRCUIT BREAKER != PREVENZIONE CAUSA** | Credere che l'interruttore elimini il difetto della dipendenza<br>anziché limitarsi a proteggere le risorse del chiamante. |
-| **RECOVERY != ELIMINAZIONE DEL RISCHIO** | Ritenere che il ripristino estingua il debito di affidabilità<br>(il guasto può ripresentarsi al termine dell'emergenza). |
-| **MECHANISM AVAILABLE != MECHANISM WORKS** | Assumere che una libreria inclusa nel codice funzioni senza<br>averla mai collaudata sotto condizioni reali di guasto. |
-| **MECHANISM WORKS != RECOVERY COMPLETE** | Considerare terminato l'incidente nel momento in cui scatta<br>l'automatismo di mitigazione, trascurando la riparazione vera. |
-| **RECOVERY COMPLETE != DATA CORRECT** | Scambiare la disponibilità ripristinata delle API per la<br>garanzia che il database non contenga record disallineati. |
-| **DATA CORRECT != ALL INVARIANTS RESTORED** | Verificare la correttezza del database locale ma ignorare che<br>sistemi terzi esterni mantengono informazioni incoerenti. |
-| **ROLLBACKABILITY != REVERSIBILITY** | Confondere la capacità tecnica di rideployare il vecchio codice<br>con la reale reversibilità degli effetti complessivi generati. |
+| **ROLLBACK != RECUPERO GARANTITO** | Assumere che ritirare il binario cancelli automaticamente<br />l'impatto o ripristini i dati corrotti nel frattempo. |
+| **FALLBACK != CORRETTEZZA** | Considerare l'output di ripiego come se fosse l'elaborazione<br />nominale completa prevista dalla specifica. |
+| **CIRCUIT BREAKER != PREVENZIONE CAUSA** | Credere che l'interruttore elimini il difetto della dipendenza<br />anziché limitarsi a proteggere le risorse del chiamante. |
+| **RECOVERY != ELIMINAZIONE DEL RISCHIO** | Ritenere che il ripristino estingua il debito di affidabilità<br />(il guasto può ripresentarsi al termine dell'emergenza). |
+| **MECHANISM AVAILABLE != MECHANISM WORKS** | Assumere che una libreria inclusa nel codice funzioni senza<br />averla mai collaudata sotto condizioni reali di guasto. |
+| **MECHANISM WORKS != RECOVERY COMPLETE** | Considerare terminato l'incidente nel momento in cui scatta<br />l'automatismo di mitigazione, trascurando la riparazione vera. |
+| **RECOVERY COMPLETE != DATA CORRECT** | Scambiare la disponibilità ripristinata delle API per la<br />garanzia che il database non contenga record disallineati. |
+| **DATA CORRECT != ALL INVARIANTS RESTORED** | Verificare la correttezza del database locale ma ignorare che<br />sistemi terzi esterni mantengono informazioni incoerenti. |
+| **ROLLBACKABILITY != REVERSIBILITY** | Confondere la capacità tecnica di rideployare il vecchio codice<br />con la reale reversibilità degli effetti complessivi generati. |
 
 ---
 
@@ -25524,12 +25522,12 @@ Nell'analisi delle implementazioni di ripristino generate tramite modelli lingui
 
 | ANTI-PATTERN [Costrutto didattico] | MANIFESTAZIONE TECNICA ED IMPATTO SULL'ASSURANCE |
 | :--- | :--- |
-| **The Irreversible Migration Trap** | Esecuzione di migrazioni database non retrocompatibili<br>contestuali al rilascio del codice; rende il rollback fatale. |
-| **Blind Exception Absorption** | Blocchi try/except generati dall'LLM che catturano 'Exception'<br>globale, azzerando l'errore e restituendo oggetti vuoti. |
-| **Correlated Fallback Illusion** | Fallback che invoca un secondo LLM o un'API ospitata nella<br>medesima infrastruttura, ereditando gli stessi punti di guasto. |
-| **The Unbounded Probing Storm** | Circuit Breaker che in Half-Open inoltra l'intero carico<br>residuo anziché isolare una singola richiesta sentinella. |
-| **Non-Idempotent Recovery Retry** | Meccanismi di recupero che ri-eseguono mutazioni finanziarie<br>o modifiche di stato senza usare token di idempotenza univoci. |
-| **Silent Schema Masking** | Fallback che sopprime discrepanze nei dati restituendo valori<br>inventati o vuoti, impedendo all'osservabilità di allertare. |
+| **The Irreversible Migration Trap** | Esecuzione di migrazioni database non retrocompatibili<br />contestuali al rilascio del codice; rende il rollback fatale. |
+| **Blind Exception Absorption** | Blocchi try/except generati dall'LLM che catturano 'Exception'<br />globale, azzerando l'errore e restituendo oggetti vuoti. |
+| **Correlated Fallback Illusion** | Fallback che invoca un secondo LLM o un'API ospitata nella<br />medesima infrastruttura, ereditando gli stessi punti di guasto. |
+| **The Unbounded Probing Storm** | Circuit Breaker che in Half-Open inoltra l'intero carico<br />residuo anziché isolare una singola richiesta sentinella. |
+| **Non-Idempotent Recovery Retry** | Meccanismi di recupero che ri-eseguono mutazioni finanziarie<br />o modifiche di stato senza usare token di idempotenza univoci. |
+| **Silent Schema Masking** | Fallback che sopprime discrepanze nei dati restituendo valori<br />inventati o vuoti, impedendo all'osservabilità di allertare. |
 
 ---
 
@@ -25550,10 +25548,10 @@ L'impiego dei modelli linguistici nello STEP 28 deve essere rigidamente discipli
 
 | COMPITI IDONEI PER UN LLM | COMPITI NON DELEGABILI ESCLUSIVAMENTE ALL'LLM |
 | :--- | :--- |
-| Generazione della struttura sintattica di una<br>macchina a stati finiti per Circuit Breaker. | Determinazione delle soglie quantitative critiche<br>(timeout, percentuali di fallimento, rate limit). |
-| Proposta di algoritmi euristici locali<br>deterministici per compiti di calcolo isolato. | Scelta architetturale tra approccio Fail-Open<br>o Fail-Closed rispetto a proprietà critiche. |
-| Scrittura di scenari di test per simulare<br>risposte lente o fallimenti di rete. | Certificazione della retrocompatibilità di uno<br>schema database reale con dati storici. |
-| Redazione della documentazione di tracciabilità<br>tra condizioni di allarme e circuit breaker. | Autorizzazione formale all'esecuzione di un<br>rollback in ambiente di produzione. |
+| Generazione della struttura sintattica di una<br />macchina a stati finiti per Circuit Breaker. | Determinazione delle soglie quantitative critiche<br />(timeout, percentuali di fallimento, rate limit). |
+| Proposta di algoritmi euristici locali<br />deterministici per compiti di calcolo isolato. | Scelta architetturale tra approccio Fail-Open<br />o Fail-Closed rispetto a proprietà critiche. |
+| Scrittura di scenari di test per simulare<br />risposte lente o fallimenti di rete. | Certificazione della retrocompatibilità di uno<br />schema database reale con dati storici. |
+| Redazione della documentazione di tracciabilità<br />tra condizioni di allarme e circuit breaker. | Autorizzazione formale all'esecuzione di un<br />rollback in ambiente di produzione. |
 
 #### 13.1 Le tre categorie di limite dell'LLM
 1. **Limiti Epistemici**: Il modello non possiede consapevolezza dell'infrastruttura reale, non conosce le latenze fisiche dei collegamenti geografici e non può attestare se due dipendenze esteriormente distinte condividano la medesima infrastruttura cloud.
@@ -25602,9 +25600,9 @@ Tuttavia, conformemente al rigore epistemico del manuale, va ribadito che:
 
 | MECCANISMO DA VALIDARE | METODO DI PERTURBAZIONE FORZATA | ORACOLO DI VERIFICA (EVIDENZA) |
 | :--- | :--- | :--- |
-| **Circuit Breaker** | Iniezione del 60% di timeout<br>artificiali su proxy intermedio<br>(es. Toxiproxy o ChaosMesh, simulatori di guasti che iniettano ritardi di rete controllati). | Transizione verificata in OPEN<br>entro 3s; azzeramento chiamate di<br>rete; assenza di socket bloccati. |
-| **Fallback Euristico** | Simulazione di partizione di<br>rete totale verso provider LLM<br>(blocco porta o DNS drop). | Risposta erogata con flag esplicito<br>'degraded: true'; formato valido;<br>latenza inferiore a 50 millisecondi. |
-| **Rollback del Codice** | Esecuzione di 200 transazioni<br>su N+1; abort del deploy;<br>ripristino istantaneo di N. | Rollback eseguito; tutte le 200<br>transazioni restano leggibili e<br>processabili dal codice N. |
+| **Circuit Breaker** | Iniezione del 60% di timeout<br />artificiali su proxy intermedio<br />(es. Toxiproxy o ChaosMesh, simulatori di guasti che iniettano ritardi di rete controllati). | Transizione verificata in OPEN<br />entro 3s; azzeramento chiamate di<br />rete; assenza di socket bloccati. |
+| **Fallback Euristico** | Simulazione di partizione di<br />rete totale verso provider LLM<br />(blocco porta o DNS drop). | Risposta erogata con flag esplicito<br />'degraded: true'; formato valido;<br />latenza inferiore a 50 millisecondi. |
+| **Rollback del Codice** | Esecuzione di 200 transazioni<br />su N+1; abort del deploy;<br />ripristino istantaneo di N. | Rollback eseguito; tutte le 200<br />transazioni restano leggibili e<br />processabili dal codice N. |
 
 ---
 
@@ -25614,11 +25612,11 @@ Durante la gestione di un incidente e l'attivazione dei meccanismi di ripristino
 
 | CATEGORIA | ESEMPIO DI DICHIARAZIONE OPERATIVA |
 | :--- | :--- |
-| **FACT** | "Il circuit breaker verso il provider LLM è transitato in OPEN alle 03:14:02<br>UTC a seguito di 12 timeout consecutivi registrati nella finestra di prova." |
-| **ASSUMPTION** | "Si assume che il database di produzione mantenga prestazioni identiche a<br>quello di staging durante l'applicazione concorrente della migrazione." |
-| **HYPOTHESIS** | "L'apertura improvvisa del circuito è ipotizzabile come esaurimento delle<br>quote di token orarie sul nostro profilo contrattuale del provider." |
-| **RECOMMENDATION** | "Non forzare manualmente la chiusura del circuito prima di aver verificato la<br>connettività tramite sonda isolata a basso impatto." |
-| **UNKNOWN** | "Non è noto se le 45 transazioni elaborate in modalita degradata durante il<br>disservizio abbiano generato incoerenze verso i sistemi contabili a valle." |
+| **FACT** | "Il circuit breaker verso il provider LLM è transitato in OPEN alle 03:14:02<br />UTC a seguito di 12 timeout consecutivi registrati nella finestra di prova." |
+| **ASSUMPTION** | "Si assume che il database di produzione mantenga prestazioni identiche a<br />quello di staging durante l'applicazione concorrente della migrazione." |
+| **HYPOTHESIS** | "L'apertura improvvisa del circuito è ipotizzabile come esaurimento delle<br />quote di token orarie sul nostro profilo contrattuale del provider." |
+| **RECOMMENDATION** | "Non forzare manualmente la chiusura del circuito prima di aver verificato la<br />connettività tramite sonda isolata a basso impatto." |
+| **UNKNOWN** | "Non è noto se le 45 transazioni elaborate in modalita degradata durante il<br />disservizio abbiano generato incoerenze verso i sistemi contabili a valle." |
 
 ---
 
@@ -25630,7 +25628,7 @@ Cosa accade se la versione difettosa del codice ha emesso chiamate a sistemi ter
 - **Trattamento di Assurance**: L'architettura deve prevedere la distinzione tra rollback del codice e **transazioni di compensazione (*Compensating Actions / Saga Pattern*)**. Il runbook deve contenere istruzioni esplicite per individuare le azioni esterne erogate ed eseguire le chiamate contrarie (es. invocazione di API di storno o notifica di rettifica agli utenti).
 
 > [!NOTE]
-> **Perché nei sistemi distribuiti non esiste il tasto 'Annulla' (Ctrl+Z)?**  
+> ✎ **Perché nei sistemi distribuiti non esiste il tasto 'Annulla' (Ctrl+Z)?**  
 > All'interno della memoria di un singolo computer o di una transazione di database locale, un rollback è un'operazione atomica: si scartano i blocchi di memoria temporanei e lo stato torna identico a un microsecondo prima.
 > Ma nei sistemi software reali assistiti da LLM, l'applicazione comunica con il mondo esterno tramite API:
 > - Invia una notifica push allo smartphone di un cliente;
@@ -25780,9 +25778,9 @@ I tre principi formalizzati si trasferiscono in modo coerente su domini tecnolog
 
 | DOMINIO | CIRCUIT BREAKER & FALLBACK | STRATEGIA DI ROLLBACK |
 | :--- | :--- | :--- |
-| **Streaming ad Eventi**<br>(Kafka / Flink) | Sospensione del consumo da topic<br>al superamento della soglia di<br>deserializzazioni errate;<br>deviazione su Dead Letter Queue. | Riposizionamento dell'offset della<br>partizione al checkpoint precedente<br>(Offset Rollback) con deviazione<br>messaggi tossici su topic ausiliari. |
-| **Dispositivi Embedded**<br>e Gateway IoT | Watchdog hardware che apre il<br>bus di trasmissione se il modem<br>non risponde; fallback su buffer<br>locale FIFO in memoria volatile. | Memoria Flash a doppio banco (A/B):<br>il bootloader esegue Bank B; se<br>l'heartbeat fallisce entro 3 min,<br>ripristina l'avvio da Bank A (OTA). |
-| **Elaborazioni Batch**<br>ad Alto Volume<br>(Big Data / Spark) | Sospensione del ciclo se oltre il<br>2% dei record è malformato;<br>fallback su computazione dei soli<br>record a schema verificato. | Architettura append-only su lake:<br>ogni batch scrive un nuovo blocco;<br>il rollback consiste nel revocare<br>il puntatore all'ultimo snapshot. |
+| **Streaming ad Eventi**<br />(Kafka / Flink) | Sospensione del consumo da topic<br />al superamento della soglia di<br />deserializzazioni errate;<br />deviazione su Dead Letter Queue. | Riposizionamento dell'offset della<br />partizione al checkpoint precedente<br />(Offset Rollback) con deviazione<br />messaggi tossici su topic ausiliari. |
+| **Dispositivi Embedded**<br />e Gateway IoT | Watchdog hardware che apre il<br />bus di trasmissione se il modem<br />non risponde; fallback su buffer<br />locale FIFO in memoria volatile. | Memoria Flash a doppio banco (A/B):<br />il bootloader esegue Bank B; se<br />l'heartbeat fallisce entro 3 min,<br />ripristina l'avvio da Bank A (OTA). |
+| **Elaborazioni Batch**<br />ad Alto Volume<br />(Big Data / Spark) | Sospensione del ciclo se oltre il<br />2% dei record è malformato;<br />fallback su computazione dei soli<br />record a schema verificato. | Architettura append-only su lake:<br />ogni batch scrive un nuovo blocco;<br />il rollback consiste nel revocare<br />il puntatore all'ultimo snapshot. |
 
 ---
 
@@ -25821,7 +25819,7 @@ L'acquisizione della padronanza concettuale ed esecutiva dello STEP 28 si consid
 *Raccordo di Transizione Metodologica*
 
 > [!NOTE]
-> **Che cosa abbiamo garantito a runtime e perché la Parte IV chiude l'anello**  
+> ✎ **Che cosa abbiamo garantito a runtime e perché la Parte IV chiude l'anello**  
 > Con la conclusione dello Step 28 si chiude la **Parte III (Esercizio controllato)**. Abbiamo costruito i presidi per operare nel mondo reale senza soccombere all'incertezza: esposizione progressiva tramite Canary e Feature Flag (Step 25), osservabilità semantica continua tramite sonde esogene (Step 26), rilevamento azionabile degli allarmi con runbook verificati (Step 27) e meccanismi deterministici di Rollback, Fallback e Circuit Breaking (Step 28).
 
 #### IL BILANCIO DI ASSURANCE DELLA PARTE III
@@ -26625,9 +26623,9 @@ L'evidenza post-deployment non è automaticamente indipendente solo perché prov
 
 | Configurazione telemetrica | Descrizione architetturale | Grado di Indipendenza Epistemica |
 | :--- | :--- | :--- |
-| **Correlazione Massima**<br>(Intra-Process) | La telemetria applicativa (es. logger) condivide lo stesso thread, memoria e stack del codice generato dall'LLM. | **NULLA (Correlazione totale)**<br>Se il runtime entra in deadlock o esaurisce la memoria, il logger non scriverà nulla. |
-| **Correlazione Parziale**<br>(Sidecar / Host-Level) | La telemetria viene raccolta da un agent separato sullo stesso nodo host (es. daemon che legge da socket o file su disco locale). | **DEBOLE / MEDIA**<br>Isola i blocchi a livello di processo, ma soffre della saturazione di I/O o CPU dell'host. |
-| **Indipendenza Forte**<br>(Out-of-Band Network Probe) | L'evidenza proviene da sonde esterne non intrusive, come programmi eBPF eseguiti direttamente all'interno del kernel del sistema operativo host per spiare il traffico in modo trasparente, o log indipendenti del bilanciatore di carico di rete esterno. | **ELEVATA**<br>I dati sull'errore non dipendono dallo stato o dal corretto funzionamento del codice esaminato. |
+| **Correlazione Massima**<br />(Intra-Process) | La telemetria applicativa (es. logger) condivide lo stesso thread, memoria e stack del codice generato dall'LLM. | **NULLA (Correlazione totale)**<br />Se il runtime entra in deadlock o esaurisce la memoria, il logger non scriverà nulla. |
+| **Correlazione Parziale**<br />(Sidecar / Host-Level) | La telemetria viene raccolta da un agent separato sullo stesso nodo host (es. daemon che legge da socket o file su disco locale). | **DEBOLE / MEDIA**<br />Isola i blocchi a livello di processo, ma soffre della saturazione di I/O o CPU dell'host. |
+| **Indipendenza Forte**<br />(Out-of-Band Network Probe) | L'evidenza proviene da sonde esterne non intrusive, come programmi eBPF eseguiti direttamente all'interno del kernel del sistema operativo host per spiare il traffico in modo trasparente, o log indipendenti del bilanciatore di carico di rete esterno. | **ELEVATA**<br />I dati sull'errore non dipendono dallo stato o dal corretto funzionamento del codice esaminato. |
 
 #### Regole per garantire l'indipendenza dell'evidenza forense:
 - **Separazione del canale di trasporto**: i log di audit e gli alert critici devono essere instradati tramite canali prioritari e asincroni con buffer limitati, evitando che il blocco dell'applicazione primaria provochi l'interruzione della registrazione.
@@ -27229,7 +27227,7 @@ E_mitig(M_i) = 0.0  ===>  ResidualProfile_i == InherentProfile_i
 ```
 
 > [!NOTE]
-> **Perché la validità del controllo è rigidamente binaria (0 oppure 1)?**  
+> ✎ **Perché la validità del controllo è rigidamente binaria (0 oppure 1)?**  
 > Un lettore abituato alle valutazioni aziendali sfumate potrebbe chiedersi: *"Perché non possiamo assegnare un valore intermedio come 0.5 se abbiamo scritto metà dei test o se il team ha abbozzato la procedura?"*.
 > 
 > La risposta risiede nel principio di realtà dell'assurance:
@@ -28167,7 +28165,7 @@ Il problema centrale affrontato da questo STEP è l'**illusione di località** (
 
 | L'ILLUSIONE DI LOCALITA' |
 | :--- |
-| Modifica locale sintattica (3 righe nel file A)<br>!= Modifica locale semantica (alterazione dei tipi o arrotondamenti)<br>!= Impatto sistemico nullo (rottura di invarianti in B, C e D) |
+| Modifica locale sintattica (3 righe nel file A)<br />!= Modifica locale semantica (alterazione dei tipi o arrotondamenti)<br />!= Impatto sistemico nullo (rottura di invarianti in B, C e D) |
 
 La **Change Impact Analysis (CIA)** è il processo metodologico, strutturato e supportato da evidenze verificabili, mediante il quale si determinano le conseguenze potenziali ed effettive di una modifica proposta su:
 - I comportamenti funzionali ed extra-funzionali del sistema software.
@@ -28413,7 +28411,7 @@ Blast_Radius(C) = C U { u in V | exists c in C tale che path(u -> c) in G }
 ```
 
 > [!NOTE]
-> **Che cos'è la "chiusura transitiva a ritroso" e come si visualizza?**  
+> ✎ **Che cos'è la "chiusura transitiva a ritroso" e come si visualizza?**  
 > L'espressione matematica `path(u -> c) in G` formalizza il principio della catena di trasmissione:
 > - Si immagini una fila di tessere collegate: il modulo `A` chiama il modulo `B`, il quale chiama il modulo `C` appena modificato dall'LLM.
 > - L'impatto diretto (`I_dir`) include solo `B`, perché è l'unico che tocca fisicamente `C`.
@@ -28569,10 +28567,10 @@ Applicando la Change Impact Analysis, emergono le alterazioni profonde del siste
 | **MATRICE DI IMPATTO** |  |
 | :--- | :--- |
 | **Elemento Modificato** | `billing/pricing.py:calculate_discount` |
-| **Tipo di Modifica** | Sostituzione motore aritmetico (Decimal -> Float)<br>Modifica algoritmo rounding (HALF_UP -> HALF_EVEN) |
-| **Nodi Impattati** | 1. `billing/invoice_generator.py` (calcolo totali)<br>2. `accounting/audit_ledger.py` (quadratura contabile)<br>3. `api/v1/checkout.py` (esposizione payload) |
-| **Evidenze Non Applicabili** | - `TEST-BILL-042` (precisione centesimi su casi limite)<br>- `CERT-TAX-2024` (dichiarazione conformità fiscale) |
-| **Stato Decisionale** | **NO-GO** (Rifiutare la modifica o aggiornare l'oracolo<br>e rieseguire la verifica contabile di quadratura) |
+| **Tipo di Modifica** | Sostituzione motore aritmetico (Decimal -> Float)<br />Modifica algoritmo rounding (HALF_UP -> HALF_EVEN) |
+| **Nodi Impattati** | 1. `billing/invoice_generator.py` (calcolo totali)<br />2. `accounting/audit_ledger.py` (quadratura contabile)<br />3. `api/v1/checkout.py` (esposizione payload) |
+| **Evidenze Non Applicabili** | - `TEST-BILL-042` (precisione centesimi su casi limite)<br />- `CERT-TAX-2024` (dichiarazione conformità fiscale) |
+| **Stato Decisionale** | **NO-GO** (Rifiutare la modifica o aggiornare l'oracolo<br />e rieseguire la verifica contabile di quadratura) |
 
 ---
 
@@ -29022,7 +29020,7 @@ Il problema centrale affrontato da questo STEP è la **perdita di applicabilità
 
 | L'ILLUSIONE DELLA VALIDITA' PERPETUA |
 | :--- |
-| Codice congelato (zero commit negli ultimi 6 mesi)<br>!= Ambiente congelato (nuove CVE, librerie aggiornate a runtime)<br>!= Modello LLM invariato (aggiornamenti non documentati del vendor)<br>!= ASSURANCE PRESERVATA (le vecchie evidenze perdono applicabilita') |
+| Codice congelato (zero commit negli ultimi 6 mesi)<br />!= Ambiente congelato (nuove CVE, librerie aggiornate a runtime)<br />!= Modello LLM invariato (aggiornamenti non documentati del vendor)<br />!= ASSURANCE PRESERVATA (le vecchie evidenze perdono applicabilita') |
 
 La **Periodic Review (Revisione periodica e audit)** è il processo sistematico, strutturato e indipendente mediante il quale si riesamina l'intero impianto di garanzia di un sistema software in esercizio. Tale revisione non si limita a verificare se il software "funzioni ancora", ma valuta se:
 - Le assunzioni operative su cui poggia la sicurezza del sistema siano ancora vere nel contesto attuale.
@@ -29164,10 +29162,10 @@ La revisione periodica non deve essere intesa unicamente come un evento temporal
 
 | Tipo di Trigger | Descrizione e Condizione di Attivazione |
 | :--- | :--- |
-| **Time-based** | Scadenza di un intervallo temporale programmato<br>(es. trimestrale, semestrale, annuale). |
-| **Event-based** | Notifica di deprecazione API del vendor LLM,<br>rilascio di major version di librerie critiche,<br>pubblicazione di nuove vulnerabilità CVE di settore. |
-| **Risk-based** | Incremento del livello di esposizione del sistema,<br>estensione dell'autonomia decisionale del software,<br>trattamento di categorie di dati più sensibili. |
-| **Condition-based** | Superamento di soglie telemetriche di allarme<br>(es. tasso di correzione manuale da parte degli<br>operatori raddoppiato negli ultimi 30 giorni). |
+| **Time-based** | Scadenza di un intervallo temporale programmato<br />(es. trimestrale, semestrale, annuale). |
+| **Event-based** | Notifica di deprecazione API del vendor LLM,<br />rilascio di major version di librerie critiche,<br />pubblicazione di nuove vulnerabilità CVE di settore. |
+| **Risk-based** | Incremento del livello di esposizione del sistema,<br />estensione dell'autonomia decisionale del software,<br />trattamento di categorie di dati più sensibili. |
+| **Condition-based** | Superamento di soglie telemetriche di allarme<br />(es. tasso di correzione manuale da parte degli<br />operatori raddoppiato negli ultimi 30 giorni). |
 
 #### Audit di Conformità vs Assurance Tecnica
 
@@ -29178,7 +29176,7 @@ Uno dei maggiori equivoci della governance è identificare l'audit di conformit�
 
 | Conformità VS ASSURANCE TECNICA |
 | :--- |
-| **Conformità Procedurale** (CHECKLIST OK, FIRME PRESENTI)<br>!= **Correttezza Tecnica** (GLI INVARIANTI DEL SOFTWARE TENGONO SOTTO CARICO)<br><br>Un sistema può essere al 100% conforme alle procedure aziendali<br>e tuttavia fallire miseramente a causa di un'allucinazione critica. |
+| **Conformità Procedurale** (CHECKLIST OK, FIRME PRESENTI)<br />!= **Correttezza Tecnica** (GLI INVARIANTI DEL SOFTWARE TENGONO SOTTO CARICO)<br /><br />Un sistema può essere al 100% conforme alle procedure aziendali<br />e tuttavia fallire miseramente a causa di un'allucinazione critica. |
 
 Un audit efficace deve integrare entrambi gli aspetti: la conformità documentale è necessaria per la responsabilità giuridica, ma solo l'assurance tecnica garantisce la robustezza dell'esercizio.
 
@@ -29789,7 +29787,7 @@ Il problema centrale affrontato da questo STEP conclusivo è la dispersione irre
 
 | L'AMNESIA ORGANIZZATIVA |
 | :--- |
-| Codice congelato su repository Git<br>!= Fascicolo di Assurance archiviato (modelli, prompt, log persi)<br>!= Motivazione delle scelte preservata (perche' ci siamo fidati?)<br>!= Lezioni apprese capitalizzate (ripetizione garantita degli errori) |
+| Codice congelato su repository Git<br />!= Fascicolo di Assurance archiviato (modelli, prompt, log persi)<br />!= Motivazione delle scelte preservata (perche' ci siamo fidati?)<br />!= Lezioni apprese capitalizzate (ripetizione garantita degli errori) |
 
 #### 1.2 Definizione e scopo dello STEP
 
@@ -30476,7 +30474,7 @@ La chiusura, l'archiviazione e la capitalizzazione delle lezioni non costituisco
 *Raccordo di Transizione Metodologica*
 
 > [!NOTE]
-> **Che cosa abbiamo capitalizzato e come si conclude il percorso operativo**  
+> ✎ **Che cosa abbiamo capitalizzato e come si conclude il percorso operativo**  
 > Con la conclusione dello Step 33 si chiude formalmente la **Parte IV (Evoluzione e mantenimento dell'assurance)** e, con essa, l'intera catena metodologica a 33 passi dell'opera. Abbiamo trasformato gli incidenti sul campo in lezioni non colpevolizzanti (Step 29), istituito la memoria tecnica permanente nel Risk Register e nella Knowledge Base (Step 30), governato l'impatto semantico di ogni cambiamento (Step 31), disinnescato l'obsolescenza da deriva contestuale (Step 32) e sigillato il fascicolo probatorio finale preservando esplicitamente la memoria negativa (Step 33).
 
 #### IL BILANCIO DI ASSURANCE DELLA PARTE IV
@@ -30749,7 +30747,7 @@ La compresenza empirica di questi fenomeni non costituisce una tautologia né pr
 ### 1. Inquadramento Metodologico e Orizzonte Temporale
 
 > [!NOTE]
-> **Riferimento temporale dello snapshot tecnologico: Scenario consolidato 2025 / inizio 2026**  
+> ✎ **Riferimento temporale dello snapshot tecnologico: Scenario consolidato 2025 / inizio 2026**  
 > Questa appendice documenta il panorama tecnologico dei modelli linguistici di frontiera consolidatosi tra la fine del **2024 e i primi mesi del 2026**. I modelli menzionati comprendono rilasci ufficiali accertati dello snapshot (inclusi *Llama 3.3 70B* rilasciato da Meta nel dicembre 2024 e *Claude 3.7 Sonnet* rilasciato da Anthropic nel febbraio 2025 come modello ibrido a ragionamento esteso).  
 > 
 > *Avvertenza metodologica permanente:*  
@@ -30763,7 +30761,7 @@ La compresenza empirica di questi fenomeni non costituisce una tautologia né pr
 Nello Step 20 (*Multi-Model Audit*) si assume come principio metodologico fondamentale che l'accordo tra modelli non dimostra la correttezza del software: modelli differenti possono convergere sul medesimo errore logico a causa di euristiche comuni o distorsioni condivise nei dati di addestramento.
 
 > [!TIP]
-> **L'analogia dei correttori di bozze (Ponte intuitivo per non specialisti)**  
+> ☞ **L'analogia dei correttori di bozze (Ponte intuitivo per non specialisti)**  
 > Se chiedi a due persone di correggere una formula complessa, ma entrambe hanno studiato sullo stesso manuale che conteneva un errore di stampa, è molto probabile che entrambe considerino corretta la formula o condividano il medesimo angolo cieco.  
 > Moltiplicare i controlli tra modelli che hanno attinto alle medesime fonti statistiche non riduce proporzionalmente il rischio: rischia solo di amplificare la sicurezza percepita attorno a un errore comune. Cercare "diversità tecnica" significa selezionare un secondo controllore che abbia un'architettura e un metodo di addestramento il più possibile estranei al primo.
 
@@ -30831,13 +30829,13 @@ I nomi commerciali cambiano rapidamente, ma l'evoluzione delle architetture tend
 #### 3.3 Matrice della Diversità tra Modelli (Chi è diverso da chi?)
 
 > [!CAUTION]
-> **TRE AVVERTENZE CRITICHE SULL'USO DELLA MATRICE**  
+> **⊗ TRE AVVERTENZE CRITICHE SULL'USO DELLA MATRICE**  
 > 1. **La diversità tecnica è reciproca, ma l'efficacia del controllo non lo è:** Se il modello A è tecnicamente molto diverso dal modello B, ciò non garantisce che entrambi siano ugualmente bravi a trovare errori. La capacità di revisione dipende da quanto il modello conosce il linguaggio del tuo codice.  
 > 2. **`MOLTO-ALTA` non significa "miglior controllore":** Indica solo che i due modelli sono stati costruiti con metodi il più possibile differenti. Se scegli un modello a diversità massima che però non conosce il framework usato dal tuo software, otterrai una revisione scadente.  
 > 3. **Stima orientativa prudente:** Questa tabella riassume le differenze tecnologiche accertate; non è una garanzia matematica che i due modelli non possano occasionalmente sbagliare sulla stessa cosa.
 
 > [!TIP]
-> **COME USARE QUESTA TABELLA IN PRATICA (In 4 semplici passaggi):**
+> ☞ **COME USARE QUESTA TABELLA IN PRATICA (In 4 semplici passaggi):**
 > 
 > L'obiettivo è trovare un modello revisore che ragioni con presupposti tecnici e architetturali il più possibile differenti da chi ha scritto il codice, evitando errori condivisi.
 > 
@@ -30848,7 +30846,7 @@ I nomi commerciali cambiano rapidamente, ma l'evoluzione delle architetture tend
 > 4. **Esegui il controllo alla cieca:** Apri una nuova chat con il modello scelto e inviagli il codice usando **esclusivamente il template della Sezione 6**, senza dirgli chi ha scritto il codice né cosa ne pensi tu.
 
 > [!NOTE]
-> **Uso della Matrice anche per i Test Black-Box (Step 16, Sez. 8.1):** Questa tabella `11x11` si applica anche per selezionare la coppia `(LLM A generatore del codice, LLM B generatore dei test)` nello Step 16. **Attenzione alla differenza di protocollo:** mentre nella *Blind Code Review* (Step 20) il modello revisore riceve il codice sorgente da ispezionare, nella *generazione dei test* ([CAPITOLO 16, Sez. 8.1](#step-16-automated-testing)) a `LLM B` **non va mai fornito il codice di `LLM A`**, ma esclusivamente la Specifica e l'Interface Stub vuoto (usando il `Template 3-bis` in [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng)).
+> ✎ **Uso della Matrice anche per i Test Black-Box (Step 16, Sez. 8.1):** Questa tabella `11x11` si applica anche per selezionare la coppia `(LLM A generatore del codice, LLM B generatore dei test)` nello Step 16. **Attenzione alla differenza di protocollo:** mentre nella *Blind Code Review* (Step 20) il modello revisore riceve il codice sorgente da ispezionare, nella *generazione dei test* ([CAPITOLO 16, Sez. 8.1](#step-16-automated-testing)) a `LLM B` **non va mai fornito il codice di `LLM A`**, ma esclusivamente la Specifica e l'Interface Stub vuoto (usando il `Template 3-bis` in [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng)).
 
 *Come si legge: incrocia il modello che ha scritto il codice (sulla sinistra) con quello che vorresti usare per controllarlo (in alto).*
 
@@ -30973,7 +30971,7 @@ L'impiego di modelli basati su *Test-Time Reasoning* (o1, DeepSeek-R1) introduce
 - **Strategia di Scalatura Proporzionata:** Riservare i revisori a ragionamento esteso (`MOLTO-ALTA`) ai componenti critici di livello AL-2 e AL-3 (*Assurance Level*, livelli di garanzia del software definiti nello Step 10), impiegando revisori a media diversità ma a bassa latenza (es. modelli densi specializzati) per i controlli intermedi di livello AL-0 e AL-1.
 
 > [!WARNING]
-> **Ragionamento a Inferenza (Test-Time Reasoning) `!=` Garanzia di Correttezza Formale**  
+> **⚠ Ragionamento a Inferenza (Test-Time Reasoning) `!=` Garanzia di Correttezza Formale**  
 > L'allocazione di compute dinamico durante l'inferenza (come nei modelli o1, o3-mini o DeepSeek-R1) incrementa significativamente la profondità di analisi rispetto alla predizione next-token immediata, ma non costituisce una dimostrazione formale di correttezza.  
 > Un modello reasoning può comunque convergere su conclusioni errate, produrre razionalizzazioni logiche apparentemente coerenti ma fondate su premesse difettose (*reasoning hallucination*) o manifestare deviazioni da iper-focalizzazione (*overthinking*). La diagnosi del revisore reasoning rimane un'ipotesi probabilistica che deve essere corroborata dalle evidenze esecutive dei Livelli 3, 4 e 5.
 
@@ -31019,7 +31017,7 @@ I livelli operativi di verifica non costituiscono una gerarchia rigida e sequenz
 ### 6. Protocollo di Revisione Avversariale Basato su Evidenze
 
 > [!IMPORTANT]
-> **Neutralità Epistemica e Riproducibilità del Controesempio**  
+> ⚑ **Neutralità Epistemica e Riproducibilità del Controesempio**  
 > Il protocollo di audit deve guidare il modello alla ricerca rigorosa di violazioni **senza imporre la conclusione che il codice sia necessariamente difettoso** (che indurrebbe falsi allarmi) e **senza richiedere conferme generiche di correttezza** (che stimolerebbero la compiacenza / *sycophancy*).  
 > Ogni controesempio segnalato deve includere le **precondizioni ambientali ed esecutive** necessarie per renderlo riproducibile da parte del verificatore umano o di un test runner automatico.
 
@@ -31091,7 +31089,7 @@ oppure sintesi delle proprietà verificate con successo)
 ### 7. Quadro Informativo sui Modelli e Note di Accessibilità
 
 > [!NOTE]
-> **Datazione dello Snapshot Informativo: Scenario consolidato 2025 / inizio 2026**  
+> ✎ **Datazione dello Snapshot Informativo: Scenario consolidato 2025 / inizio 2026**  
 > I canali di accesso, le interfacce, i limiti di quota e i livelli di servizio gratuiti descritti nella tabella seguente riflettono le condizioni operative rilevate alla data dello snapshot e sono soggetti a modifiche unilaterali da parte dei fornitori. Si raccomanda la consultazione delle fonti ufficiali primarie per la verifica delle condizioni operative correnti.
 
 | Famiglia / Modello | Fornitore / Origine | Architettura Principale | Paradigma di Inferenza | Canale di Accesso / Piattaforma Indicativa (Snapshot 2025/2026) | Riferimento Tecnico / Documentazione Ufficiale |
@@ -31146,7 +31144,7 @@ Per garantire che l'audit multi-modello fornisca evidenze difendibili all'intern
 **Specifiche di Vincolo, Affidabilità del Codice e Difesa da Prompt Malevoli negli LLM**
 
 > [!TIP]
-> **Scopo dell'Appendice e Guida per Lettori Non Esperti**
+> ☞ **Scopo dell'Appendice e Guida per Lettori Non Esperti**
 >
 > Questa appendice fornisce una guida operativa per formulare istruzioni (prompt) destinate ai modelli linguistici (Large Language Models, LLM) quando vengono utilizzati per scrivere, analizzare o verificare software.
 >
@@ -31647,7 +31645,7 @@ ISTRUZIONI DI ATTACCO LOGICO:
 - **Cosa NON può garantire:** Il controesempio generato è un candidato teorico (`HYPOTHESIS`). Il modello potrebbe ipotizzare un fallimento inesistente o formulare un test con un oracolo errato. L'esecuzione del test da parte di un test runner esterno permette di verificare se il comportamento ipotizzato è riproducibile. Il risultato costituisce evidenza di una violazione solo dopo aver verificato che il test sia coerente con la specifica e che l'oracolo sia corretto. La valutazione finale richiede una verifica indipendente (Step 16 e 18).
 
 > [!NOTE]
-> **Raccordo operativo (Step 16):** Per evitare il testing circolare, questo pattern va applicato aprendo una sessione isolata su un modello **LLM B** diverso dal generatore **LLM A** (selezionato tramite la matrice di diversità in ✦ *Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit*) e fornendo esclusivamente la specifica e l'Interface Stub vuoto, senza mai mostrare il codice implementato da LLM A. Vedi il protocollo completo in CAPITOLO 16 — *Automated Testing* (Sez. 8.1).
+> ✎ **Raccordo operativo (Step 16):** Per evitare il testing circolare, questo pattern va applicato aprendo una sessione isolata su un modello **LLM B** diverso dal generatore **LLM A** (selezionato tramite la matrice di diversità in ✦ *Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit*) e fornendo esclusivamente la specifica e l'Interface Stub vuoto, senza mai mostrare il codice implementato da LLM A. Vedi il protocollo completo in CAPITOLO 16 — *Automated Testing* (Sez. 8.1).
 
 ---
 
@@ -31679,7 +31677,7 @@ Questi modelli possono impiegare risorse computazionali aggiuntive durante l'inf
 Per comprendere il confine tra prompt e software, occorre fissare una regola fondamentale:
 
 > [!IMPORTANT]
-> **La Gerarchia dei Controlli di Uscita**
+> ⚑ **La Gerarchia dei Controlli di Uscita**
 >
 > Il prompt orienta; la decodifica vincolata limita le sequenze ammissibili di token; il parser interpreta la sintassi; il validatore verifica la conformità allo schema e ai vincoli di dominio.
 
@@ -32219,7 +32217,7 @@ Il meccanismo è semplice: l'utente chiede all'LLM di riassumere, tradurre, rece
 8. **Output restituiti da strumenti esterni:** messaggi di errore provenienti da API esterne, intestazioni HTTP o log di sistema ingeriti durante un'analisi post-incidente (ad esempio con il **Template 5 – RCA**).
 
 > [!CAUTION]
-> **Raccordo con i Pattern e Template di questa Appendice (`P2`, `Template 4`, `Template 5`)**
+> **⊗ Raccordo con i Pattern e Template di questa Appendice (`P2`, `Template 4`, `Template 5`)**
 >
 > Quando applichi `P2` (su specifiche di terzi), il `Template 4` (su codice candidato scritto da fonti non fidate) o il `Template 5` (su stacktrace o payload esterni), stai immettendo nel prompt **artefatti potenzialmente ostili**. Un commento avvelenato nel codice o un log contraffatto può tentare di dirottare il verdetto del modello (es. spingendolo a scrivere `[VERDETTO]: NESSUNA VIOLAZIONE RILEVATA`). Le evidenze generate vanno sempre verificate da un revisore umano e da strumenti deterministici (Step 17 e 24).
 
@@ -32533,7 +32531,7 @@ Per evitare duplicazioni con le trattazioni architetturali del manuale, le contr
 - **Monitoraggio e contenimento a runtime:** vedere **Step 26 (*Observability*)**, **Step 27 (*Alerting & Runbooks*)** e **Step 28 (*Rollback, Fallback & Circuit Breakers*)** per rilevare sequenze anomale di chiamate agli strumenti e arrestare l'esecuzione.
 
 > [!WARNING]
-> **Regola di sicurezza per le prove in laboratorio**
+> **⚠ Regola di sicurezza per le prove in laboratorio**
 >
 > Non testare mai i payload di `Indirect Prompt Injection` o `Tool Abuse` riportati in questa appendice all'interno di IDE agentici reali, su repository aziendali o con variabili d'ambiente autentiche. Ogni verifica didattica deve avvenire esclusivamente dentro un *test harness* isolato con credenziali fittizie, filesystem effimero e rete bloccata (Step 14 e Appendice ▣).
 
@@ -32610,7 +32608,7 @@ Tre principi del manuale reggono l'intera appendice:
 **Il codice ha una sagoma.** Prima ancora di capire la sintassi (la grammatica del linguaggio), l'occhio allenato riconosce la forma dei difetti: un blocco di gestione degli errori che si chiude vuoto; un testo costruito incollando pezzi con il segno `+`; una chiamata verso internet senza alcun limite di attesa; una funzione che usa i dati ricevuti senza un solo controllo all'ingresso. Sono difetti visibili a occhio nudo, in qualunque linguaggio.
 
 > [!WARNING]
-> L'ispezione visiva serve a trovare i motivi per **non** approvare un codice. Un codice che la supera non è «verificato»: è soltanto «non ancora respinto». La verifica vera richiede esecuzione, test e prove indipendenti, trattati nel resto del manuale.
+> **⚠** L'ispezione visiva serve a trovare i motivi per **non** approvare un codice. Un codice che la supera non è «verificato»: è soltanto «non ancora respinto». La verifica vera richiede esecuzione, test e prove indipendenti, trattati nel resto del manuale.
 
 Ogni termine tecnico è spiegato in linguaggio semplice alla sua prima comparsa.  
 **Perimetro d'uso.** Questa guida dà il massimo su singoli script e funzioni brevi (automazioni, piccoli servizi, utilità). Su software complessi divisi in molti file incontrerai presto righe che rimandano altrove: non devi forzare la lettura né ricostruire l'intero sistema, ma fermarti e passare la mano. Anche tracciare il confine di ciò che non è verificabile da solo è ispezione.
@@ -32630,7 +32628,7 @@ Python, JavaScript, Bash e PowerShell hanno grammatiche diversissime, ma ai fini
 Pensa a una cucina. Gli ingredienti arrivano dal fornitore (Source), lo chef li taglia e li mescola sul tagliere (Trasformazione), il piatto esce in sala (Sink). Un errore di taglio si corregge sul tagliere; un piatto avvelenato, una volta in sala, non si richiama. Per questo il Sink è il luogo dove il rischio diventa danno: ogni riga che lo raggiunge produce un **side-effect** (effetto collaterale: un cambiamento fuori dal programma, che non si annulla ritirando il risultato).
 
 > [!TIP]
-> **Perché «tutta» la programmazione in tre passaggi?** Perché il modello serve a ispezionare, non a spiegare come si programma. I programmi reali hanno anche cicli, funzioni, oggetti, attività concorrenti, e nessuno li ridurrebbe a tre mosse. Ma per chi ispeziona ogni riga si riconduce a una domanda: da dove viene questo dato, che cosa ne faccio, dove va a finire? Una riga che non riesci a collocare in nessuno dei tre passaggi non è fuori dal modello: è UNKNOWN.
+> ☞ **Perché «tutta» la programmazione in tre passaggi?** Perché il modello serve a ispezionare, non a spiegare come si programma. I programmi reali hanno anche cicli, funzioni, oggetti, attività concorrenti, e nessuno li ridurrebbe a tre mosse. Ma per chi ispeziona ogni riga si riconduce a una domanda: da dove viene questo dato, che cosa ne faccio, dove va a finire? Una riga che non riesci a collocare in nessuno dei tre passaggi non è fuori dal modello: è UNKNOWN.
 
 > Vedi il **Modello Mondo-Macchina di Jackson & Zave, Capitoli 1 e 4**: la *Source* e il *Sink* sono i punti di contatto con il Mondo reale, mentre la *Trasformazione pura* è la Macchina.
 
@@ -32657,7 +32655,7 @@ def archivia(nome_file, contenuto):
 *Uscita*: restituisce `True` oppure solleva un'eccezione: accettabile. *Sink*: `open(..., "w")` scrive un file, e il percorso è costruito incollando due testi con `+`. *Guardie*: l'unico controllo verifica che il nome non sia vuoto; nessuno impedisce un nome come `../etc/qualcosa`, che esce dalla cartella prevista. *Calcolo*: non c'è. L'ispezione ha già prodotto un allarme senza richiedere di capire una sola parola di Python.
 
 > [!TIP]
-> Per ogni riga, l'esito ammesso è uno di tre. **CHIARO**: so spiegare con parole mie che cosa fa e perché è sicura. **UNKNOWN**: non so. **NO-GO**, in due varianti che non vanno confuse: *per difetto accertato* (ho trovato l'errore: si risolve correggendo) oppure *per rischio non verificato* (una riga che tocca il mondo esterno è rimasta UNKNOWN: si risolve con una prova). Il primo è un fatto, il secondo una mancanza di prove; entrambi bloccano il via libera. Dichiarare «non capisco questa riga, quindi non la approvo» non è ignoranza: è rigore ingegneristico. Ciò che non si comprende non si firma.  
+> ☞ Per ogni riga, l'esito ammesso è uno di tre. **CHIARO**: so spiegare con parole mie che cosa fa e perché è sicura. **UNKNOWN**: non so. **NO-GO**, in due varianti che non vanno confuse: *per difetto accertato* (ho trovato l'errore: si risolve correggendo) oppure *per rischio non verificato* (una riga che tocca il mondo esterno è rimasta UNKNOWN: si risolve con una prova). Il primo è un fatto, il secondo una mancanza di prove; entrambi bloccano il via libera. Dichiarare «non capisco questa riga, quindi non la approvo» non è ignoranza: è rigore ingegneristico. Ciò che non si comprende non si firma.  
 > Vedi la **Tassonomia Epistemica a 5 Stati** dello Step 5 e il valore di **`UNKNOWN` come virtù di assurance** (Step 1, Step 8, Step 24).
 
 ---
@@ -32702,11 +32700,11 @@ Un **commento** è una parte di testo che il computer salta del tutto durante l'
 **Come leggere questa tabella.** Non devi capire ogni cella, e non devi ricordare la sintassi. Leggi **per riga**: ogni riga è un'idea sola, scritta in quattro modi. Il testo in `carattere a spaziatura fissa` è come l'idea appare nel codice; il testo normale spiega perché conta. Le espressioni «senza avviso», «in silenzio», «scarta» segnalano le trappole: sono le celle più importanti. Le tre fasce (INGRESSO, TRASFORMAZIONE, PUNTO DI IMPATTO) richiamano la triade della Sezione 1: se in una fascia non sai da dove cominciare, parti dall'ultima, quella che tocca il mondo.
 
 > [!WARNING]
-> **Il denaro non si calcola con numeri «con la virgola» binari.** Un `float` (numero in virgola mobile: approssimazione binaria dei decimali) non può rappresentare esattamente 0,10. Su una fattura l'errore è invisibile; su centomila fatture è un ammanco. Quando in un calcolo monetario compare `float`, `double`, `Number` o `[double]`, l'esito minimo è UNKNOWN.  
+> **⚠ Il denaro non si calcola con numeri «con la virgola» binari.** Un `float` (numero in virgola mobile: approssimazione binaria dei decimali) non può rappresentare esattamente 0,10. Su una fattura l'errore è invisibile; su centomila fatture è un ammanco. Quando in un calcolo monetario compare `float`, `double`, `Number` o `[double]`, l'esito minimo è UNKNOWN.  
 > Vedi il **Capitolo 1 (Problem Definition - Box informativo IEEE 754)** e lo **Step 13 (Type-Driven Design)**.
 
 > [!WARNING]
-> **Un ciclo moltiplica il rischio, e un `while` senza freno non si ferma mai.** Quando vedi un comando di rete, database o cancellazione (un Sink) *dentro* un ciclo, il danno o il costo non avviene una volta sola, ma a ogni giro. Cerca sempre un limite massimo di giri o di elementi e chiedi che cosa accade se il ciclo lavora su un milione di righe o su una risposta esterna infinita.
+> **⚠ Un ciclo moltiplica il rischio, e un `while` senza freno non si ferma mai.** Quando vedi un comando di rete, database o cancellazione (un Sink) *dentro* un ciclo, il danno o il costo non avviene una volta sola, ma a ogni giro. Cerca sempre un limite massimo di giri o di elementi e chiedi che cosa accade se il ciclo lavora su un milione di righe o su una risposta esterna infinita.
 
 ---
 
@@ -32733,7 +32731,7 @@ In 60 secondi, anche su un file di 500 righe, la ricerca testuale (Ctrl+F su Win
 Bash ha anche l'idioma `|| true` («se il comando fallisce, fingi di niente»): va cercato insieme a `2>/dev/null`.
 
 > [!WARNING]
-> **Un nome di libreria che nessuno ha verificato è UNKNOWN.** Un LLM può importare pacchetti che non esistono o che somigliano a quelli reali. Prima di approvare uno script, per ogni `import`, `require`, `source`, `Import-Module` chiedi: esiste davvero? è quello giusto? chi lo ha scelto e da dove proviene? Oltre all'esistenza contano tre cose. La **versione**: è fissata a un numero preciso (come `nome==1.2.3`, o un file di blocco come `package-lock.json`) oppure è «l'ultima disponibile», che domani può essere diversa da quella che hai ispezionato? La **fonte**: viene dal registro pubblico ufficiale del linguaggio o da un indirizzo insolito, da una copia scaricata a mano? L'**integrità**: esistono impronte (*hash*) che garantiscono che il pacchetto sia quello atteso? Se non si vedono nel codice, sono UNKNOWN da chiudere con chi gestisce il progetto.
+> **⚠ Un nome di libreria che nessuno ha verificato è UNKNOWN.** Un LLM può importare pacchetti che non esistono o che somigliano a quelli reali. Prima di approvare uno script, per ogni `import`, `require`, `source`, `Import-Module` chiedi: esiste davvero? è quello giusto? chi lo ha scelto e da dove proviene? Oltre all'esistenza contano tre cose. La **versione**: è fissata a un numero preciso (come `nome==1.2.3`, o un file di blocco come `package-lock.json`) oppure è «l'ultima disponibile», che domani può essere diversa da quella che hai ispezionato? La **fonte**: viene dal registro pubblico ufficiale del linguaggio o da un indirizzo insolito, da una copia scaricata a mano? L'**integrità**: esistono impronte (*hash*) che garantiscono che il pacchetto sia quello atteso? Se non si vedono nel codice, sono UNKNOWN da chiudere con chi gestisce il progetto.
 
 **Il protocollo dei 60 secondi:**
 
@@ -32744,10 +32742,10 @@ Bash ha anche l'idioma `|| true` («se il comando fallisce, fingi di niente»): 
 5. Il risultato è una lista di righe da interrogare, non un giudizio.
 
 > [!TIP]
-> Attiva l'opzione «parola intera» del campo di ricerca: `sh` da solo compare in decine di parole innocue (*should*, *hash*). Attiva anche «maiuscole/minuscole» quando cerchi parole di PowerShell.
+> ☞ Attiva l'opzione «parola intera» del campo di ricerca: `sh` da solo compare in decine di parole innocue (*should*, *hash*). Attiva anche «maiuscole/minuscole» quando cerchi parole di PowerShell.
 
 > [!WARNING]
-> La ricerca testuale è uno **screening**, non una prova. Un comando può essere costruito a pezzi o richiamato con un nome diverso, e una parola trovata non è necessariamente un difetto. Il suo valore è dirti *dove guardare per primo*.
+> **⚠** La ricerca testuale è uno **screening**, non una prova. Un comando può essere costruito a pezzi o richiamato con un nome diverso, e una parola trovata non è necessariamente un difetto. Il suo valore è dirti *dove guardare per primo*.
 
 #### Approfondimenti: che cosa rispondere quando la ricerca trova qualcosa
 
@@ -32851,7 +32849,7 @@ Test-Connection -ComputerName $Server -Count 1
 **Correzione di principio.** Mai costruire un comando incollando testo esterno: si usano interrogazioni *parametrizzate* (il simbolo segnaposto varia col driver: `?`, `$1`, `%s`), liste di argomenti separati, e la validazione dell'ingresso contro ciò che è ammesso.
 
 > [!WARNING]
-> **Il perimetro dei percorsi.** Un nome di file o di cartella che arriva dall'esterno può contenere `..` (risalita di cartella) o barre che escono dalla zona prevista: è il **path traversal** («attraversamento dei percorsi»). Controllare il *testo* del nome aiuta, ma non basta: un **collegamento simbolico** (*symlink*: un segnaposto che sembra una cartella ma rimanda altrove; su Windows, una *giunzione*) dentro la cartella consentita può puntare fuori. Tre domande per ogni lettura o cancellazione:
+> **⚠ Il perimetro dei percorsi.** Un nome di file o di cartella che arriva dall'esterno può contenere `..` (risalita di cartella) o barre che escono dalla zona prevista: è il **path traversal** («attraversamento dei percorsi»). Controllare il *testo* del nome aiuta, ma non basta: un **collegamento simbolico** (*symlink*: un segnaposto che sembra una cartella ma rimanda altrove; su Windows, una *giunzione*) dentro la cartella consentita può puntare fuori. Tre domande per ogni lettura o cancellazione:
 > 1. Il nome è validato contro un elenco di caratteri ammessi, e non solo ripulito da `..`?
 > 2. Il percorso finale viene *risolto* (trasformato nel percorso reale sul disco) e confrontato con la cartella base prima dell'uso? Parole-ancora: `resolve` in Python, `fs.realpath` in Node, `realpath` in Bash. In PowerShell si cerca il controllo dell'attributo `ReparsePoint`, che segnala i collegamenti.
 > 3. Prima di una cancellazione ricorsiva, il codice evita di seguire i collegamenti?
@@ -32962,7 +32960,7 @@ PREZZO=${PREZZO:-0}
 ```
 
 > [!TIP]
-> Un valore predefinito è accettabile solo se è una **decisione di business dichiarata** («un codice sconto sconosciuto vale 0%, e lo registriamo»). Se nessuno saprebbe dirti *chi* ha deciso quel valore e *dove* lo si legge, è un fallback velenoso.
+> ☞ Un valore predefinito è accettabile solo se è una **decisione di business dichiarata** («un codice sconto sconosciuto vale 0%, e lo registriamo»). Se nessuno saprebbe dirti *chi* ha deciso quel valore e *dove* lo si legge, è un fallback velenoso.
 
 **Correzione di principio.** Fallire in modo rumoroso: sollevare un errore, oppure restituire un esito che distingua esplicitamente «valore assente» da «valore zero».
 
@@ -33020,10 +33018,10 @@ CODICE>>>
 > *Come interrogare un modello senza inquinarlo con premesse suggestive? Vedi: **Step 20 (Multi-Model Audit)** e [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng) - Template 4 (Blind Code Review).*
 
 > [!TIP]
-> Esegui lo stesso prompt due volte, o su due modelli diversi, e confronta. Ogni differenza tra le risposte è un punto UNKNOWN: va risolto leggendo la riga, non scegliendo la versione che ti convince di più.
+> ☞ Esegui lo stesso prompt due volte, o su due modelli diversi, e confronta. Ogni differenza tra le risposte è un punto UNKNOWN: va risolto leggendo la riga, non scegliendo la versione che ti convince di più.
 
 > [!WARNING]
-> La radiografia dell'LLM è **a sua volta non verificata**. Serve a guidare il tuo occhio, non a sostituirlo. Se per approvare una riga dipendi da ciò che l'LLM dice di essa, quella riga è UNKNOWN.
+> **⚠** La radiografia dell'LLM è **a sua volta non verificata**. Serve a guidare il tuo occhio, non a sostituirlo. Se per approvare una riga dipendi da ciò che l'LLM dice di essa, quella riga è UNKNOWN.
 
 ---
 
@@ -33059,7 +33057,7 @@ def calcola_totale(prezzo, quantita, codice_sconto):
 | `return 0` | **ALLARME ROSSO: Fallback Velenoso.** Il guasto diventa un totale legittimo: zero euro. Il prezzo arrivato come testo (riga 4) produce proprio questo: ordine evaso, nessun incasso, nessuna traccia. |
 
 > [!WARNING]
-> **Verdetto: NO-GO per difetto accertato.** Il codice non ha Sink visibili, ma il suo risultato alimenterà fatturazione e contabilità. Domande da girare a chi l'ha scritto: quali tipi di dato entrano? Che cosa fa il chiamante se riceve 0? Dove viene registrato un guasto? Correzione di principio: tipo `Decimal` per il denaro, validazione all'ingresso con errore esplicito, eccezioni specifiche mai inghiottite.
+> **⚠ Verdetto: NO-GO per difetto accertato.** Il codice non ha Sink visibili, ma il suo risultato alimenterà fatturazione e contabilità. Domande da girare a chi l'ha scritto: quali tipi di dato entrano? Che cosa fa il chiamante se riceve 0? Dove viene registrato un guasto? Correzione di principio: tipo `Decimal` per il denaro, validazione all'ingresso con errore esplicito, eccezioni specifiche mai inghiottite.
 
 #### Laboratorio 2 — Bash: manutenzione e backup
 
@@ -33088,10 +33086,10 @@ echo "Backup completato con successo"
 | `echo "Backup completato con successo"` | **Uscita.** Messaggio *incondizionato*: appare anche se tutto è fallito. Chi legge i registri vede «successo» e si addormenta: un falso positivo con la forma di una prova. |
 
 > [!WARNING]
-> **Verdetto: NO-GO per difetto accertato.** Tre Sink su tre senza guardie, cancellazione prima della verifica del backup, esito sempre positivo. Domande: chi garantisce il formato di `$1`? L'archivio è stato controllato (esiste, non è vuoto) *prima* del `rm`? Correzione di principio: `set -euo pipefail` (utile ma non sufficiente: servono anche controlli espliciti), virgolette ovunque, nome validato contro caratteri ammessi, percorso verificato dentro `BASE`, cancellazione solo dopo backup verificato, messaggio finale solo se tutto è riuscito.
+> **⚠ Verdetto: NO-GO per difetto accertato.** Tre Sink su tre senza guardie, cancellazione prima della verifica del backup, esito sempre positivo. Domande: chi garantisce il formato di `$1`? L'archivio è stato controllato (esiste, non è vuoto) *prima* del `rm`? Correzione di principio: `set -euo pipefail` (utile ma non sufficiente: servono anche controlli espliciti), virgolette ovunque, nome validato contro caratteri ammessi, percorso verificato dentro `BASE`, cancellazione solo dopo backup verificato, messaggio finale solo se tutto è riuscito.
 
 > [!TIP]
-> In PowerShell lo stesso difetto ha questo aspetto: `Remove-Item -Recurse -Force "$Base\$Cliente\tmp\*" -ErrorAction SilentlyContinue`. Cambia la grammatica, non la sagoma: concatenazione, cancellazione forzata, errori zittiti.
+> ☞ In PowerShell lo stesso difetto ha questo aspetto: `Remove-Item -Recurse -Force "$Base\$Cliente\tmp\*" -ErrorAction SilentlyContinue`. Cambia la grammatica, non la sagoma: concatenazione, cancellazione forzata, errori zittiti.
 
 #### Laboratorio 3 — JavaScript / Node.js: endpoint di conversione valuta
 
@@ -33125,7 +33123,7 @@ app.listen(3000);
 | `app.listen(3000);` | Il servizio si mette in ascolto. Nessuna autenticazione e nessun limite di richieste *visibili in questo frammento*: se esistano altrove è UNKNOWN. |
 
 > [!WARNING]
-> **Verdetto: NO-GO per difetto accertato.** Source senza validazione, Sink di rete con testo concatenato, nessun timeout, nessuna gestione dell'esito, un fallimento che si trasforma in `null` apparentemente valido. Correzione di principio: validare tipo e intervallo di `importo`, ammettere solo valute da un elenco, comporre l'indirizzo in modo sicuro, impostare un timeout, controllare `risposta.ok`, racchiudere tutto in `try/catch` e rispondere con un errore esplicito.
+> **⚠ Verdetto: NO-GO per difetto accertato.** Source senza validazione, Sink di rete con testo concatenato, nessun timeout, nessuna gestione dell'esito, un fallimento che si trasforma in `null` apparentemente valido. Correzione di principio: validare tipo e intervallo di `importo`, ammettere solo valute da un elenco, comporre l'indirizzo in modo sicuro, impostare un timeout, controllare `risposta.ok`, racchiudere tutto in `try/catch` e rispondere con un errore esplicito.
 
 #### Laboratorio 4 — PowerShell: lo script di controllo
 
@@ -33175,7 +33173,7 @@ Write-Output "Backup e pulizia completati: $Archivio"
 Ctrl+F su questo script: `SilentlyContinue` zero occorrenze, `Invoke-Expression` zero, `Remove-Item` una, protetta da guardie. Un'occorrenza è una domanda, non un'accusa.
 
 > [!TIP]
-> **Verdetto: nessun difetto accertato, ma NO-GO provvisorio per rischio non verificato.** Restano tre UNKNOWN, tutti su Sink: l'archivio è completo e apribile? che cosa fa `Compress-Archive` se il file esiste già? un collegamento simbolico può portare fuori da `D:\App`? Per la regola della Sezione 7, un UNKNOWN su un Sink blocca il via libera finché non si chiude *con una prova*: eseguire su una cartella cliente di prova, aprire l'archivio e provare un ripristino, controllare i collegamenti nel percorso, usare `-WhatIf` sulla cancellazione. Chiusi i tre UNKNOWN, GO. La differenza dal Laboratorio 2 non è l'assenza di domande, ma il fatto che qui ogni domanda ha una risposta a portata di mano.
+> ☞ **Verdetto: nessun difetto accertato, ma NO-GO provvisorio per rischio non verificato.** Restano tre UNKNOWN, tutti su Sink: l'archivio è completo e apribile? che cosa fa `Compress-Archive` se il file esiste già? un collegamento simbolico può portare fuori da `D:\App`? Per la regola della Sezione 7, un UNKNOWN su un Sink blocca il via libera finché non si chiude *con una prova*: eseguire su una cartella cliente di prova, aprire l'archivio e provare un ripristino, controllare i collegamenti nel percorso, usare `-WhatIf` sulla cancellazione. Chiusi i tre UNKNOWN, GO. La differenza dal Laboratorio 2 non è l'assenza di domande, ma il fatto che qui ogni domanda ha una risposta a portata di mano.
 
 ---
 
@@ -33216,10 +33214,10 @@ Nella colonna Esito si distinguono i due NO-GO: «difetto» (accertato dalla let
 - **Sappi quando passare la mano.** Se dopo la correzione restano NO-GO su un Sink, o se il codice supera ciò che puoi leggere con rigore, serve un programmatore con test indipendenti. Non è una sconfitta: è l'esito previsto del metodo.
 
 > [!TIP]
-> Stampa la tabella delle cinque domande e tienila accanto al codice. Riporta le risposte nel verbale, con numero di riga: un'ispezione senza traccia scritta non è un'ispezione, è un'impressione.
+> ☞ Stampa la tabella delle cinque domande e tienila accanto al codice. Riporta le risposte nel verbale, con numero di riga: un'ispezione senza traccia scritta non è un'ispezione, è un'impressione.
 
 > [!WARNING]
-> «Non capisco questa riga, quindi non la approvo» è la frase più professionale che un ispettore possa pronunciare. Chi la pronuncia non rallenta il progetto: lo protegge da un difetto che nessuno avrebbe visto.
+> **⚠** «Non capisco questa riga, quindi non la approvo» è la frase più professionale che un ispettore possa pronunciare. Chi la pronuncia non rallenta il progetto: lo protegge da un difetto che nessuno avrebbe visto.
 
 > *Vedi: Capitolo 22 (Discrepancy Analysis).*
 
@@ -33455,7 +33453,7 @@ La licenza GNU Free Documentation License (GNU FDL), versione 1.3 o successiva, 
 ***Guida concettuale e operativa all'amplificazione delle capacità intellettuali, creative e tecniche individuali***
 
 > [!TIP]
-> **Collocazione metodologica, orizzonte temporale e chiave di lettura**
+> ☞ **Collocazione metodologica, orizzonte temporale e chiave di lettura**
 >
 > Questa appendice approfondisce la progettazione e la realizzazione di un **Ecosistema AI Personale Locale**, ospitato su una propria postazione di lavoro (*workstation*) o su un piccolo server privato (*on-premise*).
 >
@@ -33515,7 +33513,7 @@ La delega computazionale a servizi commerciali su cloud pubblico introduce criti
 - **Sostenibilità economica e continuità di servizio:** I servizi remoti frammentano le funzioni dietro abbonamenti mensili cumulativi e quote di utilizzo (*rate limits*). Una postazione locale, ammortizzato l'hardware, elabora carichi continui senza tariffe a consumo e continua a funzionare anche in assenza di connessione Internet (*air-gapped*).
 
 > [!WARNING]
-> **La verità tecnica: "Locale" non significa automaticamente "Privato"**
+> **⚠ La verità tecnica: "Locale" non significa automaticamente "Privato"**
 >
 > È errato dare per scontato che scaricare un software aperto garantisca di per sé la riservatezza assoluta. Numerosi strumenti open-source integrano per impostazione predefinita moduli di telemetria (invio di statistiche anonime di utilizzo o segnalazioni di arresto anomalo), controlli automatici di versione all'avvio, chiamate verso piattaforme di hosting pesi (es. Hugging Face Hub) o plugin per l'interrogazione del web che trasmettono le ricerche a motori remoti terzi.
 > 
@@ -33811,7 +33809,7 @@ Un'affermazione ingannevole diffusa sostiene che il RAG elimini le allucinazioni
 3. **Il problema della perdita al centro (*Lost in the Middle*):** Se si passano al modello troppi frammenti (es. 15 o 20 blocchi di testo nel tentativo di "non perdere nulla"), i modelli di linguaggio tendono ad accordare massima attenzione ai frammenti situati all'inizio e alla fine del contesto, trascurando i dettagli critici collocati nei blocchi centrali.
 
 > [!NOTE]
-> **Presidi di Verifica delle Fonti nel RAG Locale**
+> ✎ **Presidi di Verifica delle Fonti nel RAG Locale**
 >
 > Per rendere il RAG uno strumento attendibile:
 > - **Obbligo di citazione stringente:** Configurare l'istruzione di sistema (*system prompt*) imponendo: *"Se la risposta non è contenuta univocamente nei frammenti forniti, dichiara esplicitamente di non disporre di elementi sufficienti. Cita sempre il nome del file e il capitolo/pagina di riferimento per ogni affermazione sostenuta"*;
@@ -33880,7 +33878,7 @@ La memoria totale realmente richiesta su scheda video (VRAM) o memoria unificata
 3. **Overhead di Runtime:** Buffer di esecuzione tensoriale e allocazioni grafiche del sistema operativo (tipicamente 1–2 GB).
 
 > [!WARNING]
-> **Finestre di Contesto e Architetture di Attenzione**
+> **⚠ Finestre di Contesto e Architetture di Attenzione**
 >
 > Nei modelli **Transformer convenzionali** basati su attenzione globale o Grouped-Query Attention (GQA), la dimensione della KV Cache cresce linearmente con l'estensione del contesto richiesto dall'utente.
 >
@@ -33910,10 +33908,10 @@ La tabella sintetizza le possibilità concrete di utilizzo ripartite in quattro 
 
 | Configurazione | Dotazione Hardware Indicativa | Modelli Consigliati ed Eseguibili | Compiti Fruibili con Fluidità e Continuità | Limiti Operativi e Compromessi da Accettare |
 | :--- | :--- | :--- | :--- | :--- |
-| **Fascia 1: Configurazione Minima di Ingresso** | Computer portatile o desktop standard: CPU moderna (Intel Core, AMD Ryzen o Apple serie base), **16–32 GB di RAM**, nessuna scheda video dedicata separata. | Modelli compatti a 4-bit da 3B a 8B parametri densi; Whisper Base o Small per l'audio. | - Sintesi e riscrittura di testi brevi<br>- Spiegazione di nozioni e concetti<br>- Ricerca RAG su cartelle personali contenenti poche decine di file<br>- Trascrizione vocale saltuaria | Velocità di generazione contenuta (generalmente 3–8 tok/s su architetture x86); generazione di immagini non praticabile; finestre di contesto da limitare per non saturare la memoria di sistema; modelli superiori a 8B inutilizzabili con fluidità. |
-| **Fascia 2: Configurazione Versatile per Uso Personale** | Workstation desktop con scheda video dedicata consumer da **8–12 GB di VRAM** (es. NVIDIA GeForce RTX serie 3000/4000 di fascia media con bus da 128 o 192 bit). | Modelli da 7B a 14B parametri a 4-bit; modelli MoE compatti; Whisper Medium/Large-Turbo; VLM compatti (`Moondream2`). | - Dialogo e consultazione istantanei (30–50 tok/s)<br>- Supporto continuativo alla programmazione e debug<br>- Trascrizione vocale rapida di riunioni e lezioni<br>- RAG personale completo su centinaia di PDF<br>- Generazione immagini con Stable Diffusion XL | Non consente di mantenere caricati simultaneamente in memoria il modello di linguaggio e il motore di generazione immagini; i modelli da 32B devono essere quantizzati a livelli penalizzanti per essere avviati; contesti lunghi sopra 32k token esigono attenta gestione della cache. |
-| **Fascia 3: Configurazione Avanzata per Professionisti** | Workstation con scheda grafica da **16–24 GB di VRAM** (es. GPU di vertice consumer con bus da 256 o 384 bit) oppure Apple Mac (M-Series Pro/Max) con **36–64 GB di Memoria Unificata**. | Modelli densi da 14B a 32B a 4/8-bit; modelli MoE intermedi; Whisper Large; VLM avanzati (`Qwen2-VL-7B`); modelli grafici Flux.1 in formato compresso. | - Analisi approfondita di contratti e testi tecnici complessi<br>- Generazione di codice strutturato su progetti articolati<br>- Trascrizione fonetica multilingue di massima accuratezza<br>- Generazione immagini di alta qualità<br>- Servizio contemporaneo per RAG, codice e sintesi | Investimento iniziale per la postazione; consumo energetico sotto carico massimo su PC desktop (350–500W con GPU al massimo regime); i modelli massimi da 70B richiedono quantizzazioni estreme (2–3 bit) per girare su singola GPU da 24 GB. |
-| **Fascia 4: Server Privato Dedicato / Laboratorio** | Macchina dedicata con **Multi-GPU (due schede con almeno 48 GB VRAM totali)** oppure Apple Mac Studio (M-Series Ultra) con **64–128 GB di Memoria Unificata**. | Modelli densi da 70B a 4 o 8-bit; modelli MoE ad alta parametrizzazione complessiva; suite completa di modelli specialistici sempre residenti. | - Capacità analitiche, deduttive e matematiche di vertice nei pesi aperti<br>- Elaborazione di contesti ampi (fino a 64k–128k token) senza saturazione<br>- Ecosistema costantemente attivo e accessibile da tutti i propri apparati mobili via rete protetta | Richiede una stanza adeguata per l'aerazione e lo smaltimento termico; costo di acquisizione elevato; configurazione multi-GPU che necessita di familiarità con i container e i flag di bilanciamento tensoriale. |
+| **Fascia 1: Configurazione Minima di Ingresso** | Computer portatile o desktop standard: CPU moderna (Intel Core, AMD Ryzen o Apple serie base), **16–32 GB di RAM**, nessuna scheda video dedicata separata. | Modelli compatti a 4-bit da 3B a 8B parametri densi; Whisper Base o Small per l'audio. | - Sintesi e riscrittura di testi brevi<br />- Spiegazione di nozioni e concetti<br />- Ricerca RAG su cartelle personali contenenti poche decine di file<br />- Trascrizione vocale saltuaria | Velocità di generazione contenuta (generalmente 3–8 tok/s su architetture x86); generazione di immagini non praticabile; finestre di contesto da limitare per non saturare la memoria di sistema; modelli superiori a 8B inutilizzabili con fluidità. |
+| **Fascia 2: Configurazione Versatile per Uso Personale** | Workstation desktop con scheda video dedicata consumer da **8–12 GB di VRAM** (es. NVIDIA GeForce RTX serie 3000/4000 di fascia media con bus da 128 o 192 bit). | Modelli da 7B a 14B parametri a 4-bit; modelli MoE compatti; Whisper Medium/Large-Turbo; VLM compatti (`Moondream2`). | - Dialogo e consultazione istantanei (30–50 tok/s)<br />- Supporto continuativo alla programmazione e debug<br />- Trascrizione vocale rapida di riunioni e lezioni<br />- RAG personale completo su centinaia di PDF<br />- Generazione immagini con Stable Diffusion XL | Non consente di mantenere caricati simultaneamente in memoria il modello di linguaggio e il motore di generazione immagini; i modelli da 32B devono essere quantizzati a livelli penalizzanti per essere avviati; contesti lunghi sopra 32k token esigono attenta gestione della cache. |
+| **Fascia 3: Configurazione Avanzata per Professionisti** | Workstation con scheda grafica da **16–24 GB di VRAM** (es. GPU di vertice consumer con bus da 256 o 384 bit) oppure Apple Mac (M-Series Pro/Max) con **36–64 GB di Memoria Unificata**. | Modelli densi da 14B a 32B a 4/8-bit; modelli MoE intermedi; Whisper Large; VLM avanzati (`Qwen2-VL-7B`); modelli grafici Flux.1 in formato compresso. | - Analisi approfondita di contratti e testi tecnici complessi<br />- Generazione di codice strutturato su progetti articolati<br />- Trascrizione fonetica multilingue di massima accuratezza<br />- Generazione immagini di alta qualità<br />- Servizio contemporaneo per RAG, codice e sintesi | Investimento iniziale per la postazione; consumo energetico sotto carico massimo su PC desktop (350–500W con GPU al massimo regime); i modelli massimi da 70B richiedono quantizzazioni estreme (2–3 bit) per girare su singola GPU da 24 GB. |
+| **Fascia 4: Server Privato Dedicato / Laboratorio** | Macchina dedicata con **Multi-GPU (due schede con almeno 48 GB VRAM totali)** oppure Apple Mac Studio (M-Series Ultra) con **64–128 GB di Memoria Unificata**. | Modelli densi da 70B a 4 o 8-bit; modelli MoE ad alta parametrizzazione complessiva; suite completa di modelli specialistici sempre residenti. | - Capacità analitiche, deduttive e matematiche di vertice nei pesi aperti<br />- Elaborazione di contesti ampi (fino a 64k–128k token) senza saturazione<br />- Ecosistema costantemente attivo e accessibile da tutti i propri apparati mobili via rete protetta | Richiede una stanza adeguata per l'aerazione e lo smaltimento termico; costo di acquisizione elevato; configurazione multi-GPU che necessita di familiarità con i container e i flag di bilanciamento tensoriale. |
 
 ---
 
@@ -34012,7 +34010,7 @@ L'adozione di un ecosistema AI locale moltiplica le facoltà della persona, ma n
 #### 9.2 La Regola Aurea: L'AI propone, l'Umano verifica e dispone
 
 > [!NOTE]
-> **Il Principio Metodologico Fondamentale**
+> ✎ **Il Principio Metodologico Fondamentale**
 >
 > In ogni interazione con l'ecosistema AI:
 > - **L'AI propone:** redige bozze, esplora varianti, traduce linguaggi, suggerisce script, sintetizza documenti, rileva anomalie statistiche e organizza indici [5];
@@ -34217,7 +34215,7 @@ Governa l'insieme specifico di oggetti del sistema (file, directory, dispositivi
 - Le credenziali di sicurezza formali (identificatori utente UID, identificatori di gruppo GID, capability POSIX del kernel).
 
 > [!NOTE]
-> **Interdipendenza tra Asse 1 e Asse 5: la persistenza dei File Descriptor ereditati**  
+> ✎ **Interdipendenza tra Asse 1 e Asse 5: la persistenza dei File Descriptor ereditati**  
 > L'isolamento dello spazio dei nomi (Asse 1) e l'autorità sugli oggetti (Asse 5) devono essere coordinati. Un errore concettuale diffuso consiste nel ritenere che, rimuovendo un file dal filesystem visibile al processo figlio, tale file sia inaccessibile.  
 > Nei sistemi operativi conformi allo standard POSIX, se il processo genitore apre un file riservato (ad esempio `/etc/shadow`) ottenendo il descrittore numerico `3`, e successivamente genera un processo figlio senza impostare il flag `O_CLOEXEC` (*close-on-exec*), il descrittore `3` rimane aperto ed ereditato nella tabella del figlio.  
 > Anche se lo spazio dei nomi di montaggio del figlio non contiene la directory `/etc` e il filesystem appare vuoto, al processo figlio basterà invocare la chiamata `read(3, buffer, 1024)` per leggere i dati riservati. L'autorità risiede nell'handle aperto (Asse 5), non nella visibilità del percorso (Asse 1).
@@ -34818,7 +34816,7 @@ Se uno qualsiasi di questi test negativi non solleva l'eccezione attesa (ad esem
 ---
 
 > [!TIP]
-> **Orientamento rapido e micro-legenda per lettori non specialisti**  
+> ☞ **Orientamento rapido e micro-legenda per lettori non specialisti**  
 > Questa appendice spiega come due "porte chiuse a chiave" — il Sistema Operativo della macchina (*Host OS*) e l'ambiente che esegue il programma (*Runtime*, come Python, Node o Java) — decidono insieme che cosa il codice generato da un LLM può davvero fare.  
 > - **Se parti da zero:** è sufficiente cogliere l'idea di fondo: i limiti imposti dentro Python o Node spesso proteggono solo da errori accidentali, mentre l'unico blocco invalicabile contro codice ostile sta nei permessi del sistema operativo sottostante.  
 > - **Micro-legenda dei 5 concetti base per orientarti nella lettura:**
@@ -35177,13 +35175,13 @@ Prima di approvare o mandare in esecuzione codice assistito da LLM che interagis
 | PROTOCOLLO OPERATIVO DI AUDIT DELL'AUTORITÀ |
 | :--- |
 | **PASSO 1: ESTRAZIONE DELL'AUTORITÀ RICHIESTA E DELLE RISORSE PREESISTENTI** |
-| Identificare tutte le risorse esterne invocate dal codice candidato e quelle già accessibili al processo ospitante:<br>• **Risorse già disponibili:** file descriptor ereditati, socket aperti, variabili d'ambiente con token/segreti, handle IPC, socket di gestione host (es. `docker.sock`).<br>• **Risorse invocate dal codice:** accessi al filesystem (`open`, `write`, percorsi), connessioni di rete (socket, porte), processi esterni (`subprocess`, `exec`), chiamate a estensioni native (FFI, native addons). |
+| Identificare tutte le risorse esterne invocate dal codice candidato e quelle già accessibili al processo ospitante:<br />• **Risorse già disponibili:** file descriptor ereditati, socket aperti, variabili d'ambiente con token/segreti, handle IPC, socket di gestione host (es. `docker.sock`).<br />• **Risorse invocate dal codice:** accessi al filesystem (`open`, `write`, percorsi), connessioni di rete (socket, porte), processi esterni (`subprocess`, `exec`), chiamate a estensioni native (FFI, native addons). |
 | **PASSO 2: MAPPATURA DELL'AUTORITÀ MINIMA NECESSARIA** |
-| Confrontare le risorse estratte al Passo 1 con la specifica approvata (Step 4 e 6):<br>• L'accesso di rete è indispensabile per il task o è un effetto collaterale non richiesto?<br>• Qual è il sottoalbero minimo del filesystem necessario in lettura e in scrittura?<br>• L'operazione necessita di mutare lo stato persistente o è puramente trasformativa? |
+| Confrontare le risorse estratte al Passo 1 con la specifica approvata (Step 4 e 6):<br />• L'accesso di rete è indispensabile per il task o è un effetto collaterale non richiesto?<br />• Qual è il sottoalbero minimo del filesystem necessario in lettura e in scrittura?<br />• L'operazione necessita di mutare lo stato persistente o è puramente trasformativa? |
 | **PASSO 3: APPLICAZIONE DEI CONTROLLI A LIVELLO OS E RUNTIME** |
-| Configurare l'ambiente di esecuzione imponendo la minima autorità:<br>• **Runtime:** abilitare solo i flag o le capability strettamente identificati al Passo 2.<br>• **Host OS:** eseguire con utente non privilegiato, filesystem root montato in sola lettura, directory temporanea isolata su filesystem temporaneo dedicato con quote.<br>*NOTA OPERATIVA SU NOEXEC:* il flag `noexec` su un punto di montaggio impedisce l'esecuzione binaria diretta (`execve`), ma non impedisce a un interprete autorizzato (es. Python o Bash) di leggere il file ed eseguirne le istruzioni internamente.<br>• **Traffico di rete in uscita (*network egress*):** disabilitare la rete o forzare default-deny.<br>• **Bonifica ambientale:** revocare variabili d'ambiente non necessarie e impostare `O_CLOEXEC`. |
+| Configurare l'ambiente di esecuzione imponendo la minima autorità:<br />• **Runtime:** abilitare solo i flag o le capability strettamente identificati al Passo 2.<br />• **Host OS:** eseguire con utente non privilegiato, filesystem root montato in sola lettura, directory temporanea isolata su filesystem temporaneo dedicato con quote.<br />*NOTA OPERATIVA SU NOEXEC:* il flag `noexec` su un punto di montaggio impedisce l'esecuzione binaria diretta (`execve`), ma non impedisce a un interprete autorizzato (es. Python o Bash) di leggere il file ed eseguirne le istruzioni internamente.<br />• **Traffico di rete in uscita (*network egress*):** disabilitare la rete o forzare default-deny.<br />• **Bonifica ambientale:** revocare variabili d'ambiente non necessarie e impostare `O_CLOEXEC`. |
 | **PASSO 4: VERIFICA EMPIRICA TRAMITE TEST NEGATIVI** |
-| Eseguire test negativi di violazione verificando che le operazioni non autorizzate siano effettivamente impedite, che non si producano effetti collaterali persistenti e che non siano disponibili percorsi alternativi per raggiungere la risorsa.<br><br>Verificare l'assenza di persistenza non autorizzata tra esecuzioni successive (file residui, memorie IPC condivise).<br><br>La sola restituzione di un errore applicativo non costituisce prova sufficiente del contenimento.<br><br>**Se il tentativo non autorizzato ha successo, la barriera è nulla: verdetto NO-GO.** |
+| Eseguire test negativi di violazione verificando che le operazioni non autorizzate siano effettivamente impedite, che non si producano effetti collaterali persistenti e che non siano disponibili percorsi alternativi per raggiungere la risorsa.<br /><br />Verificare l'assenza di persistenza non autorizzata tra esecuzioni successive (file residui, memorie IPC condivise).<br /><br />La sola restituzione di un errore applicativo non costituisce prova sufficiente del contenimento.<br /><br />**Se il tentativo non autorizzato ha successo, la barriera è nulla: verdetto NO-GO.** |
 
 #### 6.3 Il principio della non equivalenza tra restrizione nominale e contenimento effettivo
 
@@ -36911,7 +36909,7 @@ La tabella che segue sintetizza i quattro operatori di molteplicità, sia quando
 | `set` | 0 o più (qualsiasi quantità) | Collezione generica priva di vincoli di cardinalità |
 
 > [!WARNING]
-> **LLM Failure Mode: Confusione tra `lone` e `one`**
+> **⚠ LLM Failure Mode: Confusione tra `lone` e `one`**
 > Gli LLM tendono a tradurre requisiti contenenti parole come "può avere un responsabile" dichiarando il campo con `one` anziché con `lone`. Questo errore impone che *ogni* entità possieda necessariamente un responsabile, escludendo legittimi stati iniziali o configurazioni prive di assegnazione e portando a falsi allarmi o inconsistenze.
 
 ---
@@ -37006,7 +37004,7 @@ quantificatore variabile: Insieme | espressione_booleana
 * Costrutto condizionale: `cond => expr1 else expr2`
 
 > [!WARNING]
-> **LLM Failure Mode: Mancanza del modificatore `disj`**
+> **⚠ LLM Failure Mode: Mancanza del modificatore `disj`**
 > Quando un prompt richiede: "Due utenti distinti non possono condividere la medesima sessione", un LLM genera spesso:
 > ```alloy
 > all u1, u2: User | u1.session != u2.session // ERRORE!
@@ -37068,7 +37066,7 @@ Nelle versioni precedenti di Alloy (fino alla 4.2), il tempo doveva essere model
    * `after P`: Il predicato `P` deve essere vero nell'istante immediatamente successivo.
 
 > [!NOTE]
-> Per l'attività di revisione dell'assurance sulle specifiche generate da LLM, la stragrande maggioranza dei modelli analizza **proprietà strutturali e topologiche** (snapshot statici). Se un modello generato contiene `var` e `'`, l'analista deve interpretarlo come una traccia di esecuzione che simula una macchina a stati finiti.
+> ✎ Per l'attività di revisione dell'assurance sulle specifiche generate da LLM, la stragrande maggioranza dei modelli analizza **proprietà strutturali e topologiche** (snapshot statici). Se un modello generato contiene `var` e `'`, l'analista deve interpretarlo come una traccia di esecuzione che simula una macchina a stati finiti.
 
 ---
 
@@ -37196,7 +37194,7 @@ check SafePaymentWorkflow for 5 but exactly 2 User, 3 Account, 4 Int
 * `for 4 Int`: Alloca interi con ampiezza di bit finita (rappresentazione in complemento a due a 4 bit, ovvero valori compresi nell'intervallo tra `-8` e `7`).
 
 > [!WARNING]
-> **Aritmetica Finitaria in Alloy: Rischio di Overflow Silenzioso**
+> **⚠ Aritmetica Finitaria in Alloy: Rischio di Overflow Silenzioso**
 > In Alloy, l'espressione `for N Int` alloca interi rappresentati in complemento a due su `N` bit (ad esempio, con `for 4 Int` il dominio copre esclusivamente l'intervallo compreso tra `-8` e `+7`). Le operazioni aritmetiche (`plus`, `minus`, `mul`) non sollevano eccezioni ma vanno incontro a overflow circolare silenzioso. Per requisiti che dipendono strettamente da calcoli monetari quantitativi, somme cumulative o bilanci continui, Alloy non è lo strumento d'elezione ed è preferibile delegare la verifica a solver SMT (come Z3 o CVC5).
 
 ##### La Small Scope Hypothesis
@@ -37235,7 +37233,7 @@ L'ingegnere di assurance deve evitare un errore interpretativo grave: **confonde
 | **Instance found.** | *"Il sistema funziona correttamente."* | *"Esiste almeno uno scenario entro lo scope che soddisfa i vincoli e i fatti dichiarati."* |
 
 > [!IMPORTANT]
-> Nei rapporti di conformità e sicurezza del software assistito da LLM, la dicitura da registrare obbligatoriamente è:
+> ⚑ Nei rapporti di conformità e sicurezza del software assistito da LLM, la dicitura da registrare obbligatoriamente è:
 > **«Proprietà verificata per confutazione limitata entro lo scope N (assenza di controesempi su [X] configurazioni analizzate); nessuna violazione individuata nel perimetro dichiarato».**
 > La dicitura «Proprietà dimostrata corretta in assoluto» è metodologicamente errata e contraria agli standard di assurance.
 
@@ -37306,7 +37304,7 @@ Il controllo passa con successo non perché le porte siano effettivamente sicure
 Per prevenire questo fallimento critico, l'ingegnere di assurance deve applicare una regola aurea tassativa:
 
 > [!WARNING]
-> **Regola Aurea di Assurance #1: Il Test di Non-Vacuità**
+> **⚠ Regola Aurea di Assurance #1: Il Test di Non-Vacuità**
 > Non considerare **mai** valido l'esito di un comando `check` se non è stato preventivamente eseguito con successo un corrispondente comando `run` mirato a dimostrare l'esistenza di istanze non banali e popolate del modello.
 
 Prima di testare le proprietà di sicurezza, occorre sempre eseguire un predicato di testimonianza (*witness predicate*):
@@ -37530,7 +37528,7 @@ Per impedire questo comportamento degradativo nell'analisi di modelli struttural
 - **Criterio di Successo:** Il solver **deve** trovare almeno un'istanza valida, popolata con dati effettivi e non degenere (esito SAT).
 
 > [!IMPORTANT]
-> **Criterio di Guardia contro l'Over-Constraining**
+> ⚑ **Criterio di Guardia contro l'Over-Constraining**
 > Qualsiasi modifica, correzione o refactoring introdotto da un LLM per sanare un controesempio su un `check` deve essere **immediatamente rigettata** se comporta il fallimento del comando `run HappyPath`. Una correzione è accettabile solo se preserva l'esistenza degli scenari operativi legittimi.
 
 ---
@@ -37617,7 +37615,7 @@ Quando si implementa una pipeline CI/CD o un agente autonomo di assurance, la co
 Nel prompt di correzione del controesempio, è fondamentale imporre un vincolo anti-elusione:
 
 > [!WARNING]
-> **Prompt Instruction di Sicurezza Anti-Cheating:**
+> **⚠ Prompt Instruction di Sicurezza Anti-Cheating:**
 > *"È severamente vietato risolvere il controesempio introducendo vincoli che menzionano atomi specifici (es. `no User$0`), limitando la cardinalità massima delle entità utili o eliminando relazioni di business lecite. La correzione deve avvenire unicamente raffinando la logica relazionale delle precondizioni delle operazioni o formalizzando una salvaguardia architetturale universale."*
 
 ---
@@ -37961,10 +37959,10 @@ check StrictSeparationOfDuties for 6 but exactly 4 User, 2 Payment
    L'Analyzer conferma che la guardia operativa del servizio satura ed esaurisce le proprietà richieste dalla policy di sicurezza entro il perimetro di analisi dichiarato.
 
 > [!NOTE]
-> **Nota metodologica per l'Auditor:** Disaccoppiando la guardia del servizio (`isAuthorizedApproval`) dall'invariante di sistema (`StrictSeparationOfDuties`), la verifica non è più una tautologia (`A -> A`). Il solver dimostra che l'architettura a stati del workflow garantisce l'invariante di conformità senza comprimere i requisiti ontologici del dominio.
+> ✎ **Nota metodologica per l'Auditor:** Disaccoppiando la guardia del servizio (`isAuthorizedApproval`) dall'invariante di sistema (`StrictSeparationOfDuties`), la verifica non è più una tautologia (`A -> A`). Il solver dimostra che l'architettura a stati del workflow garantisce l'invariante di conformità senza comprimere i requisiti ontologici del dominio.
 
 > [!NOTE]
-> **Nota Architetturale: Snapshot Statico vs Tracce Temporali**
+> ✎ **Nota Architetturale: Snapshot Statico vs Tracce Temporali**
 > Il modello `payment_authorization_v2` analizza uno **snapshot statico** congelato all'istante di validazione del pagamento: la guardia `p.creator not in u.transitiveDelegates` previene collisioni e conflitti discendenti contestuali. Qualora il dominio richieda di tracciare deleghe conferite *dopo* l'emissione o approvazioni avvenute in momenti asincroni disgiunti, il modello deve essere esteso con i costrutti dinamici di Alloy 6 (`var sig`, `var delegatesTo`, operatori `'` e LTL) per verificare l'evoluzione temporale della macchina a stati.
 
 ---
