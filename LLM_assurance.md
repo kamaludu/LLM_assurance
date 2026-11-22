@@ -17919,22 +17919,18 @@ Studi empirici recenti su larga scala (condotti su centinaia di modelli di famig
 #### 5.3 Il Disaccordo come Possibile Segnale Diagnostico
 L'utilità di un audit multi-modello non risiede principalmente nel confermare la bontà del codice, ma nel **portare alla luce discrepanze e disaccordi**:
 
-```text
-DISAGREEMENT (Disaccordo emerso tra i modelli):
-    può indicare:
-    - Ambiguità o incompletezza della specifica originale
-    - Differenze nelle assunzioni implicite adottate dai modelli
-    - Errore di interpretazione di uno o più modelli
-    - Insufficienza o difetto nel prompt di audit
-    - Mancanza di documentazione sul comportamento di una libreria
-```
+***DISAGREEMENT** (Disaccordo emerso tra i modelli)*  
+può indicare:  
+- Ambiguità o incompletezza della specifica originale
+- Differenze nelle assunzioni implicite adottate dai modelli
+- Errore di interpretazione di uno o più modelli
+- Insufficienza o difetto nel prompt di audit
+- Mancanza di documentazione sul comportamento di una libreria
 
 Tuttavia, il disaccordo non deve essere mitizzato:
-```text
-DISAGREEMENT
-    !=
-    automaticamente MODELLO DISSCENZIENTE CORRETTO
-```
+
+**DISAGREEMENT `!=` *automaticamente* MODELLO DISSENZIENTE CORRETTO**
+
 Quando un modello segnala un problema e due modelli lo negano, non possiamo dedurre deterministicamente chi abbia ragione. Il disaccordo agisce come un **Allarme di conflitto analitico**: segnala dove il team deve concentrare l'ispezione analitica umana o richiedere una prova formale.
 
 Per guidare razionalmente il valutatore di fronte agli esiti di un audit multi-modello, la seguente matrice stabilisce come interpretare le configurazioni di accordo e disaccordo senza cadere nella fallacia democratica del voto a maggioranza:
@@ -17961,7 +17957,9 @@ CORRECTNESS
     !=
 SUFFICIENT EVIDENCE
 ```
-L'accordo tra valutatori non implica che le loro valutazioni siano indipendenti; la presenza di indipendenza non implica che il giudizio sia corretto; la correttezza percepita non costituisce evidenza sufficiente per giustificare la confidenza nel software senza verifica oggettiva.
+L'accordo tra valutatori non implica che le loro valutazioni siano indipendenti;  
+la presenza di indipendenza non implica che il giudizio sia corretto;  
+la correttezza percepita non costituisce evidenza sufficiente per giustificare la confidenza nel software senza verifica oggettiva.
 
 #### 2. La Mancata Implicazione del Consenso Unanime
 ```text
@@ -32678,26 +32676,35 @@ Un **commento** è una parte di testo che il computer salta del tutto durante l'
 - **Bash:** tutto ciò che segue `#` fino a fine riga (unica eccezione: la prima riga `#!/bin/bash`, che indica quale interprete usare).
 - **PowerShell:** tutto ciò che segue `#` fino a fine riga, oppure tutto ciò che è racchiuso tra `<#` e `#>` su più righe.
 
-*La stessa idea si scrive in quattro modi.* La seguente tabella mette i costrutti fondamentali uno accanto all'altro, così da riconoscere lo stesso difetto sotto grammatiche diverse. Le righe sono raggruppate secondo la triade della Sezione 1: ciò che entra, ciò che si trasforma in memoria, ciò che tocca il mondo.
+*La stessa idea si scrive in quattro modi.* Le seguente tre tabelle mettono i costrutti fondamentali uno accanto all'altro, così da riconoscere lo stesso difetto sotto grammatiche diverse. Le righe sono raggruppate secondo la triade della Sezione 1: ciò che entra, ciò che si trasforma in memoria, ciò che tocca il mondo.
+
+**① INGRESSO (Source)**: ciò che entra, dati e codice altrui  
 
 | Costrutto | Python | JavaScript / Node.js | Bash (POSIX Shell) | PowerShell |
 |---|---|---|---|---|
-| **① INGRESSO (Source)**: ciò che entra, dati e codice altrui | | | | |
 | **Funzione e argomenti** (blocco di istruzioni con un nome, che riceve dati dall'esterno; definirla non la esegue finché non viene richiamata) | `def totale(prezzo, qta):` Il corpo è rientrato (indentato) | `function totale(prezzo, qta) {` oppure `const totale = (prezzo, qta) => {` Corpo tra graffe | `totale() {` Gli argomenti non hanno nome: sono `$1`, `$2`… | `function Totale { param($Prezzo, $Qta)` I parametri possono avere tipo e vincoli |
 | **Valore assente o vuoto** (il «niente»: quando un dato manca) | `None`. Anche `""` e `0` contano come «falsi» in un `if`: `if not x` non distingue lo zero dall'assenza | `null` e `undefined` sono due «niente» diversi. `dato \|\| 10` scarta anche uno `0` legittimo | Il «niente» non esiste: senza `set -u`, una variabile non impostata vale testo vuoto. `${VAR:-0}` la sostituisce in silenzio | `$null`. Anche `""` e `0` sono «falsi» in `if ($x)`, quindi il controllo non distingue assenza e zero |
 | **Conversione di tipo** (*casting*: forzare un dato da un tipo all'altro, ad esempio da testo a numero) | `int("abc")` solleva un errore; `int(3.7)` dà `3`, scartando i decimali senza avviso | Conversioni *implicite*: `"5" * 2` dà `10`, `"5" + 2` dà `"52"`. `Number("abc")` dà `NaN`; `parseInt("12abc")` dà `12` | Tutto è testo. Dentro `$(( ))` una parola non numerica può valere 0 senza errore | `[int]"abc"` solleva un errore; `[int]3.7` dà `4`: arrotonda (sui casi a metà, al numero pari: `[int]2.5` dà `2`) invece di scartare i decimali come fa Python. Decide il termine di sinistra: `"5" + 2` dà `"52"`, `2 + "5"` dà `7` |
 | **Importazione di librerie** (insiemi di funzioni scritte da altri, che il programma incorpora) | `import requests`, `from x import y` | `require("express")`, `import ... from "..."` | `source file`, e programmi esterni (`curl`, `jq`) che si presume installati | `Import-Module X`, e `. .\script.ps1` (carica un altro script) |
-| **② TRASFORMAZIONE e flusso di controllo** (in memoria) | | | | |
+
+**② TRASFORMAZIONE e flusso di controllo** (in memoria)
+
+| Costrutto | Python | JavaScript / Node.js | Bash (POSIX Shell) | PowerShell |
+|---|---|---|---|---|
 | **Numeri e denaro** | `float` è impreciso: `0.1 + 0.2` dà `0.30000000000000004`. Sicuro: `Decimal("0.10")` | Ogni numero è un `Number` binario: `0.1 + 0.2 !== 0.3`. Sicuro: interi in centesimi | Solo interi: `$((10/3))` dà `3`, il resto sparisce senza avviso. I decimali passano da programmi esterni che trattano testo | `1.5` è un `[double]` (binario, impreciso). Sicuro: `[decimal]` o suffisso `d`, come `0.10d` |
 | **Condizioni** (`if / else`: «se… altrimenti…», il programma sceglie una strada) | `if x > 0:` poi `elif`, `else:` | `if (x > 0) { } else { }`. Attenzione: `==` converte i tipi prima di confrontare (`"5" == 5` è vero), `===` no | `if [ "$x" -gt 0 ]; then … fi` Spazi e virgolette sono obbligatori: se mancano, il test cambia significato o si rompe. Si chiude con `fi` | `if ($x -gt 0) { } else { }` Operatori col trattino: `-gt` (maggiore), `-eq` (uguale), `-lt` (minore) |
 | **Cicli e ripetizioni** (eseguire le stesse istruzioni per ogni elemento o finché vale una condizione) | `for x in lista:` e `while condizione:`. Attenzione a `while True:`: senza un'uscita sicura (`break`, `return`) gira all'infinito | `for (const x of lista) { }`, `lista.forEach(...)`, `while (...) { }`. Un ciclo senza uscita sicura o con chiamate esterne non limitate può bloccare o saturare il servizio | `for f in ...; do ... done` e `while ...; do ... done`. Se dentro il ciclo mancano le virgolette su `"$f"`, un nome con spazi spezza il comando | `foreach ($x in $lista) { }`, `while (...) { }`, o a catena con `| ForEach-Object { }`. Ripetizioni su file o rete vanno protette con limiti e gestione degli errori |
 | **Cattura degli errori** (la «botola») | `try:` … `except Exception:` | `try { }` `catch (e) { }` | Non esiste `try`: si legge l'esito `$?` o si usa `set -e`, che riduce gli errori ignorati ma ha eccezioni (non scatta, per esempio, dentro la condizione di un `if` o in catene con `&&` e `\|\|`). Botole tipiche: `2>/dev/null`, `\|\| true` | `try { } catch { }`, ma gli errori «non terminanti» sfuggono se manca `-ErrorAction Stop`. Botola: `SilentlyContinue` |
 | **Concatenazione pericolosa** (qui si annidano le iniezioni) | `"... '" + nome + "'"` oppure `f"... {nome}"` | `"..." + nome` oppure *template literal* (testo con dati incorporati) con `${nome}` | `"... $input"`, percorsi senza virgolette, `eval "... $x"` | `"... $nome"` passato a `Invoke-Expression` |
-| **③ PUNTO DI IMPATTO (Sink)**: ciò che tocca il mondo | | | | |
+
+**③ PUNTO DI IMPATTO (Sink)**: ciò che tocca il mondo
+
+| Costrutto | Python | JavaScript / Node.js | Bash (POSIX Shell) | PowerShell |
+|---|---|---|---|---|
 | **Lettura e scrittura di file** (dati che restano sul disco; sovrascrivere o cancellare di norma non ha «annulla») | `open("f", "w")` azzera il file esistente, `"a"` aggiunge in coda. Cancellare: `os.remove`, `shutil.rmtree` (intera cartella) | `fs.writeFile` sostituisce il contenuto, `fs.appendFile` aggiunge. Cancellare: `fs.rm(..., { recursive: true })` | `>` sovrascrive in silenzio, `>>` aggiunge in coda. Cancellare: `rm`, `rm -rf` | `Set-Content` e `Out-File` sostituiscono, `Add-Content` aggiunge. Cancellare: `Remove-Item -Recurse -Force` |
 | **Comandi di sistema** (lanciati sul computer ospite) | `subprocess.run([...])`, `os.system("...")` | `child_process.exec("...")`, `execSync` | Il comando *è* il linguaggio. Varianti pericolose: `eval`, `bash -c`, backtick, `$(...)` | `& comando`, `Start-Process`, `Invoke-Expression` (alias `iex`) |
 
-**Come leggere questa tabella.** Non devi capire ogni cella, e non devi ricordare la sintassi. Leggi **per riga**: ogni riga è un'idea sola, scritta in quattro modi. Il testo in `carattere a spaziatura fissa` è come l'idea appare nel codice; il testo normale spiega perché conta. Le espressioni «senza avviso», «in silenzio», «scarta» segnalano le trappole: sono le celle più importanti. Le tre fasce (INGRESSO, TRASFORMAZIONE, PUNTO DI IMPATTO) richiamano la triade della Sezione 1: se in una fascia non sai da dove cominciare, parti dall'ultima, quella che tocca il mondo.
+**Come leggere queste tabelle.** Non devi capire ogni cella, e non devi ricordare la sintassi. Leggi **per riga**: ogni riga è un'idea sola, scritta in quattro modi. Il testo in `carattere a spaziatura fissa` è come l'idea appare nel codice; il testo normale spiega perché conta. Le espressioni «senza avviso», «in silenzio», «scarta» segnalano le trappole: sono le celle più importanti. Le tre fasce (INGRESSO, TRASFORMAZIONE, PUNTO DI IMPATTO) richiamano la triade della Sezione 1: se in una fascia non sai da dove cominciare, parti dall'ultima, quella che tocca il mondo.
 
 > [!WARNING]
 > **⚠ Il denaro non si calcola con numeri «con la virgola» binari.** Un `float` (numero in virgola mobile: approssimazione binaria dei decimali) non può rappresentare esattamente 0,10. Su una fattura l'errore è invisibile; su centomila fatture è un ammanco. Quando in un calcolo monetario compare `float`, `double`, `Number` o `[double]`, l'esito minimo è UNKNOWN.  
@@ -39556,6 +39563,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Oracle Correctness (Correttezza dell'Oracolo)](#oracle-correctness-correttezza-delloracolo)
 - [Oracle Independence (Indipendenza dell'Oracolo)](#oracle-independence-indipendenza-delloracolo)
 - [Orphan Code (Codice Orfano)](#orphan-code-codice-orfano)
+- [Ortogonalità (agg. ortogonale)](#ortogonalità-agg-ortogonale)
 - [OWASP Top 10 for LLM](#owasp-top-10-for-llm)
 
 #### P
@@ -40741,6 +40749,15 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine tecnico consolidato  
 **Definizione:** Istruzioni, moduli o funzionalità presenti nella base di codice eseguibile privi di tracciabilità verso un requisito approvato o una proprietà critica di specifica, spesso iniettati silenziosamente per completamento statistico da parte dell'LLM.  
 *<u>Approfondimento nel manuale</u>: formalizzato come anomalia di tracciabilità in Capitolo 7 (Traceability), Sezione 3.3 e Sezione 4.*
+
+#### Ortogonalità (agg. ortogonale)
+**Categoria:** Termine tecnico consolidato  
+**Definizione:** In senso generale, indica l'indipendenza reciproca tra due elementi, dimensioni o aspetti: variare l'uno non altera né vincola l'altro.  
+- **Geometria**: due rette, due piani (o una retta e un piano) sono ortogonali quando formano un angolo di 90° *(nel piano equivale a essere perpendicolari; nello spazio l'ortogonalità è più generale e include anche rette sghembe le cui direzioni formano un angolo retto)*.  
+- **Algebra lineare / analisi funzionale**: due vettori (o funzioni) sono ortogonali quando il loro prodotto scalare — o, più in generale, prodotto interno — è nullo (0), cioè la proiezione dell'uno sull'altro è nulla: per elementi non nulli, rappresentano direzioni o componenti disaccoppiate.
+- **Nell'ingegneria del software e nell'assurance**: quando si dice che due concetti, moduli, proprietà o meccanismi di verifica sono ortogonali, significa che:  
+  **Non si condizionano a vicenda (piano architetturale o operativo)**: puoi modificare, sostituire o testare un modulo o meccanismo senza dover riscrivere o invalidare l'altro.  
+  **Coprono dimensioni distinte del problema (piano dei requisiti o della verifica)**: soddisfare o verificare una proprietà non garantisce nulla sull'altra. Ad esempio, la correttezza funzionale e l'isolamento tra tenant sono requisiti ortogonali: una funzione può soddisfare il caso d'uso nominale ma violare l'isolamento.  
 
 #### OWASP Top 10 for LLM
 **Categoria:** Standard di sicurezza aperto  
