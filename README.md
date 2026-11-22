@@ -131,7 +131,7 @@ Principi, Verifica, Evidenze e Governance**
 
 **🇮🇹 Italiano:**  
 **Manuale di Assurance del Software Assistito da LLM**  
-- **Lettura immediata con traduttore automatico:** Si consiglia di scaricare il file **`.html`** dalla sezione [Releases](../../releases/latest) e aprirlo nel browser (Chrome, Edge, Safari) utilizzando la funzione nativa di traduzione automatica della pagina.
+- **Lettura immediata con traduttore automatico:** Si consiglia di scaricare il file **`.html`** dalla sezione [Releases](../../releases/latest) e aprirlo nel browser (Chrome, Edge, Safari) utilizzando la funzione nativa di traduzione automatica della pagina. Si sconsiglia di tradurre direttamente la versione PDF, poiché ciò compromette la formattazione e i blocchi di codice.
 - **Traduzioni formali:** Chi desidera realizzare una versione tradotta del manuale deve operare sul file sorgente `.md`. Le traduzioni sono considerate opere derivate e devono rispettare i termini della **GNU FDL v1.3** (Sez. 8).
 
 **🇬🇧 English:**  
