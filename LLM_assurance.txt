@@ -17300,7 +17300,7 @@ RED TEAMING
 - Il **Penetration Test** cerca di enumerare le falle tecniche presenti su un perimetro definito.
 - Il **Red Teaming** è un esercizio orientato all'obiettivo: emula percorsi avversariali realistici per verificare se e come le difese nel loro insieme riescano a contenere l'impatto su asset critici (*Crown Jewels*).
 
-#### 3. Assenza di Exploit Osservato != Assenza di Vulnerabilità
+#### 3. Assenza di Exploit Osservato `!=` Assenza di Vulnerabilità
 L'esito negativo di un tentativo di attacco dimostra unicamente che quello specifico vettore, impiegato con quelle risorse e sotto quelle assunzioni, non ha avuto successo. **Non costituisce evidenza che il sistema sia privo di vulnerabilità o immune alla minaccia.**
 
 #### 4. Sanificazione del Prompt vs Contenimento Architetturale
@@ -17985,10 +17985,10 @@ COMMON ERROR (Errore logico identico)
 A = PASS, B = PASS, C = PASS (Consenso unanime sul codice viziato)
 ```
 
-#### 3. Second Opinion != Verifica Indipendente
+#### 3. Second Opinion `!=` Verifica Indipendente
 Una *second opinion* consiste nell'interrogare un secondo valutatore appartenente al medesimo paradigma epistemico (un altro LLM basato su previsione statistica di token). Una *verifica indipendente* richiede l'uso di un oracolo strutturalmente disaccoppiato (es. esecuzione dinamica di test PBT dello Step 18, analisi statica SAST dello Step 17, o dimostrazione matematica).
 
-#### 4. Vendor Diversity != Indipendenza Epistemica
+#### 4. Vendor Diversity `!=` Indipendenza Epistemica
 Acquistare servizi da fornitori commerciali differenti realizza una separazione societaria e infrastrutturale, ma non garantisce l'ortogonalità delle evidenze prodotte.
 
 ---
@@ -17998,8 +17998,8 @@ Acquistare servizi da fornitori commerciali differenti realizza una separazione 
 Formalizziamo la relazione tra accordo, indipendenza e correttezza.
 
 #### 7.1 Probabilità di Errore Congiunto Reale
-Siano M_1 e M_2 due modelli che analizzano il codice C rispetto alla proprietà P.
-Siano E_1 ed E_2 gli eventi in cui rispettivamente M_1 ed M_2 emettono un giudizio errato.
+Siano `M_1| e `M_2` due modelli che analizzano il codice `C` rispetto alla proprietà `P`.
+Siano `E_1` ed `E_2` gli eventi in cui rispettivamente `M_1` ed `M_2` emettono un giudizio errato.
 
 Se i modelli fossero probabilisticamente indipendenti:
 ```text
@@ -18015,7 +18015,8 @@ P(E_1 AND E_2 AND ... AND E_N) >> Product(i=1 to N, P(E_i))
 ```
 
 > [!TIP]
-> **☼ In parole semplici:** Se due modelli fossero davvero indipendenti come due monete lanciate separatamente, la probabilità che entrambi sbaglino nello stesso punto sarebbe piccolissima (il prodotto delle due probabilità singole). Ma poiché hanno studiato su dati simili, se sbaglia il primo (`E_1`), la probabilità che anche il secondo sbagli lì (`P(E_2 | E_1)`) resta molto alta: chiedere a più modelli non moltiplica automaticamente la sicurezza.
+> **☼ In parole semplici:**  
+> Se due modelli fossero davvero indipendenti come due monete lanciate separatamente, la probabilità che entrambi sbaglino nello stesso punto sarebbe piccolissima (il prodotto delle due probabilità singole). Ma poiché hanno studiato su dati simili, se sbaglia il primo (`E_1`), la probabilità che anche il secondo sbagli lì (`P(E_2 | E_1)`) resta molto alta: chiedere a più modelli non moltiplica automaticamente la sicurezza.
 
 #### 7.2 I Quattro Livelli di Valutazione dell'Evidenza
 Per evitare confusioni concettuali nei report di audit, è obbligatorio discriminare quattro livelli analitici:
@@ -18045,19 +18046,20 @@ L'architettura corretta di un audit multi-modello separa rigorosamente la raccol
 ```text
 PIPELINE DI AUDIT MULTI-MODELLO SENZA AUTO-PASS:
 SPECIFICATION
-      |
-      +----> MODEL A ----+
-      |                  |
-      +----> MODEL B ----+--> MATRICE DISCREPANZE
-      |                  |           |
-      +----> MODEL C ----+           v
-                              ANALISI DISACCORDO
-                                     |
-                                     v
-                           EVIDENZA ESTERNA / ORACLE (Step 11/18)
-                                     |
-                                     v
-                              DECISION GATE (Step 23)
+  |
+  +----> MODEL A ----+
+  |                  |
+  +----> MODEL B ----+--> MATRICE DISCREPANZE
+  |                  |           |
+  +----> MODEL C ----+           v
+                          ANALISI DISACCORDO
+                                 |
+                                 v
+                       EVIDENZA ESTERNA / ORACLE
+                           (Step 11/18)
+                                 |
+                                 v
+                          DECISION GATE (Step 23)
 ```
 
 Di seguito l'implementazione in Python:
@@ -18187,7 +18189,8 @@ if __name__ == "__main__":
 ```
 
 > [!TIP]
-> **⌕ Focus di lettura per non programmatori:** Questo script mostra come far analizzare un programma a tre modelli diversi in "stanze separate" (`execute_blind_query`) affinché nessuno sappia cosa hanno risposto gli altri. La funzione sotto esame (`compute`) moltiplica due numeri e poi forza il risultato in uno spazio troppo stretto a 32 bit (`ctypes.c_int32`), tagliando silenziosamente i numeri grandi. Due modelli su tre non si accorgono del troncamento e dicono `PASS`; un solo modello segnala `FAIL`. La funzione finale `evaluate_decision_gate` non usa la maggioranza "2 contro 1", ma rileva il disaccordo e blocca l'approvazione su `UNKNOWN` chiedendo l'esame di un umano.
+> **⌕ Focus di lettura per non programmatori:**  
+> Questo script mostra come far analizzare un programma a tre modelli diversi in "stanze separate" (`execute_blind_query`) affinché nessuno sappia cosa hanno risposto gli altri. La funzione sotto esame (`compute`) moltiplica due numeri e poi forza il risultato in uno spazio troppo stretto a 32 bit (`ctypes.c_int32`), tagliando silenziosamente i numeri grandi. Due modelli su tre non si accorgono del troncamento e dicono `PASS`; un solo modello segnala `FAIL`. La funzione finale `evaluate_decision_gate` non usa la maggioranza "2 contro 1", ma rileva il disaccordo e blocca l'approvazione su `UNKNOWN` chiedendo l'esame di un umano.
 
 > *(Per la matrice completa 11 × 11 di diversità tecnica e il template operativo di Blind Review Prompting, vedi l'appendice: [✦ Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit](#appendice-diversita-llm))*
 
@@ -18223,7 +18226,8 @@ I tre modelli condividono il medesimo bias: valutano il codice secondo il canone
 Un'organizzazione che avesse applicato la regola "3 su 3 dicono PASS -> Deploy autorizzato" avrebbe rilasciato in produzione una vulnerabilità di timing attack con la piena approvazione di tre intelligenze artificiali concordi.
 
 > [!TIP]
-> **☼ In parole semplici (Timing Attack e `hmac.compare_digest`):** La funzione confronta le due stringhe carattere per carattere e si ferma appena ne trova uno diverso (`return False`). Misurando con precisione i microsecondi impiegati dal server a rispondere, un attaccante capisce quando ha indovinato le prime lettere del segreto. Una funzione sicura come `hmac.compare_digest` impiega invece sempre lo stesso identico tempo per confrontare tutti i caratteri, senza dare indizi temporali.
+> **☼ In parole semplici (Timing Attack e `hmac.compare_digest`):**  
+> La funzione confronta le due stringhe carattere per carattere e si ferma appena ne trova uno diverso (`return False`). Misurando con precisione i microsecondi impiegati dal server a rispondere, un attaccante capisce quando ha indovinato le prime lettere del segreto. Una funzione sicura come `hmac.compare_digest` impiega invece sempre lo stesso identico tempo per confrontare tutti i caratteri, senza dare indizi temporali.
 
 ---
 
@@ -18553,21 +18557,17 @@ Lo **STEP 21 (Independent Verification)** affronta specificamente **il problema 
 > *Comprendere quando la verifica effettuata dagli stessi soggetti che hanno costruito il sistema risulta insufficiente rispetto al rischio, alla proprietà critica da verificare o al livello di indipendenza richiesto dalla governance.*
 
 Questo step stabilisce un principio cardine:
-```text
-AUTOVERIFICA
-    può essere
-SUFFICIENTE oppure INSUFFICIENTE
 
+**AUTOVERIFICA** può essere **SUFFICIENTE** oppure **INSUFFICIENTE**  
 a seconda di:
-    - Livello di rischio e blast radius (Step 2)
-    - Criticità dell'invariante di sistema (Step 6)
-    - Competenze effettivamente disponibili (Step 8)
-    - Autorità decisionale necessaria (Step 3)
-    - Presenza di conflitti d'interesse o incentivi sul rilascio
-    - Livello di indipendenza richiesto (Step 10)
-    - Qualità e disaccoppiamento degli oracoli (Step 11)
-    - Requisiti normativi o contrattuali vincolanti
-```
+ - Livello di rischio e blast radius (Step 2)
+ - Criticità dell'invariante di sistema (Step 6)
+ - Competenze effettivamente disponibili (Step 8)
+ - Autorità decisionale necessaria (Step 3)
+ - Presenza di conflitti d'interesse o incentivi sul rilascio
+ - Livello di indipendenza richiesto (Step 10)
+ - Qualità e disaccoppiamento degli oracoli (Step 11)
+ - Requisiti normativi o contrattuali vincolanti
 
 Inoltre, lo STEP 21 formalizza il passaggio essenziale rispetto allo STEP 20:
 > **Aggiungere modelli non è la stessa cosa che introdurre un verificatore indipendente.**
@@ -18611,33 +18611,23 @@ Per padroneggiare questo capitolo è indispensabile aver assimilato i concetti d
 Per evitare confusioni concettuali che compromettono l'assurance, definiamo con precisione i termini e gli standard operativi:
 
 #### 1. Disambiguazione Tassonomica Fondamentale
-```text
-VERIFICATION (Verifica):
-    Raccolta e valutazione sistematica di evidenze oggettive volte ad accertare
-    se il software soddisfa i requisiti e le proprietà specificate a monte.
 
-INDEPENDENT VERIFICATION (Verifica Indipendente):
-    Attività di verifica condotta con un profilo di indipendenza (tecnica,
-    manageriale, finanziaria, epistemica) formalmente proporzionato al rischio
-    e ai requisiti applicabili.
+**VERIFICATION (Verifica):**  
+Raccolta e valutazione sistematica di evidenze oggettive volte ad accertare se il software soddisfa i requisiti e le proprietà specificate a monte.
 
-AUDIT:
-    Valutazione formale, strutturata e documentata condotta rispetto a criteri
-    prefissati, che esamina tipicamente processi organizzativi, controlli di
-    governance, conformità a policy o qualità dei prodotti.
+**INDEPENDENT VERIFICATION (Verifica Indipendente):**  
+Attività di verifica condotta con un profilo di indipendenza (tecnica, manageriale, finanziaria, epistemica) formalmente proporzionato al rischio e ai requisiti applicabili.
 
-CERTIFICATION (Certificazione):
-    Attestazione formale rilasciata da un soggetto, organismo o autorità
-    accreditata, che certifica la conformità a uno schema normativo,
-    regolatorio o standard specifico (es. ISO, FAA, autorità bancarie).
-```
+**AUDIT:**  
+Valutazione formale, strutturata e documentata condotta rispetto a criteri prefissati, che esamina tipicamente processi organizzativi, controlli di governance, conformità a policy o qualità dei prodotti.
+
+**CERTIFICATION (Certificazione):**  
+Attestazione formale rilasciata da un soggetto, organismo o autorità accreditata, che certifica la conformità a uno schema normativo, regolatorio o standard specifico (es. ISO, FAA, autorità bancarie).
 
 Da cui discende una distinzione epistemica vincolante:
-```text
-INDEPENDENT VERIFICATION
-    !=
-CERTIFICATION
-```
+
+**INDEPENDENT VERIFICATION `!=` CERTIFICATION**
+
 Un *Independent Verification Report (IVR)* è un artefatto tecnico di assurance che raccoglie evidenze empiriche e logiche; **non costituisce automaticamente una certificazione legale o un'autorizzazione regolatoria**, salvo nei casi in cui l'ente che lo emette operi formalmente all'interno di uno schema di accreditamento normativo riconosciuto.
 
 #### 2. Le Cinque Dimensioni dell'Indipendenza
@@ -18661,11 +18651,8 @@ Gli standard internazionali come **IEEE 1012** (Standard for System, Software, a
 Nel contesto dello sviluppo assistito da intelligenza artificiale, l'errore più comune consiste nel credere che una separazione fisica o organizzativa garantisca automaticamente un'analisi indipendente.
 
 Dobbiamo stabilire con rigore che:
-```text
-SEPARAZIONE (Fisica, Organizzativa o di Fornitore)
-    !=
-INDIPENDENZA EPISTEMICA
-```
+
+**SEPARAZIONE** (Fisica, Organizzativa o di Fornitore) **`!=` INDIPENDENZA EPISTEMICA**
 
 Un verificatore esterno (es. una società di consulenza o un auditor terzo) può godere di piena indipendenza manageriale e finanziaria, ma avere **zero indipendenza epistemica** se:
 - Riceve dallo sviluppatore il codice sorgente insieme alle sue spiegazioni discorsive;
@@ -18707,20 +18694,15 @@ Per ottenere una reale indipendenza tecnica ed epistemica nel software assistito
 Nel nostro contesto didattico, il protocollo Clean-Room impone una regola operativa precisa:
 > **Il verificatore indipendente deve validare il sistema verificando la specifica, non l'implementazione.**
 
-```text
-FLUSSO OPERATIVO CLEAN-ROOM:
+*FLUSSO OPERATIVO CLEAN-ROOM:*
 1. Lo sviluppatore realizza il componente C a partire dalla specifica S (con ausilio di LLM).
-2. Il verificatore indipendente riceve ESCLUSIVAMENTE la specifica formale S (Step 4)
-   e la firma dell'interfaccia pubblica (API contract).
-3. Il verificatore NON esamina il codice sorgente C, NON legge le chat dell'LLM costruttore
-   e NON eredita i test unitari predisposti per C.
+2. Il verificatore indipendente riceve ESCLUSIVAMENTE la specifica formale S (Step 4) e la firma dell'interfaccia pubblica (API contract).
+3. Il verificatore NON esamina il codice sorgente C, NON legge le chat dell'LLM costruttore e NON eredita i test unitari predisposti per C.
 4. Il verificatore implementa autonomamente:
    - Propri oracoli logici (Step 11);
    - Propri generatori di dati e strategie Property-Based (Step 18);
    - Propri scenari avversariali (Step 19).
-5. Solo al termine della predisposizione del banco di prova, il componente C
-   (trattato come black-box) viene eseguito contro gli oracoli indipendenti.
-```
+5. Solo al termine della predisposizione del banco di prova, il componente C (trattato come black-box) viene eseguito contro gli oracoli indipendenti.
 
 Questo approccio annulla l'**effetto ancoraggio**: il verificatore non adatta le proprie aspettative a ciò che il codice fa già, ma costringe il codice a confrontarsi con ciò che la specifica impone.
 
@@ -18735,21 +18717,22 @@ Per costruire evidenze dotate di effettivo valore probatorio, è obbligatorio di
 - **Independent Verification**: Un processo strutturato, riproducibile e basato su prove oggettive, condotto con un profilo di indipendenza documentato, in cui il verificatore esegue controlli contro specifiche formali assumendosi la responsabilità dell'esito.
 
 #### 2. Verification vs Validation
-Nel discorso didattico si fa spesso riferimento alla nota formula di Barry Boehm:
-- *Verification*: "Did we build the system right?" (Abbiamo costruito il sistema conformemente alla specifica?).
-- *Validation*: "Did we build the right system?" (Abbiamo costruito il sistema giusto rispetto alla reale finalità operativa dell'utente?).
+Nel discorso didattico si fa spesso riferimento alla nota formula di Barry Boehm:  
+*Verification*: "Did we build the system right?" (Abbiamo costruito il sistema conformemente alla specifica?).  
+*Validation*: "Did we build the right system?" (Abbiamo costruito il sistema giusto rispetto alla reale finalità operativa dell'utente?).
+
 Pur essendo una semplificazione didattica utile, **non va intesa come una definizione normativa universale**. Nell'assurance rigorosa:
 - La **Verifica** controlla la tracciabilità e la consistenza logica tra le fasi (es. il codice rispetta i requisiti di basso livello).
 - La **Validazione** accerta che l'intero insieme di requisiti e il prodotto risultante soddisfino la finalità di sistema nel contesto operativo reale (Step 1 e Step 9).
 
 #### 3. La Triade dell'Indipendenza
-```text
-INDIPENDENZA RICHIESTA
-    !=
-INDIPENDENZA OTTENUTA
-    !=
-INDIPENDENZA DIMOSTRATA
-```
+
+**INDIPENDENZA RICHIESTA  
+ `!=`  
+INDIPENDENZA OTTENUTA  
+ `!=`  
+INDIPENDENZA DIMOSTRATA**
+
 - L'**Indipendenza Richiesta** è il requisito di governance stabilito dalla classe di rischio (Step 2 e Step 10).
 - L'**Indipendenza Ottenuta** è la separazione effettivamente attuata nel processo operativo.
 - L'**Indipendenza Dimostrata** è l'evidenza oggettiva che attesta che le fonti di errore, gli oracoli e i modelli concettuali tra costruttore e verificatore sono stati realmente disaccoppiati.
@@ -18768,33 +18751,33 @@ Adottiamo il modello logico di allocazione dell'assurance del manuale.
 
 #### 7.1 Il Modello di Allocazione dell'Assurance
 Definiamo:
-- E: Insieme complessivo delle evidenze disponibili sul sistema.
-- I(E): Profilo multidimensionale di indipendenza delle evidenze rispetto alle fonti di errore rilevanti (procedurale, manageriale, tecnica, epistemica).
-- R: Livello di rischio identificato per il sistema (Step 2).
-- A_req(R): Livello di assurance e profilo di indipendenza richiesto dalla governance per quel dato rischio (Step 10).
-- A_ach(E, I(E)): Livello di assurance effettivamente conseguito sulla base delle evidenze raccolte e del loro grado di indipendenza dimostrato.
+- `E`: Insieme complessivo delle evidenze disponibili sul sistema.
+- `I(E)`: Profilo multidimensionale di indipendenza delle evidenze rispetto alle fonti di errore rilevanti (procedurale, manageriale, tecnica, epistemica).
+- `R`: Livello di rischio identificato per il sistema (Step 2).
+- `A_req(R)`: Livello di assurance e profilo di indipendenza richiesto dalla governance per quel dato rischio (Step 10).
+- `A_ach(E, I(E))`: Livello di assurance effettivamente conseguito sulla base delle evidenze raccolte e del loro grado di indipendenza dimostrato.
 
 ```text
 CONDIZIONE DI DECISION GATE (STEP 23):
 
 Se A_ach(E, I(E)) < A_req(R):
-    STATO = NO-GO (Assurance non stabilita secondo i criteri prescritti)
+  STATO = NO-GO (Assurance non stabilita secondo i criteri prescritti)
 Altrimenti:
-    Valutare la conformità secondo i criteri decisionali applicabili (PASS / FAIL)
+  Valutare la conformità secondo i criteri decisionali applicabili (PASS / FAIL)
 ```
 
 Con la precisazione fondamentale:
 ```text
 I(E) != scalar universal
 ```
-Il profilo I(E) non è un numero; è un vettore qualitativo di conformità lungo le dimensioni critiche:
+Il profilo `I(E)` non è un numero; è un vettore qualitativo di conformità lungo le dimensioni critiche:
 ```text
 I(E) = {
-    procedural_separation:   [ ADEGUATA | INSUFFICIENTE ],
-    managerial_autonomy:     [ ADEGUATA | COMPROMESSA ],
-    financial_decoupling:    [ GARANTITO | CONFLITTO_DI_INTERESSE ],
-    technical_disconnection: [ ORACOLI_ESTERNI | ORACOLI_EREDITATI ],
-    epistemic_diversity:     [ CLEAN_ROOM | PROMPT_CONDIVISI ]
+  procedural_separation:   [ ADEGUATA | INSUFFICIENTE ],
+  managerial_autonomy:     [ ADEGUATA | COMPROMESSA ],
+  financial_decoupling:    [ GARANTITO | CONFLITTO_DI_INTERESSE ],
+  technical_disconnection: [ ORACOLI_ESTERNI | ORACOLI_EREDITATI ],
+  epistemic_diversity:     [ CLEAN_ROOM | PROMPT_CONDIVISI ]
 }
 ```
 Se anche una sola dimensione critica risulta non idonea rispetto al livello di rischio stabilito (ad esempio, presenza di conflitti d'interesse o uso di prompt speculari su componenti ad alto rischio), l'assurance complessiva conseguita `A_{ach}` decade automaticamente al di sotto della soglia minima richiesta, imponendo l'arresto al gate.
@@ -18863,7 +18846,8 @@ pytest test_cleanroom_verification.py
 L'oracolo indipendente intercetta un fallimento per `days = 184`: il codice dello sviluppatore conteneva la condizione `if days >= 184: rate = 0.20` generata erroneamente dall'LLM. Lo sviluppatore non se ne era accorto perché i suoi test unitari verificavano solo campioni a 90 e 200 giorni, condividendo lo stesso angolo cieco.
 
 > [!TIP]
-> **⌕ Focus di lettura per non programmatori:** Senza aver visto il codice del programma fiscale, il verificatore traduce due regole di legge in test automatici (`@given`): 1) la trattenuta fiscale non deve mai superare l'importo lordo; 2) oltre i 183 giorni lavorati in UE l'aliquota è fissa al 15%. Lanciando il test con combinazioni automatiche, lo strumento si accorge subito che al giorno `184` il codice calcolava `20.00` invece di `15.00`.
+> **⌕ Focus di lettura per non programmatori:**  
+> Senza aver visto il codice del programma fiscale, il verificatore traduce due regole di legge in test automatici (`@given`): 1) la trattenuta fiscale non deve mai superare l'importo lordo; 2) oltre i 183 giorni lavorati in UE l'aliquota è fissa al 15%. Lanciando il test con combinazioni automatiche, lo strumento si accorge subito che al giorno `184` il codice calcolava `20.00` invece di `15.00`.
 
 ---
 
@@ -19021,7 +19005,7 @@ Mentre lo Step 11 definisce l'indipendenza tecnica dell'oracolo matematico/softw
 
 #### Gestione degli Stati Decisionali al Gate (Step 23)
 - **PASS**:
-  - Il profilo di indipendenza I(E) soddisfa i requisiti prescritti dal livello di rischio (A_ach >= A_req);
+  - Il profilo di indipendenza `I(E)` soddisfa i requisiti prescritti dal livello di rischio `(A_ach >= A_req)`;
   - Tutti gli invarianti critici sono stati verificati a stanza cieca con esito positivo;
   - L'Independent Verification Report attesta l'assenza di discrepanze bloccanti aperte.
 - **PARTIAL**:
@@ -19427,25 +19411,14 @@ CHIUSURA GIUSTIFICATA
 ```
 
 #### 2. La Catena di Non-Equivalenza Fondamentale
-```text
-FAIL
-    != BUG IDENTIFICATO
 
-BUG IDENTIFICATO
-    != ROOT CAUSE DIMOSTRATA
+- FAIL `!=` BUG IDENTIFICATO  
+- BUG IDENTIFICATO `!=` ROOT CAUSE DIMOSTRATA  
+- ROOT CAUSE IPOTIZZATA `!=` ROOT CAUSE VERIFICATA  
+- PATCH APPLICATA `!=` DISCREPANZA RISOLTA  
+- TEST PASSATO `!=` CAUSA RISOLTA  
+- TEST PASSATO `!=` CHIUSURA GIUSTIFICATA
 
-ROOT CAUSE IPOTIZZATA
-    != ROOT CAUSE VERIFICATA
-
-PATCH APPLICATA
-    != DISCREPANZA RISOLTA
-
-TEST PASSATO
-    != CAUSA RISOLTA
-
-TEST PASSATO
-    != CHIUSURA GIUSTIFICATA
-```
 Un test che fallisce (*FAIL*) attesta unicamente l'esistenza di una discrepanza; non dice dove risieda il bug. Identificare una riga difettosa non dimostra di aver compreso la causa radice. Applicare una modifica al codice che fa tornare il test verde non equivale ad aver risolto la discrepanza; e un test superato non costituisce chiusura giustificata se non è stata condotta la verifica di regressione e approvata la disposition.
 
 #### 3. Spiegazione dell'LLM (Ipotesi) != Diagnosi Verificata (Fatto)
@@ -19477,13 +19450,13 @@ Data una discrepanza osservata `D_0`, sia `{H_1, H_2, ..., H_n}` l'insieme delle
 Sia `Evidence(H_i)` l'insieme delle prove empiriche, logiche o sperimentali raccolte a supporto o confutazione di `H_i`.
 
 La validazione della causa segue una scala epistemica a tre livelli:
-```text
-PLAUSIBLE(H)
-    !=
-SUPPORTED(H)
-    !=
+
+PLAUSIBLE(H)  
+ `!=`  
+SUPPORTED(H)  
+ `!=`  
 VERIFIED(H)
-```
+
 - **PLAUSIBLE(H)**: L'ipotesi è linguisticamente e tecnicamente coerente con lo stacktrace o il log, ma non ha riscontri sperimentali (stato tipico dell'output di un LLM).
 - **SUPPORTED(H)**: Esistono evidenze parziali che correlano l'ipotesi al fallimento, ma non è stata dimostrata la sufficienza della causa.
 - **VERIFIED(H)**: È stato dimostrato sperimentalmente che la rimozione o correzione della condizione H elimina stabilmente la discrepanza `D_0` senza generare regressioni.
@@ -19549,7 +19522,8 @@ VIOLAZIONE GRAVE DELL'INVARIANTE DI MONOTONIA.
 5. **Verifica**: Creazione di un test di regressione atomico sulla transizione 30 -> 31 e riesecuzione di 50.000 iterazioni PBT.
 
 > [!TIP]
-> **⌕ Focus di lettura per non programmatori:** Il codice generato calcola correttamente la penale dei primi 30 giorni (`15.00`), ma dal giorno 31 salta nel ramo `else` e calcola la quota solo sui giorni eccedenti (`31 - 30 = 1`), dimenticando di sommare la base già maturata. Il test di *monotonia* controlla semplicemente una regola di buon senso: più giorni passano, più la penale deve restare uguale o salire, mai scendere da 15 euro a 1 euro.
+> **⌕ Focus di lettura per non programmatori:**  
+> Il codice generato calcola correttamente la penale dei primi 30 giorni (`15.00`), ma dal giorno 31 salta nel ramo `else` e calcola la quota solo sui giorni eccedenti (`31 - 30 = 1`), dimenticando di sommare la base già maturata. Il test di *monotonia* controlla semplicemente una regola di buon senso: più giorni passano, più la penale deve restare uguale o salire, mai scendere da 15 euro a 1 euro.
 
 ---
 
@@ -19608,7 +19582,8 @@ Il manuale adotta il seguente formato strutturato per la tracciabilità delle an
 ```
 
 > [!NOTE]
-> **⚓︎ Come leggere questa scheda JSON (per non tecnici):** Non è codice da eseguire, ma una cartella clinica strutturata del difetto, divisa in cinque parti leggibili: come è stato scoperto e quanto è grave (`classification`), il caso preciso che lo ha fatto fallire (`discrepancy_details`), quali ipotesi di causa sono state smentite o provate (`causal_analysis`), la decisione presa (`disposition`) e la prova che la riparazione ha superato i test (`verification_of_fix`).
+> **⚓︎ Come leggere questa scheda JSON (per non tecnici):**  
+> Non è codice da eseguire, ma una cartella clinica strutturata del difetto, divisa in cinque parti leggibili: come è stato scoperto e quanto è grave (`classification`), il caso preciso che lo ha fatto fallire (`discrepancy_details`), quali ipotesi di causa sono state smentite o provate (`causal_analysis`), la decisione presa (`disposition`) e la prova che la riparazione ha superato i test (`verification_of_fix`).
 
 ---
 
@@ -19780,21 +19755,21 @@ Le condizioni di accettabilità dipendono dal processo di assurance stabilito:
 
 ```text
   [ Steps 16-21: Test, SAST, PBT, Threat Model, Multi-Model, IV ]
-                           |
-                           v Forniscono Segnali di Anomalia e Controesempi
+            |
+            v Forniscono Segnali di Anomalia e Controesempi
 +-------------------------------------------------------------------------+
 |         STEP 22: Discrepancy Analysis                                   |
 |         (Triage, Diagnosi Causale, Disposition, Test di Regressione)    |
 +-------------------------------------------------------------------------+
-                           |
-                           +---> Alimenta lo Step 23: Decision Gates
-                           |     (Fornisce il Discrepancy Record tracciato per PASS/NO-GO)
-                           |
-                           +---> Alimenta lo Step 24: Human Review
-                           |     (Sottopone all'approvazione umana le disposizioni As-Is)
-                           |
-                           +---> Alimenta lo Step 30: Risk Register
-                                 (Registra le anomalie accettate e le cause sistemiche)
+            |
+            +---> Alimenta lo Step 23: Decision Gates
+            |     (Fornisce il Discrepancy Record tracciato per PASS/NO-GO)
+            |
+            +---> Alimenta lo Step 24: Human Review
+            |     (Sottopone all'approvazione umana le disposizioni As-Is)
+            |
+            +---> Alimenta lo Step 30: Risk Register
+                  (Registra le anomalie accettate e le cause sistemiche)
 ```
 
 ---
@@ -19838,7 +19813,8 @@ Un microservizio di elaborazione pagamenti va in crash sporadicamente sotto cari
   - La **causa radice reale** risiedeva nell'inversione dell'ordine di acquisizione dei lock (ABBA deadlock), che bloccava i thread lasciando le connessioni al database aperte all'infinito.
 
 > [!TIP]
-> **☼ In parole semplici (che cos'è un *ABBA deadlock* con i *mutex*):** Un *mutex* è una chiave esclusiva usata per proteggere una risorsa condivisa. Se per completare un'operazione servono due chiavi (A e B), ma il primo lavoratore prende A e aspetta B mentre il secondo prende B e aspetta A, entrambi restano paralizzati all'infinito ad aspettarsi a vicenda finché si esauriscono tutte le risorse disponibili.
+> **☼ In parole semplici (che cos'è un *ABBA deadlock* con i *mutex*):**  
+> Un *mutex* è una chiave esclusiva usata per proteggere una risorsa condivisa. Se per completare un'operazione servono due chiavi (A e B), ma il primo lavoratore prende A e aspetta B mentre il secondo prende B e aspetta A, entrambi restano paralizzati all'infinito ad aspettarsi a vicenda finché si esauriscono tutte le risorse disponibili.
 
 - **Limiti della Diagnosi dell'LLM**: Questo scenario dimostra l'**Allucinazione Causale** dell'LLM: il modello ha identificato la risorsa visibile che generava l'eccezione finale (le connessioni) e ha proposto una toppa sintomatica (*aumentare il pool*). Tale modifica ha semplicemente ritardato la manifestazione del deadlock, rendendolo ancora più devastante per i carichi di produzione. La diagnosi reale ha richiesto uno strumento deterministico di verifica (ThreadSanitizer).
 
@@ -19952,8 +19928,8 @@ Un Decision Gate Basato sull'Evidenza non è un semplice script che arresta il b
 La configurazione e la governance di un Decision Gate richiedono di distinguere nettamente tre profili di competenza:
 
 ```text
-[Competenza di Automazione]     !=    [Competenza Epistemica]     !=    [Autorità Decisionale]
-(Scrivere YAML / Pipeline CI)         (Valutare il valore probatorio)   (Accettare il rischio d'impatto)
+[Competenza di Automazione]    !=   [Competenza Epistemica]    !=   [Autorità Decisionale]
+(Scrivere YAML / Pipeline CI)       (Valutare il valore probatorio) (Accettare il rischio d'impatto)
 ```
 
 1. **Competenza di Automazione**: Saper configurare strumenti di orchestrazione (GitHub Actions, GitLab CI, Jenkins, ArgoCD), aggregare log e gestire codici di uscita del sistema operativo.
@@ -20014,22 +19990,20 @@ EVIDENCE
 
 Il lettore deve memorizzare e applicare costantemente le seguenti disuguaglianze logiche:
 
-```text
-HIGH EVIDENCE VOLUME        !=  SUFFICIENT EVIDENCE
+**`HIGH EVIDENCE VOLUME != SUFFICIENT EVIDENCE`**  
 (Centinaia di test banali non costituiscono evidenza sulle proprietà critiche)
 
-HIGH MODEL CONFIDENCE       !=  SUFFICIENT EVIDENCE
+**`HIGH MODEL CONFIDENCE != SUFFICIENT EVIDENCE`**  
 (L'assertività con cui l'LLM dichiara corretto il codice non ha valore probatorio)
 
-PIPELINE GREEN              !=  ASSURANCE
+**`PIPELINE GREEN != ASSURANCE`**  
 (L'assenza di crash infrastrutturali non equivale ad aver dimostrato la conformità)
 
-MODEL AGREEMENT             !=  INDEPENDENCE
+**`MODEL AGREEMENT != INDEPENDENCE`**  
 (L'accordo tra due LLM con dataset o prompt simili può essere bias correlato)
 
-PASS                        !=  PROOF OF CORRECTNESS
+**`PASS != PROOF OF CORRECTNESS`**  
 (Un test superato dimostra solo che il codice non ha fallito su quegli specifici input)
-```
 
 #### 4.3 Terminologia Operativa
 
@@ -20630,37 +20604,25 @@ Come stabilito nel modello formale, l'indice di indipendenza I(E) governa l'ammi
 
 Per valutare se due evidenze sono realmente indipendenti o viziate da errore correlato, il valutatore del gate deve verificare la separazione lungo quattro dimensioni concrete:
 
-```text
-Dimensione Separazione      Condizione di Indipendenza Reale
-------------------------------------------------------------------------------------------------
-1. Origine dei Dati         L'oracolo attinge a standard esterni, tabelle certificate 
-                            o formule storiche preesistenti al prompt.
-
-2. Origine del Prompt       I test non sono stati generati nella stessa sessione di contesto 
-                            (chat session / context window) che ha prodotto il codice.
-
-3. Famiglia di Modelli      Se si impiega un LLM per la generazione di proprietà di test, 
-                            il modello deve appartenere a una famiglia architetturale 
-                            e a una base di pre-training disaccoppiata dal modello generatore.
-
-4. Meccanismo di Giudizio   La verifica deve essere eseguita da un compilatore, un runtime 
-                            o un motore di test deterministico, mai da un LLM-as-a-judge.
-```
+| Dimensione Separazione | Condizione di Indipendenza Reale |
+|---|---|
+| 1. Origine dei Dati | L'oracolo attinge a standard esterni, tabelle certificate o formule storiche preesistenti al prompt. |
+| 2. Origine del Prompt | I test non sono stati generati nella stessa sessione di contesto (chat session / context window) che ha prodotto il codice. |
+| 3. Famiglia di Modelli | Se si impiega un LLM per la generazione di proprietà di test, il modello deve appartenere a una famiglia architetturale e a una base di pre-training disaccoppiata dal modello generatore. |
+| 4. Meccanismo di Giudizio | La verifica deve essere eseguita da un compilatore, un runtime o un motore di test deterministico, mai da un LLM-as-a-judge. |
 
 #### Tabella Operativa di Ponderazione dell'Indipendenza
 
 Nelle Gate Policy del manuale, l'indice I(E) è calcolato secondo la seguente scala didattica:
 
-```text
-Configurazione della Prova                                              Valore I(E)
-------------------------------------------------------------------------------------
-Test unitari generati dallo stesso prompt che ha generato il codice        0.05
-Test generati da un secondo prompt con il medesimo modello                 0.20
-Test generati da un modello differente senza oracolo esterno formalizzato  0.40
-Test basati su proprietà (PBT) con oracolo derivato da specifica RFC/formale 0.85
-Suite di test umana preesistente (Test-Driven Development pre-LLM)         1.00
-Verifica formale deterministica (Model checking / Analisi statica provata) 1.00
-```
+| Configurazione della Prova | Valore I(E) |
+|---|---|
+| Test unitari generati dallo stesso prompt che ha generato il codice | 0.05 |
+| Test generati da un secondo prompt con il medesimo modello | 0.20 |
+| Test generati da un modello differente senza oracolo esterno formalizzato | 0.40 |
+| Test basati su proprietà (PBT) con oracolo derivato da specifica RFC/formale | 0.85 |
+| Suite di test umana preesistente (Test-Driven Development pre-LLM) | 1.00 |
+| Verifica formale deterministica (Model checking / Analisi statica provata) | 1.00 |
 
 Se la Gate Policy per un componente ad alto rischio impone `MinInd = 0.8`, l'esibizione di test generati da LLM senza oracolo normativo comporta istantaneamente `I(E) < MinInd`, forzando il verdetto su **UNKNOWN** e bloccando la transizione.
 
@@ -21038,25 +21000,23 @@ EVIDENCE
 
 Il revisore deve operare mantenendo sempre presenti le seguenti disuguaglianze di fondo:
 
-```text
-HUMAN APPROVAL              !=  PROOF OF CORRECTNESS
+**`HUMAN APPROVAL != PROOF OF CORRECTNESS`**  
 (L'approvazione umana non rende il codice matematicamente immune da errori)
 
-HUMAN APPROVAL              !=  ZERO RISK
+**`HUMAN APPROVAL != ZERO RISK`**  
 (Approvare significa accettare un rischio residuo esplicito, non annullarlo)
 
-HUMAN APPROVAL              !=  INDEPENDENT EVIDENCE BY ITSELF
+**`HUMAN APPROVAL != INDEPENDENT EVIDENCE BY ITSELF`**  
 (Il parere positivo del revisore non sostituisce una prova empirica mancante)
-```
 
 E sul piano dell'interazione con i Large Language Models:
 
 ```text
 LLM GENERATES 
-    != HUMAN UNDERSTANDS 
-    != HUMAN IS COMPETENT TO APPROVE 
-    != PROPERTY IS VERIFIED 
-    != DECISION IS JUSTIFIED
+  != HUMAN UNDERSTANDS 
+  != HUMAN IS COMPETENT TO APPROVE 
+  != PROPERTY IS VERIFIED 
+  != DECISION IS JUSTIFIED
 ```
 
 #### 4.3 Terminologia Operativa
