@@ -2179,6 +2179,12 @@ window.__CONTEXTUAL_DICT__ = Object.assign(window.__CONTEXTUAL_DICT__ || {}, {
     definition: "Scheda di pericolo presente nel Risk Register priva di collegamenti verso requisiti architetturali, oracoli di verifica o commit di implementazione, impossibile da auditare.",
     aliases: ["Voce di Rischio Orfana"]
   },
+  "Ortogonalità": {
+    title: "Ortogonalità (agg. ortogonale)",
+    category: "Proprietà Relazionali",
+    definition: "In senso generale, indica l'indipendenza reciproca tra due elementi, dimensioni o aspetti: variare l'uno non altera né vincola l'altro.",
+    aliases: ["ortogonale", "ortogonali"]
+  },  
   "Over-Scoped Token": {
     title: "The Over-Scoped Token (Il Token Universale)",
     category: "Anti-Pattern di Sicurezza",
