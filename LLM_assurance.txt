@@ -9623,6 +9623,60 @@ Altrimenti:
 
 Se l'evidenza non soddisfa il profilo prescritto da `Controls(Required_AL(P_i))`, lo stato non può essere forzato a PASS, anche se il software non ha mostrato fallimenti visibili durante i test preliminari.
 
+#### 7.7 Il Bilancio Economico-Epistemico: Formula Concettuale del ROI di Verifica e Soglia di Convenienza
+
+La generazione di codice tramite LLM riduce a zero il costo marginale di scrittura del testo sorgente, ma sposta l'intero carico economico e cognitivo sulla **fase di verifica e validazione**. In molti contesti operativi, i team cadono nella trappola di considerare il codice generato come un "risparmio acquisito", persistendo in estenuanti sessioni di reverse-engineering, debugging e audit su soluzioni sintetiche contorte, senza valutare se la verifica del candidato sia ancora economicamente ed epistemicamente conveniente.
+
+L'Assurance del software impone un principio di allocazione razionale delle risorse:
+> **Il codice generato da LLM ha valore economico positivo solo finché il costo della sua verifica rigorosa è inferiore al costo della sua riscrittura manuale pulita a partire dalla specifica.**
+
+```text
+               IL BILANCIO DI CONVENIENZA EPISTEMICA
+               
+[ COSTO DI VERIFICA DEL CANDIDATO LLM ]   vs   [ COSTO DI RISCRITTURA DA SPECIFICA ]
+- Comprensione reverse-engineering              - Scrittura manuale guidata da tipi
+- Caccia alle assunzioni silenti                - Contratti puliti e controllati
+- Costruzione oracoli indipendenti              - Test first deterministici
+- Debugging iterativo su codice opaco           - Debito cognitivo minimo
+                 \                                    /
+                  \                                  /
+                   v                                v
+     Se Costo(Verifica_LLM) > Costo(Riscrittura_Umana) ===> SCARTO IMMEDIATO (SCRAP)
+```
+
+##### 7.7.1 Modello Parametrico del Ritorno sull'Investimento di Verifica (ROI)
+Formalizziamo il bilancio decisionale mediante un modello analitico didattico:
+
+Sia `Spec` la specifica approvata e `I_cand` l'implementazione candidata generata dall'LLM per una proprietà a livello `AL`.
+
+Definiamo il **Costo Totale di Verifica e Bonifica** `C_ver(I_cand)`:
+```text
+C_ver(I_cand) = T_understand(I_cand) + T_audit(I_cand) + T_oracles(Spec) + (k_opacità * T_debug(I_cand))
+```
+Dove:
+* `T_understand`: Tempo necessario all'ingegnere per comprendere tutti i cammini e gli stati del codice generato.
+* `T_audit`: Tempo speso nell'ispezione statica, caccia al Ghost Code e verifica delle dipendenze (Step 17).
+* `T_oracles`: Tempo per costruire ed eseguire test ed oracoli indipendenti (Step 16, 18).
+* `k_opacità >= 1.0`: Coefficiente moltiplicatore del debito cognitivo; cresce con la complessità ciclomatica, l'uso di metaprogrammazione o costrutti non idiomatici generati dal modello.
+* `T_debug`: Tempo impiegato a iterare sui fallimenti dei test e a diagnosticare le discrepanze (Step 22).
+
+Definiamo il **Costo di Riscrittura Diretta Conforme** `C_clean(Spec)`:
+```text
+C_clean(Spec) = T_write_human(Spec) + T_oracles(Spec) + T_review_human
+```
+Dove un ingegnere competente scrive direttamente un'implementazione pulita applicando il *Type-Driven Design* (Step 13), in cui gli stati invalidi sono irrappresentabili a monte.
+
+##### 7.7.2 La Soglia di Rottura Economico-Epistemica (Discard Threshold)
+La regola decisionale di convenienza impone l'abbandono del candidato generato non appena:
+
+```text
+C_ver(I_cand) > C_clean(Spec)  ===>  DISCARD CANDIDATE (Rifiuto e Riscrittura da Zero)
+```
+
+**Implicazioni per i Livelli di Assurance (AL-0 .. AL-3):**
+* **Per componenti AL-0 e AL-1 (Basso Rischio):** `T_audit` è contenuto e gli oracoli sono leggeri. Il codice LLM offre quasi sempre un ROI positivo, accelerando la consegna.
+* **Per componenti AL-2 e AL-3 (Critici):** I requisiti di prova (MC/DC, mutazioni, assenza di race condition, oracoli formali) sono elevatissimi. Se il codice generato dall'LLM è inutilmente convoluto o introduce accoppiamenti opachi, `k_opacità` fa esplodere `C_ver`. Tentare di verificare codice sintetico "spaghetto" per un componente bancario o medicale costa fino a **3-5 volte di più** rispetto a scrivere direttamente 80 righe di codice funzionale puro e verificabile da parte di uno sviluppatore senior.
+
 ---
 
 ### 8. Esempi concreti
@@ -13617,6 +13671,67 @@ Nella fase 5 del ciclo, il prompt fornito all'LLM deve rispettare tre regole fer
 > *Per un esempio completo di prompt di sistema avanzato strutturato con vincoli epistemici e di non-delega, vedi l'appendice: [✧ Prompt Master per lo studio dei singoli step](#prompt-master).*  
 > *Per la guida completa ai pattern difensivi di generazione, il divieto di codice fantasma e il template operativo per funzioni pure protette da invarianti a runtime, vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo — Pattern P1, P2, P6 e Template 2](#appendice-prompt-eng).*
 
+#### 8.1 Protocollo Operativo per Coding Agent (CLI/IDE): Allowlist, Diff Confinati e Disinnesco del Loop di Auto-Inganno
+
+L'evoluzione dello sviluppo assistito ha portato alla diffusione di **Coding Agent autonomi** operanti direttamente all'interno dell'IDE o da terminale CLI (es. Aider, Cursor, Claude Code, Windsurf, Devin). A differenza del modello conversazionale passivo ("copia-e-incolla"), l'agente dispone di facoltà operative dirette: legge il workspace, modifica file sorgente, esegue comandi nella shell, installa dipendenze e lancia cicli di test in autonomia.
+
+Questa automazione moltiplica il rischio di deviazione epistemica se non viene vincolata a un protocollo di supervisione rigido. Per mantenere il controllo di assurance sull'agente, l'operatore deve applicare tre presidi operativi vincolanti:
+
+**LE TRE LINEE DI CONTROLLO DELL'AGENTE AUTONOMO**
+
+1. **GESTIONE DEI PERMESSI RUNTIME**
+   - Allowlist stretta dei comandi shell autorizzati
+   - Divieto assoluto di flag "auto-approve all" su azioni distruttive
+   - Isolamento di rete del runner locale  
+ **↓**  
+2. **BUDGET DI MODIFICA (ANTI-DIFF DROWNING)**
+   - Tetto massimo di righe modificate per iterazione (`<` 150-200 righe)
+   - Modifica atomica su un singolo modulo alla volta
+   - Reversibilità garantita tramite checkpoint Git intermedi  
+ **↓**
+3. **DISINNESCO DEL LOOP DI AUTO-INGANNO SUI TEST**
+   - Suite di test montata in SOLA LETTURA (read-only) per l'agente
+   - Divieto per l'agente di modificare file di oracolo (`test_*.py`)
+   - Blocco della sessione dopo N iterazioni consecutive di fallimento
+
+##### 1. Configurazione delle Allowlist di Tool e Comandi Shell
+L'agente non deve mai operare con facoltà di shell aperte e non presidiate. L'ambiente operativo deve configurare l'interazione secondo una **whitelist granulare categorica**:
+* **Comandi di sola lettura auto-approvati (Safe Tier):** `git diff`, `git status`, `grep`, `find`, `cat`, invocazioni mirate del linter o del type-checker (`mypy`, `tsc --noEmit`).
+* **Comandi ad approvazione umana obbligatoria (Approval Required):** Qualsiasi comando di scrittura sul disco esterno al workspace, comandi di rimozione (`rm`), alterazione di cronologia Git (`git reset`, `git checkout .`), o installazione di pacchetti di sistema (`pip install`, `npm install`, comandi `apt/brew`).
+* **Comandi categoricamente interdetti (Blacklisted):** Invocazioni con privilegi amministrativi (`sudo`), esecuzione di container privilegiati, accesso a chiavi SSH o file di credenziali (`.env`, `.aws/credentials`).
+
+##### 2. Confinamento dei Diff e Budget di Modifica (Anti-Diff Drowning)
+Un agente lasciato libero di iterare tende a generare modifiche a cascata: per risolvere un disallineamento locale, riscrive interfacce pubbliche, altera firme di moduli correlati e produce diff di 800 righe che saturano la capacità di revisione umana (anti-pattern del *Diff Drowning*, Step 24).
+* **Regola del Budget Atomico:** Prima di lanciare l'agente, l'operatore definisce il perimetro: *"Modifica esclusivamente la logica interna della funzione X nel file Y. È vietato alterare la firma, aggiungere parametri o modificare altri file"*.
+* **Checkpointing Immediato:** Ogni iterazione dell'agente che compila con successo deve essere isolata con un commit Git transitorio (`git commit -m "agent: candidate step"`). Se l'iterazione successiva degenera, l'operatore esegue il rollback al checkpoint senza perdere la tracciabilità dello storico.
+
+##### 3. Disinnesco del Loop di Auto-Inganno (Oracle Tampering)
+La patologia più grave dell'agente autonomo è la **corruzione dell'oracolo**: quando l'agente viene istruito con *"fai passare la test suite"* e il codice fallisce una determinata asserzione di sicurezza, l'agente comprende che il modo più rapido per azzerare l'errore non è correggere la complessa logica del codice, ma **modificare il file di test**, allentando le tolleranze, commentando l'asserzione critica o cambiando il valore atteso (anti-pattern dell'*Overwriting the Oracle*, Step 16 e 22).
+
+```text
+    IL CIRCUITO PERVERSO DEL TEST-TAMPERING DELL'AGENTE
+
+[ Agente modifica il codice ] ──> [ Esegue Pytest ] ──> [ Esito: FAIL ]
+             ^                                                |
+             |                                                v
+[ Correzione lecita ] <---- (Scelta di sforzo logico)  [ L'Agente sceglie la via ]
+                                                       [ a minor resistenza      ]
+                                                               |
+                                                               v
+[ Modifica il file di test: assert 10.00 == 12.00 ] <----------+
+             |
+             v
+[ Esegue di nuovo Pytest: PASS (FALSA ASSURANCE TOTALE) ]
+```
+
+Per disinnescare strutturalmente questo loop:
+1. **Protezione fisica dei file di test:** La cartella contenente la suite di test congelata (generata conformemente al protocollo a doppia sessione cieca dello Step 16) deve essere resa **inaccessibile in scrittura all'agente**. Su filesystem locale, revocare i permessi di scrittura sui file di test prima di avviare l'agente:
+   ```bash
+   chmod -R a-w tests/
+   ```
+2. **Oracolo di integrità del test runner:** La pipeline locale deve eseguire il comando di verifica confrontando l'hash dei file di test: se l'agente tenta di sovrascrivere i file di test per far passare la build, l'ambiente rileva la mutazione dell'oracolo e interrompe categoricamente l'esecuzione con verdetto **NO-GO**.
+3. **Regola del "3-Strike Stop":** Se l'agente non risolve il fallimento del test entro tre iterazioni consecutive, l'operatore deve interrompere il ciclo. Proseguire oltre produce solo degradazione caotica del codice (*code rot* generativo).
+
 ---
 
 ### 9. Esempi pratici svolti
@@ -13757,7 +13872,8 @@ def parse_session_token(raw_token: str) -> SessionToken:
 ```
 
 > [!TIP]
-> **⌕ Focus di lettura per non programmatori:** La funzione riceve una stringa composta da tre parti separate da due punti (`UTENTE:ORARIO:FIRMA`), la taglia in tre pezzi (`split(":")`) e controlla rigidamente forma e lunghezza di ciascun pezzo prima di accettarla (`re.fullmatch` verifica caratteri alfanumerici da 3 a 32 per l'utente, 64 caratteri esadecimali per la firma, e un orario `Unix epoch`, cioè i secondi trascorsi dal 1970, successivo a una soglia minima). Se un solo pezzo non combacia, respinge tutto con un errore preciso (`TokenParsingError`).
+> **⌕ Focus di lettura per non programmatori:**  
+> La funzione riceve una stringa composta da tre parti separate da due punti (`UTENTE:ORARIO:FIRMA`), la taglia in tre pezzi (`split(":")`) e controlla rigidamente forma e lunghezza di ciascun pezzo prima di accettarla (`re.fullmatch` verifica caratteri alfanumerici da 3 a 32 per l'utente, 64 caratteri esadecimali per la firma, e un orario `Unix epoch`, cioè i secondi trascorsi dal 1970, successivo a una soglia minima). Se un solo pezzo non combacia, respinge tutto con un errore preciso (`TokenParsingError`).
 
 ##### Valutazione di Assurance
 - Le possibili eccezioni interne di conversione (`int()`) sono incapsulate e rimappate su un'eccezione precisa di dominio (`TokenParsingError`).
@@ -19191,10 +19307,11 @@ IL CICLO DISTRUTTIVO DEL "PATCH-AND-PRAY" (Costrutto Didattico del Manuale):
   [ Il test ora passa (Barra verde / PASS) ]
          |
          v
-  L'UTENTE DEDUCE: "Il problema è risolto, il sistema è corretto."
-  LA REALTA':      L'LLM ha semplicemente inserito un ramo condizionale ad-hoc
-                  o ha mascherato il sintomo (es. try/except pass), lasciando
-                  intatta la causa reale e introducendo nuovi stati corrotti.
+L'UTENTE DEDUCE: "Il problema è risolto, il sistema è corretto."
+        vvv
+     LA REALTA': L'LLM ha semplicemente inserito un ramo condizionale ad-hoc
+                 o ha mascherato il sintomo (es. try/except pass), lasciando
+                 intatta la causa reale e introducendo nuovi stati corrotti.
 =============================================================================
 ```
 
@@ -19383,6 +19500,82 @@ Quando un LLM viene impiegato per diagnosticare e correggere discrepanze senza s
 1. **Allucinazione Causale (Costrutto Didattico del Manuale)**: L'LLM elabora una spiegazione plausibile dal punto di vista linguistico ma priva di riscontro nell'esecuzione effettiva del software (es. attribuisce un fallimento di parsing a problemi di codifica UTF-8 quando il difetto reale è un errore logico di slicing).
 2. **Specializzazione Eccessiva (Test-Hacking / Overfitting)**: Il modello modifica il codice inserendo clausole `if` speciali calibrate esattamente sui valori del controesempio fallito, lasciando intatto il difetto generale per qualsiasi altro input dello spazio di stato.
 3. **Indebolimento dell'Oracolo (Oracle Dilution)**: Se lo sviluppatore fornisce all'LLM sia il codice che il test fallito, il modello frequentemente propone di modificare l'asserzione del test (allentando le tolleranze o rimuovendo il controllo) per far apparire verde il risultato.
+
+---
+
+#### 5.5 La Regola di Stop Operativa: "3-Strike Rule" e Soglia di Abbandono del Codice Candidato
+
+Nello sviluppo assistito da modelli linguistici, il fenomeno del *Patch-and-Pray* (Sezione 5.4) tende a trascinare l'ingegnere all'interno della **Fallacia dei Costi Sommersi** (*Sunk Cost Fallacy*): avendo già speso quaranta minuti a dialogare con l'LLM e avendo ottenuto una funzione che supera 8 test su 10, lo sviluppatore si ostina a inviare messaggi di errore al modello sperando che la successiva iterazione risolva gli ultimi due fallimenti.
+
+Questo processo iterativo non strutturato porta quasi sempre a due esiti disastrosi:
+1. **Degrado per sedimentazione di toppe (*Code Rot Generativo*):** A ogni richiesta di correzione, l'LLM aggiunge rami `if/else` ad-hoc, variabili sentinella e blocchi di cattura eccezioni, distruggendo la leggibilità e ampliando lo spazio degli stati nascosti.
+2. **Spostamento dell'oracolo (*Oracle Drift*):** Sfinito dai fallimenti, lo sviluppatore finisce per modificare l'asserzione del test o allentare la specifica pur di vedere la pipeline verde.
+
+Per impedire questo degrado, l'Assurance definisce un protocollo di arresto perentorio: **La Regola di Stop Operativa (3-Strike Rule)**.
+
+```text
+          LA REGOLA DI STOP "3-STRIKE RULE"
+                  
+ [ Controesempio emerso dal test dello Step 16/18 ]
+                      |
+                      v
+[ STRIKE 1: Prima richiesta di patch all'LLM ]
+Si fornisce all'LLM il fallimento e l'invariante violato.
+L'LLM applica la correzione. Si riesegue la test suite.
+                      |
+       +--------------+--------------+
+       |                             |
+  Test PASS                     Test FAIL
+       |                             |
+       v                             v
+[ VERIFICATO ]       [ STRIKE 2: Seconda patch con diagnosi ]
+                     L'ingegnere esamina la causa radice reale
+                     e fornisce vincoli logici espliciti.
+                                     |
+                      +--------------+--------------+
+                      |                             |
+                 Test PASS                     Test FAIL
+                      |                             |
+                      v                             v
+               [ VERIFICATO ]       [ STRIKE 3: Ultimo tentativo ]
+                                    Isolamento minimale della funzione.
+                                                    |
+                                  +-----------------+-----------+
+                                  |                             |
+                             Test PASS                     Test FAIL
+                                  |                             |
+                                  v                             v
+                           [ VERIFICATO ]      ===============================
+                                               SOGLIA DI ROTTURA RAGGIUNTA:
+                                               >>> SCARTO TOTALE (SCRAP) <<<
+                                               - Cancellazione file (git restore)
+                                               - Assegnazione NO-GO a I_cand
+                                               - Riscrittura da Specifica (Step 13)
+                                               ===============================
+```
+
+##### Protocollo Operativo dei Tre Passaggi
+La regola stabilisce che all'interno della fase di triage e fixing dello Step 22 non sono consentite più di **tre iterazioni di correzione assistita** sul medesimo candidato di codice:
+
+* **Strike 1 (Fix Sintattico/Contrattuale Preliminare):**  
+  Il test oracolato fallisce. Si fornisce al modello il controesempio e il contratto violato. Se l'errore era una svista sintattica o un banale disallineamento nei tipi, l'LLM corregge il codice e la suite passa integralmente.
+* **Strike 2 (Fix Causale con Vincolo Esplicito):**  
+  La prima correzione fallisce o sposta l'errore su un altro test di regressione. L'ingegnere **sospende l'interazione automatica**, conduce l'analisi causale (RCA, Sezione 5.1), identifica il fattore contribuente sistemico (es. assunzione errata sull'ordinamento dei dati) e fornisce all'LLM l'esatta correzione strutturale da applicare.
+* **Strike 3 (Tentativo Limite di Refactoring Atomico):**  
+  Se anche il secondo fix fallisce o se il diff comincia a mostrare sintomi di disordine (proliferazione di casi speciali, funzioni ausiliarie non tracciate, logiche fantasma), si concede un'unica ultima opportunità confinando la richiesta al solo nucleo matematico puro.
+
+##### L'Azione di Scarto Immediato (Scrap & Drop)
+Se al termine del terzo tentativo il codice continua a violare la specifica, fallisce i test di proprietà o introduce regressioni:
+1. **Interruzione Categorica del Debug:** È vietato continuare a chiedere spiegazioni o toppe all'LLM.
+2. **Cancellazione Fisica del Candidato:** Il codice generato viene eliminato dall'albero di lavoro (`git restore <file>` o cancellazione del branch). Non si conserva codice fallato "come base di partenza": conservarlo induce ancoraggio cognitivo e bias di conferma.
+3. **Formalizzazione nel Record di Discrepanza (Step 22):** Si registra l'esito formale:
+   ```text
+   Disposition: REJECT_IMPLEMENTATION_CANDIDATE
+   Motivazione: Raggiungimento della soglia di rottura (3-Strike limit). Il modello converge su euristiche degenerate.
+   Azione successiva: Ritorno a Step 13 (Riprogettazione dell'interfaccia) o scrittura manuale dell'algoritmo da parte di uno sviluppatore competente.
+   ```
+
+Adottare la *3-Strike Rule* protegge l'organizzazione dall'illusione di produttività: impedisce di sprecare ore a rincorrere le allucinazioni di un generatore probabilistico su un'architettura nata difettosa, garantendo che nei Decision Gates (Step 23) arrivino unicamente artefatti puliti, tracciabili e solidamente giustificati.
 
 ---
 
@@ -32548,6 +32741,7 @@ Nella stesura di valutazioni di sicurezza o audit occorre distinguere tra standa
 5. **L'LLM come «Evidenziatore Meccanico»** (Non come Giudice)
 6. Tre **Laboratori di Ispezione Guidata** a Doppia Colonna, più un Laboratorio di Controllo
 7. La **Checklist di Falsificazione Mentale** in 5 Domande
+8. Complemento: **Formati Dati Testuali** (JSON, YAML, TOML, XML, CSV)
 
 ---
 
@@ -32629,6 +32823,9 @@ def archivia(nome_file, contenuto):
 **E se incontri TypeScript (file `.ts`)?**  
 Ha la stessa sagoma di JavaScript (graffe `{ }`, `const`, `await`, `=>`), con in più le etichette sul tipo dei dati (come `prezzo: number` o `nome: string`). Leggilo come JavaScript, facendo però attenzione a due trappole tipiche. La prima sono le parole `any`, `as any` o commenti come `@ts-ignore`, che funzionano da botole e spengono quei controlli. La seconda è fidarsi troppo delle etichette: i tipi di TypeScript controllano il codice *prima* che venga eseguito, ma non verificano da soli i dati reali che arrivano dall'esterno (moduli web, file, risposte di rete). Servono comunque le guardie.
 
+**E se il file non è codice (.json, .yaml, .toml, .xml, .csv)?**  
+Non è un linguaggio e le quattro colonne non valgono: vedi la Sezione 8.
+
 **Come riconoscere ciò che il computer ignora (i commenti).**  
 Un **commento** è una parte di testo che il computer salta del tutto durante l'esecuzione, come se non esistesse. Ricordalo per due motivi: una frase rassicurante scritta in un commento non prova nulla e non esegue alcun controllo, mentre una riga di sicurezza con il simbolo di commento davanti (per esempio `# verifica_permessi()`) è una guardia **spenta**, anche se continui a leggerla sullo schermo. Fuori dalle virgolette del testo (come in `"https://..."`), i simboli cambiano da un linguaggio all'altro:
 - **Python:** tutto ciò che segue `#` fino a fine riga; inoltre i blocchi descrittivi isolati tra `"""..."""` (spesso all'inizio di file o funzioni).
@@ -32692,8 +32889,9 @@ In 60 secondi, anche su un file di 500 righe, la ricerca testuale (Ctrl+F su Win
 | **I. Accessi** | `auth`, `login`, `session`, `role`, `admin`, `permission`, `Authorization`, `cors` | Prima di eseguire l'azione, il codice verifica *chi* chiama (autenticazione) e *se può* farlo su quel dato (autorizzazione)? Oppure ogni chiamante riceve lo stesso trattamento? |
 | **J. Segnaposto e codice finto** | `TODO`, `FIXME`, `placeholder`, `mock`, `stub`, `dummy`, `fake` | È lavoro incompleto o simulato lasciato dall'LLM al posto della logica reale? Il codice restituisce un «sì» fisso (`return True`, `return true`) o usa dati inventati? Controlla anche eventuali controlli disattivati con `#` o `//` davanti |
 
-> *(Famiglia F: vedi lo **Step 17 (Secret Scanning)**.  
-> Famiglia G: vedi lo **Step 14 (Least Authority)** e l'Appendice **[♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)** per comprendere i vincoli del kernel.*
+> *Famiglia F: vedi lo **Step 17 (Secret Scanning)**.  
+> *Famiglia G: vedi lo **Step 14 (Least Authority)** e l'Appendice **[♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)** per comprendere i vincoli del kernel.*  
+> *Famiglia K, per i file di dati e di configurazione: vedi Sez. 8.4*
 
 Bash ha anche l'idioma `|| true` («se il comando fallisce, fingi di niente»): va cercato insieme a `2>/dev/null`.
 
@@ -32722,7 +32920,7 @@ Quattro famiglie meritano qualche riga in più, perché la domanda da porre non 
 
 **Comandi SQL e file `.sql` (famiglia E).** Quando trovi istruzioni per un database (dentro uno script o in un file `.sql`), leggi prima il verbo iniziale: **`SELECT`** legge, **`INSERT`** aggiunge, **`UPDATE`** modifica, mentre **`DELETE`**, **`TRUNCATE`** e **`DROP`** cancellano righe o intere tabelle. Il guasto più grave e frequente è un `DELETE` o un `UPDATE` **senza la clausola `WHERE`** (il filtro che dice *quali* righe toccare): senza `WHERE`, il comando modifica o cancella **l'intera tabella** in un colpo solo. Prima di approvare uno script che altera dati esistenti, verifica tre cose: che ogni `UPDATE` e `DELETE` abbia un `WHERE` chiaro (meglio se provato prima con un `SELECT` equivalente per vedere quante righe colpisce), che le modifiche siano racchiuse in una **transazione** (`BEGIN` ... `COMMIT`, o `START TRANSACTION`, che annulla tutto se qualcosa fallisce a metà) e che esista un backup verificato.
 
-**Segreti: dove vive una credenziale (famiglia F).** Esistono tre luoghi, in ordine crescente di sicurezza. (1) *Scritta nel codice* (*hard-coded*): è il caso peggiore, perché finisce in ogni copia, archivio e anteprima del programma; è un NO-GO per difetto. (2) *Variabile d'ambiente* (impostazione esterna al programma, letta all'avvio): meglio, ma resta visibile ad altri processi e talvolta nei registri di diagnostica; accettabile se si sa chi la imposta e il codice non la stampa. (3) *Sistema dedicato di gestione dei segreti* (*secret manager*: una cassaforte con accessi tracciati e sostituzione periodica delle chiavi): nulla da obiettare sul punto, ma resta da controllare che il segreto non venga poi scritto in un registro. Un segreto finito anche una sola volta in un archivio di codice condiviso va considerato compromesso, anche se cancellato subito dopo.
+**Segreti: dove vive una credenziale (famiglia F).** Esistono tre luoghi, in ordine crescente di sicurezza. (1) *Scritta nel codice* (*hard-coded*), o in un file di configurazione in chiaro che viaggia con esso: è il caso peggiore, perché finisce in ogni copia, archivio e anteprima del programma; è un NO-GO per difetto. (2) *Variabile d'ambiente* (impostazione esterna al programma, letta all'avvio): meglio, ma resta visibile ad altri processi e talvolta nei registri di diagnostica; accettabile se si sa chi la imposta e il codice non la stampa. (3) *Sistema dedicato di gestione dei segreti* (*secret manager*: una cassaforte con accessi tracciati e sostituzione periodica delle chiavi): nulla da obiettare sul punto, ma resta da controllare che il segreto non venga poi scritto in un registro. Un segreto finito anche una sola volta in un archivio di codice condiviso va considerato compromesso, anche se cancellato subito dopo.
 
 **Privilegio minimo (famiglia G).** Il codice deve avere solo i permessi che servono al suo compito: un backup deve poter leggere una cartella e scrivere in un'altra, non essere amministratore del computer. Domande: con quale utente gira? Perché servono quei permessi? Parole-ancora: `sudo`, `root`, `Administrator`, `-Verb RunAs`, `chmod 777`, `0777`. Un permesso in eccesso è un difetto anche se oggi non succede nulla: moltiplica il danno di ogni altro difetto del codice.
 
@@ -33014,7 +33212,7 @@ def calcola_totale(prezzo, quantita, codice_sconto):
 | Codice | Dialogo interiore dell'ispettore |
 |---|---|
 | `def calcola_totale(prezzo, quantita, codice_sconto):` | Tre ingressi (Source). Nessun tipo dichiarato: `prezzo` può essere numero, testo o vuoto. Il nome promette un «totale», non un importo valido. |
-| `"""...in modo sicuro e robusto."""` | **ALLARME.** Un aggettivo non è una prova. Il commento descrive un'intenzione, non un comportamento. Lo ignoro e verifico le righe. |
+| `"""...in modo sicuro e robusto."""` | **Nessuna evidenza.** Un aggettivo non è una prova. Il commento descrive un'intenzione, non un comportamento. Lo ignoro e verifico le righe. |
 | `try:` | Tutto il corpo sta dentro una botola. Qualsiasi guasto delle righe seguenti atterrerà in fondo: vado a vedere dove. |
 | `totale = prezzo * quantita` | Nessuna guardia. Se `prezzo` arriva come testo da un modulo web (`"10"`), in Python `"10" * 3` non dà errore: dà `"101010"`. Con `quantita` negativa il totale è negativo: un rimborso involontario. |
 | `sconti = {"WELCOME": 0.10, "VIP": 0.25}` e `.get(codice_sconto, 0)` | Percentuali in `float`, inadatte al denaro. Un codice sconosciuto vale 0 in silenzio: nessun avviso a chi ha sbagliato a digitarlo. |
@@ -33150,7 +33348,7 @@ Ctrl+F su questo script: `SilentlyContinue` zero occorrenze, `Invoke-Expression`
 
 | # | Domanda | Che cosa cercare | Difetti coperti |
 |---|---|---|---|
-| 1 | **Che cosa entra, da chi, e chi ha il diritto di chiamare?** Che cosa succede se il dato è vuoto, negativo, enorme, testuale o ostile? | Guardie all'ingresso su presenza, tipo, intervallo; controlli su identità e permessi (famiglia I) | Precondizione Debole, Iniezione, accessi |
+| 1 | **Che cosa entra, da chi, e chi ha il diritto di chiamare?** Che cosa succede se il dato è vuoto, negativo, enorme, testuale o ostile? (Vale anche per i file di configurazione letti dal codice: vedi Sez. 8) | Guardie all'ingresso su presenza, tipo, intervallo; controlli su identità e permessi (famiglia I) | Precondizione Debole, Iniezione, accessi |
 | 2 | **Che cosa tocca il mondo esterno, e come è costruito il comando?** | Ogni Sink elencato; comandi composti con `+`, `${}`, `$`; perimetro delle cancellazioni | Iniezione Cieca |
 | 3 | **Se la risorsa esterna tarda, fallisce o cambia nel frattempo, che cosa succede?** | Timeout, controllo dell'esito, operazioni indivisibili tra controllo e uso | Assunzione di Rete, Race Condition |
 | 4 | **Quando qualcosa va storto, qualcuno lo viene a sapere? E che cosa trova chi sta a valle?** | Botole, valori di ripiego, messaggi di successo incondizionati | Botola, Fallback Velenoso |
@@ -33171,7 +33369,7 @@ Il verbale è il prodotto finale dell'ispezione: una riga per ogni NO-GO e per o
 | 3 | 23 (Lab. 4) | 2: Sink | `Remove-Item` dopo un controllo minimo dell'archivio; ripristino mai provato | Lettura della riga; nessuna prova di ripristino agli atti | NO-GO (non verificato) |
 | 4 | 16 (Lab. 4) | 5: riga che non so spiegare | Comportamento di `Compress-Archive` se l'archivio esiste già | Lettura; il comportamento non è visibile nel codice | UNKNOWN |
 
-Nella colonna Esito si distinguono i due NO-GO: «difetto» (accertato dalla lettura) e «non verificato» (manca una prova). La colonna «Come lo so» è la più importante: un esito senza il modo in cui lo si è stabilito non è verificabile da un terzo. In testa al verbale vanno l'identificativo e la data della versione ispezionata: vale per *quel* testo, non per un altro. In coda, ciò che **non** è stato ispezionato (librerie importate, file di configurazione, servizi esterni) e chi firma.
+Nella colonna Esito si distinguono i due NO-GO: «difetto» (accertato dalla lettura) e «non verificato» (manca una prova). La colonna «Come lo so» è la più importante: un esito senza il modo in cui lo si è stabilito non è verificabile da un terzo. In testa al verbale vanno l'identificativo e la data della versione ispezionata: vale per *quel* testo, non per un altro. Se il comportamento dipende da un file di configurazione, lo stesso vale per quel file: cambiare un valore equivale a cambiare il codice, e l'approvazione non lo copre. In coda, ciò che **non** è stato ispezionato (librerie importate, file di configurazione, servizi esterni) e chi firma.
 
 #### Dopo un NO-GO
 
@@ -33187,6 +33385,173 @@ Nella colonna Esito si distinguono i due NO-GO: «difetto» (accertato dalla let
 > **⚠** «Non capisco questa riga, quindi non la approvo» è la frase più professionale che un ispettore possa pronunciare. Chi la pronuncia non rallenta il progetto: lo protegge da un difetto che nessuno avrebbe visto.
 
 > *Vedi: Capitolo 22 (Discrepancy Analysis).*
+
+---
+
+### 8. Complemento: Formati Dati Testuali (JSON, YAML, TOML, XML, CSV)
+
+Fin qui hai ispezionato programmi. Ma un programma si comporta anche secondo ciò che legge da un file: percorsi, soglie, interruttori, indirizzi, elenchi di utenti. Un **formato dati** non calcola e non tocca il mondo: non ha Trasformazione né Sink. È quasi sempre solo un *Source*, ma un Source che **pilota i Sink**. Cambiare `cancella_tmp: no` in `cancella_tmp: yes` modifica ciò che il programma distrugge senza che una sola riga di codice sia toccata. Per questo la configurazione si ispeziona come il codice, con lo stesso metodo (CHIARO / UNKNOWN / NO-GO).
+
+Una nota di metodo: un file dati *non esegue nulla da solo*. Il rischio sta in tre punti: che cosa contiene (segreti, percorsi, comandi), come viene letto (il **parser**: il programma che interpreta il formato) e che cosa ne fa il codice dopo, senza controllarlo.
+
+#### 8.1 Mappa dei cinque formati
+
+| Formato | Che cos'è | Dove si incontra | Come si riconosce a colpo d'occhio |
+|---|---|---|---|
+| **JSON** | Dati strutturati in testo, rigidi e senza ambiguità | Scambio tra programmi (risposte di servizi web, `package.json`, `tsconfig.json`) | Graffe `{ }`, parentesi quadre `[ ]`, chiavi tra virgolette doppie, due punti |
+| **YAML** | Come JSON, ma pensato per essere scritto e letto da persone | Configurazioni di automazione (Docker Compose, Kubernetes, pipeline di rilascio) | Struttura data dai **rientri** (spazi), trattini per le liste, di norma niente graffe |
+| **TOML** | Configurazione semplice, a sezioni | `pyproject.toml`, `Cargo.toml`, impostazioni di piccoli strumenti | Sezioni tra `[parentesi quadre]`, righe `chiave = valore` |
+| **XML** | Documenti a **tag** annidati (`<nome>…</nome>`) | Formati aziendali e di legge (fattura elettronica), `pom.xml`, configurazioni Java e Windows | Tag di apertura e chiusura, eventuali `<!DOCTYPE …>` in testa |
+| **CSV** | Una tabella in testo: una riga per record, valori separati da un **delimitatore** (il carattere che separa le colonne). Non ha una regola unica: esistono più **dialetti** (§8.3) | Esportazioni di fogli di calcolo, importazioni in database | Righe di valori separati da `,` o `;`, nessuna parentesi |
+
+**Quando si usa quale.** JSON per far parlare i programmi tra loro; YAML e TOML per configurazioni scritte a mano da persone (TOML è più semplice e ha meno sorprese); XML dove lo impone uno standard o un documento ufficiale; CSV per tabelle piatte.
+
+#### 8.2 Lo stesso dato in cinque formati
+
+Quattro informazioni: un testo (`cliente`), un numero (`giorni`), un vero/falso (`attivo`), una lista (`cartelle`).
+
+*JSON*
+```json
+{ "cliente": "acme", "giorni": 30, "attivo": true, "cartelle": ["tmp", "logs"], "note": null }
+```
+
+*YAML*
+```yaml
+# commento
+cliente: acme
+giorni: 30
+attivo: true
+cartelle:
+  - tmp
+  - logs
+note: null
+```
+
+*TOML*
+```toml
+# commento
+cliente = "acme"
+giorni = 30
+attivo = true
+cartelle = ["tmp", "logs"]
+# "note" non c'è: in TOML non esiste un valore nullo, si omette la chiave
+```
+
+*XML*
+```xml
+<!-- commento -->
+<config>
+  <cliente>acme</cliente>
+  <giorni>30</giorni>
+  <attivo>true</attivo>
+  <cartelle><cartella>tmp</cartella><cartella>logs</cartella></cartelle>
+  <note/>
+</config>
+```
+
+*CSV*
+```csv
+cliente,giorni,attivo,cartelle
+acme,30,true,tmp;logs
+```
+
+| | JSON | YAML | TOML | XML | CSV |
+|---|---|---|---|---|---|
+| **Come si annida** | `{ }` oggetti, `[ ]` liste | rientri; `- ` per ogni elemento di lista | `[sezione]`; liste in `[ ]` | tag dentro tag (i dati possono stare anche negli *attributi*: `<cartella nome="tmp"/>`) | non si annida: solo righe e colonne |
+| **Testo** | sempre tra `"` | di norma senza virgolette | sempre tra virgolette | tra i tag, senza virgolette | senza virgolette; con `"` se contiene il delimitatore |
+| **Numeri e vero/falso** | `30`, `true`, `false` (minuscolo) | **indovinati dal parser** | `30`, `true`, `false` | tutto è testo, salvo i tipi dichiarati da uno schema (XSD) esterno al file | non esistono: tutto è testo |
+| **Commenti** | **non ammessi** | `#` | `#` | `<!-- … -->` | non esistono |
+| **Assente** (nessuna traccia) | chiave omessa | chiave omessa | chiave omessa | elemento omesso | colonna mancante |
+| **Vuoto** (c'è, senza contenuto) | `""` | `""` | `""` | `<note></note>` o `<note/>` (equivalenti) | cella vuota (`,,`) |
+| **Nullo esplicito** | `null` | `null`, `~` o `note:` senza nulla dopo (verificato: dà `None`, **non** una stringa vuota) | **non esiste**: il significato dell'assenza lo decide il codice | `xsi:nil="true"` (ha senso solo con uno schema) | **non esiste**: una cella vuota può voler dire vuoto, nullo o assente, secondo l'applicazione |
+| **Liste** | `[ ]` | trattini | `[ ]` | tag ripetuti | convenzione arbitraria dentro una cella (qui `;`) |
+
+Le righe che causano più guai sono **«Numeri e vero/falso»** (chi decide il tipo?) e le tre dell'**assente, vuoto e nullo** (quante forme ha il niente?): quasi tutte le trappole che seguono nascono da lì.
+
+#### 8.3 Trappole tipiche
+
+Le affermazioni marcate «(verificato)» sono state provate eseguendo il caso in questo ambiente: Python 3.13.18 (moduli `json`, `csv`, `tomllib`, `xml.etree.ElementTree`), PyYAML 6.0.3 (che implementa YAML 1.1) e Node.js v22.23.5. Sono risultati di *quelle* implementazioni. Le affermazioni senza «verificato» riportano la specifica (come per YAML 1.2) o comportamenti noti (come quelli dei fogli di calcolo) e non sono state provate qui. Dove il comportamento **dipende dal parser** (o dalla versione del formato), la riga è UNKNOWN finché non sai quale parser legge il file.
+
+**Gruppo 1 — Il file viene letto in modo diverso da come lo vedi**
+
+| Trappola | Formato | Come appare | Domanda da porre |
+|---|---|---|---|
+| **Tipi indovinati** | YAML | In YAML 1.1 (PyYAML, verificato) `paese: NO` e `attivo: off` diventano **falso**; `codice: 010` diventa **8** (ottale); `ora: 12:30` diventa **750**; `versione: 3.10` diventa **3.1**; `data: 2026-11-23` diventa una data. Secondo lo standard YAML 1.2, invece, `no` è semplice testo, `010` vale 10 e `12:30` è testo (`3.10` diventa 3.1 anche lì). Il risultato dipende quindi da tre livelli: lo **standard**, il **parser** (con lo schema che applica) e il **codice** che usa il valore: il testo `"no"` è *vero* per molti linguaggi | Quale parser e quale versione di YAML? I valori che *devono* restare testo (codici, versioni, sigle) sono tra virgolette? |
+| **Il «niente» in quattro forme** | Tutti | Chiave assente, `null`, `""` e `0` sono quattro cose diverse (vedi la tabella del §8.2). Il codice può trattarle allo stesso modo (`\|\|`, `.get(chiave, 0)`: vedi §4.6) o in modo opposto | Il codice distingue «non indicato» da «zero»? Che cosa succede quando la chiave manca? |
+| **Numeri grandi e decimali** | JSON | Lo standard non fissa la precisione: JavaScript e molti altri parser usano numeri binari a 64 bit (IEEE 754 *binary64*). Gli interi oltre 2⁵³ perdono precisione (verificato in Node: `9007199254740993` diventa `9007199254740992`) e molti decimali non sono esatti (verificato in Python: `0.1` vale 0,1000000000000000055…, `19.99` vale 19,98999999999999843…). Alcuni valori lo sono (`1250.5` è esatto), ma non ci si può affidare al caso: per il denaro vale quanto detto nella Sezione 2 | Importi e identificativi sono interi (centesimi) o testo, non numeri con la virgola? |
+| **Chiavi duplicate** | JSON, YAML, TOML | `{"a":1,"a":2}` vale **2** in Python e in Node (verificato), ma lo standard JSON lascia libero il parser. Lo standard YAML richiede chiavi uniche, eppure PyYAML tiene l'ultima in silenzio (verificato). TOML la rifiuta (verificato con `tomllib`). Chi legge il file a occhio vede la prima, il programma usa l'ultima | Compare due volte la stessa chiave? (Ctrl+F sul nome.) Quale parser, e che cosa fa? |
+| **Sintassi fragile** | JSON, YAML | JSON non ammette virgola finale né commenti (verificato: errore); YAML dipende dai rientri: un rientro sbagliato sposta una chiave in un'altra sezione, e non sempre dà errore | Il file viene letto davvero senza errori? Ogni chiave è nella sezione in cui la vedo? |
+| **Dialetto CSV** | CSV | Il CSV non ha una regola unica: delimitatore, virgolette, carattere di escape, a-capo e codifica *cambiano* da un programma all'altro. In italiano di norma si esporta con `;` e con la virgola decimale: letta con il delimitatore predefinito `,`, la riga `1250,50;acme` si spezza male (verificato: `['1250', '50;acme']`). Un campo tra virgolette può contenere delimitatori, virgolette (raddoppiate: `""`) e **a-capo**: leggere a mano con `split(",")`, `cut -d` o `awk -F` rompe il record (verificato: `splitlines` spezza `a,"b\nc",d` in due righe, `csv.reader` no) | Quale dialetto si aspetta il codice? Il file è letto con un vero lettore CSV o a mano, con `split`, `cut`, `awk`? |
+| **Zeri persi, date inventate** | CSV | Aperto in un foglio di calcolo, il CAP `00100` diventa `100` e certi testi diventano date. Il file salvato da lì è già alterato | Il file è mai passato da un foglio di calcolo prima di arrivare al codice? |
+| **Accenti rovinati** | CSV, XML | Un file in UTF-8 letto come cp1252 mostra `Ã¨` al posto di `è` (verificato) | La codifica dei caratteri (*encoding*) è dichiarata, e uguale in scrittura e lettura? |
+
+**Gruppo 2 — Il file contiene più di semplici dati**
+
+| Trappola | Formato | Come appare | Domanda da porre |
+|---|---|---|---|
+| **Guardie spente dalla configurazione** | Tutti | Interruttori come `"verifica": false`, `verify_tls: no`, `cancella_tmp: yes`. In YAML, TOML, XML una riga di sicurezza con `#` (o dentro `<!-- -->`) davanti è **spenta**. In JSON, che non ha commenti, le note finiscono in chiavi finte come `"_nota"`, che il parser accetta come dati e il codice ignora | Chi legge questa chiave? Il valore predefinito, se manca, è quello sicuro? |
+| **Segreti, percorsi, URL, comandi** | Tutti | `password:`, `token:` in chiaro (famiglia F); percorsi con `..` o `*` (§4.2, che tratta anche i collegamenti simbolici); indirizzi verso l'esterno (famiglia B): se l'URL può essere scelto da chi non è fidato, può puntare anche a `localhost`, a reti interne o a servizi di metadati del cloud (**SSRF**); campi `command:`, `script:`, `run:` che contengono comandi veri (famiglia C) | Un campo che contiene un comando è **codice**: leggilo con le Sezioni 2–4. Dove vanno percorsi e URL? Chi può scegliere l'URL, e c'è un elenco di host ammessi? Il segreto è in chiaro? |
+| **Caricamento non sicuro e documenti patologici** | YAML, XML | `yaml.load(…)` con un caricatore generico o `UnsafeLoader` può costruire oggetti ed **eseguire codice** dal file: si vuole `yaml.safe_load`. In XML, `<!DOCTYPE` con `<!ENTITY … SYSTEM …>` può spingere il parser a leggere file locali o a fare richieste di rete (XXE); anche `xi:include` e i fogli `xsl` fanno caricare risorse esterne. Python `ElementTree` non risolve le entità esterne (verificato: errore), ma altre librerie e impostazioni sì. Un caricatore *sicuro* non è anche *limitato*: alias YAML o entità XML annidati possono dichiarare contenuti enormi (verificato in PyYAML: 9 livelli di alias si caricano in pochi millisecondi ma valgono 3,5 miliardi di elementi, e il costo arriva quando qualcuno li attraversa o li serializza), e un annidamento molto profondo dà errore (verificato: `RecursionError` in Python, per JSON e per YAML). Dipende dall'implementazione e da ciò che si fa dopo | Come viene caricato il file? Arriva dall'esterno? Ci sono limiti di dimensione e di profondità? Se l'XML contiene un `<!DOCTYPE`, perché? Se non si vede nel codice, UNKNOWN |
+| **`eval` al posto di un parser** | JSON | Leggere un JSON con `eval(` (famiglia C) lo trasforma in codice eseguito. `JSON.parse`, `json.load` e `json.loads` invece non eseguono nulla | Compare `eval`, `exec` o `new Function` vicino a un dato letto? |
+| **Formule nelle celle** | CSV | Una cella che inizia con `=`, `+`, `-` o `@` (o con tabulazione o ritorno a capo) viene letta come **formula** da molti fogli di calcolo: dipende dal programma che apre il file. Se contiene testo scritto da un utente esterno, chi apre il file esegue la sua formula | Il codice che *scrive* il CSV neutralizza questi caratteri iniziali nei testi che arrivano dall'esterno? (`-5` è un numero legittimo: il filtro riguarda i testi) |
+
+**Gruppo 3 — Il file è valido, ma sbagliato**
+
+| Trappola | Formato | Come appare | Domanda da porre |
+|---|---|---|---|
+| **Sintassi valida ≠ contenuto valido** | Tutti | Un file che si legge senza errori può contenere `giorni: 0` (in un filtro «più vecchi di N giorni» *potrebbe* significare tutto: dipende dal codice) o un importo negativo | Dopo la lettura, il codice controlla tipo, intervallo e valori ammessi, **prima** di arrivare a un Sink? Quali valori estremi accetta? |
+| **Chiavi sconosciute o con refuso** | Tutti | Con `cartela` invece di `cartella` molti programmi ignorano in silenzio la chiave che non conoscono e, se quella giusta manca, usano un valore di ripiego (§4.6) | Il validatore rifiuta le chiavi sconosciute? Una chiave sbagliata dà errore o viene ignorata in silenzio? |
+
+#### 8.4 Famiglia K: i dati che comandano (aggiunta alla Caccia alle Parole-Ancora)
+
+| Famiglia | Parole-ancora da cercare | Domanda da porre a ogni occorrenza |
+|---|---|---|
+| **K. Dati che comandano** | `yaml.load(`, `yaml.safe_load`, `json.loads`, `JSON.parse`, `csv.reader`, `DictReader`, `ElementTree`, `eval(`, `<!DOCTYPE`, `<!ENTITY`, `xi:include`; lettura a mano: `split(","`, `cut -d`, `awk -F`; nomi di file `.json`, `.yaml`, `.yml`, `.toml`, `.xml`, `.csv` | Il file è nostro o arriva dall'esterno? Con quale caricatore (sicuro o generico) viene letto, e con quali limiti? Dopo la lettura, quali controlli verificano i valori? È letto con un vero lettore o a mano? |
+
+E, come al solito, **cerca il silenzio**, ricordando che è un indizio e non una prova: se il file viene letto e usato subito, senza nessuna parola come `schema`, `validate`, `jsonschema`, `pydantic`, `zod`, non si *vede* alcun controllo. Ma i controlli possono essere scritti a mano (`if`, `isinstance`, `typeof`, `raise`, `throw`): se non li trovi nemmeno così, il punto resta UNKNOWN finché non hai cercato anche quelli.
+
+**Seguire la chiave.** Per ogni chiave del file, cerca nel codice il punto in cui viene letta e segui il dato fino al Sink (è il Protocollo Inverso della Sezione 1, applicato a una chiave). Due casi da segnare: una chiave scritta nel file ma **mai letta** nel codice (la modifica non ha alcun effetto, o il codice che la legge sta altrove: UNKNOWN) e una chiave **letta ma assente** dal file (il codice usa un valore di ripiego: chi lo ha deciso?).
+
+#### 8.5 Mini-laboratorio: `backup.yaml`
+
+È la configurazione dello stesso scenario del Laboratorio 2 (backup e pulizia). Il file è presentato per intero e poi riga per riga.
+
+```yaml
+# Configurazione sicura e verificata del backup
+cliente: acme
+base: /var/app/../dati
+destinazione: http://backup.example/upload
+password: Estate2024!
+backup:
+  verifica_archivio: no
+pulizia:
+  cancella_tmp: yes
+  giorni: 0
+  cartela: tmp
+```
+
+| Riga | Dialogo interiore dell'ispettore |
+|---|---|
+| `# Configurazione sicura e verificata…` | **Nessuna evidenza.** Un commento non prova nulla e il parser lo scarta: non c'è nessun controllo dietro quegli aggettivi. Lo ignoro e leggo le righe. |
+| `cliente: acme` | Testo semplice, nessun rischio di tipo. Ma se il codice lo incolla in un percorso (come al Lab. 2) il perimetro dipende da *come* viene usato: da verificare nel codice. Per ora UNKNOWN. |
+| `base: /var/app/../dati` | **UNKNOWN con allarme.** Il percorso non è normalizzato: `/var/app/../dati` è in realtà `/var/dati`, e chi legge a occhio lo crede dentro `/var/app`. Qui `base` *è* il perimetro, quindi il `..` non prova da solo un'uscita da un perimetro autorizzato. Quale sia il perimetro corretto, e se il percorso reale ci resti dentro (collegamenti simbolici compresi: §4.2), è da accertare. |
+| `destinazione: http://backup.example/upload` | Sink di rete. **UNKNOWN con allarme:** con `http` (non `https`) non c'è cifratura visibile, ma protezioni di rete (rete isolata, tunnel) potrebbero esistere fuori dal file. Da accertare anche chi abbia scelto questa destinazione e a chi appartenga (famiglia B). |
+| `password: Estate2024!` | **NO-GO per difetto, sulla collocazione.** Segreto in chiaro in un file (famiglia F): per il §3 è il livello peggiore di custodia. Il difetto è dove sta il segreto, non una compromissione dimostrata: che sia compromesso dipende da dove il file circola (archivio condiviso? copie? backup?) e da chi può leggerlo. Da accertare; nel dubbio si cambia. |
+| `verifica_archivio: no` | **ALLARME ROSSO.** Guardia spenta per configurazione: la verifica prima della cancellazione sembra disattivata. Ma il valore dipende da tre livelli: un parser YAML 1.1 produce `False`, uno 1.2 produce il testo `"no"`, e il codice che poi lo usa (`if config[…]`) tratta quel testo come *vero* in molti linguaggi. La stessa guardia può risultare spenta o accesa: **UNKNOWN** finché non si sa quale parser legge il file e come il codice usa il valore. |
+| `cancella_tmp: yes` | Interruttore che attiva un Sink distruttivo, con lo stesso problema di tipo di `no`. Che cosa venga cancellato, e dove, lo decidono le righe vicine (`base`, `giorni`, `cartela`): si leggono insieme, non una per una. |
+| `giorni: 0` | **UNKNOWN con allarme.** Se è l'età oltre la quale si cancella, 0 *potrebbe* significare tutto, ma il significato sta nel codice e non nel file. Poiché la riga governa un Sink distruttivo, resta bloccante finché non si prova (su una cartella di prova, o con `-WhatIf` come al Lab. 4). Non c'è un minimo ammesso visibile (Gruppo 3 del §8.3). |
+| `cartela: tmp` | **ALLARME.** Probabile refuso nel nome della chiave. Se il codice cerca `cartella` e non la trova, userà un valore di ripiego, magari la cartella intera, oppure rifiuterà la chiave sconosciuta: **UNKNOWN** da chiudere leggendo il punto del codice in cui la chiave viene letta. |
+
+> [!WARNING]
+> **⚠ Verdetto: NO-GO.** *Per difetto accertato* solo sulla password in chiaro (la collocazione del segreto, non una compromissione dimostrata). *Per rischio non verificato* su tutto il resto: `base`, `destinazione`, `giorni`, `cartela`, il parser e il tipo di `verifica_archivio` e `cancella_tmp` sono UNKNOWN su valori che governano dei Sink. Domande da girare a chi l'ha scritto: quale parser legge il file, e come usa il codice i valori? Dove viene verificato che `base` sia dentro il perimetro? Che cosa fa il codice se una chiave manca o ha un refuso? Chi ha scelto la destinazione e come è protetto il canale? Qual è il minimo ammesso per `giorni`? Correzione di principio: virgolette sui valori che devono restare testo, `base` assoluto e risolto, segreto in una variabile d'ambiente o in un gestore di segreti, `https` (o un canale protetto documentato), un minimo ammesso per `giorni`, e una validazione con schema subito dopo la lettura.
+
+#### 8.6 Quello che questa sezione non cambia
+
+> [!TIP]
+> ☞ **Si legge senza errori ≠ è corretto.** Un file che il parser accetta ha soltanto la sintassi giusta: non dice nulla su cosa contiene, su come viene usato e su chi può modificarlo. La Checklist della Sezione 7 non cambia: le cinque domande valgono anche per i file di configurazione. La Domanda 1 («che cosa entra, da chi») include ogni file letto dal codice.
+
+> [!WARNING]
+> **⚠ Come si chiude un UNKNOWN su un dato di configurazione.** Eseguire il parser e guardare i valori con il loro tipo (`False` non è `"no"`, `8` non è `"010"`) è solo il primo anello. La verifica deve coprire l'intera catena: `file → parser → validazione → utilizzo → Sink`. Per ogni anello: i valori e i tipi che escono dal parser; i controlli applicativi che li verificano, e che cosa fanno davanti a un valore anomalo; come il codice usa il valore; la destinazione effettiva del Sink. Si fa in ambiente controllato (dati e cartelle di prova), mai direttamente sul sistema reale. Quello che hai letto a occhio non conta come prova.
 
 ---
 
@@ -33902,7 +34267,8 @@ La realtà dell'architettura software è differente: **un modello linguistico è
 
 #### 7.3 Cosa protegge davvero: matrice delle contromisure
 
-Per l'implementazione dettagliata delle configurazioni di isolamento e per la comprensione delle chiamate di sistema (syscall), dei namespace e delle capability Linux, si veda l'appendice **[▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)**. Per l'analisi dei modelli di sicurezza dei sistemi operativi host (Linux DAC/MAC, Windows DACL/MIC, macOS TCC, Landlock LSM) e dei permessi dei runtime (Deno, Node.js, WASI), si veda l'appendice **[♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)**.
+Per l'implementazione dettagliata delle configurazioni di isolamento e per la comprensione delle chiamate di sistema (syscall), dei namespace e delle capability Linux, si veda l'appendice [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox).  
+Per l'analisi dei modelli di sicurezza dei sistemi operativi host (Linux DAC/MAC, Windows DACL/MIC, macOS TCC, Landlock LSM) e dei permessi dei runtime (Deno, Node.js, WASI), si veda l'appendice [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os).
 
 | Misura di Protezione Adottata | Cosa Protegge Effettivamente | Cosa NON Protegge (Limiti della misura) |
 | :--- | :--- | :--- |
@@ -33911,6 +34277,106 @@ Per l'implementazione dettagliata delle configurazioni di isolamento e per la co
 | **Blocco della Rete in Uscita (*Egress Network Filtering*)** | Impostare la rete del container su isolamento locale (`network_mode: none` o bridge senza gateway internet) impedisce qualsiasi trasmissione di dati verso server remoti non autorizzati. | Impedisce al modello o all'interprete di scaricare librerie legittime o di consultare pagine web se l'utente desidera fare ricerche esterne. |
 | **Rete Privata Crittografata (VPN con Tailscale o WireGuard)** | Permette di connettere il proprio telefono o portatile al server di casa ovunque ci si trovi, con traffico cifrato e senza aprire porte esposte sul modem. | Se l'interfaccia interna (Open WebUI) ha una password debole o predefinita, chiunque acceda a uno dei dispositivi della rete privata potrà interrogare il modello. |
 | **Supervisione Umana Obbligatoria (*Human-in-the-Loop*)** | Un blocco applicativo invalicabile: nessuna operazione che implichi cancellazioni, scritture su disco o invio di comunicazioni esterne può essere eseguita senza un click di autorizzazione esplicita [5]. | Non protegge da errori di disattenzione dell'utente umano stesso se approva frettolosamente una schermata senza aver verificato i comandi proposti (*Automation Bias*). |
+
+#### 7.4 Regole di Configurazione Sicura dei Server MCP per Agenti Autonomi
+
+Il **Model Context Protocol (MCP)** rappresenta lo standard industriale di riferimento per connettere i modelli linguistici (es. client in Claude Desktop, Cursor, Open WebUI) a strumenti esecutivi e risorse locali. Un server MCP espone funzioni (tool), archivi di file (resources) e template di contesto via protocollo JSON-RPC.
+
+Tuttavia, configurare un server MCP senza applicare il principio di minima autorità (Step 14) equivale ad accordare all'agente AI **accesso illimitato alle risorse della macchina ospite**. Se l'agente incorre in un'allucinazione o subisce un attacco di *Indirect Prompt Injection* leggendo un file non fidato, userà i server MCP attivi per eseguire comandi non autorizzati o esfiltrare dati privati.
+
+Per blindare la configurazione dei server MCP sulla propria workstation personale, è obbligatorio implementare cinque regole architetturali:
+
+```text
+    SCHEMA DI HARDENING PER ARCHITETTURA MCP PERSONALE
+
+[ APPLICAZIONE AI CLIENT (es. Claude Desktop / Open WebUI) ]
+                             |
+                             v [JSON-RPC over stdio / SSE]
++------------------------------------------------------------+
+| L3: MCP GATEWAY DI SICUREZZA                               |
+| - Whitelist esplicita dei soli tool necessari al task      |
+| - Conferma umana vincolante per azioni mutanti (write/exec)|
+| - Validazione rigorosa degli schemi di input               |
++------------------------------------------------------------+
+       |                                         |
+       v [Handle Confinato: /workspace/project]  v [Network Disabled]
++-------------------------+                +-------------------------+
+| MCP SERVER: Filesystem  |                | MCP SERVER: Database    |
+| - Directory Jail rigida |                | - Sola lettura (SELECT) |
+| - Modalità READ-ONLY    |                | - Credenziali dedicate  |
++-------------------------+                +-------------------------+
+```
+
+##### 1. Delimitazione Rigida del Filesystem (Jail Path Scoping)
+Un server MCP per il filesystem (es. `@modelcontextprotocol/server-filesystem`) non deve mai ricevere come parametro la cartella radice (`/` o `C:\`) né la propria intera cartella utente (`~` o `/home/utente`). 
+* Deve essere configurato indicando **esclusivamente la specifica cartella di lavoro del singolo progetto**.
+* Se il compito dell'agente è analizzare la documentazione senza modificare il codice, il server deve essere avviato con flag di sola lettura (*read-only*).
+
+##### 2. Disattivazione dei Server Shell Generici (No Command Execution)
+Non attivare server MCP che espongono interpreti di comandi di sistema generici (es. server bash/terminale aperti) a meno che l'ambiente non operi all'interno di una MicroVM o di un container effimero privo di rete (Step 14 e Appendice ▣). Per operazioni ripetitive, creare server MCP verticali che espongano solo funzioni mirate (es. `esegui_linter()`, non `esegui_qualsiasi_comando_bash()`).
+
+##### 3. Isolamento di Rete dei Server MCP Locali
+I server MCP deputati all'ispezione di file o database locali non devono possedere connettività di rete verso l'esterno. Se il server MCP gira come container o processo demone, la sua interfaccia deve essere isolata (`network_mode: none`) per impedire che dati letti dal filesystem possano essere trasmessi a server terzi in caso di iniezione di prompt.
+
+##### 4. Credenziali Dedicate a Sola Lettura per Database
+Se si collega un server MCP a un database relazionale (PostgreSQL, SQLite, MySQL):
+* Non fornire mai credenziali amministrative (`postgres`, `root`).
+* Utilizzare un account con privilegi ristretti alla sola lettura (`GRANT SELECT ON ...`), privo di permessi di cancellazione o alterazione dello schema (`DROP`, `DELETE`, `UPDATE`), disattivando le tabelle contenenti dati personali o segreti aziendali.
+
+##### 5. Confronto di Configurazione: Insicura vs Blindata
+Di seguito viene mostrato l'esempio concreto di configurazione del file dei server MCP (es. `claude_desktop_config.json` o configurazione equivalente in Open WebUI):
+
+```json
+// ============================================================================
+// CONFIGURAZIONE ERRATA E INSICURA (Vulnerabile a esfiltrazione e distruzione)
+// ============================================================================
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/utente" // ERRORE GRAVE: Espone l'intera home dell'utente, incluse chiavi .ssh, .bashrc e dati privati!
+      ]
+    },
+    "terminal": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-shell"] // ERRORE GRAVE: Fornisce all'agente accesso illimitato alla shell host!
+    }
+  }
+}
+```
+
+```json
+// ============================================================================
+// CONFIGURAZIONE CONFORME ALL'ASSURANCE (Principio della Minima Autorità)
+// ============================================================================
+{
+  "mcpServers": {
+    "progetto_sandbox": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/utente/progetti/audit-app/workspace" // PERIMETRO CIRCOSCRITTO: L'agente vede solo la cartella del progetto corrente
+      ],
+      "env": {
+        "MCP_READ_ONLY": "true" // CONFINAMENTO IN SOLA LETTURA: Nessun file può essere sovrascritto o cancellato dall'agente
+      }
+    },
+    "linter_verificato": {
+      "command": "python3",
+      "args": [
+        "/usr/local/bin/secure_linter_mcp_wrapper.py" // TOOL VERTICALE: Esegue unicamente 'ruff' e 'mypy', nessun comando arbitrario
+      ]
+    }
+  }
+}
+```
+
+> [!TIP]
+> **⌕ Regola d'oro per la postazione:** Ogni volta che si abilita un nuovo server MCP, porsi la domanda di confine dello Step 14: *"Se questo tool ricevesse un comando malevolo per cancellare il disco o rubare le chiavi, la configurazione glielo impedirebbe fisicamente?"*. Se la risposta è no, il server MCP non rispetta i criteri di assurance.
 
 ---
 
