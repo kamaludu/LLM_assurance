@@ -99,6 +99,7 @@ Principi, Verifica, Evidenze e Governance**
 - [⌨ Prompt Engineering Contrattuale e Difensivo](#appendice-prompt-eng)
 - [❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori](#appendice-ispezione-codice)
 - [⬡ Strumenti per la verifica e l’assurance del software assistito da LLM](#appendice-sw)
+- [☰ Cookbook di Assurance](#appendice-cookbook)
 - [⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale](#appendice-moltiplicatore-personale)
 - [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox)
 - [♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime](#appendice-os)
@@ -120,7 +121,7 @@ Principi, Verifica, Evidenze e Governance**
 
 <a name="assurance-intro"></a>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 ## Informazioni sul documento
 
@@ -155,7 +156,7 @@ I marchi citati (inclusi ISO, IEEE, MITRE ATLAS, OWASP, DO-178C) appartengono ai
 
 ---
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="nota-terminologica"></a>
 
@@ -484,7 +485,7 @@ Questa distinzione costituisce una delle basi epistemiche fondamentali dell'inte
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="quadro-didattico"></a>
 
@@ -1087,7 +1088,7 @@ Di seguito si riportano le definizioni unificate dei termini specialistici utili
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="guida-per-ruoli"></a>
 
@@ -1205,6 +1206,8 @@ Considerate il codice prodotto dall'LLM come una **soluzione candidata da verifi
 
 Prestate particolare attenzione alle tecniche che rendono il codice più facile da verificare: separazione delle responsabilita', funzioni con comportamento prevedibile, test automatici e verifiche indipendenti.
 
+> *Per la configurazione immediata della workstation e del repository Git con regole di pre-commit, pipeline di CI/CD e schemi pronti all'uso, consultare direttamente l'**Appendice [☰ Cookbook di Assurance](#appendice-cookbook)**.*
+
 ---
 
 ### 4. Security Tester, QA Specialist o Auditor Indipendente
@@ -1266,7 +1269,7 @@ Ogni lettore può quindi partire dalle sezioni più vicine alle proprie responsa
 
 ---
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="guida-ai-5-concetti"></a>
 
@@ -1494,7 +1497,7 @@ Questi concetti non sono cinque argomenti separati. Costituiscono la base concet
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-1-problem-definition"></a>
 
@@ -2407,7 +2410,7 @@ I cinque principi inderogabili dello STEP 1:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-2-risk-classification"></a>
 
@@ -3277,7 +3280,7 @@ I principi cardine dello STEP 2:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-3-authority-responsibility"></a>
 
@@ -4204,7 +4207,7 @@ I cinque principi inderogabili di governance per l'assurance del software assist
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-4-specification-costruzione"></a>
 
@@ -5297,7 +5300,7 @@ I cinque principi inderogabili della specifica per il software assistito da LLM:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-5-assumptions-unknowns"></a>
 
@@ -6183,7 +6186,7 @@ Senza l'esecuzione sistematica e intransigente dello STEP 5, i successivi passi 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-6-critical-properties"></a>
 
@@ -6957,7 +6960,7 @@ Lo **STEP 6: Critical Properties & Invariants** stabilisce il fondamento matemat
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-7-traceability-evidence"></a>
 
@@ -7741,7 +7744,7 @@ Lo **STEP 7: Traceability** rappresenta la spina dorsale metodologica che impedi
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-8-competence-gaps"></a>
 
@@ -8417,7 +8420,7 @@ Lo **STEP 8: Competence Gaps** dimostra che l'assurance del software non è un p
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-9-specification-validity"></a>
 
@@ -9238,7 +9241,7 @@ Lo **STEP 9: Specification Validity** rappresenta l'atto di verifica preventiva 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-10-assurance-level"></a>
 
@@ -10071,7 +10074,7 @@ Chi ignora questo STEP opera alla cieca: scambia la sintassi gradevole per corre
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-11-independent-evidence"></a>
 
@@ -10783,7 +10786,7 @@ Solo quando un'evidenza ha superato il vaglio di un oracolo autenticamente indip
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-12-assumption-verification"></a>
 
@@ -11447,7 +11450,7 @@ Solo quando le premesse del sistema sono state verificate o confinate con lo ste
 ---
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="punto-controllo-1"></a>
 
@@ -11497,7 +11500,7 @@ Non si scrive codice per vedere se funziona; si progetta la struttura affinché 
 
 ---
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-13-implementation-design"></a>
 
@@ -11710,7 +11713,7 @@ Se un invariante critico viene controllato parzialmente in tre punti diversi (es
 #### 4.5. Eliminazione degli Stati Invalidi a Livello di Tipi (Type-Driven Design)
 
 > **"Parse, don't validate":**  
-> Approccio di design in cui i dati in ingresso non strutturati (es. stringhe o interi generici) vengono convertiti al confine del sistema in tipi di dato rigidi che, per costruzione, non possono contenere valori invalidi.
+> Approccio di design in cui i dati in ingresso non strutturati (es. stringhe o interi generici) vengono convertiti al confine del sistema in tipi di dato rigidi che, per costruzione, non possono contenere valori invalidi.  
 
 Se il sistema richiede un indirizzo email, un codice identificativo o un importo monetario positivo, tali entità non devono essere modellate internamente come generiche `string` o `float`. Vengono modellate come tipi dedicati (`EmailAddress`, `PositiveMoney`) il cui costruttore impedisce l'istanziazione di valori non conformi. In questo modo, l'LLM incaricato di generare il codice interno (*Step 15*) non dovrà gestire o duplicare controlli difensivi sparsi, poiché gli stati invalidi sono irrappresentabili per costruzione.
 
@@ -11719,6 +11722,8 @@ Se il sistema richiede un indirizzo email, un codice identificativo o un importo
 > Per visualizzare la differenza tra *validare* e *modellare con i tipi*, si confronti un cartello di avvertimento con una presa industriale sagomata:
 > - **L'approccio debole (Validazione diffusa):** accettiamo dati generici aperti (es. stringhe o numeri qualunque) e inseriamo decine di controlli `if` sparsi nel codice sperando che ogni modulo si ricordi di controllare se il numero sia positivo o se la stringa sia un'email valida. È come lasciare un cavo elettrico scoperto ad alto voltaggio e appendere un cartello con scritto *"Attenzione: inserire solo spine adatte"*. Se l'LLM dimentica un singolo `if` in una funzione secondaria, il sistema accetterà dati corrotti.
 > - **L'approccio forte (Type-Driven Design):** creiamo un tipo dedicato (es. `PositiveMoney`) il cui costruttore esegue il controllo una volta per tutte all'ingresso del sistema (*Parse*). Se il dato è valido, viene incapsulato in un oggetto blindato che non può più essere alterato; se non è valido, l'oggetto non viene neppure creato. È l'equivalente di una presa elettrica con una sagoma fisica incompatibile: una spina errata non può fisicamente entrare. All'interno del nucleo applicativo, le funzioni accettano solo oggetti `PositiveMoney`: la possibilità che il valore sia negativo è resa fisicamente e matematicamente impossibile a monte.
+
+> *Per le configurazioni pronte all'uso di type-checking rigoroso a tolleranza zero (`mypy --strict`) e per la configurazione del linter sui contratti, vedi la Sezione 2.7 (`ruff.toml` e `pyproject.toml`) dell'**Appendice [☰ Cookbook di Assurance](#appendice-cookbook)**.*
 
 ---
 
@@ -12528,7 +12533,7 @@ L'Implementation Design costituisce la **diga di protezione ingegneristica** con
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-14-containment-least"></a>
 
@@ -12910,6 +12915,8 @@ Il codice generato dagli LLM può contenere riferimenti a pacchetti allucinati o
 - Download di payload di secondo livello non verificati.
 - Esfiltrazione di variabili d'ambiente e chiavi API verso endpoint remoti.
 - Connessione a botnet o server di Command & Control (C2).
+
+> *Il template del Dockerfile effimero non privilegiato (`Dockerfile.ephemeral-runner`), il profilo Seccomp restrittivo (`runner_strict.json`) e la configurazione protetta dei server per agenti (`.mcp.json`) sono disponibili nelle Sezioni 2.6 e 6.2 dell'**Appendice [☰ Cookbook di Assurance](#appendice-cookbook)**.*
 
 ---
 
@@ -13356,7 +13363,7 @@ Lo STEP 14 (Containment & Least Authority) costituisce la linea difensiva fondam
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-15-llm-assisted"></a>
 
@@ -13731,6 +13738,8 @@ Per disinnescare strutturalmente questo loop:
    ```
 2. **Oracolo di integrità del test runner:** La pipeline locale deve eseguire il comando di verifica confrontando l'hash dei file di test: se l'agente tenta di sovrascrivere i file di test per far passare la build, l'ambiente rileva la mutazione dell'oracolo e interrompe categoricamente l'esecuzione con verdetto **NO-GO**.
 3. **Regola del "3-Strike Stop":** Se l'agente non risolve il fallimento del test entro tre iterazioni consecutive, l'operatore deve interrompere il ciclo. Proseguire oltre produce solo degradazione caotica del codice (*code rot* generativo).
+
+> *L'attuatore automatico che blocca in locale e in CI qualsiasi modifica non autorizzata ai file di test congelati è implementato nello script `.assurance/bin/freeze_guard.py` (Sezione 3.4.3 del [☰ Cookbook di Assurance](#appendice-cookbook)).*
 
 ---
 
@@ -14290,7 +14299,7 @@ Lo STEP 15 (LLM-Assisted Implementation) ridefinisce la sintesi del codice come 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-16-automated-testing"></a>
 
@@ -14724,6 +14733,8 @@ e analogamente:
 Un punteggio di mutazione elevato dimostra che la suite non è cieca rispetto a modifiche elementari della logica; non dimostra che la specifica sia completa né che siano stati campionati tutti i percorsi rilevanti.
 
 > *(Per l'elenco e le licenze dei framework di automazione dei test e mutazione, vedi l'appendice: [⬡ Strumenti per la verifica e l’assurance — Sez. 2](#appendice-sw))*
+
+> *Per l'integrazione automatica di `mutmut` all'interno della pipeline con blocco se il Mutation Score è < 80%, consultare il job `mutation_gate` presente nei workflow GitHub Actions e GitLab CI (Sezioni 4.2 e 5.1 del [☰ Cookbook di Assurance](#appendice-cookbook)).*
 
 ---
 
@@ -15175,7 +15186,7 @@ Lo STEP 16 (Automated Testing) trasforma la verifica del codice da atto di fede 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-17-static-analysis"></a>
 
@@ -15462,6 +15473,8 @@ Di conseguenza, lo SCA applicato al codice generato o assistito da LLM ha l'obbl
 > *(Sulle tecniche di formulazione dei prompt e di confinamento del contesto volte a impedire a monte l'allucinazione di dipendenze non autorizzate prima dell'analisi SCA, vedi l'appendice: [⌨ Prompt Engineering Contrattuale e Difensivo — Sez. 4](#appendice-prompt-eng), **Pattern P2: Grounded & Closed-Context Prompting**).*
 
 > La risoluzione preventiva e la build delle dipendenze devono avvenire all'interno di una sandbox priva di accesso di rete o confinata, vedi: [▣ Progettazione di Sandbox ed Esecuzione Isolata](#appendice-sandbox) (Asse 4)
+
+> *Lo scanner deterministico che interroga le API PEP 691/700 di PyPI e il registry npm per verificare l'anzianità di registrazione contro attacchi di slopsquatting è disponibile in `.assurance/bin/check_dependencies.py` (Sez. 3.4.2 del [☰ Cookbook di Assurance](#appendice-cookbook)). La configurazione di Gitleaks con verifica dell'impronta binaria SHA-256 è dettagliata nelle Sezioni 4.2 e 5.1.*
 
 #### 6.6. Secret Scanning: pattern matching, entropia ed esposizione
 
@@ -16235,7 +16248,7 @@ Lo Step 17 garantisce che il codice generato dall'LLM non venga ammesso alle fas
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-18-property-based"></a>
 
@@ -16694,6 +16707,8 @@ Nessun test basato su esempi standard avrebbe ipotizzato `total=0.05` e `parts=7
 
 > [!TIP]
 > **⌕ Focus di lettura per non programmatori:** L'etichetta `@given(...)` ordina al programma di collaudo di inventare centinaia di importi e divisori casuali e controllare tre regole matematiche elementari (somma uguale al totale, nessuna quota negativa, scarto massimo di 1 centesimo). Provando `0.05` diviso `7`, la funzione arrotonda ciascuna delle 7 quote a `0.01` (`0.07` totali) e poi toglie l'eccesso (`-0.02`) dall'ultima quota, trasformandola illegalmente in un numero negativo (`-0.01`).
+
+> *Lo schema formale JSON Schema Draft 2020-12 che valida i record delle discrepanze è memorizzato in `.assurance/schemas/discrepancy.schema.json`, con relativo template d'esempio in Sezione 3.1.1 e 3.2.1 del [☰ Cookbook di Assurance](#appendice-cookbook).*
 
 ---
 
@@ -17177,7 +17192,7 @@ Il Property-Based Testing, il Fuzzing guidato da copertura e il Testing Avversar
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-19-threat-modeling"></a>
 
@@ -17865,7 +17880,7 @@ Il Threat Modeling e il Red Teaming costituiscono il contrappeso razionale all'o
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-20-multi-model"></a>
 
@@ -18612,7 +18627,7 @@ L'audit multi-modello rappresenta uno strumento diagnostico di grande valore eur
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-21-independent-verification"></a>
 
@@ -19247,7 +19262,7 @@ La Verifica Indipendente costituisce il presidio metodologico che impedisce all'
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-22-discrepancy-analysis"></a>
 
@@ -19778,6 +19793,8 @@ Il manuale adotta il seguente formato strutturato per la tracciabilità delle an
 > **⚓︎ Come leggere questa scheda JSON (per non tecnici):**  
 > Non è codice da eseguire, ma una cartella clinica strutturata del difetto, divisa in cinque parti leggibili: come è stato scoperto e quanto è grave (`classification`), il caso preciso che lo ha fatto fallire (`discrepancy_details`), quali ipotesi di causa sono state smentite o provate (`causal_analysis`), la decisione presa (`disposition`) e la prova che la riparazione ha superato i test (`verification_of_fix`).
 
+> *Lo schema formale JSON Schema Draft 2020-12 che valida i record delle discrepanze è memorizzato in `.assurance/schemas/discrepancy.schema.json`, con relativo template d'esempio in Sezione 3.1.1 e 3.2.1 del [☰ Cookbook di Assurance](#appendice-cookbook).*
+
 ---
 
 ### 9. Controesempi didattici
@@ -20056,7 +20073,7 @@ L'analisi e la classificazione delle discrepanze costituisce il banco di prova d
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-23-evidence-decision"></a>
 
@@ -20603,6 +20620,8 @@ class EvidenceGateEngine:
         }
 ```
 
+> *L'attuatore CLI completo di Decision Gate fail-closed, integrato con il controllo dell'hash del commit, la verifica crittografica dei report grezzi e l'applicazione della policy dichiarativa, è contenuto nello script `.assurance/bin/validate_evidence.py` e nella policy `.assurance/policies/assurance-gate-policy.yaml` (Sezioni 3.3 e 3.4.1 del [☰ Cookbook di Assurance](#appendice-cookbook)).*
+
 #### 9.3 Spiegazione Dettagliata del Codice per Non Programmatori
 
 Se non possiedi familiarità approfondita con la programmazione, non farti intimidire dalla sintassi Python. Il programma si limita a tradurre in passaggi logici consequenziali i controlli che un valutatore umano compirebbe a mente:
@@ -21062,7 +21081,7 @@ I punti fermi da ricordare sono:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-24-human-review"></a>
 
@@ -21420,6 +21439,8 @@ La tracciabilità verificabile garantisce che:
 3. Se l'artefatto viene modificato anche di un solo carattere dopo l'approvazione, l'hash non corrisponde più e l'autorizzazione decade istantaneamente.
 
 I meccanismi tecnici per implementare questo legame possono variare a seconda dell'infrastruttura (firme crittografiche GPG, registri immutabili di audit trail, record firmati nei sistemi di versionamento), ma il principio epistemico rimane invariato: **la decisione deve essere inseparabilmente legata alla specifica versione dell'artefatto e al suo dossier probatorio**.
+
+> *Il template formale di Pull Request (`PULL_REQUEST_TEMPLATE.md`) e le regole vincolanti di revisione obbligatoria multipiattaforma (`CODEOWNERS`) sono pronti per l'uso nelle Sezioni 2.1 e 2.2 del [☰ Cookbook di Assurance](#appendice-cookbook).*
 
 ---
 
@@ -21865,7 +21886,7 @@ La capacità dei modelli generativi di produrre codice formalmente plausibile e 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="punto-controllo-2"></a>
 
@@ -21919,7 +21940,7 @@ L'approvazione dello Step 24 non autorizza la fiducia cieca: autorizza esclusiva
 
 ---
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-25-staging-canary"></a>
 
@@ -22793,7 +22814,7 @@ L'ingresso del software assistito da Large Language Models nell'ambiente operati
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-26-observability"></a>
 
@@ -23965,7 +23986,7 @@ L'osservabilità non è un'attività accessoria da delegare passivamente all'inf
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-27-alerting-runbooks"></a>
 
@@ -24865,7 +24886,7 @@ L'acquisizione della piena padronanza concettuale, metodologica ed epistemica de
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-28-rollback-fallback"></a>
 
@@ -25962,7 +25983,7 @@ L'acquisizione della padronanza concettuale ed esecutiva dello STEP 28 si consid
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="punto-controllo-3"></a>
 
@@ -26016,7 +26037,7 @@ L'esercizio controllato ha dimostrato che il sistema sa sopravvivere al guasto c
 
 ---
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-29-post-deployment"></a>
 
@@ -27060,7 +27081,7 @@ Cosa accade se lo STEP 29 viene omesso o condotto superficialmente:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-30-risk-register"></a>
 
@@ -27551,6 +27572,8 @@ risk_item:
       knowledge_entries: ["KB-CONC-042"]
       incidents: ["INC-2026-09-18-01"]
 ```
+
+> *Lo schema di validazione `risk_item.schema.json` e il relativo template YAML per le voci di rischio sono disponibili nelle Sezioni 3.1.2 e 3.2.2 del [☰ Cookbook di Assurance](#appendice-cookbook).*
 
 #### 9.2 Schema formale di una Knowledge Entry (JSON)
 
@@ -28274,7 +28297,7 @@ Il flusso operativo dell'assurance trasforma l'evidenza sul campo in protezione 
 ---
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-31-change-impact"></a>
 
@@ -29129,7 +29152,7 @@ Un'analisi di impatto rigorosa non si accontenta di verificare se il codice modi
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-32-periodic-review"></a>
 
@@ -29519,6 +29542,8 @@ Esito Test Unitari CI      | PASS                | PASS           [UNINFORMATIVE
 2. **Il fallimento della conformità cerimoniale:** La suite CI dell'ospedale era cieca rispetto al problema perché eseguiva test basati su mock statici registrati a Gennaio. La documentazione era perfetta, ma l'assurance tecnica era crollata: quasi il 5% dei pazienti critici rischiava un triage declassato.
 3. **Stato Decisionale dell'Audit:** **`NO-GO`** immediato per la modalità autonoma. Declassamento obbligatorio a modalità di consultazione con supervisione umana totale, in attesa di ricalibrare i prompt e definire un'architettura RAG ancorata a ontologie mediche deterministiche.
 
+> *Il verbale strutturato per la revisione periodica e l'analisi del drift (`audit_report_template.md`) è archiviato nella Sezione 6.2 del [☰ Cookbook di Assurance](#appendice-cookbook).*
+
 ---
 
 ### 10. Controesempi: quando il sistema non cambia ma il contesto invalida l'evidenza
@@ -29891,7 +29916,7 @@ L'audit periodico non è un atto burocratico di conformità formale, ma l'eserci
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="step-33-closure-lessons"></a>
 
@@ -30617,7 +30642,7 @@ La chiusura, l'archiviazione e la capitalizzazione delle lezioni non costituisco
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="punto-controllo-4"></a>
 
@@ -30675,7 +30700,7 @@ Terminata la sequenza dei capitoli metodologici, il manuale mette a disposizione
 
 ---
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-psico"></a>
 
@@ -30876,7 +30901,7 @@ La compresenza empirica di questi fenomeni non costituisce una tautologia né pr
 
 ---
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-diversita-llm"></a>
 
@@ -31285,7 +31310,7 @@ Per garantire che l'audit multi-modello fornisca evidenze difendibili all'intern
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-prompt-eng"></a>
 
@@ -31797,6 +31822,8 @@ ISTRUZIONI DI ATTACCO LOGICO:
 
 > [!NOTE]
 > ✎ **Raccordo operativo (Step 16):** Per evitare il testing circolare, questo pattern va applicato aprendo una sessione isolata su un modello **LLM B** diverso dal generatore **LLM A** (selezionato tramite la matrice di diversità in ✦ *Valutazione della Diversità tra Modelli Linguistici e Protocolli di Audit*) e fornendo esclusivamente la specifica e l'Interface Stub vuoto, senza mai mostrare il codice implementato da LLM A. Vedi il protocollo completo in CAPITOLO 16 — *Automated Testing* (Sez. 8.1).
+
+> Vedere la suite di mutazione automatizzata in CI descritta nelle Sezioni 4.2 e 5.1 del [☰ Cookbook di Assurance](#appendice-cookbook).
 
 ---
 
@@ -32723,7 +32750,7 @@ Nella stesura di valutazioni di sicurezza o audit occorre distinguere tra standa
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-ispezione-codice"></a>
 
@@ -33557,7 +33584,7 @@ pulizia:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-sw"></a>
 
@@ -33775,7 +33802,4450 @@ La licenza GNU Free Documentation License (GNU FDL), versione 1.3 o successiva, 
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
+
+<a name="appendice-cookbook"></a>
+
+# ☰ Cookbook di Assurance
+## *Prontuario Operativo di File, Configurazioni e Template pronti all'uso*
+
+> [!IMPORTANT]
+> ⚑ **Principio di Eseguibilità Operativa dell'Assurance**  
+> Un'intenzione scritta nel prompt non protegge il sistema, e un template senza schema formale di validazione e senza motore deterministico *fail-closed* è solo testo inerte. Questa appendice fornisce file operativi, schemi sintattici rigorosi e script eseguibili pronti al deployment.
+
+---
+
+## Indice dell'Appendice
+
+1. **[Guida all'Adozione, Prerequisiti e Riferimento CLI](#1-guida-alladozione-prerequisiti-e-riferimento-cli)**
+2. **[MODULO GOVERNANCE REPOSITORY](#2-modulo-governance-repository)**
+3. **[MODULO SCHEMI, TEMPLATE E DECISION GATE (`.assurance/`)](#3-modulo-schemi-template-e-decision-gate-assurance)**
+4. **[MODULO GITHUB ACTIONS (`.github/workflows/`)](#4-modulo-github-actions-githubworkflows)**
+5. **[MODULO GITLAB CI (`.gitlab-ci.yml`)](#5-modulo-gitlab-ci-gitlab-ciyml)**
+6. **[Registro di Estendibilità per Contenuti Avanzati](#6-registro-di-estendibilità-per-contenuti-avanzati)** (OPA/Rego v1 + test, Seccomp + comando sandbox Docker, Dockerfile Sandbox Effimera + `.dockerignore`, Audit report, Test di validazione)
+
+---
+
+[▲ Torna su](#prontuario-operativo-di-file-configurazioni-e-template-pronti-alluso)
+## 1. Guida all'Adozione, Prerequisiti e Riferimento CLI
+**CLI:** *Command Line Interface* (interfaccia a riga di comando).
+
+### 1.1 Albero del Repository Conforme all'Assurance
+
+```text
+RADICE_DEL_REPOSITORY/
+├── CODEOWNERS                               # [Sez. 2.2] Revisioni umane obbligatorie (GitHub + GitLab)
+├── .pre-commit-config.yaml                  # [Sez. 2.5] Segreti, Bidi/Unicode e anti-test tampering
+├── .mcp.json                                # [Sez. 2.6] Confinamento runtime MCP per agenti
+├── ruff.toml                                # [Sez. 2.7] Linter a tolleranza zero per Python
+├── pyproject.toml                           # [Sez. 2.7] Configurazione strict di mypy e pytest
+├── .dockerignore                            # [Sez. 6.2] Esclusione .git e segreti dal contesto build
+│
+├── .github/
+│   ├── PULL_REQUEST_TEMPLATE.md             # [Sez. 2.1] Checklist di conformità tecnica
+│   └── workflows/                           # Pipeline GitHub Actions con pinning SHA (Node 24)
+│       ├── ai-dependency-guard.yml          # [Sez. 4.1] Scanner anti-slopsquatting sui manifest
+│       └── evidence-decision-gate.yml       # [Sez. 4.2] Gate integrato Step 16, 17, 23 (include Mutation & OPA)
+│
+├── .gitlab-ci.yml                           # [Sez. 5.1] Pipeline equivalente integrata per GitLab CI
+│
+├── .assurance/
+│   ├── requirements.assurance.in            # [Sez. 3.5] Dipendenze dirette fissate (input pip-compile)
+│   ├── requirements.assurance.txt           # [Sez. 3.5] Lock file di base per l'ambiente Gate
+│   ├── dependency_allowlist.txt             # [Sez. 3.5] Eccezioni anzianità approvate
+│   ├── schemas/                             # Schemi JSON Schema Draft 2020-12
+│   │   ├── discrepancy.schema.json          # [Sez. 3.1.1] Schema anomalie (Step 22)
+│   │   ├── risk_item.schema.json            # [Sez. 3.1.2] Schema voci di rischio (Step 30)
+│   │   └── evidence_dossier.schema.json     # [Sez. 3.1.3] Schema dossier evidenze (Step 23)
+│   │
+│   ├── templates/                           # Template precompilati conformi agli schemi
+│   │   ├── discrepancy_template.json        # [Sez. 3.2.1] Modello discrepanza
+│   │   └── risk_item_template.yaml          # [Sez. 3.2.2] Modello rischio
+│   │
+│   ├── policies/
+│   │   ├── assurance-gate-policy.yaml       # [Sez. 3.3] Regole vincolanti del Decision Gate
+│   │   ├── boundary_check.rego              # [Sez. 6.2] Policy OPA/Rego v1 di confinamento
+│   │   └── boundary_check_test.rego         # [Sez. 6.2] Test unitari della policy Rego
+│   │
+│   ├── seccomp/
+│   │   └── runner_strict.json               # [Cap. 14 / ▣ Progettazione di Sandbox / Sez. 6.2] Profilo Seccomp strict per CPython 3.11 (Asse 3: Filtro Syscall)
+│   │
+│   ├── docker/
+│   │   └── Dockerfile.ephemeral-runner      # [Cap. 14 / ▣ Progettazione di Sandbox / Sez. 6.2] Container sandbox non privilegiato (5 assi di isolamento del kernel)
+│   │
+│   └── bin/
+│       ├── validate_evidence.py             # [Sez. 3.4.1] Motore fail-closed Step 23
+│       ├── check_dependencies.py            # [Sez. 3.4.2] Scanner filiera PEP 691/700, PyPI JSON, npm & lockfile
+│       ├── freeze_guard.py                  # [Sez. 3.4.3] Blocco manomissione oracoli (pre-commit & CI)
+│       └── check_unicode.py                 # [Sez. 3.4.4] Scanner Bidi/Zero-Width su tutto il repo
+│
+├── docs/assurance/
+│   ├── discrepancies/
+│   │   └── .gitkeep                         # Mantiene tracciata la directory in Git per il Gate
+│   ├── risks/
+│   │   └── .gitkeep                         # Mantiene tracciata la directory dei rischi in Git
+│   └── audits/
+│       └── audit_report_template.md         # [Sez. 6.2] Verbale di audit periodico (Step 32)
+│
+├── ASSUMPTIONS.md                           # [Sez. 2.3] Registro assunzioni operative
+├── SECURITY_AI.md                           # [Sez. 2.4] Disciplinare perimetrale AI
+├── src/                                     # Codice sorgente applicativo (perimetro MCP, mypy, bandit, mutmut)
+└── tests/
+    ├── conftest.py                          # [Sez. 3.2.3] Profilo Hypothesis 'ci'
+    ├── contracts/
+    │   └── oracle_metadata.json             # [Sez. 3.2.3] Registro indipendenza degli oracoli
+    ├── invariants/                          # Suite di test congelati sugli invarianti
+    └── assurance/
+        └── test_assurance_artifacts.py      # [Sez. 6.2] Verifica automatica artefatti di assurance
+```
+
+### 1.2 Regole sui Segnaposto e Dati Esempio
+Per consentire il collaudo immediato nei processi di Continuous Integration:
+- I file schema, gli script e le configurazioni di pipeline sono pronti all'uso;
+- I file template (`.assurance/templates/`) contengono **dati d'esempio validi** che soddisfano le espressioni regolari e i formati degli schemi;
+- Le parti da personalizzare in fase di adozione sono segnalate con il commento `# DA PERSONALIZZARE` o con la convenzione `<PARAMETRO_MAIUSCOLO>`.
+
+### 1.3 Gestione e Rotazione Sicura dei Digest (Pinning SHA)
+
+In questo Cookbook le immagini Docker, i binari scaricati in CI (Gitleaks, OPA) e le GitHub Actions sono bloccati (*pinnati*) tramite impronta crittografica (**SHA-256** o **SHA-1**). Per le dipendenze Python del Decision Gate, invece, non è possibile inserire staticamente hash multi-piattaforma in un prontuario generico perché i wheel variano per sistema operativo e architettura: la procedura di generazione dei digest con `pip-compile --generate-hashes` è dettagliata nella Sez. 1.4 e Sez. 3.5.
+
+> [!IMPORTANT]
+> ⚑ **Perché i digest vanno tenuti fissi nel codice (e mai calcolati al volo in pipeline):**
+> 1. **I tag sono mobili:** un riferimento come `python:3.11-slim-bookworm` o `actions/checkout@v7` può essere sovrascritto nel tempo; il digest identifica invece un contenuto esatto e immutabile.
+> 2. **La verifica dinamica annulla la protezione:** scaricare l'hash dalla stessa fonte e nello stesso istante in cui si scarica il file significa fidarsi di un canale potenzialmente già compromesso.
+> 3. **Riproducibilità:** rieseguire lo stesso commit a distanza di settimane deve produrre esattamente lo stesso ambiente di test.
+
+Per ricevere le patch di sicurezza senza rinunciare al pinning, i digest vanno aggiornati **solo tramite Pull Request dedicate**, verificando che superino il Decision Gate prima del merge.
+
+**Procedura manuale di aggiornamento:**
+- **Immagini Docker** (`.assurance/docker/Dockerfile.ephemeral-runner` e `variables:` in `.gitlab-ci.yml`):
+  Esegui in locale il comando seguente e copia il valore `Digest: sha256:...` dell'indice multi-piattaforma in **entrambi** i file (mantenendoli allineati):
+  ```bash
+  docker buildx imagetools inspect python:3.11-slim-bookworm
+  ```
+- **Binari scaricati in CI** (`GITLEAKS_*` e `OPA_*` in `.github/workflows/evidence-decision-gate.yml`, `OPA_URL`/`OPA_SHA256` in `.gitlab-ci.yml` e comando locale in Sez. 1.4 punto 4):
+  Scarica in locale dalla pagina ufficiale delle GitHub Releases sia il binario/archivio sia il file `*_checksums.txt` / `.sha256` ufficiale, verifica in locale (`sha256sum -c`) e aggiorna URL e costante `*_SHA256` mantenendo tutti i file allineati nella PR.
+- **GitHub Actions** (`.github/workflows/*.yml`):
+  Ricava lo SHA-1 completo (40 caratteri) del commit corrispondente alla nuova release ufficiale (prendendo la riga `^{}` se presente) e aggiorna il pin mantenendo il commento `# vX.Y.Z`:
+  ```bash
+  git ls-remote https://github.com/actions/checkout.git "refs/tags/v7.0.1*"
+  ```
+
+**Automazione consigliata:** attiva **Dependabot** (`.github/dependabot.yml`) per `github-actions` e `docker` su GitHub, oppure **Renovate** con supporto al *digest pinning* su GitLab. Ogni PR di aggiornamento resta soggetta a `CODEOWNERS` e al Decision Gate.
+
+---
+
+### 1.4 Procedura Guidata di Adozione (Bootstrap Passo-Passo)
+
+Eseguire i passaggi seguenti nell'ordine indicato alla prima adozione del Cookbook su un repository Python (eventualmente con manifest npm):
+
+1. **Preparazione dell'albero e dei file segnaposto:**
+   ```bash
+   mkdir -p .github/workflows .assurance/{schemas,templates,policies,seccomp,docker,bin} \
+     docs/assurance/{discrepancies,risks,audits} src tests/{contracts,invariants,assurance}
+   touch docs/assurance/discrepancies/.gitkeep docs/assurance/risks/.gitkeep
+   ```
+2. **Personalizzazione dei parametri obbligatori:**
+   - In `CODEOWNERS`: sostituire `@<ORGANIZZAZIONE>/*` con gli identificativi reali preceduti da `@` (chiamati: handle) dei team GitHub (`@nome-organizzazione/nome-team`), dei gruppi GitLab (`@nome-gruppo/sottogruppo`) o dei singoli revisori (`@nome-utente`);
+   - In `tests/contracts/oracle_metadata.json`: compilare `provenance_notes`, `last_verified_utc` (data corrente in formato RFC 3339, da rinnovare almeno ogni 90 giorni — soglia `max_oracle_metadata_age_days` — altrimenti il Gate restituisce `UNKNOWN`) e `verified_by`;
+   - In `.mcp.json`: sostituire gli host consentiti di `--allowed-hosts` con i soli domini documentali realmente autorizzati;
+   - In `.assurance/dependency_allowlist.txt`: lasciare vuoto o inserire solo eccezioni approvate da Security.
+3. **Configurazione ambiente virtuale e blocco crittografico dipendenze Python:**
+   ```bash
+   python3.11 -m venv .venv && source .venv/bin/activate
+   pip install --upgrade pip pip-tools pre-commit
+   pip install -r .assurance/requirements.assurance.in
+   pre-commit install
+   ```
+   *Per attivare `pip install --require-hashes` in CI (raccomandato):* il file `.assurance/requirements.assurance.txt` deve contenere gli hash **per Linux x86_64** (l'architettura dei runner CI):
+   - **Se sviluppi su Linux x86_64:** esegui direttamente:
+     ```bash
+     pip-compile --generate-hashes --allow-unsafe .assurance/requirements.assurance.in -o .assurance/requirements.assurance.txt
+     ```
+   - **Se sviluppi su macOS (Intel o Apple Silicon) o Windows:** genera il lockfile dentro l'immagine Docker Linux fissata (usando `--platform linux/amd64`), così gli hash saranno compatibili con la CI (in locale continua invece a usare `pip install -r .assurance/requirements.assurance.in`):
+     ```bash
+     docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
+       python:3.11-slim-bookworm@sha256:90d117a7f1ef6535dc75831e1a9184725757fede0d4d424d7977fb5429d50610 \
+       sh -c "pip install --no-cache-dir pip-tools && pip-compile --generate-hashes --allow-unsafe .assurance/requirements.assurance.in -o .assurance/requirements.assurance.txt"
+     ```
+4. **Installazione OPA locale (per verifica policy Rego):**
+   Scaricare la versione pinnata `v1.18.2` (allineata a `OPA_URL`/`OPA_SHA256` nelle pipeline) e verificarne l'impronta SHA-256 prima dell'esecuzione. Esempio per **Linux x86_64** (su macOS o ARM64 scaricare il binario corrispondente dalla stessa release e verificarne il file `.sha256`):
+   ```bash
+   curl -fsSL -o /tmp/opa https://github.com/open-policy-agent/opa/releases/download/v1.18.2/opa_linux_amd64_static
+   echo "9903e5125ac281104f2c4b7371d10cc3b74a98933743fcbfc174f9bf0ab20de8  /tmp/opa" | sha256sum -c -
+   chmod +x /tmp/opa && sudo mv /tmp/opa /usr/local/bin/opa
+   ```
+5. **Attivazione Branch Protection / Merge Request Rules:**
+   Configurare su `main`/`master` le regole obbligatorie descritte nella Sez. 2.2 (includendo tutti i job di verifica come *required status checks*).
+6. **Primo collaudo locale end-to-end:**
+   ```bash
+   ruff check --config ruff.toml .
+   mypy --strict
+   opa test .assurance/policies/ -v
+   pytest tests/assurance/test_assurance_artifacts.py
+   python3 .assurance/bin/check_dependencies.py --requirements .assurance/requirements.assurance.txt --min-age 30
+   ```
+
+---
+
+### 1.5 Riferimento CLI ed Esempi di Esecuzione
+
+Tutti gli script in `.assurance/bin/` rispettano la convenzione di uscita deterministica:
+- **`0`**: `PASS` / `ADMIT` (conformità verificata);
+- **`1`**: `UNKNOWN` / `HOLD` (dati insufficienti, indisponibilità di rete o confinamento condizionato);
+- **`2`**: `FAIL` / `NO-GO` (violazione bloccante, anomalia di sicurezza o schema invalido).
+
+#### A. Scanner di Filiera (`check_dependencies.py`)
+```bash
+python3 .assurance/bin/check_dependencies.py \
+  --requirements requirements.txt \
+  --requirements .assurance/requirements.assurance.txt \
+  --pyproject pyproject.toml \
+  --package-json package.json \
+  --package-lock package-lock.json \
+  --allowlist .assurance/dependency_allowlist.txt \
+  --min-age 30
+```
+* **Output atteso (`exit 0`):** `[    PASS     ] jsonschema==4.23.0 -> Autenticato via PyPI release JSON. Anzianita' versione: 185 giorni.`
+* **Esempio di errore e risoluzione (`exit 2`):** `[ HALLUCINATION ] fastapi-magic-ai -> PACCHETTO INESISTENTE SU PYPI (HTTP 404)`. Rimuovere la dipendenza allucinata; se invece il pacchetto è interno o appena pubblicato (`QUARANTINE`) e già verificato da Security, aggiungerlo in `.assurance/dependency_allowlist.txt`.
+
+#### B. Motore di Decision Gate (`validate_evidence.py`)
+```bash
+python3 .assurance/bin/validate_evidence.py \
+  --policy .assurance/policies/assurance-gate-policy.yaml \
+  --dossier .assurance/run_artifacts/evidence_dossier.json \
+  --schema-dir .assurance/schemas/ \
+  --discrepancies-dir docs/assurance/discrepancies/ \
+  --risks-dir docs/assurance/risks/ \
+  --oracle-meta tests/contracts/oracle_metadata.json \
+  --commit "$(git rev-parse HEAD)" \
+  --json-out .assurance/run_artifacts/gate_decision.json
+```
+* **Output atteso (`exit 0`):** `VERDETTO GATE : PASS` / `AZIONE : ADMIT`.
+* **Esempio di errore e risoluzione (`exit 2`):** `[ASSURANCE-GATE] BLOCCO FAIL-CLOSED (NO-GO): Disallineamento commit`. Rigenerare il dossier sull'`HEAD` corrente prima di invocare il Gate.
+
+#### C. Anti-Test Tampering (`freeze_guard.py`) e Scanner Unicode (`check_unicode.py`)
+```bash
+# Controllo locale staging area (pre-commit)
+python3 .assurance/bin/freeze_guard.py
+
+# Controllo in CI rispetto al branch base della PR/MR
+python3 .assurance/bin/freeze_guard.py --ci-base origin/main --discrepancies-dir docs/assurance/discrepancies/
+
+# Scansione Bidi / Zero-Width sui file tracciati
+python3 .assurance/bin/check_unicode.py $(git ls-files)
+```
+
+---
+
+### 1.6 Terminologia essenziale 
+
+**Allowlist** (*lista di autorizzati*): elenco chiuso degli unici elementi consentiti (ad esempio i soli domini web o pacchetti approvati); tutto ciò che non compare in lista viene bloccato per impostazione predefinita.
+
+**Container**: ambiente isolato e leggero (gestito da Docker) che contiene un programma e le sue librerie, separato dal resto del sistema operativo dell’utente.
+
+**Digest / Hash (SHA-256 / SHA-1)**: impronta digitale matematica (una stringa esadecimale di lunghezza fissa) calcolata sul contenuto di un file o di un'immagine Docker. Se cambia anche un solo bit del file, il digest cambia completamente: serve quindi a verificare che il file scaricato sia autentico e non alterato.
+
+**End-to-end**: verifica completa che attraversa tutti i passaggi reali del sistema dall’inizio alla fine, invece di provare solo un singolo pezzo isolato.
+
+**Fail-closed** (*blocco in caso di errore*): regola di sicurezza per cui, se un controllo va in errore, manca un file, scade un termine o una risposta è ambigua, il sistema **blocca** l’operazione anziché lasciarla passare.
+
+**`PATH`**: variabile di ambiente del sistema operativo che elenca le cartelle in cui il terminale cerca i comandi eseguibili (ad esempio `/usr/local/bin`); spostare un programma nel `PATH` permette di invocarlo scrivendo solo il nome (es. `opa`) senza scrivere tutto il percorso.
+
+**Pinning / Pinnato** (*fissaggio*): bloccare una risorsa (un'azione GitHub, un'immagine Docker o un programma) a una **versione esatta** o a una **impronta crittografica immutabile**, invece di usare etichette generiche come `latest` o `v7` che il fornitore può sovrascrivere nel tempo.
+
+**Required Status Checks** (*controlli obbligatori*): impostazione di GitHub (analoga a *Pipelines must succeed* su GitLab) che impedisce di integrare le modifiche nel ramo principale (`main`/`master`) finché i job automatici indicati non terminano con esito positivo.
+
+**RFC 3339**: standard internazionale per scrivere date e orari senza ambiguità, completo di fuso orario (es. `2026-11-24T12:00:00Z`, dove `T` separa data e ora e `Z` indica l’ora universale **UTC**, cioè il fuso orario di riferimento senza ora legale).
+
+**Runner CI**: il computer virtuale o container automatico usato da GitHub Actions o GitLab CI per eseguire i controlli (test, analisi statica, gate) a ogni Pull Request / Merge Request.
+
+**Wheel (`.whl`)**: formato di pacchetto Python già precompilato (pronto da installare senza compilazione locale). I file *wheel* dipendono spesso dal sistema operativo e dal processore; per questo i loro hash variano tra Linux, macOS e Windows.
+
+---
+
+[▲ Torna su](#prontuario-operativo-di-file-configurazioni-e-template-pronti-alluso)
+## 2. MODULO GOVERNANCE REPOSITORY
+
+### 2.1 `.github/PULL_REQUEST_TEMPLATE.md`
+
+````text
+<!-- .github/PULL_REQUEST_TEMPLATE.md -->
+## 1. Descrizione della Modifica e Finalità di Dominio
+- **Obiettivo (Step 1 / Step 4):** <DESCRIVI_L_OBIETTIVO_DI_BUSINESS>
+- **Issue/Ticket di Riferimento:** #<NUMERO_ISSUE>
+
+---
+
+## 2. Trasparenza sull'Uso di Intelligenza Artificiale (Step 15)
+- [ ] Modifica interamente scritta da un essere umano (Nessun LLM utilizzato).
+- [ ] Modifica generata o coadiuvata da un modello linguistico/agente AI.
+
+*Se è stato utilizzato un modello AI, compilare obbligatoriamente (senza incollare prompt di sistema riservati, credenziali o segreti):*
+- **Modello e Snapshot/Versione:** `<ES. CLAUDE-3.7-SONNET (2025-02) / GPT-4O / CODEX>`
+- **Tool di Generazione:** `<ES. CURSOR / COPILOT / AIDER / CLI>`
+- **Riferimento Prompt (ID / Versione / Hash interno):** `<ES. PROMPT-AUTH-V3 / SHA256:abcd1234>`
+  - **Pattern di Prompting Adottato:**
+    - [ ] Pattern P1: Contract-First & Type-Aware Prompting ([Capitolo 15](#step-15-llm-assisted) & [⌨ Prompt Engineering, Sez. 4](#appendice-prompt-eng))
+    - [ ] Pattern P2: Grounded & Closed-Context Prompting ([Capitolo 15](#step-15-llm-assisted) & [⌨ Prompt Engineering, Sez. 4](#appendice-prompt-eng))
+    - [ ] Altro pattern documentato conforme allo [Step 15](#step-15-llm-assisted)
+  - **Sintesi Sanitizzata dell'Istruzione Principale:**
+  ```text
+  <SINTESI_NON_RISERVATA_DEL_COMPITO_ASSEGNATO_E_DEI_VINCOLI_APPLICATI>
+  ```
+- [ ] **Ghost Code Audit:** Ho ispezionato il diff riga per riga e rimosso qualsiasi funzione, parametro o blocco di gestione eccezioni non richiesto formalmente dalla specifica.
+
+---
+
+## 3. Dichiarazione di Non-Manomissione degli Oracoli (Anti-Test Tampering)
+- [ ] **INTEGRITÀ DEGLI ORACOLI:** Confermo che questa PR **NON modifica né cancella** asserzioni esistenti nella cartella `tests/` al solo scopo di far passare il codice modificato.
+- [ ] Eventuali modifiche ai test congelati (`tests/invariants/`, `tests/contracts/`, `tests/assurance/`, `tests/conftest.py`) sono accompagnate da una scheda di discrepanza approvata (`CORRECT_SPECIFICATION` o `CORRECT_ORACLE_TEST`) in `docs/assurance/discrepancies/`.
+
+---
+
+## 4. Presidio degli Invarianti Critici e Tipizzazione (Step 6 & 13)
+- **Invarianti Coinvolti:** `<ES. INV-BALANCE-NON-NEGATIVE, INV-IDEMPOTENCY>`
+- **Modellazione dei Tipi:** Gli stati invalidi sono resi irrappresentabili dal type system (*Parse, don't validate* - vedi [Capitolo 13, Sez. 4.5](#step-13-implementation-design))?
+  - [ ] SÌ (Utilizzo di Value Objects, tipi algebrici chiusi o dataclass congelate con validazione nel costruttore)
+  - [ ] NON APPLICABILE (Modifica cosmetica priva di impatto sul dominio)
+- **Gestione Errori:** Si certifica l'assenza di soppressione silenziosa degli errori (`except: pass`, fallback a 0 o None fittizi)?
+  - [ ] SÌ, gli errori sono tipizzati o sollevano eccezioni rumorose (*Fail-Fast*).
+
+---
+
+## 5. Indipendenza delle Evidenze e Collaudo (Step 11 & 16)
+- **Origine della Test Suite:**
+  - [ ] Test generati in modo disaccoppiato (Sessione cieca / Modello differente / Scrittura umana da specifica).
+  - [ ] Test generati nella medesima sessione del codice (Richiede oracolo secondario indipendente).
+- **Esiti Locali di Collaudo:**
+  - [ ] Analisi Statica locale (`ruff check --config ruff.toml .`, `mypy --strict`): zero warning non motivati.
+  - [ ] Test di Mutazione locale (`mutmut`): Mutation Score ≥ soglia di policy (`80%`).
+````
+
+---
+
+### 2.2 `CODEOWNERS` e Prerequisiti di Branch Protection
+
+Il file `CODEOWNERS` è collocato nella **radice del repository** (`/CODEOWNERS`), percorso riconosciuto nativamente sia da **GitHub** sia da **GitLab** (evitando di lasciare i repository GitLab sprovvisti di copertura).
+
+> [!WARNING]
+> **⚠ Prerequisito di Efficacia Operativa:**  
+> Il file `CODEOWNERS` è inefficace senza la protezione del branch `main`/`master`:
+> - **Su GitHub** (*Settings -> Branches -> Branch protection rules* o *Rulesets*): attivare **Require a pull request before merging**, **Require review from Code Owners**, **Require status checks to pass before merging** (includendo il job finale di Decision Gate) e **Do not allow bypassing the above settings**.
+> - **Su GitLab** (*Settings -> Repository -> Protected branches* & *Settings -> Merge requests -> Merge request approvals*): attivare **Require approval from code owners** sul branch protetto, **Pipelines must succeed** e **Remove all approvals when commits are added**.
+
+```text
+# CODEOWNERS
+# ==============================================================================
+# ASSEGNAZIONE OBBLIGATORIA DELLE REVISIONI UMANE (STEP 14 & 24)
+# Collocato in radice per compatibilità nativa con GitHub e GitLab.
+# DA PERSONALIZZARE: sostituire @<ORGANIZZAZIONE>/* con i team/gruppi reali.
+# ==============================================================================
+
+# 0. Autoprotezione del file CODEOWNERS stesso
+/CODEOWNERS                       @<ORGANIZZAZIONE>/lead-engineers
+
+# 1. Pipeline di CI/CD e automazione di verifica
+/.github/workflows/               @<ORGANIZZAZIONE>/team-devops-security
+/.gitlab-ci.yml                   @<ORGANIZZAZIONE>/team-devops-security
+
+# 2. Infrastruttura formale di Assurance e guardrail locali
+/.assurance/                      @<ORGANIZZAZIONE>/team-assurance-leads
+/ruff.toml                        @<ORGANIZZAZIONE>/team-assurance-leads
+/pyproject.toml                   @<ORGANIZZAZIONE>/team-assurance-leads
+/.pre-commit-config.yaml          @<ORGANIZZAZIONE>/team-assurance-leads
+/.mcp.json                        @<ORGANIZZAZIONE>/security-officers
+/.dockerignore                    @<ORGANIZZAZIONE>/team-devops-security
+
+# 3. Governance del Repository e Modello delle Minacce
+/ASSUMPTIONS.md                   @<ORGANIZZAZIONE>/system-architects
+/SECURITY_AI.md                   @<ORGANIZZAZIONE>/security-officers
+/.github/PULL_REQUEST_TEMPLATE.md @<ORGANIZZAZIONE>/lead-engineers
+
+# 4. Suite di Test Congelate, Contratti e Test di Assurance (Step 16)
+/tests/contracts/                 @<ORGANIZZAZIONE>/qa-independent-verifiers
+/tests/invariants/                @<ORGANIZZAZIONE>/qa-independent-verifiers
+/tests/assurance/                 @<ORGANIZZAZIONE>/team-assurance-leads
+/tests/conftest.py                @<ORGANIZZAZIONE>/qa-independent-verifiers
+
+# 5. Documentazione e Registri Ufficiali di Audit (Step 22, 30 & 32)
+/docs/assurance/                  @<ORGANIZZAZIONE>/compliance-leads
+```
+
+---
+
+### 2.3 `ASSUMPTIONS.md`
+
+```text
+# Registro delle Assunzioni Operative di Sistema (Step 5 & Step 12)
+
+Questo documento censisce in modo esplicito le assunzioni operative, ambientali e di dominio sotto le quali il software è stato progettato e verificato.
+
+## Tassonomia Uniforme degli Stati di Assunzione:
+- `VERIFIED`: Dimostrata empiricamente tramite test d'integrazione, telemetria o vincoli fisici immutabili.
+- `UNVERIFIED`: Presupposto operativo necessario in attesa di evidenza formale.
+- `FALSIFIED`: Dimostrata falsa sul campo; impone la riprogettazione o l'applicazione di guardrail difensivi (*Step 12*).
+
+---
+
+## Matrice delle Assunzioni Attive
+
+| ID | Data | Assunzione Operativa Dettagliata | Proprietà Critica Dipendente (Step 6) | Metodo di Verifica Empirica (Step 12) | Stato Corrente | Azione di Confinamento in caso di Rottura |
+| :--- | :--- | :--- | :--- | :--- | :---: | :--- |
+| **ASM-01** | 2026-01-15 | La latenza di rete verso l'API di pagamento non supera 1500ms al 99° percentile. | `PROP_CHECKOUT_TIMEOUT` | Misure telemetriche su staging con iniezione latenza (Toxiproxy). | `VERIFIED` | Circuit Breaker con fallback su tariffa locale stimata (*Step 28*). |
+| **ASM-02** | 2026-02-01 | Gli eventi di pagamento consegnati dal broker mantengono l'ordine cronologico reale. | `PROP_LEDGER_MONOTONICITY` | Test avversariale concorrente con riordino sintetico eventi. | `FALSIFIED` | Aggiunto timestamp operatore e deduplicazione idempotente (*Step 5*). |
+| **ASM-03** | 2026-02-10 | Il volume persistente su cui scrive il servizio supporta la sincronizzazione atomica (`fsync`) e i flag `O_SYNC`. | `PROP_AUDIT_LOG_INTEGRITY` | Ispezione opzioni di montaggio volume persistente e test di crash-consistency I/O. | `UNVERIFIED` | Inoltro sincrono verso sink append-only remoto (WORM) prima di confermare l'operazione (*Step 14*). |
+| **ASM-04** | 2026-03-01 | Il clock di tutti i nodi di calcolo presenta un drift massimo <= 50ms rispetto a NTP. | `PROP_TOKEN_EXPIRATION` | Demone di monitoraggio drift su nodo host. | `VERIFIED` | Soglia a due livelli: per drift > 50ms emissione alert P1 e blocco token a lunga durata (TTL ridotto); per drift > 200ms il nodo rifiuta di firmare nuovi token (*Fail-Safe*). |
+
+---
+
+## Regole di Manutenzione:
+- La revisione di questa matrice è obbligatoria a ogni PR architetturale (**Step 31**) e durante l'audit periodico (**Step 32**).
+- Se un'assunzione transita a `FALSIFIED`, deve essere aperto un record di discrepanza in `docs/assurance/discrepancies/` conforme a `.assurance/schemas/discrepancy.schema.json` (**Step 22**).
+```
+
+---
+
+### 2.4 `SECURITY_AI.md`
+
+```text
+# Direttive di Sicurezza e Perimetro per lo Sviluppo Assistito da AI (Step 14 & Step 15)
+
+Questo documento definisce i vincoli tecnici non negoziabili per qualsiasi codice applicativo generato, modificato o proposto tramite modelli linguistici (LLM) o agenti autonomi.
+
+---
+
+## 1. Divieti Assoluti di Implementazione (Anti-Pattern Interdetti)
+
+1. **Divieto di Soppressione Silenziosa degli Errori (No Error Swallowing):**
+   - Vietati blocchi che zittiscono eccezioni senza propagazione o logging strutturato (es. `except Exception: pass`, comandi shell terminanti con `|| true` su operazioni critiche).
+   - In caso di anomalia, il sistema deve fallire in modo rapido e rumoroso (*Fail-Fast*), sollevando eccezioni tipizzate.
+
+2. **Divieto di Disabilitazione dei Controlli Inline:**
+   - Vietati commenti di soppressione dei linters o del type-checking (es. `# noqa`, `# type: ignore`, `/* eslint-disable */`) privi di deroga formale tracciata.
+
+3. **Divieto di Fallback Fittizi (No Poison Fallbacks - [Capitolo 28, Sez. 5 e 10.3](#step-28-rollback-fallback)):**
+   - In caso di mancata risposta, eccezione o timeout di una dipendenza esterna, è vietato restituire dati inventati, stringhe vuote o saldi a zero contrassegnati come operativi (anti-pattern del *Poison Fallback* analizzato nel Capitolo 28). Emettere uno stato di errore esplicito (*Fail-Closed*) o una degradazione controllata con flag `degraded: true` formalmente approvata (*Step 28*).
+
+4. **Divieto di Virgola Mobile su Valori Monetari:**
+   - Vietato l'uso di tipi floating-point (`float`, `double`) per calcoli finanziari o contabili. Obbligatorio l'uso di interi espressi nell'unità monetaria minima (*minor units*, es. centesimi per EUR/USD o unità indivisibili per valute prive di decimali) o librerie a precisione decimale esatta (`Decimal`).
+
+---
+
+## 2. Principio della Minima Autorità e Rete (Step 14)
+
+1. **Default-Deny Egress:**
+   - Ogni modulo applicativo privo di esplicita necessità di rete per specifica contrattuale deve essere eseguito con isolamento di rete (`--network none`).
+   - Tutte le chiamate di rete autorizzate nel codice applicativo (nonché gli strumenti esterni configurati in `.mcp.json`) devono impostare hard timeout espliciti (max 3000ms salvo deroga documentata).
+
+2. **Filesystem Read-Only:**
+   - Il filesystem radice del runtime deve essere montato in sola lettura (`read-only`). Le scritture temporanee sono permesse unicamente su volume dedicato `/tmp` in memoria (*tmpfs*) con quota limitata.
+
+---
+
+## 3. Allowlist dei Comandi Shell Autorizzati per Agenti
+
+Agli agenti AI operanti sul repository tramite CLI o integrazioni IDE è consentita esclusivamente l'invocazione di:
+
+COMANDI CONSENTITI:
+- git status, git diff, git log -n 5
+- pytest tests/ -k <filtro>
+- ruff check --config ruff.toml .
+- mypy --strict
+- npm test, npm run lint
+
+COMANDI E MODIFICHE SEVERAMENTE INTERDETTI:
+- Comandi con privilegi amministrativi (sudo, su)
+- Installazione di pacchetti o modifica file di lock (pip install, npm install)
+- Rimozioni ricorsive (rm -rf)
+- Modifiche ai file di controllo e governance (CODEOWNERS, .github/, .assurance/, ruff.toml, pyproject.toml, .pre-commit-config.yaml, .mcp.json, .dockerignore)
+```
+
+---
+
+### 2.5 `.pre-commit-config.yaml` (Controllo Locale Pre-Commit)
+
+Se un agente AI introduce una chiave API, inietta caratteri Unicode bidirezionali invisibili (*Trojan Source*, CVE-2021-42574) o altera i test congelati per far passare una funzione difettosa, scoprirlo in CI è troppo tardi. Questo file intercetta il problema nella staging area Git prima ancora che il commit venga creato, delegando agli script esterni in `.assurance/bin/` la protezione degli oracoli e la scansione Unicode su tutti i file di testo.
+
+```yaml
+# .pre-commit-config.yaml
+# ==============================================================================
+# GUARDRAIL LOCALE DETERMINISTICO PRE-COMMIT (STEP 14, 15, 16, 17)
+# Installazione: pip install pre-commit && pre-commit install
+# ==============================================================================
+
+default_install_hook_types: [pre-commit]
+default_stages: [pre-commit]
+fail_fast: true
+
+repos:
+  # ----------------------------------------------------------------------------
+  # 1. Controlli Strutturali di Base e Igiene File
+  # ----------------------------------------------------------------------------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-yaml # Validazione rigorosa (safe_load predefinito, senza --unsafe)
+      - id: check-json
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: fix-byte-order-marker # Normalizza ed elimina BOM invisibili
+
+  # ----------------------------------------------------------------------------
+  # 2. Scansione Locale Segreti (Gitleaks) - Zero Credenziali in Git
+  # ----------------------------------------------------------------------------
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks
+        name: "Rilevamento Segreti e Token API (Gitleaks)"
+        entry: gitleaks git --pre-commit --staged --verbose --redact
+
+  # ----------------------------------------------------------------------------
+  # 3. Linter Deterministico su Python (Ruff Strict)
+  # Intercetta BLE, S, ARG, PGH, RUF001-003 e PLE2502/PLE2515 (Bidi/Zero-Width)
+  # ----------------------------------------------------------------------------
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.1
+    hooks:
+      - id: ruff
+        name: "Linter di Sicurezza AI (Ruff Strict)"
+        args: [--config, ruff.toml]
+      - id: ruff-format
+        name: "Formattatore Deterministico (Ruff Format)"
+        args: [--check]
+
+  # ----------------------------------------------------------------------------
+  # 4. Guardrail Locali: Anti-Test Tampering & Anti-Trojan Source Multi-Linguaggio
+  # ----------------------------------------------------------------------------
+  - repo: local
+    hooks:
+      - id: freeze-test-oracle-guard
+        name: "Anti-Test Tampering Guard (invariants, contracts, assurance, conftest.py)"
+        entry: python3 .assurance/bin/freeze_guard.py
+        language: python
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: unicode-bidi-guard
+        name: "Anti-Trojan Source & Caratteri Invisibili (Tutti i file testuali)"
+        entry: python3 .assurance/bin/check_unicode.py
+        language: python
+        types: [text]
+        stages: [pre-commit]
+```
+
+---
+
+### 2.6 `.mcp.json` (Disciplinare di Confinamento per Server MCP)
+
+Gli ambienti agentici moderni (Claude Code, Cursor, Windsurf) utilizzano il **Model Context Protocol (MCP)**. Configurazioni troppo permissive espongono directory sensibili (`~/.ssh`, `.env`, `.git`) o trasformano il client HTTP in un vettore di esfiltrazione dati e timeout estesi.
+
+Questo template applica la minima autorità:
+1. Limita `filesystem-restricted` **esclusivamente a `src`** (escludendo `tests`, `.assurance`, `.github`, `.git`, `.env`);
+2. Configura `mcp-server-fetch==2026.11.18` con `--timeout-ms=3000` (allineato ai 3000 ms di `SECURITY_AI.md`, evitando il default di 30 secondi) e con `--allowed-hosts` su allowlist stretta contro l'esfiltrazione via GET verso domini arbitrari.
+
+```json
+{
+  "mcpServers": {
+    "filesystem-restricted": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem@2.4.0",
+        "src"
+      ],
+      "env": {
+        "NO_COLOR": "1"
+      }
+    },
+    "fetch-documentale": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch==2026.11.18",
+        "--timeout-ms=3000",
+        "--allowed-hosts=docs.python.org,peps.python.org"
+      ],
+      "env": {
+        "NO_COLOR": "1",
+        "FETCH_TIMEOUT_MS": "3000"
+      }
+    }
+  }
+}
+```
+
+> [!CAUTION]
+> **⊗ Divieto Assoluto di Server MCP di Shell Aperta o Accesso a `.assurance/` / `tests/` (Vulnerabilità Confused Deputy):**  
+> È severamente vietato registrare server MCP di shell arbitraria (`server-shell`, `bash`, `cmd.exe`), rimuovere `--allowed-hosts` dal server fetch o concedere accesso in scrittura via MCP a `tests/` e `.assurance/`. Tale configurazione espone l'host a violazioni di confinamento ([Capitolo 14](#step-14-containment-least)) e attacchi di *Confused Deputy* ([Appendice ⊞, Sez. 7.4](#appendice-moltiplicatore-personale)). Se all'agente serve solo lettura di `src`, aggiungere `--read-only` agli argomenti di `server-filesystem`. Per le 5 regole di hardening architetturale dei server MCP, fare riferimento all'[Appendice ⊞, Sezione 7.4](#appendice-moltiplicatore-personale).
+
+---
+
+### 2.7 `ruff.toml` e `pyproject.toml` (Analisi Statica e Tipizzazione a Tolleranza Zero)
+
+#### `ruff.toml`
+
+```toml
+# ruff.toml
+# ==============================================================================
+# CONFIGURAZIONE LINTER A TOLLERANZA ZERO PER SVILUPPO ASSISTITO DA AI
+# Riferimento: Step 14, Step 15 (Ghost Code), Step 17 (SAST/SCA) e SECURITY_AI.md
+# ==============================================================================
+
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = [
+    "F",       # Pyflakes (errori logici, variabili non definite)
+    "E", "W",  # Pycodestyle (errori e warning sintattici)
+    "B",       # flake8-bugbear (anti-pattern sistemici, argomenti mutabili di default)
+    "BLE",     # flake8-blind-except: VIETA 'except:' e 'except Exception:' (Step 15)
+    "S",       # flake8-bandit: Scansione vulnerabilità di sicurezza SAST (Step 17)
+    "A",       # flake8-builtins: Impedisce di sovrascrivere funzioni native di Python
+    "C4",      # flake8-comprehensions: Chiarezza e ottimizzazione computazionale
+    "T20",     # flake8-print: VIETA print() in produzione (obbliga a logging strutturato)
+    "SIM",     # flake8-simplify: Riconoscimento codice ridondante o convoluto
+    "ARG",     # flake8-unused-arguments: RILEVAMENTO GHOST CODE (parametri ignorati)
+    "PGH",     # pygrep-hooks: VIETA soppressioni generiche ('# noqa' senza codice regola)
+    "RUF001",  # RUF: Caratteri Unicode ambigui nelle stringhe (omoglifi)
+    "RUF002",  # RUF: Caratteri Unicode ambigui nelle docstring
+    "RUF003",  # RUF: Caratteri Unicode ambigui nei commenti
+    "PLE2502", # Pylint: Caratteri di controllo bidirezionali Unicode in sorgenti Python
+    "PLE2515", # Pylint: Caratteri zero-width space non escapati in sorgenti Python
+    "TRY",     # tryceratops: Igiene rigorosa delle eccezioni
+]
+
+ignore = [
+    "TRY003", # Permette messaggi diagnostici lunghi ed espliciti nelle eccezioni custom
+    "S104",   # Binding su tutte le interfacce (controllato dalla policy di rete Step 14)
+]
+
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# ------------------------------------------------------------------------------
+# Deroghe Perimetriche Controllate (Per-File Ignores)
+# ------------------------------------------------------------------------------
+[lint.per-file-ignores]
+"tests/**/*" = [
+    "S101",   # Uso di assert (richiesto da pytest)
+    "T201",   # Output diagnostico consentito nei test
+    "ARG001", # Fixture pytest non referenziate direttamente nel corpo del test
+    "S105",   # Token fittizi usati in fixture di test
+    "S106",   # Credenziali fittizie per simulazione auth nei test
+]
+
+".assurance/bin/**/*" = [
+    "T201",   # Gli script CLI di Decision Gate emettono report su stdout/stderr
+]
+
+".assurance/bin/freeze_guard.py" = [
+    "S404",   # Importazione modulo subprocess necessaria per invocare git
+    "S603",   # Argomenti statici fissati, shell=False ed eseguibile risolto con shutil.which
+]
+
+"tests/assurance/test_assurance_artifacts.py" = [
+    "S404",   # Importazione modulo subprocess per eseguire Decision Gate / OPA in isolamento
+    "S603",   # Invocazione deterministica con path risolti e shell=False
+]
+```
+
+#### `pyproject.toml`
+
+```toml
+# pyproject.toml
+# ==============================================================================
+# CONFIGURAZIONE DETERMINISTICA MYPY STRICT E PYTEST (STEP 13 & 16)
+# ==============================================================================
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_configs = true
+warn_unreachable = true
+disallow_any_explicit = false
+files = ["src", ".assurance/bin"]
+
+[[tool.mypy.overrides]]
+module = ["yaml", "jsonschema", "jsonschema.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: test computazionalmente onerosi esclusi dal gate rapido PR",
+]
+```
+
+---
+
+### 2.8 Tabella di Tracciabilità dei Guardrail Locali
+
+| Guardrail | File di Configurazione | Minaccia Mitigata | Step del Manuale | Esito in Caso di Rilevazione |
+| :--- | :--- | :--- | :--- | :--- |
+| **Leak di Segreti** | `.pre-commit-config.yaml` (`gitleaks`) | Commit accidentale di chiavi API fornite all'agente | Step 17 / Step 19 | Blocco locale del commit (`Abort`) |
+| **Trojan Source / Bidi (Python)** | `ruff.toml` (`PLE2502`, `PLE2515`, `RUF001`-`RUF003`) | Prompt injection o spoofing Unicode nel codice Python | Step 14 / Step 17 | Fallimento linter prima del commit/push |
+| **Trojan Source / Bidi (Tutti i file)** | `.pre-commit-config.yaml` (`unicode-bidi-guard` -> `check_unicode.py`) | Caratteri bidi/zero-width in YAML, JSON, Markdown e Dockerfile | Step 14 / Step 17 | Blocco locale del commit (exit `2`) |
+| **Test Tampering** | `.pre-commit-config.yaml` (`freeze-test-oracle-guard` -> `freeze_guard.py`) | Modifica opportunistica degli oracoli di test da parte di LLM | Step 16 / Step 22 | Blocco locale e verifica in CI con scheda Step 22 |
+| **Privilege Escalation Agenti** | `.mcp.json` | Accesso a `tests/`, `.assurance/` ed esfiltrazione via fetch | Step 14 | Confinamento su `src`, timeout `3000ms` e `--allowed-hosts` |
+| **Error Swallowing** | `ruff.toml` (`BLE` / `BLE001`, `TRY`) | Fallback velenosi e silenziamento delle eccezioni (`except: pass`) | Step 15 / Step 28 | Errore bloccante del linter prima del push |
+| **Ghost Code** | `ruff.toml` (`ARG`, `F841`) | Codice, parametri e variabili allucinati dall'agente senza scopo | Step 15 (Ghost Code) | Rifiuto del codice non referenziato |
+| **Type Safety** | `pyproject.toml` (`[tool.mypy]` `strict = true`) | Stati invalidi e ritorni ambigui non controllati | Step 13 | Fallimento type-checker in locale e in CI |
+
+---
+
+[▲ Torna su](#prontuario-operativo-di-file-configurazioni-e-template-pronti-alluso)
+## 3. MODULO SCHEMI, TEMPLATE E DECISION GATE (`.assurance/`)
+
+### 3.1 Schemi JSON Formali (`schemas/`)
+
+Tutti gli schemi sono redatti secondo lo standard **JSON Schema Draft 2020-12** e impongono `additionalProperties: false` su ogni oggetto e sotto-oggetto.
+
+#### 3.1.1 `.assurance/schemas/discrepancy.schema.json`
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://assurance.internal/schemas/discrepancy.schema.json",
+  "title": "DiscrepancyRecordSchema",
+  "description": "Schema formale di validazione per i record di discrepanza (Step 22).",
+  "type": "object",
+  "required": [
+    "record_id",
+    "detection_step",
+    "timestamp_utc",
+    "affected_component",
+    "classification",
+    "discrepancy_details",
+    "causal_analysis",
+    "disposition",
+    "closure_status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^DISC-[0-9]{4}-[0-9]{2}-[A-Za-z0-9_-]+$"
+    },
+    "detection_step": {
+      "type": "string",
+      "enum": [
+        "STEP_12_ASSUMPTION_FALSIFICATION",
+        "STEP_16_AUTOMATED_TESTING",
+        "STEP_17_STATIC_ANALYSIS",
+        "STEP_18_PROPERTY_FUZZING",
+        "STEP_19_THREAT_MODELING",
+        "STEP_20_MULTI_MODEL_AUDIT",
+        "STEP_21_INDEPENDENT_VERIFICATION",
+        "STEP_26_OBSERVABILITY_RUNTIME",
+        "STEP_29_POST_DEPLOYMENT",
+        "STEP_32_PERIODIC_REVIEW"
+      ]
+    },
+    "timestamp_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "affected_component": {
+      "type": "string",
+      "minLength": 3
+    },
+    "classification": {
+      "type": "object",
+      "required": ["origin", "severity", "violates_critical_invariant"],
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "type": "string",
+          "enum": ["CODE_IMPLEMENTATION", "SPECIFICATION", "TEST_ORACLE", "ENVIRONMENT_INFRA"]
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["CRITICAL", "MAJOR", "MINOR", "INFORMATIONAL"]
+        },
+        "violates_critical_invariant": {
+          "type": "boolean"
+        },
+        "invariant_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "discrepancy_details": {
+      "type": "object",
+      "required": ["observed_behavior", "justified_reference"],
+      "additionalProperties": false,
+      "properties": {
+        "failing_input": {
+          "type": ["string", "object", "array", "number", "null"]
+        },
+        "observed_behavior": {
+          "type": "string"
+        },
+        "justified_reference": {
+          "type": "string"
+        }
+      }
+    },
+    "causal_analysis": {
+      "type": "object",
+      "required": ["hypotheses_evaluated", "causal_complexity"],
+      "additionalProperties": false,
+      "properties": {
+        "hypotheses_evaluated": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "description", "status"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "description": { "type": "string" },
+              "status": {
+                "type": "string",
+                "enum": ["PLAUSIBLE", "SUPPORTED", "VERIFIED", "REFUTED"]
+              }
+            }
+          }
+        },
+        "causal_complexity": {
+          "type": "string"
+        }
+      }
+    },
+    "disposition": {
+      "type": "object",
+      "required": ["category", "approved_by", "remediation_action"],
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "CORRECT_IMPLEMENTATION",
+            "CORRECT_SPECIFICATION",
+            "CORRECT_ORACLE_TEST",
+            "ACCEPT_RISK_AS_IS",
+            "REJECT_PROCEDURAL_ERROR"
+          ]
+        },
+        "approved_by": {
+          "type": "string"
+        },
+        "remediation_action": {
+          "type": "string"
+        },
+        "regression_test_id": {
+          "type": "string"
+        }
+      }
+    },
+    "closure_status": {
+      "type": "string",
+      "enum": ["OPEN", "INVESTIGATING", "REMEDIATED", "CLOSED_JUSTIFIED"]
+    }
+  }
+}
+```
+
+#### 3.1.2 `.assurance/schemas/risk_item.schema.json`
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://assurance.internal/schemas/risk_item.schema.json",
+  "title": "RiskItemSchema",
+  "description": "Schema formale per le voci del Risk Register (Step 30).",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "lifecycle_state",
+    "date_identified",
+    "owner_role",
+    "designated_authority",
+    "hazard_scenario",
+    "inherent_profile",
+    "controls",
+    "residual_profile",
+    "governance_decision"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^RSK-[A-Z0-9_-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 5
+    },
+    "lifecycle_state": {
+      "type": "string",
+      "enum": [
+        "NEW",
+        "OPEN",
+        "MITIGATED",
+        "ACCEPTED",
+        "TRANSFERRED",
+        "AVOIDED",
+        "MONITORED",
+        "REOPENED",
+        "CLOSED"
+      ]
+    },
+    "date_identified": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_review_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "owner_role": {
+      "type": "string"
+    },
+    "designated_authority": {
+      "type": "string"
+    },
+    "hazard_scenario": {
+      "type": "string"
+    },
+    "affected_assets": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "violated_properties": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "underlying_assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "statement", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "statement": { "type": "string" },
+          "status": { "type": "string", "enum": ["VERIFIED", "FALSIFIED", "UNVERIFIED"] },
+          "falsification_evidence": { "type": "string" }
+        }
+      }
+    },
+    "inherent_profile": {
+      "type": "object",
+      "required": ["severity", "likelihood", "detectability", "reversibility"],
+      "additionalProperties": false,
+      "properties": {
+        "severity": {
+          "type": "string",
+          "enum": ["MINOR", "MODERATE", "MAJOR", "CRITICAL", "CATASTROPHIC"]
+        },
+        "likelihood": {
+          "type": "string",
+          "enum": ["IMPROBABLE", "REMOTE", "OCCASIONAL", "PROBABLE", "FREQUENT"]
+        },
+        "detectability": {
+          "type": "string",
+          "enum": ["IMMEDIATE", "DELAYED", "DIFFICULT", "SILENT"]
+        },
+        "blast_radius": { "type": "string" },
+        "reversibility": {
+          "type": "string",
+          "enum": ["FULLY_REVERSIBLE", "COMPENSABLE", "IRREVERSIBLE"]
+        }
+      }
+    },
+    "epistemic_uncertainty": {
+      "type": "string",
+      "enum": ["LOW", "MEDIUM", "HIGH"]
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["control_id", "description", "control_type", "weight", "validity"],
+        "additionalProperties": false,
+        "properties": {
+          "control_id": { "type": "string" },
+          "description": { "type": "string" },
+          "control_type": { "type": "string" },
+          "evidence_type": { "type": "string" },
+          "evidence_reference": { "type": "string" },
+          "weight": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "evidence_weight": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "validity": { "type": "integer", "enum": [0, 1] }
+        }
+      }
+    },
+    "residual_profile": {
+      "type": "object",
+      "required": ["mitigation_effectiveness", "residual_severity", "residual_risk_tolerable"],
+      "additionalProperties": false,
+      "properties": {
+        "mitigation_effectiveness": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "residual_severity": {
+          "type": "string",
+          "enum": ["MINOR", "MODERATE", "MAJOR", "CRITICAL", "CATASTROPHIC"]
+        },
+        "residual_likelihood": { "type": "string" },
+        "residual_detectability": { "type": "string" },
+        "residual_risk_tolerable": { "type": "boolean" }
+      }
+    },
+    "governance_decision": {
+      "type": "object",
+      "required": ["decision", "formal_acceptance_signature", "review_period_days"],
+      "additionalProperties": false,
+      "properties": {
+        "decision": { "type": "string", "enum": ["PASS", "PARTIAL", "UNKNOWN", "FAIL", "NO-GO"] },
+        "formal_acceptance_signature": {
+          "type": "string",
+          "pattern": "^(PGP|COSIGN|KMS|SSH):[A-Za-z0-9._:=+/-]{12,}$"
+        },
+        "signature_artifact_ref": {
+          "type": "string"
+        },
+        "review_period_days": { "type": "integer", "minimum": 1 },
+        "traceability_links": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "requirements": { "type": "array", "items": { "type": "string" } },
+            "knowledge_entries": { "type": "array", "items": { "type": "string" } },
+            "incidents": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+#### 3.1.3 `.assurance/schemas/evidence_dossier.schema.json`
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://assurance.internal/schemas/evidence_dossier.schema.json",
+  "title": "EvidenceDossierSchema",
+  "description": "Schema formale per il Dossier di Evidenze consumato dal Decision Gate (Step 23).",
+  "type": "object",
+  "required": ["commit_hash", "timestamp_utc", "evidences"],
+  "additionalProperties": false,
+  "properties": {
+    "commit_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{40}$"
+    },
+    "timestamp_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidences": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "commit_hash",
+          "method",
+          "execution_status",
+          "oracle_independence_score"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "commit_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{40}$"
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "STATIC_ANALYSIS",
+              "UNIT_TESTING",
+              "PROPERTY_BASED_TESTING",
+              "MUTATION_TESTING",
+              "OPA_POLICY_TESTING",
+              "ANTI_TEST_TAMPERING",
+              "COVERAGE_GUIDED_FUZZING",
+              "SECRET_SCANNING",
+              "DEPENDENCY_SCA",
+              "MODEL_CHECKING_FORMAL",
+              "INDEPENDENT_VERIFICATION_CLEANROOM"
+            ]
+          },
+          "execution_status": {
+            "type": "string",
+            "enum": ["PASS", "FAIL", "UNKNOWN", "PARTIAL", "NOT_APPLICABLE"]
+          },
+          "oracle_independence_score": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "iterations_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "mutation_score_pct": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0
+          },
+          "raw_report_path": {
+            "type": "string"
+          },
+          "raw_report_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+---
+
+### 3.2 Template Precompilati, Profilo Test e Oracoli (`templates/` & `tests/`)
+
+#### 3.2.1 `.assurance/templates/discrepancy_template.json`
+
+```json
+{
+  "record_id": "DISC-2026-09-PRICING-OVERFLOW",
+  "detection_step": "STEP_18_PROPERTY_FUZZING",
+  "timestamp_utc": "2026-09-22T10:00:00Z",
+  "affected_component": "billing.pricing_engine",
+  "classification": {
+    "origin": "CODE_IMPLEMENTATION",
+    "severity": "CRITICAL",
+    "violates_critical_invariant": true,
+    "invariant_ref": "INV-BALANCE-NON-NEGATIVE"
+  },
+  "discrepancy_details": {
+    "failing_input": { "price": -1, "quantity": 10 },
+    "observed_behavior": "Il sistema ha registrato un credito attivo anziché sollevare eccezione.",
+    "justified_reference": "Specifica contrattuale Sez. 4.1: precondizione price > 0 stretta."
+  },
+  "causal_analysis": {
+    "hypotheses_evaluated": [
+      {
+        "id": "H1",
+        "description": "Validazione assente all'ingresso del modulo.",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "H2",
+        "description": "Malfunzionamento del deserializzatore JSON.",
+        "status": "REFUTED"
+      }
+    ],
+    "causal_complexity": "Causa singola identificata nella funzione calculate_total()."
+  },
+  "disposition": {
+    "category": "CORRECT_IMPLEMENTATION",
+    "approved_by": "Lead-Architect-Signature",
+    "remediation_action": "Inserimento tipo Value Object con validazione costruttore e asserzione fail-fast.",
+    "regression_test_id": "tests/invariants/test_pricing_overflow.py::test_negative_price"
+  },
+  "closure_status": "REMEDIATED"
+}
+```
+
+#### 3.2.2 `.assurance/templates/risk_item_template.yaml`
+
+```yaml
+# .assurance/templates/risk_item_template.yaml
+id: "RSK-AUTH-2026-01"
+title: "Possibile Allucinazione Token OAuth su Provider Esterno"
+lifecycle_state: "MITIGATED"
+date_identified: "2026-03-01"
+last_review_date: "2026-11-01"
+owner_role: "Security Engineer"
+designated_authority: "Chief Assurance Officer"
+
+hazard_scenario: >
+  Un agente LLM ha generato una funzione di decodifica token che disabilita
+  la verifica della firma crittografica se l'header algorithm è impostato a 'none'.
+
+affected_assets:
+  - "auth.jwt_validator"
+  - "api.gateway"
+
+violated_properties:
+  - "PROP_SIGNATURE_INTEGRITY"
+
+underlying_assumptions:
+  - id: "ASM-JWT-01"
+    statement: "Il validatore applicativo rifiuta esplicitamente alg='none' indipendentemente dal proxy."
+    status: "VERIFIED"
+
+inherent_profile:
+  severity: "CRITICAL"
+  likelihood: "OCCASIONAL"
+  detectability: "SILENT"
+  blast_radius: "Compromissione autenticazione tenant"
+  reversibility: "IRREVERSIBLE"
+
+epistemic_uncertainty: "LOW"
+
+controls:
+  - control_id: "CTRL-AUTH-01"
+    description: "Libreria crittografica statica con allowlist algoritmi e blocco di 'none'."
+    control_type: "ARCHITECTURAL_PREVENTION"
+    evidence_type: "UNIT_TESTING"
+    evidence_reference: "tests/invariants/test_jwt_signature.py"
+    weight: 0.70
+    evidence_weight: 0.90
+    validity: 1
+  - control_id: "CTRL-AUTH-02"
+    description: "Confinamento del runtime mediante policy OPA/Rego v1 verificata in CI."
+    control_type: "RUNTIME_GUARDRAIL"
+    evidence_type: "OPA_POLICY_TESTING"
+    evidence_reference: ".assurance/policies/boundary_check.rego"
+    weight: 0.30
+    evidence_weight: 0.90
+    validity: 1
+
+residual_profile:
+  mitigation_effectiveness: 0.90
+  residual_severity: "MINOR"
+  residual_risk_tolerable: true
+
+governance_decision:
+  decision: "PASS"
+  formal_acceptance_signature: "PGP:0x8F2A9C1D8841B204:signed-manifest"
+  signature_artifact_ref: "docs/assurance/risks/RSK-AUTH-2026-01.yaml.asc"
+  review_period_days: 90
+  traceability_links:
+    requirements: ["REQ-SEC-09"]
+    knowledge_entries: ["KB-JWT-NONE"]
+    incidents: []
+```
+
+#### 3.2.3 `tests/conftest.py` e `tests/contracts/oracle_metadata.json`
+
+```python
+# tests/conftest.py
+"""Configurazione profili Hypothesis per esecuzione locale e in CI (Step 16 & 18)."""
+
+from datetime import timedelta
+
+from hypothesis import settings
+
+settings.register_profile(
+    "ci",
+    max_examples=10000,
+    derandomize=True,
+    deadline=timedelta(milliseconds=500),
+)
+settings.register_profile(
+    "dev",
+    max_examples=100,
+)
+```
+
+```json
+{
+  "schema_version": "1.1",
+  "oracle_independence_score": 0.90,
+  "independence_derivation_reference": "Capitolo 11 (Sez. 8.1 - Vettore Indep_Vector) & Capitolo 21 (Sez. 13)",
+  "provenance_notes": "<DA_PERSONALIZZARE: specificare se derivato da specifica RFC/formale (0.85), TDD umano preesistente (1.0) o protocollo Clean-Room (0.90) ex Cap. 11 e Cap. 21>",
+  "last_verified_utc": "2026-11-24T12:00:00Z",
+  "verified_by": "@<ORGANIZZAZIONE>/qa-independent-verifiers"
+}
+```
+
+> *Nota di derivazione del punteggio:* Il valore `oracle_independence_score` (es. `0.90`) non è arbitrario: è giustificato calcolando il disaccoppiamento lungo le 10 dimensioni del vettore `Indep_Vector` dello [Step 11 (Sez. 8.1)](#step-11-independent-evidence) e i criteri di indipendenza dell'IV&V dello [Step 21 (Sez. 13)](#step-21-independent-verification). Se l'oracolo scende sotto la soglia minima di policy (`0.80`), il gate decisionale commuta automaticamente il verdetto su `UNKNOWN`.
+
+---
+
+### 3.3 Politica Completa del Decision Gate (`.assurance/policies/assurance-gate-policy.yaml`)
+
+```yaml
+# .assurance/policies/assurance-gate-policy.yaml
+# ==============================================================================
+# POLITICA DICHIARATIVA DEL DECISION GATE (STEP 10, 16, 17, 23, 30)
+# Tutti i parametri sono letti e applicati da validate_evidence.py e dalle CI.
+# ==============================================================================
+
+policy_version: "2026.2"
+target_assurance_level: "AL-2" # AL-0 | AL-1 | AL-2 | AL-3 (AL-3 vieta PARTIAL/HOLD)
+
+require_raw_reports: true
+
+oracle_governance:
+  require_oracle_metadata_check: true
+  max_oracle_metadata_age_days: 90
+
+risk_governance:
+  enforce_risk_schema: true
+  disallow_unacceptable_residual_risk: true
+
+# Budget delle anomalie attive (OPEN / INVESTIGATING) in docs/assurance/discrepancies/
+discrepancy_budget:
+  max_critical_allowed: 0
+  max_major_allowed: 0
+  max_minor_allowed: 1
+  require_justified_disposition: true
+
+# Requisiti probatori integrati (unica fonte di verità per il Gate e le pipeline)
+required_claims:
+  PROP_INVARIANT_PRESERVATION:
+    description: "L'elaborazione deve preservare gli invarianti matematici e di dominio."
+    mandatory_method: "PROPERTY_BASED_TESTING"
+    min_iterations: 10000
+    min_independence: 0.80
+    tolerates_partial: false
+    allow_not_applicable: false
+
+  PROP_TEST_DISCRIMINATING_POWER:
+    description: "I test devono uccidere almeno l'80% dei mutanti sui sorgenti modificati."
+    mandatory_method: "MUTATION_TESTING"
+    min_mutation_score_pct: 80.0
+    min_independence: 1.00
+    tolerates_partial: false
+    allow_not_applicable: true
+
+  PROP_INJECTION_DEFENSE:
+    description: "Nessun percorso contaminato, carattere invisibile o violazione SAST/mypy."
+    mandatory_method: "STATIC_ANALYSIS"
+    min_independence: 0.90
+    tolerates_partial: false
+    allow_not_applicable: false
+
+  PROP_SUPPLY_CHAIN_INTEGRITY:
+    description: "Dipendenze e versioni fissate esenti da allucinazioni o release troppo recenti."
+    mandatory_method: "DEPENDENCY_SCA"
+    min_independence: 1.00
+    tolerates_partial: false
+    allow_not_applicable: false
+
+  PROP_SECRET_ABSENCE:
+    description: "Assenza di chiavi crittografiche o segreti nel codice o nella cronologia."
+    mandatory_method: "SECRET_SCANNING"
+    min_independence: 1.00
+    tolerates_partial: false
+    allow_not_applicable: false
+
+  PROP_CONTAINMENT_POLICY:
+    description: "Le policy OPA/Rego v1 di confinamento superano la suite di test unitari."
+    mandatory_method: "OPA_POLICY_TESTING"
+    min_independence: 1.00
+    tolerates_partial: false
+    allow_not_applicable: false
+
+  PROP_ORACLE_INTEGRITY:
+    description: "Gli oracoli congelati non risultano alterati senza approvazione Step 22."
+    mandatory_method: "ANTI_TEST_TAMPERING"
+    min_independence: 1.00
+    tolerates_partial: false
+    allow_not_applicable: false
+
+# Regole di confinamento per transizioni condizionate (Verdetto: PARTIAL -> Azione: HOLD)
+confinement_fallback:
+  allow_partial_with_sandbox: true
+  max_canary_traffic_pct_under_partial: 2
+```
+
+---
+
+### 3.4 Motori di Verifica e Guardrail in Python (`.assurance/bin/`)
+
+#### 3.4.1 `.assurance/bin/validate_evidence.py`
+
+```python
+#!/usr/bin/env python3
+"""
+Motore deterministico fail-closed per Evidence-Based Decision Gates (Step 23).
+
+Riferimento teorico ed epistemico:
+- Capitolo 23, Sez. 5 (Teoria dei Decision Gates e Precedenza degli Stati)
+- Capitolo 23, Sez. 7 (Modello Logico e Principio di Non-Compensazione):
+    A_ach(E, I(E)) < A_req(R)  ===>  NO-GO (ESCALATE)
+- Capitolo 21, Sez. 7 (Formula del Decision Gate Qualitativo)
+"""
+import argparse
+import hashlib
+import json
+import re
+import sys
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any
+
+try:
+    import yaml as _yaml
+
+    yaml: Any = _yaml
+    YAML_ERRORS: tuple[type[BaseException], ...] = (_yaml.YAMLError,)
+except ImportError:
+    yaml = None
+    YAML_ERRORS = ()
+
+try:
+    import jsonschema as _jsonschema
+    from jsonschema import Draft202012Validator as _Draft202012Validator
+    from jsonschema import FormatChecker as _FormatChecker
+    from jsonschema.exceptions import SchemaError as _SchemaError
+    from jsonschema.exceptions import ValidationError as _ValidationError
+
+    jsonschema: Any = _jsonschema
+    Draft202012Validator: Any = _Draft202012Validator
+    FormatChecker: Any = _FormatChecker
+    SchemaError: Any = _SchemaError
+    ValidationError: Any = _ValidationError
+except ImportError:
+    jsonschema = None
+    Draft202012Validator = None
+    FormatChecker = None
+    SchemaError = Exception
+    ValidationError = Exception
+
+SHA1_HEX_RE = re.compile(r"^[0-9a-f]{40}$")
+SHA256_HEX_RE = re.compile(r"^[0-9a-f]{64}$")
+UNAPPROVED_MARKERS = {"", "PENDING", "TBD", "NONE", "N/A"}
+
+
+class DecisionGateValidator:
+    """Valutatore deterministico fail-closed per policy, discrepanze, rischi ed evidenze."""
+
+    def __init__(
+        self,
+        policy_path: Path,
+        dossier_path: Path,
+        schema_dir: Path,
+        discrepancies_dir: Path,
+        current_commit: str,
+        risks_dir: Path | None = None,
+        oracle_meta_path: Path | None = None,
+        workspace_root: Path | None = None,
+    ) -> None:
+        self.policy_path = policy_path
+        self.dossier_path = dossier_path
+        self.schema_dir = schema_dir
+        self.discrepancies_dir = discrepancies_dir
+        self.risks_dir = risks_dir
+        self.oracle_meta_path = oracle_meta_path
+        self.workspace_root = (workspace_root or Path.cwd()).resolve()
+        self.current_commit = current_commit.strip().lower()
+        self.max_canary_pct: int | None = None
+
+    def log(self, message: str) -> None:
+        print(f"[ASSURANCE-GATE] {message}", file=sys.stderr)
+
+    def fail_closed_abort(self, reason: str) -> tuple[str, str]:
+        self.log(f"BLOCCO FAIL-CLOSED (NO-GO): {reason}")
+        return "NO-GO", "ESCALATE"
+
+    def load_file(self, path: Path) -> dict[str, Any]:
+        if not path.is_file():
+            raise FileNotFoundError(f"File obbligatorio non trovato: {path}")
+        with path.open("r", encoding="utf-8") as handle:
+            if path.suffix.lower() in {".yaml", ".yml"}:
+                if yaml is None:
+                    raise RuntimeError("Libreria 'pyyaml' mancante per il parsing YAML.")
+                loaded: Any = yaml.safe_load(handle)
+            else:
+                loaded = json.load(handle)
+        if not isinstance(loaded, dict):
+            raise TypeError(f"Contenuto vuoto o non-oggetto in {path}")
+        return loaded
+
+    def validate_schema(self, data: dict[str, Any], schema_name: str) -> bool:
+        schema_file = self.schema_dir / schema_name
+        if not schema_file.is_file():
+            self.log(f"ERRORE CRITICO: Schema {schema_file} non reperibile.")
+            return False
+        if jsonschema is None or Draft202012Validator is None or FormatChecker is None:
+            self.log("ERRORE CRITICO: Libreria 'jsonschema' non installata.")
+            return False
+
+        checker = FormatChecker()
+        if "date-time" not in checker.checkers or "date" not in checker.checkers:
+            self.log("ERRORE CRITICO: 'rfc3339-validator' assente per date-time/date.")
+            return False
+
+        try:
+            with schema_file.open("r", encoding="utf-8") as sf:
+                schema_json: Any = json.load(sf)
+            validator = Draft202012Validator(schema_json, format_checker=checker)
+            validator.validate(data)
+        except (OSError, json.JSONDecodeError) as exc:
+            self.log(f"ERRORE LETTURA SCHEMA ({schema_name}): {exc}")
+            return False
+        except ValidationError as exc:
+            err_path = list(exc.absolute_path)
+            self.log(f"VIOLAZIONE SCHEMA ({schema_name}): {exc.message} in {err_path}")
+            return False
+        except SchemaError as exc:
+            self.log(f"SCHEMA CORROTTO ({schema_name}): {exc.message}")
+            return False
+        return True
+
+    def evaluate_discrepancies(self, disc_budget: dict[str, Any]) -> tuple[str, str] | None:
+        if not self.discrepancies_dir.is_dir():
+            return self.fail_closed_abort(
+                f"Directory discrepanze non trovata: {self.discrepancies_dir}"
+            )
+
+        critical_count = 0
+        major_count = 0
+        minor_count = 0
+        unjustified_open = 0
+
+        for disc_file in sorted(self.discrepancies_dir.glob("*.json")):
+            try:
+                record = self.load_file(disc_file)
+            except (OSError, TypeError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
+                return self.fail_closed_abort(
+                    f"Record discrepanza illeggibile ({disc_file}): {exc}"
+                )
+
+            if not self.validate_schema(record, "discrepancy.schema.json"):
+                return self.fail_closed_abort(f"Discrepanza non conforme a schema: {disc_file}")
+
+            if record.get("closure_status") not in {"OPEN", "INVESTIGATING"}:
+                continue
+
+            severity = str(record["classification"]["severity"])
+            if severity == "CRITICAL":
+                critical_count += 1
+            elif severity == "MAJOR":
+                major_count += 1
+            elif severity == "MINOR":
+                minor_count += 1
+
+            disposition = record["disposition"]
+            approved_by = str(disposition.get("approved_by", "")).strip().upper()
+            category = str(disposition.get("category", ""))
+            if approved_by in UNAPPROVED_MARKERS or category == "REJECT_PROCEDURAL_ERROR":
+                unjustified_open += 1
+
+        max_crit = int(disc_budget.get("max_critical_allowed", 0))
+        max_maj = int(disc_budget.get("max_major_allowed", 0))
+        max_min = int(disc_budget.get("max_minor_allowed", 1))
+        req_just = bool(disc_budget.get("require_justified_disposition", True))
+
+        if critical_count > max_crit:
+            self.log(f"BLOCCO NO-GO: Discrepanze critiche attive ({critical_count}) > {max_crit}.")
+            return "NO-GO", "ESCALATE"
+        if major_count > max_maj:
+            self.log(f"BLOCCO FAIL: Discrepanze maggiori attive ({major_count}) > {max_maj}.")
+            return "FAIL", "BLOCK"
+        if minor_count > max_min:
+            self.log(f"BLOCCO FAIL: Discrepanze minori attive ({minor_count}) > {max_min}.")
+            return "FAIL", "BLOCK"
+        if req_just and unjustified_open > 0:
+            self.log(f"BLOCCO FAIL: {unjustified_open} discrepanze aperte prive di approvazione.")
+            return "FAIL", "BLOCK"
+        return None
+
+    def evaluate_risks(self, risk_gov: dict[str, Any]) -> tuple[str, str] | None:
+        if not bool(risk_gov.get("enforce_risk_schema", False)):
+            return None
+        if self.risks_dir is None or not self.risks_dir.is_dir():
+            return self.fail_closed_abort(
+                f"Directory rischi obbligatoria non trovata: {self.risks_dir}"
+            )
+
+        risk_files = sorted(
+            [p for p in self.risks_dir.iterdir() if p.is_file() and p.suffix in {".yaml", ".yml"}]
+        )
+        disallow_unacceptable = bool(risk_gov.get("disallow_unacceptable_residual_risk", True))
+        for rf in risk_files:
+            try:
+                item = self.load_file(rf)
+            except (OSError, TypeError, ValueError, RuntimeError, *YAML_ERRORS) as exc:
+                return self.fail_closed_abort(f"Voce di rischio illeggibile ({rf}): {exc}")
+
+            if not self.validate_schema(item, "risk_item.schema.json"):
+                return self.fail_closed_abort(f"Voce di rischio non conforme a schema: {rf}")
+
+            if disallow_unacceptable and item.get("lifecycle_state") != "CLOSED":
+                tolerable = bool(item["residual_profile"]["residual_risk_tolerable"])
+                gov_dec = str(item["governance_decision"]["decision"])
+                if not tolerable or gov_dec in {"FAIL", "NO-GO"}:
+                    self.log(f"BLOCCO FAIL: Rischio attivo non tollerabile in {rf} ({gov_dec}).")
+                    return "FAIL", "BLOCK"
+                if gov_dec == "UNKNOWN":
+                    self.log(f"BLOCCO UNKNOWN: Rischio con valutazione incompleta in {rf}.")
+                    return "UNKNOWN", "BLOCK"
+        return None
+
+    def evaluate_oracle_metadata(
+        self, oracle_gov: dict[str, Any], dossier_ts_str: str
+    ) -> tuple[str, str] | None:
+        if not bool(oracle_gov.get("require_oracle_metadata_check", False)):
+            return None
+        if self.oracle_meta_path is None:
+            return self.fail_closed_abort("Flag '--oracle-meta' mancante nonostante policy attiva.")
+        try:
+            meta = self.load_file(self.oracle_meta_path)
+            dossier_dt = datetime.fromisoformat(dossier_ts_str.replace("Z", "+00:00"))
+        except (OSError, TypeError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
+            return self.fail_closed_abort(f"Metadati oracoli illeggibili: {exc}")
+
+        verified_by = meta.get("verified_by")
+        last_verified_str = meta.get("last_verified_utc")
+        if not isinstance(verified_by, str) or not verified_by.strip():
+            return self.fail_closed_abort("oracle_metadata.json privo di 'verified_by'.")
+        if not isinstance(last_verified_str, str) or not last_verified_str.strip():
+            return self.fail_closed_abort("oracle_metadata.json privo di 'last_verified_utc'.")
+
+        try:
+            verified_dt = datetime.fromisoformat(last_verified_str.replace("Z", "+00:00"))
+        except ValueError:
+            return self.fail_closed_abort(f"Timestamp oracle_metadata invalido: {last_verified_str}")
+        if verified_dt.tzinfo is None or dossier_dt.tzinfo is None:
+            return self.fail_closed_abort("Timestamp privi di timezone in oracle_metadata/dossier.")
+        if verified_dt > dossier_dt + timedelta(minutes=5):
+            return self.fail_closed_abort("last_verified_utc degli oracoli è nel futuro.")
+
+        max_age = int(oracle_gov.get("max_oracle_metadata_age_days", 90))
+        if (dossier_dt - verified_dt).days > max_age:
+            self.log(f"BLOCCO UNKNOWN: Metadati oracoli scaduti (> {max_age} giorni).")
+            return "UNKNOWN", "BLOCK"
+        return None
+
+    def verify_raw_report(self, claim_id: str, ev: dict[str, Any], require_raw: bool) -> str:
+        if ev.get("execution_status") == "NOT_APPLICABLE":
+            return "OK"
+        raw_path_val = ev.get("raw_report_path")
+        if not isinstance(raw_path_val, str) or not raw_path_val.strip():
+            if require_raw:
+                self.log(f"REPORT ASSENTE '{claim_id}': campo 'raw_report_path' obbligatorio.")
+                return "MISSING"
+            return "OK"
+
+        candidate = (self.workspace_root / raw_path_val).resolve()
+        if not candidate.is_relative_to(self.workspace_root):
+            self.log(f"PATH TRAVERSAL REPORT '{claim_id}': {raw_path_val}")
+            return "TAMPERED"
+        if not candidate.is_file() or candidate.stat().st_size == 0:
+            if require_raw:
+                self.log(f"REPORT NON TROVATO O VUOTO '{claim_id}': {candidate}")
+                return "MISSING"
+            return "OK"
+
+        expected_sha = ev.get("raw_report_sha256")
+        if isinstance(expected_sha, str) and expected_sha:
+            norm_expected = expected_sha.strip().lower()
+            if not SHA256_HEX_RE.match(norm_expected):
+                self.log(f"HASH SHA-256 REPORT INVALIDO '{claim_id}': {expected_sha}")
+                return "TAMPERED"
+            actual_sha = hashlib.sha256(candidate.read_bytes()).hexdigest().lower()
+            if actual_sha != norm_expected:
+                self.log(f"INTEGRITÀ REPORT VIOLATA '{claim_id}': {actual_sha} != {norm_expected}")
+                return "TAMPERED"
+        return "OK"
+
+    def evaluate_claim(
+        self, claim_id: str, rule: dict[str, Any], ev: Any, require_raw: bool
+    ) -> str:
+        if not isinstance(ev, dict):
+            self.log(f"EVIDENZA ASSENTE: Nessuna prova valida per '{claim_id}'.")
+            return "UNKNOWN"
+
+        expected_method = rule.get("mandatory_method")
+        if ev.get("method") != expected_method:
+            self.log(f"METODO NON CONFORME '{claim_id}': atteso {expected_method}.")
+            return "UNKNOWN"
+
+        ind_score = float(ev.get("oracle_independence_score", 0.0))
+        min_ind = float(rule.get("min_independence", 1.0))
+        if ind_score < min_ind:
+            self.log(f"INDIPENDENZA INSUFFICIENTE '{claim_id}': {ind_score} < {min_ind}.")
+            return "UNKNOWN"
+
+        report_state = self.verify_raw_report(claim_id, ev, require_raw)
+        if report_state == "TAMPERED":
+            return "FAIL"
+        if report_state == "MISSING":
+            return "UNKNOWN"
+
+        status = ev.get("execution_status")
+        if status == "FAIL":
+            self.log(f"VIOLAZIONE: Il collaudo per '{claim_id}' ha restituito FAIL.")
+            return "FAIL"
+        if status == "NOT_APPLICABLE":
+            if bool(rule.get("allow_not_applicable", False)):
+                return "NOT_APPLICABLE"
+            self.log(f"NOT_APPLICABLE NON AUTORIZZATO per '{claim_id}'.")
+            return "UNKNOWN"
+        if status == "PASS":
+            min_iter = int(rule.get("min_iterations", 0))
+            raw_iter = ev.get("iterations_count", 0)
+            is_valid_int = isinstance(raw_iter, int) and not isinstance(raw_iter, bool)
+            actual_iter = raw_iter if is_valid_int else 0
+            if min_iter > 0 and actual_iter < min_iter:
+                self.log(f"CAMPIONAMENTO INSUFFICIENTE '{claim_id}': {actual_iter} < {min_iter}.")
+                return "PARTIAL" if bool(rule.get("tolerates_partial", False)) else "UNKNOWN"
+
+            min_mut_raw = rule.get("min_mutation_score_pct")
+            if min_mut_raw is not None:
+                raw_mut = ev.get("mutation_score_pct")
+                if not isinstance(raw_mut, (int, float)) or isinstance(raw_mut, bool):
+                    self.log(f"MUTATION SCORE ASSENTE per '{claim_id}'.")
+                    return "UNKNOWN"
+                if float(raw_mut) < float(min_mut_raw):
+                    self.log(
+                        f"MUTATION SCORE INSUFFICIENTE '{claim_id}': {raw_mut}% < {min_mut_raw}%."
+                    )
+                    return "FAIL"
+            return "PASS"
+        if status == "PARTIAL":
+            return "PARTIAL" if bool(rule.get("tolerates_partial", False)) else "UNKNOWN"
+        return "UNKNOWN"
+
+    def run_evaluation(self) -> tuple[str, str]:
+        try:
+            policy = self.load_file(self.policy_path)
+            dossier = self.load_file(self.dossier_path)
+        except (
+            OSError,
+            TypeError,
+            ValueError,
+            RuntimeError,
+            json.JSONDecodeError,
+            *YAML_ERRORS,
+        ) as exc:
+            return self.fail_closed_abort(f"Impossibile caricare policy o dossier: {exc}")
+
+        if not self.validate_schema(dossier, "evidence_dossier.schema.json"):
+            return self.fail_closed_abort("Dossier evidenze non conforme allo schema Draft 2020-12.")
+
+        policy_ver = policy.get("policy_version")
+        if not isinstance(policy_ver, str) or not policy_ver.strip():
+            return self.fail_closed_abort("Policy priva di 'policy_version' valido.")
+
+        target_al = policy.get("target_assurance_level")
+        if target_al not in {"AL-0", "AL-1", "AL-2", "AL-3"}:
+            return self.fail_closed_abort(f"target_assurance_level non valido: {target_al}")
+
+        dossier_commit = str(dossier.get("commit_hash", "")).strip().lower()
+        if not SHA1_HEX_RE.match(self.current_commit) or not SHA1_HEX_RE.match(dossier_commit):
+            return self.fail_closed_abort("Formato SHA-1 a 40 caratteri esadecimali non valido.")
+        if self.current_commit != dossier_commit:
+            return self.fail_closed_abort(
+                f"Disallineamento commit: runtime {self.current_commit} != {dossier_commit}."
+            )
+
+        evidences = dossier.get("evidences", {})
+        for claim_id, ev in evidences.items():
+            ev_commit = str(ev.get("commit_hash", "")).strip().lower()
+            if not SHA1_HEX_RE.match(ev_commit) or ev_commit != self.current_commit:
+                return self.fail_closed_abort(
+                    f"Evidenza stantia o commit invalido per '{claim_id}': {ev_commit}."
+                )
+
+        disc_budget = policy.get("discrepancy_budget")
+        if not isinstance(disc_budget, dict):
+            return self.fail_closed_abort("Sezione 'discrepancy_budget' assente o invalida.")
+        disc_result = self.evaluate_discrepancies(disc_budget)
+        if disc_result is not None:
+            return disc_result
+
+        risk_gov = policy.get("risk_governance", {})
+        if not isinstance(risk_gov, dict):
+            return self.fail_closed_abort("Sezione 'risk_governance' non valida.")
+        risk_result = self.evaluate_risks(risk_gov)
+        if risk_result is not None:
+            return risk_result
+
+        oracle_gov = policy.get("oracle_governance", {})
+        if not isinstance(oracle_gov, dict):
+            return self.fail_closed_abort("Sezione 'oracle_governance' non valida.")
+        oracle_result = self.evaluate_oracle_metadata(oracle_gov, str(dossier["timestamp_utc"]))
+        if oracle_result is not None:
+            return oracle_result
+
+        required_claims = policy.get("required_claims")
+        if not isinstance(required_claims, dict) or not required_claims:
+            return self.fail_closed_abort("Policy priva di 'required_claims' obbligatori.")
+
+        confinement = policy.get("confinement_fallback", {})
+        if not isinstance(confinement, dict):
+            return self.fail_closed_abort("Sezione 'confinement_fallback' non valida.")
+        allow_partial = (
+            bool(confinement.get("allow_partial_with_sandbox", False)) and target_al != "AL-3"
+        )
+        raw_canary = confinement.get("max_canary_traffic_pct_under_partial")
+        if allow_partial:
+            is_valid_pct = (
+                isinstance(raw_canary, int)
+                and not isinstance(raw_canary, bool)
+                and 1 <= raw_canary <= 100
+            )
+            if not is_valid_pct:
+                return self.fail_closed_abort(
+                    "Parametro 'max_canary_traffic_pct_under_partial' assente o fuori [1, 100]."
+                )
+            self.max_canary_pct = raw_canary
+
+        require_raw = bool(policy.get("require_raw_reports", False))
+        claim_verdicts: list[str] = []
+        for claim_id, rule in required_claims.items():
+            if not isinstance(rule, dict):
+                return self.fail_closed_abort(f"Regola non valida per il claim '{claim_id}'.")
+            claim_verdicts.append(
+                self.evaluate_claim(claim_id, rule, evidences.get(claim_id), require_raw)
+            )
+
+        if "FAIL" in claim_verdicts:
+            return "FAIL", "BLOCK"
+        if "UNKNOWN" in claim_verdicts:
+            return "UNKNOWN", "BLOCK"
+        if "PARTIAL" in claim_verdicts:
+            if allow_partial:
+                return "PARTIAL", "HOLD"
+            return "FAIL", "BLOCK"
+        if all(v in {"PASS", "NOT_APPLICABLE"} for v in claim_verdicts):
+            return "PASS", "ADMIT"
+        return "UNKNOWN", "BLOCK"
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Attuatore deterministico fail-closed del Decision Gate (Step 23)"
+    )
+    parser.add_argument("--policy", required=True, type=Path)
+    parser.add_argument("--dossier", required=True, type=Path)
+    parser.add_argument("--schema-dir", required=True, type=Path)
+    parser.add_argument("--discrepancies-dir", required=True, type=Path)
+    parser.add_argument("--commit", required=True, type=str)
+    parser.add_argument("--risks-dir", type=Path)
+    parser.add_argument("--oracle-meta", type=Path)
+    parser.add_argument("--workspace-root", type=Path)
+    parser.add_argument("--json-out", type=Path)
+    args = parser.parse_args()
+
+    validator = DecisionGateValidator(
+        policy_path=args.policy,
+        dossier_path=args.dossier,
+        schema_dir=args.schema_dir,
+        discrepancies_dir=args.discrepancies_dir,
+        current_commit=args.commit,
+        risks_dir=args.risks_dir,
+        oracle_meta_path=args.oracle_meta,
+        workspace_root=args.workspace_root,
+    )
+    verdict, action = validator.run_evaluation()
+
+    if args.json_out is not None:
+        args.json_out.parent.mkdir(parents=True, exist_ok=True)
+        payload: dict[str, Any] = {
+            "verdict": verdict,
+            "action": action,
+            "commit_hash": args.commit.strip().lower(),
+            "timestamp_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        }
+        if action == "HOLD" and validator.max_canary_pct is not None:
+            payload["max_canary_traffic_pct"] = validator.max_canary_pct
+        args.json_out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
+    print("\n" + "=" * 60)
+    print(f"VERDETTO GATE : {verdict}")
+    print(f"AZIONE        : {action}")
+    if action == "HOLD" and validator.max_canary_pct is not None:
+        print(f"CANARY CAP    : {validator.max_canary_pct}%")
+    print("=" * 60)
+
+    if action == "ADMIT":
+        return 0
+    if verdict in {"PARTIAL", "UNKNOWN"}:
+        return 1
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+
+---
+
+#### 3.4.2 `.assurance/bin/check_dependencies.py`
+
+```python
+#!/usr/bin/env python3
+"""
+Scanner deterministico di filiera software, lockfile e anti-slopsquatting (Step 17).
+
+Riferimento teorico e metodologico:
+- Capitolo 17, Sez. 6.5 ('Package Hallucination e Slopsquatting: classificazione epistemica').
+Verifica l'autenticità e l'anzianità dei pacchetti sui registri ufficiali (PyPI PEP 691/700
+e npm registry) per neutralizzare dipendenze allucinate dai modelli o registrate malevolmente
+da terzi prima che vengano installate nell'ambiente di esecuzione.
+"""
+
+import argparse
+import http.client
+import json
+import re
+import ssl
+import sys
+import tomllib
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+from urllib.parse import quote, urlsplit
+
+DEFAULT_MIN_AGE_DAYS = 30
+DEFAULT_MIN_VERSION_AGE_DAYS = 7
+PEP508_NAME_RE = re.compile(r"^([A-Za-z0-9][A-Za-z0-9._-]*)")
+PEP508_PIN_RE = re.compile(
+    r"^[A-Za-z0-9][A-Za-z0-9._-]*(?:\[[^\]]+\])?\s*==\s*([A-Za-z0-9.+!_-]+)"
+)
+SEMVER_PIN_RE = re.compile(r"^v?(\d+\.\d+\.\d+(?:[-+][A-Za-z0-9.-]+)?)$")
+HASH_FLAG_RE = re.compile(r"\s+--hash=\S+")
+VCS_PREFIXES = ("git+", "hg+", "svn+", "bzr+", "http://", "https://", "file://")
+ALLOWED_HOSTS = {"pypi.org", "registry.npmjs.org"}
+TargetDep = tuple[str, str | None]
+
+
+def load_allowlist(allowlist_path: Path | None) -> set[str]:
+    if allowlist_path is None:
+        return set()
+    if not allowlist_path.is_file():
+        raise FileNotFoundError(f"File allowlist non trovato: {allowlist_path}")
+    with allowlist_path.open("r", encoding="utf-8") as handle:
+        return {
+            line.split("#", 1)[0].strip().lower()
+            for line in handle
+            if line.split("#", 1)[0].strip()
+        }
+
+
+def fetch_json_https(host: str, path: str, accept_header: str) -> tuple[int, dict[str, Any] | None]:
+    """Esegue GET HTTPS verso un registro autorizzato seguendo redirect sullo stesso host."""
+    if host not in ALLOWED_HOSTS:
+        raise ValueError(f"Host registro non autorizzato: {host}")
+    ctx = ssl.create_default_context()
+    current_path = path
+
+    for _ in range(3):
+        conn = http.client.HTTPSConnection(host, timeout=8, context=ctx)
+        try:
+            conn.request(
+                "GET",
+                current_path,
+                headers={"User-Agent": "Assurance-Guard/2026.2", "Accept": accept_header},
+            )
+            resp = conn.getresponse()
+            raw_body = resp.read()
+            status_code = resp.status
+            location = resp.getheader("Location")
+        finally:
+            conn.close()
+
+        if status_code in {301, 302, 307, 308} and location:
+            parsed = urlsplit(location)
+            if parsed.scheme == "https" and parsed.netloc == host:
+                current_path = parsed.path + (f"?{parsed.query}" if parsed.query else "")
+                continue
+            if not parsed.scheme and not parsed.netloc and location.startswith("/"):
+                current_path = location
+                continue
+            return status_code, None
+
+        if status_code != 200:
+            return status_code, None
+
+        decoded: Any = json.loads(raw_body.decode("utf-8"))
+        if not isinstance(decoded, dict):
+            return 502, None
+        return 200, decoded
+    return 508, None
+
+
+def normalize_pypi_name(pkg_name: str) -> str:
+    return re.sub(r"[-_.]+", "-", pkg_name.strip()).lower()
+
+
+def _parse_iso_utc(raw_ts: Any, label: str) -> tuple[datetime | None, str | None]:
+    if not isinstance(raw_ts, str) or not raw_ts:
+        return None, f"Timestamp '{label}' assente."
+    try:
+        parsed_dt = datetime.fromisoformat(raw_ts.replace("Z", "+00:00"))
+    except ValueError:
+        return None, f"Timestamp '{label}' non valido: {raw_ts}"
+    if parsed_dt.tzinfo is None:
+        return None, f"Timestamp '{label}' privo di timezone: {raw_ts}"
+    return parsed_dt, None
+
+
+def check_pypi_package(
+    pkg_name: str,
+    exact_version: str | None,
+    min_age_days: int,
+    min_version_age_days: int,
+    allowlist: set[str],
+) -> tuple[str, str]:
+    norm_name = normalize_pypi_name(pkg_name)
+    try:
+        status_code, data = fetch_json_https(
+            "pypi.org",
+            f"/simple/{norm_name}/",
+            "application/vnd.pypi.simple.v1+json",
+        )
+    except (OSError, TimeoutError, http.client.HTTPException, json.JSONDecodeError, ValueError) as e:
+        return "UNKNOWN", f"Indisponibilità o errore parsing PyPI Simple API: {e}"
+
+    if status_code == 404:
+        return "HALLUCINATION", "PACCHETTO INESISTENTE SU PYPI (HTTP 404): possibile slopsquatting."
+    if status_code == 429:
+        return "UNKNOWN", "Rate limit PyPI (HTTP 429): esito non accertabile."
+    if status_code != 200 or data is None:
+        return "UNKNOWN", f"Risposta anomala PyPI Simple API (HTTP {status_code})."
+
+    files_meta = data.get("files", [])
+    if not isinstance(files_meta, list):
+        return "UNKNOWN", "Metadati PEP 691 privi della lista 'files'."
+    active_files = [item for item in files_meta if isinstance(item, dict) and not item.get("yanked")]
+    if not active_files:
+        return "UNKNOWN", "Nessun artefatto attivo nei metadati PEP 691."
+
+    earliest_dt: datetime | None = None
+    for entry in active_files:
+        parsed_dt, err = _parse_iso_utc(entry.get("upload-time"), "upload-time")
+        if err is not None:
+            if "assente" in err:
+                continue
+            return "UNKNOWN", err
+        if parsed_dt is not None and (earliest_dt is None or parsed_dt < earliest_dt):
+            earliest_dt = parsed_dt
+    if earliest_dt is None:
+        return "UNKNOWN", "Metadati PEP 700 privi di campo 'upload-time' verificabile."
+
+    now_utc = datetime.now(timezone.utc)
+    pkg_age_days = (now_utc - earliest_dt).days
+
+    ver_age_days: int | None = None
+    if exact_version is not None:
+        try:
+            v_status, v_data = fetch_json_https(
+                "pypi.org",
+                f"/pypi/{norm_name}/{quote(exact_version, safe='')}/json",
+                "application/json",
+            )
+        except (
+            OSError,
+            TimeoutError,
+            http.client.HTTPException,
+            json.JSONDecodeError,
+            ValueError,
+        ) as exc:
+            return "UNKNOWN", f"Errore verifica versione PyPI {exact_version}: {exc}"
+
+        if v_status == 404:
+            return "HALLUCINATION", f"Versione '{exact_version}' inesistente su PyPI (HTTP 404)."
+        if v_status != 200 or v_data is None:
+            return "UNKNOWN", f"Risposta anomala PyPI versione {exact_version} (HTTP {v_status})."
+
+        urls_meta = v_data.get("urls", [])
+        ver_earliest: datetime | None = None
+        if isinstance(urls_meta, list):
+            for u_entry in urls_meta:
+                if not isinstance(u_entry, dict) or u_entry.get("yanked"):
+                    continue
+                v_dt, v_err = _parse_iso_utc(
+                    u_entry.get("upload_time_iso_8601"), "upload_time_iso_8601"
+                )
+                if v_err is None and v_dt is not None and (ver_earliest is None or v_dt < ver_earliest):
+                    ver_earliest = v_dt
+        if ver_earliest is None:
+            return "UNKNOWN", f"Impossibile verificare timestamp versione '{exact_version}'."
+        ver_age_days = (now_utc - ver_earliest).days
+
+    allow_keys = {norm_name, pkg_name.strip().lower()}
+    if exact_version is not None:
+        allow_keys.add(f"{norm_name}=={exact_version.lower()}")
+    if allow_keys & allowlist:
+        return "PASS", f"Autorizzato via allowlist (pkg: {pkg_age_days} gg)."
+    if pkg_age_days < min_age_days:
+        return "QUARANTINE", f"IN QUARANTENA: pacchetto registrato {pkg_age_days} gg fa (< {min_age_days})."
+    if ver_age_days is not None and ver_age_days < min_version_age_days:
+        return (
+            "QUARANTINE",
+            f"IN QUARANTENA: versione {exact_version} pubblicata {ver_age_days} gg fa (< {min_version_age_days}).",
+        )
+    if ver_age_days is not None:
+        return "PASS", f"Verificato PyPI (pkg: {pkg_age_days} gg, ver {exact_version}: {ver_age_days} gg)."
+    return "PASS", f"Autenticato via PEP 691/700 (pkg: {pkg_age_days} gg)."
+
+
+def check_npm_package(
+    pkg_name: str,
+    exact_version: str | None,
+    min_age_days: int,
+    min_version_age_days: int,
+    allowlist: set[str],
+) -> tuple[str, str]:
+    clean_name = pkg_name.strip().lower()
+    encoded_name = quote(clean_name, safe="@")
+    try:
+        status_code, data = fetch_json_https(
+            "registry.npmjs.org", f"/{encoded_name}", "application/json"
+        )
+    except (OSError, TimeoutError, http.client.HTTPException, json.JSONDecodeError, ValueError) as e:
+        return "UNKNOWN", f"Indisponibilità o errore parsing registry npm: {e}"
+
+    if status_code == 404:
+        return "HALLUCINATION", "PACCHETTO INESISTENTE SU NPM (HTTP 404): possibile slopsquatting."
+    if status_code == 429:
+        return "UNKNOWN", "Rate limit npm (HTTP 429): esito non accertabile."
+    if status_code != 200 or data is None:
+        return "UNKNOWN", f"Risposta anomala registry npm (HTTP {status_code})."
+
+    time_meta = data.get("time", {})
+    if not isinstance(time_meta, dict):
+        return "UNKNOWN", "Metadati npm privi dell'oggetto 'time'."
+    created_dt, err = _parse_iso_utc(time_meta.get("created"), "time.created")
+    if err is not None or created_dt is None:
+        return "UNKNOWN", err or "Timestamp 'time.created' non valido."
+
+    now_utc = datetime.now(timezone.utc)
+    pkg_age_days = (now_utc - created_dt).days
+
+    ver_age_days: int | None = None
+    if exact_version is not None:
+        versions_meta = data.get("versions", {})
+        if isinstance(versions_meta, dict) and exact_version not in versions_meta:
+            return "HALLUCINATION", f"Versione '{exact_version}' inesistente su npm."
+        ver_dt, ver_err = _parse_iso_utc(time_meta.get(exact_version), f"time.{exact_version}")
+        if ver_err is not None or ver_dt is None:
+            return "UNKNOWN", f"Timestamp versione npm '{exact_version}' non verificabile."
+        ver_age_days = (now_utc - ver_dt).days
+
+    allow_keys = {clean_name}
+    if exact_version is not None:
+        allow_keys.add(f"{clean_name}@{exact_version.lower()}")
+    if allow_keys & allowlist:
+        return "PASS", f"Autorizzato via allowlist (pkg: {pkg_age_days} gg)."
+    if pkg_age_days < min_age_days:
+        return "QUARANTINE", f"IN QUARANTENA: creato su npm {pkg_age_days} gg fa (< {min_age_days})."
+    if ver_age_days is not None and ver_age_days < min_version_age_days:
+        return (
+            "QUARANTINE",
+            f"IN QUARANTENA: versione {exact_version} pubblicata {ver_age_days} gg fa (< {min_version_age_days}).",
+        )
+    if ver_age_days is not None:
+        return "PASS", f"Verificato npm (pkg: {pkg_age_days} gg, ver {exact_version}: {ver_age_days} gg)."
+    return "PASS", f"Autenticato su npm (pkg: {pkg_age_days} gg)."
+
+
+def extract_pep508_item(raw_spec: str) -> tuple[TargetDep | None, str | None]:
+    cleaned = HASH_FLAG_RE.sub("", raw_spec).split(";", 1)[0].strip()
+    if not cleaned:
+        return None, None
+    if cleaned.startswith(VCS_PREFIXES) or "@" in cleaned:
+        return None, cleaned
+    match = PEP508_NAME_RE.match(cleaned)
+    if not match:
+        return None, cleaned
+    pin_match = PEP508_PIN_RE.match(cleaned)
+    exact_ver = pin_match.group(1) if pin_match else None
+    return (match.group(1), exact_ver), None
+
+
+def _extract_req_include(clean_line: str) -> str | None:
+    for prefix in ("--requirement=", "--constraint="):
+        if clean_line.startswith(prefix):
+            return clean_line[len(prefix) :].strip()
+    parts = clean_line.split(None, 1)
+    if parts[0] in {"-r", "--requirement", "-c", "--constraint"}:
+        return parts[1].strip() if len(parts) > 1 else ""
+    if clean_line.startswith(("-r", "-c")):
+        return clean_line[2:].strip()
+    return None
+
+
+def parse_requirements_txt(
+    file_path: Path, _visited: set[Path] | None = None
+) -> tuple[list[TargetDep], list[str]]:
+    if not file_path.is_file():
+        raise FileNotFoundError(f"Manifest requirements non trovato: {file_path}")
+    visited: set[Path] = _visited if _visited is not None else set()
+    resolved = file_path.resolve()
+    if resolved in visited:
+        return [], []
+    visited.add(resolved)
+
+    text = file_path.read_text(encoding="utf-8").replace("\\\r\n", " ").replace("\\\n", " ")
+    packages: list[TargetDep] = []
+    unverified: list[str] = []
+    suspicious_long = ("--editable", "--index-url", "--extra-index-url", "--trusted-host", "--find-links")
+
+    for raw_line in text.splitlines():
+        clean = raw_line.split("#", 1)[0].strip()
+        if not clean:
+            continue
+        if clean.startswith("-"):
+            include_target = _extract_req_include(clean)
+            if include_target is not None:
+                if not include_target:
+                    raise ValueError(f"Direttiva requirements incompleta in {file_path}: {clean}")
+                if "://" in include_target:
+                    unverified.append(clean)
+                else:
+                    sub_pkgs, sub_unv = parse_requirements_txt((file_path.parent / include_target).resolve(), visited)
+                    packages.extend(sub_pkgs)
+                    unverified.extend(sub_unv)
+                continue
+            if clean.startswith(("-e", "-i", "-f")) or clean.startswith(suspicious_long) or "://" in clean:
+                unverified.append(clean)
+            continue
+        dep, url_ref = extract_pep508_item(clean)
+        if dep is not None:
+            packages.append(dep)
+        elif url_ref:
+            unverified.append(url_ref)
+    return packages, unverified
+
+
+def parse_pyproject_toml(file_path: Path) -> tuple[list[TargetDep], list[str]]:
+    if not file_path.is_file():
+        raise FileNotFoundError(f"File pyproject.toml non trovato: {file_path}")
+    with file_path.open("rb") as handle:
+        data = tomllib.load(handle)
+
+    raw_specs: list[str] = []
+    project = data.get("project", {})
+    if isinstance(project, dict):
+        deps = project.get("dependencies", [])
+        if isinstance(deps, list):
+            raw_specs.extend(str(item) for item in deps)
+        opt_deps = project.get("optional-dependencies", {})
+        if isinstance(opt_deps, dict):
+            for group in opt_deps.values():
+                if isinstance(group, list):
+                    raw_specs.extend(str(item) for item in group)
+
+    dep_groups = data.get("dependency-groups", {})
+    if isinstance(dep_groups, dict):
+        for group in dep_groups.values():
+            if isinstance(group, list):
+                raw_specs.extend(str(item) for item in group if isinstance(item, str))
+
+    poetry_deps = data.get("tool", {}).get("poetry", {}).get("dependencies", {})
+    if isinstance(poetry_deps, dict):
+        raw_specs.extend(str(name) for name in poetry_deps if str(name).lower() != "python")
+
+    packages: list[TargetDep] = []
+    unverified: list[str] = []
+    for spec in raw_specs:
+        dep, url_ref = extract_pep508_item(spec)
+        if dep is not None:
+            packages.append(dep)
+        elif url_ref:
+            unverified.append(url_ref)
+    return packages, unverified
+
+
+def _collect_npm_map(
+    block: Any, packages: list[TargetDep], unverified: list[str]
+) -> None:
+    if not isinstance(block, dict):
+        return
+    for name, val in block.items():
+        if isinstance(val, dict):
+            _collect_npm_map(val, packages, unverified)
+            continue
+        ver_str = str(val).strip()
+        ver_low = ver_str.lower()
+        if ver_low.startswith(("git+", "http://", "https://", "file:", "github:", "npm:")):
+            unverified.append(f"{name}@{ver_low}")
+        elif not ver_low.startswith("workspace:"):
+            pin = SEMVER_PIN_RE.match(ver_str)
+            packages.append((str(name), pin.group(1) if pin else None))
+
+
+def parse_package_json(file_path: Path) -> tuple[list[TargetDep], list[str]]:
+    if not file_path.is_file():
+        raise FileNotFoundError(f"File package.json non trovato: {file_path}")
+    data: Any = json.loads(file_path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise TypeError(f"Contenuto package.json non valido: {file_path}")
+    packages: list[TargetDep] = []
+    unverified: list[str] = []
+    for section in (
+        "dependencies",
+        "devDependencies",
+        "peerDependencies",
+        "optionalDependencies",
+        "overrides",
+        "resolutions",
+    ):
+        _collect_npm_map(data.get(section), packages, unverified)
+    return packages, unverified
+
+
+def _extract_v1_lock_deps(
+    deps_block: Any, packages: list[TargetDep], unverified: list[str]
+) -> None:
+    if not isinstance(deps_block, dict):
+        return
+    for name, meta in deps_block.items():
+        if not isinstance(meta, dict):
+            continue
+        resolved = str(meta.get("resolved", "")).strip()
+        if resolved and not resolved.startswith("https://registry.npmjs.org/"):
+            unverified.append(f"{name}@{resolved}")
+        version = meta.get("version")
+        packages.append((str(name), str(version) if isinstance(version, str) and version else None))
+        if "dependencies" in meta:
+            _extract_v1_lock_deps(meta["dependencies"], packages, unverified)
+
+
+def parse_package_lock(file_path: Path) -> tuple[list[TargetDep], list[str]]:
+    if not file_path.is_file():
+        raise FileNotFoundError(f"File package-lock.json non trovato: {file_path}")
+    data: Any = json.loads(file_path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise TypeError(f"Contenuto package-lock.json non valido: {file_path}")
+    packages: list[TargetDep] = []
+    unverified: list[str] = []
+
+    pkg_map = data.get("packages")
+    if isinstance(pkg_map, dict):
+        for pkg_path, meta in pkg_map.items():
+            if not pkg_path or not isinstance(meta, dict):
+                continue
+            marker = "node_modules/"
+            pkg_name = pkg_path.rsplit(marker, 1)[-1] if marker in pkg_path else str(pkg_path)
+            resolved = str(meta.get("resolved", "")).strip()
+            if resolved and not resolved.startswith("https://registry.npmjs.org/"):
+                unverified.append(f"{pkg_name}@{resolved}")
+            version = meta.get("version")
+            packages.append((pkg_name, str(version) if isinstance(version, str) and version else None))
+        return packages, unverified
+
+    _extract_v1_lock_deps(data.get("dependencies"), packages, unverified)
+    return packages, unverified
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Scanner filiera software anti-slopsquatting")
+    parser.add_argument("--requirements", action="append", type=Path, default=[])
+    parser.add_argument("--pyproject", type=Path)
+    parser.add_argument("--package-json", type=Path)
+    parser.add_argument("--package-lock", action="append", type=Path, default=[])
+    parser.add_argument("--pypi-package", action="append", type=str, default=[])
+    parser.add_argument("--npm-package", action="append", type=str, default=[])
+    parser.add_argument("--allowlist", type=Path)
+    parser.add_argument("--min-age", type=int, default=DEFAULT_MIN_AGE_DAYS)
+    parser.add_argument("--min-version-age", type=int, default=DEFAULT_MIN_VERSION_AGE_DAYS)
+    parser.add_argument("--allow-empty", action="store_true")
+    args = parser.parse_args()
+
+    has_input = any(
+        [
+            args.requirements,
+            args.pyproject,
+            args.package_json,
+            args.package_lock,
+            args.pypi_package,
+            args.npm_package,
+        ]
+    )
+    if not has_input:
+        print("VERDETTO: NO-GO (Nessun manifest o pacchetto specificato).", file=sys.stderr)
+        return 2
+
+    try:
+        allowlist = load_allowlist(args.allowlist)
+        pypi_targets: list[TargetDep] = [(pkg, None) for pkg in args.pypi_package]
+        npm_targets: list[TargetDep] = [(pkg, None) for pkg in args.npm_package]
+        unverified_refs: list[str] = []
+
+        for req_path in args.requirements:
+            pkgs, unv = parse_requirements_txt(req_path)
+            pypi_targets.extend(pkgs)
+            unverified_refs.extend(unv)
+        if args.pyproject is not None:
+            pkgs, unv = parse_pyproject_toml(args.pyproject)
+            pypi_targets.extend(pkgs)
+            unverified_refs.extend(unv)
+        if args.package_json is not None:
+            pkgs, unv = parse_package_json(args.package_json)
+            npm_targets.extend(pkgs)
+            unverified_refs.extend(unv)
+        for lock_path in args.package_lock:
+            pkgs, unv = parse_package_lock(lock_path)
+            npm_targets.extend(pkgs)
+            unverified_refs.extend(unv)
+    except (OSError, TypeError, ValueError, json.JSONDecodeError, tomllib.TOMLDecodeError) as exc:
+        print(f"VERDETTO: NO-GO (Errore lettura input filiera): {exc}", file=sys.stderr)
+        return 2
+
+    findings: list[tuple[str, str, str]] = []
+    for ref in sorted(set(unverified_refs)):
+        findings.append((ref, "QUARANTINE", "Dipendenza VCS/URL diretta non ammessa senza audit."))
+
+    for pkg, ver in sorted(set(pypi_targets)):
+        status, msg = check_pypi_package(pkg, ver, args.min_age, args.min_version_age, allowlist)
+        label = f"{pkg}=={ver}" if ver else pkg
+        findings.append((label, status, msg))
+
+    for pkg, ver in sorted(set(npm_targets)):
+        status, msg = check_npm_package(pkg, ver, args.min_age, args.min_version_age, allowlist)
+        label = f"{pkg}@{ver}" if ver else pkg
+        findings.append((label, status, msg))
+
+    print("=" * 72)
+    print("AUDIT DI FILIERA SOFTWARE: INTEGRITÀ, VERSIONI E ANTI-SLOPSQUATTING")
+    print("=" * 72)
+    for name, status, msg in findings:
+        print(f"[{status:^13}] {name:<32} -> {msg}")
+
+    if not findings and not args.allow_empty:
+        print("VERDETTO: UNKNOWN (Nessuna dipendenza rilevata nei manifest forniti).")
+        return 1
+
+    hallucinations = [item for item in findings if item[1] == "HALLUCINATION"]
+    quarantined = [item for item in findings if item[1] == "QUARANTINE"]
+    unknowns = [item for item in findings if item[1] == "UNKNOWN"]
+
+    print("=" * 72)
+    if hallucinations or quarantined:
+        print(f"VERDETTO: NO-GO (Hallucination={len(hallucinations)}, Quarantine={len(quarantined)})")
+        return 2
+    if unknowns:
+        print(f"VERDETTO: UNKNOWN (Errori di rete o metadati incompleti={len(unknowns)})")
+        return 1
+    print(f"VERDETTO: PASS (Dipendenze verificate: {len(findings)})")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+
+---
+
+#### 3.4.3 `.assurance/bin/freeze_guard.py`
+
+```python
+#!/usr/bin/env python3
+"""Guardrail anti-manomissione oracoli congelati per pre-commit locale e CI (Step 16 & 22)."""
+
+import argparse
+import json
+import os
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+from typing import Any
+
+PROTECTED_DIRS = ("tests/invariants/", "tests/contracts/", "tests/assurance/")
+PROTECTED_FILES = {"tests/conftest.py"}
+UNAPPROVED_MARKERS = {"", "PENDING", "TBD", "NONE", "N/A"}
+ORACLE_UPDATE_CATEGORIES = {"CORRECT_SPECIFICATION", "CORRECT_ORACLE_TEST"}
+
+
+def find_changed_oracles(git_bin: str, ci_base: str | None) -> tuple[int, list[str], str]:
+    cmd = (
+        [git_bin, "diff", "--name-only", f"{ci_base}...HEAD"]
+        if ci_base
+        else [git_bin, "diff", "--cached", "--name-only"]
+    )
+    res = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    if res.returncode != 0:
+        return res.returncode, [], res.stderr.strip()
+
+    violations = [
+        item
+        for item in res.stdout.splitlines()
+        if item.startswith(PROTECTED_DIRS) or item in PROTECTED_FILES
+    ]
+    return 0, violations, ""
+
+
+def has_approved_oracle_discrepancy(discrepancies_dir: Path | None) -> bool:
+    if discrepancies_dir is None or not discrepancies_dir.is_dir():
+        return False
+    for disc_file in sorted(discrepancies_dir.glob("*.json")):
+        try:
+            data: Any = json.loads(disc_file.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(data, dict):
+            continue
+        disp = data.get("disposition", {})
+        if not isinstance(disp, dict):
+            continue
+        category = str(disp.get("category", ""))
+        approved_by = str(disp.get("approved_by", "")).strip().upper()
+        if category in ORACLE_UPDATE_CATEGORIES and approved_by not in UNAPPROVED_MARKERS:
+            return True
+    return False
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Guardrail anti-test tampering per pre-commit locale o CI"
+    )
+    parser.add_argument("--ci-base", type=str, help="Riferimento Git base in modalità CI")
+    parser.add_argument(
+        "--discrepancies-dir",
+        type=Path,
+        default=Path("docs/assurance/discrepancies"),
+        help="Directory delle schede di discrepanza Step 22",
+    )
+    args = parser.parse_args()
+
+    git_bin = shutil.which("git")
+    if git_bin is None:
+        print("[ASSURANCE-UNKNOWN] Eseguibile 'git' non trovato nel PATH.", file=sys.stderr)
+        return 1
+
+    rc, violations, err = find_changed_oracles(git_bin, args.ci_base)
+    if rc != 0:
+        print(f"[ASSURANCE-UNKNOWN] Errore git diff: {err}", file=sys.stderr)
+        return 1
+
+    if not violations:
+        print("[ASSURANCE-PASS] Nessuna modifica agli oracoli di test congelati.")
+        return 0
+
+    if args.ci_base:
+        if has_approved_oracle_discrepancy(args.discrepancies_dir):
+            print("[ASSURANCE-PASS] Modifica oracoli autorizzata da scheda Step 22 approvata.")
+            return 0
+    elif os.environ.get("ALLOW_TEST_ORACLE_UPDATE") == "1":
+        print("[ASSURANCE-WARN] Modifica oracoli autorizzata localmente via override esplicito.")
+        return 0
+
+    print("\n" + "=" * 70)
+    print("[BLOCCO NO-GO] TENTATIVO DI MANOMISSIONE DEGLI ORACOLI DI TEST!")
+    print("I seguenti file di test protetti risultano modificati:")
+    for item in violations:
+        print(f"  - {item}")
+    print("\nLo Step 16 vieta di alterare i test congelati per accomodare il codice.")
+    if args.ci_base:
+        print("In CI è richiesta una scheda approvata (CORRECT_SPECIFICATION / CORRECT_ORACLE_TEST)")
+        print(f"nella directory {args.discrepancies_dir} con approvazione CODEOWNERS.")
+    else:
+        print("Per revisioni formali della specifica locale: ALLOW_TEST_ORACLE_UPDATE=1 git commit ...")
+    print("=" * 70 + "\n")
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+
+---
+
+#### 3.4.4 `.assurance/bin/check_unicode.py`
+
+```python
+#!/usr/bin/env python3
+"""Scanner deterministico per caratteri Unicode bidirezionali e zero-width (Step 14 & 17)."""
+
+import sys
+from pathlib import Path
+
+FORBIDDEN_CODEPOINTS: dict[int, str] = {
+    0x061C: "ARABIC LETTER MARK",
+    0x200B: "ZERO WIDTH SPACE",
+    0x200C: "ZERO WIDTH NON-JOINER",
+    0x200D: "ZERO WIDTH JOINER",
+    0x200E: "LEFT-TO-RIGHT MARK",
+    0x200F: "RIGHT-TO-LEFT MARK",
+    0x202A: "LEFT-TO-RIGHT EMBEDDING",
+    0x202B: "RIGHT-TO-LEFT EMBEDDING",
+    0x202C: "POP DIRECTIONAL FORMATTING",
+    0x202D: "LEFT-TO-RIGHT OVERRIDE",
+    0x202E: "RIGHT-TO-LEFT OVERRIDE",
+    0x2066: "LEFT-TO-RIGHT ISOLATE",
+    0x2067: "RIGHT-TO-LEFT ISOLATE",
+    0x2068: "FIRST STRONG ISOLATE",
+    0x2069: "POP DIRECTIONAL ISOLATE",
+}
+
+
+def scan_file(target: Path) -> list[str]:
+    findings: list[str] = []
+    if not target.is_file():
+        return findings
+    try:
+        content = target.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return findings
+
+    for line_no, line in enumerate(content.splitlines(), start=1):
+        for col_no, char in enumerate(line, start=1):
+            code = ord(char)
+            if code in FORBIDDEN_CODEPOINTS:
+                label = FORBIDDEN_CODEPOINTS[code]
+                findings.append(f"{target}:{line_no}:{col_no} U+{code:04X} ({label})")
+    return findings
+
+
+def main(argv: list[str]) -> int:
+    targets = [Path(arg) for arg in argv[1:]]
+    if not targets:
+        print("[NO-GO] Nessun file fornito a check_unicode.py.", file=sys.stderr)
+        return 2
+
+    all_findings: list[str] = []
+    for path in targets:
+        all_findings.extend(scan_file(path))
+
+    if all_findings:
+        print("[BLOCCO NO-GO] Rilevati caratteri Unicode nascosti o bidirezionali:", file=sys.stderr)
+        for item in all_findings:
+            print(f"  - {item}", file=sys.stderr)
+        return 2
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv))
+```
+
+---
+
+### 3.5 File di Blocco Dipendenze del Gate e Allowlist (`.assurance/`)
+
+> [!NOTE]
+> ✎ **Riproducibilità crittografica (`--require-hashes`):**  
+> Il file `.assurance/requirements.assurance.in` elenca le dipendenze dirette fissate; `.assurance/requirements.assurance.txt` fornisce un lock pronto all'uso. Dopo aver eseguito `pip-compile --generate-hashes --allow-unsafe .assurance/requirements.assurance.in -o .assurance/requirements.assurance.txt` sul sistema operativo target della CI (Linux x86_64), le pipeline rilevano automaticamente la presenza delle righe `--hash=` ed eseguono `pip install --require-hashes`.
+
+#### `.assurance/requirements.assurance.in`
+
+```text
+# .assurance/requirements.assurance.in
+jsonschema==4.23.0
+rfc3339-validator==0.1.4
+pyyaml==6.0.2
+pytest==8.3.4
+hypothesis==6.124.0
+mutmut==2.4.5
+ruff==0.9.1
+bandit==1.8.2
+mypy==1.14.1
+```
+
+#### `.assurance/requirements.assurance.txt`
+
+```text
+# .assurance/requirements.assurance.txt
+# Generare gli hash per il target CI Linux con:
+#   pip-compile --generate-hashes --allow-unsafe .assurance/requirements.assurance.in -o .assurance/requirements.assurance.txt
+jsonschema==4.23.0
+rfc3339-validator==0.1.4
+pyyaml==6.0.2
+pytest==8.3.4
+hypothesis==6.124.0
+mutmut==2.4.5
+ruff==0.9.1
+bandit==1.8.2
+mypy==1.14.1
+```
+
+#### `.assurance/dependency_allowlist.txt`
+
+```text
+# .assurance/dependency_allowlist.txt
+# DA PERSONALIZZARE: elencare un pacchetto (o nome==versione / nome@versione) per riga
+```
+
+---
+
+[▲ Torna su](#prontuario-operativo-di-file-configurazioni-e-template-pronti-alluso)
+## 4. MODULO GITHUB ACTIONS (`.github/workflows/`)
+
+Tutti i workflow utilizzano **pinning su digest SHA-1 completo** su release compatibili con il runtime **Node 24** (`actions/checkout` v7.0.1 e `actions/setup-python` v7.0.0) per evitare tag mutabili e runtime deprecati. Il Decision Gate unifica analisi statica, scanner filiera, secret scanning, PBT, **mutation testing**, **test OPA/Rego v1** e **anti-test tampering** in un singolo check obbligatorio privo di filtri `paths:` bloccanti per la Branch Protection.
+
+---
+
+### 4.1 `.github/workflows/ai-dependency-guard.yml`
+
+```yaml
+# .github/workflows/ai-dependency-guard.yml
+name: "Assurance: Anti-Slopsquatting & Dependency Guard (Step 17)"
+
+on:
+  pull_request:
+    paths:
+      - "requirements*.txt"
+      - "pyproject.toml"
+      - "package.json"
+      - "package-lock.json"
+      - ".assurance/requirements.assurance.in"
+      - ".assurance/requirements.assurance.txt"
+      - ".assurance/dependency_allowlist.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-dependencies:
+    name: "Audit Anagrafico Dipendenze e Lockfile"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: "Clonazione Repository (Pinning SHA)"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: "Configurazione Ambiente Python (Pinning SHA)"
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: "Esecuzione Scanner Deterministico Multi-Manifest e Lockfile"
+        id: dep-scan
+        run: |
+          python3 - << 'EOF'
+          import glob
+          import os
+          import subprocess
+          import sys
+
+          cmd = [
+              "python3",
+              ".assurance/bin/check_dependencies.py",
+              "--min-age",
+              "30",
+              "--min-version-age",
+              "7",
+          ]
+          if os.path.isfile(".assurance/dependency_allowlist.txt"):
+              cmd.extend(["--allowlist", ".assurance/dependency_allowlist.txt"])
+
+          req_files = sorted(glob.glob("requirements*.txt"))
+          if os.path.isfile(".assurance/requirements.assurance.txt"):
+              req_files.append(".assurance/requirements.assurance.txt")
+          for rf in req_files:
+              cmd.extend(["--requirements", rf])
+
+          if os.path.isfile("pyproject.toml"):
+              cmd.extend(["--pyproject", "pyproject.toml"])
+          if os.path.isfile("package.json"):
+              cmd.extend(["--package-json", "package.json"])
+          if os.path.isfile("package-lock.json"):
+              cmd.extend(["--package-lock", "package-lock.json"])
+
+          res = subprocess.run(cmd, check=False)
+          sys.exit(res.returncode)
+          EOF
+
+      - name: "Generazione Riepilogo di Assurance per la PR"
+        if: always()
+        run: |
+          echo "## Esito Scansione Filiera Software (Step 17)" >> "$GITHUB_STEP_SUMMARY"
+          echo "Verifica completata su manifest e lockfile Python/npm con controllo anzianità pacchetto e versione." >> "$GITHUB_STEP_SUMMARY"
+```
+
+---
+
+### 4.2 `.github/workflows/evidence-decision-gate.yml`
+
+```yaml
+# .github/workflows/evidence-decision-gate.yml
+name: "Assurance: Evidence-Based Decision Gate (Step 16, 17, 23)"
+
+on:
+  pull_request:
+    branches:
+      - "main"
+      - "master"
+  workflow_dispatch:
+    inputs:
+      base_ref:
+        description: "Branch base di confronto (es. main)"
+        required: false
+        default: "main"
+
+permissions:
+  contents: read
+
+jobs:
+  run-decision-gate:
+    name: "Valutazione Deterministica Integrata delle Prove (Step 23 Gate)"
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: "Clonazione Repository con Cronologia Completa (Pinning SHA)"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: "Configurazione Ambiente Python (Pinning SHA)"
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: "Installazione Dipendenze del Gate da Lock File"
+        run: |
+          python -m pip install --upgrade pip
+          if grep -q -- '--hash=' .assurance/requirements.assurance.txt; then
+            pip install --require-hashes -r .assurance/requirements.assurance.txt
+          else
+            pip install -r .assurance/requirements.assurance.txt
+          fi
+          if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
+          mkdir -p .assurance/run_artifacts/
+
+      # ------------------------------------------------------------------------
+      # PROVA 1: Audit Filiera Software Multi-Manifest e Lockfile (Step 17)
+      # ------------------------------------------------------------------------
+      - name: "1. Esecuzione Scanner Filiera Software (check_dependencies.py)"
+        run: |
+          python3 - << 'EOF'
+          import glob
+          import os
+          import subprocess
+
+          cmd = [
+              "python3",
+              ".assurance/bin/check_dependencies.py",
+              "--min-age",
+              "30",
+              "--min-version-age",
+              "7",
+          ]
+          if os.path.isfile(".assurance/dependency_allowlist.txt"):
+              cmd.extend(["--allowlist", ".assurance/dependency_allowlist.txt"])
+
+          for rf in sorted(glob.glob("requirements*.txt")):
+              cmd.extend(["--requirements", rf])
+          if os.path.isfile(".assurance/requirements.assurance.txt"):
+              cmd.extend(["--requirements", ".assurance/requirements.assurance.txt"])
+          if os.path.isfile("pyproject.toml"):
+              cmd.extend(["--pyproject", "pyproject.toml"])
+          if os.path.isfile("package.json"):
+              cmd.extend(["--package-json", "package.json"])
+          if os.path.isfile("package-lock.json"):
+              cmd.extend(["--package-lock", "package-lock.json"])
+
+          res = subprocess.run(cmd, capture_output=True, text=True, check=False)
+          with open(".assurance/run_artifacts/sca_report.txt", "w", encoding="utf-8") as f:
+              f.write(res.stdout + "\n" + res.stderr)
+
+          status = "PASS" if res.returncode == 0 else ("UNKNOWN" if res.returncode == 1 else "FAIL")
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as ef:
+              ef.write(f"SCA_STATUS={status}\n")
+          EOF
+
+      # ------------------------------------------------------------------------
+      # PROVA 2: Analisi Statica SAST, Unicode Multi-File & Type-Checking
+      # ------------------------------------------------------------------------
+      - name: "2. Esecuzione Analisi Statica SAST (Ruff, Bandit, Mypy, Check Unicode)"
+        run: |
+          python3 - << 'EOF'
+          import os
+          import subprocess
+
+          reports = []
+          statuses = []
+
+          r_proc = subprocess.run(["ruff", "check", "--config", "ruff.toml", "."], capture_output=True, text=True, check=False)
+          reports.append("=== RUFF ===\n" + r_proc.stdout + "\n" + r_proc.stderr)
+          statuses.append("PASS" if r_proc.returncode == 0 else ("FAIL" if r_proc.returncode == 1 else "UNKNOWN"))
+
+          if os.path.isdir("src"):
+              b_proc = subprocess.run(["bandit", "-r", "src", "-ll", "-q"], capture_output=True, text=True, check=False)
+              reports.append("=== BANDIT ===\n" + b_proc.stdout + "\n" + b_proc.stderr)
+              statuses.append("PASS" if b_proc.returncode == 0 else ("FAIL" if b_proc.returncode == 1 else "UNKNOWN"))
+
+          mypy_targets = [p for p in ("src", ".assurance/bin") if os.path.exists(p)]
+          if mypy_targets:
+              m_proc = subprocess.run(["mypy", "--strict", *mypy_targets], capture_output=True, text=True, check=False)
+              reports.append("=== MYPY ===\n" + m_proc.stdout + "\n" + m_proc.stderr)
+              statuses.append("PASS" if m_proc.returncode == 0 else ("FAIL" if m_proc.returncode == 1 else "UNKNOWN"))
+          else:
+              statuses.append("UNKNOWN")
+
+          tracked = subprocess.run(["git", "ls-files"], capture_output=True, text=True, check=False)
+          if tracked.returncode != 0:
+              statuses.append("UNKNOWN")
+          else:
+              files = [f for f in tracked.stdout.splitlines() if os.path.isfile(f)]
+              if files:
+                  u_proc = subprocess.run(["python3", ".assurance/bin/check_unicode.py", *files], capture_output=True, text=True, check=False)
+                  reports.append("=== UNICODE ===\n" + u_proc.stdout + "\n" + u_proc.stderr)
+                  statuses.append("PASS" if u_proc.returncode == 0 else "FAIL")
+              else:
+                  statuses.append("UNKNOWN")
+
+          with open(".assurance/run_artifacts/sast_report.txt", "w", encoding="utf-8") as f:
+              f.write("\n".join(reports))
+
+          final_status = "FAIL" if "FAIL" in statuses else ("UNKNOWN" if "UNKNOWN" in statuses else "PASS")
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as ef:
+              ef.write(f"SAST_STATUS={final_status}\n")
+          EOF
+
+      # ------------------------------------------------------------------------
+      # PROVA 3: Rilevamento Segreti con Verifica SHA-256 del Binario Gitleaks
+      # ------------------------------------------------------------------------
+      - name: "3. Scansione Segreti su Tutta la Cronologia (Gitleaks)"
+        run: |
+          GITLEAKS_URL="https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz"
+          GITLEAKS_SHA256="5bc41815076e6ed6ef8fbecc9d9b75bcae31f39029ceb55da08086315316e3ba"
+          curl -fsSL -o /tmp/gitleaks.tar.gz "${GITLEAKS_URL}"
+          echo "${GITLEAKS_SHA256}  /tmp/gitleaks.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp/ gitleaks
+          chmod +x /tmp/gitleaks
+
+          LEAKS_EXIT=0
+          /tmp/gitleaks git --log-opts="--all" --report-path=.assurance/run_artifacts/gitleaks.json --exit-code=2 . || LEAKS_EXIT=$?
+          if [ ! -s .assurance/run_artifacts/gitleaks.json ]; then echo "[]" > .assurance/run_artifacts/gitleaks.json; fi
+
+          if [ "${LEAKS_EXIT}" -eq 2 ]; then
+            echo "SECRET_STATUS=FAIL" >> "$GITHUB_ENV"
+          elif [ "${LEAKS_EXIT}" -eq 0 ]; then
+            echo "SECRET_STATUS=PASS" >> "$GITHUB_ENV"
+          else
+            echo "SECRET_STATUS=UNKNOWN" >> "$GITHUB_ENV"
+          fi
+
+      # ------------------------------------------------------------------------
+      # PROVA 4: Test Basati su Proprietà (PBT) + Statistiche Reali Iterazioni
+      # ------------------------------------------------------------------------
+      - name: "4. Esecuzione Test PBT e Calcolo Indipendenza Epistemica"
+        run: |
+          python3 - << 'EOF'
+          import json
+          import os
+          import re
+          import subprocess
+
+          cmd = ["pytest", "tests/", "-m", "not slow", "--hypothesis-profile=ci", "--hypothesis-show-statistics"]
+          res = subprocess.run(cmd, capture_output=True, text=True, check=False)
+          combined_out = res.stdout + "\n" + res.stderr
+          with open(".assurance/run_artifacts/pytest_pbt.txt", "w", encoding="utf-8") as f:
+              f.write(combined_out)
+
+          pbt_status = "PASS" if res.returncode == 0 else ("FAIL" if res.returncode == 1 else "UNKNOWN")
+          passing_counts = [int(m) for m in re.findall(r"(\d+)\s+passing examples", combined_out)]
+          pbt_iterations = min(passing_counts) if passing_counts else 0
+
+          meta_path = "tests/contracts/oracle_metadata.json"
+          ind_score = 0.0
+          if os.path.isfile(meta_path):
+              try:
+                  with open(meta_path, "r", encoding="utf-8") as mf:
+                      ind_score = float(json.load(mf).get("oracle_independence_score", 0.0))
+              except (OSError, ValueError, json.JSONDecodeError):
+                  ind_score = 0.0
+
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as ef:
+              ef.write(f"PBT_STATUS={pbt_status}\n")
+              ef.write(f"PBT_INDEPENDENCE_SCORE={ind_score}\n")
+              ef.write(f"PBT_ITERATIONS={pbt_iterations}\n")
+          EOF
+
+      # ------------------------------------------------------------------------
+      # PROVA 5: Mutation Gate Integrato (mutmut)
+      # ------------------------------------------------------------------------
+      - name: "5. Esecuzione Mutation Score Gate Integrato (Step 16)"
+        env:
+          TARGET_BASE: "${{ github.base_ref || inputs.base_ref || 'main' }}"
+        run: |
+          python3 - << 'EOF'
+          import os
+          import subprocess
+          import xml.etree.ElementTree as ET
+          import yaml
+
+          def record(status: str, score: float, report: str) -> None:
+              with open(".assurance/run_artifacts/mutation_report.txt", "w", encoding="utf-8") as mf:
+                  mf.write(report)
+              with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as ef:
+                  ef.write(f"MUTATION_STATUS={status}\n")
+                  ef.write(f"MUTATION_SCORE={score:.2f}\n")
+
+          policy_path = ".assurance/policies/assurance-gate-policy.yaml"
+          try:
+              with open(policy_path, "r", encoding="utf-8") as pf:
+                  policy_data = yaml.safe_load(pf)
+              claim_cfg = policy_data["required_claims"]["PROP_TEST_DISCRIMINATING_POWER"]
+              min_score = float(claim_cfg["min_mutation_score_pct"])
+          except Exception as exc:
+              record("UNKNOWN", 0.0, f"Errore lettura soglia mutazione da policy: {exc}\n")
+              raise SystemExit(0)
+
+          base_branch = os.environ.get("TARGET_BASE", "main").strip() or "main"
+          diff_res = subprocess.run(
+              ["git", "diff", "--name-only", f"origin/{base_branch}...HEAD"],
+              capture_output=True,
+              text=True,
+              check=False,
+          )
+          if diff_res.returncode != 0:
+              record("UNKNOWN", 0.0, f"Errore git diff origin/{base_branch}: {diff_res.stderr}\n")
+              raise SystemExit(0)
+
+          target_files = [
+              line.strip()
+              for line in diff_res.stdout.splitlines()
+              if (line.strip().startswith("src/") or line.strip().startswith("app/"))
+              and line.strip().endswith(".py")
+              and os.path.isfile(line.strip())
+          ]
+          if not target_files:
+              record("NOT_APPLICABLE", 0.0, "Nessun file sorgente Python in src/ o app/ modificato.\n")
+              raise SystemExit(0)
+
+          baseline_res = subprocess.run(["pytest"], capture_output=True, text=True, check=False)
+          if baseline_res.returncode != 0:
+              record("FAIL", 0.0, f"Suite baseline fallita prima di mutmut:\n{baseline_res.stdout}\n{baseline_res.stderr}\n")
+              raise SystemExit(0)
+
+          if os.path.exists(".mutmut-cache"):
+              os.remove(".mutmut-cache")
+
+          run_res = subprocess.run(
+              ["mutmut", "run", f"--paths-to-mutate={','.join(target_files)}", "--runner=pytest"],
+              capture_output=True,
+              text=True,
+              check=False,
+          )
+          if run_res.returncode < 0 or (run_res.returncode & 1) != 0 or not os.path.isfile(".mutmut-cache"):
+              record("UNKNOWN", 0.0, f"Errore esecuzione mutmut ({run_res.returncode}):\n{run_res.stdout}\n{run_res.stderr}\n")
+              raise SystemExit(0)
+
+          junit_res = subprocess.run(
+              ["mutmut", "junitxml", "--suspicious-policy=ignore", "--untested-policy=ignore"],
+              capture_output=True,
+              text=True,
+              check=False,
+          )
+          if junit_res.returncode != 0 or not junit_res.stdout.strip():
+              record("UNKNOWN", 0.0, f"Errore generazione mutmut junitxml: {junit_res.stderr}\n")
+              raise SystemExit(0)
+
+          try:
+              root = ET.fromstring(junit_res.stdout)
+              suite = root if root.tag == "testsuite" else root.find(".//testsuite")
+              if suite is None:
+                  raise ValueError("Elemento <testsuite> assente.")
+              total = int(suite.attrib.get("tests", 0))
+              survived = int(suite.attrib.get("failures", 0))
+              timeouts = int(suite.attrib.get("errors", 0))
+              skipped = int(suite.attrib.get("skipped", 0))
+              killed = total - (survived + timeouts + skipped)
+          except Exception as exc:
+              record("UNKNOWN", 0.0, f"Errore parsing XML mutmut: {exc}\n")
+              raise SystemExit(0)
+
+          if total <= 0:
+              record("FAIL", 0.0, "0 mutanti generati nonostante modifiche ai sorgenti.\n")
+              raise SystemExit(0)
+
+          score = (killed * 100.0) / total
+          status = "PASS" if score >= min_score else "FAIL"
+          summary = (
+              f"Target: {', '.join(target_files)}\n"
+              f"Mutanti Totali: {total} | Uccisi: {killed} | Sopravvissuti: {survived} | "
+              f"Timeout: {timeouts} | Skipped: {skipped}\n"
+              f"Mutation Score: {score:.2f}% (Soglia minima policy: {min_score:g}%)\n"
+          )
+          record(status, score, summary)
+          EOF
+
+      # ------------------------------------------------------------------------
+      # PROVA 6: Verifica Deterministica Policy OPA/Rego v1 (Step 14)
+      # ------------------------------------------------------------------------
+      - name: "6. Esecuzione Test Policy OPA/Rego v1 (Pinning SHA-256)"
+        run: |
+          OPA_URL="https://github.com/open-policy-agent/opa/releases/download/v1.18.2/opa_linux_amd64_static"
+          OPA_SHA256="9903e5125ac281104f2c4b7371d10cc3b74a98933743fcbfc174f9bf0ab20de8"
+          OPA_STATUS="UNKNOWN"
+
+          if curl -fsSL -o /tmp/opa "${OPA_URL}"; then
+            if echo "${OPA_SHA256}  /tmp/opa" | sha256sum -c - > .assurance/run_artifacts/opa_report.txt 2>&1; then
+              chmod +x /tmp/opa
+              if /tmp/opa test .assurance/policies/ -v >> .assurance/run_artifacts/opa_report.txt 2>&1; then
+                OPA_STATUS="PASS"
+              else
+                OPA_STATUS="FAIL"
+              fi
+            else
+              echo "ERRORE CRITICO: Hash SHA-256 binario OPA non corrispondente." >> .assurance/run_artifacts/opa_report.txt
+              OPA_STATUS="FAIL"
+            fi
+          else
+            echo "Indisponibilità download OPA release v1.18.2." > .assurance/run_artifacts/opa_report.txt
+          fi
+          echo "OPA_STATUS=${OPA_STATUS}" >> "$GITHUB_ENV"
+
+      # ------------------------------------------------------------------------
+      # PROVA 7: Controllo Anti-Test Tampering in CI (Step 16 & 22)
+      # ------------------------------------------------------------------------
+      - name: "7. Verifica Integrità Oracoli Congelati (freeze_guard.py --ci-base)"
+        env:
+          TARGET_BASE: "${{ github.base_ref || inputs.base_ref || 'main' }}"
+        run: |
+          FREEZE_EXIT=0
+          python3 .assurance/bin/freeze_guard.py \
+            --ci-base "origin/${TARGET_BASE}" \
+            --discrepancies-dir docs/assurance/discrepancies/ \
+            > .assurance/run_artifacts/freeze_report.txt 2>&1 || FREEZE_EXIT=$?
+
+          if [ "${FREEZE_EXIT}" -eq 0 ]; then
+            echo "FREEZE_STATUS=PASS" >> "$GITHUB_ENV"
+          elif [ "${FREEZE_EXIT}" -eq 1 ]; then
+            echo "FREEZE_STATUS=UNKNOWN" >> "$GITHUB_ENV"
+          else
+            echo "FREEZE_STATUS=FAIL" >> "$GITHUB_ENV"
+          fi
+
+      # ------------------------------------------------------------------------
+      # 8. Compilazione JSON Sicura del Dossier Probatorio con SHA-256 dei Report
+      # ------------------------------------------------------------------------
+      - name: "8. Compilazione Conforme dell'Evidence Dossier"
+        if: always()
+        run: |
+          python3 - << 'EOF'
+          import hashlib
+          import json
+          import os
+          import subprocess
+          from datetime import datetime, timezone
+
+          os.makedirs(".assurance/run_artifacts", exist_ok=True)
+          commit_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+          def parse_float(env_key: str, default: float = 0.0) -> float:
+              try:
+                  return float(os.environ.get(env_key, str(default)))
+              except ValueError:
+                  return default
+
+          def parse_int(env_key: str, default: int = 0) -> int:
+              try:
+                  return int(os.environ.get(env_key, str(default)))
+              except ValueError:
+                  return default
+
+          def with_report_meta(entry: dict, report_path: str) -> dict:
+              if entry.get("execution_status") == "NOT_APPLICABLE":
+                  return entry
+              entry["raw_report_path"] = report_path
+              if os.path.isfile(report_path):
+                  with open(report_path, "rb") as rf:
+                      entry["raw_report_sha256"] = hashlib.sha256(rf.read()).hexdigest()
+              return entry
+
+          dossier = {
+              "commit_hash": commit_sha,
+              "timestamp_utc": timestamp,
+              "evidences": {
+                  "PROP_INJECTION_DEFENSE": with_report_meta({
+                      "commit_hash": commit_sha,
+                      "method": "STATIC_ANALYSIS",
+                      "execution_status": os.environ.get("SAST_STATUS", "UNKNOWN"),
+                      "oracle_independence_score": 1.0,
+                  }, ".assurance/run_artifacts/sast_report.txt"),
+                  "PROP_SECRET_ABSENCE": with_report_meta({
+                      "commit_hash": commit_sha,
+                      "method": "SECRET_SCANNING",
+                      "execution_status": os.environ.get("SECRET_STATUS", "UNKNOWN"),
+                      "oracle_independence_score": 1.0,
+                  }, ".assurance/run_artifacts/gitleaks.json"),
+                  "PROP_INVARIANT_PRESERVATION": with_report_meta({
+                      "commit_hash": commit_sha,
+                      "method": "PROPERTY_BASED_TESTING",
+                      "execution_status": os.environ.get("PBT_STATUS", "UNKNOWN"),
+                      "oracle_independence_score": parse_float("PBT_INDEPENDENCE_SCORE"),
+                      "iterations_count": parse_int("PBT_ITERATIONS"),
+                  }, ".assurance/run_artifacts/pytest_pbt.txt"),
+                  "PROP_TEST_DISCRIMINATING_POWER": with_report_meta({
+                      "commit_hash": commit_sha,
+                      "method": "MUTATION_TESTING",
+                      "execution_status": os.environ.get("MUTATION_STATUS", "UNKNOWN"),
+                      "oracle_independence_score": 1.0,
+                      "mutation_score_pct": parse_float("MUTATION_SCORE"),
+                  }, ".assurance/run_artifacts/mutation_report.txt"),
+                  "PROP_SUPPLY_CHAIN_INTEGRITY": with_report_meta({
+                      "commit_hash": commit_sha,
+                      "method": "DEPENDENCY_SCA",
+                      "execution_status": os.environ.get("SCA_STATUS", "UNKNOWN"),
+                      "oracle_independence_score": 1.0,
+                  }, ".assurance/run_artifacts/sca_report.txt"),
+                  "PROP_CONTAINMENT_POLICY": with_report_meta({
+                      "commit_hash": commit_sha,
+                      "method": "OPA_POLICY_TESTING",
+                      "execution_status": os.environ.get("OPA_STATUS", "UNKNOWN"),
+                      "oracle_independence_score": 1.0,
+                  }, ".assurance/run_artifacts/opa_report.txt"),
+                  "PROP_ORACLE_INTEGRITY": with_report_meta({
+                      "commit_hash": commit_sha,
+                      "method": "ANTI_TEST_TAMPERING",
+                      "execution_status": os.environ.get("FREEZE_STATUS", "UNKNOWN"),
+                      "oracle_independence_score": 1.0,
+                  }, ".assurance/run_artifacts/freeze_report.txt"),
+              },
+          }
+
+          with open(".assurance/run_artifacts/evidence_dossier.json", "w", encoding="utf-8") as f:
+              json.dump(dossier, f, indent=2)
+          EOF
+
+      # ------------------------------------------------------------------------
+      # 9. Esecuzione del Decision Gate Deterministico Fail-Closed
+      # ------------------------------------------------------------------------
+      - name: "9. Esecuzione Motore Fail-Closed di Decision Gate"
+        id: gate
+        if: always()
+        run: |
+          COMMIT_SHA=$(git rev-parse HEAD)
+          GATE_EXIT=0
+          python3 .assurance/bin/validate_evidence.py \
+            --policy .assurance/policies/assurance-gate-policy.yaml \
+            --dossier .assurance/run_artifacts/evidence_dossier.json \
+            --schema-dir .assurance/schemas/ \
+            --discrepancies-dir docs/assurance/discrepancies/ \
+            --risks-dir docs/assurance/risks/ \
+            --oracle-meta tests/contracts/oracle_metadata.json \
+            --workspace-root . \
+            --json-out .assurance/run_artifacts/gate_decision.json \
+            --commit "${COMMIT_SHA}" || GATE_EXIT=$?
+
+          echo "## Decision Gate (Step 23)" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f .assurance/run_artifacts/gate_decision.json ]; then
+            cat .assurance/run_artifacts/gate_decision.json >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [ "${GATE_EXIT}" -eq 1 ]; then
+            echo "Esito exit=1: rilascio bloccato su main (verificare eventuale HOLD canary in gate_decision.json)." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "${GATE_EXIT}"
+```
+
+---
+
+[▲ Torna su](#prontuario-operativo-di-file-configurazioni-e-template-pronti-alluso)
+## 5. MODULO GITLAB CI (`.gitlab-ci.yml`)
+
+### 5.1 `.gitlab-ci.yml`
+
+Pipeline equivalente al modulo GitHub Actions: fissa le immagini con digest SHA-256 immutabile, verifica SHA-256 di OPA `v1.18.2`, propaga tutti e 7 i segnali (inclusi `mutation_gate`, `opa_and_freeze_guard` e gli hash SHA-256 dei report grezzi) verso `decision_gate`. In caso di `PARTIAL / HOLD`, il job emette `gate_decision.json` ed esce con codice `1` bloccando il merge incondizionato su `main`.
+
+```yaml
+# .gitlab-ci.yml
+# ==============================================================================
+# PIPELINE DI ASSURANCE INTEGRATA PER GITLAB CI (STEP 14, 16, 17, 23)
+# ==============================================================================
+
+stages:
+  - lint
+  - security
+  - test
+  - assurance-gate
+
+variables:
+  GIT_DEPTH: "0"
+  PYTHON_IMAGE: "python:3.11-slim-bookworm@sha256:90d117a7f1ef6535dc75831e1a9184725757fede0d4d424d7977fb5429d50610"
+  GITLEAKS_IMAGE: "zricethezav/gitleaks:v8.21.2@sha256:0e99e8821643ea5b235718642b93bb32486af9c8162c8b8731f7cbdc951a7f46"
+  OPA_SHA256: "9903e5125ac281104f2c4b7371d10cc3b74a98933743fcbfc174f9bf0ab20de8"
+  OPA_URL: "https://github.com/open-policy-agent/opa/releases/download/v1.18.2/opa_linux_amd64_static"
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip/
+
+.install_gate_deps: &install_gate_deps
+  - |
+    if grep -q -- '--hash=' .assurance/requirements.assurance.txt; then
+      pip install --require-hashes -r .assurance/requirements.assurance.txt
+    else
+      pip install -r .assurance/requirements.assurance.txt
+    fi
+
+# ------------------------------------------------------------------------------
+# 1. STAGE LINT: Audit Filiera Multi-Manifest e Lockfile
+# ------------------------------------------------------------------------------
+dependency_guard:
+  stage: lint
+  image: $PYTHON_IMAGE
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - mkdir -p .assurance/run_artifacts/
+    - |
+      python3 - << 'EOF'
+      import glob
+      import os
+      import subprocess
+
+      cmd = [
+          "python3",
+          ".assurance/bin/check_dependencies.py",
+          "--min-age",
+          "30",
+          "--min-version-age",
+          "7",
+      ]
+      if os.path.isfile(".assurance/dependency_allowlist.txt"):
+          cmd.extend(["--allowlist", ".assurance/dependency_allowlist.txt"])
+      for rf in sorted(glob.glob("requirements*.txt")):
+          cmd.extend(["--requirements", rf])
+      if os.path.isfile(".assurance/requirements.assurance.txt"):
+          cmd.extend(["--requirements", ".assurance/requirements.assurance.txt"])
+      if os.path.isfile("pyproject.toml"):
+          cmd.extend(["--pyproject", "pyproject.toml"])
+      if os.path.isfile("package.json"):
+          cmd.extend(["--package-json", "package.json"])
+      if os.path.isfile("package-lock.json"):
+          cmd.extend(["--package-lock", "package-lock.json"])
+
+      res = subprocess.run(cmd, capture_output=True, text=True, check=False)
+      with open(".assurance/run_artifacts/sca_report.txt", "w", encoding="utf-8") as f:
+          f.write(res.stdout + "\n" + res.stderr)
+      with open(".assurance/run_artifacts/dep_exit.env", "w", encoding="utf-8") as ef:
+          ef.write(f"export DEP_EXIT_CODE={res.returncode}\n")
+      EOF
+  artifacts:
+    when: always
+    paths:
+      - .assurance/run_artifacts/sca_report.txt
+      - .assurance/run_artifacts/dep_exit.env
+
+# ------------------------------------------------------------------------------
+# 2. STAGE SECURITY: Segreti, SAST/Unicode, OPA Policy & Anti-Test Tampering
+# ------------------------------------------------------------------------------
+secret_scan:
+  stage: security
+  image:
+    name: $GITLEAKS_IMAGE
+    entrypoint: [""]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - mkdir -p .assurance/run_artifacts/
+    - EXIT_CODE=0
+    - gitleaks git --log-opts="--all" --report-path=.assurance/run_artifacts/gitleaks.json --exit-code=2 . || EXIT_CODE=$?
+    - if [ ! -s .assurance/run_artifacts/gitleaks.json ]; then echo "[]" > .assurance/run_artifacts/gitleaks.json; fi
+    - echo "export LEAKS_EXIT_CODE=${EXIT_CODE}" > .assurance/run_artifacts/secret_exit.env
+  artifacts:
+    when: always
+    paths:
+      - .assurance/run_artifacts/gitleaks.json
+      - .assurance/run_artifacts/secret_exit.env
+
+sast_analysis:
+  stage: security
+  image: $PYTHON_IMAGE
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - *install_gate_deps
+    - mkdir -p .assurance/run_artifacts/
+    - |
+      python3 - << 'EOF'
+      import os
+      import subprocess
+
+      reports = []
+      statuses = []
+
+      r_proc = subprocess.run(["ruff", "check", "--config", "ruff.toml", "."], capture_output=True, text=True, check=False)
+      reports.append("=== RUFF ===\n" + r_proc.stdout + "\n" + r_proc.stderr)
+      statuses.append("PASS" if r_proc.returncode == 0 else ("FAIL" if r_proc.returncode == 1 else "UNKNOWN"))
+
+      if os.path.isdir("src"):
+          b_proc = subprocess.run(["bandit", "-r", "src", "-ll", "-q"], capture_output=True, text=True, check=False)
+          reports.append("=== BANDIT ===\n" + b_proc.stdout + "\n" + b_proc.stderr)
+          statuses.append("PASS" if b_proc.returncode == 0 else ("FAIL" if b_proc.returncode == 1 else "UNKNOWN"))
+
+      mypy_targets = [p for p in ("src", ".assurance/bin") if os.path.exists(p)]
+      if mypy_targets:
+          m_proc = subprocess.run(["mypy", "--strict", *mypy_targets], capture_output=True, text=True, check=False)
+          reports.append("=== MYPY ===\n" + m_proc.stdout + "\n" + m_proc.stderr)
+          statuses.append("PASS" if m_proc.returncode == 0 else ("FAIL" if m_proc.returncode == 1 else "UNKNOWN"))
+      else:
+          statuses.append("UNKNOWN")
+
+      excluded_dirs = {".git", ".cache", ".venv", "__pycache__", "node_modules"}
+      files = []
+      for root_dir, dirnames, filenames in os.walk("."):
+          dirnames[:] = [d for d in dirnames if d not in excluded_dirs]
+          rel_dir = os.path.relpath(root_dir, ".")
+          if rel_dir == ".assurance/run_artifacts" or rel_dir.startswith(".assurance/run_artifacts/"):
+              continue
+          for name in filenames:
+              files.append(os.path.join(root_dir, name))
+
+      if files:
+          u_proc = subprocess.run(["python3", ".assurance/bin/check_unicode.py", *files], capture_output=True, text=True, check=False)
+          reports.append("=== UNICODE ===\n" + u_proc.stdout + "\n" + u_proc.stderr)
+          statuses.append("PASS" if u_proc.returncode == 0 else "FAIL")
+      else:
+          statuses.append("UNKNOWN")
+
+      with open(".assurance/run_artifacts/sast_report.txt", "w", encoding="utf-8") as f:
+          f.write("\n".join(reports))
+
+      final_status = "FAIL" if "FAIL" in statuses else ("UNKNOWN" if "UNKNOWN" in statuses else "PASS")
+      with open(".assurance/run_artifacts/sast_exit.env", "w", encoding="utf-8") as ef:
+          ef.write(f"export SAST_STATUS={final_status}\n")
+      EOF
+  artifacts:
+    when: always
+    paths:
+      - .assurance/run_artifacts/sast_report.txt
+      - .assurance/run_artifacts/sast_exit.env
+
+opa_and_freeze_guard:
+  stage: security
+  image: $PYTHON_IMAGE
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - apt-get update -qq && apt-get install -y --no-install-recommends curl ca-certificates git > /dev/null
+    - mkdir -p .assurance/run_artifacts/
+    - OPA_STATUS="UNKNOWN"
+    - |
+      if curl -fsSL -o /tmp/opa "${OPA_URL}"; then
+        if echo "${OPA_SHA256}  /tmp/opa" | sha256sum -c - > .assurance/run_artifacts/opa_report.txt 2>&1; then
+          chmod +x /tmp/opa
+          if /tmp/opa test .assurance/policies/ -v >> .assurance/run_artifacts/opa_report.txt 2>&1; then
+            OPA_STATUS="PASS"
+          else
+            OPA_STATUS="FAIL"
+          fi
+        else
+          echo "ERRORE CRITICO: Hash SHA-256 binario OPA non corrispondente." >> .assurance/run_artifacts/opa_report.txt
+          OPA_STATUS="FAIL"
+        fi
+      else
+        echo "Indisponibilità download OPA release v1.18.2." > .assurance/run_artifacts/opa_report.txt
+      fi
+    - TARGET_BRANCH="${CI_MERGE_REQUEST_TARGET_BRANCH_NAME:-main}"
+    - git fetch origin "${TARGET_BRANCH}"
+    - FREEZE_EXIT=0
+    - python3 .assurance/bin/freeze_guard.py --ci-base "origin/${TARGET_BRANCH}" --discrepancies-dir docs/assurance/discrepancies/ > .assurance/run_artifacts/freeze_report.txt 2>&1 || FREEZE_EXIT=$?
+    - printf "export OPA_STATUS=%s\nexport FREEZE_EXIT_CODE=%s\n" "${OPA_STATUS}" "${FREEZE_EXIT}" > .assurance/run_artifacts/policy_freeze.env
+  artifacts:
+    when: always
+    paths:
+      - .assurance/run_artifacts/opa_report.txt
+      - .assurance/run_artifacts/freeze_report.txt
+      - .assurance/run_artifacts/policy_freeze.env
+
+# ------------------------------------------------------------------------------
+# 3. STAGE TEST: Test di Proprietà (PBT) & Mutation Gate Integrato
+# ------------------------------------------------------------------------------
+property_testing:
+  stage: test
+  image: $PYTHON_IMAGE
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - *install_gate_deps
+    - if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
+    - mkdir -p .assurance/run_artifacts/
+    - PYTEST_EXIT=0
+    - pytest tests/ -m "not slow" --hypothesis-profile=ci --hypothesis-show-statistics > .assurance/run_artifacts/pytest_pbt.txt 2>&1 || PYTEST_EXIT=$?
+    - echo "export PBT_EXIT_CODE=${PYTEST_EXIT}" > .assurance/run_artifacts/pbt_exit.env
+  artifacts:
+    when: always
+    paths:
+      - .assurance/run_artifacts/pytest_pbt.txt
+      - .assurance/run_artifacts/pbt_exit.env
+
+mutation_gate:
+  stage: test
+  image: $PYTHON_IMAGE
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - apt-get update -qq && apt-get install -y --no-install-recommends git > /dev/null
+    - *install_gate_deps
+    - if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
+    - mkdir -p .assurance/run_artifacts/
+    - |
+      python3 - << 'EOF'
+      import os
+      import subprocess
+      import xml.etree.ElementTree as ET
+      import yaml
+
+      def save_mut(status: str, score: float, report: str) -> None:
+          with open(".assurance/run_artifacts/mutation_report.txt", "w", encoding="utf-8") as mf:
+              mf.write(report)
+          with open(".assurance/run_artifacts/mutation_exit.env", "w", encoding="utf-8") as ef:
+              ef.write(f"export MUTATION_STATUS={status}\nexport MUTATION_SCORE={score:.2f}\n")
+
+      policy_path = ".assurance/policies/assurance-gate-policy.yaml"
+      try:
+          with open(policy_path, "r", encoding="utf-8") as pf:
+              policy_data = yaml.safe_load(pf)
+          min_score = float(policy_data["required_claims"]["PROP_TEST_DISCRIMINATING_POWER"]["min_mutation_score_pct"])
+      except Exception as exc:
+          save_mut("UNKNOWN", 0.0, f"Errore lettura soglia mutazione da policy: {exc}\n")
+          raise SystemExit(0)
+
+      target_branch = os.environ.get("CI_MERGE_REQUEST_TARGET_BRANCH_NAME", "main")
+      subprocess.run(["git", "fetch", "origin", target_branch], check=True)
+      diff_res = subprocess.run(
+          ["git", "diff", "--name-only", f"origin/{target_branch}...HEAD"],
+          capture_output=True,
+          text=True,
+          check=True,
+      )
+      target_files = [
+          f.strip()
+          for f in diff_res.stdout.splitlines()
+          if (f.strip().startswith("src/") or f.strip().startswith("app/"))
+          and f.strip().endswith(".py")
+          and os.path.isfile(f.strip())
+      ]
+      if not target_files:
+          save_mut("NOT_APPLICABLE", 0.0, "Nessun file sorgente Python modificato in src/ o app/.\n")
+          raise SystemExit(0)
+
+      baseline_res = subprocess.run(["pytest"], capture_output=True, text=True, check=False)
+      if baseline_res.returncode != 0:
+          save_mut("FAIL", 0.0, f"Suite baseline fallita:\n{baseline_res.stdout}\n{baseline_res.stderr}\n")
+          raise SystemExit(0)
+
+      if os.path.exists(".mutmut-cache"):
+          os.remove(".mutmut-cache")
+
+      run_res = subprocess.run(
+          ["mutmut", "run", f"--paths-to-mutate={','.join(target_files)}", "--runner=pytest"],
+          capture_output=True,
+          text=True,
+          check=False,
+      )
+      if run_res.returncode < 0 or (run_res.returncode & 1) != 0 or not os.path.isfile(".mutmut-cache"):
+          save_mut("UNKNOWN", 0.0, f"Errore mutmut run ({run_res.returncode}): {run_res.stderr}\n")
+          raise SystemExit(0)
+
+      junit_res = subprocess.run(
+          ["mutmut", "junitxml", "--suspicious-policy=ignore", "--untested-policy=ignore"],
+          capture_output=True,
+          text=True,
+          check=False,
+      )
+      if junit_res.returncode != 0 or not junit_res.stdout.strip():
+          save_mut("UNKNOWN", 0.0, f"Errore mutmut junitxml: {junit_res.stderr}\n")
+          raise SystemExit(0)
+
+      root = ET.fromstring(junit_res.stdout)
+      suite = root if root.tag == "testsuite" else root.find(".//testsuite")
+      if suite is None:
+          save_mut("UNKNOWN", 0.0, "Elemento <testsuite> assente nel report JUnitXML.\n")
+          raise SystemExit(0)
+
+      total = int(suite.attrib.get("tests", 0))
+      survived = int(suite.attrib.get("failures", 0))
+      timeouts = int(suite.attrib.get("errors", 0))
+      skipped = int(suite.attrib.get("skipped", 0))
+      killed = total - (survived + timeouts + skipped)
+      if total <= 0:
+          save_mut("FAIL", 0.0, "0 mutanti generati.\n")
+          raise SystemExit(0)
+
+      score = (killed * 100.0) / total
+      status = "PASS" if score >= min_score else "FAIL"
+      save_mut(
+          status,
+          score,
+          f"Mutanti Totali: {total} | Uccisi: {killed} | Score: {score:.2f}% (Soglia: {min_score:g}%)\n",
+      )
+      EOF
+  artifacts:
+    when: always
+    paths:
+      - .assurance/run_artifacts/mutation_report.txt
+      - .assurance/run_artifacts/mutation_exit.env
+
+# ------------------------------------------------------------------------------
+# 4. STAGE DECISION GATE: Valutazione Deterministica Fail-Closed
+# ------------------------------------------------------------------------------
+decision_gate:
+  stage: assurance-gate
+  image: $PYTHON_IMAGE
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: always
+  needs:
+    - job: dependency_guard
+      artifacts: true
+    - job: secret_scan
+      artifacts: true
+    - job: sast_analysis
+      artifacts: true
+    - job: opa_and_freeze_guard
+      artifacts: true
+    - job: property_testing
+      artifacts: true
+    - job: mutation_gate
+      artifacts: true
+  script:
+    - *install_gate_deps
+    - mkdir -p .assurance/run_artifacts/
+    - for envfile in .assurance/run_artifacts/*.env; do if [ -f "$envfile" ]; then . "$envfile"; fi; done
+    - |
+      python3 - << 'EOF'
+      import hashlib
+      import json
+      import os
+      import re
+      from datetime import datetime, timezone
+
+      def map_code(code_str, tool):
+          try:
+              code = int(code_str)
+          except (TypeError, ValueError):
+              return "UNKNOWN"
+          if tool in {"dep", "freeze"}:
+              return "PASS" if code == 0 else ("UNKNOWN" if code == 1 else "FAIL")
+          if tool == "gitleaks":
+              return "FAIL" if code == 2 else ("PASS" if code == 0 else "UNKNOWN")
+          if tool == "pytest":
+              return "PASS" if code == 0 else ("FAIL" if code == 1 else "UNKNOWN")
+          return "UNKNOWN"
+
+      def with_report_meta(entry, report_path):
+          if entry.get("execution_status") == "NOT_APPLICABLE":
+              return entry
+          entry["raw_report_path"] = report_path
+          if os.path.isfile(report_path):
+              with open(report_path, "rb") as rf:
+                  entry["raw_report_sha256"] = hashlib.sha256(rf.read()).hexdigest()
+          return entry
+
+      commit_sha = os.environ["CI_COMMIT_SHA"]
+      pbt_text = ""
+      if os.path.isfile(".assurance/run_artifacts/pytest_pbt.txt"):
+          with open(".assurance/run_artifacts/pytest_pbt.txt", "r", encoding="utf-8") as pf:
+              pbt_text = pf.read()
+      passing_counts = [int(m) for m in re.findall(r"(\d+)\s+passing examples", pbt_text)]
+      pbt_iterations = min(passing_counts) if passing_counts else 0
+
+      ind_score = 0.0
+      if os.path.isfile("tests/contracts/oracle_metadata.json"):
+          with open("tests/contracts/oracle_metadata.json", "r", encoding="utf-8") as mf:
+              ind_score = float(json.load(mf).get("oracle_independence_score", 0.0))
+
+      mut_score = 0.0
+      try:
+          mut_score = float(os.environ.get("MUTATION_SCORE", "0.0"))
+      except ValueError:
+          mut_score = 0.0
+
+      dossier = {
+          "commit_hash": commit_sha,
+          "timestamp_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+          "evidences": {
+              "PROP_INJECTION_DEFENSE": with_report_meta({
+                  "commit_hash": commit_sha,
+                  "method": "STATIC_ANALYSIS",
+                  "execution_status": os.environ.get("SAST_STATUS", "UNKNOWN"),
+                  "oracle_independence_score": 1.0,
+              }, ".assurance/run_artifacts/sast_report.txt"),
+              "PROP_SECRET_ABSENCE": with_report_meta({
+                  "commit_hash": commit_sha,
+                  "method": "SECRET_SCANNING",
+                  "execution_status": map_code(os.environ.get("LEAKS_EXIT_CODE"), "gitleaks"),
+                  "oracle_independence_score": 1.0,
+              }, ".assurance/run_artifacts/gitleaks.json"),
+              "PROP_INVARIANT_PRESERVATION": with_report_meta({
+                  "commit_hash": commit_sha,
+                  "method": "PROPERTY_BASED_TESTING",
+                  "execution_status": map_code(os.environ.get("PBT_EXIT_CODE"), "pytest"),
+                  "oracle_independence_score": ind_score,
+                  "iterations_count": pbt_iterations,
+              }, ".assurance/run_artifacts/pytest_pbt.txt"),
+              "PROP_TEST_DISCRIMINATING_POWER": with_report_meta({
+                  "commit_hash": commit_sha,
+                  "method": "MUTATION_TESTING",
+                  "execution_status": os.environ.get("MUTATION_STATUS", "UNKNOWN"),
+                  "oracle_independence_score": 1.0,
+                  "mutation_score_pct": mut_score,
+              }, ".assurance/run_artifacts/mutation_report.txt"),
+              "PROP_SUPPLY_CHAIN_INTEGRITY": with_report_meta({
+                  "commit_hash": commit_sha,
+                  "method": "DEPENDENCY_SCA",
+                  "execution_status": map_code(os.environ.get("DEP_EXIT_CODE"), "dep"),
+                  "oracle_independence_score": 1.0,
+              }, ".assurance/run_artifacts/sca_report.txt"),
+              "PROP_CONTAINMENT_POLICY": with_report_meta({
+                  "commit_hash": commit_sha,
+                  "method": "OPA_POLICY_TESTING",
+                  "execution_status": os.environ.get("OPA_STATUS", "UNKNOWN"),
+                  "oracle_independence_score": 1.0,
+              }, ".assurance/run_artifacts/opa_report.txt"),
+              "PROP_ORACLE_INTEGRITY": with_report_meta({
+                  "commit_hash": commit_sha,
+                  "method": "ANTI_TEST_TAMPERING",
+                  "execution_status": map_code(os.environ.get("FREEZE_EXIT_CODE"), "freeze"),
+                  "oracle_independence_score": 1.0,
+              }, ".assurance/run_artifacts/freeze_report.txt"),
+          },
+      }
+      with open(".assurance/run_artifacts/evidence_dossier.json", "w", encoding="utf-8") as df:
+          json.dump(dossier, df, indent=2)
+      EOF
+    - python3 .assurance/bin/validate_evidence.py
+        --policy .assurance/policies/assurance-gate-policy.yaml
+        --dossier .assurance/run_artifacts/evidence_dossier.json
+        --schema-dir .assurance/schemas/
+        --discrepancies-dir docs/assurance/discrepancies/
+        --risks-dir docs/assurance/risks/
+        --oracle-meta tests/contracts/oracle_metadata.json
+        --workspace-root .
+        --json-out .assurance/run_artifacts/gate_decision.json
+        --commit "${CI_COMMIT_SHA}"
+  artifacts:
+    when: always
+    paths:
+      - .assurance/run_artifacts/evidence_dossier.json
+      - .assurance/run_artifacts/gate_decision.json
+```
+
+---
+
+[▲ Torna su](#prontuario-operativo-di-file-configurazioni-e-template-pronti-alluso)
+## 6. Registro di Estendibilità per Contenuti Avanzati
+
+### 6.1 Regole di Estendibilità Vincolanti
+1. **Regola del Doppio Artefatto:** Ogni estensione operativa è accompagnata da un test deterministico eseguibile (`opa test` per Rego e `tests/assurance/test_assurance_artifacts.py` per schemi, template, profilo Seccomp, Dockerfile e configurazioni);
+2. **Regola dell'Ancoraggio di Step:** Ogni artefatto indica sempre il riferimento epistemico del manuale nella propria intestazione;
+3. **Regola dell'Uscita Deterministica:** Exit code `0` esclusivamente su conformità verificata (`PASS`/`ADMIT`), `1` su dubbio/indisponibilità o confinamento condizionato (`UNKNOWN`/`HOLD`), `2` su violazione o allarme di sicurezza bloccante (`FAIL`/`NO-GO`).
+
+---
+
+### 6.2 Template di Estensione Operativi, Blindati e Verificabili
+
+#### 1. Policy OPA/Rego v1 di Confinamento e Test Unitari (`.assurance/policies/`)
+
+```rego
+# .assurance/policies/boundary_check.rego
+# Riferimento: Step 14 (Containment & Least Authority)
+package assurance.containment
+
+import rego.v1
+
+default allow := false
+
+# Ammissione consentita esclusivamente se tutti i vincoli sono rispettati
+allow if {
+	not running_as_root
+	not privileged_mode
+	not dangerous_host_mounts
+}
+
+# FAIL-CLOSED: se runAsNonRoot non è esplicitamente true a livello di pod o di ogni container, blocca
+running_as_root if {
+	not input.securityContext.runAsNonRoot == true
+}
+
+running_as_root if {
+	some container in input.containers
+	not container.securityContext.runAsNonRoot == true
+}
+
+privileged_mode if {
+	input.securityContext.privileged == true
+}
+
+privileged_mode if {
+	some container in input.containers
+	container.securityContext.privileged == true
+}
+
+# Blocca path non assoluti, path con '..', '/' e qualsiasi sovrapposizione con prefissi vietati
+# (sia sottopercorsi come /etc/shadow, sia directory antenate come /var o /var/run)
+dangerous_host_mounts if {
+	some volume in input.volumes
+	host_path := volume.hostPath.path
+	not is_safe_absolute_path(host_path)
+}
+
+dangerous_host_mounts if {
+	some volume in input.volumes
+	raw_path := trim_right(volume.hostPath.path, "/")
+	forbidden_prefixes := ["/etc", "/var/run/docker.sock", "/root", "/proc", "/sys"]
+	some prefix in forbidden_prefixes
+	path_overlaps(raw_path, prefix)
+}
+
+is_safe_absolute_path(candidate) if {
+	startswith(candidate, "/")
+	trim_right(candidate, "/") != ""
+	not contains(candidate, "..")
+}
+
+path_overlaps(candidate, prefix) if {
+	path_matches_or_under(candidate, prefix)
+}
+
+path_overlaps(candidate, prefix) if {
+	path_matches_or_under(prefix, candidate)
+}
+
+path_matches_or_under(candidate, prefix) if {
+	candidate == prefix
+}
+
+path_matches_or_under(candidate, prefix) if {
+	startswith(candidate, concat("", [prefix, "/"]))
+}
+```
+
+```rego
+# .assurance/policies/boundary_check_test.rego
+# Riferimento: Step 14 & Sez. 6.1 (Test deterministico per OPA Rego v1)
+package assurance.containment_test
+
+import rego.v1
+
+import data.assurance.containment
+
+test_allow_hardened_pod if {
+	containment.allow with input as {
+		"securityContext": {"runAsNonRoot": true, "privileged": false},
+		"containers": [{"name": "runner", "securityContext": {"runAsNonRoot": true}}],
+		"volumes": [{"name": "tmp", "hostPath": {"path": "/var/tmp/sandbox"}}],
+	}
+}
+
+test_deny_missing_run_as_non_root if {
+	not containment.allow with input as {
+		"securityContext": {},
+		"containers": [{"name": "runner", "securityContext": {"runAsNonRoot": true}}],
+		"volumes": [],
+	}
+}
+
+test_deny_etc_subpath_mount if {
+	not containment.allow with input as {
+		"securityContext": {"runAsNonRoot": true},
+		"containers": [{"name": "runner", "securityContext": {"runAsNonRoot": true}}],
+		"volumes": [{"name": "leak", "hostPath": {"path": "/etc/shadow"}}],
+	}
+}
+
+test_deny_root_mount if {
+	not containment.allow with input as {
+		"securityContext": {"runAsNonRoot": true},
+		"containers": [{"name": "runner", "securityContext": {"runAsNonRoot": true}}],
+		"volumes": [{"name": "root", "hostPath": {"path": "/"}}],
+	}
+}
+
+test_deny_ancestor_var_run_mount if {
+	not containment.allow with input as {
+		"securityContext": {"runAsNonRoot": true},
+		"containers": [{"name": "runner", "securityContext": {"runAsNonRoot": true}}],
+		"volumes": [{"name": "sockdir", "hostPath": {"path": "/var/run"}}],
+	}
+}
+```
+
+#### 2. Profilo Seccomp per Runtime Python e Comando Operativo di Sandbox (`.assurance/seccomp/runner_strict.json`)
+
+```json
+{
+  "comment": "Riferimento: Step 14 & Appendice Sandbox - Profilo Seccomp fail-closed per CPython 3.11",
+  "defaultAction": "SCMP_ACT_ERRNO",
+  "architectures": [
+    "SCMP_ARCH_X86_64",
+    "SCMP_ARCH_AARCH64"
+  ],
+  "syscalls": [
+    {
+      "names": [
+        "execve",
+        "exit",
+        "exit_group",
+        "read",
+        "write",
+        "openat",
+        "close",
+        "close_range",
+        "fstat",
+        "newfstatat",
+        "lseek",
+        "ioctl",
+        "mmap",
+        "mprotect",
+        "munmap",
+        "brk",
+        "mremap",
+        "rt_sigaction",
+        "rt_sigprocmask",
+        "rt_sigreturn",
+        "rt_sigpending",
+        "sigaltstack",
+        "getpid",
+        "getuid",
+        "getgid",
+        "geteuid",
+        "getegid",
+        "access",
+        "faccessat",
+        "faccessat2",
+        "pipe2",
+        "select",
+        "pselect6",
+        "sched_yield",
+        "sched_getaffinity",
+        "madvise",
+        "set_tid_address",
+        "set_robust_list",
+        "futex",
+        "nanosleep",
+        "clock_gettime",
+        "getcwd",
+        "readlink",
+        "readlinkat",
+        "getdents64",
+        "fcntl",
+        "getrandom",
+        "statx",
+        "prlimit64",
+        "arch_prctl",
+        "prctl",
+        "sysinfo",
+        "clone",
+        "clone3",
+        "rseq"
+      ],
+      "action": "SCMP_ACT_ALLOW"
+    }
+  ]
+}
+```
+
+> [!TIP]
+> ☞ **Applicazione a Runtime del Profilo Seccomp e Hardening Docker:**  
+> Un `Dockerfile` costruisce l'immagine ma non può applicare Seccomp in fase di build: il profilo `runner_strict.json` va sempre associato a runtime con i parametri di confinamento completi (`--network none`, `--read-only`, `--cap-drop=ALL`, `--pids-limit`, `no-new-privileges`).
+>
+> ```bash
+> # Build immagine effimera
+> docker build -f .assurance/docker/Dockerfile.ephemeral-runner -t assurance-sandbox:local .
+>
+> # Esecuzione confinata di un modulo applicativo (es. src/app.py)
+> docker run --rm \
+>   --network none \
+>   --read-only \
+>   --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+>   --cap-drop=ALL \
+>   --security-opt no-new-privileges:true \
+>   --security-opt seccomp=.assurance/seccomp/runner_strict.json \
+>   --pids-limit 64 \
+>   --memory 256m \
+>   --cpus 0.5 \
+>   assurance-sandbox:local /sandbox/app/src/app.py
+> ```
+
+#### 3. Dockerfile Sandbox Effimera e `.dockerignore` (`.assurance/docker/Dockerfile.ephemeral-runner`)
+
+```text
+# .dockerignore
+# Riferimento: Step 14 - Impedisce la copia di segreti e cronologia Git nei layer Docker
+.git
+.gitignore
+.env
+.env.*
+**/.ssh
+**/.aws
+.assurance/run_artifacts
+__pycache__
+*.pyc
+.venv
+```
+
+```dockerfile
+# .assurance/docker/Dockerfile.ephemeral-runner
+# Riferimento: Step 14 & Appendice Sandbox - Container confinato non privilegiato
+FROM python:3.11-slim-bookworm@sha256:90d117a7f1ef6535dc75831e1a9184725757fede0d4d424d7977fb5429d50610
+
+# UID/GID dedicati (10001) per evitare conflitti con l'utente 'nobody' (65534)
+RUN groupadd -g 10001 sandboxgroup && \
+    useradd -u 10001 -g 10001 -M -s /usr/sbin/nologin sandboxuser
+
+WORKDIR /sandbox/app
+
+# Copia dei soli artefatti consentiti da .dockerignore con permessi in sola lettura
+COPY --chown=10001:10001 src/ /sandbox/app/src/
+
+# Blocco read-only sull'applicazione e rimozione di shell interattive e gestori pacchetti
+RUN chmod -R 0555 /sandbox/app && \
+    rm -rf /var/lib/apt/lists/* /usr/bin/apt* /bin/sh /bin/bash /usr/bin/dash
+
+USER 10001:10001
+
+# Esecuzione Python non bufferizzata (-u) senza bytecode (-B);
+# CMD predefinito fail-closed per impedire l'apertura della REPL interattiva in assenza di argomenti
+ENTRYPOINT ["python3", "-u", "-B"]
+CMD ["-c", "import sys; print('ERRORE FAIL-CLOSED: specificare script o modulo Python.', file=sys.stderr); sys.exit(2)"]
+```
+
+#### 4. Verbale di Audit Periodico (`docs/assurance/audits/audit_report_template.md`)
+
+```text
+# Verbale di Revisione Periodica e Audit di Assurance (Step 32)
+<!-- Riferimento: Step 32 (Periodic Review) -->
+
+- **ID Revisione:** `AUDIT-2026-S2-<COMPONENTE>`
+- **Data Esecuzione:** `<YYYY-MM-DD>`
+- **Revisore Indipendente:** `<NOME_O_RUOLO_REVISORE>`
+- **Componente Sotto Esame:** `src/<MODULO>/<FILE>.py`
+- **Commit Hash Baseline:** `<SHA1_40_CARATTERI_BASELINE>`
+- **Commit Hash Attuale:** `<SHA1_40_CARATTERI_ATTUALE>`
+
+---
+
+## 1. Verifica della Divergenza di Contesto (Context Drift)
+- **Modello LLM Utilizzato:** `<ES. Claude-3.7-Sonnet (Snapshot 2025-02)>`
+- **Verifica Snapshot Pesi:**
+  - [ ] Snapshot congelato verificato tramite digest/versione provider.
+  - [ ] Endpoint non versionato / alias mutabile (`model-latest`): RILEVATA DIVERGENZA.
+
+## 2. Benchmarking su Golden Calibration Set
+  <!-- Riferimento teorico: Capitolo 32 (Periodic Review), Sez. 8 (Distanza di Wasserstein e formula della Divergenza D(C_0, C_t)) e Sez. 9 (Audit Tecnico vs Compliance) -->
+  - **Casi di Prova Eseguiti:** `<N_CASI>`
+  - **Tasso di Violazione Invarianti:** `<PERCENTUALE>%` (Soglia tollerata: `0.0%`)
+  - **Divergenza Semantica Rilevata (Wasserstein Distance):** `<VALORE>` (Soglia max: `0.05` - vedi [Capitolo 32, Sez. 8](#step-32-periodic-review))
+  - **Stato di Applicabilità delle Evidenze Pregresse:**
+    - [ ] Tutte le prove storiche conservano validità (`D(C_0, C_t) < Tau`).
+    - [ ] Rilevata perdita di applicabilità: necessaria riverifica su dataset congelato (Capitolo 32).
+
+## 3. Esame delle Assunzioni Operative (`ASSUMPTIONS.md`)
+- [ ] Tutte le assunzioni critiche risultano in stato `VERIFIED`.
+- [ ] Rilevate assunzioni in stato `FALSIFIED` (Richiede apertura scheda Step 22 in `docs/assurance/discrepancies/`).
+
+---
+
+## 4. Verdetto Formale dell'Audit
+- [ ] **CONFERMA ESERCIZIO (`PASS`):** Nessuna deriva critica; fascicolo confermato.
+- [ ] **DECLASSAMENTO OPERATIVO (`PARTIAL`):** Limitare il traffico canary al 2%.
+- [ ] **REVOCA CONFORMITÀ (`NO-GO`):** Rilascio interdetto e rollback obbligatorio.
+
+**Firma del Responsabile dell'Assurance:**  
+`<RUOLO_FIRMATARIO> - KeyID: 0x<16_HEX_PGP_KEYID>`  
+*Integrità del verbale:* generare un file sidecar separato dopo la chiusura del documento (`sha256sum <verbale>.md > <verbale>.md.sha256`).
+```
+
+#### 5. Suite Deterministica di Validazione degli Artefatti (`tests/assurance/test_assurance_artifacts.py`)
+
+```python
+# tests/assurance/test_assurance_artifacts.py
+"""Suite deterministica di validazione per schemi, template, guardrail e policy di assurance."""
+
+import hashlib
+import importlib.util
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tomllib
+from datetime import datetime, timezone
+from pathlib import Path
+from types import ModuleType
+
+import pytest
+import yaml
+from jsonschema import Draft202012Validator, FormatChecker
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def _load_bin_module(name: str) -> ModuleType:
+    path = ROOT / ".assurance/bin" / f"{name}.py"
+    spec = importlib.util.spec_from_file_location(name, path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_assurance_directories_and_codeowners_exist() -> None:
+    assert (ROOT / "CODEOWNERS").is_file()
+    assert (ROOT / "docs/assurance/discrepancies").is_dir()
+    assert (ROOT / "docs/assurance/risks").is_dir()
+
+
+def test_yaml_toml_and_mcp_configs_are_valid() -> None:
+    for yaml_path in [
+        ROOT / ".pre-commit-config.yaml",
+        ROOT / ".assurance/policies/assurance-gate-policy.yaml",
+        ROOT / ".assurance/templates/risk_item_template.yaml",
+    ]:
+        data = yaml.safe_load(yaml_path.read_text(encoding="utf-8"))
+        assert isinstance(data, dict)
+
+    for toml_path in [ROOT / "ruff.toml", ROOT / "pyproject.toml"]:
+        parsed = tomllib.loads(toml_path.read_text(encoding="utf-8"))
+        assert isinstance(parsed, dict)
+
+    mcp = json.loads((ROOT / ".mcp.json").read_text(encoding="utf-8"))
+    fetch_args = mcp["mcpServers"]["fetch-documentale"]["args"]
+    assert "--timeout-ms=3000" in fetch_args
+    assert any(arg.startswith("--allowed-hosts=") for arg in fetch_args)
+
+
+def test_templates_conform_to_json_schemas() -> None:
+    checker = FormatChecker()
+    assert "date-time" in checker.checkers
+    assert "date" in checker.checkers
+
+    disc_schema = json.loads(
+        (ROOT / ".assurance/schemas/discrepancy.schema.json").read_text(encoding="utf-8")
+    )
+    disc_data = json.loads(
+        (ROOT / ".assurance/templates/discrepancy_template.json").read_text(encoding="utf-8")
+    )
+    Draft202012Validator(disc_schema, format_checker=checker).validate(disc_data)
+
+    risk_schema = json.loads(
+        (ROOT / ".assurance/schemas/risk_item.schema.json").read_text(encoding="utf-8")
+    )
+    risk_data = yaml.safe_load(
+        (ROOT / ".assurance/templates/risk_item_template.yaml").read_text(encoding="utf-8")
+    )
+    Draft202012Validator(risk_schema, format_checker=checker).validate(risk_data)
+
+
+def test_seccomp_profile_strictness() -> None:
+    seccomp = json.loads(
+        (ROOT / ".assurance/seccomp/runner_strict.json").read_text(encoding="utf-8")
+    )
+    assert seccomp["defaultAction"] == "SCMP_ACT_ERRNO"
+    allowed = set(seccomp["syscalls"][0]["names"])
+    assert {"execve", "exit", "exit_group", "read", "write", "mmap"}.issubset(allowed)
+    forbidden = {
+        "socket",
+        "connect",
+        "bind",
+        "mount",
+        "umount2",
+        "ptrace",
+        "kexec_load",
+        "init_module",
+        "setuid",
+        "setgid",
+    }
+    assert allowed.isdisjoint(forbidden)
+
+
+def test_dockerfile_is_non_root_and_fail_closed() -> None:
+    dockerfile = (ROOT / ".assurance/docker/Dockerfile.ephemeral-runner").read_text(
+        encoding="utf-8"
+    )
+    assert "USER 10001:10001" in dockerfile
+    assert 'ENTRYPOINT ["python3", "-u", "-B"]' in dockerfile
+    assert "sys.exit(2)" in dockerfile
+
+
+def test_opa_policies_pass() -> None:
+    opa_bin = shutil.which("opa")
+    if opa_bin is None:
+        if os.environ.get("CI") == "true" and os.environ.get("REQUIRE_OPA_TEST") == "1":
+            pytest.fail("Binario 'opa' mancante nell'ambiente CI.")
+        pytest.skip("CLI 'opa' non installata localmente.")
+    proc = subprocess.run(
+        [opa_bin, "test", str(ROOT / ".assurance/policies"), "-v"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert proc.returncode == 0, f"opa test fallito:\n{proc.stdout}\n{proc.stderr}"
+
+
+def test_check_dependencies_lockfile_and_hash_parsing(tmp_path: Path) -> None:
+    dep_mod = _load_bin_module("check_dependencies")
+
+    req_file = tmp_path / "requirements.txt"
+    req_file.write_text(
+        "jsonschema==4.23.0 \\\n    --hash=sha256:abcdef0123456789\n",
+        encoding="utf-8",
+    )
+    py_pkgs, py_unv = dep_mod.parse_requirements_txt(req_file)
+    assert py_pkgs == [("jsonschema", "4.23.0")]
+    assert py_unv == []
+
+    pkg_json = tmp_path / "package.json"
+    pkg_json.write_text(
+        json.dumps(
+            {
+                "dependencies": {"lodash": "^4.17.21"},
+                "peerDependencies": {"react": "18.3.1"},
+                "optionalDependencies": {"fsevents": "2.3.3"},
+            }
+        ),
+        encoding="utf-8",
+    )
+    npm_pkgs, npm_unv = dep_mod.parse_package_json(pkg_json)
+    assert ("lodash", None) in npm_pkgs
+    assert ("react", "18.3.1") in npm_pkgs
+    assert ("fsevents", "2.3.3") in npm_pkgs
+    assert npm_unv == []
+
+    lock_json = tmp_path / "package-lock.json"
+    lock_json.write_text(
+        json.dumps(
+            {
+                "lockfileVersion": 3,
+                "packages": {
+                    "": {"name": "demo"},
+                    "node_modules/@scope/pkg": {
+                        "version": "1.2.3",
+                        "resolved": "https://registry.npmjs.org/@scope/pkg/-/pkg-1.2.3.tgz",
+                    },
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    lock_pkgs, lock_unv = dep_mod.parse_package_lock(lock_json)
+    assert lock_pkgs == [("@scope/pkg", "1.2.3")]
+    assert lock_unv == []
+
+
+def test_validate_evidence_rejects_missing_claims_and_missing_reports(tmp_path: Path) -> None:
+    empty_policy = tmp_path / "empty_policy.yaml"
+    empty_policy.write_text("policy_version: '2026.2'\n", encoding="utf-8")
+
+    commit = "a" * 40
+    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    dossier = tmp_path / "dossier.json"
+    dossier.write_text(
+        json.dumps(
+            {
+                "commit_hash": commit,
+                "timestamp_utc": now_iso,
+                "evidences": {
+                    "PROP_SECRET_ABSENCE": {
+                        "commit_hash": commit,
+                        "method": "SECRET_SCANNING",
+                        "execution_status": "PASS",
+                        "oracle_independence_score": 1.0,
+                    }
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    disc_dir = tmp_path / "discrepancies"
+    disc_dir.mkdir()
+    risks_dir = tmp_path / "risks"
+    risks_dir.mkdir()
+    oracle_meta = tmp_path / "oracle_metadata.json"
+    oracle_meta.write_text(
+        json.dumps(
+            {
+                "schema_version": "1.1",
+                "oracle_independence_score": 0.9,
+                "last_verified_utc": now_iso,
+                "verified_by": "@org/qa",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / ".assurance/bin/validate_evidence.py"),
+            "--policy",
+            str(empty_policy),
+            "--dossier",
+            str(dossier),
+            "--schema-dir",
+            str(ROOT / ".assurance/schemas"),
+            "--discrepancies-dir",
+            str(disc_dir),
+            "--risks-dir",
+            str(risks_dir),
+            "--oracle-meta",
+            str(oracle_meta),
+            "--workspace-root",
+            str(tmp_path),
+            "--commit",
+            commit,
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert proc.returncode == 2
+    assert "VERDETTO GATE : NO-GO" in proc.stdout
+
+
+def test_validate_evidence_accepts_complete_valid_dossier(tmp_path: Path) -> None:
+    commit = "b" * 40
+    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def make_report(name: str, text: str) -> tuple[str, str]:
+        p = tmp_path / name
+        p.write_text(text, encoding="utf-8")
+        sha = hashlib.sha256(p.read_bytes()).hexdigest()
+        return name, sha
+
+    sast_p, sast_sha = make_report("sast.txt", "ok")
+    sec_p, sec_sha = make_report("gitleaks.json", "[]")
+    pbt_p, pbt_sha = make_report("pbt.txt", "10000 passing examples")
+    mut_p, mut_sha = make_report("mut.txt", "Score: 85.00%")
+    sca_p, sca_sha = make_report("sca.txt", "PASS")
+    opa_p, opa_sha = make_report("opa.txt", "PASS: 5/5")
+    frz_p, frz_sha = make_report("freeze.txt", "PASS")
+
+    dossier = tmp_path / "dossier.json"
+    dossier.write_text(
+        json.dumps(
+            {
+                "commit_hash": commit,
+                "timestamp_utc": now_iso,
+                "evidences": {
+                    "PROP_INJECTION_DEFENSE": {
+                        "commit_hash": commit,
+                        "method": "STATIC_ANALYSIS",
+                        "execution_status": "PASS",
+                        "oracle_independence_score": 1.0,
+                        "raw_report_path": sast_p,
+                        "raw_report_sha256": sast_sha,
+                    },
+                    "PROP_SECRET_ABSENCE": {
+                        "commit_hash": commit,
+                        "method": "SECRET_SCANNING",
+                        "execution_status": "PASS",
+                        "oracle_independence_score": 1.0,
+                        "raw_report_path": sec_p,
+                        "raw_report_sha256": sec_sha,
+                    },
+                    "PROP_INVARIANT_PRESERVATION": {
+                        "commit_hash": commit,
+                        "method": "PROPERTY_BASED_TESTING",
+                        "execution_status": "PASS",
+                        "oracle_independence_score": 0.9,
+                        "iterations_count": 10000,
+                        "raw_report_path": pbt_p,
+                        "raw_report_sha256": pbt_sha,
+                    },
+                    "PROP_TEST_DISCRIMINATING_POWER": {
+                        "commit_hash": commit,
+                        "method": "MUTATION_TESTING",
+                        "execution_status": "PASS",
+                        "oracle_independence_score": 1.0,
+                        "mutation_score_pct": 85.0,
+                        "raw_report_path": mut_p,
+                        "raw_report_sha256": mut_sha,
+                    },
+                    "PROP_SUPPLY_CHAIN_INTEGRITY": {
+                        "commit_hash": commit,
+                        "method": "DEPENDENCY_SCA",
+                        "execution_status": "PASS",
+                        "oracle_independence_score": 1.0,
+                        "raw_report_path": sca_p,
+                        "raw_report_sha256": sca_sha,
+                    },
+                    "PROP_CONTAINMENT_POLICY": {
+                        "commit_hash": commit,
+                        "method": "OPA_POLICY_TESTING",
+                        "execution_status": "PASS",
+                        "oracle_independence_score": 1.0,
+                        "raw_report_path": opa_p,
+                        "raw_report_sha256": opa_sha,
+                    },
+                    "PROP_ORACLE_INTEGRITY": {
+                        "commit_hash": commit,
+                        "method": "ANTI_TEST_TAMPERING",
+                        "execution_status": "PASS",
+                        "oracle_independence_score": 1.0,
+                        "raw_report_path": frz_p,
+                        "raw_report_sha256": frz_sha,
+                    },
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    disc_dir = tmp_path / "discrepancies"
+    disc_dir.mkdir()
+    risks_dir = tmp_path / "risks"
+    risks_dir.mkdir()
+    oracle_meta = tmp_path / "oracle_metadata.json"
+    oracle_meta.write_text(
+        json.dumps(
+            {
+                "schema_version": "1.1",
+                "oracle_independence_score": 0.9,
+                "last_verified_utc": now_iso,
+                "verified_by": "@org/qa",
+            }
+        ),
+        encoding="utf-8",
+    )
+    decision_out = tmp_path / "gate_decision.json"
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / ".assurance/bin/validate_evidence.py"),
+            "--policy",
+            str(ROOT / ".assurance/policies/assurance-gate-policy.yaml"),
+            "--dossier",
+            str(dossier),
+            "--schema-dir",
+            str(ROOT / ".assurance/schemas"),
+            "--discrepancies-dir",
+            str(disc_dir),
+            "--risks-dir",
+            str(risks_dir),
+            "--oracle-meta",
+            str(oracle_meta),
+            "--workspace-root",
+            str(tmp_path),
+            "--json-out",
+            str(decision_out),
+            "--commit",
+            commit,
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert proc.returncode == 0, f"Gate fallito:\n{proc.stdout}\n{proc.stderr}"
+    assert "VERDETTO GATE : PASS" in proc.stdout
+    assert json.loads(decision_out.read_text(encoding="utf-8"))["action"] == "ADMIT"
+```
+
+---
+
+### 6.3 Conclusioni Operative
+
+Con l'adozione integrale di questo prontuario — integrato da *branch protection* non bypassabile sul repository e da *runner* CI isolati — il ciclo di vita del software generato o assistito da modelli linguistici acquisisce un presidio tecnico automatizzato e verificabile:
+
+1. **La governance precede l'integrazione:** `CODEOWNERS` in radice (valido sia per GitHub sia per GitLab), `PULL_REQUEST_TEMPLATE.md` sanitizzato e gli hook di `.pre-commit-config.yaml` ostacolano l'ingresso di segreti, codice offuscato da caratteri Unicode invisibili e manomissioni degli oracoli;
+2. **Gli oracoli e i report sono validati in modo fail-closed:** `validate_evidence.py` rifiuta dossier malformati, timestamp non conformi a RFC 3339, prove stantie su commit diversi, metadati degli oracoli scaduti, rischi residui non tollerabili, report mancanti o con impronta SHA-256 alterata, discrepanze attive fuori budget o claim obbligatori scoperti;
+3. **La filiera è verificata sui registri ufficiali anche a livello di versione:** `check_dependencies.py` ispeziona manifest e `package-lock.json` Python e JavaScript distinguendo errori di rete (`UNKNOWN`) da pacchetti o versioni recenti in quarantena o inesistenti (`NO-GO`);
+4. **Le pipeline integrano tutte le 7 prove nel Decision Gate:** sia GitHub Actions sia GitLab CI propagano analisi statica, secret scanning, *property-based testing*, *mutation testing*, audit della filiera, test OPA/Rego v1 e controllo anti-test tampering verso `validate_evidence.py`, bloccando il rilascio in caso di mancata conformità.
+
+---
+
+<div class="pagebreak"></div>
+
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-moltiplicatore-personale"></a>
 
@@ -34378,6 +38848,8 @@ Di seguito viene mostrato l'esempio concreto di configurazione del file dei serv
 > [!TIP]
 > **⌕ Regola d'oro per la postazione:** Ogni volta che si abilita un nuovo server MCP, porsi la domanda di confine dello Step 14: *"Se questo tool ricevesse un comando malevolo per cancellare il disco o rubare le chiavi, la configurazione glielo impedirebbe fisicamente?"*. Se la risposta è no, il server MCP non rispetta i criteri di assurance.
 
+> Si rimanda al file `.mcp.json` (Sez. 2.6 del [☰ Cookbook di Assurance](#appendice-cookbook)) per la configurazione reale e minimale dei server Model Context Protocol.
+
 ---
 
 ### 8. Tre Scenari Operativi Completi (Dall'Intento al Risultato)
@@ -34529,7 +39001,7 @@ La tabella raggruppa i principali progetti open-source affidabili e maturi idone
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-sandbox"></a>
 
@@ -35200,6 +39672,8 @@ def test_pids_limit_prevents_forkbomb():
 
 Se uno qualsiasi di questi test negativi non solleva l'eccezione attesa (ad esempio se la connessione verso l'esterno ha successo o il file in `/usr/bin` viene scritto), l'infrastruttura di esecuzione si trova in uno stato di fallimento di sicurezza. Il Decision Gate dello **STEP 23** deve emettere un verdetto di **NO-GO**, impedendo il rilascio o la validazione del software fino al ripristino delle barriere.
 
+> Si rimanda alla Sezione 6.2 del [☰ Cookbook di Assurance](#appendice-cookbook) per il profilo Seccomp pronto all'uso, il comando `docker run` confinato e il file `.dockerignore`.
+
 ---
 
 ### 8. PRONTUARIO OPERATIVO DEI TERMINI DI CONFINAMENTO
@@ -35229,7 +39703,7 @@ Se uno qualsiasi di questi test negativi non solleva l'eccezione attesa (ad esem
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-os"></a>
 
@@ -35662,7 +40136,7 @@ La tabella seguente illustra la discrepanza tra la restrizione dichiarata e l'au
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-grafi"></a>
 
@@ -36058,7 +40532,7 @@ Se durante il ciclo di vita una proprietà induce a modificare o chiarire un req
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-logica"></a>
 
@@ -37200,7 +41674,7 @@ Il risultato non dimostra, da solo, che il sistema software reale violi il requi
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="appendice-alloy"></a>
 
@@ -38691,7 +43165,7 @@ Tutti i marchi registrati, i nomi di linguaggi e i prodotti software terzi richi
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="prompt-master"></a>
 
@@ -39729,7 +44203,7 @@ La regola fondamentale è:
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="glossario-manuale"></a>
 
@@ -41790,7 +46264,7 @@ Nel contesto dell'assurance, consente di identificare le relazioni di dipendenza
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="bibliografia-essenziale-man"></a>
 
@@ -42213,7 +46687,7 @@ La bibliografia può quindi essere letta secondo quattro livelli: **fonti scient
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="nota-utilizzo-ia"></a>
 
@@ -42236,7 +46710,7 @@ Prendetelo quindi per quello che è: una mappa di studio molto approfondita, una
 
 <div class="pagebreak"></div>
 
-[Torna all'Indice](#indice-generale)
+[​▵Torna all'Indice](#indice-generale)
 
 <a name="gnu-fdl-license"></a>
 
