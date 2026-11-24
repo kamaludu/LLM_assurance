@@ -33834,69 +33834,69 @@ La licenza GNU Free Documentation License (GNU FDL), versione 1.3 o successiva, 
 
 ```text
 RADICE_DEL_REPOSITORY/
-├── CODEOWNERS                               # [Sez. 2.2] Revisioni umane obbligatorie (GitHub + GitLab)
-├── .pre-commit-config.yaml                  # [Sez. 2.5] Segreti, Bidi/Unicode e anti-test tampering
-├── .mcp.json                                # [Sez. 2.6] Confinamento runtime MCP per agenti
-├── ruff.toml                                # [Sez. 2.7] Linter a tolleranza zero per Python
-├── pyproject.toml                           # [Sez. 2.7] Configurazione strict di mypy e pytest
-├── .dockerignore                            # [Sez. 6.2] Esclusione .git e segreti dal contesto build
+├── CODEOWNERS                          # [Sez. 2.2] Revisioni umane obbligatorie (GitHub + GitLab)
+├── .pre-commit-config.yaml             # [Sez. 2.5] Segreti, Bidi/Unicode e anti-test tampering
+├── .mcp.json                           # [Sez. 2.6] Confinamento runtime MCP per agenti
+├── ruff.toml                           # [Sez. 2.7] Linter a tolleranza zero per Python
+├── pyproject.toml                      # [Sez. 2.7] Configurazione strict di mypy e pytest
+├── .dockerignore                       # [Sez. 6.2] Esclusione .git e segreti dal contesto build
 │
 ├── .github/
-│   ├── PULL_REQUEST_TEMPLATE.md             # [Sez. 2.1] Checklist di conformità tecnica
-│   └── workflows/                           # Pipeline GitHub Actions con pinning SHA (Node 24)
-│       ├── ai-dependency-guard.yml          # [Sez. 4.1] Scanner anti-slopsquatting sui manifest
-│       └── evidence-decision-gate.yml       # [Sez. 4.2] Gate integrato Step 16, 17, 23 (include Mutation & OPA)
+│   ├── PULL_REQUEST_TEMPLATE.md        # [Sez. 2.1] Checklist di conformità tecnica
+│   └── workflows/                      # Pipeline GitHub Actions con pinning SHA (Node 24)
+│       ├── ai-dependency-guard.yml     # [Sez. 4.1] Scanner anti-slopsquatting sui manifest
+│       └── evidence-decision-gate.yml  # [Sez. 4.2] Gate integrato Step 16, 17, 23 (include Mutation & OPA)
 │
-├── .gitlab-ci.yml                           # [Sez. 5.1] Pipeline equivalente integrata per GitLab CI
+├── .gitlab-ci.yml                      # [Sez. 5.1] Pipeline equivalente integrata per GitLab CI
 │
 ├── .assurance/
-│   ├── requirements.assurance.in            # [Sez. 3.5] Dipendenze dirette fissate (input pip-compile)
-│   ├── requirements.assurance.txt           # [Sez. 3.5] Lock file di base per l'ambiente Gate
-│   ├── dependency_allowlist.txt             # [Sez. 3.5] Eccezioni anzianità approvate
-│   ├── schemas/                             # Schemi JSON Schema Draft 2020-12
-│   │   ├── discrepancy.schema.json          # [Sez. 3.1.1] Schema anomalie (Step 22)
-│   │   ├── risk_item.schema.json            # [Sez. 3.1.2] Schema voci di rischio (Step 30)
-│   │   └── evidence_dossier.schema.json     # [Sez. 3.1.3] Schema dossier evidenze (Step 23)
+│   ├── requirements.assurance.in       # [Sez. 3.5] Dipendenze dirette fissate (input pip-compile)
+│   ├── requirements.assurance.txt      # [Sez. 3.5] Lock file di base per l'ambiente Gate
+│   ├── dependency_allowlist.txt        # [Sez. 3.5] Eccezioni anzianità approvate
+│   ├── schemas/                        # Schemi JSON Schema Draft 2020-12
+│   │   ├─ discrepancy.schema.json      # [Sez. 3.1.1] Schema anomalie (Step 22)
+│   │   ├─ risk_item.schema.json        # [Sez. 3.1.2] Schema voci di rischio (Step 30)
+│   │   └─ evidence_dossier.schema.json # [Sez. 3.1.3] Schema dossier evidenze (Step 23)
 │   │
-│   ├── templates/                           # Template precompilati conformi agli schemi
-│   │   ├── discrepancy_template.json        # [Sez. 3.2.1] Modello discrepanza
-│   │   └── risk_item_template.yaml          # [Sez. 3.2.2] Modello rischio
+│   ├── templates/                      # Template precompilati conformi agli schemi
+│   │   ├─ discrepancy_template.json    # [Sez. 3.2.1] Modello discrepanza
+│   │   └─ risk_item_template.yaml      # [Sez. 3.2.2] Modello rischio
 │   │
 │   ├── policies/
-│   │   ├── assurance-gate-policy.yaml       # [Sez. 3.3] Regole vincolanti del Decision Gate
-│   │   ├── boundary_check.rego              # [Sez. 6.2] Policy OPA/Rego v1 di confinamento
-│   │   └── boundary_check_test.rego         # [Sez. 6.2] Test unitari della policy Rego
+│   │   ├─ assurance-gate-policy.yaml   # [Sez. 3.3] Regole vincolanti del Decision Gate
+│   │   ├─ boundary_check.rego          # [Sez. 6.2] Policy OPA/Rego v1 di confinamento
+│   │   └─ boundary_check_test.rego     # [Sez. 6.2] Test unitari della policy Rego
 │   │
 │   ├── seccomp/
-│   │   └── runner_strict.json               # [Cap. 14 / ▣ Progettazione di Sandbox / Sez. 6.2] Profilo Seccomp strict per CPython 3.11 (Asse 3: Filtro Syscall)
-│   │
+│   │   └─ runner_strict.json           # [Cap. 14 / ▣ Progettazione di Sandbox / Sez. 6.2]
+│   │                                   # Profilo Seccomp strict per CPython 3.11 (Asse 3: Filtro Syscall)
 │   ├── docker/
-│   │   └── Dockerfile.ephemeral-runner      # [Cap. 14 / ▣ Progettazione di Sandbox / Sez. 6.2] Container sandbox non privilegiato (5 assi di isolamento del kernel)
-│   │
+│   │   └─ Dockerfile.ephemeral-runner  # [Cap. 14 / ▣ Progettazione di Sandbox / Sez. 6.2]
+│   │                                   # Container sandbox non privilegiato (5 assi di isolamento del kernel)
 │   └── bin/
-│       ├── validate_evidence.py             # [Sez. 3.4.1] Motore fail-closed Step 23
-│       ├── check_dependencies.py            # [Sez. 3.4.2] Scanner filiera PEP 691/700, PyPI JSON, npm & lockfile
-│       ├── freeze_guard.py                  # [Sez. 3.4.3] Blocco manomissione oracoli (pre-commit & CI)
-│       └── check_unicode.py                 # [Sez. 3.4.4] Scanner Bidi/Zero-Width su tutto il repo
+│       ├─ validate_evidence.py         # [Sez. 3.4.1] Motore fail-closed Step 23
+│       ├─ check_dependencies.py        # [Sez. 3.4.2] Scanner filiera PEP 691/700, PyPI JSON, npm & lockfile
+│       ├─ freeze_guard.py              # [Sez. 3.4.3] Blocco manomissione oracoli (pre-commit & CI)
+│       └─ check_unicode.py             # [Sez. 3.4.4] Scanner Bidi/Zero-Width su tutto il repo
 │
 ├── docs/assurance/
 │   ├── discrepancies/
-│   │   └── .gitkeep                         # Mantiene tracciata la directory in Git per il Gate
+│   │   └─ .gitkeep                     # Mantiene tracciata la directory in Git per il Gate
 │   ├── risks/
-│   │   └── .gitkeep                         # Mantiene tracciata la directory dei rischi in Git
+│   │   └─ .gitkeep                     # Mantiene tracciata la directory dei rischi in Git
 │   └── audits/
-│       └── audit_report_template.md         # [Sez. 6.2] Verbale di audit periodico (Step 32)
+│       └─ audit_report_template.md     # [Sez. 6.2] Verbale di audit periodico (Step 32)
 │
-├── ASSUMPTIONS.md                           # [Sez. 2.3] Registro assunzioni operative
-├── SECURITY_AI.md                           # [Sez. 2.4] Disciplinare perimetrale AI
-├── src/                                     # Codice sorgente applicativo (perimetro MCP, mypy, bandit, mutmut)
+├── ASSUMPTIONS.md                      # [Sez. 2.3] Registro assunzioni operative
+├── SECURITY_AI.md                      # [Sez. 2.4] Disciplinare perimetrale AI
+├── src/                                # Codice sorgente applicativo (perimetro MCP, mypy, bandit, mutmut)
 └── tests/
-    ├── conftest.py                          # [Sez. 3.2.3] Profilo Hypothesis 'ci'
+    ├── conftest.py                     # [Sez. 3.2.3] Profilo Hypothesis 'ci'
     ├── contracts/
-    │   └── oracle_metadata.json             # [Sez. 3.2.3] Registro indipendenza degli oracoli
-    ├── invariants/                          # Suite di test congelati sugli invarianti
+    │   └─ oracle_metadata.json         # [Sez. 3.2.3] Registro indipendenza degli oracoli
+    ├── invariants/                     # Suite di test congelati sugli invarianti
     └── assurance/
-        └── test_assurance_artifacts.py      # [Sez. 6.2] Verifica automatica artefatti di assurance
+        └─ test_assurance_artifacts.py  # [Sez. 6.2] Verifica automatica artefatti di assurance
 ```
 
 ### 1.2 Regole sui Segnaposto e Dati Esempio
@@ -34269,19 +34269,19 @@ Se un agente AI introduce una chiave API, inietta caratteri Unicode bidirezional
 
 ```yaml
 # .pre-commit-config.yaml
-# ==============================================================================
+# ==================================================================
 # GUARDRAIL LOCALE DETERMINISTICO PRE-COMMIT (STEP 14, 15, 16, 17)
 # Installazione: pip install pre-commit && pre-commit install
-# ==============================================================================
+# ==================================================================
 
 default_install_hook_types: [pre-commit]
 default_stages: [pre-commit]
 fail_fast: true
 
 repos:
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------
   # 1. Controlli Strutturali di Base e Igiene File
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
@@ -34296,9 +34296,9 @@ repos:
       - id: trailing-whitespace
       - id: fix-byte-order-marker # Normalizza ed elimina BOM invisibili
 
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------
   # 2. Scansione Locale Segreti (Gitleaks) - Zero Credenziali in Git
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.21.2
     hooks:
@@ -34306,10 +34306,10 @@ repos:
         name: "Rilevamento Segreti e Token API (Gitleaks)"
         entry: gitleaks git --pre-commit --staged --verbose --redact
 
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------
   # 3. Linter Deterministico su Python (Ruff Strict)
   # Intercetta BLE, S, ARG, PGH, RUF001-003 e PLE2502/PLE2515 (Bidi/Zero-Width)
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.9.1
     hooks:
@@ -34320,9 +34320,9 @@ repos:
         name: "Formattatore Deterministico (Ruff Format)"
         args: [--check]
 
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------
   # 4. Guardrail Locali: Anti-Test Tampering & Anti-Trojan Source Multi-Linguaggio
-  # ----------------------------------------------------------------------------
+  # ---------------------------------------------------------
   - repo: local
     hooks:
       - id: freeze-test-oracle-guard
@@ -34393,10 +34393,10 @@ Questo template applica la minima autorità:
 
 ```toml
 # ruff.toml
-# ==============================================================================
+# ==================================================================
 # CONFIGURAZIONE LINTER A TOLLERANZA ZERO PER SVILUPPO ASSISTITO DA AI
 # Riferimento: Step 14, Step 15 (Ghost Code), Step 17 (SAST/SCA) e SECURITY_AI.md
-# ==============================================================================
+# ==================================================================
 
 target-version = "py311"
 line-length = 100
@@ -34429,9 +34429,9 @@ ignore = [
 
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 # Deroghe Perimetriche Controllate (Per-File Ignores)
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 [lint.per-file-ignores]
 "tests/**/*" = [
     "S101",   # Uso di assert (richiesto da pytest)
@@ -34460,9 +34460,9 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 ```toml
 # pyproject.toml
-# ==============================================================================
+# ==================================================================
 # CONFIGURAZIONE DETERMINISTICA MYPY STRICT E PYTEST (STEP 13 & 16)
-# ==============================================================================
+# ==================================================================
 
 [tool.mypy]
 python_version = "3.11"
@@ -35073,10 +35073,10 @@ settings.register_profile(
 
 ```yaml
 # .assurance/policies/assurance-gate-policy.yaml
-# ==============================================================================
+# ==================================================================
 # POLITICA DICHIARATIVA DEL DECISION GATE (STEP 10, 16, 17, 23, 30)
 # Tutti i parametri sono letti e applicati da validate_evidence.py e dalle CI.
-# ==============================================================================
+# ==================================================================
 
 policy_version: "2026.2"
 target_assurance_level: "AL-2" # AL-0 | AL-1 | AL-2 | AL-3 (AL-3 vieta PARTIAL/HOLD)
@@ -36601,10 +36601,10 @@ jobs:
           fi
           if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
           mkdir -p .assurance/run_artifacts/
-
-      # ------------------------------------------------------------------------
+      
+      # ---------------------------------------------------------
       # PROVA 1: Audit Filiera Software Multi-Manifest e Lockfile (Step 17)
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       - name: "1. Esecuzione Scanner Filiera Software (check_dependencies.py)"
         run: |
           python3 - << 'EOF'
@@ -36643,9 +36643,9 @@ jobs:
               ef.write(f"SCA_STATUS={status}\n")
           EOF
 
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       # PROVA 2: Analisi Statica SAST, Unicode Multi-File & Type-Checking
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       - name: "2. Esecuzione Analisi Statica SAST (Ruff, Bandit, Mypy, Check Unicode)"
         run: |
           python3 - << 'EOF'
@@ -36692,9 +36692,9 @@ jobs:
               ef.write(f"SAST_STATUS={final_status}\n")
           EOF
 
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       # PROVA 3: Rilevamento Segreti con Verifica SHA-256 del Binario Gitleaks
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       - name: "3. Scansione Segreti su Tutta la Cronologia (Gitleaks)"
         run: |
           GITLEAKS_URL="https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz"
@@ -36716,9 +36716,9 @@ jobs:
             echo "SECRET_STATUS=UNKNOWN" >> "$GITHUB_ENV"
           fi
 
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       # PROVA 4: Test Basati su Proprietà (PBT) + Statistiche Reali Iterazioni
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       - name: "4. Esecuzione Test PBT e Calcolo Indipendenza Epistemica"
         run: |
           python3 - << 'EOF'
@@ -36752,9 +36752,9 @@ jobs:
               ef.write(f"PBT_ITERATIONS={pbt_iterations}\n")
           EOF
 
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       # PROVA 5: Mutation Gate Integrato (mutmut)
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       - name: "5. Esecuzione Mutation Score Gate Integrato (Step 16)"
         env:
           TARGET_BASE: "${{ github.base_ref || inputs.base_ref || 'main' }}"
@@ -36861,9 +36861,9 @@ jobs:
           record(status, score, summary)
           EOF
 
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       # PROVA 6: Verifica Deterministica Policy OPA/Rego v1 (Step 14)
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       - name: "6. Esecuzione Test Policy OPA/Rego v1 (Pinning SHA-256)"
         run: |
           OPA_URL="https://github.com/open-policy-agent/opa/releases/download/v1.18.2/opa_linux_amd64_static"
@@ -36887,9 +36887,9 @@ jobs:
           fi
           echo "OPA_STATUS=${OPA_STATUS}" >> "$GITHUB_ENV"
 
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       # PROVA 7: Controllo Anti-Test Tampering in CI (Step 16 & 22)
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       - name: "7. Verifica Integrità Oracoli Congelati (freeze_guard.py --ci-base)"
         env:
           TARGET_BASE: "${{ github.base_ref || inputs.base_ref || 'main' }}"
@@ -36908,9 +36908,9 @@ jobs:
             echo "FREEZE_STATUS=FAIL" >> "$GITHUB_ENV"
           fi
 
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       # 8. Compilazione JSON Sicura del Dossier Probatorio con SHA-256 dei Report
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       - name: "8. Compilazione Conforme dell'Evidence Dossier"
         if: always()
         run: |
@@ -37001,9 +37001,9 @@ jobs:
               json.dump(dossier, f, indent=2)
           EOF
 
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       # 9. Esecuzione del Decision Gate Deterministico Fail-Closed
-      # ------------------------------------------------------------------------
+      # ---------------------------------------------------------
       - name: "9. Esecuzione Motore Fail-Closed di Decision Gate"
         id: gate
         if: always()
@@ -37042,9 +37042,9 @@ Pipeline equivalente al modulo GitHub Actions: fissa le immagini con digest SHA-
 
 ```yaml
 # .gitlab-ci.yml
-# ==============================================================================
+# ==================================================================
 # PIPELINE DI ASSURANCE INTEGRATA PER GITLAB CI (STEP 14, 16, 17, 23)
-# ==============================================================================
+# ==================================================================
 
 stages:
   - lint
@@ -37072,9 +37072,9 @@ cache:
       pip install -r .assurance/requirements.assurance.txt
     fi
 
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 # 1. STAGE LINT: Audit Filiera Multi-Manifest e Lockfile
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 dependency_guard:
   stage: lint
   image: $PYTHON_IMAGE
@@ -37121,9 +37121,9 @@ dependency_guard:
       - .assurance/run_artifacts/sca_report.txt
       - .assurance/run_artifacts/dep_exit.env
 
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 # 2. STAGE SECURITY: Segreti, SAST/Unicode, OPA Policy & Anti-Test Tampering
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 secret_scan:
   stage: security
   image:
@@ -37243,9 +37243,9 @@ opa_and_freeze_guard:
       - .assurance/run_artifacts/freeze_report.txt
       - .assurance/run_artifacts/policy_freeze.env
 
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 # 3. STAGE TEST: Test di Proprietà (PBT) & Mutation Gate Integrato
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 property_testing:
   stage: test
   image: $PYTHON_IMAGE
@@ -37372,9 +37372,9 @@ mutation_gate:
       - .assurance/run_artifacts/mutation_report.txt
       - .assurance/run_artifacts/mutation_exit.env
 
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 # 4. STAGE DECISION GATE: Valutazione Deterministica Fail-Closed
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------
 decision_gate:
   stage: assurance-gate
   image: $PYTHON_IMAGE
