@@ -96,6 +96,7 @@ Principi, Verifica, Evidenze e Governance**
 - ⌨ Prompt Engineering Contrattuale e Difensivo
 - ❯ Guida alla Decodifica e Ispezione del Codice per Non Programmatori
 - ⬡ Strumenti per la verifica e l’assurance del software assistito da LLM
+- ☰ Cookbook di Assurance
 - ⊞ Architettura di un Ecosistema AI Locale: Il Moltiplicatore Personale
 - ▣ Progettazione di Sandbox ed Esecuzione Isolata
 - ♖ Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime
