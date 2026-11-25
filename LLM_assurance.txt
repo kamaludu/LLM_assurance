@@ -107,6 +107,7 @@ Principi, Verifica, Evidenze e Governance**
 - [⊙ Elementi di Logica e Specifica Formale](#appendice-logica)
 - [◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM](#appendice-alloy)
 - [✧ Prompt Master per lo studio dei singoli step](#prompt-master)
+- [⚖ Matrice di Raccordo Normativo e Standard Industriali](#appendice-normativa)
 - [❖ GLOSSARIO](#glossario-manuale)
 - [▤ Bibliografia essenziale](#bibliografia-essenziale-man)
 
@@ -1169,6 +1170,10 @@ Leggere attentamente quest'opera senza pretese di memorizzazione tecnica produce
 
 **Come leggere gli esempi tecnici:**  
 Non è necessario conoscere in dettaglio il codice Python o C++ presente nel manuale. Concentratevi su cio' che l'esempio dimostra: **quale requisito viene tradotto in una regola verificabile e quali evidenze ne dimostrano il rispetto**.
+
+> [!TIP]
+> ☞ **Mappatura diretta per Compliance Officer, Lead Auditor e CISO**  
+> Se devi dimostrare a un organismo notificato o a un comitato di conformità come i controlli del manuale soddisfano requisiti specifici di **EU AI Act**, **ISO/IEC 42001**, **NIST AI RMF** o **ISO/IEC 27001**, consulta direttamente l'**[⚖ Matrice di Raccordo Normativo e Standard Industriali](#appendice-normativa)**, dove troverai la corrispondenza puntuale articolo-per-step e gli artefatti probatori richiesti.
 
 ---
 
@@ -2442,6 +2447,8 @@ I cinque principi inderogabili dello STEP 1:
 ---
 
 ### 1. INTRODUZIONE E OBIETTIVO DEL CAPITOLO
+
+> Vedi: [⚖ Matrice di Raccordo Normativo e Standard Industriali](#appendice-normativa) per la classificazione del rischio (`AL-0..3`) alle categorie di rischio formali dell'EU AI Act (Sistemi ad Alto Rischio ex Art. 6) e della ISO/IEC 42001 (Clausola 6.1).
 
 #### 1.1 Il Ruolo della Classificazione del Rischio nell'Assurance
 Nello STEP 1 abbiamo definito la discrepanza del Mondo reale (W) che il sistema deve colmare, fissando i confini operativi e catalogando le assunzioni ambientali. Tuttavia, i sistemi software non presentano tutti la medesima capacità di arrecare danno: un errore in uno script che genera report interni aggregati non ha lo stesso peso di un errore in un controllore di dosaggio farmacologico o in un motore di riconciliazione contabile interbancaria.
@@ -20131,6 +20138,8 @@ Un Decision Gate Basato sull'Evidenza non è un semplice script che arresta il b
 3. Esaurimento controllato del Discrepancy Budget (Step 22);
 4. Rilevazione e gestione esplicita degli stati di incertezza informativa (`UNKNOWN`).
 
+> Vedi: [⚖ Matrice di Raccordo Normativo e Standard Industriali](#appendice-normativa) per verificare come il dossier probatorio del Gate (`validate_evidence.py`) costituisca la base tecnica per la documentazione tecnica obbligatoria dell'Art. 11 dell'EU AI Act e del controllo B.6 della ISO 42001.
+
 ---
 
 ### 2. Profilo delle Competenze Necessarie e Competence Gaps
@@ -29204,6 +29213,8 @@ La **Periodic Review (Revisione periodica e audit)** è il processo sistematico,
 
 L'obiettivo didattico di questo capitolo è insegnare al lettore a progettare, eseguire e valutare audit periodici e revisioni di assurance, sottraendosi alla falsa sicurezza del "cruscotto verde" e istituendo un controllo retrospettivo capace di intercettare la divergenza contestuale prima che si trasformi in incidente operativo, danno economico o violazione normativa.
 
+> Vedi: [⚖ Matrice di Raccordo Normativo e Standard Industriali](#appendice-normativa) per le verifiche di adeguatezza periodica e il monitoraggio post-commercializzazione (*Post-Market Monitoring* prescritto dall'Art. 72 dell'EU AI Act e dalla Clausola 9 di ISO 42001).
+
 ---
 
 ### 2. Profilo delle competenze necessarie
@@ -33823,6 +33834,7 @@ La licenza GNU Free Documentation License (GNU FDL), versione 1.3 o successiva, 
 4. **[MODULO GITHUB ACTIONS (`.github/workflows/`)](#4-modulo-github-actions-githubworkflows)**
 5. **[MODULO GITLAB CI (`.gitlab-ci.yml`)](#5-modulo-gitlab-ci-gitlab-ciyml)**
 6. **[Registro di Estendibilità per Contenuti Avanzati](#6-registro-di-estendibilità-per-contenuti-avanzati)** (OPA/Rego v1 + test, Seccomp + comando sandbox Docker, Dockerfile Sandbox Effimera + `.dockerignore`, Audit report, Test di validazione)
+7. **[Tailoring del rigore & Terminologia essenziale](#7-tailoring-del-rigore--terminologia-essenziale)**
 
 ---
 
@@ -34035,32 +34047,6 @@ python3 .assurance/bin/freeze_guard.py --ci-base origin/main --discrepancies-dir
 # Scansione Bidi / Zero-Width sui file tracciati
 python3 .assurance/bin/check_unicode.py $(git ls-files)
 ```
-
----
-
-### 1.6 Terminologia essenziale 
-
-**Allowlist** (*lista di autorizzati*): elenco chiuso degli unici elementi consentiti (ad esempio i soli domini web o pacchetti approvati); tutto ciò che non compare in lista viene bloccato per impostazione predefinita.
-
-**Container**: ambiente isolato e leggero (gestito da Docker) che contiene un programma e le sue librerie, separato dal resto del sistema operativo dell’utente.
-
-**Digest / Hash (SHA-256 / SHA-1)**: impronta digitale matematica (una stringa esadecimale di lunghezza fissa) calcolata sul contenuto di un file o di un'immagine Docker. Se cambia anche un solo bit del file, il digest cambia completamente: serve quindi a verificare che il file scaricato sia autentico e non alterato.
-
-**End-to-end**: verifica completa che attraversa tutti i passaggi reali del sistema dall’inizio alla fine, invece di provare solo un singolo pezzo isolato.
-
-**Fail-closed** (*blocco in caso di errore*): regola di sicurezza per cui, se un controllo va in errore, manca un file, scade un termine o una risposta è ambigua, il sistema **blocca** l’operazione anziché lasciarla passare.
-
-**`PATH`**: variabile di ambiente del sistema operativo che elenca le cartelle in cui il terminale cerca i comandi eseguibili (ad esempio `/usr/local/bin`); spostare un programma nel `PATH` permette di invocarlo scrivendo solo il nome (es. `opa`) senza scrivere tutto il percorso.
-
-**Pinning / Pinnato** (*fissaggio*): bloccare una risorsa (un'azione GitHub, un'immagine Docker o un programma) a una **versione esatta** o a una **impronta crittografica immutabile**, invece di usare etichette generiche come `latest` o `v7` che il fornitore può sovrascrivere nel tempo.
-
-**Required Status Checks** (*controlli obbligatori*): impostazione di GitHub (analoga a *Pipelines must succeed* su GitLab) che impedisce di integrare le modifiche nel ramo principale (`main`/`master`) finché i job automatici indicati non terminano con esito positivo.
-
-**RFC 3339**: standard internazionale per scrivere date e orari senza ambiguità, completo di fuso orario (es. `2026-11-24T12:00:00Z`, dove `T` separa data e ora e `Z` indica l’ora universale **UTC**, cioè il fuso orario di riferimento senza ora legale).
-
-**Runner CI**: il computer virtuale o container automatico usato da GitHub Actions o GitLab CI per eseguire i controlli (test, analisi statica, gate) a ogni Pull Request / Merge Request.
-
-**Wheel (`.whl`)**: formato di pacchetto Python già precompilato (pronto da installare senza compilazione locale). I file *wheel* dipendono spesso dal sistema operativo e dal processore; per questo i loro hash variano tra Linux, macOS e Windows.
 
 ---
 
@@ -38240,6 +38226,72 @@ Con l'adozione integrale di questo prontuario — integrato da *branch protectio
 2. **Gli oracoli e i report sono validati in modo fail-closed:** `validate_evidence.py` rifiuta dossier malformati, timestamp non conformi a RFC 3339, prove stantie su commit diversi, metadati degli oracoli scaduti, rischi residui non tollerabili, report mancanti o con impronta SHA-256 alterata, discrepanze attive fuori budget o claim obbligatori scoperti;
 3. **La filiera è verificata sui registri ufficiali anche a livello di versione:** `check_dependencies.py` ispeziona manifest e `package-lock.json` Python e JavaScript distinguendo errori di rete (`UNKNOWN`) da pacchetti o versioni recenti in quarantena o inesistenti (`NO-GO`);
 4. **Le pipeline integrano tutte le 7 prove nel Decision Gate:** sia GitHub Actions sia GitLab CI propagano analisi statica, secret scanning, *property-based testing*, *mutation testing*, audit della filiera, test OPA/Rego v1 e controllo anti-test tampering verso `validate_evidence.py`, bloccando il rilascio in caso di mancata conformità.
+
+---
+
+[▲ Torna su](#prontuario-operativo-di-file-configurazioni-e-template-pronti-alluso)
+## 7. Tailoring del rigore & Terminologia essenziale
+
+
+### 7.1 Adattamento (tailoring) del livello di rigore per classe di Assurance
+***Calibrare il rigore tecnico in base al livello di rischio***
+
+| CAPITOLI DEL MANUALE | AL-0: TRIVIALE / PROTOTIPO | AL-1: BASSO IMPATTO / STD | AL-2: BUSINESS-CRITICAL | AL-3: SAFETY / MISSION-CRITICAL |
+|---|---|---|---|---|
+| 1. Problem Definition (`W & S |= R`) | Sintetica / Informale | Strutturata (Scheda base) | Formale (Tupla PD completa) | Matematica (Assiomi fisici provati) |
+| 2. Risk Classification | Autocertificata (`IR <= 2`) | Standard (`3 <= IR <= 8`) | Ponderata (`9 <= IR <= 17`) | Rigida (`Override per S=3 / R=2`) |
+| 3. Authority & Responsibility | Sviluppatore singolo | Lead Developer | Segregation of Duties (SoD) | TPI (Two-Person Integrity) + Legale |
+| 4 & 9. Specification Validity | Plausibilità del testo | Schemi dati (JSON/OpenAPI) | Contratti Hoare (Pre/Post/Inv) | Metodi formali (Alloy 6 / SAT / Z3) |
+| 5 & 12. Assumptions & Unknowns | Non tracciate formalmente | Catalogate nel Readme | Registro Assunzioni verificato | Tolleranza ZERO su stati UNKNOWN |
+| 6. Critical Properties & Inv. | Implicite | Invarianti applicativi base | Invarianti dominio espliciti | Invarianti induttivi dimostrati |
+| 7. Traceability (Grafo DAG) | Opzionale / Assente | Issue Tracker / Commit link | Tracciabilità bidirezionale | Grafo DAG crittografico completo |
+| 10. Assurance Level & Budget | AL-0 implicito | AL-1 confermato | AL-2 documentato | AL-3 con divieto di downgrade |
+| 11. Independent Oracles | Oracolo euristico / locale | Oracolo CI deterministico | Oracolo disaccoppiato (PBT) | Oracolo formale terzo / matematico |
+| 13. Implementation Design | Monolite tollerato | Modulare standard | Functional Core / Imp. Shell | Type-Driven (Stati invalidi esclusi) |
+| 14. Containment & Least Authority | Permessi utente standard | Isolamento cartelle base | Container Rootless + No-Egress | Sandbox MicroVM / Seccomp restrittivo |
+| 15. LLM-Assisted Implementation | Prompting libero (Vibe) | Prompting strutturato | Scoped Prompting + Invariant Embedding (Guardie runtime) | Clean-Room: vietato codice LLM non provato formalmente a monte |
+| 16. Automated Testing | Smoke test manuali | Unit/Integration (Statement) | Branch Coverage + Mutation Score >= 80% (mutmut) | MC/DC Coverage + Mutation Score >= 95% + Zero flaky tests |
+| 17. Static Analysis, SAST, SCA | Linter base facoltativo | Linter + SCA base (Check dipendenze nuove) | Ruff strict + Bandit + Mypy strict + Gitleaks + SBOM | Analisi formale AST + Blocco totale slopsquatting + Secret Scan storico |
+| 18. Property-Based & Fuzzing | Non richiesto | Opzionale | PBT obbligatorio (Hypothesis) su invarianti di dominio | Fuzzing coverage-guided massivo (Atheris/AFL++) + Adversarial Fuzzing |
+| 19. Threat Modeling & Red Team | Non richiesto | Checklist generica | STRIDE mirato + OWASP LLM | Red Teaming avversariale indipendente |
+| 20. Multi-Model Audit | Non richiesto | Opzionale (Confronto 2 LLM) | Blind Review (LLM disgiunti) | Audit formale terzo (Non-LLM) |
+| 21. Independent Verification (IV) | Autoverifica dello sviluppatore | Peer review interna | Verificatore disaccoppiato | Organismo terzo indipendente accreditato |
+| 22. Discrepancy Analysis | Fix immediato informale | Bug tracker ordinario | RCA formale + Discrepancy Budget (Max 1 Minor aperta) | RCA esaustiva + Zero tolleranza su anomalie aperte (Zero bug ammessi) |
+| 23. Decision Gates | Manual check | CI script (Exit code 0) | Evidence Gate (Non-compens.) | Gate fail-closed + Blocco override |
+| 24. Human Review & Approval | Auto-approvazione | Approvazione Lead Dev | Ispezione Inversa qualificata | Firma notarile / Dual Sign-off |
+| 25. Staging, Canary & Flags | Deploy diretto consentito | Staging base | Canary frazionato (1%-5%) + Feature Flag con fallback | Air-gapped / Hardware-in-the-Loop + Rollout a coorti isolate blindate |
+| 26. Observability | Log a console | Log centralizzati + Metriche infrastrutturali base (MELT) | Sonde semantiche d'invariante (OpenTelemetry) + Trace ID | Telemetria ad alta cardinalità con Tail-based sampling + Zero leak PII |
+| 27. Alerting & Runbooks | Nessun allarme configurato | Allarmi su soglie statiche + Runbook essenziale | Allarmi su Burn Rate / SLO + Runbook a 7 dimensioni | Allarmi sintomatici ridondati + Runbook verificati in GameDay ciechi |
+| 28. Rollback, Fallback & Breaker | Riavvio manuale | Script di ripristino base | Circuit Breaker deterministico + Pattern Expand/Contract | Circuit Breaker Fail-Closed + Pattern Saga di compensazione transazionale |
+| 29. Post-Deployment Analysis | Reattiva su segnalazione | Analisi incidenti standard | Blameless Post-Mortem formale | Analisi forense causale obbligatoria |
+| 30. Risk Register & Knowledge Base | Non gestiti | Wiki di team | Risk Register YAML versionato + KB semantica anti-pattern | Registro dei Rischi formale convalidato da Risk Officer + Audit semestrale |
+| 31. Change Impact Analysis (CIA) | Valutazione a vista | Analisi diff locale | Calcolo formale Blast Radius e regression test selection | Rivalutazione formale dell'Assurance Case e riverifica integrale della prova |
+| 32. Periodic Review & Audit | Non prevista | Revisione annuale informale | Audit semestrale su drift modelli e golden dataset | Audit trimestrale formale condotto da verificatori terzi indipendenti |
+| 33. Closure & Lessons Learned | Archiviazione informale | Chiusura task ordinaria | Fascicolo ACP strutturato con memoria delle assunzioni | ACP crittografico sigillato (SHA-256) + Tracciabilità forense permanente |
+
+### 7.2 Terminologia essenziale 
+
+**Allowlist** (*lista di autorizzati*): elenco chiuso degli unici elementi consentiti (ad esempio i soli domini web o pacchetti approvati); tutto ciò che non compare in lista viene bloccato per impostazione predefinita.
+
+**Container**: ambiente isolato e leggero (gestito da Docker) che contiene un programma e le sue librerie, separato dal resto del sistema operativo dell’utente.
+
+**Digest / Hash (SHA-256 / SHA-1)**: impronta digitale matematica (una stringa esadecimale di lunghezza fissa) calcolata sul contenuto di un file o di un'immagine Docker. Se cambia anche un solo bit del file, il digest cambia completamente: serve quindi a verificare che il file scaricato sia autentico e non alterato.
+
+**End-to-end**: verifica completa che attraversa tutti i passaggi reali del sistema dall’inizio alla fine, invece di provare solo un singolo pezzo isolato.
+
+**Fail-closed** (*blocco in caso di errore*): regola di sicurezza per cui, se un controllo va in errore, manca un file, scade un termine o una risposta è ambigua, il sistema **blocca** l’operazione anziché lasciarla passare.
+
+**`PATH`**: variabile di ambiente del sistema operativo che elenca le cartelle in cui il terminale cerca i comandi eseguibili (ad esempio `/usr/local/bin`); spostare un programma nel `PATH` permette di invocarlo scrivendo solo il nome (es. `opa`) senza scrivere tutto il percorso.
+
+**Pinning / Pinnato** (*fissaggio*): bloccare una risorsa (un'azione GitHub, un'immagine Docker o un programma) a una **versione esatta** o a una **impronta crittografica immutabile**, invece di usare etichette generiche come `latest` o `v7` che il fornitore può sovrascrivere nel tempo.
+
+**Required Status Checks** (*controlli obbligatori*): impostazione di GitHub (analoga a *Pipelines must succeed* su GitLab) che impedisce di integrare le modifiche nel ramo principale (`main`/`master`) finché i job automatici indicati non terminano con esito positivo.
+
+**RFC 3339**: standard internazionale per scrivere date e orari senza ambiguità, completo di fuso orario (es. `2026-11-24T12:00:00Z`, dove `T` separa data e ora e `Z` indica l’ora universale **UTC**, cioè il fuso orario di riferimento senza ora legale).
+
+**Runner CI**: il computer virtuale o container automatico usato da GitHub Actions o GitLab CI per eseguire i controlli (test, analisi statica, gate) a ogni Pull Request / Merge Request.
+
+**Wheel (`.whl`)**: formato di pacchetto Python già precompilato (pronto da installare senza compilazione locale). I file *wheel* dipendono spesso dal sistema operativo e dal processore; per questo i loro hash variano tra Linux, macOS e Windows.
 
 ---
 
@@ -44198,6 +44250,54 @@ La regola fondamentale è:
 «Non confondere ciò che può essere generato con ciò che può essere compreso, ciò che può essere compreso con ciò che può essere verificato, ciò che può essere verificato con ciò che costituisce evidenza sufficiente e indipendente, e ciò che costituisce evidenza con ciò che giustifica una decisione di assurance.»
 
 ```
+
+---
+
+<div class="pagebreak"></div>
+
+[​▵Torna all'Indice](#indice-generale)
+
+<a name="appendice-normativa"></a>
+
+## ⚖ Matrice di Raccordo Normativo e Standard Industriali
+**Mappatura di Corrispondenza tra i 33 Step di Assurance e i Framework EU AI Act, ISO/IEC 42001, NIST AI RMF e ISO/IEC 27001**
+
+> [!NOTE]
+> ✎ **Avvertenza Metodologica ed Epistemica:**  
+> Questa matrice costituisce uno strumento di tracciabilità e raccordo tecnico tra il metodo di Software Assurance sviluppato nel manuale e i principali framework normativi e industriali internazionali.  
+> 
+> L'applicazione di questa tabella esige il rispetto di due principi inderogabili:
+> 1. **La conformità formale non è garanzia di correttezza tecnica (`Compliance != Correctness`):** Soddisfare una clausola documentale o superare una checklist di audit non dimostra che il codice generato da LLM sia esente da difetti semantici o vulnerabilità a runtime. L'assurance privilegia l'evidenza empirica rispetto alla pura conformità cartacea.
+> 2. **Assenza di certificazione automatica:** L'adozione degli step del manuale produce gli artefatti probatori necessari a sostenere un audit di terza parte o un fascicolo tecnico, ma non surroga la perizia e l'approvazione formale dell'autorità decisionale umana preposta (Step 3 e Step 24).
+
+---
+
+### Tabella Sinottica di Raccordo (4 Colonne)
+
+| Standard & Articolo / Controllo | Obiettivo del Requisito Normativo | Step e Appendici del Manuale | Evidenza di Assurance Prodotta (Artefatto Verificabile) |
+| :--- | :--- | :--- | :--- |
+| **EU AI Act**<br />*Art. 9*<br />(Reg. UE 2024/1689) | **Sistema di Gestione dei Rischi:** Identificare, stimare e mitigare i rischi noti e prevedibili per salute, sicurezza e diritti fondamentali lungo l'intero ciclo di vita. | • **Step 2** (Risk Classification)<br />• **Step 10** (Assurance Level)<br />• **Step 30** (Risk Register) | • Scheda Profilo di Rischio e matrice Blast Radius.<br />• Calcolo quantitativo dell'indice di rischio sintetico `IR`.<br />• File machine-readable `risk_item.yaml` validato da schema JSON Draft 2020-12 con stima del rischio residuo. |
+| **EU AI Act**<br />*Art. 10*<br />(Reg. UE 2024/1689) | **Governance dei Dati:** Mitigare distorsioni (bias), verificare adeguatezza, rappresentatività e assenza di contaminazioni nei dataset e nei dati di contesto. | • **Step 5** (Assumptions & Unknowns)<br />• **Step 12** (Assumption Verification)<br />• **Step 26** (Observability) | • Registro formale `ASSUMPTIONS.md` con classificazione a 5 stati (FACT, ASSUMPTION, UNKNOWN).<br />• Report empirici di verifica delle assunzioni e contratti dati.<br />• Sonde telemetriche ad alta cardinalità su distribuzioni reali. |
+| **EU AI Act**<br />*Art. 11 & All. IV*<br />(Reg. UE 2024/1689) | **Documentazione Tecnica:** Predisporre e mantenere aggiornato il fascicolo tecnico che dimostri conformità, architettura, scelte algoritmiche e collaudi prima dell'immissione sul mercato. | • **Step 4** (Specification)<br />• **Step 7** (Traceability)<br />• **Step 13** (Implementation Design)<br />• **Step 33** (Closure & Archival) | • Specifica formale all'interfaccia (fenomeni condivisi).<br />• Grafo Aciclico Diretto (DAG) di tracciabilità biunivoca.<br />• Schemi architetturali Functional Core / Imperative Shell.<br />• **Assurance Closure Package (ACP)** con manifesto crittografico sigillato `root_assurance_hash` (SHA-256). |
+| **EU AI Act**<br />*Art. 12*<br />(Reg. UE 2024/1689) | **Registrazione Automatica degli Eventi (Logging):** Garantire la tracciabilità delle operazioni e la registrazione immutabile degli eventi durante il funzionamento. | • **Step 14** (Containment)<br />• **Step 26** (Observability)<br />• **Step 29** (Post-Deployment) | • Tracce distribuite OpenTelemetry arricchite con `TraceID`, `CommitHash`, `PromptHash` e `ModelID`.<br />• Log archiviati su supporti WORM (Write Once, Read Many).<br />• Audit trail immutabile delle transizioni nei Decision Gates. |
+| **EU AI Act**<br />*Art. 13*<br />(Reg. UE 2024/1689) | **Trasparenza e Istruzioni per l'Uso:** Consentire agli utilizzatori di interpretare l'output del sistema, conoscerne i limiti, l'accuratezza e le condizioni operative previste. | • **Step 1** (Problem Definition)<br />• **Step 5** (Assumptions & Unknowns)<br />• **Step 27** (Alerting & Runbooks)<br />• **Appendice ⌨** (Prompt Engineering) | • Perimetro operativo (In-Scope / Out-of-Scope) documentato.<br />• Esplicitazione delle incognite (`UNKNOWN`) e dei limiti.<br />• Runbook verificato a 7 dimensioni con precondizioni e stop.<br />• Etichettatura epistemica della provenienza dei dati (`P5`). |
+| **EU AI Act**<br />*Art. 14*<br />(Reg. UE 2024/1689) | **Sorveglianza Umana (Human Oversight):** Garantire un controllo umano effettivo (*Meaningful Human Control*), prevenendo l'automation bias e assicurando facoltà di override/arresto. | • **Step 3** (Authority & Responsibility)<br />• **Step 8** (Competence Gaps)<br />• **Step 24** (Human Review & Approval)<br />• **Step 28** (Rollback & Circuit Breakers) | • Matrice delle responsabilità formale nominativa **ARCI-V**.<br />• Riconoscimento del Competence Gap e divieto di auto-approvazione.<br />• Verbale di revisione con **Ispezione Inversa** e motivazione.<br />• Comandi manuali di sgancio immediato (kill-switch e circuit breaker). |
+| **EU AI Act**<br />*Art. 15*<br />(Reg. UE 2024/1689) | **Accuratezza, Robustezza e Cybersicurezza:** Resistere a errori, condizioni limite, prompt injection, avvelenamento dei dati ed exploit della filiera software. | • **Step 14** (Containment)<br />• **Step 16** (Automated Testing)<br />• **Step 17** (SAST/SCA/Secret Scan)<br />• **Step 18** (PBT, Fuzzing & Adversarial)<br />• **Step 19** (Threat Modeling & Red Team)<br />• **Appendice ▣** (Sandbox) | • Confinamento sandbox Linux (Seccomp, cgroups v2, no-egress).<br />• Mutation Score >= 80% (mutmut) contro test speculari.<br />• Scansione filiera anti-slopsquatting (`check_dependencies.py`).<br />• Report Fuzzing (Atheris/AFL++) su payload limite e ReDoS.<br />• Matrice delle minacce STRIDE e Red Teaming anti-injection. |
+| **EU AI Act**<br />*Art. 72*<br />(Reg. UE 2024/1689) | **Monitoraggio Post-Commercializzazione:** Raccogliere e analizzare continuativamente dati operativi sul comportamento reale, gestendo incidenti e derive. | • **Step 25** (Staging, Canary & Flags)<br />• **Step 29** (Post-Deployment Analysis)<br />• **Step 31** (Change Impact Analysis)<br />• **Step 32** (Periodic Review) | • Rollout controllato frazionato (Canary) a blast radius limitato.<br />• Verbali di **Blameless Post-Mortem** con analisi causale (RCA).<br />• Matrice di propagazione dell'impatto delle modifiche (CIA).<br />• Audit periodico su golden calibration set contro il model drift. |
+| **ISO/IEC 42001:2023**<br />*Clausola 6.1 & 8.2*<br />(AIMS - Risk Assessment) | **Valutazione dei Rischi AI:** Processo continuo di identificazione dei rischi specifici dell'AI (allucinazioni, opacità, bias) e definizione dei criteri di accettabilità. | • **Step 2** (Risk Classification)<br />• **Step 10** (Assurance Level)<br />• **Step 30** (Risk Register & KB) | • Definizione a priori del livello di integrità di assurance (`AL-0..3`).<br />• Registro dei rischi `risk_item.yaml` con tracciamento formale dell'efficacia delle mitigazioni (`E_mitig`) e soglie `T_risk`. |
+| **ISO/IEC 42001:2023**<br />*Controllo B.5*<br />(Specifiche e Requisiti AI) | **Obiettivi e Requisiti del Sistema AI:** Documentare in modo verificabile i requisiti del sistema, il dominio di utilizzo e le prestazioni minime attese. | • **Step 1** (Problem Definition)<br />• **Step 4** (Specification)<br />• **Step 9** (Specification Validity)<br />• **Appendice ◈** (Alloy & SAT) | • Separazione netta tra Problem Space e Solution Space.<br />• Contratti software espliciti basati su logica di Hoare (Pre/Post/Inv).<br />• Modello formale Alloy 6 verificato con SAT solver contro la vacuità. |
+| **ISO/IEC 42001:2023**<br />*Controllo B.6*<br />(Verifica e Validazione AI) | **Verifica e Convalida:** Assicurare che il sistema AI rispetti le specifiche e operi in modo affidabile attraverso test indipendenti e tracciati. | • **Step 11** (Independent Oracles)<br />• **Step 16** (Automated Testing)<br />• **Step 18** (PBT & Fuzzing)<br />• **Step 20** (Multi-Model Audit)<br />• **Step 21** (Independent Verification) | • Oracoli matematici e metamorfici disaccoppiati dall'LLM.<br />• Protocollo Clean-Room di generazione test su Interface Stub.<br />• Blind Code Review tra modelli con famiglie disgiunte.<br />• **Independent Verification Report (IVR)** formalizzato. |
+| **ISO/IEC 42001:2023**<br />*Controllo B.7*<br />(Gestione Dati e Tracciabilità) | **Tracciabilità e Provenienza:** Conservare la tracciabilità delle decisioni, dei dataset, dei componenti software e delle modifiche apportate nel tempo. | • **Step 7** (Traceability)<br />• **Step 15** (LLM-Assisted Impl.)<br />• **Step 31** (Change Impact Analysis)<br />• **Step 33** (Closure & Lessons) | • Mappatura continua Requisito-Proprietà-Oracolo-Test-Codice.<br />• Ghost Code Audit per eliminare logiche non fondate.<br />• Chiusura transitiva delle dipendenze per modifiche di codice.<br />• Archivio immutabile con catena di custodia e retention policy. |
+| **ISO/IEC 42001:2023**<br />*Controllo B.9 & B.10*<br />(Uso e Monitoraggio Operativo) | **Operatività e Sorveglianza Continua:** Monitorare il sistema in esercizio, gestire le anomalie e mantenere procedure di risposta agli incidenti. | • **Step 25** (Staging & Canary)<br />• **Step 26** (Observability)<br />• **Step 27** (Alerting & Runbooks)<br />• **Step 28** (Rollback & Circuit Breakers)<br />• **Step 29** (Post-Deployment) | • Policy di avanzamento Canary (`CanaryAdvance`) con quote rigide.<br />• Sonde esogene di invariante a runtime (`@invariant_probe`).<br />• Regole di allarme sintomatiche su Burn Rate con Runbook a 7 dimensioni.<br />• Macchina a stati Circuit Breaker (Closed, Open, Half-Open). |
+| **NIST AI RMF 1.0**<br />*GOVERN*<br />(NIST AI 100-1) | **Struttura di Governo e Responsabilità:** Istituire processi organizzativi, ruoli chiari, responsabilità e presidi per gestire i rischi associati ai sistemi AI. | • **Step 3** (Authority & Responsibility)<br />• **Step 8** (Competence Gaps)<br />• **Step 10** (Assurance Level)<br />• **Step 24** (Human Review & Approval) | • Matrice ARCI-V: identificazione del singolo soggetto Accountable.<br />• Matrice delle Competenze di Assurance (ACM) contro il rubber-stamping.<br />• Allocazione formale del rigore probatorio proporzionata al rischio.<br />• Verbale di approvazione non delegabile con firma crittografica. |
+| **NIST AI RMF 1.0**<br />*MAP*<br />(NIST AI 100-1) | **Contestualizzazione e Comprensione del Rischio:** Mappare il contesto d'uso, le assunzioni sul mondo reale, i potenziali impatti e i vincoli di sistema. | • **Step 1** (Problem Definition)<br />• **Step 2** (Risk Classification)<br />• **Step 5** (Assumptions & Unknowns)<br />• **Step 19** (Threat Modeling) | • Modello Mondo-Macchina `W AND S |= R` (Jackson & Zave).<br />• Mappatura della severità del danno nel mondo reale W (Harm vs Hazard).<br />• Registro `ASSUMPTIONS.md` e catalogazione delle incognite (`UNKNOWN`).<br />• Modellazione dei confini di fiducia (Trust Boundaries) e STRIDE. |
+| **NIST AI RMF 1.0**<br />*MEASURE*<br />(NIST AI 100-1) | **Misurazione e Valutazione Quantitativa/Qualitativa:** Valutare e verificare affidabilità, robustezza, sicurezza e aderenza ai requisiti tramite test formali. | • **Step 11** (Independent Evidence)<br />• **Step 16** (Automated Testing)<br />• **Step 17** (Static Analysis & SAST)<br />• **Step 18** (PBT, Fuzzing & Adversarial)<br />• **Step 20** (Multi-Model Audit)<br />• **Step 23** (Evidence-Based Decision Gates) | • Vettore di indipendenza epistemica dell'oracolo `Indep_Vector`.<br />• Copertura strutturale + Mutation Testing (potere discriminante).<br />• Scansione AST, Taint Analysis e Secret Scanning su cronologia Git.<br />• Generatori Property-Based (Hypothesis) con shrinking del controesempio.<br />• Matrice delle discrepanze tra modelli ciechi (Inter-Model Agreement).<br />• Motore deterministico di Gate `validate_evidence.py` fail-closed. |
+| **NIST AI RMF 1.0**<br />*MANAGE*<br />(NIST AI 100-1) | **Gestione Operativa e Trattamento del Rischio:** Allocare risorse di mitigazione, attuare il contenimento e gestire le risposte a incidenti e derive. | • **Step 14** (Containment & Least Authority)<br />• **Step 25** (Staging & Canary)<br />• **Step 27** (Alerting & Runbooks)<br />• **Step 28** (Rollback & Circuit Breakers)<br />• **Step 30** (Risk Register & KB)<br />• **Step 32** (Periodic Review) | • Applicazione sistematica di POLA: filesystem read-only, cgroups v2, no-egress.<br />• Confinamento del raggio d'impatto tramite calcolo qualitativo `BR(t)`.<br />• Allarmi multi-finestra concorrenti e mitigazioni rapide tracciate.<br />• Pattern architetturale Expand/Contract per la reversibilità del dato.<br />• Chiusura ciclica della conoscenza: incidente -> KB -> vincolo CI/CD. |
+| **ISO/IEC 27001:2022**<br />*Controllo 8.25*<br />(Sicurezza nel Ciclo di Vita) | **Ingegneria del Software Sicura:** Stabilire e applicare regole di sicurezza per lo sviluppo del software e l'integrazione di componenti automatizzati. | • **Step 13** (Implementation Design)<br />• **Step 15** (LLM-Assisted Impl.)<br />• **Step 23** (Decision Gates) | • Architettura a strati con Functional Core puro esente da side-effects.<br />• Type-Driven Design: eliminazione degli stati invalidi alla frontiera.<br />• Policy dichiarativa `assurance-gate-policy.yaml` insuperabile in CI/CD. |
+| **ISO/IEC 27001:2022**<br />*Controllo 8.28*<br />(Codifica Sicura) | **Codifica Sicura (Secure Coding):** Applicare principi di sviluppo difensivo, validazione degli input ed eliminazione di pattern vulnerabili nel sorgente. | • **Step 14** (Containment)<br />• **Step 15** (LLM-Assisted Impl.)<br />• **Step 17** (SAST & Static Analysis)<br />• **Appendice ⌨** (Prompt Engineering) | • Direttive vincolanti `SECURITY_AI.md` (divieto fallback velenosi, zero float).<br />• Invariant Embedding nel codice generato (`InvariantViolationError`).<br />• Configurazione Ruff strict (`BLE`, `S`, `T20`, `ARG`, `PLE2502`/`PLE2515`).<br />• Pattern difensivo P6 (Negative Constraints & Explicit Failure Handling). |
+| **ISO/IEC 27001:2022**<br />*Controllo 8.29*<br />(Test di Sicurezza in Sviluppo) | **Test di Sicurezza nei Sistemi:** Condurre attività di collaudo di sicurezza formali durante lo sviluppo prima della messa in esercizio. | • **Step 16** (Automated Testing)<br />• **Step 18** (PBT, Fuzzing & Adversarial)<br />• **Step 19** (Threat Modeling & Red Team) | • Test negativi di conformità (verifica del blocco delle syscall non ammesse).<br />• Fuzzing guidato da copertura (Atheris) per intercettare crash e mem leak.<br />• Red Teaming empirico contro Indirect Prompt Injection e Tool Abuse. |
+| **ISO/IEC 27001:2022**<br />*Controllo 8.30*<br />(Fornitori e Supply Chain) | **Sicurezza della Filiera del Software:** Verificare l'autenticità e l'integrità dei componenti di terze parti, librerie esterne e dipendenze. | • **Step 17** (SCA, SBOM & Secret Scan)<br />• **Appendice ☰** (Cookbook) | • Scanner deterministico `check_dependencies.py` con controllo anzianità (PEP 691/700 e npm).<br />• Generazione e verifica SBOM con pinning rigoroso dei digest SHA-256.<br />• Blocco commit e push su branch protetti via Gitleaks (`pre-commit` e CI). |
+| **ISO/IEC 27001:2022**<br />*Controllo 8.31*<br />(Separazione degli Ambienti) | **Separazione degli Ambienti di Sviluppo, Test e Produzione:** Isolare gli ambienti di esecuzione per proteggere i dati e i servizi operativi. | • **Step 14** (Containment & Least Authority)<br />• **Step 25** (Staging & Canary)<br />• **Appendice ▣** (Sandbox) | • Isolamento a 5 assi (namespaces, cgroups v2, seccomp, netns, mount).<br />• Dockerfile effimero non privilegiato (`UID 10001:10001`) con filesystem read-only.<br />• Riconciliazione dello Staging Fidelity Gap prima dell'esposizione canary. |
 
 ---
 
