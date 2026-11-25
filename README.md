@@ -104,6 +104,7 @@ Principi, Verifica, Evidenze e Governance**
 - ⊙ Elementi di Logica e Specifica Formale
 - ◈ Alloy e SAT per il Controllo delle Specifiche nel Software Assistito da LLM
 - ✧ Prompt Master per lo studio dei singoli step
+- ⚖ Matrice di Raccordo Normativo e Standard Industriali
 - ❖ GLOSSARIO
 - ▤ Bibliografia essenziale
 
