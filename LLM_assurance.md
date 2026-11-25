@@ -34297,7 +34297,7 @@ repos:
   # Intercetta BLE, S, ARG, PGH, RUF001-003 e PLE2502/PLE2515 (Bidi/Zero-Width)
   # ---------------------------------------------------------
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.1
+    rev: v0.17.6
     hooks:
       - id: ruff
         name: "Linter di Sicurezza AI (Ruff Strict)"
@@ -36418,8 +36418,8 @@ rfc3339-validator==0.1.4
 pyyaml==6.0.2
 pytest==8.3.4
 hypothesis==6.124.0
-mutmut==2.4.5
-ruff==0.9.1
+mutmut==3.8.1
+ruff==0.17.6
 bandit==1.8.2
 mypy==1.14.1
 ```
@@ -36435,8 +36435,8 @@ rfc3339-validator==0.1.4
 pyyaml==6.0.2
 pytest==8.3.4
 hypothesis==6.124.0
-mutmut==2.4.5
-ruff==0.9.1
+mutmut==3.8.1
+ruff==0.17.6
 bandit==1.8.2
 mypy==1.14.1
 ```
