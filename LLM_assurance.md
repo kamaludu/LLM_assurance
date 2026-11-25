@@ -44407,6 +44407,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Affermazione del conseguente](#affermazione-del-conseguente)
 - [Agent (Agente software / agente basato su LLM)](#agent-agente-software--agente-basato-su-llm)
 - [AI Orchestration (Orchestrazione AI)](#ai-orchestration-orchestrazione-ai)
+- [AI Runtime (Runtime di Inferenza / Motore di Esecuzione AI)](#ai-runtime-runtime-di-inferenza--motore-di-esecuzione-ai)
 - [Air-Gapping (Isolamento fisico o logico di rete)](#air-gapping-isolamento-fisico-o-logico-di-rete)
 - [Alert (Allarme)](#alert-allarme)
 - [Alert Carpet Bombing](#alert-carpet-bombing)
@@ -44542,6 +44543,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 
 #### G
 - [GameDay (Esercitazione Operativa di Guasto)](#gameday-esercitazione-operativa-di-guasto)
+- [Gate (Quality Gate / Decision Gate)](#gate-quality-gate--decision-gate)
 - [Gate Theater (La Finzione del Gate)](#gate-theater-la-finzione-del-gate)
 - [Generazione autoregressiva (e Processo autoregressivo)](#generazione-autoregressiva-e-processo-autoregressivo)
 - [Ghost Code (Codice Fantasma)](#ghost-code-codice-fantasma)
@@ -44630,6 +44632,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Patch-and-Pray (Toppa alla Cieca)](#patch-and-pray-toppa-alla-cieca)
 - [Periodic Review (Revisione Periodica)](#periodic-review-revisione-periodica)
 - [Phantom Flag](#phantom-flag)
+- [Pipeline (Pipeline CI/CD e Pipeline Dati / AI)](#pipeline-pipeline-cicd-e-pipeline-dati--ai)
 - [Plausibility Trap (Trappola della Plausibilità)](#plausibility-trap-trappola-della-plausibilità)
 - [Poison Fallback](#poison-fallback)
 - [Post-Deployment Analysis](#post-deployment-analysis)
@@ -44671,6 +44674,7 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 - [Rootless Container (Container senza privilegi di root)](#rootless-container-container-senza-privilegi-di-root)
 - [Rubber-Stamping](#rubber-stamping)
 - [Runbook (Playbook)](#runbook-playbook)
+- [Runtime (Ambiente di Esecuzione e Tempo di Esecuzione)](#runtime-ambiente-di-esecuzione-e-tempo-di-esecuzione)
 - [Runtime Invariant Probes (Sonde di Invariante a Runtime)](#runtime-invariant-probes-sonde-di-invariante-a-runtime)
 
 #### S
@@ -44798,6 +44802,17 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine tecnico d'uso professionale consolidato  
 **Definizione:** L'architettura software e il coordinamento delle componenti operative di un sistema AI, deputata alla gestione deterministica dei flussi di lavoro, delle chiamate ai modelli linguistici, dell'interrogazione di banche dati e dell'invocazione di strumenti esterni. Nel quadro della Software Assurance, l'orchestratore funge da linea difensiva deterministica dell'applicazione: applica la sanificazione degli input, impone vincoli temporali rigidi (*timeout fail-safe*), impedisce loop infiniti generati da agenti autonomi e garantisce la registrazione immutabile dei log di audit.  
 *<u>Approfondimento nel manuale</u>: vedi Quadro Didattico (Sez. 3, punto 5), Capitolo 13 (Implementation Design, Sez. 4.2), Capitolo 19 (Threat Modeling & Red Teaming, Sez. 8.1) e Appendice ⊞ (Il Moltiplicatore Personale, Sez. 2 e Sez. 4).*
+
+#### AI Runtime (Runtime di Inferenza / Motore di Esecuzione AI)
+**Categoria:** Termine tecnico consolidato (Machine Learning Engineering)
+**Definizione:** Strato software specializzato di basso livello (es. motori computazionali come `llama.cpp`, `vLLM`, `TensorRT-LLM`, `ONNX Runtime`, o piattaforme di serving e orchestrazione locale che li integrano come `Ollama` e `LocalAI`) deputato a gestire l'esecuzione dell'inferenza dei modelli di intelligenza artificiale. Alloca e governa le risorse di calcolo hardware (VRAM, RAM, CPU, GPU, acceleratori dedicati), gestisce il caricamento o la mappatura in memoria dei pesi numerici del modello (inclusi offloading parziale su disco via mmap o parallelismo distribuito) ed esegue i cicli di calcolo tensoriale e matriciale necessari alla generazione dei token.
+*Distinzioni architetturali fondamentali:* Nel manuale è rigorosamente distinto da:
+- Il *Modello AI* (il manufatto statico contenente pesi e parametri, es. file GGUF o Safetensors);
+- Il *Runtime Applicativo* (l'ambiente di esecuzione del linguaggio ospite che governa l'applicazione, es. CPython o Node.js; vedi voce *Runtime*);
+- L'*Orchestratore di Sistema* (la logica applicativa che coordina workflow, chiamate API e agenti, es. LangGraph, Semantic Kernel);
+- L'*Interfaccia Utente* (il client frontend grafico, es. Open WebUI o LM Studio).
+*Implicazioni per l'assurance e non-determinismo:* Condiziona in modo determinante le prestazioni, la latenza e la riproducibilità numerica. L'impostazione della temperatura a zero (`temperature=0`) non garantisce da sola la riproducibilità deterministica assoluta: l'ottimizzazione del calcolo parallelo su GPU, la non-associatività delle operazioni in virgola mobile su architetture parallele, le variazioni di micro-batching e le quantizzazioni (es. a 4 o 8 bit) possono introdurre oscillazioni stocastiche marginali anche a parità di prompt.
+*<u>Approfondimento nel manuale</u>: vedi Quadro Didattico (Sez. 3.2, punto 2 e Sez. 6), Capitolo 12 (Assumption Verification, Sez. 12.2), Capitolo 14 (Containment & Least Authority, Sez. 8), Appendice ✦ (Diversità tra Modelli, Sez. 7) e Appendice ⊞ (Il Moltiplicatore Personale, Sez. 2 e Sez. 4).*
 
 #### Air-Gapping (Isolamento fisico o logico di rete)
 **Categoria:** Termine normativo o standardizzato (IETF RFC 4949, NIST CSRC)
@@ -45445,6 +45460,14 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Sessione controllata e pianificata in ambiente clone in cui viene iniettato deliberatamente un guasto di sistema per misurare empiricamente l'efficacia delle regole di allarme e verificare l'eseguibilità concreta dei runbook da parte del personale reperibile.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 27 (Alerting & Runbooks), Sezione 5 e Sezione 15.2.*
 
+#### Gate (Quality Gate / Decision Gate)
+**Categoria:** Termine tecnico e di governance consolidato
+**Definizione:** Dispositivo metodologico, architetturale o automatizzato posto a presidio della transizione di un componente o artefatto software tra due fasi successive del ciclo di vita (es. da sviluppo locale a repository, da integrazione a staging, da verifica a esercizio). Nel manuale si distinguono due accezioni cardine:
+1. *Quality Gate (o Stage Gate)*: punto di controllo (frequentemente implementato in forma interamente automatizzata nelle pipeline CI/CD, ma applicabile anche a livello procedurale) che subordina l'avanzamento al soddisfacimento di criteri qualitativi minimi prefissati (es. superamento dei test, soglie di copertura, assenza di vulnerabilità note). Il superamento dei criteri qualitativi costituisce un riscontro oggettivo di conformità tecnica e non coincide automaticamente con la decisione autorizzativa formale di rilascio.
+2. *Decision Gate (Evidence-Based Decision Gate)*: formalizzazione algoritmica, deterministica e non-compensativa definita dal modello decisionale del manuale (Step 23), in cui un motore di policy valuta un dossier probatorio immutabile rispetto a requisiti di completezza dei claim critici, indipendenza epistemica degli oracoli e rispetto del budget di discrepanza. Emette verdetti categorici (`PASS`, `PARTIAL`, `UNKNOWN`, `FAIL`, `NOT APPLICABLE` e lo stato bloccante `NO-GO`), i quali costituiscono stati convenzionali interni del modello del manuale e non standard normativi universali *de jure*.
+*Non va confuso con:* le porte logiche booleane hardware (gate AND/OR), né con la mera esecuzione con codice di uscita zero (`exit code 0`) di uno script di build che non valuti l'indipendenza delle evidenze.
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 3 (Authority & Responsibility, Sez. 14.2), Capitolo 10 (Assurance Level, Sez. 7.6), Capitolo 23 (Evidence-Based Decision Gates, Sez. 4.3, 5 e 7) e Capitolo 24 (Human Review & Formal Approval, Sez. 7.2).*
+
 #### Gate Theater (La Finzione del Gate)
 **Categoria:** Anti-pattern denominato dal manuale  
 **Definizione:** Allestimento di un'infrastruttura di controllo e gating visivamente complessa e ricca di dashboard formali, le cui regole interne sono tuttavia prive di effettivo potere bloccante (es. flag di prosecuzione automatica su errore o soglie permissive prive di controllo semantico).  
@@ -45861,6 +45884,14 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Definizione:** Anti-pattern architetturale in cui una nuova funzionalità è formalmente racchiusa dietro un Feature Flag disabilitato (OFF), ma il modulo esegue comunque mutazioni persistenti o lock di risorse al momento dell'inizializzazione o bootstrap dell'applicazione.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 25 (Staging, Canary & Feature Flags), Sezione 10.2.*
 
+#### Pipeline (Pipeline CI/CD e Pipeline Dati / AI)
+**Categoria:** Termine tecnico d'uso professionale consolidato
+**Definizione:** Struttura architetturale o procedurale organizzata come concatenazione orchestrata di stadi o componenti computazionali (disposti in sequenza, in parallelo o secondo diramazioni condizionali su grafi aciclici diretti / DAG), in cui l'output prodotto o trasformato da uno stadio alimenta l'ingresso degli stadi successivi. Nel manuale assume due valenze operative fondamentali:
+1. *Pipeline di Automazione CI/CD (Continuous Integration / Continuous Delivery)*: la catena strumentale automatizzata (es. GitHub Actions, GitLab CI) che preleva il codice dal repository ed esegue l'orchestrazione di verifiche statiche (linter/SAST), scansione delle dipendenze (SCA/secret scan), test automatizzati, analisi di mutazione e valutazione del Decision Gate, arrestando il flusso in caso di violazione delle policy.
+2. *Pipeline Dati / Pipeline AI*: la catena computazionale di trasformazione del flusso informativo gestita dal software a runtime (es. estrazione del dato grezzo, pulizia, estrazione di feature, inferenza del modello, decodifica vincolata, validazione dello schema di output e instradamento al sink esecutivo). Comprende diverse architetture, tra cui le pipeline RAG (Retrieval-Augmented Generation) per l'interrogazione di basi documentali, che rappresentano una specifica sottoclasse architetturale di pipeline AI e non ne esauriscono l'ambito.
+*Rilevanza per l'assurance:* Una pipeline CI/CD interamente verde o una pipeline AI priva di eccezioni non dimostrano, da sole, che il software sia privo di difetti logici o che rispetti le proprietà critiche del dominio reale.
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 13 (Implementation Design, Sez. 4.2), Capitolo 16 (Automated Testing, Sez. 1 e 8), Capitolo 17 (Static Analysis, Sez. 4), Capitolo 23 (Decision Gates, Sez. 1 e 4.1), Capitolo 26 (Observability), Appendice ☰ (Cookbook di Assurance) e Appendice ⊞ (Il Moltiplicatore Personale, Sez. 4 e 5).*
+
 #### Plausibility Trap (Trappola della Plausibilità)
 **Categoria:** Costrutto didattico del manuale  
 **Definizione:** Distorsione cognitiva ed epistemica per cui la scorrevolezza stilistica, l'eleganza formale e la leggibilità superficiale del codice generato da un LLM inducono i revisori a presumere la correttezza logica del software, abbattendo la vigilanza critica.  
@@ -46055,6 +46086,14 @@ Ciascuna voce del Glossario include l'indicazione esplicita del capitolo o dello
 **Categoria:** Termine tecnico consolidato (Site Reliability Engineering)  
 **Definizione:** Contratto operativo strutturato, versionato e verificato a sette dimensioni che definisce trigger, precondizioni, autorizzazioni minime, manovre diagnostiche in sola lettura, mitigazioni e criteri di chiusura per uno specifico allarme.  
 *<u>Approfondimento nel manuale</u>: vedi Capitolo 27 (Alerting & Runbooks), Sezione 5 e Sezione 6.3.*
+
+#### Runtime (Ambiente di Esecuzione e Tempo di Esecuzione)
+**Categoria:** Termine tecnico consolidato (sistemi operativi e linguaggi di programmazione)
+**Definizione:** Nel vocabolario informatico e nel manuale assume una duplice accezione fondamentale:
+1. *Tempo di esecuzione (Runtime vs Compile-time / Build-time)*: il periodo temporale durante il quale il programma è attivo ed esegue le proprie istruzioni. Non implica necessariamente che ogni singola istruzione sia elaborata in modo diretto e nativo dal microprocessore fisico (CPU/GPU): l'esecuzione può essere mediata da interpreti software, compilatori Just-In-Time (JIT), macchine virtuali a bytecode o emulatori. I difetti che emergono unicamente a runtime (es. corse critiche concorrenti, esaurimento dinamico delle connessioni o eccezioni non gestite su dati rari) non sono intercettabili dall'analisi sintattica statica dell'AST e richiedono test dinamici, fuzzing, oracoli di proprietà o osservabilità continua.
+2. *Ambiente di supporto dell'esecuzione (Application / Host Runtime)*: lo strato software intermedio (es. CPython, Node.js, Deno, JVM, .NET CLR, WebAssembly/WASI) che fornisce i servizi necessari per l'esecuzione del codice applicativo, gestendo memoria, allocazione di oggetti, scheduling dei thread, risoluzione dei moduli e interfacciamento con le chiamate di sistema del kernel host.
+*Rilevanza per l'assurance e distinzione architetturale:* I runtime applicativi non sono equivalenti sul piano della sicurezza: molti (come CPython o Node.js standard) operano a piena autorità ambientale e non costituiscono sandbox di isolamento; il confinamento reale richiede vincoli a livello di sistema operativo (container, seccomp, cgroups) o runtime a capability native come WASI. Si distingue dall'*AI Runtime*, che ne costituisce una specializzazione infrastrutturale dedicata all'inferenza tensoriale (vedi voce dedicata).
+*<u>Approfondimento nel manuale</u>: vedi Capitolo 14 (Containment & Least Authority, Sez. 5 e 8), Capitolo 26 (Observability, Sez. 4 e 5), Appendice ▣ (Progettazione di Sandbox ed Esecuzione Isolata, Sez. 3) e Appendice ♖ (Modelli di Sicurezza dell'Host OS e Autorizzazione dei Runtime, Sez. 3 e 4).*
 
 #### Runtime Invariant Probes (Sonde di Invariante a Runtime)
 **Categoria:** Costrutto didattico introdotto dal manuale  
