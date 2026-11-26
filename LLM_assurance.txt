@@ -164,323 +164,161 @@ I marchi citati (inclusi ISO, IEEE, MITRE ATLAS, OWASP, DO-178C) appartengono ai
 ## ➠ Nota Terminologica: ASSURANCE
 
 > [!NOTE]
-> ✎ Il concetto e la traduzione di **Assurance**  
-> Nel contesto dell'Ingegneria del Software e della Governance dei sistemi basati su Intelligenza Artificiale e LLM, la precisione terminologica non è un requisito puramente stilistico, ma una necessità epistemica (ossia, la necessità di definire con precisione ciò che si afferma e di disporre di basi adeguate per ritenerlo attendibile) e metodologica.  
-> Il termine inglese Assurance presenta una complessità semantica che non trova un unico corrispettivo sintetico ed esaustivo nella lingua italiana. Per evitare equivoci concettuali e operativi nell'applicazione dei principi esposti in questo manuale, la presente nota chiarisce il significato del termine, le sue possibili rese in italiano e la convenzione redazionale adottata.
->
+> ✎ **Perché questa nota (e a chi serve)**  
+> Quando un software viene progettato o controllato con l'aiuto dell'Intelligenza Artificiale (e in particolare dei modelli linguistici, gli **LLM**), parole di uso comune come *«funziona»*, *«è garantito»* o *«è sicuro»* diventano facili trappole. Chi scrive il codice, chi gestisce il progetto, chi firma i contratti e chi usa il programma rischia di dare a queste parole significati completamente diversi.  
+> Il termine inglese **Assurance** indica il metodo con cui si costruisce una fiducia seria e dimostrabile in un sistema tecnologico. Poiché in italiano non esiste una singola parola capace di tradurlo senza creare malintesi, questa nota spiega in linguaggio chiaro che cosa significa, in che cosa differisce dalla «garanzia» commerciale o dall'«assicurazione» e come viene usato in tutto il manuale.
 
 ### Indice dei Contenuti
 
-1. **Definizione epistemica e ingegneristica**
-2. **Assurance, Warranty e Insurance**
-3. **Possibili corrispettivi italiani**
-4. **Convenzione adottata nel manuale**
-5. **Distinzione fondamentale per il manuale**
-6. **Principio terminologico conclusivo**
+1. **Che cos'è l'Assurance**
+2. **Le tre facce della «garanzia»: Assurance, Warranty e Insurance**
+3. **Perché non usiamo una traduzione italiana unica**
+4. **La convenzione adottata nel manuale**
+5. **Che cosa NON è l'Assurance (le confusioni più frequenti)**
+6. **Il principio guida finale: quattro illusioni da evitare**
 
 ---
 
-### 1. Definizione epistemica e ingegneristica
+### 1. Che cos'è l'Assurance
+***(spiegato semplice e secondo gli standard)***
 
-Nella terminologia internazionale di *Systems and Software Assurance*, il riferimento principale è ISO/IEC/IEEE 15026-1:2025 — Systems and software engineering — Systems and software assurance — Part 1: Vocabulary and concepts.
+Immaginiamo di salire su un ascensore. Perché ci fidiamo del fatto che non cadrà?
 
-Lo standard definisce assurance come:
+Non ci fidiamo perché sulla parete c'è l'etichetta *«Garanzia 2 anni»* del costruttore, né perché il condominio ha stipulato una polizza assicurativa per eventuali incidenti. Ci fidiamo perché dietro quell'ascensore esiste un lavoro tecnico preciso:
 
-«grounds for justified confidence that a claim has been or will be achieved»
+- una **promessa tecnica misurabile** (*«regge fino a 600 kg»*);
+- dei **calcoli ingegneristici** che spiegano perché cavi e freni possono reggere quel peso;
+- delle **prove reali** (test di carico, collaudi, ispezioni);
+- delle **condizioni d'uso e dei limiti dichiarati** (*«non usare in caso di incendio»*, manutenzione obbligatoria ogni sei mesi).
 
-ovvero, in una resa concettuale italiana:
+Nel mondo della scienza e dell'ingegneria del software, tutto questo insieme si chiama **Assurance**.
 
-«basi o elementi giustificativi per una fiducia razionalmente giustificata che una determinata asserzione (claim) sia stata o sarà soddisfatta.»
+In parole semplici, fare *Assurance* significa **raccogliere prove concrete e ragionamenti solidi per dimostrare, senza prendersi in giro, che una promessa specifica sul funzionamento di un programma regge davvero**.
 
-La definizione è deliberatamente centrata sulla claim: l'assurance non è semplicemente una proprietà del software, né coincide con una singola attività di testing o verifica.
+Lo standard internazionale di riferimento — **ISO/IEC/IEEE 15026-1:2025** (*Systems and software engineering — Systems and software assurance — Part 1: Vocabulary and concepts*) — formalizza esattamente questa idea definendo l'assurance come:
 
-Nel contesto dell'ingegneria dei sistemi e dell'assurance, una **claim** (asserzione) non è uno slogan promozionale né una dichiarazione di intenti generica: è una proposizione tecnica precisa, esplicita, non ambigua e falsificabile riguardante una proprietà, un comportamento o un limite del sistema (ad esempio: *"Il sistema garantisce che nessun addebito superi il saldo disponibile"*). L'intero impianto di assurance esiste unicamente per sostenere o confutare razionalmente tale asserzione.
+> «grounds for justified confidence that a claim has been or will be achieved»
 
-Nel modello di ISO/IEC/IEEE 15026, le claim vengono sostenute attraverso argomentazioni, evidenze e assunzioni. L'assurance case costituisce l'artefatto argomentativo attraverso cui tali elementi vengono collegati in modo strutturato e verificabile.
+ovvero:
 
-Ne consegue che:
+> «basi concrete per avere una fiducia fondata nel fatto che una determinata affermazione (*claim*) sia stata o sarà rispettata.»
+
+Al centro di tutto c'è la **claim** (l'affermazione da dimostrare). Nel software, una *claim* non è uno slogan pubblicitario (*«la nostra IA è affidabile al 100%»*) né una generica dichiarazione di buone intenzioni. È una **promessa tecnica precisa, chiara e verificabile nei fatti**, su cui si può stabilire oggettivamente se è vera o falsa — ad esempio: *«Il sistema impedisce di addebitare una somma superiore al saldo disponibile sul conto»*.
+
+Per sostenere questa promessa, gli ingegneri costruiscono un vero e proprio **dossier tecnico ragionato** (chiamato in gergo **assurance case**), che mette in fila quattro elementi:
+
 ```text
-CLAIM
-  ->
-ARGUMENT
-  ->
-EVIDENCE + ASSUMPTIONS
-  ->
-GROUNDS FOR JUSTIFIED CONFIDENCE
+1. PROMESSA TECNICA (Claim)
+   Che cosa affermiamo esattamente sul funzionamento o sui limiti del sistema?
+      ↓
+2. FILO LOGICO (Argument)
+   Quale ragionamento collega le nostre prove alla promessa?
+      ↓
+3. PROVE CONCRETE (Evidence) + PRESUPPOSTI E LIMITI (Assumptions)
+   Quali test e misure abbiamo fatto? E a quali condizioni valgono?
+      ↓
+4. FIDUCIA FONDATA (Justified Confidence)
+   Possiamo fidarci davvero, sapendo fin dove arrivano le certezze e dove restano dubbi?
 ```
 
-L'Assurance non si riduce quindi alla semplice verifica che il software "funzioni".
+*(Nota linguistica: nei testi tecnici inglesi i presupposti sono chiamati **assumptions**, parola spesso tradotta alla lettera con «assunzioni». Qui non ha nulla a che vedere con l'assunzione di personale: indica le **condizioni di partenza** che diamo per valide affinché il sistema funzioni, ad esempio «il calcolo è valido purché la connessione di rete sia attiva».)*
 
-Un test può fornire un'evidenza.
-
-Una verifica può fornire un'evidenza.
-
-Un'analisi statica può fornire un'evidenza.
-
-Un'analisi di sicurezza può fornire un'evidenza.
-
-Un esperto può fornire un giudizio tecnico.
-
-Ma nessuno di questi elementi, considerato isolatamente e indipendentemente dal contesto, è necessariamente equivalente all'intero concetto di Assurance.
-
-L'Assurance riguarda la base complessiva e giustificata sulla quale è possibile riporre fiducia rispetto a una determinata claim, tenendo conto di evidenze, assunzioni, argomentazioni, incertezze e limiti.
+Ecco perché l'Assurance non coincide mai con una singola attività di controllo. Un test automatico, un'analisi del codice alla ricerca di errori, una verifica di sicurezza informatica o il parere di un esperto producono **singoli indizi o prove** (*evidence*). Ma una singola prova, presa fuori contesto e senza chiarire presupposti, limiti e margini di incertezza, non basta a dimostrare che il sistema sia affidabile nel suo complesso.
 
 > *(Per i riferimenti editoriali e normativi completi della famiglia ISO/IEC/IEEE 15026, vedi l'appendice: [▤ Bibliografia essenziale](#bibliografia-essenziale-man))*
 
 ---
 
-### 2. Assurance, Warranty e Insurance
+### 2. Le tre facce della «garanzia»: Assurance, Warranty e Insurance
 
-I termini inglesi Assurance, Warranty e Insurance possono essere associati nel linguaggio comune all'idea generale di "garanzia", ma appartengono a concetti differenti.
+In italiano usiamo spesso le parole «garanzia» o «assicurazione» in situazioni molto diverse. Nel linguaggio tecnico, legale ed economico internazionale esistono invece tre parole distinte, perché rispondono a **tre domande diverse della vita reale**:
 
-| Termine | Ambito prevalente | Funzione principale |
+| Termine | La domanda a cui risponde | Che cos'è in pratica |
 |---|---|---|
-| Assurance | Ingegneristico / epistemico | Fornire basi giustificate per confidare che una claim relativa al sistema sia o sarà soddisfatta. |
-| Warranty | Contrattuale / commerciale / legale | Stabilire un impegno, una promessa o un rimedio relativo a determinate caratteristiche o difetti del prodotto o servizio. |
-| Insurance | Finanziario / attuariale | Trasferire, secondo condizioni contrattuali, determinate conseguenze economiche del rischio a un assicuratore. |
+| **Assurance** | *«Su quali prove mi baso per fidarmi che funzioni?»* | Il dossier di prove, ragionamenti e limiti tecnici che dimostra quanto il sistema è affidabile. |
+| **Warranty** | *«Che cosa mi spetta se si rompe?»* | La garanzia commerciale o legale (es. riparazione gratuita, sostituzione o rimborso promessi nel contratto). |
+| **Insurance** | *«Chi paga i danni se succede un guaio?»* | La polizza assicurativa che trasferisce a una compagnia i costi economici di un eventuale danno o incidente. |
 
-La distinzione fondamentale è quindi funzionale:
-```text
-ASSURANCE
-    ->
-giustificazione della fiducia
-
-WARRANTY
-    ->
-impegno / garanzia contrattuale o commerciale
-
-INSURANCE
-    ->
-trasferimento contrattuale di determinate conseguenze economiche del rischio
-```
-
-Assurance non significa Warranty.
-
-Assurance non significa Insurance.
-
-Il fatto che in italiano entrambi possano essere associati al termine "garanzia" rende particolarmente importante mantenere la distinzione concettuale.
+Confondere queste tre parole porta a decisioni sbagliate: un fornitore può offrire un'ottima **Warranty** (se il programma si blocca, lo ripara gratis) o avere una ricca **Insurance** (se causa un danno economico, paga l'assicurazione), pur non avendo alcuna **Assurance** seria — cioè nessuna prova concreta che il software sia stato costruito per non fare danni fin dall'inizio.
 
 ---
 
-### 3. Possibili corrispettivi italiani
+### 3. Perché non usiamo una traduzione italiana unica
 
-**A. Garanzia**
+Nessuna singola parola italiana riesce a rendere l'intero significato di *Assurance* senza creare confusione:
 
-Portata: possibile resa italiana in determinati contesti tecnici.
+- **Garanzia**  
+  Nel linguaggio comune comunica bene l'idea di poter fare affidamento su qualcosa. Tuttavia, per chiunque legga un contratto o compri un prodotto, «garanzia» evoca subito la garanzia legale o commerciale (*Warranty*). Per evitare questo equivoco, nel manuale *«Garanzia del Software»* non è usata come sinonimo libero di *Assurance*; quando compare, il contesto precisa sempre che ci si riferisce esclusivamente all'affidabilità tecnica dimostrata.
 
-Vantaggio: comunica l'idea di una base che consente di confidare in una proprietà dichiarata.
+- **Assicurazione**  
+  Si ritrova in espressioni storiche del mondo aziendale come *«Assicurazione Qualità»* (*Quality Assurance*). In un manuale che tratta rischi, responsabilità e sistemi di IA, però, usarla creerebbe troppa confusione con le polizze assicurative (*Insurance*). Pertanto, **Assurance non significa Assicurazione** (salvo quando si citano espressamente denominazioni storiche di uno specifico settore).
 
-Limite: nel linguaggio comune può essere confusa con la garanzia commerciale o contrattuale (warranty).
+- **Attestazione / Asseverazione**  
+  Indicano atti formali ben precisi — una firma, un verbale di controllo, un certificato legale o professionale — con cui qualcuno si assume la responsabilità di dichiarare qualcosa (in processi di approvazione, audit o conformità). Un'attestazione può essere una parte o il risultato finale del percorso, ma non sostituisce l'intero lavoro di Assurance: la firma su un documento non equivale alle prove e ai ragionamenti che stanno sotto.
 
-Per questo motivo, nel presente manuale "Garanzia del Software" non viene utilizzato come sinonimo generale e intercambiabile di Assurance.
-
-Quando compare, deve essere esplicitamente qualificato nel significato tecnico adottato.
-
----
-
-**B. Assicurazione**
-
-Il termine può comparire come resa storica di espressioni quali Quality Assurance in determinati contesti organizzativi e gestionali.
-
-Tuttavia, nel presente manuale non viene utilizzato come traduzione generale di Assurance.
-
-Il rischio di confusione con il significato finanziario e attuariale di Insurance è troppo elevato, soprattutto in un testo che tratta esplicitamente rischio, governance e sistemi software.
-
-Pertanto:
-
-Assurance != Assicurazione
-
-salvo il caso in cui si stia discutendo esplicitamente della terminologia storica di uno specifico ambito.
+- **Fiducia giustificata**  
+  È un'ottima traduzione del risultato finale (*justified confidence*) ed è utilissima per spiegare a chiunque a che cosa serve l'Assurance. Da sola, però, descrive l'esito finale (*«mi fido con buone ragioni»*) e non tutto il lavoro concreto necessario per costruirlo (promesse verificabili, prove, ragionamenti, presupposti, contesto, limiti, incertezze e decisioni). Viene quindi usata come spiegazione concettuale, non come termine tecnico sostitutivo.
 
 ---
 
-**C. Attestazione / Asseverazione**
+### 4. La convenzione adottata nel manuale
 
-Attestazione e asseverazione possono descrivere specifici atti formali, professionali, organizzativi o giuridici.
+#### 4.1 Manteniamo il termine inglese «Assurance»
 
-Possono quindi essere pertinenti in determinati processi di:
+Per restare allineati alla terminologia internazionale dell'ingegneria e della scienza dei sistemi, il manuale mantiene la parola **Assurance** come termine tecnico di riferimento.
 
-- approvazione;
-- certificazione;
-- conformità;
-- audit;
-- responsabilità formale.
-
-Non rappresentano però l'intero concetto di Assurance.
-
-In particolare:
-```text
-ATTESTAZIONE / ASSEVERAZIONE
-    ->
-specifico atto o dichiarazione
-
-ASSURANCE
-    ->
-grounds for justified confidence rispetto a una claim
-```
-
-Un atto di approvazione o attestazione può quindi essere parte di un processo di assurance, senza essere equivalente all'assurance stessa.
-
----
-
-**D. Fiducia giustificata**
-
-Fiducia giustificata rappresenta una buona resa concettuale di justified confidence.
-
-È particolarmente utile per spiegare il significato epistemico dell'Assurance.
-
-Tuttavia, non è una sostituzione terminologica completa del lemma inglese Assurance, perché non esprime da sola l'intero insieme di:
-
-- claim;
-- argomentazioni;
-- evidenze;
-- assunzioni;
-- contesto;
-- limiti;
-- incertezza;
-- decisioni.
-
-Per questo motivo viene utilizzata principalmente come spiegazione concettuale, non come termine operativo sostitutivo.
-
----
-
-### 4. Convenzione adottata nel manuale
-
-Il manuale adotta la seguente convenzione:
-
-#### 4.1 Uso di "Assurance"
-
-Il termine inglese Assurance viene mantenuto come termine d'arte.
-
-La scelta consente di mantenere il collegamento con la terminologia internazionale dell'Ingegneria dei Sistemi e del Software, in particolare con la famiglia ISO/IEC/IEEE 15026.
-
-La versione corrente di riferimento è ISO/IEC/IEEE 15026-1:2025; la precedente ISO/IEC/IEEE 15026-1:2019 è stata ritirata e sostituita dall'edizione 2025.
+*(Nota normativa: lungo tutto il manuale lo standard di riferimento vigente è **ISO/IEC/IEEE 15026-1:2025**, che ha ritirato e sostituito la precedente edizione del 2019).*
 
 > *(Per i riferimenti editoriali e normativi completi della famiglia ISO/IEC/IEEE 15026, vedi l'appendice: [▤ Bibliografia essenziale](#bibliografia-essenziale-man))*
 
----
+#### 4.2 Uso descrittivo di «Garanzia del Software»
 
-#### 4.2 Uso di "Garanzia del Software"
+Quando per chiarezza espositiva si usa la formula italiana *Garanzia del Software*, essa va sempre intesa in senso puramente descrittivo, escludendo che si tratti di una garanzia commerciale, di un impegno contrattuale di rimborso, di una polizza assicurativa o della promessa che il software sia infallibile. Nel manuale, **Assurance** resta comunque il termine principale.
 
-Quando sia necessario utilizzare una formulazione italiana, Garanzia del Software può essere utilizzato come resa descrittiva del concetto, purché il contesto chiarisca che non si tratta di:
+#### 4.3 Che cosa intendiamo operativamente per Assurance in questo manuale
 
-- garanzia commerciale;
-- warranty contrattuale;
-- assicurazione finanziaria;
-- promessa di correttezza assoluta.
+In questo testo, fare **Assurance** significa seguire un percorso strutturato e trasparente composto da tre passaggi inseparabili:
 
-Nel manuale, quindi, Assurance rimane il termine principale.
+- **Costruire e valutare le basi:** raccogliere e verificare in modo ordinato attività, controlli, prove concrete (*evidence*), presupposti dichiarati (*assumptions*) e ragionamenti (*argomentazioni*) per stabilire se determinate proprietà o promesse (*claim*) del software sono davvero soddisfatte.
+- **Misurare i confini:** tenere conto esplicitamente dei rischi reali, dei limiti d'uso e dei margini di incertezza, senza nascondere ciò che non è stato possibile provare.
+- **Sostenere chi decide:** fornire a chi porta la responsabilità delle scelte (*responsabilità decisionali*) gli elementi chiari per approvare, limitare o bloccare l'impiego del sistema.
 
----
-
-#### 4.3 Definizione operativa del manuale
-
-Ai fini del presente manuale, il termine Assurance viene utilizzato nella seguente accezione operativa:
-
-«Insieme strutturato di attività, argomentazioni, evidenze, assunzioni, verifiche e decisioni attraverso cui si acquisiscono e si valutano le basi necessarie per una fiducia giustificata rispetto a determinate proprietà o claim di un sistema software, tenendo conto di rischi, limiti, incertezze e responsabilità decisionali.»
-
-Questa è una definizione operativa adottata dal manuale e non deve essere presentata come citazione letterale di ISO/IEC/IEEE 15026-1.
-
-Essa integra il concetto normativo di grounds for justified confidence con il modello metodologico sviluppato nel presente manuale.
+*(Nota di metodo: questa è la definizione operativa adottata dal manuale per unire i principi dello standard ISO/IEC/IEEE 15026-1 al percorso pratico esposto nei capitoli seguenti; non va quindi citata come frase letterale della norma ISO.)*
 
 ---
 
-### 5. Distinzione fondamentale per il manuale
+### 5. Che cosa NON è l'Assurance (le confusioni più frequenti)
 
-Il concetto deve essere mantenuto distinto dai seguenti:
-```text
-ASSURANCE
-!=
-TESTING
+Nel lavoro quotidiano, soprattutto quando si usano strumenti di IA, è facile confondere l'Assurance con singole attività tecniche o con impressioni personali. Ecco perché nessuna di queste cose, presa da sola, equivale all'Assurance:
 
-ASSURANCE
-!=
-VERIFICATION
+- **Fare prove pratiche (*Testing*) e controlli tecnici (*Verification* e *Validation*):** servono a scoprire errori e verificare se il programma risponde alle richieste, ma producono solo singoli pezzi di prova, non il quadro completo dell'affidabilità.
+- **Rispettare le regole sulla carta (*Compliance*) o avere un bollino (*Certification*):** seguire una lista di adempimenti o ottenere un certificato formale è spesso necessario, ma non dimostra da solo che il software sia sicuro nel contesto specifico in cui verrà usato.
+- **Avere una tutela contrattuale o economica (*Warranty* e *Insurance*):** prevedere chi ripara o paga dopo un guasto non equivale ad aver dimostrato tecnicamente che il sistema funziona bene.
+- **La fiducia personale (*Subjective Confidence*):** *«a me sembra che giri bene»* o *«ci abbiamo lavorato mesi, quindi mi fido»* è un'opinione soggettiva, non una dimostrazione basata sui fatti.
+- **La «sicurezza» mostrata dall'IA (*LLM Confidence*):** quando un modello linguistico risponde con tono convincente, scrive codice elegante o assegna una percentuale alta di sicurezza alla propria risposta, non sta fornendo alcuna prova tecnica di correttezza. L'IA calcola le parole più probabili, non dimostra la verità ingegneristica.
 
-ASSURANCE
-!=
-VALIDATION
-
-ASSURANCE
-!=
-COMPLIANCE
-
-ASSURANCE
-!=
-CERTIFICATION
-
-ASSURANCE
-!=
-WARRANTY
-
-ASSURANCE
-!=
-INSURANCE
-
-ASSURANCE
-!=
-CONFIDENCE SUBJECTIVE
-
-ASSURANCE
-!=
-LLM CONFIDENCE
-```
-
-Testing, verification, validation, compliance, certification e approval possono contribuire a un processo di assurance, ma nessuno di essi è automaticamente equivalente all'intero concetto.
-
-Analogamente:
-```text
-EVIDENCE
-!=
-ASSURANCE
-
-ARGUMENT
-!=
-ASSURANCE
-
-CONFIDENCE
-!=
-ASSURANCE
-
-EVIDENCE + ARGUMENT + ASSUMPTIONS + CONTEXT
-    ->
-GROUNDS FOR JUSTIFIED CONFIDENCE
-```
-
-La qualità dell'assurance dipende quindi dalla qualità e dalla pertinenza delle basi sulle quali la fiducia viene giustificata.
+In breve: né una singola prova, né un singolo ragionamento, né la sensazione di sicurezza bastano da soli. L'Assurance nasce soltanto quando **prove concrete + ragionamento logico + presupposti chiari + contesto d'uso reale** stanno insieme in modo coerente.
 
 ---
 
-### 6. Principio terminologico conclusivo
+### 6. Il principio guida finale: quattro illusioni da evitare
 
-Nel presente manuale:
+In tutto questo manuale vale una regola fondamentale:
 
-«Assurance non significa "certezza che il software sia corretto".»
+> **Assurance non significa «certezza che il software sia privo di errori».**
 
-Significa invece **costruire e valutare le basi giustificative che consentono di confidare, entro un determinato contesto e rispetto a determinate claim, nelle proprietà del sistema oggetto di assurance.**
+Significa invece **costruire e valutare prove e ragionamenti concreti che permettano di fidarsi di un sistema, entro limiti precisi e per scopi definiti**.
 
-Pertanto:
-```text
-PLAUSIBILITY
-    !=
-CORRECTNESS
+In particolare, quando si scrive o si analizza software con il supporto di un LLM, bisogna guardarsi da quattro salti logici molto comuni:
 
-CORRECTNESS
-    !=
-VERIFICATION
+1. **«Suona sensato e ben scritto» (*Plausibilità*) $\neq$ «È giusto» (*Correttezza*):** gli LLM sono bravissimi a produrre testi e righe di codice apparentemente impeccabili che però nascondono errori sottili o dettagli inventati.
+2. **«Sembra giusto» (*Correttezza apparente*) $\neq$ «È stato controllato sul serio» (*Verifica*):** un codice che a occhio appare logico e pulito può comunque bloccarsi o sbagliare non appena incontra i dati reali.
+3. **«Abbiamo fatto dei controlli» (*Verifica*) $\neq$ «Abbiamo prove abbastanza solide» (*Sufficienza delle prove*):** aver eseguito qualche test non significa aver coperto i rischi più importanti o i casi critici.
+4. **«Abbiamo tante prove» $\neq$ «Il sistema è automaticamente sicuro» (*Assurance automatica*):** le prove vanno sempre pesate rispetto al contesto, ai limiti dichiarati e alla gravità del rischio (un'app per ricette non richiede le stesse garanzie tecniche di un sistema per pagamenti bancari o di un dispositivo medico).
 
-VERIFICATION
-    !=
-EVIDENCE SUFFICIENCY
+***L'obiettivo dell'Assurance è quindi costruire una fiducia motivata e proporzionata al rischio, non promettere una certezza assoluta.***
 
-EVIDENCE SUFFICIENCY
-    !=
-ASSURANCE AUTOMATICA
-```
-
-***L'obiettivo dell'Assurance è quindi una fiducia giustificata e proporzionata al rischio, non una promessa di certezza assoluta.***
-
-Questa distinzione costituisce una delle basi epistemiche fondamentali dell'intero manuale.
+Questo principio guida ogni capitolo del manuale.
 
 ---
 
@@ -44316,7 +44154,7 @@ La regola fondamentale è:
 | **ISO/IEC 27001:2022**<br />*Allegato A – Controllo 8.30*<br />(Outsourced development) | **Sviluppo Affidato all'Esterno:** Dirigere, monitorare e riesaminare le attività legate allo sviluppo dei sistemi affidate a soggetti esterni. | • **Capitolo 3** (Authority & Responsibility)<br />• **Capitolo 4** (Specification)<br />• **Capitolo 17** (SAST/SCA/Secret Scan)<br />• **Capitolo 21** (Independent Verification)<br />• **Capitolo 23** (Decision Gates)<br />• **Capitolo 24** (Human Review & Approval) | |
 | **ISO/IEC 27001:2022**<br />*Allegato A – Controllo 8.31*<br />(Separation of development, test and production environments) | **Separazione degli Ambienti di Sviluppo, Test e Produzione:** Separare e mettere in sicurezza gli ambienti di sviluppo, test e produzione per proteggere i dati e i servizi operativi. | • **Capitolo 14** (Containment & Least Authority)<br />• **Capitolo 25** (Staging & Canary)<br />• **Appendice ▣** (Sandbox ed Esecuzione Isolata) | • Isolamento a 5 assi (namespaces, cgroups v2, seccomp, netns, mount).<br />• Dockerfile effimero non privilegiato (`UID 10001:10001`) con filesystem read-only.<br />• Riconciliazione dello Staging Fidelity Gap prima dell'esposizione canary. |
 | **NIST AI RMF 1.0**<br />*GOVERN*<br />(NIST AI 100-1) | **Struttura di Governo e Responsabilità:** Istituire processi organizzativi, ruoli chiari, responsabilità e presidi per gestire i rischi associati ai sistemi AI. | • **Capitolo 3** (Authority & Responsibility)<br />• **Capitolo 8** (Competence Gaps)<br />• **Capitolo 10** (Assurance Level)<br />• **Capitolo 24** (Human Review & Approval) | • Matrice ARCI-V: identificazione del singolo soggetto Accountable.<br />• Matrice delle Competenze di Assurance (ACM) contro il rubber-stamping.<br />• Allocazione formale del rigore probatorio proporzionata al rischio.<br />• Verbale di approvazione non delegabile con firma crittografica. |
-| **NIST AI RMF 1.0**<br />*MAP*<br />(NIST AI 100-1) | **Contestualizzazione e Comprensione del Rischio:** Mappare il contesto d'uso, le assunzioni sul mondo reale, i potenziali impatti e i vincoli di sistema. | • **Capitolo 1** (Problem Definition)<br />• **Capitolo 2** (Risk Classification)<br />• **Capitolo 5** (Assumptions & Unknowns)<br />• **Capitolo 19** (Threat Modeling) | • Modello Mondo-Macchina `W AND S |= R` (Jackson & Zave).<br />• Mappatura della severità del danno nel mondo reale W (Harm vs Hazard).<br />• Registro `ASSUMPTIONS.md` e catalogazione delle incognite (`UNKNOWN`).<br />• Modellazione dei confini di fiducia (Trust Boundaries) e STRIDE. |
+| **NIST AI RMF 1.0**<br />*MAP*<br />(NIST AI 100-1) | **Contestualizzazione e Comprensione del Rischio:** Mappare il contesto d'uso, le assunzioni sul mondo reale, i potenziali impatti e i vincoli di sistema. | • **Capitolo 1** (Problem Definition)<br />• **Capitolo 2** (Risk Classification)<br />• **Capitolo 5** (Assumptions & Unknowns)<br />• **Capitolo 19** (Threat Modeling) | • Modello Mondo-Macchina `W AND S ⊨ R` (Jackson & Zave).<br />• Mappatura della severità del danno nel mondo reale W (Harm vs Hazard).<br />• Registro `ASSUMPTIONS.md` e catalogazione delle incognite (`UNKNOWN`).<br />• Modellazione dei confini di fiducia (Trust Boundaries) e STRIDE. |
 | **NIST AI RMF 1.0**<br />*MEASURE*<br />(NIST AI 100-1) | **Misurazione e Valutazione Quantitativa/Qualitativa:** Valutare e verificare affidabilità, robustezza, sicurezza e aderenza ai requisiti tramite metriche quantitative, qualitative o miste e attività di valutazione TEVV (*Test, Evaluation, Verification, and Validation*). | • **Capitolo 11** (Independent Evidence)<br />• **Capitolo 16** (Automated Testing)<br />• **Capitolo 17** (Static Analysis & SAST)<br />• **Capitolo 18** (PBT, Fuzzing & Adversarial)<br />• **Capitolo 20** (Multi-Model Audit)<br />• **Capitolo 23** (Evidence-Based Decision Gates) | • Vettore di indipendenza epistemica dell'oracolo `Indep_Vector`.<br />• Copertura strutturale + Mutation Testing (potere discriminante).<br />• Scansione AST, Taint Analysis e Secret Scanning su cronologia Git.<br />• Generatori Property-Based (Hypothesis) con shrinking del controesempio.<br />• Matrice delle discrepanze tra modelli ciechi (Inter-Model Agreement).<br />• Motore deterministico di Gate `validate_evidence.py` fail-closed. |
 | **NIST AI RMF 1.0**<br />*MANAGE*<br />(NIST AI 100-1) | **Gestione Operativa e Trattamento del Rischio:** Allocare risorse di mitigazione, attuare il contenimento e gestire le risposte a incidenti e derive. | • **Capitolo 14** (Containment & Least Authority)<br />• **Capitolo 25** (Staging & Canary)<br />• **Capitolo 27** (Alerting & Runbooks)<br />• **Capitolo 28** (Rollback & Circuit Breakers)<br />• **Capitolo 30** (Risk Register & KB)<br />• **Capitolo 32** (Periodic Review) | • Applicazione sistematica di POLA: filesystem read-only, cgroups v2, no-egress.<br />• Confinamento del raggio d'impatto tramite calcolo qualitativo `BR(t)`.<br />• Allarmi multi-finestra concorrenti e mitigazioni rapide tracciate.<br />• Pattern architetturale Expand/Contract per la reversibilità del dato.<br />• Chiusura ciclica della conoscenza: incidente -> KB -> vincolo CI/CD. |
 | **NIST AI RMF – GenAI Profile**<br />*(NIST AI 600-1)* | **Gestione dei Rischi Specifici dell'AI Generativa:** Estendere GOVERN, MAP, MEASURE e MANAGE ai rischi propri o aggravati dall'AI generativa (confabulazioni/allucinazioni, sicurezza delle informazioni e prompt injection, integrazione della catena del valore, data poisoning, omogeneizzazione/bias). | *[Copertura parziale]*<br />• **Capitolo 14** (Containment)<br />• **Capitolo 15** (LLM-Assisted Impl.)<br />• **Capitolo 17** (SAST/SCA/Secret Scan)<br />• **Capitolo 18** (PBT, Fuzzing & Adversarial)<br />• **Capitolo 19** (Threat Modeling & Red Team)<br />• **Capitolo 20** (Multi-Model Audit)<br />• **Capitolo 32** (Periodic Review)<br />• **Appendice ⌨** (Prompt Engineering) | • Confinamento sandbox e `SECURITY_AI.md`.<br />• Invariant Embedding e Type-Driven Design.<br />• Scansione filiera anti-slopsquatting (`check_dependencies.py`).<br />• Red Teaming empirico contro Indirect Prompt Injection e Tool Abuse.<br />• Matrice delle discrepanze tra modelli ciechi (Inter-Model Agreement).<br />• Audit periodico su golden calibration set contro il model drift.<br />• Etichettatura epistemica (`P5`) e Pattern difensivo `P6`. |
