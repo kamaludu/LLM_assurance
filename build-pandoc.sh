@@ -260,8 +260,15 @@ blockquote { margin: 1em 0 1em 1.7em; }
 hr { border: 0; border-top: 1px solid #888888; height: 1px; margin: 1em 0; }
 
 table { margin: 1em 0; border-collapse: collapse; width: 100%; max-width: 100%; }
+table.fixed-cols { table-layout: fixed; }
 table caption { margin-bottom: 0.75em; }
-th, td { border: 1px solid #888888; padding: 0.25em 0.5em; }
+th, td {
+  border: 1px solid #888888;
+  padding: 0.25em 0.5em;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+}
 th { background-color: #f2f2f2; }
 
 nav#toc ol, nav#landmarks ol { padding: 0; margin-left: 1em; }
@@ -464,8 +471,19 @@ cat << 'EOF' >> "$BUILD_DIR/typst-style.typ"
     }
   }
 )
-#show raw.where(block: false): box.with(fill: rgb("#f2f2f2"), inset: (x: 3pt, y: 0pt), outset: (y: 2pt), radius: 2.5pt)
-#set table(stroke: 0.5pt + rgb("#a0a0a0"), fill: (col, row) => if row == 0 { rgb("#f2f2f2") } else { none }, inset: (x: 6pt, y: 5pt))
+#show raw.where(block: false): it => highlight(fill: rgb("#f2f2f2"), extent: 1.5pt, radius: 2.5pt, it)
+#set table(stroke: 0.5pt + rgb("#a0a0a0"), fill: (col, row) => if row == 0 { rgb("#f2f2f2") } else { none }, inset: (x: 4.5pt, y: 4pt))
+#show figure.where(kind: table): set block(breakable: true)
+#show table: set text(size: 8pt)
+#show table: set par(justify: false)
+#show table.cell.where(y: 0): set text(weight: "bold")
+#show table: it => {
+  show raw.where(block: false): r => {
+    show regex("[_.]"): m => m + sym.zws
+    r
+  }
+  it
+}
 EOF
 echo "[✓] Creato typst-style.typ"
 
@@ -548,6 +566,84 @@ local function is_ascii_diagram(text)
     end
   end
   return false
+end
+
+local function fit_decorative_code_lines(text, max_cols)
+  if not text or text == "" then return text end
+  local out, pos, len = {}, 1, #text
+  while pos <= len do
+    local nl = text:find("\n", pos, true)
+    local line, has_nl
+    if nl then line = text:sub(pos, nl - 1); has_nl = true; pos = nl + 1
+    else line = text:sub(pos); has_nl = false; pos = len + 1 end
+    local cr = ""
+    if line:sub(-1) == "\r" then cr = "\r"; line = line:sub(1, -2) end
+
+    local pfx, rep_run, rep_ch, sfx =
+      line:match("^([%s]*)(([=_#*~-])%3%3%3%3%3%3%3%3%3%3%3%3%3%3+)([%s]*)$")
+    if not pfx then
+      pfx, rep_run, rep_ch, sfx =
+        line:match("^([%s]*//[%s]*)(([=_#*~-])%3%3%3%3%3%3%3%3%3%3%3%3%3%3+)([%s]*)$")
+    end
+    if not pfx then
+      pfx, rep_run, rep_ch, sfx =
+        line:match("^([%s]*/%*[%s]*)(([=_#*~-])%3%3%3%3%3%3%3%3%3%3%3%3%3%3+)([%s]*%*/?[%s]*)$")
+    end
+    if not pfx then
+      pfx, rep_run, rep_ch, sfx =
+        line:match("^([%s]*%-%-[%s]*)(([=_#*~-])%3%3%3%3%3%3%3%3%3%3%3%3%3%3+)([%s]*)$")
+    end
+    if not pfx then
+      pfx, rep_run, rep_ch, sfx =
+        line:match("^([%s]*#[%s]*)(([=_*~-])%3%3%3%3%3%3%3%3%3%3%3%3%3%3+)([%s]*)$")
+    end
+
+    if pfx and rep_run then
+      local pfx_w = (utf8 and utf8.len(pfx:gsub("\t", "    "))) or #pfx:gsub("\t", "    ")
+      local sfx_w = (utf8 and utf8.len(sfx)) or #sfx
+      local target = math.max(12, max_cols - pfx_w - sfx_w)
+      if #rep_run > target then line = pfx .. string.rep(rep_ch, target) .. sfx end
+    else
+      local head, trun, tch, tsfx =
+        line:match("^(.-)(([=_#*~-])%3%3%3%3%3%3%3%3%3%3%3%3%3%3+)([%s]*%*/?[%s]*)$")
+      if head and head ~= "" and trun then
+        local head_w = (utf8 and utf8.len(head:gsub("\t", "    "))) or #head:gsub("\t", "    ")
+        local tsfx_w = (utf8 and utf8.len(tsfx)) or #tsfx
+        if head_w + #trun + tsfx_w > max_cols then
+          local target = math.max(6, max_cols - head_w - tsfx_w)
+          if #trun > target then line = head .. string.rep(tch, target) .. tsfx end
+        end
+      end
+    end
+    table.insert(out, line .. cr .. (has_nl and "\n" or ""))
+  end
+  return table.concat(out)
+end
+
+local function is_normative_trace_table(tbl)
+  if not tbl.colspecs or #tbl.colspecs ~= 4 then return false end
+  if not tbl.head or not tbl.head.rows or #tbl.head.rows == 0 then return false end
+  local cells = tbl.head.rows[1].cells
+  if not cells or #cells ~= 4 then return false end
+  return pandoc.utils.stringify(cells[1]):lower():find("standard", 1, true) ~= nil
+     and pandoc.utils.stringify(cells[2]):lower():find("obiettivo", 1, true) ~= nil
+     and pandoc.utils.stringify(cells[3]):lower():find("capitoli", 1, true) ~= nil
+     and pandoc.utils.stringify(cells[4]):lower():find("evidenza", 1, true) ~= nil
+end
+
+local function bold_docx_header_rows(rows)
+  if not rows then return end
+  for _, row in ipairs(rows) do
+    for _, cell in ipairs(row.cells) do
+      for _, blk in ipairs(cell.contents) do
+        if (blk.t == "Para" or blk.t == "Plain") and #blk.content > 0 then
+          if not (#blk.content == 1 and blk.content[1].t == "Strong") then
+            blk.content = pandoc.Inlines({ pandoc.Strong(blk.content) })
+          end
+        end
+      end
+    end
+  end
 end
 
 local function get_callout_info(el)
@@ -966,6 +1062,9 @@ process_blocks = function(blocks, is_top_level)
             if not has_class(b, "ascii-wide") then table.insert(b.classes, "ascii-wide") end
           end
         end
+        if is_format("typst") and not is_ascii_diagram(b.text) then
+          b.text = fit_decorative_code_lines(b.text, 40)
+        end
         emit_block_with_pagebreak(new_blocks, b, pending_pb)
         pending_pb = false
       else
@@ -979,8 +1078,20 @@ process_blocks = function(blocks, is_top_level)
             for j, def in ipairs(item[2]) do item[2][j] = process_blocks(def, false) end
           end
         elseif b.t == "Table" then
+          if is_normative_trace_table(b) then
+            local cs = b.colspecs
+            local w = { 0.18, 0.32, 0.23, 0.27 }
+            for idx_c = 1, 4 do cs[idx_c][2] = w[idx_c] end
+            b.colspecs = cs
+            if is_format("epub") and not has_class(b, "fixed-cols") then
+              table.insert(b.classes, "fixed-cols")
+            end
+          end
           if b.caption and b.caption.long then b.caption.long = process_blocks(b.caption.long, false) end
-          if b.head then process_table_rows(b.head.rows) end
+          if b.head then
+            process_table_rows(b.head.rows)
+            if is_format("docx") then bold_docx_header_rows(b.head.rows) end
+          end
           if b.bodies then for _, body in ipairs(b.bodies) do process_table_rows(body.head); process_table_rows(body.body) end end
           if b.foot then process_table_rows(b.foot.rows) end
         elseif b.t == "Figure" then
@@ -1000,6 +1111,16 @@ end
 function Pandoc(doc)
   local default_title = (os and os.getenv and os.getenv("PANDOC_DOC_TITLE")) or ""
   local default_author = (os and os.getenv and os.getenv("PANDOC_DOC_AUTHOR")) or ""
+
+  if is_format("typst") or is_format("docx") then
+    doc = doc:walk({
+      RawInline = function(el)
+        if el.format == "html" and el.text:match("^%s*<[bB][rR]%s*/?>%s*$") then
+          return pandoc.LineBreak()
+        end
+      end
+    })
+  end
 
   if is_format("html") then
     if not doc.meta.title and not doc.meta.pagetitle and default_title ~= "" then doc.meta.pagetitle = pandoc.MetaString(default_title) end
@@ -1058,11 +1179,31 @@ if [ -f "$BUILD_DIR/ref_unpacked/word/styles.xml" ]; then
       rest = substr(rest, e_idx + 10)
       return head patch_style_block(blk) rest
     }
+    function patch_tbl_first_row(xml,    pat, head, rest, e_idx, blk) {
+      pat = "<w:tblStylePr[[:space:]][^>]*w:type=[\"'\'']firstRow[\"'\''][^>]*>"
+      if (!match(xml, pat)) return xml
+      head = substr(xml, 1, RSTART + RLENGTH - 1)
+      rest = substr(xml, RSTART + RLENGTH)
+      e_idx = index(rest, "</w:tblStylePr>")
+      if (e_idx == 0) return xml
+      blk = substr(rest, 1, e_idx - 1)
+      rest = substr(rest, e_idx)
+      if (blk !~ /<w:rPr[[:space:]>\/]/) {
+        if (blk ~ /<\/w:pPr>/) sub(/<\/w:pPr>/, "&<w:rPr><w:b/></w:rPr>", blk)
+        else blk = "<w:rPr><w:b/></w:rPr>" blk
+      }
+      if (blk !~ /<w:shd[[:space:]>\/]/) {
+        if (blk ~ /<\/w:tcBorders>/) sub(/<\/w:tcBorders>/, "&<w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"F2F2F2\"/>", blk)
+        else if (blk ~ /<\/w:tcPr>/) sub(/<\/w:tcPr>/, "<w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"F2F2F2\"/>&", blk)
+      }
+      return head blk rest
+    }
     BEGIN { xml = "" }
     { xml = xml (NR > 1 ? "\n" : "") $0 }
     END {
       gsub(/Consolas/, "Courier New", xml)
       xml = patch_style_id(xml, "VerbatimChar")
+      xml = patch_tbl_first_row(xml)
       printf "%s", xml
     }
   ' "$BUILD_DIR/ref_unpacked/word/styles.xml" > "$BUILD_DIR/ref_unpacked/word/styles.xml.tmp"
@@ -1143,7 +1284,7 @@ mv "$BUILD_DIR/ref_unpacked/word/document.xml.tmp" "$BUILD_DIR/ref_unpacked/word
 
 ( cd "$BUILD_DIR/ref_unpacked"; shopt -s dotglob nullglob; zip -qr "$BUILD_DIR/custom-reference.docx" * )
 unzip -tq "$BUILD_DIR/custom-reference.docx" >/dev/null
-echo "[✓] Creato custom-reference.docx (nativo Pandoc + monospace Courier New + footer numerazione pagina)"
+echo "[✓] Creato custom-reference.docx (nativo Pandoc + monospace Courier New + footer numerazione pagina + header tabelle)"
 
 # ==================================================
 # 2. Compilazione dei Documenti con Pandoc
@@ -1170,12 +1311,15 @@ pandoc -f gfm "$SOURCE_FILE" -o "${BASENAME}.docx" \
 postprocess_docx() {
   local docx_file="$1"
   local author="$2"
-  local has_pb_marker=0
+  local has_pb_marker=0 has_tbl_header=0
 
   if unzip -p "$docx_file" word/document.xml 2>/dev/null | grep '__PANDOC_PB_NEXT__' >/dev/null; then
     has_pb_marker=1
   fi
-  [ "$has_pb_marker" -eq 0 ] && [ -z "$author" ] && return 0
+  if unzip -p "$docx_file" word/document.xml 2>/dev/null | grep '<w:tblHeader' >/dev/null; then
+    has_tbl_header=1
+  fi
+  [ "$has_pb_marker" -eq 0 ] && [ "$has_tbl_header" -eq 0 ] && [ -z "$author" ] && return 0
 
   local work_dir
   work_dir="$(mktemp -d)"
@@ -1221,6 +1365,91 @@ postprocess_docx() {
             else { printf "<w:pageBreakBefore/>"; state = 0 }
           }
         }
+      }
+    ' "$work_dir/word/document.xml" > "$work_dir/word/document.xml.tmp"
+    mv "$work_dir/word/document.xml.tmp" "$work_dir/word/document.xml"
+    modified=1
+  fi
+
+  if [ "$has_tbl_header" -eq 1 ] && [ -f "$work_dir/word/document.xml" ]; then
+    awk '
+      function join_parts(arr, n,    step, i) {
+        if (n == 0) return ""
+        for (step = 1; step < n; step *= 2)
+          for (i = 1; i + step <= n; i += 2 * step) { arr[i] = arr[i] arr[i + step]; arr[i + step] = "" }
+        return arr[1]
+      }
+      function shade_row_cells(row,    res, p, tc_tag, rest, tc_end, tc_body, idx_c, tcpr, tail, shd, depth) {
+        shd = "<w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"F2F2F2\"/>"
+        res = ""
+        while (length(row) > 0) {
+          if (!match(row, /<w:tc(>|[[:space:]][^>]*>)/)) { res = res row; break }
+          res = res substr(row, 1, RSTART - 1)
+          tc_tag = substr(row, RSTART, RLENGTH)
+          row = substr(row, RSTART + RLENGTH)
+          depth = 1; p = 1; tc_end = 0
+          while (depth > 0) {
+            rest = substr(row, p)
+            if (!match(rest, /<\/?w:tc(>|[[:space:]\/>])/)) break
+            if (substr(rest, RSTART, 6) == "</w:tc") {
+              depth--
+              if (depth == 0) { tc_end = p + RSTART - 1; break }
+            } else if (match(substr(row, p + RSTART - 1), /^<w:tc([[:space:]]*>|[[:space:]][^>]*[^\/]>)/)) {
+              depth++
+            }
+            p += RSTART + RLENGTH - 1
+          }
+          if (tc_end == 0) { res = res tc_tag row; break }
+          tc_body = substr(row, 1, tc_end - 1)
+          row = substr(row, tc_end)
+          if (tc_body !~ /<w:shd[[:space:]>\/]/) {
+            if (tc_body ~ /^[[:space:]]*<w:tcPr[[:space:]]*\/>/) {
+              sub(/<w:tcPr[[:space:]]*\/>/, "<w:tcPr>" shd "</w:tcPr>", tc_body)
+            } else if (tc_body ~ /^[[:space:]]*<w:tcPr(>|[[:space:]][^>]*>)/ && (idx_c = index(tc_body, "</w:tcPr>")) > 0) {
+              tcpr = substr(tc_body, 1, idx_c + 8)
+              tail = substr(tc_body, idx_c + 9)
+              if (tcpr ~ /<\/w:tcBorders>/) sub(/<\/w:tcBorders>/, "&" shd, tcpr)
+              else if (tcpr ~ /<w:vAlign[[:space:]>\/]/) sub(/<w:vAlign[[:space:]>\/]/, shd "&", tcpr)
+              else sub(/<\/w:tcPr>/, shd "&", tcpr)
+              tc_body = tcpr tail
+            } else {
+              tc_body = "<w:tcPr>" shd "</w:tcPr>" tc_body
+            }
+          }
+          res = res tc_tag tc_body
+          if (match(row, /^<\/w:tc[[:space:]]*>/)) { res = res substr(row, 1, RLENGTH); row = substr(row, RLENGTH + 1) }
+        }
+        return res
+      }
+      BEGIN { np = 0; buf = ""; needle = "<w:tblHeader" }
+      { buf = buf (NR > 1 ? "\n" : "") $0; if (NR % 256 == 0) { parts[++np] = buf; buf = "" } }
+      END {
+        if (buf != "") parts[++np] = buf
+        s = join_parts(parts, np)
+        while ((idx = index(s, needle)) > 0) {
+          printf "%s", substr(s, 1, idx - 1)
+          s = substr(s, idx)
+          trpr_end = index(s, "</w:trPr>")
+          if (trpr_end == 0) { printf "%s", needle; s = substr(s, length(needle) + 1); continue }
+          printf "%s", substr(s, 1, trpr_end + 8)
+          s = substr(s, trpr_end + 9)
+          depth = 1; p = 1; tr_end = 0
+          while (depth > 0) {
+            rest = substr(s, p)
+            if (!match(rest, /<\/?w:tr(>|[[:space:]\/>])/)) break
+            if (substr(rest, RSTART, 6) == "</w:tr") {
+              depth--
+              if (depth == 0) { tr_end = p + RSTART - 1; break }
+            } else if (match(substr(s, p + RSTART - 1), /^<w:tr([[:space:]]*>|[[:space:]][^>]*[^\/]>)/)) {
+              depth++
+            }
+            p += RSTART + RLENGTH - 1
+          }
+          if (tr_end == 0) { printf "%s", s; s = ""; break }
+          printf "%s", shade_row_cells(substr(s, 1, tr_end - 1))
+          s = substr(s, tr_end)
+        }
+        printf "%s", s
       }
     ' "$work_dir/word/document.xml" > "$work_dir/word/document.xml.tmp"
     mv "$work_dir/word/document.xml.tmp" "$work_dir/word/document.xml"
